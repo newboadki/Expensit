@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000D047F1775A92F002D0AB8 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 000D047E1775A92F002D0AB8 /* libKiwi.a */; };
+		000D04E41775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
+		000D04E51775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
+		000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */; };
+		000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */; };
+		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
+		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
+		000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
+		000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -22,6 +31,12 @@
 		007B826E177476780052FE84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8252177476780052FE84 /* CoreData.framework */; };
 		007B8276177476780052FE84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 007B8274177476780052FE84 /* InfoPlist.strings */; };
 		007B8278177476780052FE84 /* ExpensesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B8277177476780052FE84 /* ExpensesTests.m */; };
+		007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
+		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
+		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
+		00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,9 +47,46 @@
 			remoteGlobalIDString = 007B8248177476780052FE84;
 			remoteInfo = Expenses;
 		};
+		007B83101775A3660052FE84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 007B828A17747A020052FE84;
+			remoteInfo = CoreDataStackHelper;
+		};
+		007B83121775A3660052FE84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 007B829A17747A020052FE84;
+			remoteInfo = CoreDataStackHelperTests;
+		};
+		00BEAFB717771F4300A59EE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00BEAF8717771DFB00A59EE2;
+			remoteInfo = DateTimeHelper;
+		};
+		00BEAFB917771F4300A59EE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00BEAF9717771DFB00A59EE2;
+			remoteInfo = DateTimeHelperTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
+		000D04E21775BD56002D0AB8 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		000D04E31775BD56002D0AB8 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		000D04E71775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpensesSummaryViewController.m; sourceTree = "<group>"; };
+		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		000D04F51775D20F002D0AB8 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
+		000D04F61775D20F002D0AB8 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
+		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
 		007B8249177476780052FE84 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007B824C177476780052FE84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		007B824E177476780052FE84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +105,13 @@
 		007B8273177476780052FE84 /* ExpensesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpensesTests-Info.plist"; sourceTree = "<group>"; };
 		007B8275177476780052FE84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		007B8277177476780052FE84 /* ExpensesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpensesTests.m; sourceTree = "<group>"; };
+		007B82C0177591860052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
+		007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
+		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
+		007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataStackHelper.xcodeproj; path = ../CoreDataStackHelper/CoreDataStackHelper.xcodeproj; sourceTree = "<group>"; };
+		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
+		00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
@@ -71,6 +131,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D047F1775A92F002D0AB8 /* libKiwi.a in Frameworks */,
+				007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826E177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
@@ -81,9 +143,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000D04E11775BD56002D0AB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				000D04E21775BD56002D0AB8 /* Entry.h */,
+				000D04E31775BD56002D0AB8 /* Entry.m */,
+				000D04F51775D20F002D0AB8 /* BSCoreDataController.h */,
+				000D04F61775D20F002D0AB8 /* BSCoreDataController.m */,
+				000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		000D04E61775C864002D0AB8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				000D04E71775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.h */,
+				000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */,
+				00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */,
+				00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		007B8240177476780052FE84 = {
 			isa = PBXGroup;
 			children = (
+				007B83141775A3C40052FE84 /* Dependencies */,
 				007B8254177476780052FE84 /* Expenses */,
 				007B8271177476780052FE84 /* ExpensesTests */,
 				007B824B177476780052FE84 /* Frameworks */,
@@ -103,6 +189,10 @@
 		007B824B177476780052FE84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				000D047E1775A92F002D0AB8 /* libKiwi.a */,
+				007B83051775A0370052FE84 /* libCoreDataStackHelper.a */,
+				007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */,
+				007B82C0177591860052FE84 /* libCoreDataStackHelper.a */,
 				007B824C177476780052FE84 /* Foundation.framework */,
 				007B824E177476780052FE84 /* CoreGraphics.framework */,
 				007B8250177476780052FE84 /* UIKit.framework */,
@@ -115,6 +205,7 @@
 		007B8254177476780052FE84 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
+				007B83151775A6330052FE84 /* src */,
 				007B825D177476780052FE84 /* BSAppDelegate.h */,
 				007B825E177476780052FE84 /* BSAppDelegate.m */,
 				007B8263177476780052FE84 /* Images.xcassets */,
@@ -131,6 +222,7 @@
 				007B8257177476780052FE84 /* InfoPlist.strings */,
 				007B825A177476780052FE84 /* main.m */,
 				007B825C177476780052FE84 /* Expenses-Prefix.pch */,
+				000D04F21775C96C002D0AB8 /* Storyboard.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,6 +243,42 @@
 				007B8274177476780052FE84 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		007B830C1775A3660052FE84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				007B83111775A3660052FE84 /* libCoreDataStackHelper.a */,
+				007B83131775A3660052FE84 /* CoreDataStackHelperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		007B83141775A3C40052FE84 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */,
+				007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		007B83151775A6330052FE84 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				000D04E61775C864002D0AB8 /* ViewControllers */,
+				000D04E11775BD56002D0AB8 /* Models */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		00BEAFB117771F4300A59EE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */,
+				00BEAFBA17771F4300A59EE2 /* DateTimeHelperTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +344,16 @@
 			mainGroup = 007B8240177476780052FE84;
 			productRefGroup = 007B824A177476780052FE84 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 007B830C1775A3660052FE84 /* Products */;
+					ProjectRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */;
+				},
+				{
+					ProductGroup = 00BEAFB117771F4300A59EE2 /* Products */;
+					ProjectRef = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				007B8248177476780052FE84 /* Expenses */,
@@ -224,13 +362,46 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		007B83111775A3660052FE84 /* libCoreDataStackHelper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCoreDataStackHelper.a;
+			remoteRef = 007B83101775A3660052FE84 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		007B83131775A3660052FE84 /* CoreDataStackHelperTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreDataStackHelperTests.xctest;
+			remoteRef = 007B83121775A3660052FE84 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDateTimeHelper.a;
+			remoteRef = 00BEAFB717771F4300A59EE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00BEAFBA17771F4300A59EE2 /* DateTimeHelperTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DateTimeHelperTests.xctest;
+			remoteRef = 00BEAFB917771F4300A59EE2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		007B8247177476780052FE84 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				007B8259177476780052FE84 /* InfoPlist.strings in Resources */,
+				007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
 				007B8264177476780052FE84 /* Images.xcassets in Resources */,
+				000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +409,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
+				007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
 				007B8276177476780052FE84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,9 +422,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
+				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
+				00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +436,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
+				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
+				00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				007B8278177476780052FE84 /* ExpensesTests.m in Sources */,
+				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +549,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -381,7 +567,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -402,7 +593,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -420,7 +616,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -446,6 +647,7 @@
 				007B827D177476780052FE84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		007B827E177476780052FE84 /* Build configuration list for PBXNativeTarget "ExpensesTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +656,7 @@
 				007B8280177476780052FE84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataStackHelper.h"
 
+@class CoreDataStackHelper;
 
 @interface BSAppDelegate : UIResponder <UIApplicationDelegate>
 

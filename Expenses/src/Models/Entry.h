@@ -12,8 +12,14 @@
 
 @interface Entry : NSManagedObject
 
-@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSNumber * day;
+@property (nonatomic, retain) NSNumber * month;
+@property (nonatomic, retain) NSNumber * year;
+@property (nonatomic, retain) NSDate  * date;
 @property (nonatomic, retain) NSDecimalNumber * value;
 @property (nonatomic, retain) NSString *desc;
+
+- (NSString*) dayAndMonth;
+- (NSString*) dayMonthYearString;
 
 @end

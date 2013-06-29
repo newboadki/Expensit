@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BSCoreDataController.h"
 #import "BSCoreDataControllerDelegateProtocol.h"
+#import "BSAppDelegate.h"
 
-@interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate>
+@class CoreDataStackHelper;
+
+
+@interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
+
 @property (strong, nonatomic) UICollectionViewLayout *layout;
-@property (strong, nonatomic) BSCoreDataController *coreDataController;
-
-/*! This is the date that the user wants to get entries from.*/
-@property (strong, nonatomic) NSDate *queryDate;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "BSCoreDataController.h"
 #import "Entry.h"
+#import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
 
 @interface BSCoreDataController ()
@@ -30,46 +31,60 @@
     return self;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    // Create the request
-    NSFetchRequest *fetchRequest = [self fetchRequest];
-    
-    // FetchedResultsController
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:self.coreDataHelper.managedObjectContext
-                                                                      sectionNameKeyPath:self.delegate.sectionNameKeyPath
-                                                                               cacheName:nil];
-    _fetchedResultsController.delegate = self;
-    
-    // Execute the request
-	NSError *error = nil;
-	if (![_fetchedResultsController performFetch:&error])
-    {
-	    NSLog(@"Unresolved error fetching results. %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    else
-    {
-        
-    }
-    
-    return _fetchedResultsController;
-}
 
-- (void)insertNewEntry:(NSString*)desc
+- (void)insertNewEntry:(NSString*)dateString description:(NSString*)description value:(NSString*)value
 {
     NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Entry *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
     // Configure
-    newManagedObject.date = [NSDate date];
-    newManagedObject.desc = desc;
+
+    newManagedObject.date = [DateTimeHelper dateWithFormat:[DEFAULT_DATE_FORMAT copy] stringDate:dateString];
+    
+    
+    NSArray *components = [dateString componentsSeparatedByString:@"/"];
+    int scannedNumber;
+    NSScanner *scanner = [NSScanner scannerWithString:components[0]];
+    [scanner scanInt:&scannedNumber];
+    NSNumber *number = [NSNumber numberWithInt:scannedNumber];
+    newManagedObject.day = number;
+    
+    
+    scanner = [NSScanner scannerWithString:components[1]];
+    [scanner scanInt:&scannedNumber];
+    number = [NSNumber numberWithInt:scannedNumber];
+    newManagedObject.month = number;
+    
+    scanner = [NSScanner scannerWithString:components[2]];
+    [scanner scanInt:&scannedNumber];
+    number = [NSNumber numberWithInt:scannedNumber];
+    newManagedObject.year = number;
+    
+    newManagedObject.desc = description;
+    newManagedObject.value = [NSDecimalNumber decimalNumberWithString:value];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value
+{
+    NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    Entry *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // Configure    
+    newManagedObject.date = date;
+    newManagedObject.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:date]];
+    newManagedObject.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:date]];;
+    newManagedObject.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:date]];;    
+    newManagedObject.desc = description;
+    newManagedObject.value = [NSDecimalNumber decimalNumberWithString:value];
     
     // Save the context.
     NSError *error = nil;
@@ -80,16 +95,5 @@
 }
 
 
-- (NSFetchRequest*) fetchRequest
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.coreDataHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Configure the request
-    [self.delegate configureFetchRequest:fetchRequest];
-    
-    return fetchRequest;
-}
 
 @end

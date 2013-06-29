@@ -7,6 +7,11 @@
 //
 
 #import "BSDailyExpensesSummaryViewController.h"
+#import "Entry.h"
+#import "BSDailySummanryEntryCell.h"
+#import "BSDailyEntryHeaderView.h"
+#import "BSAddEntryViewController.h"
+#import "DateTimeHelper.h"
 
 @interface BSDailyExpensesSummaryViewController ()
 
@@ -17,40 +22,48 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-        self.queryDate = [NSDate date];
-    [self.coreDataController insertNewEntry:@"hola"];
-    [self.coreDataController insertNewEntry:@"hola"];
-    [self.coreDataController insertNewEntry:@"adios"];
-    [self.coreDataController insertNewEntry:@"adios"];
-//    [self.coreDataController insertNewEntry:nil];
-//    [self.coreDataController insertNewEntry:nil];
-//    [self.coreDataController insertNewEntry:nil];
-//    [self.coreDataController insertNewEntry:nil];
-//    [self.coreDataController insertNewEntry:nil];
-//    [self.coreDataController insertNewEntry:nil];
-
+    
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    NSLog(@"--- %d", [self.coreDataController.fetchedResultsController.fetchedObjects count]);
-    return [self.coreDataController.fetchedResultsController.fetchedObjects count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-
-    return [self.coreDataController.fetchedResultsController.fetchedObjects count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    Entry *managedObject = (Entry*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
+
+    // configure the cell
+    cell.title.text = managedObject.desc;
+    cell.amountLabel.text = [managedObject.value stringValue];
+    cell.amount = managedObject.value;
+    
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
+
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    NSArray *components = [sectionInfo.name componentsSeparatedByString:@"/"];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%@ %@", [components objectAtIndex:0], [DateTimeHelper monthNameForMonthNumber:[NSDecimalNumber decimalNumberWithString:[components objectAtIndex:1]]]];
+    
+    return headerView;
+    
 }
 
 
@@ -59,24 +72,24 @@
 
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest {
     [super configureFetchRequest:fetchRequest];
-    
-    // Set predicate to filter dates
-    NSPredicate *entriesForAGivenDayPredicate = [NSPredicate predicateWithFormat:@"date < %@", self.queryDate];
-    [fetchRequest setPredicate:entriesForAGivenDayPredicate];
-    
-    // group by day
-    NSEntityDescription *entity = [fetchRequest entity];
-    NSDictionary* propertiesByName = [entity propertiesByName];
-    NSPropertyDescription *descPropertyDescription = propertiesByName[@"desc"];
-    NSPropertyDescription *datePropertyDescription = propertiesByName[@"date"];
-    fetchRequest.resultType = NSDictionaryResultType;
-    [fetchRequest setPropertiesToFetch:@[datePropertyDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[datePropertyDescription, descPropertyDescription]];
+
 }
+
 
 - (NSString*) sectionNameKeyPath
 {
-    return @"month";
+    return @"dayAndMonth";
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
+    {
+        UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
+        BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
+        addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+    }
 }
 
 @end

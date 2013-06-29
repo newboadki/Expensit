@@ -9,15 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "BSCoreDataControllerDelegateProtocol.h"
 
+
 @class CoreDataStackHelper;
 
 @interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate>
+
 @property (strong, nonatomic) CoreDataStackHelper *coreDataHelper;
 @property (strong, nonatomic) NSFetchedResultsController* fetchedResultsController;
-@property (weak, nonatomic) id <BSCoreDataControllerDelegateProtocol> delegate;
+@property (weak, nonatomic)   id <BSCoreDataControllerDelegateProtocol> delegate;
 
 - (id)initWithEntityName:(NSString*)entityName
                 delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate
           coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
-- (void)insertNewEntry:(NSString*)desc;
+
+- (void)insertNewEntry:(NSString*)dateString description:(NSString*)description value:(NSString*)value;
+- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
+
 @end

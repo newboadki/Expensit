@@ -7,18 +7,25 @@
 //
 
 #import "Entry.h"
+#import "DateTimeHelper.h"
 
 
 @implementation Entry
 
+@dynamic day, month, year;
 @dynamic date;
 @dynamic value;
 @dynamic desc;
 
-- (NSInteger) month
+- (NSString*) dayMonthYearString
 {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-    return [components month];
+    return [NSString stringWithFormat:@"%d/%d/%d", [self.day intValue], [self.month intValue], [self.year intValue]];
 }
+
+- (NSString*) dayAndMonth
+{
+    return [NSString stringWithFormat:@"%d/%d", [self.day intValue], [self.month intValue]];
+}
+
 
 @end

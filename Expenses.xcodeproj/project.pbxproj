@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000D047F1775A92F002D0AB8 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 000D047E1775A92F002D0AB8 /* libKiwi.a */; };
 		000D04E41775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
 		000D04E51775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
 		000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */; };
@@ -35,6 +34,20 @@
 		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
+		00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
+		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
+		00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
+		00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
+		00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
+		00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
+		00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
+		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
+		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
+		00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
+		00BEAFD91779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
+		00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
+		00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
 		00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
 /* End PBXBuildFile section */
@@ -110,6 +123,18 @@
 		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataStackHelper.xcodeproj; path = ../CoreDataStackHelper/CoreDataStackHelper.xcodeproj; sourceTree = "<group>"; };
 		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
+		00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
+		00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
+		00BEAFC817775D6C00A59EE2 /* BSDailySummanryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailySummanryEntryCell.h; sourceTree = "<group>"; };
+		00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummanryEntryCell.m; sourceTree = "<group>"; };
+		00BEAFCE17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
+		00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
+		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
+		00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAddEntryViewController.h; sourceTree = "<group>"; };
+		00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAddEntryViewController.m; sourceTree = "<group>"; };
+		00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpenseCell.h; sourceTree = "<group>"; };
+		00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpenseCell.m; sourceTree = "<group>"; };
 		00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyExpensesSummaryViewController.h; sourceTree = "<group>"; };
 		00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */,
 				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
@@ -131,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				000D047F1775A92F002D0AB8 /* libKiwi.a in Frameworks */,
+				00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */,
 				007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826E177476780052FE84 /* CoreData.framework in Frameworks */,
@@ -162,6 +188,10 @@
 				000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */,
 				00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */,
 				00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */,
+				00BEAFCE17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.h */,
+				00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */,
+				00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */,
+				00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -266,6 +296,7 @@
 		007B83151775A6330052FE84 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				00BEAFC517775D6C00A59EE2 /* Views */,
 				000D04E61775C864002D0AB8 /* ViewControllers */,
 				000D04E11775BD56002D0AB8 /* Models */,
 			);
@@ -279,6 +310,21 @@
 				00BEAFBA17771F4300A59EE2 /* DateTimeHelperTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		00BEAFC517775D6C00A59EE2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */,
+				00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */,
+				00BEAFC817775D6C00A59EE2 /* BSDailySummanryEntryCell.h */,
+				00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */,
+				00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */,
+				00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */,
+				00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */,
+				00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,12 +468,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
+				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
 				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
+				00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
+				00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
 				00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
 				000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,10 +488,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BEAFD91779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */,
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
+				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
+				00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
+				00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
+				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				007B8278177476780052FE84 /* ExpensesTests.m in Sources */,
+				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,7 +607,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
+				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,7 +628,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
+				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

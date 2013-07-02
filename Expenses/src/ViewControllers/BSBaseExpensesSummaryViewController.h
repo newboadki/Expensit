@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BSCoreDataControllerDelegateProtocol.h"
 #import "BSAppDelegate.h"
+#import "BSCurrencyHelper.h"
 
 @class CoreDataStackHelper;
 

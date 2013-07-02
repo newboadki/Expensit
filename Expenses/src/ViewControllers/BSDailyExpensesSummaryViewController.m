@@ -48,7 +48,7 @@
 
     // configure the cell
     cell.title.text = managedObject.desc;
-    cell.amountLabel.text = [managedObject.value stringValue];
+    cell.amountLabel.text = [[BSCurrencyHelper amountFormatter] stringFromNumber:managedObject.value];
     cell.amount = managedObject.value;
     
     return cell;
@@ -84,11 +84,16 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
+    if ([[segue identifier] isEqualToString:@"addEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+    }
+    else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
+    {
+        BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
+        dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
     }
 }
 

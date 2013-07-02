@@ -21,9 +21,7 @@
 @property (nonatomic, strong)           NSString					   *resourceName;
 @property (nonatomic, strong)           NSString					   *resourceExtension;
 
-- (id) initWithPersitentStoreType:(NSString*)storeType
-                     resourceName:(NSString*)name
-                        extension:(NSString*)extension;
+- (id) initWithPersitentStoreType:(NSString*)storeType resourceName:(NSString*)name extension:(NSString*)extension persistentStoreName:(NSString*)persistentStoreName;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

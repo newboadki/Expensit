@@ -32,45 +32,6 @@
 }
 
 
-- (void)insertNewEntry:(NSString*)dateString description:(NSString*)description value:(NSString*)value
-{
-    NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    Entry *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // Configure
-
-    newManagedObject.date = [DateTimeHelper dateWithFormat:[DEFAULT_DATE_FORMAT copy] stringDate:dateString];
-    
-    
-    NSArray *components = [dateString componentsSeparatedByString:@"/"];
-    int scannedNumber;
-    NSScanner *scanner = [NSScanner scannerWithString:components[0]];
-    [scanner scanInt:&scannedNumber];
-    NSNumber *number = [NSNumber numberWithInt:scannedNumber];
-    newManagedObject.day = number;
-    
-    
-    scanner = [NSScanner scannerWithString:components[1]];
-    [scanner scanInt:&scannedNumber];
-    number = [NSNumber numberWithInt:scannedNumber];
-    newManagedObject.month = number;
-    
-    scanner = [NSScanner scannerWithString:components[2]];
-    [scanner scanInt:&scannedNumber];
-    number = [NSNumber numberWithInt:scannedNumber];
-    newManagedObject.year = number;
-    
-    newManagedObject.desc = description;
-    newManagedObject.value = [NSDecimalNumber decimalNumberWithString:value];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-}
 
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value
 {
@@ -82,7 +43,10 @@
     newManagedObject.date = date;
     newManagedObject.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:date]];
     newManagedObject.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:date]];;
-    newManagedObject.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:date]];;    
+    newManagedObject.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:date]];;
+    newManagedObject.monthYear = [NSString stringWithFormat:@"%@/%@", [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
+    newManagedObject.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.day stringValue], [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
+
     newManagedObject.desc = description;
     newManagedObject.value = [NSDecimalNumber decimalNumberWithString:value];
     

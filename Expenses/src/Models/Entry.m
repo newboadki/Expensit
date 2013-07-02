@@ -16,16 +16,11 @@
 @dynamic date;
 @dynamic value;
 @dynamic desc;
-
-- (NSString*) dayMonthYearString
-{
-    return [NSString stringWithFormat:@"%d/%d/%d", [self.day intValue], [self.month intValue], [self.year intValue]];
-}
+@dynamic monthYear, dayMonthYear;
 
 - (NSString*) dayAndMonth
 {
     return [NSString stringWithFormat:@"%d/%d", [self.day intValue], [self.month intValue]];
 }
-
 
 @end

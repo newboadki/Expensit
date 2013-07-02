@@ -110,7 +110,7 @@
             </objects>
             <point key="canvasLocation" x="504" y="-654"/>
         </scene>
-        <!--Monthly Expenses Summary View Controller - Monthly Expenses-->
+        <!--Monthly Expenses Summary View Controller - Monthly-->
         <scene sceneID="dND-11-XUn">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="atE-XM-VWQ" customClass="BSMonthlyExpensesSummaryViewController" sceneMemberID="viewController">
@@ -151,7 +151,7 @@
                                 <connections>
                                     <outlet property="amountLabel" destination="nft-mY-eK8" id="BdL-gX-AFO"/>
                                     <outlet property="title" destination="IiR-qe-SUA" id="Nhg-hr-y6D"/>
-                                    <segue destination="qk7-um-Qjr" kind="push" identifier="showDailyEntriesForMonth" id="3mm-hh-Yht"/>
+                                    <segue destination="DkI-cO-Haw" kind="custom" identifier="showDailyEntriesForMonth" id="6nT-gb-nae"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -177,7 +177,7 @@
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Monthly Expenses" id="rcJ-1z-p1r">
+                    <navigationItem key="navigationItem" title="Monthly" id="rcJ-1z-p1r">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="BQL-ih-tMP">
                             <connections>
                                 <segue destination="BhN-NC-sp3" kind="modal" identifier="addEntryFromMonth" id="p7z-Vm-w3k"/>
@@ -189,7 +189,86 @@
             </objects>
             <point key="canvasLocation" x="-70" y="309"/>
         </scene>
-        <!--Daily Expenses Summary View Controller - Daily Expenses-->
+        <!--Per Month Expenses Summary View Controller - Daily-->
+        <scene sceneID="3uM-AG-LiF">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="DkI-cO-Haw" customClass="BSPerMonthExpensesSummaryViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="E3n-KP-lBX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YJE-sy-P8R">
+                            <size key="itemSize" width="318" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="25"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="p6f-jD-uJ6" customClass="BSDailySummanryEntryCell">
+                                <rect key="frame" x="1" y="25" width="318" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqS-KZ-VVf">
+                                            <rect key="frame" x="20" y="-227" width="48" height="504"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="39.85" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldd-OM-Jgd">
+                                            <rect key="frame" x="228" y="-227" width="70" height="504"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="amountLabel" destination="Ldd-OM-Jgd" id="PLM-NB-apq"/>
+                                    <outlet property="title" destination="hqS-KZ-VVf" id="dPi-TI-T3p"/>
+                                    <segue destination="qk7-um-Qjr" kind="custom" identifier="showEntriesForDay" id="lbb-OG-CU0"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BSDailyEntryHeaderView" id="FWe-no-OMf" customClass="BSDailyEntryHeaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="July 2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5l-a0-8pw">
+                                    <rect key="frame" x="20" y="-239" width="320" height="504"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.28262912330000001" green="0.61633547190000004" blue="0.92145040759999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="DkI-cO-Haw" id="PBF-lk-ZQH"/>
+                            <outlet property="delegate" destination="DkI-cO-Haw" id="yzj-8Q-6Iz"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Daily" id="2lx-ln-xLD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="s4v-ck-FmL">
+                            <connections>
+                                <segue destination="BhN-NC-sp3" kind="modal" identifier="addEntryFromDay" id="LOK-DZ-fZ1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lvq-pL-gPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="387" y="316"/>
+        </scene>
+        <!--Daily Expenses Summary View Controller - Entries-->
         <scene sceneID="fVP-hX-uqf">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="qk7-um-Qjr" customClass="BSDailyExpensesSummaryViewController" sceneMemberID="viewController">
@@ -258,17 +337,18 @@
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Daily Expenses" id="w90-CH-C5I">
+                    <navigationItem key="navigationItem" title="Entries" id="w90-CH-C5I">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wDg-iD-4qN">
                             <connections>
-                                <segue destination="BhN-NC-sp3" kind="modal" identifier="addEntryFromDay" id="SvB-fj-3Fl"/>
+                                <segue destination="BhN-NC-sp3" kind="modal" identifier="addEntryFromEntry" id="SvB-fj-3Fl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEj-Bm-Jjz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="309"/>
+            <point key="canvasLocation" x="887" y="309"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

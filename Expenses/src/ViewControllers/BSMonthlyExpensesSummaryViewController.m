@@ -11,7 +11,6 @@
 #import "BSMonthlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSDailyExpensesSummaryViewController.h"
 #import "BSAddEntryViewController.h"
 
 @interface BSMonthlyExpensesSummaryViewController ()
@@ -62,7 +61,7 @@
     if (itemForMonth)
     {
         monthLabelText = [DateTimeHelper monthNameForMonthNumber:[itemForMonth valueForKey:@"month"]];
-        valueLabeltext = [[itemForMonth valueForKey:@"monthlySum"] description];
+        valueLabeltext = [[BSCurrencyHelper amountFormatter] stringFromNumber:[itemForMonth valueForKey:@"monthlySum"]];
     }
     else
     {
@@ -97,7 +96,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDailyEntriesForMonth"])
     {
-        BSDailyExpensesSummaryViewController *dailyExpensesViewController = (BSDailyExpensesSummaryViewController*)segue.destinationViewController;
+        BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
 
     }

@@ -20,16 +20,15 @@
         NSComparisonResult result = [_amount compare:@0];
         switch (result) {
             case NSOrderedAscending:
-                self.amountLabel.textColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+                self.amountLabel.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
                 break;
             case NSOrderedDescending:
-                self.amountLabel.textColor = [[UIColor greenColor] colorWithAlphaComponent:0.4];
+                self.amountLabel.textColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
                 break;
             default:
                 self.amountLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
                 break;
         }
-
     }
 }
 @end

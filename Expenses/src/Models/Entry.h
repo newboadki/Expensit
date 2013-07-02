@@ -18,8 +18,9 @@
 @property (nonatomic, retain) NSDate  * date;
 @property (nonatomic, retain) NSDecimalNumber * value;
 @property (nonatomic, retain) NSString *desc;
+@property (nonatomic, retain) NSString *monthYear;
+@property (nonatomic, retain) NSString *dayMonthYear;
 
 - (NSString*) dayAndMonth;
-- (NSString*) dayMonthYearString;
 
 @end

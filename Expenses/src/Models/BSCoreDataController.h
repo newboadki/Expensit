@@ -22,7 +22,6 @@
                 delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate
           coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
 
-- (void)insertNewEntry:(NSString*)dateString description:(NSString*)description value:(NSString*)value;
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 
 @end

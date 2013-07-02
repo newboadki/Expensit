@@ -11,6 +11,7 @@
 #import "BSBaseExpenseCell.h"
 #import "DateTimeHelper.h"
 
+
 @interface BSBaseExpensesSummaryViewController ()
 
 @end
@@ -25,7 +26,7 @@
     // Do any additional setup after loading the view from its nib.
     
     BSAppDelegate *delegate = (BSAppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.coreDataStackHelper = delegate.coreDataHelper;
+    self.coreDataStackHelper = delegate.coreDataHelper;    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -118,6 +119,8 @@
     @throw @"Implement in subclasses";
     return nil;
 }
+
+
 
 
 @end

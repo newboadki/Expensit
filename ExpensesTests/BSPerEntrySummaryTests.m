@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BSDailyExpensesSummaryViewController.h"
+#import "BSIndividualExpensesSummaryViewController.h"
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
@@ -16,7 +16,7 @@
 @interface BSPerEntrySummaryTests : XCTestCase
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 @property (strong, nonatomic) BSCoreDataController *coreDataController;
-@property (strong, nonatomic) BSDailyExpensesSummaryViewController *dailyViewController;
+@property (strong, nonatomic) BSIndividualExpensesSummaryViewController *dailyViewController;
 @end
 
 @implementation BSPerEntrySummaryTests
@@ -29,7 +29,7 @@
     [self.coreDataStackHelper destroySQLPersistentStoreCoordinator];
     
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
-    self.dailyViewController = [[BSDailyExpensesSummaryViewController alloc] init];
+    self.dailyViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
     self.dailyViewController.coreDataStackHelper = self.coreDataStackHelper;
     
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0"];

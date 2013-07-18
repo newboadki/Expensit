@@ -17,6 +17,7 @@ static NSNumberFormatter *_amountFormatter = nil;
     if (!_amountFormatter)
     {
         _amountFormatter = [[NSNumberFormatter alloc] init];
+        [_amountFormatter setNegativeFormat:@"-¤#,##0.00"];
         [_amountFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_amountFormatter setCurrencySymbol:@"£"];
     }

@@ -7,8 +7,21 @@
 //
 
 #import "BSMonthlySummaryEntryCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation BSMonthlySummaryEntryCell
 
+
+- (void) drawRect:(CGRect)rect
+{
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0].CGColor);
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(0, 0)];
+    [path addLineToPoint:CGPointMake(self.bounds.size.width, 0)];
+    [path stroke];
+}
 
 @end

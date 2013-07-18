@@ -12,6 +12,8 @@
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
 #import "BSAddEntryViewController.h"
+#import "BSGraphViewController.h"
+#import "LineGraph.h"
 
 @interface BSMonthlyExpensesSummaryViewController ()
 
@@ -66,7 +68,7 @@
     else
     {
         monthLabelText = [DateTimeHelper monthNameForMonthNumber:@(indexPath.row + 1)];
-        valueLabeltext = @"--";
+        valueLabeltext = @"";
     }
     
     // Labels
@@ -105,9 +107,47 @@
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+    } else if ([[segue identifier] isEqualToString:@"DisplayGraphView"]) {
+        NSError *surplusFetchError = nil;
+        NSError *expensesFetchError = nil;
+        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
+        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        
+        BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
+//        [(LineGraph*)graphViewController.view setDataSource:graphViewController];
+        [graphViewController setMoneyIn:[self monthlyDataForGraphWithMonthlyResults:surplusResults]];
+        [graphViewController setMoneyOut:[self monthlyDataForGraphWithMonthlyResults:expensesResults]];
     }
 }
 
+
+- (NSArray *) monthlyDataForGraphWithMonthlyResults:(NSArray*) monthlyExpensesResults
+{
+    NSMutableArray *graphData = [NSMutableArray array];
+    
+    for (int monthNumber = 1; monthNumber<=12; monthNumber++)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"month = %d", monthNumber];
+        NSArray *filteredResults = [monthlyExpensesResults filteredArrayUsingPredicate:predicate];
+        NSDictionary *monthDictionary = [filteredResults lastObject];
+        
+        if (monthDictionary)
+        {
+            NSNumber *value = monthDictionary[@"surplusSum"];
+            if ([value compare:@0] == NSOrderedAscending)
+            {
+                value = [NSNumber numberWithFloat:-[value floatValue]];
+            }
+            [graphData addObject:value];
+        }
+        else
+        {
+            [graphData addObject:@0.0];
+        }
+    }
+    
+    return graphData;
+}
 
 
 #pragma mark - BSCoreDataControllerDelegate
@@ -138,10 +178,59 @@
 }
 
 
+- (NSFetchRequest *) graphFetchRequest
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
+    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+    
+    NSExpression *keyPathExpression = [NSExpression
+                                       expressionForKeyPath:@"value"];
+    NSExpression *surplusSumExpression = [NSExpression
+                                          expressionForFunction:@"sum:"
+                                          arguments:[NSArray arrayWithObject:keyPathExpression]];
+    
+    NSExpressionDescription *surplusExpressionDescription =
+    [[NSExpressionDescription alloc] init];
+    [surplusExpressionDescription setName:@"surplusSum"];
+    [surplusExpressionDescription setExpression:surplusSumExpression];
+    [surplusExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+    
+    [fetchRequest setPropertiesToFetch:@[monthDescription, yearDescription, surplusExpressionDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[monthDescription, yearDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphSurplusFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphExpensesFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+    return fetchRequest;
+}
+
+
+
 - (NSString*) sectionNameKeyPath
 {
     return @"year";
 }
+
+
 
 
 @end

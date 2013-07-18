@@ -18,10 +18,7 @@
 @property (strong, nonatomic) NSFetchedResultsController* fetchedResultsController;
 @property (weak, nonatomic)   id <BSCoreDataControllerDelegateProtocol> delegate;
 
-- (id)initWithEntityName:(NSString*)entityName
-                delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate
-          coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
-
+- (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 
 @end

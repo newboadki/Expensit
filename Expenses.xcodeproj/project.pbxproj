@@ -18,6 +18,14 @@
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
 		000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
+		005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
+		005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
+		005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F3178B5A9A00DC1800 /* LineGraph.m */; };
+		005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F3178B5A9A00DC1800 /* LineGraph.m */; };
+		005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */; };
+		005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */; };
+		00735EB41788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */; };
+		00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -48,15 +56,23 @@
 		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
 		00BEAFD91779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
+		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
+		00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
+		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
+		00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
+		00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
+		00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
+		00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
+		00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
 		00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
 		00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
-		00E9F178177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m */; };
-		00E9F179177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m */; };
+		00E9F178177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */; };
+		00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */; };
 		00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */; };
-		00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
-		00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */; };
+		00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
+		00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +125,15 @@
 		000D04F51775D20F002D0AB8 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
 		000D04F61775D20F002D0AB8 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
 		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
+		005DF5EA178B58A500DC1800 /* BSGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGraphView.h; sourceTree = "<group>"; };
+		005DF5EB178B58A500DC1800 /* BSGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphView.m; sourceTree = "<group>"; };
+		005DF5F2178B5A9A00DC1800 /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
+		005DF5F3178B5A9A00DC1800 /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
+		005DF5F6178CA9D300DC1800 /* BSGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGraphViewController.h; sourceTree = "<group>"; };
+		005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphViewController.m; sourceTree = "<group>"; };
+		00735EB21788351200725DFD /* BSYearlyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
+		00735EB6178835CD00725DFD /* BSYearlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlySummaryEntryCell.h; sourceTree = "<group>"; };
 		007B8249177476780052FE84 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007B824C177476780052FE84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		007B824E177476780052FE84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,15 +166,23 @@
 		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
 		00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAddEntryViewController.h; sourceTree = "<group>"; };
 		00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAddEntryViewController.m; sourceTree = "<group>"; };
+		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
+		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
+		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
+		00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyGridLayout.m; sourceTree = "<group>"; };
+		00D7E0F7178F40A100474A30 /* BSDailyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyLayout.h; sourceTree = "<group>"; };
+		00D7E0F8178F40A100474A30 /* BSDailyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyLayout.m; sourceTree = "<group>"; };
+		00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSingleEntryCell.h; sourceTree = "<group>"; };
+		00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSingleEntryCell.m; sourceTree = "<group>"; };
 		00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpenseCell.h; sourceTree = "<group>"; };
 		00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpenseCell.m; sourceTree = "<group>"; };
 		00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
 		00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
-		00E9F176177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPerMonthExpensesSummaryViewController.h; sourceTree = "<group>"; };
-		00E9F177177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPerMonthExpensesSummaryViewController.m; sourceTree = "<group>"; };
+		00E9F176177F47E000A1A212 /* BSDailyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryTests.m; sourceTree = "<group>"; };
-		00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyExpensesSummaryViewController.h; sourceTree = "<group>"; };
-		00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesSummaryViewController.m; sourceTree = "<group>"; };
+		00F814491775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIndividualExpensesSummaryViewController.h; sourceTree = "<group>"; };
+		00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIndividualExpensesSummaryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,14 +234,20 @@
 			children = (
 				000D04E71775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.h */,
 				000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */,
-				00F814491775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.h */,
-				00F8144A1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m */,
+				00F814491775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.h */,
+				00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */,
 				00BEAFCE17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.h */,
 				00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */,
 				00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */,
 				00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */,
-				00E9F176177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.h */,
-				00E9F177177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m */,
+				00E9F176177F47E000A1A212 /* BSDailyExpensesSummaryViewController.h */,
+				00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */,
+				00735EB21788351200725DFD /* BSYearlyExpensesSummaryViewController.h */,
+				00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */,
+				005DF5F6178CA9D300DC1800 /* BSGraphViewController.h */,
+				005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */,
+				00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */,
+				00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -334,6 +373,8 @@
 		00BEAFC517775D6C00A59EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				005DF5F2178B5A9A00DC1800 /* LineGraph.h */,
+				005DF5F3178B5A9A00DC1800 /* LineGraph.m */,
 				00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */,
 				00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */,
 				00BEAFC817775D6C00A59EE2 /* BSDailySummanryEntryCell.h */,
@@ -342,6 +383,15 @@
 				00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */,
 				00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */,
 				00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */,
+				00735EB6178835CD00725DFD /* BSYearlySummaryEntryCell.h */,
+				005DF5EA178B58A500DC1800 /* BSGraphView.h */,
+				005DF5EB178B58A500DC1800 /* BSGraphView.m */,
+				00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */,
+				00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */,
+				00D7E0F7178F40A100474A30 /* BSDailyLayout.h */,
+				00D7E0F8178F40A100474A30 /* BSDailyLayout.m */,
+				00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */,
+				00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -394,6 +444,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Borja Arias Drake";
 				TargetAttributes = {
+					007B8248177476780052FE84 = {
+						DevelopmentTeam = HDWMV7DY5P;
+					};
 					007B8268177476780052FE84 = {
 						TestTargetID = 007B8248177476780052FE84;
 					};
@@ -489,18 +542,26 @@
 			files = (
 				00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
+				005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
+				005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
+				00735EB41788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
-				00F8144B1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
-				00E9F178177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m in Sources */,
+				00E9F178177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
+				00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
+				005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */,
+				00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */,
 				000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,18 +574,26 @@
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
+				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
+				005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */,
+				005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */,
 				00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
 				00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
+				00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */,
 				000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */,
-				00E9F179177F47E000A1A212 /* BSPerMonthExpensesSummaryViewController.m in Sources */,
+				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
-				00F8144C1775FC4000F2D0A8 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
+				00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */,
 				000481EA1780C67A00E7F401 /* BSDailyExpensesSummaryTests.m in Sources */,
+				00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
+				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
+				00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -652,6 +722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

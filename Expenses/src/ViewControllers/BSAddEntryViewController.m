@@ -31,11 +31,34 @@
 {
     BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
     
-    [coreDataController insertNewEntryWithDate:[NSDate date] description:self.descriptionTextField.text value:self.amountTextField.text];
+    
+    NSString *amount = self.amountTextField.text;
+    if (self.entryTypeSwitch.on) {
+        amount = [@"-" stringByAppendingString:amount];
+    }
+    
+    [coreDataController insertNewEntryWithDate:[NSDate date] description:self.descriptionTextField.text value:amount];
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+- (IBAction) typeSwitchChanged:(UISwitch*)typeSwitch
+{
+    if (typeSwitch.on) {
+        self.entryTypeLabel.text = NSLocalizedString(@"Expense", @"");
+        self.entryTypeSymbolLabel.text = @"-";
+
+    } else {    
+        self.entryTypeLabel.text = NSLocalizedString(@"Positive Entry", @"");
+        self.entryTypeSymbolLabel.text = @"+";
+    }
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 
 @end

@@ -1,17 +1,17 @@
 //
-//  BSDailyExpensesSummaryViewController.m
+//  BSPerMonthExpensesSummaryViewController.m
 //  Expenses
 //
-//  Created by Borja Arias Drake on 22/06/2013.
+//  Created by Borja Arias Drake on 29/06/2013.
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
 #import "BSDailyExpensesSummaryViewController.h"
 #import "Entry.h"
-#import "BSDailySummanryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
-#import "BSAddEntryViewController.h"
+#import "BSDailySummanryEntryCell.h"
 #import "DateTimeHelper.h"
+#import "BSAddEntryViewController.h"
 
 @interface BSDailyExpensesSummaryViewController ()
 
@@ -19,11 +19,6 @@
 
 @implementation BSDailyExpensesSummaryViewController
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -36,20 +31,42 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    NSString *monthString = [sectionInfo name];
+    NSArray *components = [monthString componentsSeparatedByString:@"/"];
     
-    return [sectionInfo numberOfObjects];
+    NSRange numberOfDaysInMonth = [DateTimeHelper numberOfDaysInMonth:components[0]];
+    return numberOfDaysInMonth.length;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Entry *managedObject = (Entry*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    NSArray *fetchedObjectsForSection = [sectionInfo objects];
+    NSPredicate *itemForDayPredicate = [NSPredicate predicateWithFormat:@"day = %d AND monthYear = %@", indexPath.row + 1, sectionInfo.name];
+    NSDictionary *itemForDayMonthYear = [[fetchedObjectsForSection filteredArrayUsingPredicate:itemForDayPredicate] lastObject];
 
+    BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
+    // Determine the text of the labels
+    NSString *monthLabelText = nil;
+    NSString *valueLabeltext = nil;
+
+    if (itemForDayMonthYear)
+    {
+        monthLabelText = [[itemForDayMonthYear valueForKey:@"day"] stringValue];
+        valueLabeltext = [[BSCurrencyHelper amountFormatter] stringFromNumber:[itemForDayMonthYear valueForKey:@"dailySum"]];
+    }
+    else
+    {
+        monthLabelText = [@(indexPath.row + 1) stringValue];
+        valueLabeltext = @"";
+    }
+
+    
     // configure the cell
-    cell.title.text = managedObject.desc;
-    cell.amountLabel.text = [[BSCurrencyHelper amountFormatter] stringFromNumber:managedObject.value];
-    cell.amount = managedObject.value;
+    cell.title.text = monthLabelText;
+    cell.amountLabel.text = valueLabeltext;
+    cell.amount = [itemForDayMonthYear valueForKey:@"dailySum"];
     
     return cell;
 }
@@ -57,13 +74,11 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
-
+    
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
-    NSArray *components = [sectionInfo.name componentsSeparatedByString:@"/"];
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%@ %@", [components objectAtIndex:0], [DateTimeHelper monthNameForMonthNumber:[NSDecimalNumber decimalNumberWithString:[components objectAtIndex:1]]]];
+    headerView.titleLabel.text = sectionInfo.name;
     
     return headerView;
-    
 }
 
 
@@ -72,19 +87,39 @@
 
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest {
     [super configureFetchRequest:fetchRequest];
+    
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *dayMonthYearDescription = propertiesByName[@"dayMonthYear"];
+    NSPropertyDescription *dayDescription = propertiesByName[@"day"];
+    NSPropertyDescription *monthYearDescription = propertiesByName[@"monthYear"];
+    
+    NSExpression *keyPathExpression = [NSExpression
+                                       expressionForKeyPath:@"value"];
+    NSExpression *sumExpression = [NSExpression
+                                   expressionForFunction:@"sum:"
+                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+    
+    NSExpressionDescription *sumExpressionDescription =
+    [[NSExpressionDescription alloc] init];
+    [sumExpressionDescription setName:@"dailySum"];
+    [sumExpressionDescription setExpression:sumExpression];
+    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
 
+    [fetchRequest setPropertiesToFetch:@[monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[dayMonthYearDescription, monthYearDescription, dayDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
 }
 
 
 - (NSString*) sectionNameKeyPath
 {
-    return @"dayAndMonth";
+    return @"monthYear";
 }
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"addEntryFromEntry"])
+    if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;

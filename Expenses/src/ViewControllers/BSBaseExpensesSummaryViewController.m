@@ -10,23 +10,35 @@
 #import "CoreDataStackHelper.h"
 #import "BSBaseExpenseCell.h"
 #import "DateTimeHelper.h"
+#import "BSGraphViewController.h"
 
 
 @interface BSBaseExpensesSummaryViewController ()
-
+@property (nonatomic) BOOL isShowingLandscapeView;
 @end
 
 @implementation BSBaseExpensesSummaryViewController
 
 
 #pragma mark - view life cycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     BSAppDelegate *delegate = (BSAppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.coreDataStackHelper = delegate.coreDataHelper;    
+    self.coreDataStackHelper = delegate.coreDataHelper;
+    
+    // Prepare for Landscape
+    self.isShowingLandscapeView = NO;
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -43,6 +55,33 @@
 }
 
 
+
+#pragma mark - Landscape Presentation
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    if (self == [[self navigationController] topViewController]) {
+        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+        if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView)
+        {
+            [self performSegueWithIdentifier:@"DisplayGraphView" sender:[[self navigationController] topViewController]];
+            self.isShowingLandscapeView = YES;
+        }
+        else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView && [self.presentedViewController isKindOfClass:[BSGraphViewController class]])
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            self.isShowingLandscapeView = NO;
+        }
+    }
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
+
 #pragma mark - UICollectionView
 
 
@@ -55,6 +94,7 @@
 
 
 
+#pragma mark - Core Data
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -114,6 +154,18 @@
 }
 
 
+- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
+{
+    // Batch Size
+    [fetchRequest setFetchBatchSize:50];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+}
+
+
 - (NSString*) sectionNameKeyPath
 {
     @throw @"Implement in subclasses";
@@ -121,6 +173,12 @@
 }
 
 
+#pragma mark - Dealloc
 
+- (void)dealloc
+{
+    // Remove notification observations
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+}
 
 @end

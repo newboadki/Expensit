@@ -1,8 +1,8 @@
 //
-//  BSDailyExpensesSummaryViewController.h
+//  BSPerMonthExpensesSummaryViewController.h
 //  Expenses
 //
-//  Created by Borja Arias Drake on 22/06/2013.
+//  Created by Borja Arias Drake on 29/06/2013.
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 

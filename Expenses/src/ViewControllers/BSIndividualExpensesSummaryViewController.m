@@ -68,12 +68,16 @@
 }
 
 
+- (BOOL) shouldScrollToSelectedSection
+{
+    return YES;
+}
+
 
 #pragma mark - BSCoreDataControllerDelegate
 
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest {
     [super configureFetchRequest:fetchRequest];
-
 }
 
 

@@ -24,4 +24,13 @@
  the previous viewController and used by the nextViewController to scroll to the right section.*/
 @property (strong, nonatomic) NSIndexPath *sectionToBeShownIndexPath;
 
+/*! When the user is in a particular summary screen and selects a cell, this property is set by
+ the previous viewController and used by the nextViewController to scroll to the right section.
+ This property exists because in certain screens we don't show all items, for example, we just show
+ months that have entries in the daily summary screen.*/
+@property (strong, nonatomic) NSString *nameOfSectionToBeShown;
+
+
+@property (assign, nonatomic) BOOL shouldScrollToSelectedSection;
+
 @end

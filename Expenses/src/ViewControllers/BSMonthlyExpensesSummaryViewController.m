@@ -32,6 +32,7 @@
 }
 
 
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -93,16 +94,21 @@
 }
 
 
+
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDailyEntriesForMonth"])
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-//        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
-//        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
-//        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:12 * selectedIndexPath.section + selectedIndexPath.row];
-//        dailyExpensesViewController.sectionToBeShownIndexPath = newIndexPath;
+        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:selectedIndexPath.section];
+
+        // Create the name of the section to go to in the next VC
+        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,sectionInfo.name]; // there are 12 months (0-11) that's why we add 1. The section name is the year
+        dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
     }
     else if ([[segue identifier] isEqualToString:@"addEntryFromMonth"])
     {
@@ -123,7 +129,10 @@
     }
 }
 
-
+- (BOOL) shouldScrollToSelectedSection
+{
+    return YES;
+}
 
 #pragma mark - BSCoreDataControllerDelegate
 

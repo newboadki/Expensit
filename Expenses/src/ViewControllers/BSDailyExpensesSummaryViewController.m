@@ -16,10 +16,10 @@
 
 
 @interface BSDailyExpensesSummaryViewController ()
-
 @end
 
 @implementation BSDailyExpensesSummaryViewController
+
 
 
 #pragma mark - UICollectionViewDataSource
@@ -76,13 +76,16 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
-    
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     headerView.titleLabel.text = sectionInfo.name;
-    
     return headerView;
 }
 
+
+- (BOOL) shouldScrollToSelectedSection
+{
+    return YES;
+}
 
 
 #pragma mark - BSCoreDataControllerDelegate
@@ -131,7 +134,17 @@
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-        dailyExpensesViewController.sectionToBeShownIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        
+        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:selectedIndexPath.section];
+        
+        // Create the name of the section to go to in the next VC
+        NSString *month = [sectionInfo.name componentsSeparatedByString:@"/"][0];
+        
+        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,month];
+        dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
+
 
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])

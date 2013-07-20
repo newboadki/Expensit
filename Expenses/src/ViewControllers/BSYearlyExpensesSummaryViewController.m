@@ -87,9 +87,9 @@
     {
         BSBaseExpensesSummaryViewController *monthlyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         monthlyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-//        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
-//        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
-//        monthlyExpensesViewController.sectionToBeShownIndexPath = [NSIndexPath indexPathForRow:0 inSection:selectedIndexPath.row]; // Last month
+        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
+        monthlyExpensesViewController.nameOfSectionToBeShown = self.fetchedResultsController.fetchedObjects[selectedIndexPath.row][@"year"];
     }
     else if ([[segue identifier] isEqualToString:@"addEntryFromYear"])
     {

@@ -46,8 +46,26 @@
     [super viewWillAppear:animated];
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
-    //[self.collectionView scrollToItemAtIndexPath:self.sectionToBeShownIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+
+    if (self.shouldScrollToSelectedSection)
+    {
+        NSArray *sectionNames = [self.fetchedResultsController.fetchedObjects valueForKeyPath:[self sectionNameKeyPath]];
+        NSMutableArray* uniqueSectionNames = [[NSMutableArray alloc] init];
+        for(id sectionName in sectionNames)
+        {
+            if(![uniqueSectionNames containsObject:sectionName])
+            {
+                [uniqueSectionNames addObject:sectionName];
+            }
+        }
+        NSArray *filteredArray = [uniqueSectionNames filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self = %@", self.nameOfSectionToBeShown]];
+        NSInteger sectionToScrollTo = [uniqueSectionNames indexOfObject:[filteredArray lastObject]];
+        
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {

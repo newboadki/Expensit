@@ -11,7 +11,7 @@
 #import "BSBaseExpenseCell.h"
 #import "DateTimeHelper.h"
 #import "BSGraphViewController.h"
-
+#import "BSBaseExpensesSummaryViewController+Protected.h"
 
 @interface BSBaseExpensesSummaryViewController ()
 @property (nonatomic) BOOL isShowingLandscapeView;
@@ -46,6 +46,7 @@
     [super viewWillAppear:animated];
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
+    //[self.collectionView scrollToItemAtIndexPath:self.sectionToBeShownIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,6 +54,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 
@@ -90,7 +92,6 @@
 {
     
 }
-
 
 
 
@@ -148,7 +149,7 @@
     [fetchRequest setFetchBatchSize:50];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
@@ -160,7 +161,7 @@
     [fetchRequest setFetchBatchSize:50];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
@@ -171,6 +172,34 @@
     @throw @"Implement in subclasses";
     return nil;
 }
+
+
+
+#pragma mark - Core Data Graph queries
+
+- (NSFetchRequest *) graphFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self fetchRequest];
+    [self configureFetchRequest:fetchRequest];
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphSurplusFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphExpensesFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+    return fetchRequest;
+}
+
 
 
 #pragma mark - Dealloc

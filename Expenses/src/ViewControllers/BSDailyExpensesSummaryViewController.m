@@ -12,6 +12,8 @@
 #import "BSDailySummanryEntryCell.h"
 #import "DateTimeHelper.h"
 #import "BSAddEntryViewController.h"
+#import "BSBaseExpensesSummaryViewController+Protected.h"
+
 
 @interface BSDailyExpensesSummaryViewController ()
 
@@ -129,7 +131,90 @@
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
+        dailyExpensesViewController.sectionToBeShownIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+
+    }
+    else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
+    {
+        NSError *surplusFetchError = nil;
+        NSError *expensesFetchError = nil;
+        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
+        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        
+        BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
+        [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
+        [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
     }
 }
+
+
+- (NSString*) visibleSectionName
+{
+    NSArray *visibleCells = [self.collectionView visibleCells];
+    int visibleCellsCount = [visibleCells count];
+    BSBaseExpenseCell *middleCell = (BSBaseExpenseCell *)visibleCells[(int)(visibleCellsCount / 2)];
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:middleCell];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+
+    return [sectionInfo name];
+}
+
+#pragma mark - Graph Data
+
+- (NSFetchRequest *) graphSurplusFetchRequest
+{
+    NSFetchRequest *fetchRequest = [super graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0 AND monthYear LIKE %@", [self visibleSectionName]]];
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphExpensesFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0 AND monthYear LIKE %@", [self visibleSectionName]]];
+    return fetchRequest;
+}
+
+
+- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) monthlyExpensesResults
+{
+    NSMutableArray *graphData = [NSMutableArray array];
+    NSArray *visibleCells = [self.collectionView visibleCells];
+    int visibleCellsCount = [visibleCells count];
+    BSBaseExpenseCell *middleCell = (BSBaseExpenseCell *)visibleCells[(int)(visibleCellsCount / 2)];
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:middleCell];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    NSString *sectionName = [sectionInfo name];
+    NSArray *components = [sectionName componentsSeparatedByString:@"/"];
+    NSString *monthNumberString = components[0];
+    
+    NSRange numberOfDaysInMonth = [DateTimeHelper numberOfDaysInMonth:monthNumberString]; // What should the current month be? the
+    
+    for (int dayNumber = 1; dayNumber<=numberOfDaysInMonth.length; dayNumber++)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day = %d", dayNumber];
+        NSArray *filteredResults = [monthlyExpensesResults filteredArrayUsingPredicate:predicate];
+        NSDictionary *monthDictionary = [filteredResults lastObject];
+        
+        if (monthDictionary)
+        {
+            NSNumber *value = monthDictionary[@"dailySum"];
+            if ([value compare:@0] == NSOrderedAscending)
+            {
+                value = [NSNumber numberWithFloat:-[value floatValue]];
+            }
+            [graphData addObject:value];
+        }
+        else
+        {
+            [graphData addObject:@0.0];
+        }
+    }
+    
+    return graphData;
+}
+
+
 
 @end

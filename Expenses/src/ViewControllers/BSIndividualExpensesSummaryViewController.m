@@ -12,6 +12,7 @@
 #import "BSDailyEntryHeaderView.h"
 #import "BSAddEntryViewController.h"
 #import "DateTimeHelper.h"
+#import "BSBaseExpensesSummaryViewController+Protected.h"
 
 @interface BSIndividualExpensesSummaryViewController ()
 

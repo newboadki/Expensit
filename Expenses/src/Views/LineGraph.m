@@ -86,10 +86,13 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
     }
     NSMutableArray *pointsIn = [NSMutableArray array];
     NSMutableArray *pointsOut = [NSMutableArray array];
-    CGFloat numberOfHorizontalPoints = [[self.dataSource xValues] count];
+    CGFloat numberOfHorizontalPoints = [[self.dataSource moneyIn] count];
     CGFloat sum = 0;
     CGFloat step = graphsRect.size.width / (numberOfHorizontalPoints - 1 );
-    
+    if (numberOfHorizontalPoints == 1) {
+        step = 0;
+        sum = (graphsRect.size.width / 2.0);
+    }
     
     NSMutableArray *maxArray = [NSMutableArray array];
     [maxArray addObject:[moneyIn valueForKeyPath:@"@max.self"]];
@@ -98,24 +101,10 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
     CGFloat maxDomainValue = [[maxArray valueForKeyPath:@"@max.self"] floatValue];
     CGFloat scalingFactor = 1.0f;
     
-    if (maxDomainValue > maxPhysicalHeight) {
-        scalingFactor = maxPhysicalHeight / maxDomainValue;
-    } else {
-        scalingFactor = maxDomainValue / maxPhysicalHeight;
-    }
+
+    scalingFactor =  maxPhysicalHeight / maxDomainValue;
         
     
-    CGFloat numerator = 0;
-    CGFloat denominator = 0;
-    
-    
-    // Guarantee that the denominator is always bigger
-    if (denominator < numerator) {
-        CGFloat aux = numerator;
-        numerator = denominator;
-        denominator = aux;
-    }
-
     
     for (int i = 0; i< [moneyIn count]; i++) {
         CGPoint point = CGPointZero;
@@ -128,6 +117,11 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
     }
     
     sum = 0;
+    if (numberOfHorizontalPoints == 1) {
+        step = 0;
+        sum = (graphsRect.size.width / 2.0);
+    }
+
     
     for (int i=0; i<[moneyOut count]; i++) {
         CGPoint point = CGPointZero;
@@ -357,11 +351,18 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
         CGContextSetLineWidth(con, 1.5);
         
         // Create the visible part of the graph and stroke it
-        CGContextMoveToPoint(con, [(NSValue*)points[0] CGPointValue].x, [(NSValue*)points[0] CGPointValue].y);
+        CGPoint point = [(NSValue*)points[0] CGPointValue];
+        CGContextMoveToPoint(con, point.x, point.y);
         
         for (int i=1; i<length; i++)
         {
-            CGContextAddLineToPoint(con, [(NSValue*)points[i] CGPointValue].x, [(NSValue*)points[i] CGPointValue].y);
+            point = [(NSValue*)points[i] CGPointValue];
+            CGContextAddLineToPoint(con, point.x, point.y);
+        }
+    
+        if (length == 1)
+        {
+            CGContextAddEllipseInRect(con, CGRectMake(point.x - 5 , point.y -5, 5, 5));
         }
         
         CGContextStrokePath(con);

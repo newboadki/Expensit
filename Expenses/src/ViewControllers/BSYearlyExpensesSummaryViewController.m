@@ -12,6 +12,7 @@
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
 #import "BSAddEntryViewController.h"
+#import "BSBaseExpensesSummaryViewController+Protected.h"
 
 @interface BSYearlyExpensesSummaryViewController ()
 
@@ -76,23 +77,36 @@
     headerView.titleLabel.text = sectionInfo.name;
     
     return headerView;
-    
 }
+
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showMonthlyEntries"])
     {
-        BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
-        dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-        
+        BSBaseExpensesSummaryViewController *monthlyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
+        monthlyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
+//        UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
+//        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
+//        monthlyExpensesViewController.sectionToBeShownIndexPath = [NSIndexPath indexPathForRow:0 inSection:selectedIndexPath.row]; // Last month
     }
     else if ([[segue identifier] isEqualToString:@"addEntryFromYear"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+    }
+    else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
+    {
+        NSError *surplusFetchError = nil;
+        NSError *expensesFetchError = nil;
+        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
+        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        
+        BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
+        [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
+        [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
     }
 }
 
@@ -103,6 +117,13 @@
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
 {
     [super configureFetchRequest:fetchRequest];
+    
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
     
     NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
     NSPropertyDescription *yearDescription = propertiesByName[@"year"];
@@ -129,5 +150,36 @@
 {
     return nil;
 }
+
+
+
+#pragma mark - Graph Data
+
+- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) yearlyExpensesResults
+{
+    NSMutableArray *graphData = [NSMutableArray array];
+    
+    for (int i = 0; i<[yearlyExpensesResults count]; i++)
+    {
+        NSDictionary *monthDictionary = yearlyExpensesResults[i];
+        
+        if (monthDictionary)
+        {
+            NSNumber *value = monthDictionary[@"yearlySum"];
+            if ([value compare:@0] == NSOrderedAscending)
+            {
+                value = [NSNumber numberWithFloat:-[value floatValue]];
+            }
+            [graphData addObject:value];
+        }
+        else
+        {
+            [graphData addObject:@0.0];
+        }
+    }
+    
+    return graphData;
+}
+
 
 @end

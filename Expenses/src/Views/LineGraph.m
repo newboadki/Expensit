@@ -15,13 +15,15 @@ static const CGFloat kGraphRightMargin = 0.0f;
 static const CGFloat kGraphTopMargin = 20.0f;
 static const CGFloat kGraphBottomMargin = 20.0f;
 static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the grid, so the lines don't reach the top of the grid
+static const CGFloat kGraphXValuesTopMargin = 5.0f;
 
 @interface LineGraph()
 
 @property (retain, nonatomic) UIColor* backgroundColor;
 @property (retain, nonatomic) UIColor* backgroundVerticalLinesColor;
 @property (retain, nonatomic) UIColor* backgroundHorizontalLinesColor;
-
+@property (retain, nonatomic) UIColor* expensesLineColor;
+@property (retain, nonatomic) UIColor* benefitsLineColor;
 @end
 
 
@@ -41,11 +43,11 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
     if (self)
     {
         // Set the colors
-        UIColor* lightBlue = [UIColor colorWithRed:180.0/256.0 green:180.0/256.0 blue:180.0/256.0 alpha:0.4];
-        UIColor* darkBlue = [UIColor colorWithRed:39.0/256.0 green:64.0/256.0 blue:139.0/256.0 alpha:1.0];
-        _backgroundHorizontalLinesColor = lightBlue;
-        _backgroundVerticalLinesColor = lightBlue;
-        _backgroundColor = darkBlue;
+        UIColor* lightGray = [UIColor colorWithRed:180.0/256.0 green:180.0/256.0 blue:180.0/256.0 alpha:0.4];
+        _benefitsLineColor = [UIColor colorWithRed:168.0/255.0 green:209.0/255.0 blue:141.0/255.0 alpha:1.0];
+        _expensesLineColor = [UIColor colorWithRed:209.0/255.0 green:91.0/255.0 blue:82.0/255.0 alpha:1.0];
+        _backgroundHorizontalLinesColor = lightGray;
+        _backgroundVerticalLinesColor = lightGray;
     }
     
     return self;
@@ -60,10 +62,6 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
     /*************************************************************************************************/
     /* Custom drawing code.                                                                          */
     /*************************************************************************************************/
-    // COLORS
-    UIColor *greenLineColor = [UIColor colorWithRed:168.0/255.0 green:209.0/255.0 blue:141.0/255.0 alpha:1.0];
-    UIColor *redLineColor = [UIColor colorWithRed:209.0/255.0 green:91.0/255.0 blue:82.0/255.0 alpha:1.0];
-
     // DEFINE DRAWABLE AREAS
     CGRect backgroundRect = rect;
     CGRect gridRect = CGRectMake(kGraphLeftMargin,
@@ -78,88 +76,99 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
 
     
     // MODIFY DATA FOR DRAWING
-    NSMutableArray *moneyIn = [[self.dataSource moneyIn] mutableCopy];
-    NSMutableArray *moneyOut = [[self.dataSource moneyOut] mutableCopy];
+    NSMutableArray *benefits = [[self.dataSource moneyIn] mutableCopy];
+    NSMutableArray *expenses = [[self.dataSource moneyOut] mutableCopy];
     
-    if (!moneyIn || !moneyOut) {
+    if (!benefits || !expenses) {
         return;
     }
-    NSMutableArray *pointsIn = [NSMutableArray array];
-    NSMutableArray *pointsOut = [NSMutableArray array];
-    CGFloat numberOfHorizontalPoints = [[self.dataSource moneyIn] count];
-    CGFloat sum = 0;
-    CGFloat step = graphsRect.size.width / (numberOfHorizontalPoints - 1 );
-    if (numberOfHorizontalPoints == 1) {
-        step = 0;
-        sum = (graphsRect.size.width / 2.0);
-    }
     
+    // Calculate the maxmimum from the input values
     NSMutableArray *maxArray = [NSMutableArray array];
-    [maxArray addObject:[moneyIn valueForKeyPath:@"@max.self"]];
-    [maxArray addObject:[moneyOut valueForKeyPath:@"@max.self"]];
-    CGFloat maxPhysicalHeight = graphsRect.size.height;
+    [maxArray addObject:[benefits valueForKeyPath:@"@max.self"]];
+    [maxArray addObject:[expenses valueForKeyPath:@"@max.self"]];
     CGFloat maxDomainValue = [[maxArray valueForKeyPath:@"@max.self"] floatValue];
-    CGFloat scalingFactor = 1.0f;
-    
-
-    scalingFactor =  maxPhysicalHeight / maxDomainValue;
-        
-    
-    
-    for (int i = 0; i< [moneyIn count]; i++) {
-        CGPoint point = CGPointZero;
-        point.x = sum;
-        point.y = [moneyIn[i] floatValue] * scalingFactor;
-        
-        pointsIn[i] = [NSValue valueWithCGPoint:point];
-        
-        sum += step;
-    }
-    
-    sum = 0;
-    if (numberOfHorizontalPoints == 1) {
-        step = 0;
-        sum = (graphsRect.size.width / 2.0);
-    }
-
-    
-    for (int i=0; i<[moneyOut count]; i++) {
-        CGPoint point = CGPointZero;
-        point.x = sum;
-        point.y = [moneyOut[i] floatValue] * scalingFactor;
-        
-        pointsOut[i] = [NSValue valueWithCGPoint:point];
-        
-        sum += step;
-    }
-
-    // MOVE THE ORIGIN TO THE LEFT BOTTOM CORNER
-    
-    
+    NSMutableArray *pointsIn = [self pointsInGraphicDomainFromUserDomainValues:benefits graphRect:graphsRect maxUserDomainValue:maxDomainValue];
+    NSMutableArray *pointsOut = [self pointsInGraphicDomainFromUserDomainValues:expenses graphRect:graphsRect maxUserDomainValue:maxDomainValue];
     
     CGContextRef theContext = UIGraphicsGetCurrentContext();
     CGContextSaveGState(theContext);
-    CGContextTranslateCTM(theContext, 0, self.bounds.size.height);
-    CGContextScaleCTM(theContext, 1, -1);
+        // MOVE THE ORIGIN TO THE LEFT BOTTOM CORNER
+        CGContextTranslateCTM(theContext, 0, self.bounds.size.height);
+        CGContextScaleCTM(theContext, 1, -1);
+        
+        // DRAW BACKGROUND + GRID
+        [self drawBackgroundInRect:backgroundRect];
+        [self drawGridInRect:gridRect horizontalLines:9 verticalLines:[benefits count] xValues:self.dataSource.xValues maxYValue:maxDomainValue];
+        
+        // MOVE ORIGIN TO BE AT THE INTERSECTION OF THE AXIS
+        CGContextTranslateCTM(theContext, kGraphLeftMargin, kGraphBottomMargin);
+        
+        // Create the paths
+        NSArray *subpaths = [self intersectionSubpathsBenefitPoints:pointsIn expensePoints:pointsOut]; // This method modifies points In and Out to include the intersection points
+        
+        // Stroke the new paths
+        [self strokeGraphLineWithPoints:pointsIn andLength:[pointsIn count] lineColor:self.benefitsLineColor];
+        [self strokeGraphLineWithPoints:pointsOut andLength:[pointsOut count] lineColor:self.expensesLineColor];
+        
+        // Draw the intersection paths
+        [self drawIntersectionPaths:subpaths];
     
-    // DRAW BACKGROUND + GRID
-    [self drawBackgroundInRect:backgroundRect];
-    [self drawGridInRect:gridRect horizontalLines:9 verticalLines:[moneyIn count]];
+    CGContextRestoreGState(theContext);
+}
+
+
+
+#pragma mark - Transformation of the user data into points
+
+- (NSMutableArray *) pointsInGraphicDomainFromUserDomainValues:(NSArray *)userDomainValues graphRect:(CGRect)graphsRect maxUserDomainValue:(CGFloat)maxUserDomainValue
+{
+    NSMutableArray *points = [NSMutableArray array];
+    CGFloat numberOfHorizontalPoints = [userDomainValues count];
+    CGFloat sum = 0; // Horizontal sum so we can create the horizontal
+    CGFloat step = graphsRect.size.width / (numberOfHorizontalPoints - 1 ); // Amount in graphic space that separates the x components of the points
+    CGFloat maxPhysicalHeight = graphsRect.size.height;
+    CGFloat scalingFactor = (maxPhysicalHeight / maxUserDomainValue); // To convert between the user and the graphic domains
     
-    // DRAW GRAPH
-    CGContextTranslateCTM(theContext, kGraphLeftMargin, kGraphBottomMargin);
+    // Special cases when there's no or little data
+    if (numberOfHorizontalPoints == 1)
+    {
+        step = 0;
+        sum = (graphsRect.size.width / 2.0);
+    }
     
-    [self strokeGraphLineWithPoints:pointsIn andLength:[pointsIn count] lineColor:greenLineColor];
-    [self strokeGraphLineWithPoints:pointsOut andLength:[pointsOut count] lineColor:redLineColor];
+    for (int i = 0; i< numberOfHorizontalPoints; i++)
+    {
+        CGPoint point = CGPointZero;
+        point.x = sum;
+        point.y = [userDomainValues[i] floatValue] * scalingFactor;
+        points[i] = [NSValue valueWithCGPoint:point];
+        sum += step;
+    }
     
-    // DRAW SUBPATHS
+    return points;
+}
+
+
+
+#pragma mark - Calculation Of intersection subpaths
+
+- (int) gradientBetweenMoneyIn:(CGPoint)moneyIn andMoneyOut:(CGPoint)moneyOut
+{
+    return (moneyIn.y > moneyOut.y) ? 1 : (moneyIn.y < moneyOut.y) ? -1 : 0;
+}
+
+
+- (NSArray *) intersectionSubpathsBenefitPoints:(NSMutableArray *)pointsIn expensePoints:(NSMutableArray *)pointsOut
+{
     NSMutableArray *subpaths = [[NSMutableArray alloc] init];
     
     int lastGradient = [self gradientBetweenMoneyIn:[(NSValue*)pointsIn[0] CGPointValue] andMoneyOut:[(NSValue*)pointsOut[0] CGPointValue]];
     int index = 1;
     int initialSubpathIndex = 0;
+    int numberOfOriginalPoints = [pointsIn count];
     
-    while (index < [moneyIn count])
+    while (index < numberOfOriginalPoints)
     {
         int currentPairGradient = [self gradientBetweenMoneyIn:[pointsIn[index] CGPointValue] andMoneyOut:[(NSValue*)pointsOut[index] CGPointValue]];
         
@@ -175,8 +184,9 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
                                                                       secondLineFirstPoint:[pointsOut[index-1] CGPointValue]
                                                                      secondLineSecondPoint:[pointsOut[index] CGPointValue]];
             }
-
-            if (currentPairGradient != 0 ) {
+            
+            if (currentPairGradient != 0 )
+            {
                 [pointsIn insertObject:[NSValue valueWithCGPoint:intersectionPoint] atIndex:index];
                 [pointsOut insertObject:[NSValue valueWithCGPoint:intersectionPoint] atIndex:index];
             }
@@ -184,7 +194,7 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
             [self addNewSubpathTo:subpaths withMoneyIn:pointsIn moneyOut:pointsOut initialSubPathIndex:initialSubpathIndex currentIndex:index gradient:lastGradient];
             lastGradient = [self gradientBetweenMoneyIn:[(NSValue*)pointsIn[index] CGPointValue] andMoneyOut:[(NSValue*)pointsOut[index] CGPointValue]];
             
-
+            
             initialSubpathIndex = index;
         }
         else
@@ -198,48 +208,20 @@ static const CGFloat kGraphDrawableAreaTopMargin = 20.0f; // This is inside the 
         
     }
     
-    if (lastGradient != 0 ) {
+    if (lastGradient != 0 )
+    {
         // we need to add the last path
         [self addNewSubpathTo:subpaths withMoneyIn:pointsIn moneyOut:pointsOut initialSubPathIndex:initialSubpathIndex currentIndex:[pointsIn count]-1 gradient:lastGradient];
     }
     
-    
-    [self strokeGraphLineWithPoints:pointsIn andLength:[pointsIn count] lineColor:greenLineColor];
-    [self strokeGraphLineWithPoints:pointsOut andLength:[pointsOut count] lineColor:redLineColor];
-    
-    for (NSDictionary *subpathDic in subpaths)
-    {
-        CGContextSaveGState(UIGraphicsGetCurrentContext());
-        [subpathDic[@"path"] addClip];
-        // Draw a gradient
-        CGPoint startPoint = CGPointMake(0.0, 0.0);
-        CGPoint endPoint = CGPointMake(0.0, self.bounds.size.height);
-
-        if ([subpathDic[@"gradient"] integerValue] > 0)
-        {
-            CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), [self greenGraphAreaGradient], startPoint, endPoint, 0);
-        } else
-        {
-            CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), [self redGraphAreaGradient], startPoint, endPoint, 0);
-        }
-        
-        CGContextRestoreGState(UIGraphicsGetCurrentContext());
-    }
-    
-    CGContextRestoreGState(theContext);
-}
-
-
-- (int) gradientBetweenMoneyIn:(CGPoint)moneyIn andMoneyOut:(CGPoint)moneyOut
-{
-    return (moneyIn.y > moneyOut.y) ? 1 : (moneyIn.y < moneyOut.y) ? -1 : 0;
+    return subpaths;
 }
 
 
 - (CGPoint) intersectionPointBwetweenWithFirstLineFirstPoint:(CGPoint)firstLineFirstPoint
-firstLineSecondPoint:(CGPoint)firstLineSecondPoint
-secondLineFirstPoint:(CGPoint)secondLineFirstPoint
-secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
+                                        firstLineSecondPoint:(CGPoint)firstLineSecondPoint
+                                        secondLineFirstPoint:(CGPoint)secondLineFirstPoint
+                                       secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
     
     //Calculate Line1 equation
     CGFloat L1_a = (firstLineSecondPoint.y - firstLineFirstPoint.y) / (firstLineSecondPoint.x - firstLineFirstPoint.x);
@@ -277,7 +259,7 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
     for (int i = currentIndex ; i>=initialIndex; i--) {
         [subpath addLineToPoint:[(NSValue*)moneyOut[i] CGPointValue]];
     }
-
+    
     if (!CGPointEqualToPoint([(NSValue*)moneyIn[initialIndex] CGPointValue], [(NSValue*)moneyOut[initialIndex] CGPointValue])) {
         [subpath addLineToPoint:[(NSValue*)moneyIn[initialIndex] CGPointValue]];
     }
@@ -289,51 +271,26 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
 
 #pragma mark - Drawing Helpers
 
-- (void) drawLineWithPointsInRect:(CGRect)rect points:(NSArray*) points length:(int)length lineColor:(UIColor*)lineColor
+- (void) drawIntersectionPaths:(NSArray *)subpaths
 {
-    /*************************************************************************************************/
-    /* Draws the actual graph line and the area undeneath it.                                        */
-    /* Draws in a different context as we do clipping, use strokes colors etc that won't be necessary*/
-    /* In later drawings.                                                                            */
-    /*************************************************************************************************/
-    CGContextRef con = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(con);
-        // Create a Path to represent the clipping area
-        UIBezierPath* clippingPath = [self closedPathForPoints:points length:length];
-        [clippingPath addClip];
-        
-        // Draw in the clipped area
-    CGContextDrawLinearGradient(con, [self greenGraphAreaGradient], CGPointMake(0, 0), CGPointMake(0, self.bounds.size.height), 0);
-        //[self drawHorizontalBackgroundLinesInRect: rect numberOfLines: 64 color: [UIColor colorWithRed:212.0/256.0 green:254.0/256.0 blue:199.0/256.0 alpha:0.4] lineWidth: 3.5 dashed: NO];
-            
-        // We Actually draw the graph line, in two segments 1. the line, 2. the segment that connects to the origin
-    [self strokeGraphLineWithPoints:points andLength:length lineColor:lineColor];
-    CGContextRestoreGState(con);
-}
-
-
-- (UIBezierPath*) closedPathForPoints:(NSArray*)points length:(int)length
-{
-    /*************************************************************************************************/
-    /* Creates an autoreleased and closed UIBezierPath representing the area underneath the graph    */
-    /* line. The first point is always on the y axis. The last one might not, in that case, we want  */
-    /* To make some extra points to close the path. We'll connect with a point on the x axis, then to*/
-    /* the origin, and finally to the first point.                                                   */
-    /*************************************************************************************************/
-    // TODO: Generalise the way we are closing the path! at the moment assumes some conditions
-    
-    UIBezierPath* clippingPath = [[UIBezierPath alloc] init];
-    [[UIColor whiteColor] setStroke];
-    [clippingPath moveToPoint:[(NSValue*)points[0] CGPointValue]];
-    
-    for (int i=1; i<length; i++)
+    for (NSDictionary *subpathDic in subpaths)
     {
-        [clippingPath addLineToPoint:[(NSValue*)points[i] CGPointValue]];
-    } 
-    
-    [clippingPath addLineToPoint:[(NSValue*)points[0] CGPointValue]];
-
-    return clippingPath;
+        CGContextSaveGState(UIGraphicsGetCurrentContext());
+        [subpathDic[@"path"] addClip];
+        // Draw a gradient
+        CGPoint startPoint = CGPointMake(0.0, 0.0);
+        CGPoint endPoint = CGPointMake(0.0, self.bounds.size.height);
+        
+        if ([subpathDic[@"gradient"] integerValue] > 0)
+        {
+            CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), [self greenGraphAreaGradient], startPoint, endPoint, 0);
+        } else
+        {
+            CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), [self redGraphAreaGradient], startPoint, endPoint, 0);
+        }
+        
+        CGContextRestoreGState(UIGraphicsGetCurrentContext());
+    }
 }
 
 
@@ -386,11 +343,13 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
     CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), [self backgroundGradient], startPoint, endPoint, 0);
 }
 
-- (void) drawGridInRect:(CGRect)rect horizontalLines:(int)horizontalLines verticalLines:(int)verticalLines
+
+- (void) drawGridInRect:(CGRect)rect horizontalLines:(int)horizontalLines verticalLines:(int)verticalLines xValues:(NSArray *)xValues maxYValue:(CGFloat)maxYValue
 {
-    [self drawVerticalBackgroundLinesInRect:rect numberOfLines:verticalLines color:self.backgroundVerticalLinesColor];
-    [self drawHorizontalBackgroundLinesInRect:rect numberOfLines:horizontalLines color:self.backgroundHorizontalLinesColor lineWidth:1.0 dashed:YES];
+    [self drawVerticalBackgroundLinesInRect:rect numberOfLines:verticalLines color:self.backgroundVerticalLinesColor xValuesNames:xValues];
+    [self drawHorizontalBackgroundLinesInRect:rect numberOfLines:horizontalLines color:self.backgroundHorizontalLinesColor lineWidth:1.0 dashed:YES maxYValue:maxYValue];
 }
+
 
 - (CGGradientRef) backgroundGradient
 {
@@ -422,6 +381,7 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
     return gradient;
 }
 
+
 - (CGGradientRef) redGraphAreaGradient
 {
     CGFloat colors[16] = {248.0/255, 213.0/255, 200.0/255, 0.1,
@@ -437,7 +397,7 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
 }
 
 
-- (void) drawVerticalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color
+- (void) drawVerticalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color xValuesNames:(NSArray *)xvalues
 {
     /*************************************************************************************************/
     /*                                                                                               */
@@ -458,30 +418,39 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
         CGContextTranslateCTM(con, rint(distanceBetweenLines), 0.0);
         [verticalLinePath stroke];
 
+        [xvalues[0] drawAtPoint:CGPointMake(-17, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
+                                                               NSForegroundColorAttributeName : [UIColor whiteColor] }];
+
         for (int i=1; i<numberOfLines-1; i++)
         {
             // Draw line
             CGContextTranslateCTM(con, rint(distanceBetweenLines), 0.0);
             [verticalLinePath stroke];
+            
+            [xvalues[i] drawAtPoint:CGPointMake(-17, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:9],
+                                                                           NSForegroundColorAttributeName : [UIColor whiteColor] }];
         }
+    
+
     
     CGContextRestoreGState(con);
 }
 
 
-- (void) drawHorizontalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color lineWidth:(float)lineWidth dashed:(BOOL)dashed
+- (void) drawHorizontalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color lineWidth:(float)lineWidth dashed:(BOOL)dashed maxYValue:(CGFloat)maxYValue
 {
     /*************************************************************************************************/
     /*                                                                                               */
     /*************************************************************************************************/
     int numberOfRegions = numberOfLines-1; // because we're creating lines at the edges too.
+    CGFloat userDomainExtra = maxYValue - ((rect.size.height - kGraphDrawableAreaTopMargin) * ((float)maxYValue / (float)rect.size.height));
+    CGFloat graphMaxYUserDomain = maxYValue + userDomainExtra;
     float distanceBetweenLines = rect.size.height / numberOfRegions;
+    CGFloat yValuesStep = graphMaxYUserDomain / (float)numberOfLines;
+    CGFloat yValueIncrement = 0;
     CGContextRef con = UIGraphicsGetCurrentContext();
     CGContextSaveGState(con);
     
-        CGContextTranslateCTM(con, 0, self.bounds.size.height);
-        CGContextScaleCTM(con, 1, -1);
-
         UIBezierPath* horizontalLinePath = [UIBezierPath bezierPath];
         [color setStroke];
         [horizontalLinePath setLineWidth:lineWidth];
@@ -500,7 +469,23 @@ secondLineSecondPoint:(CGPoint)secondLineSecondPoint {
             // Draw line
             CGContextTranslateCTM(con, 0.0, distanceBetweenLines);
             [horizontalLinePath stroke];
+            
+            CGContextSaveGState(con);
+                CGContextScaleCTM(con, 1, -1);
+                [[NSString stringWithFormat:@"%d", (int)yValueIncrement] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
+                                                                                                                    NSForegroundColorAttributeName : [UIColor whiteColor] }];
+            CGContextRestoreGState(con);
+            
+            yValueIncrement += yValuesStep;
         }
+    
+    CGContextTranslateCTM(con, 0.0, distanceBetweenLines);
+    CGContextSaveGState(con);
+    CGContextScaleCTM(con, 1, -1);
+    [[NSString stringWithFormat:@"%d", (int)yValueIncrement] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
+                                                                                                             NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    CGContextRestoreGState(con);
+
     
     CGContextRestoreGState(con);
 }

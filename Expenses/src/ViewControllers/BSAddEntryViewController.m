@@ -8,6 +8,9 @@
 
 #import "BSAddEntryViewController.h"
 
+static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
+static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
+
 @interface BSAddEntryViewController ()
 
 @end
@@ -43,15 +46,20 @@
 }
 
 
-- (IBAction) typeSwitchChanged:(UISwitch*)typeSwitch
+- (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl
 {
-    if (typeSwitch.on) {
-        self.entryTypeLabel.text = NSLocalizedString(@"Expense", @"");
-        self.entryTypeSymbolLabel.text = @"-";
-
-    } else {    
-        self.entryTypeLabel.text = NSLocalizedString(@"Positive Entry", @"");
-        self.entryTypeSymbolLabel.text = @"+";
+    switch (typeSegmentedControl.selectedSegmentIndex) {
+        case EXPENSES_SEGMENTED_INDEX:
+            self.entryTypeSymbolLabel.text = @"-";
+            typeSegmentedControl.tintColor = [UIColor colorWithRed:199.0/255.0 green:43.0/255.0 blue:49.0/255.0 alpha:1.0];
+            break;
+        case BENEFITS_SEGMENTED_INDEX:
+            self.entryTypeSymbolLabel.text = @"+";
+            typeSegmentedControl.tintColor = [UIColor colorWithRed:86.0/255.0 green:130.0/255.0 blue:61.0/255.0 alpha:1.0];
+            break;
+            
+        default:
+            break;
     }
 }
 

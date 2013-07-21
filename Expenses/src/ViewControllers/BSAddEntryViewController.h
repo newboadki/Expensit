@@ -13,7 +13,6 @@
 @interface BSAddEntryViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UISwitch *entryTypeSwitch;
-@property (strong, nonatomic) IBOutlet UILabel *entryTypeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *entryTypeSymbolLabel;
 @property (strong, nonatomic) IBOutlet UITableView *fieldsTableView;
 @property (strong, nonatomic) IBOutlet UITextField *amountTextField;
@@ -22,6 +21,6 @@
 
 - (IBAction) addEntryPressed:(id)sender;
 
-- (IBAction) typeSwitchChanged:(UISwitch*)typeSwitch;
+- (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl;
 
 @end

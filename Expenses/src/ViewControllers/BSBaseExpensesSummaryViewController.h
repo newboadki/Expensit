@@ -33,4 +33,8 @@
 
 @property (assign, nonatomic) BOOL shouldScrollToSelectedSection;
 
+@property (assign, nonatomic) BOOL firstTimeViewWillAppear;
+
+- (NSString*) visibleSectionName;//should be protected
+
 @end

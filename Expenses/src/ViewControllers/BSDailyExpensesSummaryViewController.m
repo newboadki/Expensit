@@ -75,7 +75,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
+    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     headerView.titleLabel.text = sectionInfo.name;
     return headerView;
@@ -144,8 +144,6 @@
         
         NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,month];
         dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
-
-
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
@@ -161,15 +159,10 @@
 }
 
 
-- (NSString*) visibleSectionName
-{
-    NSArray *visibleCells = [self.collectionView visibleCells];
-    int visibleCellsCount = [visibleCells count];
-    BSBaseExpenseCell *middleCell = (BSBaseExpenseCell *)visibleCells[(int)(visibleCellsCount / 2)];
-    NSIndexPath * indexPath = [self.collectionView indexPathForCell:middleCell];
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
 
-    return [sectionInfo name];
+- (NSString *) reuseIdentifierForHeader
+{
+    return @"BSDailyEntryHeaderView";
 }
 
 #pragma mark - Graph Data

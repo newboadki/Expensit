@@ -84,7 +84,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
+    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     headerView.titleLabel.text = sectionInfo.name;
@@ -92,8 +92,6 @@
     return headerView;
     
 }
-
-
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -134,6 +132,13 @@
     return YES;
 }
 
+
+- (NSString *) reuseIdentifierForHeader
+{
+    return @"BSDailyEntryHeaderView";
+}
+
+
 #pragma mark - BSCoreDataControllerDelegate
 
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
@@ -167,16 +172,6 @@
     return @"year";
 }
 
-- (NSString*) visibleSectionName
-{
-    NSArray *visibleCells = [self.collectionView visibleCells];
-    int visibleCellsCount = [visibleCells count];
-    BSBaseExpenseCell *middleCell = (BSBaseExpenseCell *)visibleCells[(int)(visibleCellsCount / 2)];
-    NSIndexPath * indexPath = [self.collectionView indexPathForCell:middleCell];
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
-    
-    return [sectionInfo name];
-}
 
 
 #pragma mark - Graph Data

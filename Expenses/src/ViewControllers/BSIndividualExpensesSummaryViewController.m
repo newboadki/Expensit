@@ -57,7 +57,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"BSDailyEntryHeaderView" forIndexPath:indexPath];
+    BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     NSArray *components = [sectionInfo.name componentsSeparatedByString:@"/"];
@@ -71,6 +71,12 @@
 - (BOOL) shouldScrollToSelectedSection
 {
     return YES;
+}
+
+
+- (NSString *) reuseIdentifierForHeader
+{
+    return @"BSDailyEntryHeaderView";
 }
 
 
@@ -107,8 +113,6 @@
 
         NSArray *moneyOut = [self.fetchedResultsController.fetchedObjects valueForKeyPath:@"value"];
         moneyIn = [moneyOut filteredArrayUsingPredicate:expensesPredicate];
-
-        
     }
 }
 

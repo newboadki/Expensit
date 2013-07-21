@@ -25,6 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.firstTimeViewWillAppear = YES;
+    
     // Do any additional setup after loading the view from its nib.
     
     BSAppDelegate *delegate = (BSAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -41,14 +44,18 @@
 
 }
 
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
+    
+    
 
-    if (self.shouldScrollToSelectedSection)
+    if (self.shouldScrollToSelectedSection && self.firstTimeViewWillAppear)
     {
+        self.firstTimeViewWillAppear = NO;
         NSArray *sectionNames = [self.fetchedResultsController.fetchedObjects valueForKeyPath:[self sectionNameKeyPath]];
         NSMutableArray* uniqueSectionNames = [[NSMutableArray alloc] init];
         for(id sectionName in sectionNames)
@@ -61,7 +68,12 @@
         NSArray *filteredArray = [uniqueSectionNames filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self = %@", self.nameOfSectionToBeShown]];
         NSInteger sectionToScrollTo = [uniqueSectionNames indexOfObject:[filteredArray lastObject]];
         
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        UIView *header = (UIView *)[self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
+        CGPoint offset = self.collectionView.contentOffset;
+        offset.y -= header.frame.size.height;
+        self.collectionView.contentOffset = offset;
     }
 }
 
@@ -95,6 +107,7 @@
     }
 }
 
+
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
@@ -102,9 +115,8 @@
 
 
 
+
 #pragma mark - UICollectionView
-
-
 
 - (IBAction) cancelAddEntry:(UIStoryboardSegue*)segue
 {
@@ -112,6 +124,63 @@
 }
 
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BSBaseExpenseCell *cell = (BSBaseExpenseCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    return (cell.amountLabel.text && (cell.amountLabel.text.length > 0));
+}
+
+
+- (NSString*) visibleSectionName
+{
+    //TODO: IN case of a TIE, choose the section with the newest date
+    NSArray *visibleCells = [self.collectionView visibleCells];
+    NSMutableDictionary *occurences = [NSMutableDictionary dictionary];
+    for (UICollectionViewCell *cell in visibleCells)
+    {
+        NSNumber *sectionNumber = [NSNumber numberWithInt:[self.collectionView indexPathForCell:cell].section];
+        NSNumber * count = occurences[sectionNumber];
+        if (count)
+        {
+            count = [NSNumber numberWithInt:[count intValue] + 1];
+        }
+        else
+        {
+            count = @1;
+        }
+        
+        occurences[sectionNumber] = count;
+    }
+    
+    
+    // Find the max in the ocurrences dictionary
+    NSNumber *sectionWithMostVisibleCells = nil;
+    for (id key in [occurences allKeys])
+    {
+        if (sectionWithMostVisibleCells)
+        {
+            NSComparisonResult comparisonResult = [occurences[key] compare:occurences[sectionWithMostVisibleCells]];
+            if ((comparisonResult == NSOrderedDescending) || (comparisonResult == NSOrderedSame)) // To un-tie. This makes some asumptions, like that the cells are ordered ascending, and that we are presenting the calendar ascending.. 2012 at the top... 2013 if you scroll down
+            {
+                sectionWithMostVisibleCells = key;
+            }
+        }
+        else
+        {
+            // first iteration, set current key to be the maximum
+            sectionWithMostVisibleCells = key;
+        }
+    }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:[sectionWithMostVisibleCells intValue]];
+    
+    return sectionInfo.name;
+}
+
+- (NSString*) reuseIdentifierForHeader
+{
+    @throw @"Implement in subclasses";
+}
 
 #pragma mark - Core Data
 

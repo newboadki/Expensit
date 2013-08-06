@@ -12,6 +12,7 @@
 - (NSArray*) moneyIn;
 - (NSArray*) moneyOut;
 - (NSArray*) xValues;
+- (NSString *) graphTitle;
 @end
 
 

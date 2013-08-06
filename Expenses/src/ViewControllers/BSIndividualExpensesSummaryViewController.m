@@ -105,7 +105,7 @@
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-    } else if ([[segue identifier] isEqualToString:@"DisplayGraphView"]) {
+    } /*else if ([[segue identifier] isEqualToString:@"DisplayGraphView"]) {
         NSPredicate *surplusPredicate = [NSPredicate predicateWithFormat:@"self >= 0"];
         NSPredicate *expensesPredicate = [NSPredicate predicateWithFormat:@"self < 0"];
         NSArray *moneyIn = [self.fetchedResultsController.fetchedObjects valueForKeyPath:@"value"];
@@ -113,7 +113,12 @@
 
         NSArray *moneyOut = [self.fetchedResultsController.fetchedObjects valueForKeyPath:@"value"];
         moneyIn = [moneyOut filteredArrayUsingPredicate:expensesPredicate];
-    }
+    }*/
 }
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+}
+
 
 @end

@@ -276,6 +276,7 @@
 {
     NSFetchRequest *fetchRequest = [self graphFetchRequest];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+    [self configureFetchRequestForGraph:fetchRequest];
     return fetchRequest;
 }
 
@@ -284,6 +285,7 @@
 {
     NSFetchRequest *fetchRequest = [self graphFetchRequest];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+    [self configureFetchRequestForGraph:fetchRequest];
     return fetchRequest;
 }
 

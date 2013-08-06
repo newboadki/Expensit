@@ -26,12 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 
-- (NSArray*) xValues {
-    return @[@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"];
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
+
 
 - (void)didReceiveMemoryWarning
 {

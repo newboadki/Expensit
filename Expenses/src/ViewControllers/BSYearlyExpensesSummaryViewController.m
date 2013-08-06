@@ -107,6 +107,12 @@
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
+        NSArray *yearNumbers = [surplusResults valueForKeyPath:@"year"];
+        NSMutableArray *yearStrings = [NSMutableArray array];
+        for (NSNumber *number in yearNumbers) {
+            [yearStrings addObject:[number stringValue]];
+        }
+        [graphViewController setXValues:yearStrings];
     }
 }
 
@@ -154,6 +160,18 @@
 
 
 #pragma mark - Graph Data
+
+- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
+{
+    // Batch Size
+    [fetchRequest setFetchBatchSize:50];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+}
+
 
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) yearlyExpensesResults
 {

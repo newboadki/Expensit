@@ -12,4 +12,6 @@
 @interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol>
 @property (strong, nonatomic) NSArray *moneyIn;
 @property (strong, nonatomic) NSArray *moneyOut;
+@property (strong, nonatomic) NSArray *xValues;
+@property (strong, nonatomic) NSString *graphTitle;
 @end

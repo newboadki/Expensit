@@ -153,8 +153,10 @@
         NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
+        [graphViewController setGraphTitle:[self visibleSectionName]];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
+        [graphViewController setXValues:[self arrayDayNumbersInMonth]];
     }
 }
 
@@ -183,24 +185,16 @@
 }
 
 
-- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) monthlyExpensesResults
+- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) dailyExpensesResults
 {
     NSMutableArray *graphData = [NSMutableArray array];
-    NSArray *visibleCells = [self.collectionView visibleCells];
-    int visibleCellsCount = [visibleCells count];
-    BSBaseExpenseCell *middleCell = (BSBaseExpenseCell *)visibleCells[(int)(visibleCellsCount / 2)];
-    NSIndexPath * indexPath = [self.collectionView indexPathForCell:middleCell];
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
-    NSString *sectionName = [sectionInfo name];
-    NSArray *components = [sectionName componentsSeparatedByString:@"/"];
-    NSString *monthNumberString = components[0];
-    
-    NSRange numberOfDaysInMonth = [DateTimeHelper numberOfDaysInMonth:monthNumberString]; // What should the current month be? the
+    NSString *monthNumber = [[self visibleSectionName] componentsSeparatedByString:@"/"][0];
+    NSRange numberOfDaysInMonth = [DateTimeHelper numberOfDaysInMonth:monthNumber];
     
     for (int dayNumber = 1; dayNumber<=numberOfDaysInMonth.length; dayNumber++)
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day = %d", dayNumber];
-        NSArray *filteredResults = [monthlyExpensesResults filteredArrayUsingPredicate:predicate];
+        NSArray *filteredResults = [dailyExpensesResults filteredArrayUsingPredicate:predicate];
         NSDictionary *monthDictionary = [filteredResults lastObject];
         
         if (monthDictionary)
@@ -221,6 +215,19 @@
     return graphData;
 }
 
+
+- (NSArray *) arrayDayNumbersInMonth
+{
+    NSString *monthNumber = [[self visibleSectionName] componentsSeparatedByString:@"/"][0];
+    NSRange numberOfDaysInMonth = [DateTimeHelper numberOfDaysInMonth:monthNumber];
+    NSMutableArray *dayNumbers = [NSMutableArray array];
+    
+    for (int i = 1; i<=numberOfDaysInMonth.length; i++) {
+        [dayNumbers addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    
+    return dayNumbers;
+}
 
 
 @end

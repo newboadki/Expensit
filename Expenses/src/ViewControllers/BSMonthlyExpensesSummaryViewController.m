@@ -122,8 +122,10 @@
         NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
+        [graphViewController setGraphTitle:[self visibleSectionName]];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
+        [graphViewController setXValues:@[@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"]];
     }
 }
 
@@ -155,8 +157,7 @@
                                         expressionForFunction:@"sum:"
                                         arguments:[NSArray arrayWithObject:keyPathExpression]];
     
-    NSExpressionDescription *sumExpressionDescription =
-    [[NSExpressionDescription alloc] init];
+    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
     [sumExpressionDescription setName:@"monthlySum"];
     [sumExpressionDescription setExpression:sumExpression];
     [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];

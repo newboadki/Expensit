@@ -12,15 +12,16 @@
 
 @interface BSAddEntryViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UISwitch *entryTypeSwitch;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *entryTypeSegmentedControl;
 @property (strong, nonatomic) IBOutlet UILabel *entryTypeSymbolLabel;
-@property (strong, nonatomic) IBOutlet UITableView *fieldsTableView;
 @property (strong, nonatomic) IBOutlet UITextField *amountTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *entryDatePicker;
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
+@property (strong, nonatomic) IBOutlet UIButton *dateButton;
 
 - (IBAction) addEntryPressed:(id)sender;
-
 - (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl;
-
+- (IBAction) entryDatePickerValueChanged:(id)sender;
+- (IBAction) dateButtonPressed:(id)sender;
 @end

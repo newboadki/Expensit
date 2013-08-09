@@ -7,7 +7,6 @@
 //
 
 #import "BSCoreDataController.h"
-#import "Entry.h"
 #import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
 
@@ -31,7 +30,22 @@
     return self;
 }
 
+- (Entry *) newEntry
+{
+    NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    Entry *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 
+    // Configure
+    newManagedObject.date = [NSDate date];
+    newManagedObject.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:newManagedObject.date]];
+    newManagedObject.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:newManagedObject.date]];;
+    newManagedObject.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:newManagedObject.date]];;
+    newManagedObject.monthYear = [NSString stringWithFormat:@"%@/%@", [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
+    newManagedObject.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.day stringValue], [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
+
+    return newManagedObject;
+}
 
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value
 {

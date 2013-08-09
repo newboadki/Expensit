@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     
+    
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -37,7 +38,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    
+
     return [sectionInfo numberOfObjects];
 }
 
@@ -105,15 +106,22 @@
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-    } /*else if ([[segue identifier] isEqualToString:@"DisplayGraphView"]) {
-        NSPredicate *surplusPredicate = [NSPredicate predicateWithFormat:@"self >= 0"];
-        NSPredicate *expensesPredicate = [NSPredicate predicateWithFormat:@"self < 0"];
-        NSArray *moneyIn = [self.fetchedResultsController.fetchedObjects valueForKeyPath:@"value"];
-        moneyIn = [moneyIn filteredArrayUsingPredicate:surplusPredicate];
-
-        NSArray *moneyOut = [self.fetchedResultsController.fetchedObjects valueForKeyPath:@"value"];
-        moneyIn = [moneyOut filteredArrayUsingPredicate:expensesPredicate];
-    }*/
+    } else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"]) {
+        UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
+        BSAddEntryViewController *editEntryViewController = (BSAddEntryViewController*)[navController topViewController];
+        editEntryViewController.isEditingEntry = YES;
+        UICollectionViewCell *selectedCell = (UICollectionViewCell *)sender;
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
+        int sum = 0;
+        for (int i=0; i<selectedIndexPath.section; i++)
+        {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:i];
+            sum += [sectionInfo numberOfObjects];
+        }
+        
+        editEntryViewController.entryModel = self.fetchedResultsController.fetchedObjects[sum + selectedIndexPath.row];
+        editEntryViewController.coreDataStackHelper = self.coreDataStackHelper;
+    }
 }
 
 - (void)orientationChanged:(NSNotification *)notification

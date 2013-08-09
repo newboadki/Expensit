@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BSCoreDataControllerDelegateProtocol.h"
-
+#import "Entry.h"
 
 @class CoreDataStackHelper;
 
@@ -20,5 +20,5 @@
 
 - (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
-
+- (Entry *) newEntry;
 @end

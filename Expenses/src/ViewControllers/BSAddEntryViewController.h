@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
+#import "Entry.h"
+
 
 @interface BSAddEntryViewController : UIViewController <UITextFieldDelegate>
 
@@ -19,9 +21,20 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *entryDatePicker;
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 @property (strong, nonatomic) IBOutlet UIButton *dateButton;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+@property (strong, nonatomic) IBOutlet UIView *bottomSectionView;
+
+@property (assign, nonatomic) BOOL isEditingEntry;
+@property (strong, nonatomic) Entry *entryModel;
 
 - (IBAction) addEntryPressed:(id)sender;
+- (IBAction) cancelButtonPressed:(id)sender;
 - (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl;
 - (IBAction) entryDatePickerValueChanged:(id)sender;
 - (IBAction) dateButtonPressed:(id)sender;
+
+- (IBAction) amountTextFieldChanged:(UITextField *)textField;
+- (IBAction) descriptionTextFieldChanged:(UITextField *)textField;
+
+- (IBAction) deleteButtonPressed:(UIButton *)deleteButton;
 @end

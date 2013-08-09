@@ -14,7 +14,7 @@ static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
 static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 
 @interface BSAddEntryViewController ()
-@property (strong, nonatomic) NSDate *selectedDate;
+@property (assign, nonatomic) BOOL isShowingDatePicker;
 @end
 
 @implementation BSAddEntryViewController
@@ -22,24 +22,45 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
-
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	[self.amountTextField becomeFirstResponder];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 
     self.dateButton.titleLabel.text = [DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:[NSDate date]];
     [self.dateButton.titleLabel setNeedsDisplay];
 
+    
+    if (self.isEditingEntry)
+    {
+        self.title = NSLocalizedString(@"Edit entry", @"");
+        self.amountTextField.text = [self.entryModel.value stringValue];
+        self.descriptionTextField.text = self.entryModel.desc;
+        self.deleteButton.hidden = NO;
+    }
+    else
+    {
+        self.title = NSLocalizedString(@"Add entry", @"");
+    }
+    
+    // Create model
+    if (!self.isEditingEntry)
+    {
+        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+        self.entryModel = [coreDataController newEntry];
+    }
+    
 }
+
+
 
 
 - (void)didReceiveMemoryWarning
@@ -59,12 +80,15 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
         amount = [@"-" stringByAppendingString:amount];
     }
     
+    self.entryModel.value = [NSDecimalNumber decimalNumberWithString:amount];
     NSDate *creationDate = [NSDate date];
-    if (self.selectedDate) {
-        creationDate = self.selectedDate;
+    if (self.entryModel.date) {
+        creationDate = self.entryModel.date;
     }
-    [coreDataController insertNewEntryWithDate:creationDate description:self.descriptionTextField.text value:amount];
     
+    // Save
+    NSError *err = nil;
+    [coreDataController.coreDataHelper.managedObjectContext save:&err];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -87,6 +111,7 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 }
 
 
+
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
@@ -107,50 +132,118 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
     return NO;
 }
 
-- (void)keyboardDidShow:(id)notification
+- (void)keyboardWillShow:(id)notification
 {
-    [self hideDatePickerAnimated:YES];
+    //[self hideDatePickerAnimated:YES];
+    if (self.isShowingDatePicker)
+    {
+        [self hideDatePickerAnimated:YES];
+    }
 }
 
 - (void)keyboardDidHide:(id)notification
 {
-    [self showDatePickerAnimated:YES];
+    //[self showDatePickerAnimated:YES];
 }
 
 
 - (void) hideDatePickerAnimated:(BOOL)animated
 {
-    self.entryDatePicker.hidden = YES;
+    [UIView animateWithDuration:0.4 animations:^{
+        CGRect destinationFrame = self.bottomSectionView.frame;
+        destinationFrame.origin.y -= CGRectGetHeight(self.entryDatePicker.frame);
+        self.bottomSectionView.frame = destinationFrame;
+    } completion:^(BOOL finished) {
+        self.isShowingDatePicker = NO;
+        [self.amountTextField becomeFirstResponder];
+    }];
+
 }
 
 - (void) showDatePickerAnimated:(BOOL)animated
 {
-    CGRect atTheBottomFrame = self.entryDatePicker.frame;
-    atTheBottomFrame.origin.y = CGRectGetMaxY(self.view.frame);
-    self.entryDatePicker.hidden = NO;
-    self.entryDatePicker.frame = atTheBottomFrame;
-    
     [UIView animateWithDuration:0.5 animations:^{
-        CGRect visibleFrame = self.entryDatePicker.frame;
-        visibleFrame.origin.y = self.view.frame.size.height - self.entryDatePicker.frame.size.height;
-        self.entryDatePicker.frame = visibleFrame;
-        
-    } completion:nil];
+        CGRect destinationFrame = self.bottomSectionView.frame;
+        destinationFrame.origin.y += CGRectGetHeight(self.entryDatePicker.frame);
+        self.bottomSectionView.frame = destinationFrame;
+    } completion:^(BOOL finished) {
+        self.isShowingDatePicker = YES;
+    }];
 }
 
 
-- (IBAction) entryDatePickerValueChanged:(id)sender
-{
-    self.selectedDate = self.entryDatePicker.date;
-    self.dateButton.titleLabel.text = [DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:self.selectedDate];
-}
 
 - (IBAction) dateButtonPressed:(id)sender
 {
     [self.amountTextField resignFirstResponder];
     [self.descriptionTextField resignFirstResponder];
+    
+    if (self.isShowingDatePicker)
+    {
+        [self hideDatePickerAnimated:YES];
+    }
+    else
+    {
+        [self showDatePickerAnimated:YES];
+    }
 }
 
 
+#pragma mark - Updating the model
+
+- (IBAction) entryDatePickerValueChanged:(id)sender
+{
+    self.entryModel.date = self.entryDatePicker.date;
+    self.entryModel.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.entryModel.date]];
+    self.entryModel.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.entryModel.date]];;
+    self.entryModel.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.entryModel.date]];;
+    self.entryModel.monthYear = [NSString stringWithFormat:@"%@/%@", [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
+    self.entryModel.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.entryModel.day stringValue], [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
+
+    self.dateButton.titleLabel.text = [DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:self.entryModel.date];
+}
+
+
+- (IBAction) amountTextFieldChanged:(UITextField *)textField
+{
+    self.entryModel.value = [NSDecimalNumber decimalNumberWithString:textField.text];
+}
+
+
+- (IBAction) descriptionTextFieldChanged:(UITextField *)textField
+{
+    self.entryModel.desc = textField.text;
+}
+
+
+- (IBAction) cancelButtonPressed:(id)sender
+{
+    if (!self.isEditingEntry)
+    {
+        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry"
+                                                                                           delegate:nil
+                                                                                     coreDataHelper:self.coreDataStackHelper];
+        [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
+        [self.coreDataStackHelper.managedObjectContext save:nil];
+    }
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction) deleteButtonPressed:(UIButton *)deleteButton
+{
+    if (self.isEditingEntry)
+    {
+        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+        [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
+        [self.coreDataStackHelper.managedObjectContext save:nil];
+        
+        // If success
+        UINavigationController *navController = self.navigationController;
+        [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
 @end

@@ -11,4 +11,17 @@
 @implementation BSSingleEntryCell
 
 
+- (void) drawRect:(CGRect)rect
+{
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0].CGColor);
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(20, self.bounds.size.height)];
+    [path addLineToPoint:CGPointMake(self.bounds.size.width, self.bounds.size.height)];
+    [path stroke];
+}
+
+
 @end

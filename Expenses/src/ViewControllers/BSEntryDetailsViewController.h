@@ -12,7 +12,7 @@
 #import "Entry.h"
 
 
-@interface BSAddEntryViewController : UIViewController <UITextFieldDelegate>
+@interface BSEntryDetailsViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *entryTypeSegmentedControl;
 @property (strong, nonatomic) IBOutlet UILabel *entryTypeSymbolLabel;

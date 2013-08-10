@@ -10,7 +10,6 @@
 
 @implementation BSDailySummanryEntryCell
 
-
 - (void) drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();

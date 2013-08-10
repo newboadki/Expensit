@@ -15,9 +15,4 @@
     return 0;
 }
 
-- (CGSize) itemSize {
-
-
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width / 3.0, 94);
-}
 @end

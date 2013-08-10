@@ -14,7 +14,7 @@
 @class CoreDataStackHelper;
 
 
-@interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
+@interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) UICollectionViewLayout *layout;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

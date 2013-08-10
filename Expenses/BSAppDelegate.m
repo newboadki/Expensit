@@ -11,7 +11,7 @@
 #import "BSBaseExpensesSummaryViewController.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
-
+#import "BSGreenTheme.h"
 
 @implementation BSAppDelegate
 
@@ -22,6 +22,13 @@
                                                                      resourceName:@"Expenses"
                                                                         extension:@"momd"
                                                               persistentStoreName:@"expensesDataBase"];
+ 
+
+    // Theme
+    self.themeManager = [BSThemeManager manager];
+    self.themeManager.theme = [[BSGreenTheme alloc] init];
+    [self.themeManager applyTheme];
+    
     
 //    BSCoreDataController *controller = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataHelper];
 //    [ controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-20.0"];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSThemeManager.h"
 
 @class CoreDataStackHelper;
 
@@ -15,4 +16,5 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CoreDataStackHelper *coreDataHelper;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) BSThemeManager *themeManager;
 @end

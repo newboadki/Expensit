@@ -11,6 +11,8 @@
 @interface BSBaseExpenseCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic) IBOutlet UILabel *amountLabel;
-
 @property (strong, nonatomic) NSDecimalNumber *amount;
+
+- (void) configure;
+
 @end

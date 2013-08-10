@@ -10,6 +10,7 @@
 
 @implementation BSBaseExpenseCell
 
+
 - (void) setAmount:(NSDecimalNumber *)newAmount
 {
     if (_amount != newAmount) {
@@ -31,4 +32,11 @@
         }
     }
 }
+
+
+- (void) configure
+{
+    self.amountLabel.adjustsFontSizeToFitWidth = YES;
+}
+
 @end

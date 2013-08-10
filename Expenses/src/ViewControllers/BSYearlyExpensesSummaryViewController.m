@@ -11,7 +11,7 @@
 #import "BSYearlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSAddEntryViewController.h"
+#import "BSEntryDetailsViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
 @interface BSYearlyExpensesSummaryViewController ()
@@ -94,7 +94,7 @@
     else if ([[segue identifier] isEqualToString:@"addEntryFromYear"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
+        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])

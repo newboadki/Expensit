@@ -40,7 +40,9 @@
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
-    self.edgesForExtendedLayout = UIRectEdgeAll;
+    //self.edgesForExtendedLayout = UIRectEdgeAll;
+    
+    //[[self.navigationController navigationBar] setTintColor:[UIColor redColor]];
 
 }
 
@@ -181,6 +183,8 @@
 {
     @throw @"Implement in subclasses";
 }
+
+
 
 #pragma mark - Core Data
 

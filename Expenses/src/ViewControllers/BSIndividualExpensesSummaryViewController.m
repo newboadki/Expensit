@@ -10,7 +10,7 @@
 #import "Entry.h"
 #import "BSDailySummanryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
-#import "BSAddEntryViewController.h"
+#import "BSEntryDetailsViewController.h"
 #import "DateTimeHelper.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
@@ -49,6 +49,7 @@
     BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
 
     // configure the cell
+    [cell configure];
     cell.title.text = managedObject.desc;
     cell.amountLabel.text = [[BSCurrencyHelper amountFormatter] stringFromNumber:managedObject.value];
     cell.amount = managedObject.value;
@@ -81,6 +82,15 @@
 }
 
 
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.view.frame.size.width, 41.0f);
+}
+
+
+
 #pragma mark - BSCoreDataControllerDelegate
 
 - (void) configureFetchRequest:(NSFetchRequest*)fetchRequest {
@@ -99,7 +109,7 @@
     if ([[segue identifier] isEqualToString:@"addEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
+        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
     }
     else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
@@ -108,7 +118,7 @@
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
     } else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"]) {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSAddEntryViewController *editEntryViewController = (BSAddEntryViewController*)[navController topViewController];
+        BSEntryDetailsViewController *editEntryViewController = (BSEntryDetailsViewController*)[navController topViewController];
         editEntryViewController.isEditingEntry = YES;
         UICollectionViewCell *selectedCell = (UICollectionViewCell *)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];

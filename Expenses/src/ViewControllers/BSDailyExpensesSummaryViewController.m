@@ -11,7 +11,7 @@
 #import "BSDailyEntryHeaderView.h"
 #import "BSDailySummanryEntryCell.h"
 #import "DateTimeHelper.h"
-#import "BSAddEntryViewController.h"
+#import "BSEntryDetailsViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
 
@@ -66,6 +66,7 @@
 
     
     // configure the cell
+    [cell configure];
     cell.title.text = monthLabelText;
     cell.amountLabel.text = valueLabeltext;
     cell.amount = [itemForDayMonthYear valueForKey:@"dailySum"];
@@ -86,6 +87,25 @@
 {
     return YES;
 }
+
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // We want a section To fill 5/6 of the viewController's view
+    NSString *monthNumber = [[self visibleSectionName] componentsSeparatedByString:@"/"][0];
+    NSRange numberOfDaysInMonthRange = [DateTimeHelper numberOfDaysInMonth:monthNumber];
+    NSInteger numberIfDaysInMonth = numberOfDaysInMonthRange.length;
+
+    NSInteger numberOfColumns = 6;
+    CGFloat numberOfRows = (numberIfDaysInMonth / numberOfColumns);
+    CGFloat sectionHeight = self.view.bounds.size.height * 0.67;
+    CGFloat cellWidth = (self.view.bounds.size.width / numberOfColumns);
+    CGFloat cellHeight = (sectionHeight / numberOfRows);
+    return CGSizeMake(cellWidth, cellHeight);
+}
+
 
 
 #pragma mark - BSCoreDataControllerDelegate
@@ -127,7 +147,7 @@
     if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
+        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
     }
     else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])

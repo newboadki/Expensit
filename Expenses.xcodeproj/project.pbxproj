@@ -44,6 +44,14 @@
 		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
+		009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
+		009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE217B6912900DE1A97 /* BSThemeManager.m */; };
+		009C9EE417B6912900DE1A97 /* BSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE217B6912900DE1A97 /* BSThemeManager.m */; };
+		009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */; };
+		009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */; };
+		009C9EEC17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
+		009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
 		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
@@ -54,8 +62,8 @@
 		00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
 		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
-		00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
-		00BEAFD91779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */; };
+		00BEAFD81779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */; };
+		00BEAFD91779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
@@ -156,6 +164,16 @@
 		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataStackHelper.xcodeproj; path = ../CoreDataStackHelper/CoreDataStackHelper.xcodeproj; sourceTree = "<group>"; };
 		008C36AA17988E7200AFD340 /* BSBaseExpensesSummaryViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSBaseExpensesSummaryViewController+Protected.h"; sourceTree = "<group>"; };
+		009C9EDC17B68F5300DE1A97 /* BSUIThemeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSUIThemeProtocol.h; sourceTree = "<group>"; };
+		009C9EDD17B68FD300DE1A97 /* BSGreenTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGreenTheme.h; sourceTree = "<group>"; };
+		009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGreenTheme.m; sourceTree = "<group>"; };
+		009C9EE117B6912900DE1A97 /* BSThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSThemeManager.h; sourceTree = "<group>"; };
+		009C9EE217B6912900DE1A97 /* BSThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSThemeManager.m; sourceTree = "<group>"; };
+		009C9EE517B6939100DE1A97 /* BSThemeManager_iOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSThemeManager_iOS7.h; sourceTree = "<group>"; };
+		009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSThemeManager_iOS7.m; sourceTree = "<group>"; };
+		009C9EE917B693CC00DE1A97 /* BSThemeManager+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSThemeManager+Protected.h"; sourceTree = "<group>"; };
+		009C9EEA17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSThemeManager_iOS6_andBelow.h; sourceTree = "<group>"; };
+		009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSThemeManager_iOS6_andBelow.m; sourceTree = "<group>"; };
 		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
 		00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
 		00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
@@ -165,8 +183,8 @@
 		00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
 		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
-		00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAddEntryViewController.h; sourceTree = "<group>"; };
-		00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAddEntryViewController.m; sourceTree = "<group>"; };
+		00BEAFD61779BB3C00A59EE2 /* BSEntryDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsViewController.h; sourceTree = "<group>"; };
+		00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsViewController.m; sourceTree = "<group>"; };
 		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
 		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
 		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
@@ -239,8 +257,8 @@
 				00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */,
 				00BEAFCE17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.h */,
 				00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */,
-				00BEAFD61779BB3C00A59EE2 /* BSAddEntryViewController.h */,
-				00BEAFD71779BB3C00A59EE2 /* BSAddEntryViewController.m */,
+				00BEAFD61779BB3C00A59EE2 /* BSEntryDetailsViewController.h */,
+				00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */,
 				00E9F176177F47E000A1A212 /* BSDailyExpensesSummaryViewController.h */,
 				00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */,
 				00735EB21788351200725DFD /* BSYearlyExpensesSummaryViewController.h */,
@@ -363,6 +381,23 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		009C9EDB17B68F2A00DE1A97 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				009C9EDC17B68F5300DE1A97 /* BSUIThemeProtocol.h */,
+				009C9EDD17B68FD300DE1A97 /* BSGreenTheme.h */,
+				009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */,
+				009C9EE117B6912900DE1A97 /* BSThemeManager.h */,
+				009C9EE217B6912900DE1A97 /* BSThemeManager.m */,
+				009C9EE517B6939100DE1A97 /* BSThemeManager_iOS7.h */,
+				009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */,
+				009C9EE917B693CC00DE1A97 /* BSThemeManager+Protected.h */,
+				009C9EEA17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.h */,
+				009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
 		00BEAFB117771F4300A59EE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +410,7 @@
 		00BEAFC517775D6C00A59EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				009C9EDB17B68F2A00DE1A97 /* Themes */,
 				005DF5F2178B5A9A00DC1800 /* LineGraph.h */,
 				005DF5F3178B5A9A00DC1800 /* LineGraph.m */,
 				00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */,
@@ -542,17 +578,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BEAFD81779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */,
+				00BEAFD81779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
+				009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
 				005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
+				009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
 				00735EB41788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
+				009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
 				00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
@@ -562,6 +601,7 @@
 				00E9F178177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
 				00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
+				009C9EEC17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
 				005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */,
 				00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */,
 				000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
@@ -572,19 +612,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BEAFD91779BB3C00A59EE2 /* BSAddEntryViewController.m in Sources */,
+				00BEAFD91779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */,
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
 				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
+				009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
 				005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */,
 				005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */,
 				00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
 				00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */,
+				009C9EE417B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */,
+				009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
@@ -594,6 +637,7 @@
 				00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 			);
@@ -710,6 +754,7 @@
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
@@ -732,6 +777,7 @@
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",

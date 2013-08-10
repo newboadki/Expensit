@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSAddEntryViewController.h"
+#import "BSEntryDetailsViewController.h"
 #import "DateTimeHelper.h"
 
 
 static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
 static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 
-@interface BSAddEntryViewController ()
+@interface BSEntryDetailsViewController ()
 @property (assign, nonatomic) BOOL isShowingDatePicker;
 @end
 
-@implementation BSAddEntryViewController
+@implementation BSEntryDetailsViewController
 
 
 - (void)dealloc

@@ -12,7 +12,7 @@
 #import "BSMonthlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSAddEntryViewController.h"
+#import "BSEntryDetailsViewController.h"
 #import "BSGraphViewController.h"
 #import "LineGraph.h"
 
@@ -72,6 +72,8 @@
     }
     
     // Labels
+    [cell configure];
+    
     cell.title.text = monthLabelText;
     cell.amountLabel.text = valueLabeltext;
 
@@ -111,7 +113,7 @@
     else if ([[segue identifier] isEqualToString:@"addEntryFromMonth"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSAddEntryViewController *addEntryVC = (BSAddEntryViewController*)navController.topViewController;
+        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
         addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
@@ -139,6 +141,23 @@
 {
     return @"BSDailyEntryHeaderView";
 }
+
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // We want a section of 4 rows by 3 columns to fill 2/3 of the screen
+    
+    NSInteger numberOfColumns = 3;
+    CGFloat numberOfRows = 4;
+    CGFloat sectionHeight = self.view.bounds.size.height * 0.67;
+    CGFloat cellWidth = (self.view.bounds.size.width / numberOfColumns);
+    CGFloat cellHeight = (sectionHeight / numberOfRows);
+    return CGSizeMake(cellWidth, cellHeight);
+}
+
 
 
 #pragma mark - BSCoreDataControllerDelegate

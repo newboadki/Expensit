@@ -7,6 +7,7 @@
 //
 
 #import "BSBaseExpenseCell.h"
+#import "BSAppDelegate.h"
 
 @implementation BSBaseExpenseCell
 
@@ -21,10 +22,10 @@
         NSComparisonResult result = [_amount compare:@0];
         switch (result) {
             case NSOrderedAscending:
-                self.amountLabel.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+                self.amountLabel.textColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor];
                 break;
             case NSOrderedDescending:
-                self.amountLabel.textColor = [UIColor colorWithRed:86.0/255.0 green:130.0/255.0 blue:61/255.0 alpha:1.0];
+                self.amountLabel.textColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor];
                 break;
             default:
                 self.amountLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];

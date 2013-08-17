@@ -40,9 +40,10 @@
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
-    //self.edgesForExtendedLayout = UIRectEdgeAll;
-    
-    //[[self.navigationController navigationBar] setTintColor:[UIColor redColor]];
+
+    // TODO: differenciate between ios7 and 6
+    // self.edgesForExtendedLayout = UIRectEdgeAll;
+    // [[self.navigationController navigationBar] setTintColor:[UIColor redColor]];
 
 }
 

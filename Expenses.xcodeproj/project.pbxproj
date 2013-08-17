@@ -52,6 +52,16 @@
 		009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */; };
 		009C9EEC17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
 		009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
+		00A5D43B17B6AA0B003F81B5 /* BSEntryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D43A17B6AA0B003F81B5 /* BSEntryDetailCell.m */; };
+		00A5D43C17B6AA0B003F81B5 /* BSEntryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D43A17B6AA0B003F81B5 /* BSEntryDetailCell.m */; };
+		00A5D44317B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44217B6AB74003F81B5 /* BSEntryTextDetail.m */; };
+		00A5D44417B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44217B6AB74003F81B5 /* BSEntryTextDetail.m */; };
+		00A5D44717B6AB8F003F81B5 /* BSEntryDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44617B6AB8F003F81B5 /* BSEntryDateCell.m */; };
+		00A5D44817B6AB8F003F81B5 /* BSEntryDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44617B6AB8F003F81B5 /* BSEntryDateCell.m */; };
+		00A5D44B17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44A17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m */; };
+		00A5D44C17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44A17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m */; };
+		00A5D44F17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */; };
+		00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */; };
 		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
@@ -174,6 +184,17 @@
 		009C9EE917B693CC00DE1A97 /* BSThemeManager+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSThemeManager+Protected.h"; sourceTree = "<group>"; };
 		009C9EEA17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSThemeManager_iOS6_andBelow.h; sourceTree = "<group>"; };
 		009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSThemeManager_iOS6_andBelow.m; sourceTree = "<group>"; };
+		00A5D43917B6AA0B003F81B5 /* BSEntryDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailCell.h; sourceTree = "<group>"; };
+		00A5D43A17B6AA0B003F81B5 /* BSEntryDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailCell.m; sourceTree = "<group>"; };
+		00A5D44117B6AB74003F81B5 /* BSEntryTextDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryTextDetail.h; sourceTree = "<group>"; };
+		00A5D44217B6AB74003F81B5 /* BSEntryTextDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryTextDetail.m; sourceTree = "<group>"; };
+		00A5D44517B6AB8F003F81B5 /* BSEntryDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDateCell.h; sourceTree = "<group>"; };
+		00A5D44617B6AB8F003F81B5 /* BSEntryDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDateCell.m; sourceTree = "<group>"; };
+		00A5D44917B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntrySegmentedOptionCell.h; sourceTree = "<group>"; };
+		00A5D44A17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntrySegmentedOptionCell.m; sourceTree = "<group>"; };
+		00A5D44D17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailSingleButtonCell.h; sourceTree = "<group>"; };
+		00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailSingleButtonCell.m; sourceTree = "<group>"; };
+		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
 		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
 		00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
 		00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
@@ -377,6 +398,7 @@
 				00BEAFC517775D6C00A59EE2 /* Views */,
 				000D04E61775C864002D0AB8 /* ViewControllers */,
 				000D04E11775BD56002D0AB8 /* Models */,
+				00A5D45117B7D398003F81B5 /* BSConstants.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -430,6 +452,16 @@
 				00D7E0F8178F40A100474A30 /* BSDailyLayout.m */,
 				00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */,
 				00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */,
+				00A5D43917B6AA0B003F81B5 /* BSEntryDetailCell.h */,
+				00A5D43A17B6AA0B003F81B5 /* BSEntryDetailCell.m */,
+				00A5D44117B6AB74003F81B5 /* BSEntryTextDetail.h */,
+				00A5D44217B6AB74003F81B5 /* BSEntryTextDetail.m */,
+				00A5D44D17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.h */,
+				00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */,
+				00A5D44517B6AB8F003F81B5 /* BSEntryDateCell.h */,
+				00A5D44617B6AB8F003F81B5 /* BSEntryDateCell.m */,
+				00A5D44917B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.h */,
+				00A5D44A17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -579,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00BEAFD81779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */,
+				00A5D44317B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
 				009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */,
@@ -586,6 +619,7 @@
 				005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
+				00A5D43B17B6AA0B003F81B5 /* BSEntryDetailCell.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
 				00735EB41788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
@@ -593,8 +627,11 @@
 				00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
+				00A5D44717B6AB8F003F81B5 /* BSEntryDateCell.m in Sources */,
+				00A5D44F17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */,
 				00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00A5D44B17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */,
 				00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
@@ -615,7 +652,9 @@
 				00BEAFD91779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */,
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
+				00A5D44417B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */,
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
+				00A5D43C17B6AA0B003F81B5 /* BSEntryDetailCell.m in Sources */,
 				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
@@ -629,12 +668,15 @@
 				000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */,
 				009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
+				00A5D44C17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */,
 				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
 				00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */,
+				00A5D44817B6AB8F003F81B5 /* BSEntryDateCell.m in Sources */,
 				000481EA1780C67A00E7F401 /* BSDailyExpensesSummaryTests.m in Sources */,
 				00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
+				00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */,
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,

@@ -78,7 +78,8 @@
 {
     BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
-    headerView.titleLabel.text = sectionInfo.name;
+    
+    headerView.titleLabel.text = [DateTimeHelper monthNameAndYearStringFromMonthNumberAndYear:sectionInfo.name];
     return headerView;
 }
 
@@ -173,7 +174,7 @@
         NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
-        [graphViewController setGraphTitle:[self visibleSectionName]];
+        [graphViewController setGraphTitle:[DateTimeHelper monthNameAndYearStringFromMonthNumberAndYear:[self visibleSectionName]]];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
         [graphViewController setXValues:[self arrayDayNumbersInMonth]];

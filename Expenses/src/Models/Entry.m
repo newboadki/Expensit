@@ -23,4 +23,13 @@
     return [NSString stringWithFormat:@"%d/%d", [self.day intValue], [self.month intValue]];
 }
 
+
+
+#pragma mark - Validation
+
+//- (BOOL) validateValue:(id *)value error:(NSError **)outError
+//{
+//    return (value != nil );
+//}
+
 @end

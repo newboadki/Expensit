@@ -70,6 +70,7 @@
 }
 
 
+
 - (BOOL) shouldScrollToSelectedSection
 {
     return YES;
@@ -116,7 +117,9 @@
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
-    } else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"]) {
+    }
+    else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"])
+    {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSEntryDetailsViewController *editEntryViewController = (BSEntryDetailsViewController*)[navController topViewController];
         editEntryViewController.isEditingEntry = YES;
@@ -137,6 +140,8 @@
 - (void)orientationChanged:(NSNotification *)notification
 {
 }
+
+
 
 
 @end

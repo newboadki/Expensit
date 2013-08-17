@@ -47,6 +47,7 @@
     return newManagedObject;
 }
 
+
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value
 {
     NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
@@ -75,5 +76,16 @@
 }
 
 
+- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative {
+    
+    BOOL isCurrentValueNegative = ([entry.value compare:@(-1)] == NSOrderedAscending);
+    
+    if (isCurrentValueNegative ^ shouldBeNegative) // XOR True when the inputs are different (true output means we need to multiply by -1)
+    {
+        entry.value = [entry.value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+    }
+    
+    return [self.coreDataHelper.managedObjectContext save:nil];
+}
 
 @end

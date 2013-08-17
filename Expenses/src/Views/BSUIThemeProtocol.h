@@ -11,4 +11,7 @@
 @protocol BSUIThemeProtocol <NSObject>
 - (UIColor *)navigationBarBackgroundColor;
 - (UIColor *)navigationBarTextColor;
+- (UIColor *)redColor;
+- (UIColor *)greenColor;
+- (UIColor *)blueColor;
 @end

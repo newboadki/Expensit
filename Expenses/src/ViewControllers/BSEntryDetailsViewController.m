@@ -8,13 +8,20 @@
 
 #import "BSEntryDetailsViewController.h"
 #import "DateTimeHelper.h"
+#import "BSEntryTextDetail.h"
+#import "BSEntryDateCell.h"
+#import "BSEntrySegmentedOptionCell.h"
+#import "BSEntryDetailSingleButtonCell.h"
+#import "BSConstants.h"
 
-
-static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
-static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
+//static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
+//static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 
 @interface BSEntryDetailsViewController ()
 @property (assign, nonatomic) BOOL isShowingDatePicker;
+@property (assign, nonatomic) BOOL buttonSelected;
+@property (strong, nonatomic) NSDictionary *indexpathToPropertyMap;
+@property (strong, nonatomic) NSDictionary *cellTypeToIndepathMap;
 @end
 
 @implementation BSEntryDetailsViewController
@@ -30,21 +37,25 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.amountTextField becomeFirstResponder];
     
+    self.indexpathToPropertyMap = @{ [NSIndexPath indexPathForRow:0 inSection:0] : @"value",
+                                      [NSIndexPath indexPathForRow:1 inSection:0] : @"desc",
+                                      [NSIndexPath indexPathForRow:2 inSection:0] : @"date",
+                                      [NSIndexPath indexPathForRow:3 inSection:0] : [NSNull null],
+                                      [NSIndexPath indexPathForRow:0 inSection:1] : [NSNull null] };
+    
+    self.cellTypeToIndepathMap = @{ @"amount" : [NSIndexPath indexPathForRow:0 inSection:0],
+                                    @"description" : [NSIndexPath indexPathForRow:1 inSection:0],
+                                    @"date" : [NSIndexPath indexPathForRow:2 inSection:0],
+                                    @"type" : [NSIndexPath indexPathForRow:3 inSection:0],
+                                    @"delete" : [NSIndexPath indexPathForRow:0 inSection:1]};
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-
-    self.dateButton.titleLabel.text = [DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:[NSDate date]];
-    [self.dateButton.titleLabel setNeedsDisplay];
-
     
     if (self.isEditingEntry)
     {
         self.title = NSLocalizedString(@"Edit entry", @"");
-        self.amountTextField.text = [self.entryModel.value stringValue];
-        self.descriptionTextField.text = self.entryModel.desc;
-        self.deleteButton.hidden = NO;
     }
     else
     {
@@ -57,10 +68,7 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
         BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
         self.entryModel = [coreDataController newEntry];
     }
-    
 }
-
-
 
 
 - (void)didReceiveMemoryWarning
@@ -70,46 +78,64 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 }
 
 
-- (IBAction) addEntryPressed:(id)sender
+
+#pragma mark - UITableView related
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.isEditingEntry)
+    {
+        return 2;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(BSEntryDetailCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[BSEntryDetailCell class]])
+    {
+        if (!cell.entryModel)
+        {
+            cell.modelProperty = self.indexpathToPropertyMap[indexPath]; // needs to be called before than the entryModel
+            cell.entryModel = self.entryModel;
+        }
+        
+        if ([indexPath isEqual:self.cellTypeToIndepathMap[@"amount"]])
+        {
+            if (!self.isEditingEntry)
+            {
+                [cell becomeFirstResponder];
+            }
+        }
+    }
+}
+
+- (BOOL) saveModel
 {
     BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
     
-    NSString *amount = self.amountTextField.text;
-    if (self.entryTypeSegmentedControl.selectedSegmentIndex == EXPENSES_SEGMENTED_INDEX)
-    {
-        amount = [@"-" stringByAppendingString:amount];
-    }
-    
-    self.entryModel.value = [NSDecimalNumber decimalNumberWithString:amount];
     NSDate *creationDate = [NSDate date];
     if (self.entryModel.date) {
         creationDate = self.entryModel.date;
     }
     
     // Save
-    NSError *err = nil;
-    [coreDataController.coreDataHelper.managedObjectContext save:&err];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    BSEntrySegmentedOptionCell *typeCell = (BSEntrySegmentedOptionCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"type"]];
+    BOOL isAmountNegative = typeCell.selectedIndex == EXPENSES_SEGMENTED_INDEX;
+    return [coreDataController saveEntry:self.entryModel withNegativeAmount:isAmountNegative];
+
 }
 
-
-- (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl
+- (IBAction) addEntryPressed:(id)sender
 {
-    switch (typeSegmentedControl.selectedSegmentIndex) {
-        case EXPENSES_SEGMENTED_INDEX:
-            self.entryTypeSymbolLabel.text = @"-";
-            typeSegmentedControl.tintColor = [UIColor colorWithRed:199.0/255.0 green:43.0/255.0 blue:49.0/255.0 alpha:1.0];
-            break;
-        case BENEFITS_SEGMENTED_INDEX:
-            self.entryTypeSymbolLabel.text = @"+";
-            typeSegmentedControl.tintColor = [UIColor colorWithRed:86.0/255.0 green:130.0/255.0 blue:61.0/255.0 alpha:1.0];
-            break;
-            
-        default:
-            break;
+    if ([self saveModel])
+    {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
-
 
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -118,18 +144,28 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 }
 
 
+
 #pragma mark - UITextFieldDelegate
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
+- (void) textFieldShouldreturn
 {
-    self.amountTextField.text = @"";
-    self.descriptionTextField.text = @"";
-    self.entryTypeSegmentedControl.selectedSegmentIndex = EXPENSES_SEGMENTED_INDEX; // Default
-    [self entryTypeSegmenteControlChanged:self.entryTypeSegmentedControl];
 
-    [self.amountTextField becomeFirstResponder];
-    
-    return NO;
+    [self saveModel];
+    if (!self.isEditingEntry)
+    {
+        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+        self.entryModel = [coreDataController newEntry];
+        
+        BSEntryDetailCell *amountCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
+        BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"description"]];
+        BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"date"]];
+        BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"type"]];
+        [amountCell reset];
+        [descCell reset];
+        [dateCell reset];
+        [typeCell reset];
+    }
+
 }
 
 - (void)keyboardWillShow:(id)notification
@@ -137,7 +173,7 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
     //[self hideDatePickerAnimated:YES];
     if (self.isShowingDatePicker)
     {
-        [self hideDatePickerAnimated:YES];
+//        [self hideDatePickerAnimated:YES];
     }
 }
 
@@ -147,74 +183,9 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 }
 
 
-- (void) hideDatePickerAnimated:(BOOL)animated
-{
-    [UIView animateWithDuration:0.4 animations:^{
-        CGRect destinationFrame = self.bottomSectionView.frame;
-        destinationFrame.origin.y -= CGRectGetHeight(self.entryDatePicker.frame);
-        self.bottomSectionView.frame = destinationFrame;
-    } completion:^(BOOL finished) {
-        self.isShowingDatePicker = NO;
-        [self.amountTextField becomeFirstResponder];
-    }];
-
-}
-
-- (void) showDatePickerAnimated:(BOOL)animated
-{
-    [UIView animateWithDuration:0.5 animations:^{
-        CGRect destinationFrame = self.bottomSectionView.frame;
-        destinationFrame.origin.y += CGRectGetHeight(self.entryDatePicker.frame);
-        self.bottomSectionView.frame = destinationFrame;
-    } completion:^(BOOL finished) {
-        self.isShowingDatePicker = YES;
-    }];
-}
-
-
-
-- (IBAction) dateButtonPressed:(id)sender
-{
-    [self.amountTextField resignFirstResponder];
-    [self.descriptionTextField resignFirstResponder];
-    
-    if (self.isShowingDatePicker)
-    {
-        [self hideDatePickerAnimated:YES];
-    }
-    else
-    {
-        [self showDatePickerAnimated:YES];
-    }
-}
 
 
 #pragma mark - Updating the model
-
-- (IBAction) entryDatePickerValueChanged:(id)sender
-{
-    self.entryModel.date = self.entryDatePicker.date;
-    self.entryModel.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.entryModel.date]];
-    self.entryModel.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.entryModel.date]];;
-    self.entryModel.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.entryModel.date]];;
-    self.entryModel.monthYear = [NSString stringWithFormat:@"%@/%@", [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
-    self.entryModel.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.entryModel.day stringValue], [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
-
-    self.dateButton.titleLabel.text = [DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:self.entryModel.date];
-}
-
-
-- (IBAction) amountTextFieldChanged:(UITextField *)textField
-{
-    self.entryModel.value = [NSDecimalNumber decimalNumberWithString:textField.text];
-}
-
-
-- (IBAction) descriptionTextFieldChanged:(UITextField *)textField
-{
-    self.entryModel.desc = textField.text;
-}
-
 
 - (IBAction) cancelButtonPressed:(id)sender
 {
@@ -231,18 +202,84 @@ static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
 }
 
 
-- (IBAction) deleteButtonPressed:(UIButton *)deleteButton
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isEditingEntry)
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath isEqual:self.cellTypeToIndepathMap[@"date"]])
     {
-        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
-        [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
-        [self.coreDataStackHelper.managedObjectContext save:nil];
         
-        // If success
-        UINavigationController *navController = self.navigationController;
-        [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        if (self.buttonSelected)
+        {
+            
+            return 250.0f;
+        } else
+        {
+            return 41.0f;
+        }
+    }
+    else
+    {
+        return 41;
+    }
+}
+
+#pragma mark - EntryDetailCellDelegateProtocol
+
+- (void) cell:(UITableViewCell *)cell changedValue:(id)newValue
+{
+    if ([cell isKindOfClass:[BSEntrySegmentedOptionCell class]])
+    {
+        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
+        
+        int value = [(NSNumber *)newValue intValue];
+        switch (value) {
+            case EXPENSES_SEGMENTED_INDEX:
+                // Tell the amount cell to display a -
+                [amountCell displayMinusSign];
+                break;
+            case BENEFITS_SEGMENTED_INDEX:
+                // Tell the amount cell to display a +
+                [amountCell displayPlusSign];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else if ([cell isKindOfClass:[BSEntryDateCell class]])
+    {
+        self.buttonSelected = !self.buttonSelected;
+        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
+        BSEntryTextDetail *descriptionCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"description"]];
+
+        if (self.buttonSelected)
+        {
+            [amountCell resignFirstResponder];
+            [descriptionCell resignFirstResponder];
+        }
+
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    }
+    else if ([cell isKindOfClass:[BSEntryDetailSingleButtonCell class]])
+    {
+        if (self.isEditingEntry)
+        {
+            BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+            [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
+            [self.coreDataStackHelper.managedObjectContext save:nil];
+            
+            // If success
+            UINavigationController *navController = self.navigationController;
+            [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        
     }
 }
 

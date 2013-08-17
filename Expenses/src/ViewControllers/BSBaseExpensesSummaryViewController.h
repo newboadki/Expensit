@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 
+
 /*! When the user is in a particular summary screen and selects a cell, this property is set by 
  the previous viewController and used by the nextViewController to scroll to the right section.*/
 @property (strong, nonatomic) NSIndexPath *sectionToBeShownIndexPath;

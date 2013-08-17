@@ -430,7 +430,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     CGContextTranslateCTM(con, CGRectGetMinX(rect), self.bounds.size.height);
     CGContextScaleCTM(con, 1, -1);
 
-        [self.dataSource.graphTitle drawAtPoint:CGPointMake((rect.size.width/2.0)-5, 5) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
+        [self.dataSource.graphTitle drawAtPoint:CGPointMake((rect.size.width/2.0)-10, 5) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                                                                          NSForegroundColorAttributeName : [UIColor whiteColor] }];
 
         UIBezierPath* verticalLinePath = [UIBezierPath bezierPath];

@@ -44,6 +44,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    
     NSDictionary *itemForMonth = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
     BSYearlySummaryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
@@ -59,6 +62,7 @@
     }
     
     // Labels
+    [cell configure];
     cell.title.text = monthLabelText;
     cell.amountLabel.text = valueLabeltext;
     

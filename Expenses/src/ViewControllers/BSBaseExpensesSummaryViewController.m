@@ -134,6 +134,12 @@
 }
 
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+
 - (NSString*) visibleSectionName
 {
     //TODO: IN case of a TIE, choose the section with the newest date

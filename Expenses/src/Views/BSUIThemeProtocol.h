@@ -14,4 +14,5 @@
 - (UIColor *)redColor;
 - (UIColor *)greenColor;
 - (UIColor *)blueColor;
+- (UIColor *)selectedCellColor;
 @end

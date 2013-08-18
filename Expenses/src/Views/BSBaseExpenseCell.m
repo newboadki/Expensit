@@ -38,6 +38,12 @@
 - (void) configure
 {
     self.amountLabel.adjustsFontSizeToFitWidth = YES;
+    if (![self selectedBackgroundView])
+    {
+        self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
+        self.selectedBackgroundView.backgroundColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme selectedCellColor];
+    }
+
 }
 
 @end

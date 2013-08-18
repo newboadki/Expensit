@@ -432,7 +432,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 
         [self.dataSource.graphTitle drawAtPoint:CGPointMake((rect.size.width/2.0)-10, 5) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                                                                          NSForegroundColorAttributeName : [UIColor whiteColor] }];
-
         UIBezierPath* verticalLinePath = [UIBezierPath bezierPath];
     
         // Draw the first line
@@ -445,7 +444,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
         if ([xvalues count] > 0) {
             [xvalues[0] drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                                    NSForegroundColorAttributeName : [UIColor whiteColor] }];
-
         }
 
         for (int i=1; i<numberOfLines-1; i++)
@@ -475,11 +473,12 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     /*************************************************************************************************/
     /*                                                                                               */
     /*************************************************************************************************/
+    CGFloat graphicDomainToUserDomainScalingFactor = (maxYValue / rect.size.height);
     int numberOfRegions = numberOfLines-1; // because we're creating lines at the edges too.
-    CGFloat userDomainExtra = maxYValue - ((rect.size.height - kGraphDrawableAreaTopMargin) * ((float)maxYValue / (float)rect.size.height));
+    CGFloat userDomainExtra = kGraphDrawableAreaTopMargin * graphicDomainToUserDomainScalingFactor;//maxYValue - ((rect.size.height - kGraphDrawableAreaTopMargin) * ((float)maxYValue / (float)rect.size.height));
     CGFloat graphMaxYUserDomain = maxYValue + userDomainExtra;
     float distanceBetweenLines = (rect.size.height / numberOfRegions);
-    CGFloat yValuesStep = graphMaxYUserDomain / (float)numberOfLines;
+    CGFloat yValuesStep = graphMaxYUserDomain / (float)numberOfRegions;
     CGFloat yValueIncrement = 0;
     CGContextRef con = UIGraphicsGetCurrentContext();
     CGContextSaveGState(con);

@@ -9,7 +9,7 @@
 #import "LineGraph.h"
 #import <QuartzCore/QuartzCore.h>
 
-static const CGFloat kGraphLeftMargin = 30.0f;
+static const CGFloat kGraphLeftMargin = 40.0f;
 static const CGFloat kGraphLeftPadding = 5.0f;
 static const CGFloat kGraphRightMargin = 15.0f;
 static const CGFloat kGraphTopMargin = 20.0f;
@@ -504,7 +504,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             
             CGContextSaveGState(con);
                 CGContextScaleCTM(con, 1, -1);
-                [[NSString stringWithFormat:@"%d", (int)yValueIncrement] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
+                [[NSString stringWithFormat:@"%@", [self.currencyFormatter formattedStringForNumber:@(yValueIncrement)]] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor] }];
             CGContextRestoreGState(con);
             
@@ -514,7 +514,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     CGContextTranslateCTM(con, 0.0, distanceBetweenLines);
     CGContextSaveGState(con);
     CGContextScaleCTM(con, 1, -1);
-    [[NSString stringWithFormat:@"%d", (int)yValueIncrement] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
+    [[NSString stringWithFormat:@"%@", [self.currencyFormatter formattedStringForNumber:@(yValueIncrement)]] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                              NSForegroundColorAttributeName : [UIColor whiteColor] }];
     CGContextRestoreGState(con);
 

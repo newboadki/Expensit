@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LineGraph.h"
 
-@interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol>
+@interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol, LineGraphCurrencyFormatterProtocol>
 @property (strong, nonatomic) NSArray *moneyIn;
 @property (strong, nonatomic) NSArray *moneyOut;
 @property (strong, nonatomic) NSArray *xValues;

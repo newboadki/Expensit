@@ -7,6 +7,7 @@
 //
 
 #import "BSGraphViewController.h"
+#import "BSCurrencyHelper.h"
 
 @interface BSGraphViewController ()
 
@@ -26,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    LineGraph *graph = (LineGraph *)self.view;
+    graph.currencyFormatter = self;
 }
 
 
@@ -50,6 +52,15 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
+}
+
+
+
+#pragma mark - LineGraphCurrencyFormatterProtocol
+
+- (NSString *) formattedStringForNumber:(NSNumber *)number
+{
+    return [[BSCurrencyHelper amountFormatter] stringFromNumber:number];
 }
 
 

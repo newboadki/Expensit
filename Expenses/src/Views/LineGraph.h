@@ -15,9 +15,14 @@
 - (NSString *) graphTitle;
 @end
 
+@protocol LineGraphCurrencyFormatterProtocol
+- (NSString *) formattedStringForNumber:(NSNumber *)number;
+@end
+
 
 @interface LineGraph : UIView
 
 @property (assign, nonatomic) IBOutlet id <LineGraphDataSourceProtocol> dataSource;
+@property (assign, nonatomic) IBOutlet id <LineGraphCurrencyFormatterProtocol> currencyFormatter;
 
 @end

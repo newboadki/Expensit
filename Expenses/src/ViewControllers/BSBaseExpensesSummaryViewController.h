@@ -31,7 +31,6 @@
  months that have entries in the daily summary screen.*/
 @property (strong, nonatomic) NSString *nameOfSectionToBeShown;
 
-
 @property (assign, nonatomic) BOOL shouldScrollToSelectedSection;
 
 @property (assign, nonatomic) BOOL firstTimeViewWillAppear;

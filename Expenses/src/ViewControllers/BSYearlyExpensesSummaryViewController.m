@@ -13,6 +13,7 @@
 #import "DateTimeHelper.h"
 #import "BSEntryDetailsViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
+#import "BSMonthlyExpensesSummaryViewController.h"
 
 @interface BSYearlyExpensesSummaryViewController ()
 

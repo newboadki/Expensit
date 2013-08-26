@@ -113,6 +113,33 @@
     }
 }
 
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    NSString *reuseIdentifier = nil;
+//    switch (indexPath.row) {
+//        case 0:
+//        case 1:
+//            reuseIdentifier = @"BSEntryTextDetail";
+//            break;
+//        case 2:
+//            reuseIdentifier = @"BSEntryDateCell";
+//            break;
+//        case 3:
+//            reuseIdentifier = @"BSEntrySegmentedOptionCell";
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    BSEntryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if (!cell)
+//    {
+//        cell = // create cell of specific type.
+//    }
+//    
+//    return cell;
+//}
+
 - (BOOL) saveModel
 {
     BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
@@ -160,28 +187,26 @@
         BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"description"]];
         BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"date"]];
         BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"type"]];
-        [amountCell reset];
-        [descCell reset];
-        [dateCell reset];
-        [typeCell reset];
+        
+        amountCell.entryModel = self.entryModel;
+        descCell.entryModel = self.entryModel;
+        dateCell.entryModel = self.entryModel;
+        typeCell.entryModel = self.entryModel;
+        
+        [amountCell becomeFirstResponder];
     }
 
 }
 
 - (void)keyboardWillShow:(id)notification
 {
-    //[self hideDatePickerAnimated:YES];
-    if (self.isShowingDatePicker)
-    {
-//        [self hideDatePickerAnimated:YES];
-    }
+
 }
 
 - (void)keyboardDidHide:(id)notification
 {
-    //[self showDatePickerAnimated:YES];
-}
 
+}
 
 
 
@@ -277,9 +302,7 @@
             // If success
             UINavigationController *navController = self.navigationController;
             [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-            //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
-        
     }
 }
 

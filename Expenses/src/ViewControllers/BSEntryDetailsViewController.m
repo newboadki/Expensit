@@ -253,6 +253,7 @@
     }
 }
 
+
 #pragma mark - EntryDetailCellDelegateProtocol
 
 - (void) cell:(UITableViewCell *)cell changedValue:(id)newValue

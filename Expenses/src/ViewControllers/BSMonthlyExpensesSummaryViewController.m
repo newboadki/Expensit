@@ -148,11 +148,10 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    // We want a section of 4 rows by 3 columns to fill 2/3 of the screen
-    
+    // We want a section of 4 rows by 3 columns to fill 90% of the screen
     NSInteger numberOfColumns = 3;
     CGFloat numberOfRows = 4;
-    CGFloat sectionHeight = self.view.bounds.size.height * 0.67;
+    CGFloat sectionHeight = self.view.bounds.size.height * 0.90;
     CGFloat cellWidth = (self.view.bounds.size.width / numberOfColumns);
     CGFloat cellHeight = (sectionHeight / numberOfRows);
     return CGSizeMake(cellWidth, cellHeight);

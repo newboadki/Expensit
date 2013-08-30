@@ -25,16 +25,16 @@
     if (self)
     {
         // Creating the picker here, because putting it in the nib file makes the modal load reaaaally slow.
-        self.datePicker = [[UIDatePicker alloc] init];
-        self.datePicker.frame = CGRectMake(0, 44, self.datePicker.frame.size.width, self.datePicker.frame.size.height);
-        [self.datePicker setDatePickerMode:UIDatePickerModeDate];
-        [self.datePicker addTarget:self action:@selector(entryDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+//        self.datePicker = [[UIDatePicker alloc] init];
+//        self.datePicker.frame = CGRectMake(0, 44, self.datePicker.frame.size.width, self.datePicker.frame.size.height);
+//        [self.datePicker setDatePickerMode:UIDatePickerModeDate];
+//        [self.datePicker addTarget:self action:@selector(entryDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     
     return self;
 }
 
-- (void) entryDatePickerValueChanged:(UIDatePicker *)picker
+- (IBAction) entryDatePickerValueChanged:(UIDatePicker *)picker
 {
     self.entryModel.date = self.datePicker.date;
     self.entryModel.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.entryModel.date]];
@@ -63,6 +63,7 @@
     
     // tell the delegate that the button has been pressed
     if (!self.datePicker.superview) {
+        self.datePicker.frame = CGRectMake(0, 44, self.datePicker.frame.size.width, self.datePicker.frame.size.height);
         [self addSubview:self.datePicker];
     }
 

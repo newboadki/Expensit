@@ -181,7 +181,11 @@
         }
     }
     
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:[sectionWithMostVisibleCells intValue]];
+    id <NSFetchedResultsSectionInfo> sectionInfo = nil;
+    if ([[self.fetchedResultsController sections] count])
+    {
+        sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:[sectionWithMostVisibleCells intValue]];
+    }
     
     return sectionInfo.name;
 }

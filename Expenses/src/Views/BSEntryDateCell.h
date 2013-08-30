@@ -10,9 +10,9 @@
 
 @interface BSEntryDateCell : BSEntryDetailCell
 
-@property (strong, nonatomic) UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 
-- (void) entryDatePickerValueChanged:(UIButton *)dateButton;
+- (IBAction) entryDatePickerValueChanged:(UIDatePicker *)picker;
 - (IBAction) dateButtonPressed:(id)sender;
 
 @end

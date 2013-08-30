@@ -24,7 +24,13 @@
 {
     [super viewDidLoad];
     
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([[self.fetchedResultsController sections] count] == 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource

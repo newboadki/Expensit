@@ -10,3 +10,4 @@
 
 static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
 static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
+static const NSString * FIRSTTIME_FILE = @"firstTimeFile";

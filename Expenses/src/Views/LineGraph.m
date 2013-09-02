@@ -323,7 +323,8 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
         const float* colors = CGColorGetComponents( lineColor.CGColor );
         CGContextSetRGBStrokeColor(con, colors[0], colors[1], colors[2], 1.0);
         CGContextSetLineWidth(con, 1.5);
-        
+        CGContextSetLineJoin(con, kCGLineJoinRound);
+    
         // Create the visible part of the graph and stroke it
     CGPoint point = CGPointZero;
         if ([points count] > 0) {

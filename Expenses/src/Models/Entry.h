@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString *desc;
 @property (nonatomic, retain) NSString *monthYear;
 @property (nonatomic, retain) NSString *dayMonthYear;
+@property (nonatomic, retain) NSString *yearMonthDay;
 
 - (NSString*) dayAndMonth;
 

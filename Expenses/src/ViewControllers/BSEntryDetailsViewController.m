@@ -365,11 +365,14 @@ static  NSString *kDeleteCellType = @"delete";
             [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
     } else if ([cell isKindOfClass:[BSEntryDetailDatePickerCell class]]) {
-        BSEntryDateCell *dateCell = [self.tableView  cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
-        [dateCell setDate:[DateTimeHelper dateStringWithFormat:DEFAULT_DATE_FORMAT date:newValue]]
+        BSEntryDateCell *dateCell = (BSEntryDateCell*)[self.tableView  cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
+        [dateCell setDate:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:newValue]]
         ;
     }
 }
+
+
+
 #pragma mark - Dinamic table view helpers
 
 - (NSIndexPath *)indexPathForCellType:(NSString *)cellType {

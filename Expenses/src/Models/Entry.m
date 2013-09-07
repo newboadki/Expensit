@@ -16,7 +16,7 @@
 @dynamic date;
 @dynamic value;
 @dynamic desc;
-@dynamic monthYear, dayMonthYear;
+@dynamic monthYear, dayMonthYear, yearMonthDay;
 
 - (NSString*) dayAndMonth
 {

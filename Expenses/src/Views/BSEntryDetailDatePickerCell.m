@@ -22,6 +22,7 @@
     self.entryModel.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.entryModel.date]];
     self.entryModel.monthYear = [NSString stringWithFormat:@"%@/%@", [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
     self.entryModel.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.entryModel.day stringValue], [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
+    self.entryModel.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [self.entryModel.year stringValue], [self.entryModel.month stringValue], [self.entryModel.day stringValue]];
 
     [self.delegate cell:self changedValue:datePicker.date];
 }

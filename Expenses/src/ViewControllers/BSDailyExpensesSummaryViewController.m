@@ -162,8 +162,10 @@
         
         // Create the name of the section to go to in the next VC
         NSString *month = [sectionInfo.name componentsSeparatedByString:@"/"][0];
+        NSString *year = [sectionInfo.name componentsSeparatedByString:@"/"][1];
         
-        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,month];
+        
+        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%@/%@/%d", year, month, selectedIndexPath.row + 1];
         dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])

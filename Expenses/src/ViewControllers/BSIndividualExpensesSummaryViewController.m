@@ -69,7 +69,9 @@
 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     NSArray *components = [sectionInfo.name componentsSeparatedByString:@"/"];
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%@ %@", [components objectAtIndex:0], [DateTimeHelper monthNameForMonthNumber:[NSDecimalNumber decimalNumberWithString:[components objectAtIndex:1]]]];
+    headerView.titleLabel.text = [NSString stringWithFormat:@"%@ %@ %@", [components objectAtIndex:2],
+                                  [DateTimeHelper monthNameForMonthNumber:[NSDecimalNumber decimalNumberWithString:[components objectAtIndex:1]]],
+                                  [components objectAtIndex:0]];
     
     return headerView;
     
@@ -107,7 +109,7 @@
 
 - (NSString*) sectionNameKeyPath
 {
-    return @"dayAndMonth";
+    return @"yearMonthDay";
 }
 
 

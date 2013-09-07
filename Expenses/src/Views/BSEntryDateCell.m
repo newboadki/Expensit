@@ -12,7 +12,7 @@
 
 
 @interface BSEntryDateCell ()
-@property (assign, nonatomic) BOOL isExpanded;
+@property (assign, nonatomic) BOOL isPressed;
 @end
 
 @implementation BSEntryDateCell
@@ -24,47 +24,22 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        // Creating the picker here, because putting it in the nib file makes the modal load reaaaally slow.
-//        self.datePicker = [[UIDatePicker alloc] init];
-//        self.datePicker.frame = CGRectMake(0, 44, self.datePicker.frame.size.width, self.datePicker.frame.size.height);
-//        [self.datePicker setDatePickerMode:UIDatePickerModeDate];
-//        [self.datePicker addTarget:self action:@selector(entryDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     
     return self;
 }
 
-- (IBAction) entryDatePickerValueChanged:(UIDatePicker *)picker
-{
-    self.entryModel.date = self.datePicker.date;
-    self.entryModel.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.entryModel.date]];
-    self.entryModel.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.entryModel.date]];;
-    self.entryModel.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.entryModel.date]];;
-    self.entryModel.monthYear = [NSString stringWithFormat:@"%@/%@", [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
-    self.entryModel.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.entryModel.day stringValue], [self.entryModel.month stringValue], [self.entryModel.year stringValue]];
-    
-    UIButton *button = (UIButton *)self.control;
-    [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:self.entryModel.date] forState:UIControlStateNormal];
-}
-
-
 - (IBAction) dateButtonPressed:(id)sender
 {
-    self.isExpanded = !self.isExpanded;
+    self.isPressed = !self.isPressed;
     UIButton *button = (UIButton *)self.control;
-    if (self.isExpanded)
+    if (self.isPressed)
     {
         [button setTitleColor:[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor] forState:UIControlStateNormal];
     }
     else
     {
         [button setTitleColor:[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme blueColor] forState:UIControlStateNormal];
-    }
-    
-    // tell the delegate that the button has been pressed
-    if (!self.datePicker.superview) {
-        self.datePicker.frame = CGRectMake(0, 44, self.datePicker.frame.size.width, self.datePicker.frame.size.height);
-        [self addSubview:self.datePicker];
     }
 
     [self.delegate cell:self changedValue:nil];
@@ -88,6 +63,21 @@
 
         }
     }
+}
+
+- (void) setDate:(NSString*)date {
+    UIButton *button = (UIButton *)self.control;
+    if (self.isPressed)
+    {
+        [button setTitleColor:[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [button setTitleColor:[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme blueColor] forState:UIControlStateNormal];
+    }
+    
+    button.titleLabel.text = date;
+
 }
 
 - (void) reset

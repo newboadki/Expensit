@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 @property (assign, nonatomic) BOOL isEditingEntry;
+@property (assign, nonatomic) BOOL isShowingPicker;
 @property (strong, nonatomic) Entry *entryModel;
 
 - (IBAction) addEntryPressed:(id)sender;

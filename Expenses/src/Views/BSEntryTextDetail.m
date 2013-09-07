@@ -136,5 +136,12 @@
     
 }
 
+- (void)setKeyboardType:(UIKeyboardType)keyboardType {
+    if (_keyboardType != keyboardType) {
+        UITextField *textField = (UITextField *)self.control;
+        textField.keyboardType = keyboardType;
+    }
+}
+
 
 @end

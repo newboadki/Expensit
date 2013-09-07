@@ -76,6 +76,8 @@
 		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00BEAFD81779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */; };
 		00BEAFD91779BB3C00A59EE2 /* BSEntryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */; };
+		00C3F88417DA4A1500613514 /* BSEntryDetailDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3F88317DA4A1500613514 /* BSEntryDetailDatePickerCell.m */; };
+		00C3F88517DA4A1500613514 /* BSEntryDetailDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3F88317DA4A1500613514 /* BSEntryDetailDatePickerCell.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
@@ -210,6 +212,8 @@
 		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
 		00BEAFD61779BB3C00A59EE2 /* BSEntryDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsViewController.h; sourceTree = "<group>"; };
 		00BEAFD71779BB3C00A59EE2 /* BSEntryDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsViewController.m; sourceTree = "<group>"; };
+		00C3F88217DA4A1500613514 /* BSEntryDetailDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailDatePickerCell.h; sourceTree = "<group>"; };
+		00C3F88317DA4A1500613514 /* BSEntryDetailDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailDatePickerCell.m; sourceTree = "<group>"; };
 		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
 		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
 		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
@@ -464,6 +468,8 @@
 				00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */,
 				00A5D44517B6AB8F003F81B5 /* BSEntryDateCell.h */,
 				00A5D44617B6AB8F003F81B5 /* BSEntryDateCell.m */,
+				00C3F88217DA4A1500613514 /* BSEntryDetailDatePickerCell.h */,
+				00C3F88317DA4A1500613514 /* BSEntryDetailDatePickerCell.m */,
 				00A5D44917B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.h */,
 				00A5D44A17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m */,
 				00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */,
@@ -638,6 +644,7 @@
 				00A5D44F17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */,
 				00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00C3F88417DA4A1500613514 /* BSEntryDetailDatePickerCell.m in Sources */,
 				00A5D44B17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */,
 				00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
@@ -686,6 +693,7 @@
 				00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */,
 				00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */,
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
+				00C3F88517DA4A1500613514 /* BSEntryDetailDatePickerCell.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,

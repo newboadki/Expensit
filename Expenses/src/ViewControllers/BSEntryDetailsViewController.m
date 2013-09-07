@@ -12,6 +12,7 @@
 #import "BSEntryDateCell.h"
 #import "BSEntrySegmentedOptionCell.h"
 #import "BSEntryDetailSingleButtonCell.h"
+#import "BSEntryDetailDatePickerCell.h"
 #import "BSConstants.h"
 
 //static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
@@ -20,9 +21,17 @@
 @interface BSEntryDetailsViewController ()
 @property (assign, nonatomic) BOOL isShowingDatePicker;
 @property (assign, nonatomic) BOOL buttonSelected;
-@property (strong, nonatomic) NSDictionary *indexpathToPropertyMap;
-@property (strong, nonatomic) NSDictionary *cellTypeToIndepathMap;
+//@property (strong, nonatomic) NSDictionary *indexpathToPropertyMap;
+//@property (strong, nonatomic) NSDictionary *cellTypeToIndepathMap;
+@property (strong, nonatomic) NSMutableDictionary *listModelTypes;
 @end
+
+static  NSString *kAmountCellType = @"amount";
+static  NSString *kDescriptionCellType = @"description";
+static  NSString *kDateCellType = @"date";
+static  NSString *kDatePickerCellType = @"datePicker";
+static  NSString *kTypeCellType = @"type";
+static  NSString *kDeleteCellType = @"delete";
 
 @implementation BSEntryDetailsViewController
 
@@ -38,17 +47,11 @@
 {
     [super viewDidLoad];
     
-    self.indexpathToPropertyMap = @{ [NSIndexPath indexPathForRow:0 inSection:0] : @"value",
-                                      [NSIndexPath indexPathForRow:1 inSection:0] : @"desc",
-                                      [NSIndexPath indexPathForRow:2 inSection:0] : @"date",
-                                      [NSIndexPath indexPathForRow:3 inSection:0] : [NSNull null],
-                                      [NSIndexPath indexPathForRow:0 inSection:1] : [NSNull null] };
+     [self.tableView dequeueReusableCellWithIdentifier:kDatePickerCellType];
+    // This is the structure of the cell. It can change as we might insert and delete cells
+    self.listModelTypes = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSMutableArray arrayWithArray:@[kAmountCellType, kDescriptionCellType, kDateCellType, kTypeCellType]], @0,
+                                                                               [NSMutableArray arrayWithArray:@[kDeleteCellType]], @1, nil];
     
-    self.cellTypeToIndepathMap = @{ @"amount" : [NSIndexPath indexPathForRow:0 inSection:0],
-                                    @"description" : [NSIndexPath indexPathForRow:1 inSection:0],
-                                    @"date" : [NSIndexPath indexPathForRow:2 inSection:0],
-                                    @"type" : [NSIndexPath indexPathForRow:3 inSection:0],
-                                    @"delete" : [NSIndexPath indexPathForRow:0 inSection:1]};
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
@@ -69,7 +72,6 @@
         self.entryModel = [coreDataController newEntry];
     }
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -93,52 +95,98 @@
     }
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return [self.listModelTypes[(@0)] count];
+            break;
+        case 1:
+            return [self.listModelTypes[(@1)] count];
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
 - (void) tableView:(UITableView *)tableView willDisplayCell:(BSEntryDetailCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell isKindOfClass:[BSEntryDetailCell class]])
     {
         if (!cell.entryModel)
         {
-            cell.modelProperty = self.indexpathToPropertyMap[indexPath]; // needs to be called before than the entryModel
+            cell.modelProperty = [self cellInfoForIndexPath:indexPath][@"property"]; // needs to be called before than the entryModel
             cell.entryModel = self.entryModel;
         }
         
-        if ([indexPath isEqual:self.cellTypeToIndepathMap[@"amount"]])
+        if ([indexPath isEqual:[self indexPathForCellType:kAmountCellType]])
         {
+            cell.label.text = NSLocalizedString(@"Amount", @"");
+            BSEntryTextDetail *textCell = (BSEntryTextDetail *)cell;
+            textCell.keyboardType = UIKeyboardTypeDecimalPad;
             if (!self.isEditingEntry)
             {
                 [cell becomeFirstResponder];
             }
+        } else if ([indexPath isEqual:[self indexPathForCellType:kDescriptionCellType]]) {
+            BSEntryTextDetail *textCell = (BSEntryTextDetail *)cell;
+            textCell.keyboardType = UIKeyboardTypeEmailAddress;
+            cell.label.text = NSLocalizedString(@"Description", @"");
+        } if ([indexPath isEqual:[self indexPathForCellType:kDateCellType]]) {
+            BSEntryDateCell *dateCell = (BSEntryDateCell *)dateCell;
+            cell.label.text = NSLocalizedString(@"When", @"");
+            
+        } if ([indexPath isEqual:[self indexPathForCellType:kTypeCellType]]) {
+            
         }
     }
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    NSString *reuseIdentifier = nil;
-//    switch (indexPath.row) {
-//        case 0:
-//        case 1:
-//            reuseIdentifier = @"BSEntryTextDetail";
-//            break;
-//        case 2:
-//            reuseIdentifier = @"BSEntryDateCell";
-//            break;
-//        case 3:
-//            reuseIdentifier = @"BSEntrySegmentedOptionCell";
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    BSEntryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-//    if (!cell)
-//    {
-//        cell = // create cell of specific type.
-//    }
-//    
-//    return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSString *reuseIdentifier = nil;
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 0:
+                case 1:
+                    reuseIdentifier = @"BSEntryTextDetail";
+                    break;
+                case 2:
+                    reuseIdentifier = @"BSEntryDateCell";
+                    break;
+                case 3:
+                    if (self.isShowingDatePicker) {
+                        reuseIdentifier = @"BSEntryDetailDatePickerCell";
+                    } else {
+                        reuseIdentifier = @"BSEntrySegmentedOptionCell";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    reuseIdentifier = @"BSEntryDetailSingleButtonCell";
+                    break;
+            }
+            break;
+            
+            
+        default:
+            break;
+    }
+    BSEntryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell)
+    {
+        Class cellClass = NSClassFromString(reuseIdentifier);
+        cell = [[cellClass alloc] init];
+    }
+    
+    return cell;
+}
 
 - (BOOL) saveModel
 {
@@ -150,7 +198,7 @@
     }
     
     // Save
-    BSEntrySegmentedOptionCell *typeCell = (BSEntrySegmentedOptionCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"type"]];
+    BSEntrySegmentedOptionCell *typeCell = (BSEntrySegmentedOptionCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
     BOOL isAmountNegative = typeCell.selectedIndex == EXPENSES_SEGMENTED_INDEX;
     return [coreDataController saveEntry:self.entryModel withNegativeAmount:isAmountNegative];
 
@@ -183,10 +231,11 @@
         BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
         self.entryModel = [coreDataController newEntry];
         
-        BSEntryDetailCell *amountCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
-        BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"description"]];
-        BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"date"]];
-        BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"type"]];
+        
+        BSEntryDetailCell *amountCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kAmountCellType]];
+        BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDescriptionCellType]];
+        BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
+        BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
         
         amountCell.entryModel = self.entryModel;
         descCell.entryModel = self.entryModel;
@@ -235,24 +284,16 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath isEqual:self.cellTypeToIndepathMap[@"date"]])
-    {
-        
-        if (self.buttonSelected)
-        {
-            
+    if (self.isShowingDatePicker) {
+        if ([indexPath isEqual:[self indexPathForCellType:kDatePickerCellType]]) {
             return 250.0f;
-        } else
-        {
-            return 41.0f;
+        } else {
+            return 44.0f;
         }
-    }
-    else
-    {
-        return 41;
+    } else {
+        return 44.0;
     }
 }
-
 
 #pragma mark - EntryDetailCellDelegateProtocol
 
@@ -260,7 +301,7 @@
 {
     if ([cell isKindOfClass:[BSEntrySegmentedOptionCell class]])
     {
-        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
+        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kAmountCellType]];
         
         int value = [(NSNumber *)newValue intValue];
         switch (value) {
@@ -280,8 +321,8 @@
     else if ([cell isKindOfClass:[BSEntryDateCell class]])
     {
         self.buttonSelected = !self.buttonSelected;
-        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"amount"]];
-        BSEntryTextDetail *descriptionCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:self.cellTypeToIndepathMap[@"description"]];
+        BSEntryTextDetail *amountCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kAmountCellType]];
+        BSEntryTextDetail *descriptionCell = (BSEntryTextDetail *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDescriptionCellType]];
 
         if (self.buttonSelected)
         {
@@ -289,8 +330,27 @@
             [descriptionCell resignFirstResponder];
         }
 
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
+        NSMutableArray *typesInSection = self.listModelTypes[@0];
+        if ([typesInSection count] == 4) {
+            [self.tableView selectRowAtIndexPath:[self indexPathForCellType:kDateCellType] animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [typesInSection insertObject:kDatePickerCellType atIndex:3];
+            self.isShowingDatePicker = YES;
+            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (self.buttonSelected) {
+                [self.tableView deselectRowAtIndexPath:[self indexPathForCellType:kDateCellType] animated:YES];
+
+                BSEntryDetailDatePickerCell *pickerCell = (BSEntryDetailDatePickerCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDatePickerCellType]];
+                [pickerCell setup];
+            }
+
+            
+        } else if ([typesInSection count] == 5){
+            [typesInSection removeObjectAtIndex:3];
+            self.isShowingDatePicker = NO;            
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+        }
+        
     }
     else if ([cell isKindOfClass:[BSEntryDetailSingleButtonCell class]])
     {
@@ -304,6 +364,57 @@
             UINavigationController *navController = self.navigationController;
             [navController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
+    } else if ([cell isKindOfClass:[BSEntryDetailDatePickerCell class]]) {
+        BSEntryDateCell *dateCell = [self.tableView  cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
+        [dateCell setDate:[DateTimeHelper dateStringWithFormat:DEFAULT_DATE_FORMAT date:newValue]]
+        ;
+    }
+}
+#pragma mark - Dinamic table view helpers
+
+- (NSIndexPath *)indexPathForCellType:(NSString *)cellType {
+    // The index to return depends on editingMode and isShowingPicker
+    if ([cellType isEqualToString:[kAmountCellType copy]]) {
+        return [NSIndexPath indexPathForRow:0 inSection:0];
+    } else if ([cellType isEqualToString:[kDescriptionCellType copy]]) {
+        return [NSIndexPath indexPathForRow:1 inSection:0];
+    } else if ([cellType isEqualToString:[kDateCellType copy]]) {
+        return [NSIndexPath indexPathForRow:2 inSection:0];
+    } else if ([cellType isEqualToString:[kDatePickerCellType copy]]) {
+        return [NSIndexPath indexPathForRow:3 inSection:0];
+    } else if ([cellType isEqualToString:[kTypeCellType copy]]) {
+        if (self.isShowingDatePicker) {
+            return [NSIndexPath indexPathForRow:4 inSection:0];
+        } else {
+            return [NSIndexPath indexPathForRow:3 inSection:0];
+        }
+    } else if ([cellType isEqualToString:[kDeleteCellType copy]]) {
+        return [NSIndexPath indexPathForRow:0 inSection:1];
+    } else {
+        return nil;
+    }
+}
+
+- (NSDictionary *)cellInfoForIndexPath:(NSIndexPath *)indexPath {
+    // The index to return depends on editingMode and isShowingPicker
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
+        return @{@"type" : kAmountCellType, @"property" : @"value"};
+    } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:1 inSection:0]]) {
+        return @{@"type" : kDescriptionCellType, @"property" : @"desc"};
+    } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:2 inSection:0]]) {
+        return @{@"type" : kDateCellType, @"property" : @"date"};
+    } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:3 inSection:0]]) {
+        if (self.isShowingDatePicker) {
+            return @{@"type" : kDatePickerCellType, @"property" : @"date"};
+        } else {
+            return @{@"type" : kTypeCellType, @"property" : [NSNull null]};
+        }
+    } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:4 inSection:0]]) {
+        return @{@"type" : kTypeCellType, @"property" : [NSNull null]};
+    } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:1]]) {
+        return @{@"type" : kDeleteCellType, @"property" : [NSNull null]};
+    } else {
+        return nil;
     }
 }
 

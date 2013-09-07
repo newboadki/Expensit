@@ -11,6 +11,7 @@
 @interface BSEntryTextDetail : BSEntryDetailCell <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *entryTypeSymbolLabel;
+@property (assign, nonatomic) UIKeyboardType keyboardType;
 
 - (IBAction) textFieldChanged:(UITextField *)textField;
 - (void) displayPlusSign;

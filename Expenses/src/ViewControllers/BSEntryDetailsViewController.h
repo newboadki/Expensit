@@ -22,4 +22,5 @@
 
 - (IBAction) addEntryPressed:(id)sender;
 - (IBAction) cancelButtonPressed:(id)sender;
+
 @end

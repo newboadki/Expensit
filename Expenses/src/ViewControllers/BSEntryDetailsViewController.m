@@ -15,14 +15,9 @@
 #import "BSEntryDetailDatePickerCell.h"
 #import "BSConstants.h"
 
-//static const NSInteger EXPENSES_SEGMENTED_INDEX = 0;
-//static const NSInteger BENEFITS_SEGMENTED_INDEX = 1;
-
 @interface BSEntryDetailsViewController ()
 @property (assign, nonatomic) BOOL isShowingDatePicker;
 @property (assign, nonatomic) BOOL buttonSelected;
-//@property (strong, nonatomic) NSDictionary *indexpathToPropertyMap;
-//@property (strong, nonatomic) NSDictionary *cellTypeToIndepathMap;
 @property (strong, nonatomic) NSMutableDictionary *listModelTypes;
 @end
 
@@ -35,6 +30,7 @@ static  NSString *kDeleteCellType = @"delete";
 
 @implementation BSEntryDetailsViewController
 
+#pragma mark - Dealloc
 
 - (void)dealloc
 {
@@ -42,6 +38,9 @@ static  NSString *kDeleteCellType = @"delete";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 }
 
+
+
+#pragma mark - View life cycle
 
 - (void)viewDidLoad
 {
@@ -72,6 +71,13 @@ static  NSString *kDeleteCellType = @"delete";
         self.entryModel = [coreDataController newEntry];
     }
 }
+
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -144,40 +150,7 @@ static  NSString *kDeleteCellType = @"delete";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    NSString *reuseIdentifier = nil;
-    switch (indexPath.section) {
-        case 0:
-            switch (indexPath.row) {
-                case 0:
-                case 1:
-                    reuseIdentifier = @"BSEntryTextDetail";
-                    break;
-                case 2:
-                    reuseIdentifier = @"BSEntryDateCell";
-                    break;
-                case 3:
-                    if (self.isShowingDatePicker) {
-                        reuseIdentifier = @"BSEntryDetailDatePickerCell";
-                    } else {
-                        reuseIdentifier = @"BSEntrySegmentedOptionCell";
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 1:
-            switch (indexPath.row) {
-                case 0:
-                    reuseIdentifier = @"BSEntryDetailSingleButtonCell";
-                    break;
-            }
-            break;
-            
-            
-        default:
-            break;
-    }
+    NSString *reuseIdentifier = [[self cellInfoForIndexPath:indexPath][@"class"] description];
     BSEntryDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell)
     {
@@ -186,6 +159,50 @@ static  NSString *kDeleteCellType = @"delete";
     }
     
     return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isShowingDatePicker) {
+        if ([indexPath isEqual:[self indexPathForCellType:kDatePickerCellType]]) {
+            return 250.0f;
+        } else {
+            return 44.0f;
+        }
+    } else {
+        return 44.0;
+    }
+}
+
+
+#pragma mark - Actions
+
+- (IBAction) addEntryPressed:(id)sender
+{
+    if ([self saveModel])
+    {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (IBAction) cancelButtonPressed:(id)sender
+{
+    if (!self.isEditingEntry)
+    {
+        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry"
+                                                                                           delegate:nil
+                                                                                     coreDataHelper:self.coreDataStackHelper];
+        [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
+        [self.coreDataStackHelper.managedObjectContext save:nil];
+    }
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL) saveModel
@@ -201,21 +218,7 @@ static  NSString *kDeleteCellType = @"delete";
     BSEntrySegmentedOptionCell *typeCell = (BSEntrySegmentedOptionCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
     BOOL isAmountNegative = typeCell.selectedIndex == EXPENSES_SEGMENTED_INDEX;
     return [coreDataController saveEntry:self.entryModel withNegativeAmount:isAmountNegative];
-
-}
-
-- (IBAction) addEntryPressed:(id)sender
-{
-    if ([self saveModel])
-    {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
+    
 }
 
 
@@ -255,44 +258,6 @@ static  NSString *kDeleteCellType = @"delete";
 - (void)keyboardDidHide:(id)notification
 {
 
-}
-
-
-
-#pragma mark - Updating the model
-
-- (IBAction) cancelButtonPressed:(id)sender
-{
-    if (!self.isEditingEntry)
-    {
-        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry"
-                                                                                           delegate:nil
-                                                                                     coreDataHelper:self.coreDataStackHelper];
-        [coreDataController.coreDataHelper.managedObjectContext deleteObject:self.entryModel];
-        [self.coreDataStackHelper.managedObjectContext save:nil];
-    }
-    
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.isShowingDatePicker) {
-        if ([indexPath isEqual:[self indexPathForCellType:kDatePickerCellType]]) {
-            return 250.0f;
-        } else {
-            return 44.0f;
-        }
-    } else {
-        return 44.0;
-    }
 }
 
 #pragma mark - EntryDetailCellDelegateProtocol
@@ -401,21 +366,21 @@ static  NSString *kDeleteCellType = @"delete";
 - (NSDictionary *)cellInfoForIndexPath:(NSIndexPath *)indexPath {
     // The index to return depends on editingMode and isShowingPicker
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
-        return @{@"type" : kAmountCellType, @"property" : @"value"};
+        return @{@"property" : @"value", @"class" : [BSEntryTextDetail class]};
     } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:1 inSection:0]]) {
-        return @{@"type" : kDescriptionCellType, @"property" : @"desc"};
+        return @{@"property" : @"desc", @"class" : [BSEntryTextDetail class]};
     } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:2 inSection:0]]) {
-        return @{@"type" : kDateCellType, @"property" : @"date"};
+        return @{@"property" : @"date", @"class" : [BSEntryDateCell class]};
     } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:3 inSection:0]]) {
         if (self.isShowingDatePicker) {
-            return @{@"type" : kDatePickerCellType, @"property" : @"date"};
+            return @{@"property" : @"date", @"class" : [BSEntryDetailDatePickerCell class]};
         } else {
-            return @{@"type" : kTypeCellType, @"property" : [NSNull null]};
+            return @{@"property" : [NSNull null], @"class" : [BSEntrySegmentedOptionCell class]};
         }
     } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:4 inSection:0]]) {
-        return @{@"type" : kTypeCellType, @"property" : [NSNull null]};
+        return @{@"property" : [NSNull null], @"class" : [BSEntrySegmentedOptionCell class]};
     } else if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:1]]) {
-        return @{@"type" : kDeleteCellType, @"property" : [NSNull null]};
+        return @{@"property" : [NSNull null], @"class" : [BSEntryDetailSingleButtonCell class]};
     } else {
         return nil;
     }

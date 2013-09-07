@@ -66,7 +66,7 @@
     [super tearDown];
 }
 
-- (void) testMonthlyCalculations
+- (void) testIndividualEntriesCalculations
 {
     NSArray *entries = self.dailyViewController.fetchedResultsController.fetchedObjects;
     XCTAssertTrue([entries count] == 10, @"Monthly results don't have the right number of monthly entries.");

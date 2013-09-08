@@ -21,5 +21,5 @@
 - (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 - (Entry *) newEntry;
-- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)isNegative;
+- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error;
 @end

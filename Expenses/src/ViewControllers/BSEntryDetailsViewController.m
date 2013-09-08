@@ -185,9 +185,13 @@ static  NSString *kDeleteCellType = @"delete";
 
 - (IBAction) addEntryPressed:(id)sender
 {
-    if ([self saveModel])
+    NSError *error = nil;
+    if ([self saveModel:&error])
     {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Couldn't save" message:[error userInfo][NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
     }
 }
 
@@ -205,7 +209,7 @@ static  NSString *kDeleteCellType = @"delete";
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL) saveModel
+- (BOOL) saveModel:(NSError **)error
 {
     BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
     
@@ -217,7 +221,7 @@ static  NSString *kDeleteCellType = @"delete";
     // Save
     BSEntrySegmentedOptionCell *typeCell = (BSEntrySegmentedOptionCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
     BOOL isAmountNegative = typeCell.selectedIndex == EXPENSES_SEGMENTED_INDEX;
-    return [coreDataController saveEntry:self.entryModel withNegativeAmount:isAmountNegative];
+    return [coreDataController saveEntry:self.entryModel withNegativeAmount:isAmountNegative error:error];
     
 }
 
@@ -227,27 +231,32 @@ static  NSString *kDeleteCellType = @"delete";
 
 - (void) textFieldShouldreturn
 {
-
-    [self saveModel];
-    if (!self.isEditingEntry)
+    
+    NSError *error = nil;
+    if ([self saveModel:&error])
     {
-        BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
-        self.entryModel = [coreDataController newEntry];
-        
-        
-        BSEntryDetailCell *amountCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kAmountCellType]];
-        BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDescriptionCellType]];
-        BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
-        BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
-        
-        amountCell.entryModel = self.entryModel;
-        descCell.entryModel = self.entryModel;
-        dateCell.entryModel = self.entryModel;
-        typeCell.entryModel = self.entryModel;
-        
-        [amountCell becomeFirstResponder];
+        if (!self.isEditingEntry)
+        {
+            BSCoreDataController* coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+            self.entryModel = [coreDataController newEntry];
+            
+            
+            BSEntryDetailCell *amountCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kAmountCellType]];
+            BSEntryDetailCell *descCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDescriptionCellType]];
+            BSEntryDetailCell *dateCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kDateCellType]];
+            BSEntryDetailCell *typeCell = (BSEntryDetailCell *)[self.tableView cellForRowAtIndexPath:[self indexPathForCellType:kTypeCellType]];
+            
+            amountCell.entryModel = self.entryModel;
+            descCell.entryModel = self.entryModel;
+            dateCell.entryModel = self.entryModel;
+            typeCell.entryModel = self.entryModel;
+            
+            [amountCell becomeFirstResponder];
+        }
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Couldn't save" message:[error userInfo][NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
     }
-
 }
 
 - (void)keyboardWillShow:(id)notification

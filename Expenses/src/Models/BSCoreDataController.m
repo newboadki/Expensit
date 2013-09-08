@@ -79,7 +79,7 @@
 }
 
 
-- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative {
+- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error {
     
     BOOL isCurrentValueNegative = ([entry.value compare:@(-1)] == NSOrderedAscending);
     
@@ -88,7 +88,7 @@
         entry.value = [entry.value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
     }
     
-    return [self.coreDataHelper.managedObjectContext save:nil];
+    return [self.coreDataHelper.managedObjectContext save:error];
 }
 
 @end

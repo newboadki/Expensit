@@ -27,9 +27,21 @@
 
 #pragma mark - Validation
 
-//- (BOOL) validateValue:(id *)value error:(NSError **)outError
-//{
-//    return (value != nil );
-//}
+-(BOOL)validateValue:(id *)ioValue error:(NSError **)outError {
+    
+    NSDecimalNumber *amount = (NSDecimalNumber *)(*ioValue);
+    BOOL valid = ([amount compare:@0] != NSOrderedSame);
+    
+    NSString *errorStr = NSLocalizedStringFromTable(
+                                                    @"Amount can't be zero", @"Entry",
+                                                    @"validation: zero amount error");
+    NSDictionary *userInfoDict = @{ NSLocalizedDescriptionKey : errorStr };
+    NSError *error = [[NSError alloc] initWithDomain:@"EntryErrorDomain"
+                                                code:1
+                                            userInfo:userInfoDict];
+    *outError = error;
+    
+    return valid;
+}
 
 @end

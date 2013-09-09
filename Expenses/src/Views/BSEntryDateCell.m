@@ -56,10 +56,14 @@
         if (date)
         {
             [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:date] forState:UIControlStateNormal];
+            [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:date] forState:UIControlStateHighlighted];
+            [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:date] forState:UIControlStateSelected];
         }
         else
         {
             [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:[NSDate date]] forState:UIControlStateNormal];
+            [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:[NSDate date]] forState:UIControlStateHighlighted];
+            [button setTitle:[DateTimeHelper dateStringWithFormat:[DEFAULT_DATE_FORMAT copy] date:[NSDate date]] forState:UIControlStateSelected];
 
         }
     }
@@ -76,8 +80,9 @@
         [button setTitleColor:[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme blueColor] forState:UIControlStateNormal];
     }
     
-    button.titleLabel.text = date;
-
+    [button setTitle:date forState:UIControlStateNormal];
+    [button setTitle:date forState:UIControlStateHighlighted];
+    [button setTitle:date forState:UIControlStateSelected];
 }
 
 - (void) reset

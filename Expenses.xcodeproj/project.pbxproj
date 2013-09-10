@@ -481,9 +481,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		007B8248177476780052FE84 /* Expenses */ = {
+		007B8248177476780052FE84 /* Expensit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 007B827B177476780052FE84 /* Build configuration list for PBXNativeTarget "Expenses" */;
+			buildConfigurationList = 007B827B177476780052FE84 /* Build configuration list for PBXNativeTarget "Expensit" */;
 			buildPhases = (
 				007B8245177476780052FE84 /* Sources */,
 				007B8246177476780052FE84 /* Frameworks */,
@@ -493,7 +493,7 @@
 			);
 			dependencies = (
 			);
-			name = Expenses;
+			name = Expensit;
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expenses.app */;
 			productType = "com.apple.product-type.application";
@@ -556,7 +556,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				007B8248177476780052FE84 /* Expenses */,
+				007B8248177476780052FE84 /* Expensit */,
 				007B8268177476780052FE84 /* ExpensesTests */,
 			);
 		};
@@ -706,7 +706,7 @@
 /* Begin PBXTargetDependency section */
 		007B8270177476780052FE84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 007B8248177476780052FE84 /* Expenses */;
+			target = 007B8248177476780052FE84 /* Expensit */;
 			targetProxy = 007B826F177476780052FE84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -913,7 +913,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		007B827B177476780052FE84 /* Build configuration list for PBXNativeTarget "Expenses" */ = {
+		007B827B177476780052FE84 /* Build configuration list for PBXNativeTarget "Expensit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				007B827C177476780052FE84 /* Debug */,

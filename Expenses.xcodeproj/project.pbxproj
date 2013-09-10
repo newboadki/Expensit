@@ -156,7 +156,7 @@
 		00735EB21788351200725DFD /* BSYearlyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyExpensesSummaryViewController.h; sourceTree = "<group>"; };
 		00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		00735EB6178835CD00725DFD /* BSYearlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlySummaryEntryCell.h; sourceTree = "<group>"; };
-		007B8249177476780052FE84 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		007B8249177476780052FE84 /* Expensit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007B824C177476780052FE84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		007B824E177476780052FE84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		007B8250177476780052FE84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -315,7 +315,7 @@
 		007B824A177476780052FE84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				007B8249177476780052FE84 /* Expenses.app */,
+				007B8249177476780052FE84 /* Expensit.app */,
 				007B8269177476780052FE84 /* ExpensesTests.xctest */,
 			);
 			name = Products;
@@ -495,7 +495,7 @@
 			);
 			name = Expensit;
 			productName = Expenses;
-			productReference = 007B8249177476780052FE84 /* Expenses.app */;
+			productReference = 007B8249177476780052FE84 /* Expensit.app */;
 			productType = "com.apple.product-type.application";
 		};
 		007B8268177476780052FE84 /* ExpensesTests */ = {
@@ -827,7 +827,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

@@ -136,7 +136,7 @@ static  NSString *kDeleteCellType = @"delete";
             }
         } else if ([indexPath isEqual:[self indexPathForCellType:kDescriptionCellType]]) {
             BSEntryTextDetail *textCell = (BSEntryTextDetail *)cell;
-            textCell.keyboardType = UIKeyboardTypeEmailAddress;
+            textCell.keyboardType = UIKeyboardTypeAlphabet;
             cell.label.text = NSLocalizedString(@"Description", @"");
         } if ([indexPath isEqual:[self indexPathForCellType:kDateCellType]]) {
             BSEntryDateCell *dateCell = (BSEntryDateCell *)dateCell;

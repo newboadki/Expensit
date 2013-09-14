@@ -85,7 +85,10 @@
     
     if (isCurrentValueNegative ^ shouldBeNegative) // XOR True when the inputs are different (true output means we need to multiply by -1)
     {
-        entry.value = [entry.value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+        if (![entry.value isEqualToNumber:[NSDecimalNumber notANumber]])
+        {
+            entry.value = [entry.value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+        }
     }
     
     return [self.coreDataHelper.managedObjectContext save:error];

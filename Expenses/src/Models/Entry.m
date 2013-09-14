@@ -30,7 +30,8 @@
 -(BOOL)validateValue:(id *)ioValue error:(NSError **)outError {
     
     NSDecimalNumber *amount = (NSDecimalNumber *)(*ioValue);
-    BOOL valid = ([amount compare:@0] != NSOrderedSame);
+    BOOL valid = (([amount compare:@0] != NSOrderedSame) && (![amount isEqualToNumber:[NSDecimalNumber notANumber]]));
+
     
     NSString *errorStr = NSLocalizedStringFromTable(
                                                     @"Amount can't be zero", @"Entry",

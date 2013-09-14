@@ -16,7 +16,7 @@
 #import "BSMonthlyExpensesSummaryViewController.h"
 
 @interface BSYearlyExpensesSummaryViewController ()
-
+@property (strong, nonatomic) NSArray *years;
 @end
 
 @implementation BSYearlyExpensesSummaryViewController
@@ -108,13 +108,15 @@
         NSError *expensesFetchError = nil;
         NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
         NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self requestToGetYears] error:nil];
+        self.years = [self.years valueForKeyPath:@"year"];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
-        NSArray *yearNumbers = [surplusResults valueForKeyPath:@"year"];
+//        NSArray *yearNumbers = [self.years valueForKeyPath:@"year"];
         NSMutableArray *yearStrings = [NSMutableArray array];
-        for (NSNumber *number in yearNumbers) {
+        for (NSNumber *number in self.years) {
             [yearStrings addObject:[number stringValue]];
         }
         [graphViewController setXValues:yearStrings];
@@ -178,13 +180,23 @@
 }
 
 
-- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) yearlyExpensesResults
+- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*)yearlyExpensesResults
 {
     NSMutableArray *graphData = [NSMutableArray array];
     
-    for (int i = 0; i<[yearlyExpensesResults count]; i++)
+    for (int i = 0; i<[self.years count]; i++)
     {
-        NSDictionary *monthDictionary = yearlyExpensesResults[i];
+        
+        NSDictionary *monthDictionary = nil;
+
+        for (NSDictionary *dic in yearlyExpensesResults) {
+            if ([dic[@"year"] isEqualToNumber:self.years[i]]) {
+                monthDictionary = dic;
+                break;
+            }
+
+//            monthDictionary = [[yearlyExpensesResults filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.year = %@", self.years[i]]] lastObject];
+        }
         
         if (monthDictionary)
         {
@@ -202,6 +214,26 @@
     }
     
     return graphData;
+}
+
+
+- (NSFetchRequest *)requestToGetYears {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+        
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+    
+    [fetchRequest setReturnsDistinctResults:YES];
+    [fetchRequest setPropertiesToFetch:@[yearDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    return fetchRequest;
 }
 
 

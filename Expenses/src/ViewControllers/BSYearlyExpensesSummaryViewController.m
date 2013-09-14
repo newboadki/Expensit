@@ -194,8 +194,8 @@
                 monthDictionary = dic;
                 break;
             }
-
-//            monthDictionary = [[yearlyExpensesResults filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.year = %@", self.years[i]]] lastObject];
+            // why doesn't this work?
+            // monthDictionary = [[yearlyExpensesResults filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.year = %@", self.years[i]]] lastObject];
         }
         
         if (monthDictionary)

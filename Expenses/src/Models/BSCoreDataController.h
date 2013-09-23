@@ -22,4 +22,9 @@
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 - (Entry *) newEntry;
 - (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error;
+
+- (NSFetchRequest *)fetchRequestForYearlySummary;
+- (NSFetchRequest *)fetchRequestForMonthlySummary;
+- (NSFetchRequest *)fetchRequestForDaylySummary;
+- (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
 @end

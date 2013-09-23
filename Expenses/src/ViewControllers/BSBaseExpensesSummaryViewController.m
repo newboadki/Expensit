@@ -12,6 +12,9 @@
 #import "DateTimeHelper.h"
 #import "BSGraphViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
+#import "BSCoreDataController.h"
+
+
 
 @interface BSBaseExpensesSummaryViewController ()
 @property (nonatomic) BOOL isShowingLandscapeView;
@@ -43,7 +46,10 @@
 
     // TODO: differenciate between ios7 and 6
     // self.edgesForExtendedLayout = UIRectEdgeAll;
-    // [[self.navigationController navigationBar] setTintColor:[UIColor redColor]];
+    
+    // CoreData controller (should be a singleton)
+    self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+
 
 }
 
@@ -234,27 +240,29 @@
 
 - (NSFetchRequest*) fetchRequest
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];    
-    
-    // Configure the request
-    [self configureFetchRequest:fetchRequest];
-    
-    return fetchRequest;
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
+    return nil;
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
+//    [fetchRequest setEntity:entity];    
+//    
+//    // Configure the request
+//    [self configureFetchRequest:fetchRequest];
+//    
+//    return fetchRequest;
 }
 
 
-- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
-{
-    // Batch Size
-    [fetchRequest setFetchBatchSize:50];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
+//- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
+//{
+//    // Batch Size
+//    [fetchRequest setFetchBatchSize:50];
+//    
+//    // Edit the sort key as appropriate.
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//}
 
 
 - (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest

@@ -127,36 +127,40 @@
 
 #pragma mark - BSCoreDataControllerDelegate
 
-- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
-{
-    [super configureFetchRequest:fetchRequest];
-    
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription =
-    [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"yearlySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
+- (NSFetchRequest*) fetchRequest {
+    return [self.coreDataController fetchRequestForYearlySummary];
 }
+
+//- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
+//{
+//    [super configureFetchRequest:fetchRequest];
+//    
+//    
+//    // Edit the sort key as appropriate.
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//    
+//    
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+//    
+//    NSExpression *keyPathExpression = [NSExpression
+//                                       expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//    
+//    NSExpressionDescription *sumExpressionDescription =
+//    [[NSExpressionDescription alloc] init];
+//    [sumExpressionDescription setName:@"yearlySum"];
+//    [sumExpressionDescription setExpression:sumExpression];
+//    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//    
+//    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription]];
+//    [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//}
 
 
 - (NSString*) sectionNameKeyPath

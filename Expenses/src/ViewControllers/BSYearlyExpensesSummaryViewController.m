@@ -106,9 +106,9 @@
     {
         NSError *surplusFetchError = nil;
         NSError *expensesFetchError = nil;
-        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
-        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
-        self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self requestToGetYears] error:nil];
+        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:&surplusFetchError];
+        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:&expensesFetchError];
+        self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController requestToGetYears] error:nil];
         self.years = [self.years valueForKeyPath:@"year"];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
@@ -130,6 +130,11 @@
 - (NSFetchRequest*) fetchRequest {
     return [self.coreDataController fetchRequestForYearlySummary];
 }
+
+//- (NSFetchRequest*) graphFetchRequest {
+//    return [self.coreDataController graphFetchRequestForYearlySummary];
+//}
+
 
 //- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
 //{
@@ -172,16 +177,16 @@
 
 #pragma mark - Graph Data
 
-- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
-{
-    // Batch Size
-    [fetchRequest setFetchBatchSize:50];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
+//- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
+//{
+//    // Batch Size
+//    [fetchRequest setFetchBatchSize:50];
+//    
+//    // Edit the sort key as appropriate.
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//}
 
 
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*)yearlyExpensesResults
@@ -219,26 +224,5 @@
     
     return graphData;
 }
-
-
-- (NSFetchRequest *)requestToGetYears {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];
-        
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    
-    [fetchRequest setReturnsDistinctResults:YES];
-    [fetchRequest setPropertiesToFetch:@[yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    return fetchRequest;
-}
-
 
 @end

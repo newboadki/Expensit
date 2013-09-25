@@ -27,4 +27,10 @@
 - (NSFetchRequest *)fetchRequestForMonthlySummary;
 - (NSFetchRequest *)fetchRequestForDaylySummary;
 - (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
+
+
+- (NSFetchRequest *) graphYearlySurplusFetchRequest;
+- (NSFetchRequest *) graphYearlyExpensesFetchRequest;
+
+- (NSFetchRequest *)requestToGetYears;
 @end

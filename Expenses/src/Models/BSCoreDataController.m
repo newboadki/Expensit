@@ -229,8 +229,36 @@
 #pragma mark - Graphs Requests
 
 - (NSFetchRequest *)graphFetchRequestForYearlySummary {
-    return nil;
+    // Get a base request
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    [self commonConfigureFetchResquest:fetchRequest];
+
+    // Batch Size
+    [fetchRequest setFetchBatchSize:50];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    return fetchRequest;
 }
+
+- (NSFetchRequest *) graphYearlySurplusFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequestForYearlySummary];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+    return fetchRequest;
+}
+
+
+- (NSFetchRequest *) graphYearlyExpensesFetchRequest
+{
+    NSFetchRequest *fetchRequest = [self graphFetchRequestForYearlySummary];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+    return fetchRequest;
+}
+
 
 
 - (NSFetchRequest *)graphFetchRequestForMonthlySummary {
@@ -242,5 +270,24 @@
     return nil;
 }
 
+
+- (NSFetchRequest *)requestToGetYears {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+    
+    [fetchRequest setReturnsDistinctResults:YES];
+    [fetchRequest setPropertiesToFetch:@[yearDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    return fetchRequest;
+}
 
 @end

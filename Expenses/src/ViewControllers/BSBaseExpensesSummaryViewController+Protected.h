@@ -14,8 +14,8 @@
 @interface BSBaseExpensesSummaryViewController (Protected)
 - (NSFetchRequest*) fetchRequest;
 - (NSFetchRequest *) graphFetchRequest;
-- (NSFetchRequest *) graphSurplusFetchRequest;
-- (NSFetchRequest *) graphExpensesFetchRequest;
+//- (NSFetchRequest *) graphSurplusFetchRequest;
+//- (NSFetchRequest *) graphExpensesFetchRequest;
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) results;
 @end
 #endif

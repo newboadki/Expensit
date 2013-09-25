@@ -295,22 +295,22 @@
 }
 
 
-- (NSFetchRequest *) graphSurplusFetchRequest
-{
-    NSFetchRequest *fetchRequest = [self graphFetchRequest];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
-    [self configureFetchRequestForGraph:fetchRequest];
-    return fetchRequest;
-}
-
-
-- (NSFetchRequest *) graphExpensesFetchRequest
-{
-    NSFetchRequest *fetchRequest = [self graphFetchRequest];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
-    [self configureFetchRequestForGraph:fetchRequest];
-    return fetchRequest;
-}
+//- (NSFetchRequest *) graphSurplusFetchRequest
+//{
+//    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+//    [self configureFetchRequestForGraph:fetchRequest];
+//    return fetchRequest;
+//}
+//
+//
+//- (NSFetchRequest *) graphExpensesFetchRequest
+//{
+//    NSFetchRequest *fetchRequest = [self graphFetchRequest];
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+//    [self configureFetchRequestForGraph:fetchRequest];
+//    return fetchRequest;
+//}
 
 
 

@@ -228,34 +228,26 @@
 
 #pragma mark - Graphs Requests
 
-- (NSFetchRequest *)graphFetchRequestForYearlySummary {
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self fetchRequestForYearlySummary];
-//    [self commonConfigureFetchResquest:fetchRequest];
-//
-//    // Batch Size
-//    [fetchRequest setFetchBatchSize:50];
-//    
-//    // Edit the sort key as appropriate.
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-//    NSArray *sortDescriptors = @[sortDescriptor];
-//    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    return fetchRequest;
-}
-
 - (NSFetchRequest *) graphYearlySurplusFetchRequest
 {
-    NSFetchRequest *fetchRequest = [self graphFetchRequestForYearlySummary];
+    NSFetchRequest *fetchRequest = [self fetchRequestForYearlySummary];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
     return fetchRequest;
 }
 
 
 - (NSFetchRequest *) graphYearlyExpensesFetchRequest
 {
-    NSFetchRequest *fetchRequest = [self graphFetchRequestForYearlySummary];
+    NSFetchRequest *fetchRequest = [self fetchRequestForYearlySummary];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
     return fetchRequest;
 }
 

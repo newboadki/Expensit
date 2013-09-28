@@ -242,27 +242,7 @@
 {
     @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
     return nil;
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataStackHelper.managedObjectContext];
-//    [fetchRequest setEntity:entity];    
-//    
-//    // Configure the request
-//    [self configureFetchRequest:fetchRequest];
-//    
-//    return fetchRequest;
 }
-
-
-//- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
-//{
-//    // Batch Size
-//    [fetchRequest setFetchBatchSize:50];
-//    
-//    // Edit the sort key as appropriate.
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-//    NSArray *sortDescriptors = @[sortDescriptor];
-//    [fetchRequest setSortDescriptors:sortDescriptors];
-//}
 
 
 - (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
@@ -293,24 +273,6 @@
     [self configureFetchRequest:fetchRequest];
     return fetchRequest;
 }
-
-
-//- (NSFetchRequest *) graphSurplusFetchRequest
-//{
-//    NSFetchRequest *fetchRequest = [self graphFetchRequest];
-//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0"]];
-//    [self configureFetchRequestForGraph:fetchRequest];
-//    return fetchRequest;
-//}
-//
-//
-//- (NSFetchRequest *) graphExpensesFetchRequest
-//{
-//    NSFetchRequest *fetchRequest = [self graphFetchRequest];
-//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0"]];
-//    [self configureFetchRequestForGraph:fetchRequest];
-//    return fetchRequest;
-//}
 
 
 

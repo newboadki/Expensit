@@ -103,10 +103,8 @@
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
-        NSError *surplusFetchError = nil;
-        NSError *expensesFetchError = nil;
-        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:&surplusFetchError];
-        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:&expensesFetchError];
+        NSArray *surplusResults = [self graphSurplusResults];
+        NSArray *expensesResults = [self graphExpensesResults];
         self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController requestToGetYears] error:nil];
         self.years = [self.years valueForKeyPath:@"year"];
         
@@ -175,5 +173,17 @@
     
     return graphData;
 }
+
+
+- (NSArray *)graphSurplusResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
+}
+
+
+- (NSArray *)graphExpensesResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
+}
+
+
 
 @end

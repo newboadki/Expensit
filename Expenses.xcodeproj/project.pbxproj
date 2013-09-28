@@ -64,6 +64,7 @@
 		00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */; };
 		00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
 		00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
+		00A8BAB517F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */; };
 		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
@@ -201,6 +202,7 @@
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
 		00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTriangularAccesoryView.h; sourceTree = "<group>"; };
 		00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTriangularAccesoryView.m; sourceTree = "<group>"; };
+		00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSYearlyExpensesSummaryTests.m; path = ../../../../Desktop/BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
 		00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
 		00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				007B8272177476780052FE84 /* Supporting Files */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				000481E91780C67A00E7F401 /* BSDailyExpensesSummaryTests.m */,
+				00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */,
 				000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */,
 			);
 			path = ExpensesTests;
@@ -695,6 +698,7 @@
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00C3F88517DA4A1500613514 /* BSEntryDetailDatePickerCell.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00A8BAB517F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m in Sources */,
 				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */,
@@ -853,7 +857,7 @@
 		007B827F177476780052FE84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expenses.app/Expenses";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -883,7 +887,7 @@
 		007B8280177476780052FE84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expenses.app/Expenses";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

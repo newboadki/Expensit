@@ -104,10 +104,8 @@
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
-        NSError *surplusFetchError = nil;
-        NSError *expensesFetchError = nil;
-        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
-        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        NSArray *surplusResults = [self graphSurplusResults];
+        NSArray *expensesResults = [self graphExpensesResults];
         self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self requestToGetYears] error:nil];
         self.years = [self.years valueForKeyPath:@"year"];
         
@@ -234,6 +232,14 @@
     [fetchRequest setResultType:NSDictionaryResultType];
     
     return fetchRequest;
+}
+
+- (NSArray *)graphSurplusResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:nil];
+}
+
+- (NSArray *)graphExpensesResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:nil];
 }
 
 

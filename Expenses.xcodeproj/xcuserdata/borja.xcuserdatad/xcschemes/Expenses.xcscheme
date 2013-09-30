@@ -42,9 +42,6 @@
                   Identifier = "BSDailyExpensesSummaryTests">
                </Test>
                <Test
-                  Identifier = "BSMonthlyExpensesSummaryTests">
-               </Test>
-               <Test
                   Identifier = "BSPerEntrySummaryTests">
                </Test>
             </SkippedTests>

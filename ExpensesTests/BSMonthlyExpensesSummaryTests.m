@@ -30,7 +30,7 @@
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
     self.monthlyViewController = [[BSMonthlyExpensesSummaryViewController alloc] init];
     self.monthlyViewController.coreDataStackHelper = self.coreDataStackHelper;
-    
+    self.monthlyViewController.coreDataController = self.coreDataController;
     
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-20.0"];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/02/2013"] description:@"Salary" value:@"100.0"];
@@ -131,5 +131,41 @@
     XCTAssertEqualObjects([[self resultDictionaryForDate:@"07/2011" fromArray:monthlyResults] valueForKey:@"monthlySum"], @(-5), @"11/2011's sum is Incorrect");
     XCTAssertEqualObjects([[self resultDictionaryForDate:@"12/2011" fromArray:monthlyResults] valueForKey:@"monthlySum"], @(-10), @"12/2011's sum is Incorrect");
 }
+
+- (void) testGraphMonthlySurplusCalculations
+{
+    NSArray *yearlyResults = [self.monthlyViewController performSelector:@selector(graphSurplusResults)];
+    XCTAssertTrue([yearlyResults count] == 3, @"Yearly results don't have the right number of yearly entries.");
+    
+    
+    XCTAssertEqualObjects([yearlyResults[0] valueForKey:@"yearlySum"], @(306.5), @"2011's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[0] valueForKey:@"year"], @(2011), @"2011's sum is Incorrect");
+    
+    XCTAssertEqualObjects([yearlyResults[1] valueForKey:@"yearlySum"], @(470), @"2012's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[1] valueForKey:@"year"], @(2012), @"2012's sum is Incorrect");
+    
+    XCTAssertEqualObjects([yearlyResults[2] valueForKey:@"yearlySum"], @(254), @"2013's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[2] valueForKey:@"year"], @(2013), @"2013's sum is Incorrect");
+    
+}
+
+
+- (void) testGraphMonthlyExpensesCalculations
+{
+    NSArray *yearlyResults = [self.monthlyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([yearlyResults count] == 3, @"Yearly results don't have the right number of yearly entries.");
+    
+    
+    XCTAssertEqualObjects([yearlyResults[0] valueForKey:@"yearlySum"], @(-57), @"2011's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[0] valueForKey:@"year"], @(2011), @"2011's sum is Incorrect");
+    
+    XCTAssertEqualObjects([yearlyResults[1] valueForKey:@"yearlySum"], @(-71.5), @"2012's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[1] valueForKey:@"year"], @(2012), @"2012's sum is Incorrect");
+    
+    XCTAssertEqualObjects([yearlyResults[2] valueForKey:@"yearlySum"], @(-260.9), @"2013's sum is Incorrect");
+    XCTAssertEqualObjects([yearlyResults[2] valueForKey:@"year"], @(2013), @"2013's sum is Incorrect");
+    
+}
+
 
 @end

@@ -135,6 +135,18 @@
 }
 
 
+- (NSArray *)graphSurplusResults
+{
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
+}
+
+
+- (NSArray *)graphExpensesResults
+{
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
+}
+
+
 
 #pragma mark - Graph Data
 
@@ -173,17 +185,5 @@
     
     return graphData;
 }
-
-
-- (NSArray *)graphSurplusResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
-}
-
-
-- (NSArray *)graphExpensesResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
-}
-
-
 
 @end

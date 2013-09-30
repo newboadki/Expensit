@@ -32,5 +32,8 @@
 - (NSFetchRequest *) graphYearlySurplusFetchRequest;
 - (NSFetchRequest *) graphYearlyExpensesFetchRequest;
 
+- (NSFetchRequest *)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
+- (NSFetchRequest *)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
+
 - (NSFetchRequest *)requestToGetYears;
 @end

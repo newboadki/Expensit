@@ -245,18 +245,6 @@
 }
 
 
-- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
-{
-    // Batch Size
-    [fetchRequest setFetchBatchSize:50];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
-
-
 - (NSString*) sectionNameKeyPath
 {
     @throw @"Implement in subclasses";
@@ -264,14 +252,15 @@
 }
 
 
-
-#pragma mark - Core Data Graph queries
-
-- (NSFetchRequest *) graphFetchRequest
+- (NSArray *)graphSurplusResults
 {
-    NSFetchRequest *fetchRequest = [self fetchRequest];
-    [self configureFetchRequest:fetchRequest];
-    return fetchRequest;
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
+}
+
+
+- (NSArray *)graphExpensesResults
+{
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
 }
 
 

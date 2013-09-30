@@ -12,10 +12,11 @@
 #import "BSGraphViewController.h"
 
 @interface BSBaseExpensesSummaryViewController (Protected)
-- (NSFetchRequest*) fetchRequest;
-- (NSFetchRequest *) graphFetchRequest;
-//- (NSFetchRequest *) graphSurplusFetchRequest;
-//- (NSFetchRequest *) graphExpensesFetchRequest;
-- (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) results;
+- (NSFetchRequest*)fetchRequest;
+- (NSFetchRequest *)graphFetchRequest;
+- (NSString*)sectionNameKeyPath;
+- (NSArray *)graphSurplusResults;
+- (NSArray *)graphExpensesResults;
+- (NSArray *)dataForGraphWithFetchRequestResults:(NSArray*) results;
 @end
 #endif

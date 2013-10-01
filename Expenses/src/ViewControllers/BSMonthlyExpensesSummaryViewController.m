@@ -184,6 +184,10 @@
     return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphMonthlyExpensesFetchRequestForSectionName:[self visibleSectionName]] error:nil];
 }
 
+
+
+#pragma mark - Graph
+
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) monthlyExpensesResults
 {
     NSMutableArray *graphData = [NSMutableArray array];

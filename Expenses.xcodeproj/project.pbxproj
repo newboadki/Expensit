@@ -44,6 +44,8 @@
 		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		0089F8B317FA2FD2000DFEC6 /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 0089F8B217FA2FD1000DFEC6 /* OCMock */; };
+		0089F8B917FA3038000DFEC6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0089F8B817FA3038000DFEC6 /* libOCMock.a */; };
 		009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
 		009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
 		009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE217B6912900DE1A97 /* BSThemeManager.m */; };
@@ -178,6 +180,8 @@
 		007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataStackHelper.xcodeproj; path = ../CoreDataStackHelper/CoreDataStackHelper.xcodeproj; sourceTree = "<group>"; };
+		0089F8B217FA2FD1000DFEC6 /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OCMock; path = ExpensesTests/OCMock; sourceTree = "<group>"; };
+		0089F8B817FA3038000DFEC6 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		008C36AA17988E7200AFD340 /* BSBaseExpensesSummaryViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSBaseExpensesSummaryViewController+Protected.h"; sourceTree = "<group>"; };
 		009C9EDC17B68F5300DE1A97 /* BSUIThemeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSUIThemeProtocol.h; sourceTree = "<group>"; };
 		009C9EDD17B68FD300DE1A97 /* BSGreenTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGreenTheme.h; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0089F8B917FA3038000DFEC6 /* libOCMock.a in Frameworks */,
 				00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */,
 				007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
@@ -326,6 +331,7 @@
 		007B824B177476780052FE84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0089F8B817FA3038000DFEC6 /* libOCMock.a */,
 				000D047E1775A92F002D0AB8 /* libKiwi.a */,
 				007B83051775A0370052FE84 /* libCoreDataStackHelper.a */,
 				007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */,
@@ -397,6 +403,7 @@
 		007B83141775A3C40052FE84 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				0089F8B217FA2FD1000DFEC6 /* OCMock */,
 				00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */,
 				007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */,
 			);
@@ -614,6 +621,7 @@
 			files = (
 				000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
 				007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
+				0089F8B317FA2FD2000DFEC6 /* OCMock in Resources */,
 				007B8276177476780052FE84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -872,11 +880,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
+					"$(SRCROOT)/ExpensesTests/OCMock/Headers",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
+					"/Users/borja/code/Objective-C/Expenses/ExpensesTests/OCMock",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -898,11 +916,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
+					"$(SRCROOT)/ExpensesTests/OCMock/Headers",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
+					"/Users/borja/code/Objective-C/Expenses/ExpensesTests/OCMock",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

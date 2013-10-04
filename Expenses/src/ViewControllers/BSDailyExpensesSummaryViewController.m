@@ -171,13 +171,13 @@
 
 - (NSArray *)graphSurplusResults
 {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphMonthlySurplusFetchRequestForSectionName:[self visibleSectionName]] error:nil];
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphDailySurplusFetchRequestForSectionName:[self visibleSectionName]] error:nil];
 }
 
 
 - (NSArray *)graphExpensesResults
 {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphMonthlyExpensesFetchRequestForSectionName:[self visibleSectionName]] error:nil];
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphDailyExpensesFetchRequestForSectionName:[self visibleSectionName]] error:nil];
 }
 
 

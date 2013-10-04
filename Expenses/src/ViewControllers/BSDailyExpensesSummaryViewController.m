@@ -180,17 +180,10 @@
     return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphDailyExpensesFetchRequestForSectionName:[self visibleSectionName]] error:nil];
 }
 
-- (NSArray *)graphSurplusResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:nil];
-}
-
-- (NSArray *)graphExpensesResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:nil];
-}
-
-
 
 #pragma mark - Graph Data
+
+
 
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) dailyExpensesResults
 {

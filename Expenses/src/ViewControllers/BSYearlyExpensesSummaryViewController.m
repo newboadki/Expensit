@@ -105,7 +105,7 @@
     {
         NSArray *surplusResults = [self graphSurplusResults];
         NSArray *expensesResults = [self graphExpensesResults];
-        self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self requestToGetYears] error:nil];
+        self.years = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController requestToGetYears] error:nil];
         self.years = [self.years valueForKeyPath:@"year"];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
@@ -205,14 +205,5 @@
     
     return fetchRequest;
 }
-
-- (NSArray *)graphSurplusResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:nil];
-}
-
-- (NSArray *)graphExpensesResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:nil];
-}
-
 
 @end

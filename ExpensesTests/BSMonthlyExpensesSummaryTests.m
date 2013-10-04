@@ -209,15 +209,15 @@
     XCTAssertEqualObjects([monthlyResults[0] valueForKey:@"monthlySum"], @(220.5), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[0] valueForKey:@"year"], @(2011), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[0] valueForKey:@"month"], @(2), @"2011's Feb sum is Incorrect");
-    
+
     XCTAssertEqualObjects([monthlyResults[1] valueForKey:@"monthlySum"], @(3), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[1] valueForKey:@"year"], @(2011), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[1] valueForKey:@"month"], @(3), @"2011's Feb sum is Incorrect");
-    
+
     XCTAssertEqualObjects([monthlyResults[2] valueForKey:@"monthlySum"], @(50.5), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[2] valueForKey:@"year"], @(2011), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[2] valueForKey:@"month"], @(4), @"2011's Feb sum is Incorrect");
-    
+
     XCTAssertEqualObjects([monthlyResults[3] valueForKey:@"monthlySum"], @(32.5), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[3] valueForKey:@"year"], @(2011), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[3] valueForKey:@"month"], @(6), @"2011's Feb sum is Incorrect");
@@ -324,7 +324,7 @@
     XCTAssertEqualObjects([monthlyResults[4] valueForKey:@"monthlySum"], @(-10), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[4] valueForKey:@"year"], @(2011), @"2011's Feb sum is Incorrect");
     XCTAssertEqualObjects([monthlyResults[4] valueForKey:@"month"], @(12), @"2011's Feb sum is Incorrect");
-    
+
 }
 
 

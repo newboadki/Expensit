@@ -216,13 +216,5 @@
     return graphData;
 }
 
-- (NSArray *)graphSurplusResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:nil];
-}
-
-- (NSArray *)graphExpensesResults {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:nil];
-}
-
 
 @end

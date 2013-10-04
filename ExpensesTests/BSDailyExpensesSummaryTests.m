@@ -134,62 +134,62 @@
 }
 
 
-//- (void) testGraphDailyExpensesCalculations
-//{
-//    self.expectedVisibleSectionName = @"1/2013";
-//    id mock = [OCMockObject partialMockForObject:self.dailyViewController];
-//    [[[mock stub] andCall:@selector(visibleSectionNameMock) onObject:self] visibleSectionName];
-//    
-//    NSArray *dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    
-//    
-//    // Jan 2013
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-20), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(13), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"13/1/2013", @"2013's Feb sum is Incorrect");
-//    
-//    // March 2013
-//    self.expectedVisibleSectionName = @"3/2013";
-//    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-15), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(5), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"5/3/2013", @"2013's Feb sum is Incorrect");
-//    
-//    // Jan 2012
-//    self.expectedVisibleSectionName = @"1/2012";
-//    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-20.5), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(2), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"2/1/2012", @"2013's Feb sum is Incorrect");
-//    
-//    // March 2012
-//    self.expectedVisibleSectionName = @"3/2012";
-//    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-7), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(3), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"3/3/2012", @"2013's Feb sum is Incorrect");
-//    
-//    // Jun 2011
-//    self.expectedVisibleSectionName = @"6/2011";
-//    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-5), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(19), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"19/6/2011", @"2013's Feb sum is Incorrect");
-//    
-//    // Dec 2011
-//    self.expectedVisibleSectionName = @"12/2011";
-//    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
-//    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-10), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(21), @"2013's Feb sum is Incorrect");
-//    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"21/12/2011", @"2013's Feb sum is Incorrect");
-//}
+- (void) testGraphDailyExpensesCalculations
+{
+    self.expectedVisibleSectionName = @"1/2013";
+    id mock = [OCMockObject partialMockForObject:self.dailyViewController];
+    [[[mock stub] andCall:@selector(visibleSectionNameMock) onObject:self] visibleSectionName];
+    
+    NSArray *dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    
+    
+    // Jan 2013
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-20), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(13), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"13/1/2013", @"2013's Feb sum is Incorrect");
+    
+    // March 2013
+    self.expectedVisibleSectionName = @"3/2013";
+    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-15), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(5), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"5/3/2013", @"2013's Feb sum is Incorrect");
+    
+    // Jan 2012
+    self.expectedVisibleSectionName = @"1/2012";
+    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-20.5), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(2), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"2/1/2012", @"2013's Feb sum is Incorrect");
+    
+    // March 2012
+    self.expectedVisibleSectionName = @"3/2012";
+    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-7), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(3), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"3/3/2012", @"2013's Feb sum is Incorrect");
+    
+    // Jun 2011
+    self.expectedVisibleSectionName = @"6/2011";
+    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-5), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(19), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"19/6/2011", @"2013's Feb sum is Incorrect");
+    
+    // Dec 2011
+    self.expectedVisibleSectionName = @"12/2011";
+    dailyResults = [self.dailyViewController performSelector:@selector(graphExpensesResults)];
+    XCTAssertTrue([dailyResults count] == 1, @"Daily results don't have the right number of month entries.");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dailySum"], @(-10), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"day"], @(21), @"2013's Feb sum is Incorrect");
+    XCTAssertEqualObjects([dailyResults[0] valueForKey:@"dayMonthYear"], @"21/12/2011", @"2013's Feb sum is Incorrect");
+}
 
 
 - (NSString *)visibleSectionNameMock {

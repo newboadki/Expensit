@@ -268,14 +268,14 @@
 
 - (NSFetchRequest *)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName {
     NSFetchRequest *fetchRequest = [self fetchRequestForDaylySummary];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0 AND year LIKE %@", sectionName]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value >= 0 AND monthYear LIKE %@", sectionName]];
     return fetchRequest;
 }
 
 
 - (NSFetchRequest *)graphDailyExpensesFetchRequestForSectionName:(NSString *)sectionName {
     NSFetchRequest *fetchRequest = [self fetchRequestForDaylySummary];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0 AND year LIKE %@", sectionName]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0 AND monthYear LIKE %@", sectionName]];
     return fetchRequest;
 }
 

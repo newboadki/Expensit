@@ -39,9 +39,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "BSDailyExpensesSummaryTests">
-               </Test>
-               <Test
                   Identifier = "BSPerEntrySummaryTests">
                </Test>
             </SkippedTests>

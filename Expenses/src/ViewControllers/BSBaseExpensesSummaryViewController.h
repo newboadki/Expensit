@@ -10,6 +10,7 @@
 #import "BSCoreDataControllerDelegateProtocol.h"
 #import "BSAppDelegate.h"
 #import "BSCurrencyHelper.h"
+#import "BSCoreDataController.h"
 
 @class CoreDataStackHelper;
 
@@ -19,7 +20,7 @@
 @property (strong, nonatomic) UICollectionViewLayout *layout;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
-
+@property (strong, nonatomic) BSCoreDataController *coreDataController;
 
 /*! When the user is in a particular summary screen and selects a cell, this property is set by 
  the previous viewController and used by the nextViewController to scroll to the right section.*/

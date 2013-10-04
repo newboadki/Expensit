@@ -37,11 +37,6 @@
                BlueprintName = "ExpensesTests"
                ReferencedContainer = "container:Expenses.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "BSPerEntrySummaryTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

@@ -170,10 +170,8 @@
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
-        NSError *surplusFetchError = nil;
-        NSError *expensesFetchError = nil;
-        NSArray *surplusResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:&surplusFetchError];
-        NSArray *expensesResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:&expensesFetchError];
+        NSArray *surplusResults = [self graphSurplusResults];
+        NSArray *expensesResults = [self graphExpensesResults];
         
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
         [graphViewController setGraphTitle:[DateTimeHelper monthNameAndYearStringFromMonthNumberAndYear:[self visibleSectionName]]];
@@ -206,6 +204,15 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"value < 0 AND monthYear LIKE %@", [self visibleSectionName]]];
     return fetchRequest;
 }
+
+- (NSArray *)graphSurplusResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphSurplusFetchRequest] error:nil];
+}
+
+- (NSArray *)graphExpensesResults {
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self graphExpensesFetchRequest] error:nil];
+}
+
 
 
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*) dailyExpensesResults

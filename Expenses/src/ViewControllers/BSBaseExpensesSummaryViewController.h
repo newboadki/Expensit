@@ -12,7 +12,8 @@
 #import "BSCurrencyHelper.h"
 #import "BSCoreDataController.h"
 
-@class CoreDataStackHelper;
+@class CoreDataStackHelper, BSCoreDataController;
+
 
 
 @interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout>

@@ -371,10 +371,12 @@
 		007B8271177476780052FE84 /* ExpensesTests */ = {
 			isa = PBXGroup;
 			children = (
+				0089F8C017FB7C2D000DFEC6 /* OCMock */,
 				007B8272177476780052FE84 /* Supporting Files */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				00A8BAB017F61E5B00AD7A54 /* BSYearlyExpensesSummaryTests.m */,
 				000481E91780C67A00E7F401 /* BSDailyExpensesSummaryTests.m */,
+				00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */,
 				000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */,
 			);
 			path = ExpensesTests;
@@ -618,6 +620,7 @@
 			files = (
 				000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
 				007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
+				0089F8C117FB7C2D000DFEC6 /* OCMock in Resources */,
 				007B8276177476780052FE84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,6 +895,14 @@
 					"-force_load",
 					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-Objc",
+					"-force_load",
+					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -925,6 +936,14 @@
 					"-framework",
 					XCTest,
 					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-Objc",
 					"-force_load",
 					"$(SRCROOT)/ExpensesTests/OCMock/libOCMock.a",
 				);

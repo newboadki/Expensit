@@ -22,4 +22,21 @@
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 - (Entry *) newEntry;
 - (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error;
+
+- (NSFetchRequest *)fetchRequestForYearlySummary;
+- (NSFetchRequest *)fetchRequestForMonthlySummary;
+- (NSFetchRequest *)fetchRequestForDaylySummary;
+- (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
+
+
+- (NSFetchRequest *) graphYearlySurplusFetchRequest;
+- (NSFetchRequest *) graphYearlyExpensesFetchRequest;
+
+- (NSFetchRequest *)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
+- (NSFetchRequest *)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
+
+- (NSFetchRequest *)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName;
+- (NSFetchRequest *)graphDailyExpensesFetchRequestForSectionName:(NSString *)sectionName;
+
+- (NSFetchRequest *)requestToGetYears;
 @end

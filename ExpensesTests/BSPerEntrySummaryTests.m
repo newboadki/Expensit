@@ -16,7 +16,7 @@
 @interface BSPerEntrySummaryTests : XCTestCase
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
 @property (strong, nonatomic) BSCoreDataController *coreDataController;
-@property (strong, nonatomic) BSIndividualExpensesSummaryViewController *dailyViewController;
+@property (strong, nonatomic) BSIndividualExpensesSummaryViewController *individualEntryViewController;
 @end
 
 @implementation BSPerEntrySummaryTests
@@ -29,8 +29,9 @@
     [self.coreDataStackHelper destroySQLPersistentStoreCoordinator];
     
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
-    self.dailyViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
-    self.dailyViewController.coreDataStackHelper = self.coreDataStackHelper;
+    self.individualEntryViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
+    self.individualEntryViewController.coreDataStackHelper = self.coreDataStackHelper;
+    self.individualEntryViewController.coreDataController = self.coreDataController;
     
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0"];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0"];
@@ -62,13 +63,13 @@
 - (void)tearDown
 {
     self.coreDataStackHelper = nil;
-    self.dailyViewController = nil;
+    self.individualEntryViewController = nil;
     [super tearDown];
 }
 
 - (void) testIndividualEntriesCalculations
 {
-    NSArray *entries = self.dailyViewController.fetchedResultsController.fetchedObjects;
+    NSArray *entries = self.individualEntryViewController.fetchedResultsController.fetchedObjects;
     XCTAssertTrue([entries count] == 10, @"Monthly results don't have the right number of monthly entries.");
     
     XCTAssertTrue([[self entryForDate:@"13/01/2013" fromArray:entries] count] == 2, @"01/2013's sum is Incorrect");

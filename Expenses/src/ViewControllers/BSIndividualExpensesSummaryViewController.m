@@ -102,10 +102,9 @@
 
 #pragma mark - BSCoreDataControllerDelegate
 
-- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest {
-    [super configureFetchRequest:fetchRequest];
+- (NSFetchRequest *)fetchRequest {
+    return [self.coreDataController fetchRequestForIndividualEntriesSummary];
 }
-
 
 - (NSString*) sectionNameKeyPath
 {

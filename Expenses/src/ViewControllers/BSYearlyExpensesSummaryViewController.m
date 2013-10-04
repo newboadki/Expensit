@@ -85,7 +85,6 @@
 }
 
 
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showMonthlyEntries"])
@@ -112,7 +111,7 @@
         BSGraphViewController *graphViewController = (BSGraphViewController *)[segue destinationViewController];
         [graphViewController setMoneyIn:[self dataForGraphWithFetchRequestResults:surplusResults]];
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
-//        NSArray *yearNumbers = [self.years valueForKeyPath:@"year"];
+
         NSMutableArray *yearStrings = [NSMutableArray array];
         for (NSNumber *number in self.years) {
             [yearStrings addObject:[number stringValue]];
@@ -125,35 +124,8 @@
 
 #pragma mark - BSCoreDataControllerDelegate
 
-- (void) configureFetchRequest:(NSFetchRequest*)fetchRequest
-{
-    [super configureFetchRequest:fetchRequest];
-    
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription =
-    [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"yearlySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
+- (NSFetchRequest*) fetchRequest {
+    return [self.coreDataController fetchRequestForYearlySummary];
 }
 
 
@@ -163,20 +135,20 @@
 }
 
 
-
-#pragma mark - Graph Data
-
-- (void) configureFetchRequestForGraph:(NSFetchRequest*)fetchRequest
+- (NSArray *)graphSurplusResults
 {
-    // Batch Size
-    [fetchRequest setFetchBatchSize:50];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
 }
 
+
+- (NSArray *)graphExpensesResults
+{
+    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
+}
+
+
+
+#pragma mark - Graph Data
 
 - (NSArray *) dataForGraphWithFetchRequestResults:(NSArray*)yearlyExpensesResults
 {

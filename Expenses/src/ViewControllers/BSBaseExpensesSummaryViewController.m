@@ -247,7 +247,7 @@
 
 - (NSString*) sectionNameKeyPath
 {
-    @throw @"Implement in subclasses";
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
     return nil;
 }
 

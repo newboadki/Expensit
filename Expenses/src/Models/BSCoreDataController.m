@@ -96,6 +96,32 @@
 
 
 
+#pragma mark - Base Request
+
+- (NSFetchRequest *)baseFetchRequest {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Configure the request
+    [self commonConfigureFetchResquest:fetchRequest];
+    
+    return fetchRequest;
+    
+}
+
+- (void)commonConfigureFetchResquest:(NSFetchRequest *)fetchRequest {
+    // Batch Size
+    [fetchRequest setFetchBatchSize:50];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+}
+
+
+
 #pragma mark - Requests
 
 - (NSFetchRequest *)fetchRequestForYearlySummary {
@@ -202,28 +228,6 @@
     return fetchRequest;
 }
 
-- (NSFetchRequest *)baseFetchRequest {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Configure the request
-    [self commonConfigureFetchResquest:fetchRequest];
-    
-    return fetchRequest;
-
-}
-
-- (void)commonConfigureFetchResquest:(NSFetchRequest *)fetchRequest {
-    // Batch Size
-    [fetchRequest setFetchBatchSize:50];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
-
 
 
 #pragma mark - Graphs Requests
@@ -297,6 +301,12 @@
     [fetchRequest setResultType:NSDictionaryResultType];
     
     return fetchRequest;
+}
+
+#pragma mark - Execution of queries
+
+- (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error {
+    return [self.coreDataHelper.managedObjectContext executeFetchRequest:request error:error];
 }
 
 @end

@@ -23,20 +23,25 @@
 - (Entry *) newEntry;
 - (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error;
 
+
+#pragma mark - Summary requests
 - (NSFetchRequest *)fetchRequestForYearlySummary;
 - (NSFetchRequest *)fetchRequestForMonthlySummary;
 - (NSFetchRequest *)fetchRequestForDaylySummary;
 - (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
 
-
+#pragma mark - Graph requests
 - (NSFetchRequest *) graphYearlySurplusFetchRequest;
 - (NSFetchRequest *) graphYearlyExpensesFetchRequest;
-
 - (NSFetchRequest *)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
-
 - (NSFetchRequest *)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphDailyExpensesFetchRequestForSectionName:(NSString *)sectionName;
 
+#pragma mark - Other requests
 - (NSFetchRequest *)requestToGetYears;
+
+#pragma mark - Execution of requests
+- (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error;
+
 @end

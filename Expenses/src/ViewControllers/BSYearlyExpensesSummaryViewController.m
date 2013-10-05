@@ -137,13 +137,13 @@
 
 - (NSArray *)graphSurplusResults
 {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
+    return [self.coreDataController resultsForRequest:[self.coreDataController graphYearlySurplusFetchRequest] error:nil];
 }
 
 
 - (NSArray *)graphExpensesResults
 {
-    return [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
+    return [self.coreDataController resultsForRequest:[self.coreDataController graphYearlyExpensesFetchRequest] error:nil];
 }
 
 

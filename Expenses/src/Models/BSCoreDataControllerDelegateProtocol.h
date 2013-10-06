@@ -9,6 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol BSCoreDataControllerDelegateProtocol <NSObject>
-- (void) configureFetchRequest:(NSFetchRequest*)request;
 - (NSString*) sectionNameKeyPath;
 @end

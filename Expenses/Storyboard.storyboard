@@ -105,7 +105,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="RKD-Sr-X5N" customClass="BSNavigationControllerViewController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bi5-cH-rs7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="bi5-cH-rs7">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.42990672831632648" green="0.33516676031081172" blue="0.17967724908336308" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

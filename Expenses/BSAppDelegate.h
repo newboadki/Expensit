@@ -18,3 +18,4 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) BSThemeManager *themeManager;
 @end
+ 

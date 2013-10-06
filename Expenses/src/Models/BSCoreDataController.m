@@ -120,6 +120,11 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
 
+- (void)configureForIndividualEntriesFetchRequest:(NSFetchRequest *)fetchRequest {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"yearMonthDay" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+}
 
 
 #pragma mark - Requests
@@ -223,8 +228,7 @@
 - (NSFetchRequest *)fetchRequestForIndividualEntriesSummary {
     // Get a base request
     NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-
+    [self configureForIndividualEntriesFetchRequest:fetchRequest];
     return fetchRequest;
 }
 

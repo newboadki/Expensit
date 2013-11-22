@@ -48,10 +48,6 @@
     BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
     [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
     
-    
-    [coreDataController setIsAmountNegativeFromSignOfAmount];
-    [coreDataController saveChanges];
-    
     return YES;
 }
 

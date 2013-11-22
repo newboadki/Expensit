@@ -35,8 +35,29 @@
 
 - (UIColor *)blueColor
 {
-    return [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:1.0];
 }
+
+- (UIColor *)brownColor
+{
+    return [UIColor colorWithRed:100.0/255.0 green:50.0/255.0 blue:25.0/255.0 alpha:1.0];
+}
+
+- (UIColor *)orangeColor
+{
+    return [UIColor colorWithRed:250.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0];
+}
+
+- (UIColor *)purpleColor
+{
+    return [UIColor colorWithRed:200.0/255.0 green:10.0/255.0 blue:255.0/255.0 alpha:1.0];
+}
+
+- (UIColor *)grayColor
+{
+    return [UIColor colorWithRed:50.0/255.0 green:50.0/255.0 blue:50.0/255.0 alpha:1.0];
+}
+
 
 - (UIColor *)selectedCellColor
 {

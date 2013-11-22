@@ -11,7 +11,7 @@
 #import "BSYearlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSEntryDetailsViewController.h"
+#import "BSStaticTableViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 #import "BSMonthlyExpensesSummaryViewController.h"
 
@@ -98,8 +98,12 @@
     else if ([[segue identifier] isEqualToString:@"addEntryFromYear"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
-        addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
+        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        addEntryVC.isEditingEntry = NO;
+        addEntryVC.entryModel = [self.coreDataController newEntry];
+        addEntryVC.cellActionDataSource = cellActionsDataSource;
+        addEntryVC.coreDataController = self.coreDataController;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

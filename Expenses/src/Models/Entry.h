@@ -8,19 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "Tag.h"
 
 @interface Entry : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * day;
-@property (nonatomic, retain) NSNumber * month;
-@property (nonatomic, retain) NSNumber * year;
-@property (nonatomic, retain) NSDate  * date;
-@property (nonatomic, retain) NSDecimalNumber * value;
-@property (nonatomic, retain) NSString *desc;
-@property (nonatomic, retain) NSString *monthYear;
-@property (nonatomic, retain) NSString *dayMonthYear;
-@property (nonatomic, retain) NSString *yearMonthDay;
+@property (nonatomic, strong) NSNumber * day;
+@property (nonatomic, strong) NSNumber * month;
+@property (nonatomic, strong) NSNumber * year;
+@property (nonatomic, strong) NSDate  * date;
+@property (nonatomic, strong) NSDecimalNumber * value;
+@property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString *monthYear;
+@property (nonatomic, strong) NSString *dayMonthYear;
+@property (nonatomic, strong) NSString *yearMonthDay;
+@property (nonatomic, strong) Tag *tag;
+@property (nonatomic, strong) NSNumber *isAmountNegative;
 
 - (NSString*) dayAndMonth;
 

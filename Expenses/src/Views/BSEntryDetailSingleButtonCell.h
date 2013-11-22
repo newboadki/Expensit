@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSEntryDetailCell.h"
+#import "BSStaticTableViewCell.h"
 
-@interface BSEntryDetailSingleButtonCell : BSEntryDetailCell
+@interface BSEntryDetailSingleButtonCell : BSStaticTableViewCell
 - (IBAction) deleteButtonPressed:(id)sender;
 @end

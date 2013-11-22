@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSEntryDetailCell.h"
+#import "BSStaticTableViewCell.h"
 
-@implementation BSEntryDetailCell
+@implementation BSStaticTableViewCell
+
 
 - (void) becomeFirstResponder
 {
@@ -24,8 +25,22 @@
     [self.control resignFirstResponder];
 }
 
+
 - (void) reset
 {
 
 }
+
+
+- (void) configureWithCellInfo:(BSStaticTableViewCellInfo *)cellInfo andModel:(id)model
+{
+    @throw [NSException exceptionWithName:@"Abstract method" reason:@"Implement in subclasses" userInfo:nil];
+}
+
+
+- (void)updateValuesFromModel
+{
+
+}
+
 @end

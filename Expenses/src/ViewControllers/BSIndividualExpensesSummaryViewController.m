@@ -10,7 +10,7 @@
 #import "Entry.h"
 #import "BSDailySummanryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
-#import "BSEntryDetailsViewController.h"
+#import "BSStaticTableViewController.h"
 #import "DateTimeHelper.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
@@ -61,7 +61,7 @@
     cell.amount = managedObject.value;
     
     return cell;
-}
+}   
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -117,8 +117,14 @@
     if ([[segue identifier] isEqualToString:@"addEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
-        addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        addEntryVC.coreDataController = self.coreDataController;
+        addEntryVC.entryModel = [self.coreDataController newEntry];
+        addEntryVC.isEditingEntry = NO;
+        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
+        addEntryVC.cellActionDataSource = cellActionsDataSource;
+
+        
     }
     else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
     {
@@ -128,8 +134,8 @@
     else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSEntryDetailsViewController *editEntryViewController = (BSEntryDetailsViewController*)[navController topViewController];
-        editEntryViewController.isEditingEntry = YES;
+        BSStaticTableViewController *editEntryViewController = (BSStaticTableViewController*)[navController topViewController];
+        
         UICollectionViewCell *selectedCell = (UICollectionViewCell *)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
         int sum = 0;
@@ -139,8 +145,12 @@
             sum += [sectionInfo numberOfObjects];
         }
         
+        editEntryViewController.coreDataController = self.coreDataController;
         editEntryViewController.entryModel = self.fetchedResultsController.fetchedObjects[sum + selectedIndexPath.row];
-        editEntryViewController.coreDataStackHelper = self.coreDataStackHelper;
+        editEntryViewController.isEditingEntry = YES;
+        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:YES];
+        editEntryViewController.cellActionDataSource = cellActionsDataSource;
+
     }
 }
 

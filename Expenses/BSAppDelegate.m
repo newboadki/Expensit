@@ -13,17 +13,20 @@
 #import "DateTimeHelper.h"
 #import "BSGreenTheme.h"
 #import "BSConstants.h"
+#import "BSCoreDataFixturesManager.h"
 
 @implementation BSAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Core Data Helper
     self.coreDataHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType
                                                                      resourceName:@"Expenses"
                                                                         extension:@"momd"
                                                               persistentStoreName:@"expensesDataBase"];
  
+
 
     // Theme
     self.themeManager = [BSThemeManager manager];
@@ -37,6 +40,17 @@
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-300.0"];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"06/07/2012"] description:@"Pocket money" value:@"100.0"];
     }
+    
+    
+    // Apply fixtures
+    BSCoreDataController *coreDataController = [[BSCoreDataController alloc] init];
+    coreDataController.coreDataHelper = self.coreDataHelper;
+    BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
+    [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
+    
+    
+    [coreDataController setIsAmountNegativeFromSignOfAmount];
+    [coreDataController saveChanges];
     
     return YES;
 }

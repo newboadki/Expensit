@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSEntryDetailCell.h"
+#import "BSStaticTableViewCell.h"
 
-@interface BSEntryDateCell : BSEntryDetailCell
+@interface BSEntryDateCell : BSStaticTableViewCell <BSTableViewExpandableCell>
 
-//@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) UIDatePicker *datePicker;
 
-//- (IBAction) entryDatePickerValueChanged:(UIDatePicker *)picker;
+- (IBAction) entryDatePickerValueChanged:(UIDatePicker *)picker;
 - (IBAction) dateButtonPressed:(id)sender;
 - (void) setDate:(NSString*)date;
+
 @end

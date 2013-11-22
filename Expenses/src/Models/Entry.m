@@ -13,17 +13,31 @@
 @implementation Entry
 
 @dynamic day, month, year;
-@dynamic date;
+@synthesize date = _date;
 @dynamic value;
 @dynamic desc;
 @dynamic monthYear, dayMonthYear, yearMonthDay;
+@dynamic tag;
+@dynamic isAmountNegative;
 
 - (NSString*) dayAndMonth
 {
     return [NSString stringWithFormat:@"%d/%d", [self.day intValue], [self.month intValue]];
 }
 
-
+- (void)setDate:(NSDate *)date
+{
+    if (_date != date)
+    {
+        _date = date;
+        self.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.date]];
+        self.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.date]];
+        self.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.date]];
+        self.monthYear = [NSString stringWithFormat:@"%@/%@", [self.month stringValue], [self.year stringValue]];
+        self.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.day stringValue], [self.month stringValue], [self.year stringValue]];
+        self.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [self.year stringValue], [self.month stringValue], [self.day stringValue]];
+    }
+}
 
 #pragma mark - Validation
 

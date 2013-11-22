@@ -12,7 +12,7 @@
 #import "BSMonthlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSEntryDetailsViewController.h"
+#import "BSStaticTableViewController.h"
 #import "BSGraphViewController.h"
 #import "LineGraph.h"
 
@@ -113,8 +113,12 @@
     else if ([[segue identifier] isEqualToString:@"addEntryFromMonth"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
-        addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
+        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        addEntryVC.entryModel = [self.coreDataController newEntry];
+        addEntryVC.isEditingEntry = NO;
+        addEntryVC.coreDataController = self.coreDataController;
+        addEntryVC.cellActionDataSource = cellActionsDataSource;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

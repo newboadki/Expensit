@@ -7,12 +7,21 @@
 //
 
 #import "BSEntryDetailSingleButtonCell.h"
+#import "BSStaticTableViewCellChangeOfValueEvent.h"
 
 @implementation BSEntryDetailSingleButtonCell
 
 - (IBAction) deleteButtonPressed:(UIButton *)deleteButton
 {
-    [self.delegate cell:self changedValue:nil];
+    BSStaticTableViewCellChangeOfValueEvent *event = [[BSStaticTableViewCellChangeOfValueEvent alloc] initWithNewValue:self.entryModel forPropertyName:@"deleteEntry"];
+    event.indexPath = self.indexPath;
+
+    [self.delegate cell:self eventOccurred:event];
+}
+
+- (void) configureWithCellInfo:(BSStaticTableViewCellInfo *)cellInfo andModel:(id)model
+{
+    self.entryModel = model;
 }
 
 @end

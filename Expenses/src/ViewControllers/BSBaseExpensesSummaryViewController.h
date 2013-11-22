@@ -11,9 +11,10 @@
 #import "BSAppDelegate.h"
 #import "BSCurrencyHelper.h"
 #import "BSCoreDataController.h"
+#import "BSStaticTableAddEntryFormCellActionDataSource.h"
+
 
 @class CoreDataStackHelper, BSCoreDataController;
-
 
 
 @interface BSBaseExpensesSummaryViewController : UICollectionViewController <BSCoreDataControllerDelegateProtocol, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout>

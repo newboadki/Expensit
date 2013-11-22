@@ -10,15 +10,16 @@
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
 #import "Entry.h"
-#import "BSEntryDetailCell.h"
+#import "BSStaticTableViewCell.h"
+#import "BSStaticTableViewCellActionDataSourceProtocol.h"
 
+@interface BSStaticTableViewController : UITableViewController <UITextFieldDelegate, BSStaticTableViewCellDelegateProtocol>
 
-@interface BSEntryDetailsViewController : UITableViewController <UITextFieldDelegate, EntryDetailCellDelegateProtocol>
-
-@property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
+@property (strong, nonatomic) BSCoreDataController *coreDataController;
 @property (assign, nonatomic) BOOL isEditingEntry;
-@property (assign, nonatomic) BOOL isShowingPicker;
 @property (strong, nonatomic) Entry *entryModel;
+@property (strong, nonatomic) id<BSStaticTableViewCellActionDataSourceProtocol> cellActionDataSource;
+
 
 - (IBAction) addEntryPressed:(id)sender;
 - (IBAction) cancelButtonPressed:(id)sender;

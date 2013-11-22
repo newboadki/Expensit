@@ -6,13 +6,18 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSEntryDetailCell.h"
+#import "BSStaticTableViewCell.h"
 
-@interface BSEntrySegmentedOptionCell : BSEntryDetailCell
+@interface BSEntrySegmentedOptionCell : BSStaticTableViewCell
 
-@property (strong, nonatomic) IBOutlet UISegmentedControl *entryTypeSegmentedControl;
+@property (nonatomic, strong) NSMutableArray *colorsForSegments;
+
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
 
 - (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl;
+
 - (NSInteger) selectedIndex;
+
+- (void) setOptions:(NSArray *)options;
 
 @end

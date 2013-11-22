@@ -21,8 +21,13 @@
 - (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
 - (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
 - (Entry *) newEntry;
-- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error;
-
+- (void)discardChanges;
+- (BOOL)saveChanges;
+- (BOOL) saveEntry:(Entry *)entry error:(NSError **)error;
+- (void)deleteModel:(id)model;
+- (BOOL)createTags:(NSArray *)tags;
+- (BOOL)setTagForAllEntriesTo:(NSString *)tag;
+- (BOOL)setIsAmountNegativeFromSignOfAmount;
 
 #pragma mark - Summary requests
 - (NSFetchRequest *)fetchRequestForYearlySummary;
@@ -31,8 +36,8 @@
 - (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
 
 #pragma mark - Graph requests
-- (NSFetchRequest *) graphYearlySurplusFetchRequest;
-- (NSFetchRequest *) graphYearlyExpensesFetchRequest;
+- (NSFetchRequest *)graphYearlySurplusFetchRequest;
+- (NSFetchRequest *)graphYearlyExpensesFetchRequest;
 - (NSFetchRequest *)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName;
@@ -43,5 +48,9 @@
 
 #pragma mark - Execution of requests
 - (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error;
+
+#pragma mark - Tags
+- (Tag *)tagForName:(NSString *)tagName;
+- (NSArray *)allTags;
 
 @end

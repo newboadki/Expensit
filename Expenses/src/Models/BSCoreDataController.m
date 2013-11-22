@@ -9,6 +9,7 @@
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
+#import "Tag.h"
 
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;
@@ -79,11 +80,23 @@
 }
 
 
-- (BOOL) saveEntry:(Entry *)entry withNegativeAmount:(BOOL)shouldBeNegative error:(NSError **)error {
+- (void)discardChanges
+{
+    [self.coreDataHelper.managedObjectContext rollback];
+}
+
+
+- (BOOL)saveChanges
+{
+    return [self.coreDataHelper.managedObjectContext save:nil];
+}
+
+
+- (BOOL) saveEntry:(Entry *)entry error:(NSError **)error {
     
     BOOL isCurrentValueNegative = ([entry.value compare:@(-1)] == NSOrderedAscending);
     
-    if (isCurrentValueNegative ^ shouldBeNegative) // XOR True when the inputs are different (true output means we need to multiply by -1)
+    if (isCurrentValueNegative ^ [entry.isAmountNegative boolValue]) // XOR True when the inputs are different (true output means we need to multiply by -1)
     {
         if (![entry.value isEqualToNumber:[NSDecimalNumber notANumber]])
         {
@@ -92,6 +105,88 @@
     }
     
     return [self.coreDataHelper.managedObjectContext save:error];
+}
+
+
+- (void)deleteModel:(id)model
+{
+    [self.coreDataHelper.managedObjectContext deleteObject:model];
+}
+
+
+- (BOOL)createTags:(NSArray *)tags
+{
+    NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    
+    for (NSString *tagName in tags)
+    {
+        Tag *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+        newManagedObject.name = tagName;
+    }
+    
+    // Save the context.
+    NSError *error = nil;
+    return [context save:&error];
+}
+
+
+- (BOOL)setTagForAllEntriesTo:(NSString *)tagName
+{
+    NSError *err = nil;
+    NSArray *allEntries = [self.coreDataHelper.managedObjectContext executeFetchRequest:[self fetchRequestForIndividualEntriesSummary] error:&err];
+    Tag *tag = [self tagForName:tagName];
+    for (Entry *entry in allEntries)
+    {
+        [entry setTag:tag];
+    }
+    
+    return (err == nil);
+}
+
+
+- (BOOL)setIsAmountNegativeFromSignOfAmount
+{
+    NSError *err = nil;
+    NSArray *allEntries = [self.coreDataHelper.managedObjectContext executeFetchRequest:[self fetchRequestForIndividualEntriesSummary] error:&err];
+    
+    for (Entry *entry in allEntries)
+    {
+        switch ([entry.value compare:@0])
+        {
+            case NSOrderedAscending: // value is negative
+                entry.isAmountNegative = @(YES);
+                break;
+            case NSOrderedDescending: // value is positive
+                entry.isAmountNegative = @(NO);
+                break;
+            default:
+                entry.isAmountNegative = @(YES); // Shouldn't happen because validation should prevent negative values from being saved
+                break;
+        }
+    }
+    
+    return (err == nil);
+}
+
+
+- (Tag *)tagForName:(NSString *)tagName
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", tagName]];
+    
+    return [[self resultsForRequest:fetchRequest error:nil] lastObject];
+}
+
+- (NSArray *)allTags
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    return [self resultsForRequest:fetchRequest error:nil];
 }
 
 

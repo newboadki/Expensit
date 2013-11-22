@@ -11,7 +11,7 @@
 #import "BSDailyEntryHeaderView.h"
 #import "BSDailySummanryEntryCell.h"
 #import "DateTimeHelper.h"
-#import "BSEntryDetailsViewController.h"
+#import "BSStaticTableViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
 
@@ -122,8 +122,12 @@
     if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSEntryDetailsViewController *addEntryVC = (BSEntryDetailsViewController*)navController.topViewController;
-        addEntryVC.coreDataStackHelper = self.coreDataStackHelper;
+        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
+        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        addEntryVC.entryModel = [self.coreDataController newEntry];
+        addEntryVC.isEditingEntry = NO;
+        addEntryVC.cellActionDataSource = cellActionsDataSource;
+        addEntryVC.coreDataController = self.coreDataController;
     }
     else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
     {

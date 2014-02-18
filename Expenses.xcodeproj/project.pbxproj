@@ -28,6 +28,7 @@
 		0022AD5518100AEA006C736C /* BSStaticTableViewCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0022AD5318100AEA006C736C /* BSStaticTableViewCellInfo.m */; };
 		002487AD1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
 		002487AE1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
+		0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
 		0045FD7C182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
 		0045FD7D182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
 		0045FD811829944F0074AAD1 /* BSStaticTableViewCellAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD801829944F0074AAD1 /* BSStaticTableViewCellAction.m */; };
@@ -81,7 +82,6 @@
 		00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5D44E17B7B3BF003F81B5 /* BSEntryDetailSingleButtonCell.m */; };
 		00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
 		00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
-		00A8BAB517F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */; };
 		00BD788C182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD788B182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.m */; };
 		00BD788D182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD788B182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.m */; };
 		00BD7894182E55A60004A808 /* BSStaticTableViewCellChangeOfValueEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD7893182E55A60004A808 /* BSStaticTableViewCellChangeOfValueEvent.m */; };
@@ -193,6 +193,7 @@
 		0022AD5318100AEA006C736C /* BSStaticTableViewCellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableViewCellInfo.m; sourceTree = "<group>"; };
 		002487AB1809B403006652DF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		0045FD73182988E10074AAD1 /* BSStaticTableViewCellActionDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticTableViewCellActionDataSourceProtocol.h; path = ../Protocols/BSStaticTableViewCellActionDataSourceProtocol.h; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
@@ -255,7 +256,6 @@
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
 		00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTriangularAccesoryView.h; sourceTree = "<group>"; };
 		00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTriangularAccesoryView.m; sourceTree = "<group>"; };
-		00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSYearlyExpensesSummaryTests.m; path = ../../../../Desktop/BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		00BD788A182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewCellAbstractEvent.h; sourceTree = "<group>"; };
 		00BD788B182E4EAC0004A808 /* BSStaticTableViewCellAbstractEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableViewCellAbstractEvent.m; sourceTree = "<group>"; };
 		00BD7892182E55A60004A808 /* BSStaticTableViewCellChangeOfValueEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewCellChangeOfValueEvent.h; sourceTree = "<group>"; };
@@ -564,7 +564,7 @@
 				007B8272177476780052FE84 /* Supporting Files */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				000481E91780C67A00E7F401 /* BSDailyExpensesSummaryTests.m */,
-				00A8BAB417F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m */,
+				0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */,
 				000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */,
 			);
 			path = ExpensesTests;
@@ -915,6 +915,7 @@
 				009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				00A5D44C17B6ABB2003F81B5 /* BSEntrySegmentedOptionCell.m in Sources */,
+				0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */,
 				0045FD7D182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 				00BD7899182E55CF0004A808 /* BSStaticTableViewCellFoldingEvent.m in Sources */,
 				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
@@ -935,7 +936,6 @@
 				00A5D45017B7B3C0003F81B5 /* BSEntryDetailSingleButtonCell.m in Sources */,
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
-				00A8BAB517F71CC200AD7A54 /* BSYearlyExpensesSummaryTests.m in Sources */,
 				000CDF57183D724100BE6266 /* BSEntryDetailsFormViewController.m in Sources */,
 				002487AE1809B403006652DF /* Tag.m in Sources */,
 				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,

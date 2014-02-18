@@ -10,7 +10,7 @@
 
 @class BSCoreDataController;
 
-@interface BSEntryDetailsFormViewController : BSStaticTableViewController
+@interface BSEntryDetailsFormViewController : BSStaticTableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) BSCoreDataController *coreDataController;
 

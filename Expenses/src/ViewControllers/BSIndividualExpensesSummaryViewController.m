@@ -10,7 +10,7 @@
 #import "Entry.h"
 #import "BSDailySummanryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
-#import "BSStaticTableViewController.h"
+#import "BSEntryDetailsFormViewController.h"
 #import "DateTimeHelper.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 
@@ -117,7 +117,7 @@
     if ([[segue identifier] isEqualToString:@"addEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
         addEntryVC.coreDataController = self.coreDataController;
         addEntryVC.entryModel = [self.coreDataController newEntry];
         addEntryVC.isEditingEntry = NO;
@@ -134,7 +134,7 @@
     else if ([[segue identifier] isEqualToString:@"editEntryFromEntry"])
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSStaticTableViewController *editEntryViewController = (BSStaticTableViewController*)[navController topViewController];
+        BSEntryDetailsFormViewController *editEntryViewController = (BSEntryDetailsFormViewController*)[navController topViewController];
         
         UICollectionViewCell *selectedCell = (UICollectionViewCell *)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];

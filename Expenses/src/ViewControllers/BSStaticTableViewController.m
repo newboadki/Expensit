@@ -13,7 +13,6 @@
 #import "BSEntrySegmentedOptionCell.h"
 #import "BSEntryDetailSingleButtonCell.h"
 #import "BSConstants.h"
-#import "BSCoreDataController.h"
 #import "BSStaticTableViewSectionInfo.h"
 #import "BSStaticTableViewCellInfo.h"
 
@@ -243,61 +242,23 @@
 }
 
 
+
 #pragma mark - Actions
 
 - (IBAction) addEntryPressed:(id)sender
 {
-//    NSError *error = nil;
-//    if ([self saveModel:&error])
-//    {
-//        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Couldn't save" message:[error userInfo][NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }
+    // do nothing by default
 }
 
 - (IBAction) cancelButtonPressed:(id)sender
 {
-//    if (self.isEditingEntry)
-//    {
-//        [self.coreDataController discardChanges];
-//    }
-//    else
-//    {
-//        [self.coreDataController deleteModel:self.entryModel];
-//        [self.coreDataController saveChanges];
-//    }
-//    
-//    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    // do nothing by default
 }
 
 - (BOOL) saveModel:(NSError **)error
 {
-    return YES;
-//    return [self.coreDataController saveEntry:self.entryModel error:error];
-}
-
-
-
-#pragma mark - UITextFieldDelegate
-
-- (void) textFieldShouldreturn
-{
-//    NSError *error = nil;
-//    if ([self saveModel:&error])
-//    {
-//        if (!self.isEditingEntry)
-//        {
-//            self.entryModel = [self.coreDataController newEntry];
-//            [self.tableView reloadData];
-//        }
-//    }
-//    else
-//    {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Couldn't save" message:[error userInfo][NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }
+    // do nothing by default
+    return NO;
 }
 
 
@@ -333,6 +294,7 @@
     }
 }
 
+
 - (void)applyTableViewCellAction:(BSStaticTableViewCellAction *)action
 {
     for (NSIndexPath *ip in action.indexPathsOfCellsToPerformActionOn)
@@ -349,6 +311,7 @@
         }
     }
 }
+
 
 - (void)applyToggleExpandableCellsAction:(BSStaticTableViewToggleExpandableCellsAction *)action
 {

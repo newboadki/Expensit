@@ -11,7 +11,7 @@
 #import "BSYearlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
-#import "BSStaticTableViewController.h"
+#import "BSEntryDetailsFormViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 #import "BSMonthlyExpensesSummaryViewController.h"
 
@@ -99,7 +99,7 @@
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
-        BSStaticTableViewController *addEntryVC = (BSStaticTableViewController*)navController.topViewController;
+        BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
         addEntryVC.isEditingEntry = NO;
         addEntryVC.entryModel = [self.coreDataController newEntry];
         addEntryVC.cellActionDataSource = cellActionsDataSource;

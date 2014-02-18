@@ -30,6 +30,7 @@
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
     self.yearlyViewController = [[BSYearlyExpensesSummaryViewController alloc] init];
     self.yearlyViewController.coreDataStackHelper = self.coreDataStackHelper;
+    self.yearlyViewController.coreDataController = self.coreDataController;
     
     
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-20.0"];

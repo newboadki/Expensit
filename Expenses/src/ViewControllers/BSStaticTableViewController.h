@@ -15,7 +15,7 @@
 @interface BSStaticTableViewController : UITableViewController <BSStaticTableViewCellDelegateProtocol>
 
 @property (assign, nonatomic) BOOL isEditingEntry;
-@property (strong, nonatomic) Entry *entryModel;
+@property (strong, nonatomic) id entryModel;
 @property (strong, nonatomic) id<BSStaticTableViewCellActionDataSourceProtocol> cellActionDataSource;
 
 

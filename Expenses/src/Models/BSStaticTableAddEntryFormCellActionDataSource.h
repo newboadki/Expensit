@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableViewCellActionDataSourceProtocol.h"
+#import "BSStaticFormTableViewCellActionDataSourceProtocol.h"
 
 @class BSCoreDataController;
 
-@interface BSStaticTableAddEntryFormCellActionDataSource : NSObject <BSStaticTableViewCellActionDataSourceProtocol>
+@interface BSStaticTableAddEntryFormCellActionDataSource : NSObject <BSStaticFormTableViewCellActionDataSourceProtocol>
 
 @property (nonatomic, strong) BSCoreDataController *coreDataController;
 

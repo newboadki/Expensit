@@ -1,5 +1,5 @@
 //
-//  BSStaticTableViewCellActionDataSourceProtocol.h
+//  BSStaticFormTableViewCellActionDataSourceProtocol.h
 //  Expenses
 //
 //  Created by Borja Arias Drake on 05/11/2013.
@@ -14,9 +14,9 @@
 @class BSStaticTableViewCellAbstractEvent;
 @class BSStaticTableViewAbstractAction;
 
-@protocol BSStaticTableViewCellActionDataSourceProtocol <NSObject>
+@protocol BSStaticFormTableViewCellActionDataSourceProtocol <NSObject>
 
-/*! @return an array of BSStaticTableViewAbstractAction that describe
+/*! @return an array of BSStaticTableViewAbstractAction that describes
  what the table view needs to do when an event occurs.
  */
 - (NSArray *)actionsForEvent:(BSStaticTableViewCellAbstractEvent *)event inCellAtIndexPath:(NSIndexPath *)indexPath;

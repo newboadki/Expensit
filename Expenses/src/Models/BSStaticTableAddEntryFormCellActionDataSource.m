@@ -49,7 +49,7 @@
 
 
 
-#pragma mark - BSStaticTableViewCellActionDataSourceProtocol
+#pragma mark - BSStaticFormTableViewCellActionDataSourceProtocol
 
 - (NSArray *)sectionsInfo
 {

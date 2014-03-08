@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSStaticTableViewController.h"
+#import "BSStaticFormTableViewController.h"
 
 @class BSCoreDataController;
 
-@interface BSEntryDetailsFormViewController : BSStaticTableViewController <UITextFieldDelegate>
+@interface BSEntryDetailsFormViewController : BSStaticFormTableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) BSCoreDataController *coreDataController;
 

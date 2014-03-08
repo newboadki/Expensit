@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Borja Arias Drake. All rights reserved.
 //
 
-#import "BSStaticTableViewController.h"
+#import "BSStaticFormTableViewController.h"
 #import "DateTimeHelper.h"
 #import "BSEntryTextDetail.h"
 #import "BSEntryDateCell.h"
@@ -90,7 +90,7 @@
 
 
 
-@interface BSStaticTableViewController ()
+@interface BSStaticFormTableViewController ()
 
 /*! List of index paths that have cells that are in an expanded state.*/
 @property (nonatomic, strong) NSMutableArray *unfoldedCells;
@@ -103,7 +103,7 @@
 @end
 
 
-@implementation BSStaticTableViewController
+@implementation BSStaticFormTableViewController
 
 #pragma mark - Dealloc
 

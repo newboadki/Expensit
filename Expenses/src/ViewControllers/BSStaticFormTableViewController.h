@@ -10,13 +10,13 @@
 #import "CoreDataStackHelper.h"
 #import "Entry.h"
 #import "BSStaticTableViewCell.h"
-#import "BSStaticTableViewCellActionDataSourceProtocol.h"
+#import "BSStaticFormTableViewCellActionDataSourceProtocol.h"
 
-@interface BSStaticTableViewController : UITableViewController <BSStaticTableViewCellDelegateProtocol>
+@interface BSStaticFormTableViewController : UITableViewController <BSStaticTableViewCellDelegateProtocol>
 
 @property (assign, nonatomic) BOOL isEditingEntry;
 @property (strong, nonatomic) id entryModel;
-@property (strong, nonatomic) id<BSStaticTableViewCellActionDataSourceProtocol> cellActionDataSource;
+@property (strong, nonatomic) id<BSStaticFormTableViewCellActionDataSourceProtocol> cellActionDataSource;
 
 
 - (IBAction) addEntryPressed:(id)sender;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableViewSectionInfoProtocol.h"
+#import "BSStaticFormTableViewSectionInfoProtocol.h"
 
 /*! The purpose of this class is to wrap the information about the kind of cells
  in a section for an instance of BSStaticTableViewController class*/

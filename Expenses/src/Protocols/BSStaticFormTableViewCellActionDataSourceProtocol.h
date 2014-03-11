@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableCellValueConvertorProtocol.h"
+#import "BSStaticFormTableCellValueConvertorProtocol.h"
 
 @class BSStaticTableViewCellAction;
 @class BSStaticTableViewCellInfo;
@@ -36,7 +36,7 @@
  Therefore, it also needs to provide data convertors between the model property that the cell modifies and the cell's own internal representation of the data.
  This method needs to be consistent with what sectionsInfo returns.
  */
-- (id<BSStaticTableCellValueConvertorProtocol>)valueConvertorForCellAtIndexPath:(NSIndexPath *)indexPath;
+- (id<BSStaticFormTableCellValueConvertorProtocol>)valueConvertorForCellAtIndexPath:(NSIndexPath *)indexPath;
 
 //- (NSIndexPath *)indexPathForCellWithPropertyName:(NSString *)propertyName;
 

@@ -10,7 +10,7 @@
 #import "BSStaticTableViewCellInfo.h"
 #import "BSStaticTableViewCellAbstractEvent.h"
 #import "BSStaticTableViewComponentConstants.h"
-#import "BSStaticTableCellValueConvertorProtocol.h"
+#import "BSStaticFormTableCellValueConvertorProtocol.h"
 
 @protocol BSTableViewExpandableCell <NSObject>
 
@@ -31,7 +31,7 @@
 @property (strong, nonatomic) id entryModel;
 @property (strong, nonatomic) NSIndexPath *indexPath;
 @property (strong, nonatomic) NSString *modelProperty;
-@property (strong, nonatomic) id<BSStaticTableCellValueConvertorProtocol> valueConvertor;
+@property (strong, nonatomic) id<BSStaticFormTableCellValueConvertorProtocol> valueConvertor;
 
 @property (strong, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UIControl *control;

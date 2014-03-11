@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableCellValueConvertorProtocol.h"
+#import "BSStaticFormTableCellValueConvertorProtocol.h"
 
 @class BSCoreDataController;
 
-@interface BSTagToSegmentedControlCellConvertor : NSObject <BSStaticTableCellValueConvertorProtocol>
+@interface BSTagToSegmentedControlCellConvertor : NSObject <BSStaticFormTableCellValueConvertorProtocol>
 
 @property (nonatomic, strong) BSCoreDataController *coreDataController;
 

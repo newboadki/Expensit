@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableCellValueConvertorProtocol.h"
+#import "BSStaticFormTableCellValueConvertorProtocol.h"
 
 @interface BSStaticTableViewCellInfo : NSObject
 
@@ -21,7 +21,7 @@
 
 @property (nonatomic, assign) UIKeyboardType keyboardType;
 
-@property (nonatomic, strong) id<BSStaticTableCellValueConvertorProtocol>valueConvertor;
+@property (nonatomic, strong) id<BSStaticFormTableCellValueConvertorProtocol>valueConvertor;
 
 @property (nonatomic, strong) NSDictionary *extraParams;
 
@@ -30,7 +30,7 @@
               displayPropertyName:(NSString *)displayPropertyName
 shouldBecomeFirstResponderWhenNotEditing:(BOOL)firstResponder
                     keyboardType:(UIKeyboardType)keyboardType
-                   valueConvertor:(id<BSStaticTableCellValueConvertorProtocol>)valueConvertor
+                   valueConvertor:(id<BSStaticFormTableCellValueConvertorProtocol>)valueConvertor
                       extraParams:(NSDictionary *)extraParams;
 
 

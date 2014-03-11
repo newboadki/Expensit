@@ -92,10 +92,7 @@
         [self becomeFirstResponder];
     }
     
-    if (!self.entryModel)
-    {
-        self.entryModel = model;
-    }
+    self.entryModel = model;
 }
 
 

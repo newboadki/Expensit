@@ -12,7 +12,7 @@
  programatically change its state is different. For example a segmented controller Cell to represent categories of an entity understands that
  needs to select the segment at index 4 but it will not understand what index to select if it's passed a particular instance of a Category.
  This protocol comes in to decouple the cell and it's internal values from the ones that a user of the cell might understand.*/
-@protocol BSStaticTableCellValueConvertorProtocol <NSObject>
+@protocol BSStaticFormTableCellValueConvertorProtocol <NSObject>
 
 /*!
  @param propertyName

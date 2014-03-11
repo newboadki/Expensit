@@ -15,7 +15,7 @@
               displayPropertyName:(NSString *)displayPropertyName
 shouldBecomeFirstResponderWhenNotEditing:(BOOL)firstResponder
                      keyboardType:(UIKeyboardType)keyboardType
-                   valueConvertor:(id<BSStaticTableCellValueConvertorProtocol>)valueConvertor
+                   valueConvertor:(id<BSStaticFormTableCellValueConvertorProtocol>)valueConvertor
                       extraParams:(NSDictionary *)extraParams
 {
     self = [super init];

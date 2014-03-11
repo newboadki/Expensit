@@ -11,7 +11,7 @@
 @class BSStaticTableViewCellInfo;
 
 
-@protocol BSStaticTableViewSectionInfoProtocol <NSObject>
+@protocol BSStaticFormTableViewSectionInfoProtocol <NSObject>
 
 - (NSArray *)sectionsInfo;
 - (BSStaticTableViewCellInfo *)cellInfoForIndexPath:(NSIndexPath *)indepath;

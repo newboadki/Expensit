@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticTableCellValueConvertorProtocol.h"
+#import "BSStaticFormTableCellValueConvertorProtocol.h"
 
-@interface BSAmountToTextControlCellConvertor : NSObject <BSStaticTableCellValueConvertorProtocol>
+@interface BSAmountToTextControlCellConvertor : NSObject <BSStaticFormTableCellValueConvertorProtocol>
 
 @end

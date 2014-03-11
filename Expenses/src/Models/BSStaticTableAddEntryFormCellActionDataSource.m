@@ -71,7 +71,7 @@
 }
 
 
-- (id<BSStaticTableCellValueConvertorProtocol>)valueConvertorForCellAtIndexPath:(NSIndexPath *)indexPath
+- (id<BSStaticFormTableCellValueConvertorProtocol>)valueConvertorForCellAtIndexPath:(NSIndexPath *)indexPath
 {
     BSStaticTableViewCellInfo *cellInfo = [self cellInfoForIndexPath:indexPath];
     return cellInfo.valueConvertor;

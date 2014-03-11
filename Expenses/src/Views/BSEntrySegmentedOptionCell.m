@@ -41,21 +41,17 @@
 {
     self.label.text = cellInfo.displayPropertyName;
     self.modelProperty = cellInfo.propertyName;
-    if (!self.entryModel)
-    {
-        self.entryModel = model;
-    }
+    self.entryModel = model;
 
     [self setOptions:cellInfo.extraParams[@"options"]];
     [self setColorsForSegments:cellInfo.extraParams[@"colors"]];
-
 
     [self.control setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.label setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.control setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-//
-//    
+
+    
     NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_label, _control);
     NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[_label]-(>=30)-[_control]-20-|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:viewDictionary];
     NSArray *verticalConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_label]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:NSDictionaryOfVariableBindings(_label)];
@@ -63,9 +59,6 @@
     [self addConstraints:horizontalConstraints];
     [self addConstraints:verticalConstraints1];
     [self addConstraints:verticalConstraints2];
-
-
-
 }
 
 - (IBAction) entryTypeSegmenteControlChanged:(UISegmentedControl*)typeSegmentedControl

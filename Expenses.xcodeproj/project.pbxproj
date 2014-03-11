@@ -106,8 +106,8 @@
 		00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
 		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
-		00BEAFD81779BB3C00A59EE2 /* BSStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSStaticTableViewController.m */; };
-		00BEAFD91779BB3C00A59EE2 /* BSStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSStaticTableViewController.m */; };
+		00BEAFD81779BB3C00A59EE2 /* BSStaticFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSStaticFormTableViewController.m */; };
+		00BEAFD91779BB3C00A59EE2 /* BSStaticFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD71779BB3C00A59EE2 /* BSStaticFormTableViewController.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
@@ -188,13 +188,13 @@
 		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
 		0022AD4C180FA29D006C736C /* BSStaticTableViewSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewSectionInfo.h; sourceTree = "<group>"; };
 		0022AD4D180FA29D006C736C /* BSStaticTableViewSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableViewSectionInfo.m; sourceTree = "<group>"; };
-		0022AD51180FA669006C736C /* BSStaticTableViewSectionInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticTableViewSectionInfoProtocol.h; path = ../Protocols/BSStaticTableViewSectionInfoProtocol.h; sourceTree = "<group>"; };
+		0022AD51180FA669006C736C /* BSStaticFormTableViewSectionInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticFormTableViewSectionInfoProtocol.h; path = ../Protocols/BSStaticFormTableViewSectionInfoProtocol.h; sourceTree = "<group>"; };
 		0022AD5218100AEA006C736C /* BSStaticTableViewCellInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewCellInfo.h; sourceTree = "<group>"; };
 		0022AD5318100AEA006C736C /* BSStaticTableViewCellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableViewCellInfo.m; sourceTree = "<group>"; };
 		002487AB1809B403006652DF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
-		0045FD73182988E10074AAD1 /* BSStaticTableViewCellActionDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticTableViewCellActionDataSourceProtocol.h; path = ../Protocols/BSStaticTableViewCellActionDataSourceProtocol.h; sourceTree = "<group>"; };
+		0045FD73182988E10074AAD1 /* BSStaticFormTableViewCellActionDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticFormTableViewCellActionDataSourceProtocol.h; path = ../Protocols/BSStaticFormTableViewCellActionDataSourceProtocol.h; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
 		0045FD7F1829944F0074AAD1 /* BSStaticTableViewCellAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewCellAction.h; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 		00BD7896182E55CF0004A808 /* BSStaticTableViewCellFoldingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewCellFoldingEvent.h; sourceTree = "<group>"; };
 		00BD7897182E55CF0004A808 /* BSStaticTableViewCellFoldingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableViewCellFoldingEvent.m; sourceTree = "<group>"; };
 		00BD789A182E57520004A808 /* BSStaticTableViewComponentConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableViewComponentConstants.h; sourceTree = "<group>"; };
-		00BD789C182FDD810004A808 /* BSStaticTableCellValueConvertorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableCellValueConvertorProtocol.h; sourceTree = "<group>"; };
+		00BD789C182FDD810004A808 /* BSStaticFormTableCellValueConvertorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticFormTableCellValueConvertorProtocol.h; sourceTree = "<group>"; };
 		00BD789E182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTagToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
 		00BD789F182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTagToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
 		00BD78A2182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryTypeToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
@@ -281,8 +281,8 @@
 		00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
 		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
-		00BEAFD61779BB3C00A59EE2 /* BSStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticTableViewController.h; path = ../ViewControllers/BSStaticTableViewController.h; sourceTree = "<group>"; };
-		00BEAFD71779BB3C00A59EE2 /* BSStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSStaticTableViewController.m; path = ../ViewControllers/BSStaticTableViewController.m; sourceTree = "<group>"; };
+		00BEAFD61779BB3C00A59EE2 /* BSStaticFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSStaticFormTableViewController.h; path = ../ViewControllers/BSStaticFormTableViewController.h; sourceTree = "<group>"; };
+		00BEAFD71779BB3C00A59EE2 /* BSStaticFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSStaticFormTableViewController.m; path = ../ViewControllers/BSStaticFormTableViewController.m; sourceTree = "<group>"; };
 		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
 		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
 		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
@@ -388,8 +388,8 @@
 		000CDF53183D607100BE6266 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				00BEAFD61779BB3C00A59EE2 /* BSStaticTableViewController.h */,
-				00BEAFD71779BB3C00A59EE2 /* BSStaticTableViewController.m */,
+				00BEAFD61779BB3C00A59EE2 /* BSStaticFormTableViewController.h */,
+				00BEAFD71779BB3C00A59EE2 /* BSStaticFormTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -630,9 +630,9 @@
 		00BD789B182FDD410004A808 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0022AD51180FA669006C736C /* BSStaticTableViewSectionInfoProtocol.h */,
-				0045FD73182988E10074AAD1 /* BSStaticTableViewCellActionDataSourceProtocol.h */,
-				00BD789C182FDD810004A808 /* BSStaticTableCellValueConvertorProtocol.h */,
+				0022AD51180FA669006C736C /* BSStaticFormTableViewSectionInfoProtocol.h */,
+				0045FD73182988E10074AAD1 /* BSStaticFormTableViewCellActionDataSourceProtocol.h */,
+				00BD789C182FDD810004A808 /* BSStaticFormTableCellValueConvertorProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -835,7 +835,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				002487AD1809B403006652DF /* Tag.m in Sources */,
-				00BEAFD81779BB3C00A59EE2 /* BSStaticTableViewController.m in Sources */,
+				00BEAFD81779BB3C00A59EE2 /* BSStaticFormTableViewController.m in Sources */,
 				0022AD5418100AEA006C736C /* BSStaticTableViewCellInfo.m in Sources */,
 				00A5D44317B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
@@ -891,7 +891,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BEAFD91779BB3C00A59EE2 /* BSStaticTableViewController.m in Sources */,
+				00BEAFD91779BB3C00A59EE2 /* BSStaticFormTableViewController.m in Sources */,
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
 				00A5D44417B6AB74003F81B5 /* BSEntryTextDetail.m in Sources */,

@@ -40,10 +40,7 @@
 {
     self.modelProperty = cellInfo.propertyName;
     self.label.text = NSLocalizedString(cellInfo.displayPropertyName, @"");
-    if (!self.entryModel)
-    {
-        self.entryModel = model;
-    }
+    self.entryModel = model;
 }
 
 - (void)updateValuesFromModel

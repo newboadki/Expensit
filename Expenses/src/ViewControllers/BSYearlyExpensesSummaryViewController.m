@@ -14,6 +14,7 @@
 #import "BSEntryDetailsFormViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 #import "BSMonthlyExpensesSummaryViewController.h"
+#import "CoreDataStackHelper.h"
 
 @interface BSYearlyExpensesSummaryViewController ()
 @property (strong, nonatomic) NSArray *years;

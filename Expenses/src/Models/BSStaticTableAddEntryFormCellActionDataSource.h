@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSStaticFormTableViewCellActionDataSourceProtocol.h"
+#import "BSStaticFormProtocols.h"
 
 @class BSCoreDataController;
 

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataStackHelper.h"
-#import "Entry.h"
-#import "BSStaticTableViewCell.h"
-#import "BSStaticFormTableViewCellActionDataSourceProtocol.h"
+//#import "BSCells.h"
+#import "../Protocols/BSStaticFormTableViewCellActionDataSourceProtocol.h"
+#import "../Protocols/BSStaticTableViewCellDelegateProtocol.h"
 
 @interface BSStaticFormTableViewController : UITableViewController <BSStaticTableViewCellDelegateProtocol>
 

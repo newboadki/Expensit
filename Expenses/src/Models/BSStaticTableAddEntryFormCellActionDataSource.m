@@ -8,28 +8,25 @@
 
 #import "BSStaticTableAddEntryFormCellActionDataSource.h"
 #import "DateTimeHelper.h"
-#import "BSEntryTextDetail.h"
-#import "BSEntryDateCell.h"
-#import "BSEntrySegmentedOptionCell.h"
-#import "BSEntryDetailSingleButtonCell.h"
+
+#import "BSTableViewCellDescriptors.h"
+#import "BSTableViewEvents.h"
+#import "BSTableViewCellActions.h"
+#import "BSCells.h"
+
 #import "BSConstants.h"
 #import "BSCoreDataController.h"
-#import "BSStaticTableViewSectionInfo.h"
-#import "BSStaticTableViewCellInfo.h"
-#import <UIKit/UIKit.h>
+#import "CoreDataStackHelper.h"
 #import "Tag.h"
-#import "BSStaticTableViewCellAction.h"
+
+#import <UIKit/UIKit.h>
+
 #import "BSTagToSegmentedControlCellConvertor.h"
 #import "BSEntryTypeToSegmentedControlCellConvertor.h"
 #import "BSAmountToTextControlCellConvertor.h"
-#import "BSStaticTableViewCellChangeOfValueEvent.h"
-#import "BSStaticTableViewCellFoldingEvent.h"
-#import "BSStaticTableViewToggleExpandableCellsAction.h"
-#import "BSStaticTableViewAbstractAction.h"
-#import "BSCoreDataController.h"
+
 #import "BSAppDelegate.h"
-#import "CoreDataStackHelper.h"
-#import "BSStaticTableViewDismissYourselfAction.h"
+
 
 @implementation BSStaticTableAddEntryFormCellActionDataSource
 
@@ -186,6 +183,7 @@
     BSStaticTableViewCellInfo *deleteCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailSingleButtonCell class] propertyName:nil displayPropertyName:nil shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:nil extraParams:nil];
     
     return @[[[BSStaticTableViewSectionInfo alloc] initWithSection:1 cellsInfo:@[deleteCellInfo]]];
+    
     
 }
 

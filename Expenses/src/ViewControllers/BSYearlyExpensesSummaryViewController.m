@@ -105,6 +105,7 @@
         addEntryVC.entryModel = [self.coreDataController newEntry];
         addEntryVC.cellActionDataSource = cellActionsDataSource;
         addEntryVC.coreDataController = self.coreDataController;
+        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

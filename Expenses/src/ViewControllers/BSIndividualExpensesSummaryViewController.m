@@ -121,6 +121,7 @@
         addEntryVC.coreDataController = self.coreDataController;
         addEntryVC.entryModel = [self.coreDataController newEntry];
         addEntryVC.isEditingEntry = NO;
+        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
         BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
         addEntryVC.cellActionDataSource = cellActionsDataSource;
 
@@ -135,7 +136,7 @@
     {
         UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
         BSEntryDetailsFormViewController *editEntryViewController = (BSEntryDetailsFormViewController*)[navController topViewController];
-        
+        editEntryViewController.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
         UICollectionViewCell *selectedCell = (UICollectionViewCell *)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
         int sum = 0;

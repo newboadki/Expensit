@@ -10,6 +10,8 @@
 #import "BSThemeManager_iOS6_andBelow.h"
 #import "BSThemeManager_iOS7.h"
 
+#import "BSCells.h"
+
 @implementation BSThemeManager
 
 + (BSThemeManager *) manager
@@ -40,5 +42,20 @@
     [self applyThemeToNavigationBar];
 }
 
+
+- (void)themeTableViewCell:(UITableViewCell *)cell
+{
+    if ([cell isKindOfClass:[BSEntryTextDetail class]])
+    {
+        ((BSEntryTextDetail *)cell).positiveSignColor = [self.theme greenColor];
+        ((BSEntryTextDetail *)cell).negativeSignColor = [self.theme redColor];
+    }
+    else if ([cell isKindOfClass:[BSStaticTableViewCell class]])
+    {
+        ((BSEntryDateCell *)cell).selectedTintColor = [self.theme redColor];
+        ((BSEntryDateCell *)cell).tintColor = [self.theme blueColor];
+    }
+
+}
 
 @end

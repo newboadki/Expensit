@@ -128,6 +128,7 @@
         addEntryVC.isEditingEntry = NO;
         addEntryVC.cellActionDataSource = cellActionsDataSource;
         addEntryVC.coreDataController = self.coreDataController;
+        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
     }
     else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
     {

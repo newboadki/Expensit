@@ -119,6 +119,7 @@
         addEntryVC.isEditingEntry = NO;
         addEntryVC.coreDataController = self.coreDataController;
         addEntryVC.cellActionDataSource = cellActionsDataSource;
+        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

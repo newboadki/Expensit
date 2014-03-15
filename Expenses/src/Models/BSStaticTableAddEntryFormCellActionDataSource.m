@@ -87,7 +87,7 @@
         return [self actionsForEventInDate:event indexPath:indexPath];
     }
     else if ([indexPath isEqual:[NSIndexPath indexPathForRow:4 inSection:0]]) { // CATEGORY
-        return nil;
+        return [self actionsForEventInCategory:event indexPath:indexPath];;
     }
     else if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:1]]) { // DELETE
         return [self actionsForEventInDelete:event indexPath:indexPath];
@@ -138,6 +138,20 @@
     }
 }
 
+- (NSArray *)actionsForEventInCategory:(BSStaticTableViewCellAbstractEvent *)event indexPath:(NSIndexPath *)indexPath
+{
+    if ([event isKindOfClass:[BSStaticTableViewCellFoldingEvent class]])
+    {
+        // 1 if the change was expanded/collapsed
+        // -> Action is to animate the tableView
+        return @[[[BSStaticTableViewToggleExpandableCellsAction alloc] initWithIndexPaths:@[indexPath]]];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (NSArray *)actionsForEventInDelete:(BSStaticTableViewCellAbstractEvent *)event indexPath:(NSIndexPath *)indexPath
 {
     // The model to delete should come in the event!!
@@ -172,7 +186,7 @@
     BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:[[BSAmountToTextControlCellConvertor alloc] init] extraParams:nil];
     BSStaticTableViewCellInfo *descriptionCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"desc" displayPropertyName:@"Description" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:UIKeyboardTypeAlphabet valueConvertor:nil extraParams:nil];
     BSStaticTableViewCellInfo *dateCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDateCell class] propertyName:@"date"displayPropertyName:@"When" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:dateConvertor extraParams:nil];
-    BSStaticTableViewCellInfo *categoryCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:tagsExtraParams]; // nil because we need to search the tag entity and that's not for the cell to do
+    BSStaticTableViewCellInfo *categoryCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailValuePickerCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:tagsExtraParams]; // nil because we need to search the tag entity and that's not for the cell to do
     BSStaticTableViewCellInfo *typeCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"isAmountNegative" displayPropertyName:@"Type" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:typeToSegmentedControlVoncertor extraParams:typeExtraParams]; // nil because the type it's determined by the sign of the value not by a property in itself
     
     return @[[[BSStaticTableViewSectionInfo alloc] initWithSection:0 cellsInfo:@[amountCellInfo, descriptionCellInfo, dateCellInfo, typeCellInfo, categoryCellInfo]]];

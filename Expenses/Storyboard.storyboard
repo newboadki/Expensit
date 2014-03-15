@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="RKD-Sr-X5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="RKD-Sr-X5N">
     <dependencies>
         <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -279,30 +279,25 @@
                                     <outlet property="segmentedControl" destination="EEK-9u-Wdx" id="xES-qM-nTS"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BSEntrySegmentedOptionCell" id="PtL-2g-bXI" customClass="BSEntrySegmentedOptionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BSEntryDetailValuePickerCell" id="hpN-CX-uWs" userLabel="Category" customClass="BSEntryDetailValuePickerCell">
                                 <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PtL-2g-bXI" id="hVT-IL-UKm">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hpN-CX-uWs" id="ehH-cc-f3O">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="bkf-Zi-bwW">
-                                            <rect key="frame" x="80" y="8" width="220" height="29"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pHj-kN-uAy">
+                                            <rect key="frame" x="88" y="9" width="212" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Bills"/>
-                                                <segment title="Food"/>
-                                                <segment title="Cloth."/>
-                                                <segment title="Travel"/>
-                                                <segment title="Other"/>
-                                            </segments>
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Other">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
                                             <connections>
-                                                <action selector="entryTypeSegmenteControlChanged:" destination="PtL-2g-bXI" eventType="valueChanged" id="ztp-OU-3Hp"/>
+                                                <action selector="controlPressed:" destination="hpN-CX-uWs" eventType="touchUpInside" id="auh-Si-pbX"/>
                                             </connections>
-                                        </segmentedControl>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oYT-dP-s0t">
-                                            <rect key="frame" x="20" y="11" width="48" height="21"/>
+                                        </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GQX-y4-7sz">
+                                            <rect key="frame" x="20" y="13" width="48" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -310,10 +305,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="categorySegmentedControl" destination="bkf-Zi-bwW" id="1qw-aQ-SJX"/>
-                                    <outlet property="control" destination="bkf-Zi-bwW" id="Vkg-9H-7M3"/>
-                                    <outlet property="delegate" destination="eQB-7T-Ccd" id="C6S-ct-SyQ"/>
-                                    <outlet property="label" destination="oYT-dP-s0t" id="4dq-Wu-hJn"/>
+                                    <outlet property="control" destination="pHj-kN-uAy" id="zGk-1B-YBn"/>
+                                    <outlet property="delegate" destination="eQB-7T-Ccd" id="9KJ-xh-Kpy"/>
+                                    <outlet property="label" destination="GQX-y4-7sz" id="TTR-ts-W0c"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BSEntryDetailSingleButtonCell" id="rPD-eU-zr0" customClass="BSEntryDetailSingleButtonCell">

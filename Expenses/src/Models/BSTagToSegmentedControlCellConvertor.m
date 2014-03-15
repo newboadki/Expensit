@@ -46,7 +46,13 @@
 
 - (NSString *)cellStringValueValueForModelValue:(id)modelValue
 {
-    return nil;
+    Tag *tag = (Tag*)modelValue;
+    if (!tag)
+    {
+        tag = [self.coreDataController tagForName:@"Other"];
+    }
+    
+    return [tag name];
 }
 
 @end

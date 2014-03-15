@@ -24,6 +24,7 @@
 #import "BSTagToSegmentedControlCellConvertor.h"
 #import "BSEntryTypeToSegmentedControlCellConvertor.h"
 #import "BSAmountToTextControlCellConvertor.h"
+#import "BSDateToDatePickerCellConvertor.h"
 
 #import "BSAppDelegate.h"
 
@@ -161,6 +162,7 @@
     BSTagToSegmentedControlCellConvertor *tagToSegmentedControlConvertor = [[BSTagToSegmentedControlCellConvertor alloc] init];
     tagToSegmentedControlConvertor.coreDataController = self.coreDataController;
     BSEntryTypeToSegmentedControlCellConvertor *typeToSegmentedControlVoncertor = [[BSEntryTypeToSegmentedControlCellConvertor alloc] init];
+    BSDateToDatePickerCellConvertor *dateConvertor = [[BSDateToDatePickerCellConvertor alloc] init];
     NSArray *tags = [[self.coreDataController allTags] valueForKeyPath:@"name"];
     UIColor *grayColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme grayColor];
     NSDictionary *tagsExtraParams = @{@"options": tags, @"width": @230, @"colors" : @[grayColor, grayColor, grayColor, grayColor, grayColor]};
@@ -169,7 +171,7 @@
     
     BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:[[BSAmountToTextControlCellConvertor alloc] init] extraParams:nil];
     BSStaticTableViewCellInfo *descriptionCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"desc" displayPropertyName:@"Description" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:UIKeyboardTypeAlphabet valueConvertor:nil extraParams:nil];
-    BSStaticTableViewCellInfo *dateCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDateCell class] propertyName:@"date"displayPropertyName:@"When" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:nil extraParams:nil];
+    BSStaticTableViewCellInfo *dateCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDateCell class] propertyName:@"date"displayPropertyName:@"When" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:dateConvertor extraParams:nil];
     BSStaticTableViewCellInfo *categoryCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:tagsExtraParams]; // nil because we need to search the tag entity and that's not for the cell to do
     BSStaticTableViewCellInfo *typeCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"isAmountNegative" displayPropertyName:@"Type" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:typeToSegmentedControlVoncertor extraParams:typeExtraParams]; // nil because the type it's determined by the sign of the value not by a property in itself
     

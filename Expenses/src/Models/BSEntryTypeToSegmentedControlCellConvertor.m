@@ -48,4 +48,9 @@
     return modelValue;
 }
 
+- (NSString *)cellStringValueValueForModelValue:(id)modelValue
+{
+    return nil;
+}
+
 @end

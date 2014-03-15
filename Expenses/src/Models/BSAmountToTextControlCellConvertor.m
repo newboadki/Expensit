@@ -51,4 +51,10 @@
     return [NSDecimalNumber decimalNumberWithString:cellValue];
 }
 
+
+- (NSString *)cellStringValueValueForModelValue:(id)modelValue
+{
+    return nil;
+}
+
 @end

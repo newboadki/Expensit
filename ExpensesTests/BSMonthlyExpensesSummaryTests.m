@@ -11,7 +11,7 @@
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
-#import <OCMock/OCMock.h>
+#import "OCMock/Headers/OCMock/OCMock.h"
 
 @interface BSMonthlyExpensesSummaryTests : XCTestCase
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;

@@ -51,7 +51,6 @@
 		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
-		0089F8C117FB7C2D000DFEC6 /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 0089F8C017FB7C2D000DFEC6 /* OCMock */; };
 		008F766C18D2E9C80059CB55 /* libBSStaticFormTableViewControllerComponent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 008F766518D2E9910059CB55 /* libBSStaticFormTableViewControllerComponent.a */; };
 		008F766D18D2E9CE0059CB55 /* libBSStaticFormTableViewControllerComponent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 008F766518D2E9910059CB55 /* libBSStaticFormTableViewControllerComponent.a */; };
 		008F767B18D32EF20059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
@@ -715,7 +714,6 @@
 				00F9213A17FF769000CACB4D /* OCMock in Resources */,
 				000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
 				007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
-				0089F8C117FB7C2D000DFEC6 /* OCMock in Resources */,
 				007B8276177476780052FE84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,6 +1015,7 @@
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
+					"$(SRCROOT)/ExpensesTests/OCMock/Headers/**",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

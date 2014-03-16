@@ -8,6 +8,7 @@
 
 #import "BSEntryDetailsFormViewController.h"
 #import "BSCoreDataController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation BSEntryDetailsFormViewController
 

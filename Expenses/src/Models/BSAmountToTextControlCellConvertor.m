@@ -48,7 +48,8 @@
 
 - (id)modelValueForCellValue:(id)cellValue
 {
-    return [NSDecimalNumber decimalNumberWithString:cellValue];
+    NSString *stringValue = [cellValue stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    return [NSDecimalNumber decimalNumberWithString:stringValue];
 }
 
 

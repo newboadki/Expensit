@@ -91,6 +91,8 @@
 		00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
 		00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
 		00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
+		00DAF18D18D511AA00024680 /* col.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DAF18C18D511AA00024680 /* col.m */; };
+		00DAF18E18D511AA00024680 /* col.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DAF18C18D511AA00024680 /* col.m */; };
 		00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
@@ -247,6 +249,8 @@
 		00D7E0F8178F40A100474A30 /* BSDailyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyLayout.m; sourceTree = "<group>"; };
 		00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSingleEntryCell.h; sourceTree = "<group>"; };
 		00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSingleEntryCell.m; sourceTree = "<group>"; };
+		00DAF18B18D511AA00024680 /* col.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = col.h; sourceTree = "<group>"; };
+		00DAF18C18D511AA00024680 /* col.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = col.m; sourceTree = "<group>"; };
 		00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpenseCell.h; sourceTree = "<group>"; };
 		00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpenseCell.m; sourceTree = "<group>"; };
 		00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
@@ -409,6 +413,8 @@
 			children = (
 				007B83151775A6330052FE84 /* src */,
 				007B825D177476780052FE84 /* BSAppDelegate.h */,
+				00DAF18B18D511AA00024680 /* col.h */,
+				00DAF18C18D511AA00024680 /* col.m */,
 				007B825E177476780052FE84 /* BSAppDelegate.m */,
 				007B8263177476780052FE84 /* Images.xcassets */,
 				007B8260177476780052FE84 /* Expenses.xcdatamodeld */,
@@ -743,6 +749,7 @@
 				000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
+				00DAF18D18D511AA00024680 /* col.m in Sources */,
 				008F768818D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
@@ -773,6 +780,7 @@
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
 				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
+				00DAF18E18D511AA00024680 /* col.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
 				005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */,
@@ -929,6 +937,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -956,6 +965,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

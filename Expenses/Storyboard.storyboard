@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="RKD-Sr-X5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="sxs-pF-qCy">
     <dependencies>
         <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="6kw-oP-SeL">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="sxs-pF-qCy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="17O-zR-u6Y">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.25089295359945918" green="0.38418765943877553" blue="0.18464766373200517" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hVc-YE-t2T" kind="relationship" relationship="rootViewController" id="3iw-O5-sDX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7H-is-j01" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1285" y="316"/>
+        </scene>
         <!--Yearly Expenses Summary View Controller - Yearly-->
         <scene sceneID="4Jy-9v-7CR">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="hVc-YE-t2T" customClass="BSYearlyExpensesSummaryViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="xt9-c7-2OQ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gho-Lu-RRC">
                             <size key="itemSize" width="320" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -21,7 +37,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="lLH-mP-rIv" customClass="BSBaseExpenseCell">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -60,7 +76,6 @@
                             <outlet property="delegate" destination="hVc-YE-t2T" id="Bmg-ae-h96"/>
                         </connections>
                     </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Yearly" id="E9c-MZ-pgU">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="V6p-GB-JSl">
                             <connections>
@@ -68,7 +83,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="Bei-CJ-kYp" kind="modal" identifier="DisplayGraphView" modalTransitionStyle="crossDissolve" id="6KH-yw-qfw"/>
                     </connections>
@@ -97,35 +111,16 @@
             <point key="canvasLocation" x="223" y="1440"/>
         </scene>
         <!--Navigation Controller View Controller-->
-        <scene sceneID="jGp-gG-Toe">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="RKD-Sr-X5N" customClass="BSNavigationControllerViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="bi5-cH-rs7">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.42990672831632648" green="0.33516676031081172" blue="0.17967724908336308" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.045208824539999998" green="0.1316964286" blue="0.041990750340000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="hVc-YE-t2T" kind="relationship" relationship="rootViewController" id="iR8-l7-cOb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5BS-4b-ZU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1170" y="309"/>
-        </scene>
-        <!--Navigation Controller View Controller-->
         <scene sceneID="bzo-ra-cEN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="BhN-NC-sp3" customClass="BSNavigationControllerViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="jif-QZ-EU3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="A74-pd-I4L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A74-pd-I4L">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.066599577480000005" green="0.19098772319999999" blue="0.061004685269999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.045208824539999998" green="0.1316964286" blue="0.041990750340000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.25089295360000002" green="0.38418765939999999" blue="0.18464766369999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="eQB-7T-Ccd" kind="relationship" relationship="rootViewController" id="KQb-LC-xMW"/>
@@ -343,18 +338,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Entry Details" id="MFF-qo-xuJ">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="mi5-Xp-2GV">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="done" id="mi5-Xp-2GV">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="eQB-7T-Ccd" id="h9Q-3E-GxW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Fiy-Of-mfR">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="Fiy-Of-mfR">
                             <connections>
                                 <action selector="addEntryPressed:" destination="eQB-7T-Ccd" id="mze-h1-eAa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIG-ED-6H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="D3D-Ct-0eF">
@@ -393,7 +387,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="atE-XM-VWQ" customClass="BSMonthlyExpensesSummaryViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="40P-kb-ihY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xve-f6-Rge" customClass="BSMonthlyGridLayout">
@@ -404,7 +398,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="rNc-kt-TZR" customClass="BSMonthlySummaryEntryCell">
-                                <rect key="frame" x="0.0" y="31" width="107" height="94"/>
+                                <rect key="frame" x="0.0" y="95" width="107" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="107" height="94"/>
@@ -436,7 +430,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BSDailyEntryHeaderView" id="HZw-wX-O8N" customClass="BSDailyEntryHeaderView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="31"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c4V-ic-cPZ">
@@ -456,7 +450,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="atE-XM-VWQ" id="T9z-tE-Thc"/>
                         </connections>
                     </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Monthly" id="rcJ-1z-p1r">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="BQL-ih-tMP">
                             <connections>
@@ -464,7 +457,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="Bei-CJ-kYp" kind="modal" identifier="DisplayGraphView" modalTransitionStyle="crossDissolve" id="Omz-ET-bsl"/>
                     </connections>
@@ -478,7 +470,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="DkI-cO-Haw" customClass="BSDailyExpensesSummaryViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="E3n-KP-lBX">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YJE-sy-P8R" customClass="BSDailyLayout">
@@ -489,7 +481,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="p6f-jD-uJ6" customClass="BSDailySummanryEntryCell">
-                                <rect key="frame" x="0.0" y="31" width="53" height="50"/>
+                                <rect key="frame" x="0.0" y="95" width="53" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="53" height="50"/>
@@ -522,7 +514,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BSDailyEntryHeaderView" id="FWe-no-OMf" customClass="BSDailyEntryHeaderView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="31"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F5l-a0-8pw">
@@ -542,7 +534,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="DkI-cO-Haw" id="yzj-8Q-6Iz"/>
                         </connections>
                     </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Daily" id="2lx-ln-xLD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="s4v-ck-FmL">
                             <connections>
@@ -550,8 +541,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="Bei-CJ-kYp" kind="modal" identifier="DisplayGraphView" modalTransitionStyle="crossDissolve" id="ppL-ZX-bTD"/>
                     </connections>
@@ -565,7 +554,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="qk7-um-Qjr" customClass="BSIndividualExpensesSummaryViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="RmY-Ij-wtW">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JiN-D0-Js2">
@@ -576,7 +565,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="CqC-Bq-eKo" customClass="BSSingleEntryCell">
-                                <rect key="frame" x="0.0" y="20" width="320" height="41"/>
+                                <rect key="frame" x="0.0" y="84" width="320" height="41"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
@@ -614,7 +603,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BSDailyEntryHeaderView" id="rRd-C4-tHP" customClass="BSDailyEntryHeaderView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HVh-vu-QTF">
@@ -635,7 +624,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="qk7-um-Qjr" id="coh-eN-nU6"/>
                         </connections>
                     </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Entries" id="w90-CH-C5I">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wDg-iD-4qN">
                             <connections>
@@ -643,7 +631,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEj-Bm-Jjz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -656,7 +643,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6KH-yw-qfw"/>
-        <segue reference="gIX-jl-Seq"/>
+        <segue reference="p7z-Vm-w3k"/>
+        <segue reference="Omz-ET-bsl"/>
     </inferredMetricsTieBreakers>
 </document>

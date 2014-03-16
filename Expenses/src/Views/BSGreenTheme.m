@@ -64,4 +64,40 @@
     return [UIColor colorWithRed:86.0/255.0 green:130.0/255.0 blue:61.0/255.0 alpha:0.2];
 }
 
+- (UIImage *)stretchableImageForNavBarDecisionButtonsWithStrokeColor:(UIColor *)strokeColor fillColor:(UIColor *)fillColor
+{
+    CGSize newSize = CGSizeMake(11.0f, 30.0f);
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
+    CGContextRef imageContext = UIGraphicsGetCurrentContext();
+    
+    CGContextSetShouldAntialias(imageContext, YES);
+    
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0.5, 0.5, newSize.width-1, newSize.height-1) cornerRadius:5];
+    
+    UIBezierPath *fillPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0.5, 0.5, newSize.width-1, newSize.height-1) cornerRadius:5];
+
+    
+    CGContextSetStrokeColorWithColor(imageContext, strokeColor.CGColor);
+    CGContextSetFillColorWithColor(imageContext, fillColor.CGColor);
+
+    CGContextSetLineWidth(imageContext, 1.0);
+    
+    if (fillColor) {
+        CGContextAddPath(imageContext, fillPath.CGPath);
+        CGContextFillPath(imageContext);
+    }
+
+    CGContextAddPath(imageContext, borderPath.CGPath);
+    CGContextStrokePath(imageContext);
+
+    
+    
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+}
+
 @end

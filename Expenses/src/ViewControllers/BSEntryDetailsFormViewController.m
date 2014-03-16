@@ -9,8 +9,27 @@
 #import "BSEntryDetailsFormViewController.h"
 #import "BSCoreDataController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BSAppDelegate.h"
+#import "BSThemeManager.h"
 
 @implementation BSEntryDetailsFormViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    // Nav Bar buttons
+    BSThemeManager *manager =  ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
+    UIImage *imageGreen = [manager.theme stretchableImageForNavBarDecisionButtonsWithStrokeColor:[manager.theme greenColor] fillColor:nil];
+    UIImage *imageRed = [manager.theme stretchableImageForNavBarDecisionButtonsWithStrokeColor:[manager.theme redColor] fillColor:nil];
+    
+    UIBarButtonItem *doneButton = self.navigationItem.rightBarButtonItem;
+    [doneButton setBackgroundImage:imageGreen forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    UIBarButtonItem *cancelButton = self.navigationItem.leftBarButtonItem;
+    [cancelButton setBackgroundImage:imageRed forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [cancelButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [manager.theme redColor],  NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+}
 
 - (IBAction) addEntryPressed:(id)sender
 {

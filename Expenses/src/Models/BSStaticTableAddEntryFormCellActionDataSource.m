@@ -101,7 +101,7 @@
     else if ([indexPath isEqual:[self indexPathForCategoryPickerCell]]) { // CATEGORY PICKER
         return [self actionsForEventInCategoryPicker:event indexPath:indexPath];
     }
-    else if ([indexPath isEqual:[self indexPathForCategoryPickerCell]]) { // DELETE
+    else if ([indexPath isEqual:[self indexPathForDeleteCell]]) { // DELETE
         return [self actionsForEventInDelete:event indexPath:indexPath];
     }
     else

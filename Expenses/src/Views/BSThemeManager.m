@@ -52,8 +52,8 @@
     }
     else if ([cell isKindOfClass:[BSStaticTableViewCell class]])
     {
-        ((BSEntryDateCell *)cell).selectedTintColor = [self.theme redColor];
-        ((BSEntryDateCell *)cell).tintColor = [self.theme blueColor];
+        ((BSStaticTableViewCell *)cell).selectedTintColor = [self.theme redColor];
+        ((BSStaticTableViewCell *)cell).tintColor = [self.theme blueColor];
     }
 
 }

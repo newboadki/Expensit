@@ -110,7 +110,7 @@
         }
         else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView && [self.presentedViewController isKindOfClass:[BSGraphViewController class]])
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:NO completion:nil];
             self.isShowingLandscapeView = NO;
         }
     }

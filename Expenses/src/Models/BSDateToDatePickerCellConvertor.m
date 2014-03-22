@@ -26,7 +26,18 @@ static NSDateFormatter *_dateFormatter;
 
 - (NSString *)cellStringValueValueForModelValue:(id)modelValue
 {
-    return [[self dateFormatter] stringFromDate:modelValue];
+    NSDate* date = nil;
+    
+    if (modelValue)
+    {
+        date = modelValue;
+    }
+    else
+    {
+        date = [NSDate date];
+    }
+
+    return [[self dateFormatter] stringFromDate:date];
 }
 
 - (NSDateFormatter *)dateFormatter

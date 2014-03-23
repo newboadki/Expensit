@@ -71,7 +71,7 @@ static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVe
     BOOL success = NO;
     
     // 1. Populate tags entry in the data base
-    NSArray *tags = @[@"Other", @"Food", @"Bills", @"Travel", @"Cloth."];
+    NSArray *tags = @[@"Other", @"Food", @"Bills", @"Travel", @"Clothing", @"Car", @"Drinks", @"Work", @"House", @"Gadgets", @"Gifts"];
     success = [self.coreDataController createTags:tags];
     
     // 2. Set a default tag for all existent entries.

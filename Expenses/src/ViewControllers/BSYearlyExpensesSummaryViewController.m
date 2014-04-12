@@ -22,12 +22,6 @@
 
 @implementation BSYearlyExpensesSummaryViewController
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-
 
 
 #pragma mark - UICollectionViewDataSource
@@ -96,17 +90,6 @@
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
         monthlyExpensesViewController.nameOfSectionToBeShown = self.fetchedResultsController.fetchedObjects[selectedIndexPath.row][@"year"];
     }
-    else if ([[segue identifier] isEqualToString:@"addEntryFromYear"])
-    {
-        UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
-        BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
-        addEntryVC.isEditingEntry = NO;
-        addEntryVC.entryModel = [self.coreDataController newEntry];
-        addEntryVC.cellActionDataSource = cellActionsDataSource;
-        addEntryVC.coreDataController = self.coreDataController;
-        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
-    }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
         NSArray *surplusResults = [self graphSurplusResults];
@@ -127,10 +110,16 @@
 }
 
 
+- (BOOL)shouldScrollToSelectedSection
+{
+    return NO;
+}
+
 
 #pragma mark - BSCoreDataControllerDelegate
 
-- (NSFetchRequest*) fetchRequest {
+- (NSFetchRequest *) fetchRequest
+{
     return [self.coreDataController fetchRequestForYearlySummary];
 }
 

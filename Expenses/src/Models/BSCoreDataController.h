@@ -19,7 +19,7 @@
 @property (weak, nonatomic)   id <BSCoreDataControllerDelegateProtocol> delegate;
 
 - (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
-- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value;
+- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value category:(Tag *)tag;
 - (Entry *) newEntry;
 - (void)discardChanges;
 - (BOOL)saveChanges;
@@ -34,6 +34,10 @@
 - (NSFetchRequest *)fetchRequestForMonthlySummary;
 - (NSFetchRequest *)fetchRequestForDaylySummary;
 - (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
+/*!
+ @discussion category can be either a Tag instance or an NSString instance signifying 'No filter'
+ */
+- (void)modifyfetchRequest:(NSFetchRequest*)request toFilterByCategory:(id)category;
 
 #pragma mark - Graph requests
 - (NSFetchRequest *)graphYearlySurplusFetchRequest;

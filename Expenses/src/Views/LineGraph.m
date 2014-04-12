@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static const CGFloat kGraphLeftMargin = 40.0f;
-static const CGFloat kGraphLeftPadding = 5.0f;
+//static const CGFloat kGraphLeftPadding = 5.0f;
 static const CGFloat kGraphRightMargin = 15.0f;
 static const CGFloat kGraphTopMargin = 20.0f;
 static const CGFloat kGraphBottomMargin = 20.0f;

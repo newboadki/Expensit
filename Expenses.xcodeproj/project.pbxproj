@@ -20,6 +20,10 @@
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
 		000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
+		001ECAA118DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */; };
+		001ECAA218DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */; };
+		001FF01318E2178D004F06DB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */; };
+		001FF01418E2178D004F06DB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */; };
 		002487AD1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
 		002487AE1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
 		0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
@@ -101,6 +105,15 @@
 		00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
 		00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
 		00F9213A17FF769000CACB4D /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 00F9213917FF769000CACB4D /* OCMock */; };
+		00F9B3BB18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */; };
+		00F9B3BC18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */; };
+		00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
+		00F9B3C018E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
+		00F9B3CB18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */; };
+		00F9B3D318EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */; };
+		00F9B3D518F30B21009F626E /* BSDailySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */; };
+		00F9B3D718F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */; };
+		EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,16 +174,20 @@
 		000CDF54183D724100BE6266 /* BSEntryDetailsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsFormViewController.h; sourceTree = "<group>"; };
 		000CDF55183D724100BE6266 /* BSEntryDetailsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsFormViewController.m; sourceTree = "<group>"; };
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
-		000D04E21775BD56002D0AB8 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
-		000D04E31775BD56002D0AB8 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		000D04E21775BD56002D0AB8 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entry.h; path = ../Entry.h; sourceTree = "<group>"; };
+		000D04E31775BD56002D0AB8 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Entry.m; path = ../Entry.m; sourceTree = "<group>"; };
 		000D04E71775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpensesSummaryViewController.h; sourceTree = "<group>"; };
 		000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		000D04F51775D20F002D0AB8 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
-		000D04F61775D20F002D0AB8 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
-		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
-		002487AB1809B403006652DF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		000D04F51775D20F002D0AB8 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCoreDataController.h; path = ../BSCoreDataController.h; sourceTree = "<group>"; };
+		000D04F61775D20F002D0AB8 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSCoreDataController.m; path = ../BSCoreDataController.m; sourceTree = "<group>"; };
+		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCoreDataControllerDelegateProtocol.h; path = ../BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
+		001ECA9F18DDECF200B7D027 /* BSCategoryFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterViewController.h; sourceTree = "<group>"; };
+		001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterViewController.m; sourceTree = "<group>"; };
+		001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		002487AB1809B403006652DF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = ../Tag.h; sourceTree = "<group>"; };
+		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = ../Tag.m; sourceTree = "<group>"; };
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
@@ -258,6 +275,16 @@
 		00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIndividualExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		00F9213917FF769000CACB4D /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OCMock; path = ExpensesTests/OCMock; sourceTree = "<group>"; };
 		00F9213F1807456000CACB4D /* v1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.1.xcdatamodel; sourceTree = "<group>"; };
+		00F9B3B918E76299009F626E /* BSModalSelectorViewTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSModalSelectorViewTransitioningDelegate.h; sourceTree = "<group>"; };
+		00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSModalSelectorViewTransitioningDelegate.m; sourceTree = "<group>"; };
+		00F9B3BD18E76414009F626E /* BSVisualEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVisualEffects.h; sourceTree = "<group>"; };
+		00F9B3BE18E76414009F626E /* BSVisualEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVisualEffects.m; sourceTree = "<group>"; };
+		00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
+		00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
+		00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
+		00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPerEntrySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
+		52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.xcconfig"; path = "Pods/Pods-ExpensesTests.xcconfig"; sourceTree = "<group>"; };
+		FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpensesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +313,7 @@
 				007B826E177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
+				EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,13 +327,6 @@
 				00BD789D182FF31C0004A808 /* StaticTableViewCellConvertors */,
 				0022AD47180FA26B006C736C /* CoreData */,
 				005F763C1809915B0062DAF8 /* Controllers */,
-				000D04E21775BD56002D0AB8 /* Entry.h */,
-				000D04E31775BD56002D0AB8 /* Entry.m */,
-				002487AB1809B403006652DF /* Tag.h */,
-				002487AC1809B403006652DF /* Tag.m */,
-				000D04F51775D20F002D0AB8 /* BSCoreDataController.h */,
-				000D04F61775D20F002D0AB8 /* BSCoreDataController.m */,
-				000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */,
 				00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */,
 				00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */,
 			);
@@ -316,6 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				000D04E71775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.h */,
+				001ECA9F18DDECF200B7D027 /* BSCategoryFilterViewController.h */,
+				001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */,
+				00F9B3B918E76299009F626E /* BSModalSelectorViewTransitioningDelegate.h */,
+				00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */,
 				000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */,
 				00F814491775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.h */,
 				00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */,
@@ -332,6 +357,8 @@
 				008C36AA17988E7200AFD340 /* BSBaseExpensesSummaryViewController+Protected.h */,
 				000CDF54183D724100BE6266 /* BSEntryDetailsFormViewController.h */,
 				000CDF55183D724100BE6266 /* BSEntryDetailsFormViewController.m */,
+				00F9B3BD18E76414009F626E /* BSVisualEffects.h */,
+				00F9B3BE18E76414009F626E /* BSVisualEffects.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -339,6 +366,10 @@
 		0022AD47180FA26B006C736C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				000D04E21775BD56002D0AB8 /* Entry.h */,
+				000D04E31775BD56002D0AB8 /* Entry.m */,
+				002487AB1809B403006652DF /* Tag.h */,
+				002487AC1809B403006652DF /* Tag.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -362,6 +393,9 @@
 		005F763C1809915B0062DAF8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				000D04F51775D20F002D0AB8 /* BSCoreDataController.h */,
+				000D04F61775D20F002D0AB8 /* BSCoreDataController.m */,
+				000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */,
 				005F7641180991740062DAF8 /* BSCoreDataFixturesManager.h */,
 				005F7642180991740062DAF8 /* BSCoreDataFixturesManager.m */,
 			);
@@ -376,6 +410,7 @@
 				007B8271177476780052FE84 /* ExpensesTests */,
 				007B824B177476780052FE84 /* Frameworks */,
 				007B824A177476780052FE84 /* Products */,
+				52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -400,6 +435,7 @@
 				007B8250177476780052FE84 /* UIKit.framework */,
 				007B8252177476780052FE84 /* CoreData.framework */,
 				007B826A177476780052FE84 /* XCTest.framework */,
+				FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -436,6 +472,10 @@
 				007B8272177476780052FE84 /* Supporting Files */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				000481E91780C67A00E7F401 /* BSDailyExpensesSummaryTests.m */,
+				00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */,
+				00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */,
+				00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */,
+				00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */,
 				0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */,
 				000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */,
 			);
@@ -474,6 +514,8 @@
 		007B83151775A6330052FE84 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */,
+				001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */,
 				0022AD50180FA651006C736C /* Protocols */,
 				00BEAFC517775D6C00A59EE2 /* Views */,
 				000D04E61775C864002D0AB8 /* ViewControllers */,
@@ -586,9 +628,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 007B827E177476780052FE84 /* Build configuration list for PBXNativeTarget "ExpensesTests" */;
 			buildPhases = (
+				A55F1F04CA2046A291CDA402 /* Check Pods Manifest.lock */,
 				007B8265177476780052FE84 /* Sources */,
 				007B8266177476780052FE84 /* Frameworks */,
 				007B8267177476780052FE84 /* Resources */,
+				414BC91745FC41D2BC248335 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -720,15 +764,50 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		414BC91745FC41D2BC248335 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ExpensesTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A55F1F04CA2046A291CDA402 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		007B8245177476780052FE84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				002487AD1809B403006652DF /* Tag.m in Sources */,
+				00F9B3BB18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
 				000D04E41775BD56002D0AB8 /* Entry.m in Sources */,
 				009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				008F767C18D32EF50059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
+				00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */,
 				005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */,
 				00BD78A8183195F50004A808 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
@@ -747,6 +826,7 @@
 				009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
 				00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
+				001FF01318E2178D004F06DB /* UIImage+ImageEffects.m in Sources */,
 				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
@@ -759,6 +839,7 @@
 				009C9EEC17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
 				005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */,
 				00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */,
+				001ECAA118DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */,
 				000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,40 +851,48 @@
 				008F768918D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
+				00F9B3CB18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m in Sources */,
 				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
 				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
 				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
 				009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
+				00F9B3D518F30B21009F626E /* BSDailySummaryViewControllerSpecs.m in Sources */,
 				005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */,
 				005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */,
 				00BD78A5182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
 				00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
 				00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
+				00F9B3D718F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */,
 				00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */,
+				001FF01418E2178D004F06DB /* UIImage+ImageEffects.m in Sources */,
 				005F7644180991740062DAF8 /* BSCoreDataFixturesManager.m in Sources */,
 				009C9EE417B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */,
 				009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */,
+				001ECAA218DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */,
 				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
 				00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */,
 				008F767B18D32EF20059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 				00BD78A9183195F50004A808 /* BSAmountToTextControlCellConvertor.m in Sources */,
+				00F9B3D318EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m in Sources */,
 				00BD78A1182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
 				000481EA1780C67A00E7F401 /* BSDailyExpensesSummaryTests.m in Sources */,
 				00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
 				00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */,
 				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
+				00F9B3C018E76414009F626E /* BSVisualEffects.m in Sources */,
 				000CDF57183D724100BE6266 /* BSEntryDetailsFormViewController.m in Sources */,
 				002487AE1809B403006652DF /* Tag.m in Sources */,
 				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
 				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */,
+				00F9B3BC18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +1053,7 @@
 		};
 		007B827F177476780052FE84 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1005,6 +1095,7 @@
 		};
 		007B8280177476780052FE84 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (

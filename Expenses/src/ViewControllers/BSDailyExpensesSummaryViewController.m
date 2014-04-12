@@ -84,12 +84,6 @@
 }
 
 
-- (BOOL) shouldScrollToSelectedSection
-{
-    return YES;
-}
-
-
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
@@ -119,18 +113,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"addEntryFromDay"])
-    {
-        UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
-        BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
-        addEntryVC.entryModel = [self.coreDataController newEntry];
-        addEntryVC.isEditingEntry = NO;
-        addEntryVC.cellActionDataSource = cellActionsDataSource;
-        addEntryVC.coreDataController = self.coreDataController;
-        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
-    }
-    else if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
+    if ([[segue identifier] isEqualToString:@"showEntriesForDay"])
     {
         BSBaseExpensesSummaryViewController *dailyExpensesViewController = (BSBaseExpensesSummaryViewController*)segue.destinationViewController;
         dailyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
@@ -161,11 +144,12 @@
 }
 
 
-
 - (NSString *) reuseIdentifierForHeader
 {
     return @"BSDailyEntryHeaderView";
 }
+
+
 
 #pragma mark - BSCoreDataControllerDelegate
 

@@ -50,7 +50,7 @@
 }
 
 
-- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value
+- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value category:(Tag *)tag
 {
     NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:self.coreDataHelper.managedObjectContext];
@@ -70,6 +70,7 @@
     
     NSDecimalNumberHandler *roundingHandler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundUp scale:2 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
     newManagedObject.value = [[NSDecimalNumber decimalNumberWithString:value] decimalNumberByRoundingAccordingToBehavior:roundingHandler];
+    newManagedObject.tag = tag;
     
     // Save the context.
     NSError *error = nil;
@@ -325,6 +326,20 @@
     NSFetchRequest *fetchRequest = [self baseFetchRequest];
     [self configureForIndividualEntriesFetchRequest:fetchRequest];
     return fetchRequest;
+}
+
+
+- (void)modifyfetchRequest:(NSFetchRequest*)request toFilterByCategory:(id)category
+{
+    NSPredicate *predicate = nil;
+    
+    if (category)
+    {
+        Tag *tag = (Tag *)category;
+        predicate = [NSPredicate predicateWithFormat:@"tag.name LIKE %@", [tag name]];
+    }
+
+    [request setPredicate:predicate];
 }
 
 

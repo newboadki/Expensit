@@ -24,15 +24,6 @@
 
 
 
-#pragma mark - View life cycle
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];    
-}
-
-
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -110,17 +101,6 @@
         NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,sectionInfo.name]; // there are 12 months (0-11) that's why we add 1. The section name is the year
         dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
     }
-    else if ([[segue identifier] isEqualToString:@"addEntryFromMonth"])
-    {
-        UINavigationController *navController =(UINavigationController*)segue.destinationViewController;
-        BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
-        BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
-        addEntryVC.entryModel = [self.coreDataController newEntry];
-        addEntryVC.isEditingEntry = NO;
-        addEntryVC.coreDataController = self.coreDataController;
-        addEntryVC.cellActionDataSource = cellActionsDataSource;
-        addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
-    }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {
         NSArray *surplusResults = [self graphSurplusResults];
@@ -132,11 +112,6 @@
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
         [graphViewController setXValues:@[@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"]];
     }
-}
-
-- (BOOL) shouldScrollToSelectedSection
-{
-    return YES;
 }
 
 

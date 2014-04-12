@@ -292,7 +292,7 @@
 {
     BSStaticTableViewCellInfo *deleteCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailSingleButtonCell class] propertyName:nil displayPropertyName:nil shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:nil extraParams:nil];
     
-    return @[[[BSStaticTableViewSectionInfo alloc] initWithSection:1 cellsInfo:@[deleteCellInfo]]];
+    return @[[[BSStaticTableViewSectionInfo alloc] initWithSection:1 cellsInfo:[NSMutableArray arrayWithArray:@[deleteCellInfo]]]];
     
     
 }

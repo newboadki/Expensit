@@ -13,11 +13,18 @@
 #import "BSGraphViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
 #import "BSCoreDataController.h"
+#import "BSEntryDetailsFormViewController.h"
+#import "BSCategoryFilterViewController.h"
+#import "BSNavigationControllerViewController.h"
+#import "BSVisualEffects.h"
+#import "BSModalSelectorViewTransitioningDelegate.h"
 
 
+static Tag *tagBeingFilterBy = nil;
 
 @interface BSBaseExpensesSummaryViewController ()
-@property (nonatomic) BOOL isShowingLandscapeView;
+@property (nonatomic, assign) BOOL isShowingLandscapeView;
+@property (nonatomic, strong) BSModalSelectorViewTransitioningDelegate *categoryFilterViewTransitioningDelegate;
 @end
 
 @implementation BSBaseExpensesSummaryViewController
@@ -29,12 +36,14 @@
 {
     [super viewDidLoad];
     
+    
+    
     self.firstTimeViewWillAppear = YES;
     
-    // Do any additional setup after loading the view from its nib.
-    
+    // Set up Core Data helpers
     BSAppDelegate *delegate = (BSAppDelegate*)[[UIApplication sharedApplication] delegate];
     self.coreDataStackHelper = delegate.coreDataHelper;
+    self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper]; // CoreData controller (should be a singleton)
     
     // Prepare for Landscape
     self.isShowingLandscapeView = NO;
@@ -44,24 +53,30 @@
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
 
-    // TODO: differenciate between ios7 and 6
-    // self.edgesForExtendedLayout = UIRectEdgeAll;
+    // NavBar buttons
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(filterButtonTapped)];
+    filterButton.target = self;
+    filterButton.action = @selector(filterButtonTapped);
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
+    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
     
-    // CoreData controller (should be a singleton)
-    self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
-
-
+    // Category filter view controller transitioning delegate
+    self.categoryFilterViewTransitioningDelegate = [[BSModalSelectorViewTransitioningDelegate alloc] init];
 }
 
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Perform Fetch
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
     
-    
+    // Apply filter before calculating section to go to
+    [self filterChangedToCategory:tagBeingFilterBy];
 
+    // Scroll to selected section
     if (self.shouldScrollToSelectedSection && self.firstTimeViewWillAppear)
     {
         self.firstTimeViewWillAppear = NO;
@@ -88,12 +103,39 @@
 
 
 
-- (void)didReceiveMemoryWarning
+#pragma mark - NavBar button actions
+
+- (void)filterButtonTapped
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    BSCategoryFilterViewController *categoryFilterViewController = (BSCategoryFilterViewController *)[storyBoard instantiateViewControllerWithIdentifier:@"categoryFilterViewController"];
+    
+    categoryFilterViewController.transitioningDelegate = self.categoryFilterViewTransitioningDelegate;
+    categoryFilterViewController.modalPresentationStyle = UIModalPresentationCustom;
+    categoryFilterViewController.delegate = self;
+    categoryFilterViewController.selectedTag = tagBeingFilterBy;
+    categoryFilterViewController.categories = [self.coreDataController allTags];
+    
+    [self presentViewController:categoryFilterViewController animated:YES completion:nil];
 }
 
+
+- (void)addButtonTapped
+{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    UINavigationController *navController = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"addEntryNavigationController"];
+    
+    
+    BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:self.coreDataController isEditing:NO];
+    BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
+    addEntryVC.isEditingEntry = NO;
+    addEntryVC.entryModel = [self.coreDataController newEntry];
+    addEntryVC.cellActionDataSource = cellActionsDataSource;
+    addEntryVC.coreDataController = self.coreDataController;
+    addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
+    
+    [self presentViewController:navController animated:YES completion:nil];
+}
 
 
 
@@ -196,9 +238,16 @@
     return sectionInfo.name;
 }
 
+
 - (NSString*) reuseIdentifierForHeader
 {
     @throw @"Implement in subclasses";
+}
+
+
+- (BOOL) shouldScrollToSelectedSection
+{
+    return YES;
 }
 
 
@@ -273,4 +322,47 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
+
+
+#pragma mark - BSCategoryFilterDelegate
+
+- (void)filterChangedToCategory:(Tag *)tag
+{
+    // So we remember when bringing the modal view back again
+    // The argument is already a Tag* reference or nil
+    tagBeingFilterBy = tag;
+    
+    // Update the request so filter by category
+    NSFetchRequest *request = self.fetchedResultsController.fetchRequest;
+    [self.coreDataController modifyfetchRequest:request toFilterByCategory:tag];
+    
+    // Re-fetch the results of the query
+    [self.fetchedResultsController performFetch:nil];
+    [self.collectionView reloadData];
+    
+    // Refresh blurry background after collectionview reloaded
+    [self performSelector:@selector(blurrContentViewBackground) withObject:nil afterDelay:0.1];
+}
+
+
+- (void)blurrContentViewBackground
+{
+    // Do your stuff here. This will method will get called once your collection view get loaded.
+   UIImage *image = [BSVisualEffects blurredViewImageFromView:self.view];
+
+    UIViewController *presentedController = self.presentedViewController;
+    UIView *contentView = [presentedController.view viewWithTag:100];
+    
+    UIImageView *imageView = (UIImageView *)[contentView viewWithTag:400];
+    imageView.image = image;
+
+    UIView *blurrContainer = [contentView viewWithTag:777];
+    CGRect  rect = blurrContainer.bounds;
+    rect.origin.x += 0;
+    rect.origin.y += 0;
+    blurrContainer.bounds = rect;
+
+}
+
 @end
+

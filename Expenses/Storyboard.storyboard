@@ -76,20 +76,89 @@
                             <outlet property="delegate" destination="hVc-YE-t2T" id="Bmg-ae-h96"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="n1Y-6M-y6p"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Yearly" id="E9c-MZ-pgU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="V6p-GB-JSl">
-                            <connections>
-                                <segue destination="BhN-NC-sp3" kind="modal" identifier="addEntryFromYear" id="gIX-jl-Seq"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qpg-Up-ph4"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="Bei-CJ-kYp" kind="modal" identifier="DisplayGraphView" modalTransitionStyle="crossDissolve" animates="NO" id="6KH-yw-qfw"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rQM-EW-2ig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-697" y="309"/>
+            <point key="canvasLocation" x="-881" y="309"/>
+        </scene>
+        <!--Category Filter View Controller-->
+        <scene sceneID="ECD-0O-GIi">
+            <objects>
+                <viewController storyboardIdentifier="categoryFilterViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="K7J-aq-faw" customClass="BSCategoryFilterViewController" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="RE5-GR-y5L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" tag="100" contentMode="scaleToFill" id="kJb-Uf-fkw" userLabel="content">
+                                <rect key="frame" x="30" y="-1" width="260" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" tag="777" contentMode="scaleToFill" id="k42-ua-ld1" userLabel="background container">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="178"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" tag="400" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SKp-vl-06h" userLabel="blurred image">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select category to filter by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aD8-n9-tbj">
+                                        <rect key="frame" x="22" y="12" width="218" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.25089295360000002" green="0.38418765939999999" blue="0.18464766369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hob-NB-XMZ">
+                                        <rect key="frame" x="21" y="27" width="218" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.92631935586734693" green="0.48990513714905048" blue="0.043069375808525497" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" id="wJB-IW-C6c">
+                                        <rect key="frame" x="2" y="29" width="258" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="K7J-aq-faw" id="nTX-BS-Fgf"/>
+                                            <outlet property="delegate" destination="K7J-aq-faw" id="U04-oE-Dcl"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                            </view>
+                            <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="e0q-hs-6wk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="215"/>
+                    <connections>
+                        <outlet property="pickerView" destination="wJB-IW-C6c" id="Ru0-Ek-cP9"/>
+                        <outlet property="statusLabel" destination="hob-NB-XMZ" id="whF-Zv-mwC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWR-5p-tfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-511" y="981"/>
         </scene>
         <!--Graph View Controller-->
         <scene sceneID="v54-b8-aWj">
@@ -113,7 +182,7 @@
         <!--Navigation Controller View Controller-->
         <scene sceneID="bzo-ra-cEN">
             <objects>
-                <navigationController definesPresentationContext="YES" id="BhN-NC-sp3" customClass="BSNavigationControllerViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addEntryNavigationController" definesPresentationContext="YES" id="BhN-NC-sp3" customClass="BSNavigationControllerViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="jif-QZ-EU3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A74-pd-I4L">
                         <autoresizingMask key="autoresizingMask"/>

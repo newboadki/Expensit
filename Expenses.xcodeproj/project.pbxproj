@@ -27,6 +27,8 @@
 		002487AD1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
 		002487AE1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
 		0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
+		0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
+		0053A7D618F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
 		005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
 		005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
 		005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F3178B5A9A00DC1800 /* LineGraph.m */; };
@@ -191,6 +193,8 @@
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
+		0053A7D318F9E43600D63918 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
+		0053A7D418F9E43600D63918 /* BSYearlyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyLayout.m; sourceTree = "<group>"; };
 		005DF5EA178B58A500DC1800 /* BSGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGraphView.h; sourceTree = "<group>"; };
 		005DF5EB178B58A500DC1800 /* BSGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphView.m; sourceTree = "<group>"; };
 		005DF5F2178B5A9A00DC1800 /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
@@ -390,6 +394,14 @@
 			name = CellActionDataSources;
 			sourceTree = "<group>";
 		};
+		0053A7D218F9D59700D63918 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		005F763C1809915B0062DAF8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +526,7 @@
 		007B83151775A6330052FE84 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				0053A7D218F9D59700D63918 /* iPad */,
 				001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */,
 				001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */,
 				0022AD50180FA651006C736C /* Protocols */,
@@ -597,6 +610,8 @@
 				00D7E0F7178F40A100474A30 /* BSDailyLayout.h */,
 				00D7E0F8178F40A100474A30 /* BSDailyLayout.m */,
 				00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */,
+				0053A7D318F9E43600D63918 /* BSYearlyLayout.h */,
+				0053A7D418F9E43600D63918 /* BSYearlyLayout.m */,
 				00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */,
 				00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */,
 				00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */,
@@ -814,6 +829,7 @@
 				00BD78A0182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
 				005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
 				009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
+				0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */,
 				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
 				00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */,
@@ -848,6 +864,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0053A7D618F9E43600D63918 /* BSYearlyLayout.m in Sources */,
 				008F768918D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
@@ -1011,7 +1028,7 @@
 					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
@@ -1019,6 +1036,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1039,7 +1057,7 @@
 					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
@@ -1047,6 +1065,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

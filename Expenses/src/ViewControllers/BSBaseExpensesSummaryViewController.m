@@ -54,11 +54,11 @@ static Tag *tagBeingFilterBy = nil;
                                                object:nil];
 
     // NavBar buttons
-    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(filterButtonTapped)];
+    /*UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(filterButtonTapped)];
     filterButton.target = self;
-    filterButton.action = @selector(filterButtonTapped);
+    filterButton.action = @selector(filterButtonTapped);*/
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
-    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
+    self.navigationItem.rightBarButtonItems = @[addButton/*, filterButton*/];
     
     // Category filter view controller transitioning delegate
     self.categoryFilterViewTransitioningDelegate = [[BSModalSelectorViewTransitioningDelegate alloc] init];

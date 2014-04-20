@@ -43,13 +43,11 @@
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIImageView *shadowImageView = (UIImageView*)[toViewController.view viewWithTag:200];
-    shadowImageView.image =  [[UIImage imageNamed:@"shadow.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    
+    shadowImageView.image =  [[UIImage imageNamed:@"shadow.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];    
     
     if (self.isSetupAnimation)
     {
-        toViewController.view.frame = CGRectMake(0, 64, 320, 215);
-        
+        toViewController.view.frame = CGRectMake(0, 64, fromViewController.view.frame.size.width, 215);
         UIView *contentView = [toViewController.view viewWithTag:100];
         CGRect contentStartFrame = contentView.frame;
         contentStartFrame.origin.y -= contentStartFrame.size.height;

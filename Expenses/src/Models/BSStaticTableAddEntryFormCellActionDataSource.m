@@ -150,9 +150,9 @@
             [si.cellClassesInfo insertObject:datePickerCellInfo atIndex:3];
             
             // Create the actions
-            BSStaticTableViewSelectRowAction *selectRowAction = [[BSStaticTableViewSelectRowAction alloc] initWithIndexPath:[NSIndexPath indexPathForRow:2 inSection:indexPath.section]];
+            BSStaticTableViewSelectRowAction *selectRowAction = [[BSStaticTableViewSelectRowAction alloc] initWithIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:indexPath.section]]];
             
-            BSStaticTableViewInsertRowAction *insertRowAction = [[BSStaticTableViewInsertRowAction alloc] initWithIndexPath:[NSIndexPath indexPathForRow:3 inSection:indexPath.section]];
+            BSStaticTableViewInsertRowAction *insertRowAction = [[BSStaticTableViewInsertRowAction alloc] initWithIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:indexPath.section]]];
             
             return @[selectRowAction, insertRowAction];
 
@@ -165,9 +165,9 @@
             [si.cellClassesInfo removeObjectAtIndex:3];
             
             // Create the actions
-            BSStaticTableViewDeselectRowAction *deselectRowAction = [[BSStaticTableViewDeselectRowAction alloc] initWithIndexPath:[NSIndexPath indexPathForRow:2 inSection:indexPath.section]];
+            BSStaticTableViewDeselectRowAction *deselectRowAction = [[BSStaticTableViewDeselectRowAction alloc] initWithIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:indexPath.section]]];
             
-            BSStaticTableViewRemoveRowAction *removeRowAction = [[BSStaticTableViewRemoveRowAction alloc] initWithIndexPath:[NSIndexPath indexPathForRow:3 inSection:indexPath.section]];
+            BSStaticTableViewRemoveRowAction *removeRowAction = [[BSStaticTableViewRemoveRowAction alloc] initWithIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:indexPath.section]]];
             
             return @[deselectRowAction, removeRowAction];
         }
@@ -181,7 +181,7 @@
 
 - (NSArray *)actionsForEventInDatePicker:(BSStaticTableViewCellAbstractEvent *)event indexPath:(NSIndexPath *)indexPath
 {
-    return @[[[BSStaticTableViewReloadCellFromModel alloc] initWithIndexPath:[self indexPathForDateCell]]];
+    return @[[[BSStaticTableViewReloadCellFromModel alloc] initWithIndexPaths:@[[self indexPathForDateCell]]]];
 }
 
 
@@ -205,9 +205,9 @@
             [si.cellClassesInfo insertObject:categoryPickerCellInfo atIndex:[self indexPathForCategoryPickerCell].row];
             
             // Create the actions
-            BSStaticTableViewSelectRowAction *selectRowAction = [[BSStaticTableViewSelectRowAction alloc] initWithIndexPath:[self indexPathForCategoryCell]];
+            BSStaticTableViewSelectRowAction *selectRowAction = [[BSStaticTableViewSelectRowAction alloc] initWithIndexPaths:@[[self indexPathForCategoryCell]]];
             
-            BSStaticTableViewInsertRowAction *insertRowAction = [[BSStaticTableViewInsertRowAction alloc] initWithIndexPath:[NSIndexPath indexPathForRow:[self indexPathForCategoryPickerCell].row inSection:indexPath.section]];
+            BSStaticTableViewInsertRowAction *insertRowAction = [[BSStaticTableViewInsertRowAction alloc] initWithIndexPaths:@[[NSIndexPath indexPathForRow:[self indexPathForCategoryPickerCell].row inSection:indexPath.section]]];
             
             return @[selectRowAction, insertRowAction];
             
@@ -220,9 +220,9 @@
             [si.cellClassesInfo removeObjectAtIndex:[self indexPathForCategoryPickerCell].row];
             
             // Create the actions
-            BSStaticTableViewDeselectRowAction *deselectRowAction = [[BSStaticTableViewDeselectRowAction alloc] initWithIndexPath:[self indexPathForCategoryCell]];
+            BSStaticTableViewDeselectRowAction *deselectRowAction = [[BSStaticTableViewDeselectRowAction alloc] initWithIndexPaths:@[[self indexPathForCategoryCell]]];
             
-            BSStaticTableViewRemoveRowAction *removeRowAction = [[BSStaticTableViewRemoveRowAction alloc] initWithIndexPath:[self indexPathForCategoryPickerCell]];
+            BSStaticTableViewRemoveRowAction *removeRowAction = [[BSStaticTableViewRemoveRowAction alloc] initWithIndexPaths:@[[self indexPathForCategoryPickerCell]]];
             
             self.showingCategoryPicker = NO;
             return @[deselectRowAction, removeRowAction];
@@ -238,7 +238,7 @@
 - (NSArray *)actionsForEventInCategoryPicker:(BSStaticTableViewCellAbstractEvent *)event indexPath:(NSIndexPath *)indexPath
 {
         
-    return @[[[BSStaticTableViewReloadCellFromModel alloc] initWithIndexPath:[self indexPathForCategoryCell]]];
+    return @[[[BSStaticTableViewReloadCellFromModel alloc] initWithIndexPaths:@[[self indexPathForCategoryCell]]]];
 }
 
 

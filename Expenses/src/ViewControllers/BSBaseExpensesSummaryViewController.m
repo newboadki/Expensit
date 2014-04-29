@@ -53,10 +53,11 @@ static Tag *tagBeingFilterBy = nil;
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
 
+    
+
+    
     // NavBar buttons
-    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(filterButtonTapped)];
-    filterButton.target = self;
-    filterButton.action = @selector(filterButtonTapped);
+    UIBarButtonItem *filterButton = [self buttonForCategory:nil];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
     self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
     
@@ -331,6 +332,11 @@ static Tag *tagBeingFilterBy = nil;
     // So we remember when bringing the modal view back again
     // The argument is already a Tag* reference or nil
     tagBeingFilterBy = tag;
+ 
+    // Change button
+    UIBarButtonItem *filterButton = [self buttonForCategory:tag];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
+    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
     
     // Update the request so filter by category
     NSFetchRequest *request = self.fetchedResultsController.fetchRequest;
@@ -361,8 +367,74 @@ static Tag *tagBeingFilterBy = nil;
     rect.origin.x += 0;
     rect.origin.y += 0;
     blurrContainer.bounds = rect;
-
 }
+
+
+
+#pragma mark - Filter icons
+
+- (UIBarButtonItem *)buttonForCategory:(Tag *)tag {
+
+    UIImage *iconImage = [self imageForCategory:tag];
+    UIButton *carIcon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [carIcon setImage:iconImage forState:UIControlStateNormal];
+    [carIcon setImage:iconImage forState:UIControlStateSelected];
+    [carIcon setImage:iconImage forState:UIControlStateHighlighted];
+    
+    [carIcon addTarget:self
+                action:@selector(filterButtonTapped)
+      forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithCustomView:carIcon];
+
+    return filterButton;
+}
+
+
+- (UIImage *)imageForCategory:(Tag *)tag {
+    
+    if ([tag.name isEqualToString:@"Bills"]) {
+        return [UIImage imageNamed:@"filter_bills.png"];
+    }
+    else if ([tag.name isEqualToString:@"Other"]) {
+        return [UIImage imageNamed:@"filter_gifts.png"];
+    }
+    else if ([tag.name isEqualToString:@"Food"]) {
+        return [UIImage imageNamed:@"filter_food.png"];
+    }
+    else if ([tag.name isEqualToString:@"Car"]) {
+        return [UIImage imageNamed:@"filter_car.png"];
+    }
+    else if ([tag.name isEqualToString:@"Gifts"]) {
+        return [UIImage imageNamed:@"filter_gifts.png"];
+    }
+    else if ([tag.name isEqualToString:@"Gadgets"]) {
+        return [UIImage imageNamed:@"filter_gadgets.png"];
+    }
+    else if ([tag.name isEqualToString:@"Travel"]) {
+        return [UIImage imageNamed:@"filter_travel.png"];
+    }
+    else if ([tag.name isEqualToString:@"House"]) {
+        return [UIImage imageNamed:@"filter_house.png"];
+    }
+    else if ([tag.name isEqualToString:@"Clothing"]) {
+        return [UIImage imageNamed:@"filter_clothing.png"];
+    }
+    else if ([tag.name isEqualToString:@"Drinks"]) {
+        return [UIImage imageNamed:@"filter_drinks.png"];
+    }
+    else if ([tag.name isEqualToString:@"Work"]) {
+        return [UIImage imageNamed:@"filter_work.png"];
+    }
+    else if (!tag){
+        return [UIImage imageNamed:@"filter_all.png"];
+    }
+    else {
+        return nil;
+    }
+}
+
 
 @end
 

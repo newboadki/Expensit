@@ -378,8 +378,6 @@ static Tag *tagBeingFilterBy = nil;
     UIImage *iconImage = [self imageForCategory:tag];
     UIButton *carIcon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [carIcon setImage:iconImage forState:UIControlStateNormal];
-    [carIcon setImage:iconImage forState:UIControlStateSelected];
-    [carIcon setImage:iconImage forState:UIControlStateHighlighted];
     
     [carIcon addTarget:self
                 action:@selector(filterButtonTapped)
@@ -395,40 +393,40 @@ static Tag *tagBeingFilterBy = nil;
 - (UIImage *)imageForCategory:(Tag *)tag {
     
     if ([tag.name isEqualToString:@"Bills"]) {
-        return [UIImage imageNamed:@"filter_bills.png"];
+        return [[UIImage imageNamed:@"filter_bills.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Other"]) {
-        return [UIImage imageNamed:@"filter_gifts.png"];
+        return [[UIImage imageNamed:@"filter_gifts.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Food"]) {
-        return [UIImage imageNamed:@"filter_food.png"];
+        return [[UIImage imageNamed:@"filter_food.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Car"]) {
-        return [UIImage imageNamed:@"filter_car.png"];
+        return [[UIImage imageNamed:@"filter_car.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Gifts"]) {
-        return [UIImage imageNamed:@"filter_gifts.png"];
+        return [[UIImage imageNamed:@"filter_gifts.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Gadgets"]) {
-        return [UIImage imageNamed:@"filter_gadgets.png"];
+        return [[UIImage imageNamed:@"filter_gadgets.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Travel"]) {
-        return [UIImage imageNamed:@"filter_travel.png"];
+        return [[UIImage imageNamed:@"filter_travel.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"House"]) {
-        return [UIImage imageNamed:@"filter_house.png"];
+        return [[UIImage imageNamed:@"filter_house.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Clothing"]) {
-        return [UIImage imageNamed:@"filter_clothing.png"];
+        return [[UIImage imageNamed:@"filter_clothing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Drinks"]) {
-        return [UIImage imageNamed:@"filter_drinks.png"];
+        return [[UIImage imageNamed:@"filter_drinks.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if ([tag.name isEqualToString:@"Work"]) {
-        return [UIImage imageNamed:@"filter_work.png"];
+        return [[UIImage imageNamed:@"filter_work.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else if (!tag){
-        return [UIImage imageNamed:@"filter_all.png"];
+        return [[UIImage imageNamed:@"filter_all.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else {
         return nil;

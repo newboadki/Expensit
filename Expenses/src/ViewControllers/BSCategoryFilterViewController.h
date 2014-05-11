@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Tag.h"
 
+
 @protocol BSCategoryFilterDelegate <NSObject>
 
 /*!
@@ -22,6 +23,8 @@
 
 @property (nonatomic, strong) NSArray *categories;
 
+@property (nonatomic, strong) NSArray *categoryImages;
+
 @property (nonatomic, weak) id <BSCategoryFilterDelegate> delegate;
 
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
@@ -29,5 +32,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 
 @property (nonatomic, strong) id selectedTag;
+
 
 @end

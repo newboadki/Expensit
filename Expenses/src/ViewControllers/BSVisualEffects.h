@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class Tag;
+
 @interface BSVisualEffects : NSObject
 
 + (UIImage *)blurredViewImageFromView:(UIView *)originalView;
+
++ (UIImage *)imageForCategory:(Tag *)tag;
 
 @end

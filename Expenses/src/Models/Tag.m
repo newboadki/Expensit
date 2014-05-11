@@ -13,4 +13,6 @@
 
 @dynamic name;
 
+@dynamic iconImageName;
+
 @end

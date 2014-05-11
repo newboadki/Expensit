@@ -116,6 +116,7 @@ static Tag *tagBeingFilterBy = nil;
     categoryFilterViewController.delegate = self;
     categoryFilterViewController.selectedTag = tagBeingFilterBy;
     categoryFilterViewController.categories = [self.coreDataController allTags];
+    categoryFilterViewController.categoryImages = [self.coreDataController allTagImages];
     
     [self presentViewController:categoryFilterViewController animated:YES completion:nil];
 }
@@ -375,7 +376,7 @@ static Tag *tagBeingFilterBy = nil;
 
 - (UIBarButtonItem *)buttonForCategory:(Tag *)tag {
 
-    UIImage *iconImage = [self imageForCategory:tag];
+    UIImage *iconImage = [self.coreDataController imageForCategory:tag];
     UIButton *carIcon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [carIcon setImage:iconImage forState:UIControlStateNormal];
     
@@ -388,51 +389,6 @@ static Tag *tagBeingFilterBy = nil;
 
     return filterButton;
 }
-
-
-- (UIImage *)imageForCategory:(Tag *)tag {
-    
-    if ([tag.name isEqualToString:@"Bills"]) {
-        return [[UIImage imageNamed:@"filter_bills.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Other"]) {
-        return [[UIImage imageNamed:@"filter_gifts.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Food"]) {
-        return [[UIImage imageNamed:@"filter_food.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Car"]) {
-        return [[UIImage imageNamed:@"filter_car.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Gifts"]) {
-        return [[UIImage imageNamed:@"filter_gifts.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Gadgets"]) {
-        return [[UIImage imageNamed:@"filter_gadgets.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Travel"]) {
-        return [[UIImage imageNamed:@"filter_travel.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"House"]) {
-        return [[UIImage imageNamed:@"filter_house.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Clothing"]) {
-        return [[UIImage imageNamed:@"filter_clothing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Drinks"]) {
-        return [[UIImage imageNamed:@"filter_drinks.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if ([tag.name isEqualToString:@"Work"]) {
-        return [[UIImage imageNamed:@"filter_work.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else if (!tag){
-        return [[UIImage imageNamed:@"filter_all.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    else {
-        return nil;
-    }
-}
-
 
 @end
 

@@ -54,7 +54,12 @@
 - (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error;
 
 #pragma mark - Tags
+
 - (Tag *)tagForName:(NSString *)tagName;
+
+/*! @discussion Ordered by name ASC. */
 - (NSArray *)allTags;
+- (NSArray *)allTagImages;
+- (UIImage *)imageForCategory:(Tag *)tag;
 
 @end

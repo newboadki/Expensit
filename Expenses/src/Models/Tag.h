@@ -14,4 +14,6 @@
 
 @property (nonatomic, retain) NSString * name;
 
+@property (nonatomic, copy) NSString * iconImageName;
+
 @end

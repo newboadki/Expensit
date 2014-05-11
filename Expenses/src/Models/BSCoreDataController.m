@@ -184,10 +184,36 @@
 - (NSArray *)allTags
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
     [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     return [self resultsForRequest:fetchRequest error:nil];
+}
+
+- (NSArray *)allTagImages
+{
+    NSMutableArray *images = [NSMutableArray array];
+    
+    for (Tag *tag in [self allTags])
+    {
+        [images addObject:[self imageForCategory:tag]];
+    }
+    
+    return [NSArray arrayWithArray:images];
+}
+
+- (UIImage *)imageForCategory:(Tag *)tag
+{
+    if (!tag.iconImageName)
+    {
+        return [[UIImage imageNamed:@"filter_all.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+    else
+    {
+        return [[UIImage imageNamed:tag.iconImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
 }
 
 

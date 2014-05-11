@@ -198,8 +198,9 @@
             tagToSegmentedControlConvertor.coreDataController = self.coreDataController;
 
             NSArray *tags = [[self.coreDataController allTags] valueForKeyPath:@"name"];
+            NSArray *tagsImages = [self.coreDataController allTagImages];
             UIColor *grayColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme grayColor];
-            NSDictionary *tagsExtraParams = @{@"options": tags, @"width": @230, @"colors" : @[grayColor, grayColor, grayColor, grayColor, grayColor]};
+            NSDictionary *tagsExtraParams = @{@"options": tags, @"optionImages": tagsImages, @"width": @230, @"colors" : @[grayColor, grayColor, grayColor, grayColor, grayColor]};
             BSStaticTableViewCellInfo *categoryPickerCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailValuePickerCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:tagsExtraParams];
             BSStaticTableViewSectionInfo *si = [self sharedSectionsInfo][0];
             [si.cellClassesInfo insertObject:categoryPickerCellInfo atIndex:[self indexPathForCategoryPickerCell].row];

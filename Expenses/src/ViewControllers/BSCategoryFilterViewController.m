@@ -8,7 +8,7 @@
 
 #import "BSCategoryFilterViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "BSAppDelegate.h"
 
 static NSString const * kNofilterText = @"No Filter"; // make it a localizable key
 
@@ -32,7 +32,7 @@ static NSString const * kNofilterText = @"No Filter"; // make it a localizable k
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-5, 5, contentView.frame.size.width+10, contentView.frame.size.height+5) cornerRadius:2];
     [contentView.layer setShadowPath:path.CGPath];
     
-    int index = [self.categories indexOfObject:self.selectedTag];
+    NSUInteger index = [self.categories indexOfObject:self.selectedTag];
     if (index == NSNotFound)
     {
         index = 0;
@@ -86,20 +86,40 @@ static NSString const * kNofilterText = @"No Filter"; // make it a localizable k
     }
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:self.categoryImages[0]];
+    CGRect imageFrame = imageView.frame;
+    imageFrame.origin.x += 20;
+    imageView.frame = imageFrame;
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 40, 0, 100, imageView.frame.size.height)];
     id element = self.categories[row];
     if ([element isKindOfClass:Tag.class])
     {
         Tag *tag = (Tag *)element;
-        return [tag name];
+        label.text = [tag name];
+        imageView = [[UIImageView alloc] initWithImage:self.categoryImages[row-1]];
+        CGRect imageFrame = imageView.frame;
+        imageFrame.origin.x += 20;
+        imageView.frame = imageFrame;
+
+        imageView.tintColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor];
     }
     else
     {
-        return element;
+        label.text = element;
+        imageView = nil;
     }
     
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width, imageView.frame.size.height)];
+    [customView addSubview:label];
+    [customView addSubview:imageView];
+    
+    return customView;
 }
+
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)selectedRow inComponent:(NSInteger)component
 {

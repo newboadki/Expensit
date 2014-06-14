@@ -165,4 +165,12 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

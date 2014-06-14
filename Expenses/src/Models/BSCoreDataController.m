@@ -10,6 +10,7 @@
 #import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
 #import "Tag.h"
+#import "BSPieChartSectionInfo.h"
 
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;
@@ -46,6 +47,8 @@
     newManagedObject.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.day stringValue], [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
     newManagedObject.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.year stringValue], [newManagedObject.month stringValue], [newManagedObject.day stringValue]];
 
+    newManagedObject.tag = [self tagForName:@"Other"];
+    
     return newManagedObject;
 }
 
@@ -146,6 +149,43 @@
 }
 
 
+- (BOOL)setOtherTagForAllEntriesWithoutTag
+{
+    NSError *err = nil;
+    NSArray *allEntries = [self.coreDataHelper.managedObjectContext executeFetchRequest:[self fetchRequestForIndividualEntriesSummary] error:&err];
+    Tag *tag = [self tagForName:@"Other"];
+    for (Entry *entry in allEntries)
+    {
+        if (!entry.tag)
+        {
+            [entry setTag:tag];
+        }
+        
+    }
+    
+    return (err == nil);
+}
+
+
+- (BOOL)findNoTags:(NSString *)tagName
+{
+    NSError *err = nil;
+    NSArray *allEntries = [self.coreDataHelper.managedObjectContext executeFetchRequest:[self fetchRequestForIndividualEntriesSummary] error:&err];
+    
+    int count = 0;
+    for (Entry *entry in allEntries)
+    {
+        if (!entry.tag)
+        {
+            count++;
+        }
+        
+    }
+    
+    return (err == nil);
+}
+
+
 - (BOOL)setIsAmountNegativeFromSignOfAmount
 {
     NSError *err = nil;
@@ -214,6 +254,58 @@
     {
         return [[UIImage imageNamed:tag.iconImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
+}
+
+
+- (NSArray *)categoriesForMonth:(NSNumber *)month inYear:(NSNumber *)year
+{
+    // Get a base request
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    [self commonConfigureFetchResquest:fetchRequest];
+
+    // Predicate
+    // Predicate
+    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
+    if (month)
+    {
+        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
+    }
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:datePredicateString]];
+
+    // Configure
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
+
+    [fetchRequest setPropertiesToFetch:@[tagDescription]];
+    [fetchRequest setReturnsDistinctResults:YES];
+    [fetchRequest setResultType:NSDictionaryResultType];
+
+    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
+    NSMutableArray *tags = [NSMutableArray array];
+    for (NSDictionary *dic in results)
+    {
+        Tag* tag = (Tag *)[self.coreDataHelper.managedObjectContext existingObjectWithID:dic[@"tag"] error:nil];
+        [tags addObject:tag];
+    }
+    
+    return tags;
+
+}
+
+- (NSArray *)sortedTagsByPercentageFromSections:(NSArray *)tags sections:(NSArray *)sections {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for (BSPieChartSectionInfo *section in sections.reverseObjectEnumerator.allObjects)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", section.name];
+        Tag *tag = [[tags filteredArrayUsingPredicate:predicate] firstObject];
+        if (tag)
+        {
+            [results addObject:tag];
+        }
+    }
+    
+    return results;
 }
 
 
@@ -370,7 +462,7 @@
 
 
 
-#pragma mark - Graphs Requests
+#pragma mark - Line Graphs Requests
 
 - (NSFetchRequest *) graphYearlySurplusFetchRequest
 {
@@ -442,6 +534,140 @@
     
     return fetchRequest;
 }
+
+
+
+#pragma mark - Pie Chart Graph requests
+
+- (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest
+{
+    // Get a base request
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    [self commonConfigureFetchResquest:fetchRequest];
+    
+    
+    // Configure
+    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
+    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
+    
+    NSExpression *keyPathExpression = [NSExpression
+                                       expressionForKeyPath:@"value"];
+    NSExpression *sumExpression = [NSExpression
+                                   expressionForFunction:@"sum:"
+                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+    
+    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
+    [sumExpressionDescription setName:@"monthlyCategorySum"];
+    [sumExpressionDescription setExpression:sumExpression];
+    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+    
+    [fetchRequest setPropertiesToFetch:@[tagDescription, monthDescription, yearDescription, sumExpressionDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[tagDescription, monthDescription, yearDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    return fetchRequest;
+}
+
+
+- (NSArray *)expensesByCategoryForMonth:(NSNumber *)month inYear:(NSNumber *)year
+{
+    NSArray *tags = [self allTags];
+    NSMutableArray *absoluteAmountPerTag = [NSMutableArray arrayWithCapacity:[tags count]];
+    NSUInteger i = 0;
+    
+    for (Tag *tag in tags)
+    {
+        CGFloat absoluteAmount = [self absoluteSumOfEntriesForCategoryName:tag.name fromMonth:month inYear:year];
+        absoluteAmountPerTag[i] = @(absoluteAmount);
+        i++;
+    }
+    
+    
+    CGFloat total = 0;
+    for (NSNumber *number in absoluteAmountPerTag)
+    {
+        total += [number floatValue];
+    }
+    
+    
+    i = 0;
+    CGFloat percentageSum = 0;
+    NSMutableArray *sections = [NSMutableArray array];
+    for (NSNumber *amount in absoluteAmountPerTag)
+    {
+        BSPieChartSectionInfo *info = [[BSPieChartSectionInfo alloc] init];
+        Tag *tag = nil;
+            tag = tags[i];
+            info.name = [tag name];
+            info.percentage = ([amount floatValue] / total);
+            percentageSum += info.percentage;
+            info.color = tag.color;
+            i++;
+            [sections addObject:info];
+    }
+    
+    NSSortDescriptor *orderASC = [NSSortDescriptor sortDescriptorWithKey:@"percentage" ascending:YES];
+    [sections sortUsingDescriptors:@[orderASC]];
+    NSMutableArray *sectionsCopy = [NSMutableArray array];
+    
+    for (BSPieChartSectionInfo *sec in sections)
+    {
+        if (sec.percentage != 0)
+        {
+            [sectionsCopy addObject:sec];
+        }
+    }
+    
+    return sectionsCopy;
+}
+
+- (CGFloat)absoluteSumOfEntriesForCategoryName:(NSString *)name fromMonth:(NSNumber *)month inYear:(NSNumber *)year
+{
+    // Get a base request
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    [self commonConfigureFetchResquest:fetchRequest];
+    
+    // Predicate
+    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
+    if (month)
+    {
+        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
+    }
+    NSPredicate *incomePredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value > 0"], name];
+    NSPredicate *expensesPredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value < 0"], name];
+
+    [fetchRequest setPredicate:incomePredicate];
+    
+    // Configure
+    NSExpression *keyPathExpression = [NSExpression
+                                       expressionForKeyPath:@"value"];
+    NSExpression *sumExpression = [NSExpression
+                                   expressionForFunction:@"sum:"
+                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+    
+    NSExpressionDescription *absoluteSumExpressionDescription = [[NSExpressionDescription alloc] init];
+    [absoluteSumExpressionDescription setName:@"monthlyCategoryAbsoluteSum"];
+    [absoluteSumExpressionDescription setExpression:sumExpression];
+    [absoluteSumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+    
+    [fetchRequest setPropertiesToFetch:@[absoluteSumExpressionDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
+    CGFloat income = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
+    
+    
+    [fetchRequest setPredicate:expensesPredicate];
+    results = [self resultsForRequest:fetchRequest error:nil];
+    CGFloat expenses = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
+    
+    
+    
+    return (income + fabs(expenses));
+}
+
 
 #pragma mark - Execution of queries
 

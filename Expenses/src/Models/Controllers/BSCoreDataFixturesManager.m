@@ -101,7 +101,8 @@ static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVe
     // On the version 2 of the model, the tag's imageName was added. Here we populate it
     
     BOOL success = NO;
-    
+
+    // Add the images for the existing categories
     Tag *other = [self.coreDataController tagForName:@"Other"];
     Tag *food = [self.coreDataController tagForName:@"Food"];
     Tag *bills = [self.coreDataController tagForName:@"Bills"];
@@ -127,13 +128,71 @@ static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVe
     gifts.iconImageName = @"filter_gifts.png";
     
     
+    // Create two new categories and set images for them
     success = [self.coreDataController createTags:@[@"Music", @"Books"]];
     Tag *music = [self.coreDataController tagForName:@"Music"];
     Tag *books = [self.coreDataController tagForName:@"Books"];
     music.iconImageName = @"filter_music.png";
     books.iconImageName = @"filter_books.png";
     
+    // Save the changes
     success = success && [self.coreDataController.coreDataHelper.managedObjectContext save:nil];
+    
+    return success;
+}
+
+
+- (BOOL)applyFixtureForModelObjectVersion_3
+{
+    // On the version 3
+    //   - We added a color property to the entity model
+    //   - Also there was a bug that was making tag default to nil if the picker wasn't selected
+    
+    BOOL success = NO;
+    
+    // Add the images for the existing categories
+    Tag *other = [self.coreDataController tagForName:@"Other"];
+    Tag *food = [self.coreDataController tagForName:@"Food"];
+    Tag *bills = [self.coreDataController tagForName:@"Bills"];
+    Tag *travel = [self.coreDataController tagForName:@"Travel"];
+    Tag *clothing = [self.coreDataController tagForName:@"Clothing"];
+    Tag *car = [self.coreDataController tagForName:@"Car"];
+    Tag *drinks = [self.coreDataController tagForName:@"Drinks"];
+    Tag *work = [self.coreDataController tagForName:@"Work"];
+    Tag *house = [self.coreDataController tagForName:@"House"];
+    Tag *gadgets = [self.coreDataController tagForName:@"Gadgets"];
+    Tag *gifts = [self.coreDataController tagForName:@"Gifts"];
+    Tag *music = [self.coreDataController tagForName:@"Music"];
+    Tag *books = [self.coreDataController tagForName:@"Books"];
+
+    
+    other.color = [UIColor colorWithRed:87.0/255.0 green:83.0/255.0 blue:93.0/255.0 alpha:1.0];
+    food.color = [UIColor colorWithRed:250.0/255.0 green:178.0/255.0 blue:122.0/255.0 alpha:1.0];
+    bills.color = [[UIColor colorWithRed:181.0/255.0 green:34.0/255.0 blue:40.0/255.0 alpha:1.0] colorWithAlphaComponent:0.8];
+    travel.color = [UIColor colorWithRed:94.0/255.0 green:184.0/255.0 blue:192.0/255.0 alpha:1.0];
+    clothing.color = [UIColor colorWithRed:104.0/255.0 green:77.0/255.0 blue:148.0/255.0 alpha:1.0];
+    car.color = [UIColor colorWithRed:158.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
+    drinks.color = [UIColor colorWithRed:253.0/255.0 green:235.0/255.0 blue:1.0/255.0 alpha:1.0];
+    work.color = [UIColor colorWithRed:55.0/255.0 green:72.0/255.0 blue:98.0/255.0 alpha:1.0];
+    house.color = [UIColor colorWithRed:133.0/255.0 green:105.0/255.0 blue:104.0/255.0 alpha:1.0];
+    gadgets.color = [UIColor colorWithRed:236.0/255.0 green:110.0/255.0 blue:69.0/255.0 alpha:1.0];
+    gifts.color = [UIColor colorWithRed:162.0/255.0 green:124.0/255.0 blue:165.0/255.0 alpha:1.0];
+    music.color = [UIColor colorWithRed:232.0/255.0 green:94.0/255.0 blue:120.0/255.0 alpha:1.0];
+    books.color = [UIColor colorWithRed:166.0/255.0 green:120.0/255.0 blue:105.0/255.0 alpha:1.0];
+    
+    
+    // Set categories without tag to Other Tag
+    success = [self.coreDataController setOtherTagForAllEntriesWithoutTag];
+    
+    
+    // Create new category
+    success = success && [self.coreDataController createTags:@[@"Income"]];
+    Tag *income = [self.coreDataController tagForName:@"Income"];
+    income.color = [[UIColor colorWithRed:75.0/255.0 green:99.0/255.0 blue:51.0/255.0 alpha:1.0] colorWithAlphaComponent:0.8];
+    income.iconImageName = @"filter_bills.png";
+    
+    // Save the changes
+    success = success && [self.coreDataController.coreDataHelper.managedObjectContext save:nil]; // use [self.coreDataController save:nil] instead;
     
     return success;
 }

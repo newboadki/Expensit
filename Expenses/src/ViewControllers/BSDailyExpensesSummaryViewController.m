@@ -13,7 +13,8 @@
 #import "DateTimeHelper.h"
 #import "BSEntryDetailsFormViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
-
+#import "BSPieChartViewController.h"
+#import "BSHeaderButton.h"
 
 @interface BSDailyExpensesSummaryViewController ()
 @end
@@ -80,6 +81,15 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
     
     headerView.titleLabel.text = [DateTimeHelper monthNameAndYearStringFromMonthNumberAndYear:sectionInfo.name];
+    BSHeaderButton *headerButton = (BSHeaderButton *)headerView.pieChartButton;
+
+    
+    // TODO: Move this to a model in the view or figure out a better way to get the indexPath of the section header the button is in.
+    NSArray *components = [sectionInfo.name componentsSeparatedByString:@"/"];
+    NSString *monthString = components[0];
+    NSString *yearString = components[1];
+    headerButton.month = [NSDecimalNumber decimalNumberWithString:monthString];
+    headerButton.year = [NSDecimalNumber decimalNumberWithString:yearString];
     return headerView;
 }
 
@@ -141,6 +151,18 @@
         [graphViewController setMoneyOut:[self dataForGraphWithFetchRequestResults:expensesResults]];
         [graphViewController setXValues:[self arrayDayNumbersInMonth]];
     }
+    else if ([[segue identifier] isEqualToString:@"DisplayPieGraphView"])
+    {
+        BSHeaderButton *button = (BSHeaderButton *)sender;
+        NSArray *sections = [self.coreDataController expensesByCategoryForMonth:button.month inYear:button.year];
+        BSPieChartViewController *graphViewController = (BSPieChartViewController *)[segue destinationViewController];
+        graphViewController.transitioningDelegate = self.animatedBlurEffectTransitioningDelegate;
+        graphViewController.modalPresentationStyle = UIModalPresentationCustom;
+        graphViewController.categories = [self.coreDataController sortedTagsByPercentageFromSections:[self.coreDataController categoriesForMonth:button.month inYear:button.year] sections:sections];
+
+        [graphViewController setSections:sections];
+    }
+
 }
 
 

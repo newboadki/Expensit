@@ -27,6 +27,7 @@
 - (void)deleteModel:(id)model;
 - (BOOL)createTags:(NSArray *)tags;
 - (BOOL)setTagForAllEntriesTo:(NSString *)tag;
+- (BOOL)setOtherTagForAllEntriesWithoutTag;
 - (BOOL)setIsAmountNegativeFromSignOfAmount;
 
 #pragma mark - Summary requests
@@ -39,13 +40,18 @@
  */
 - (void)modifyfetchRequest:(NSFetchRequest*)request toFilterByCategory:(id)category;
 
-#pragma mark - Graph requests
+#pragma mark - Line Graph requests
 - (NSFetchRequest *)graphYearlySurplusFetchRequest;
 - (NSFetchRequest *)graphYearlyExpensesFetchRequest;
 - (NSFetchRequest *)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName;
 - (NSFetchRequest *)graphDailyExpensesFetchRequestForSectionName:(NSString *)sectionName;
+
+#pragma mark - Pie Chart Graph requests
+- (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest;
+- (NSArray *)expensesByCategoryForMonth:(NSNumber *)month inYear:(NSNumber *)year;
+
 
 #pragma mark - Other requests
 - (NSFetchRequest *)requestToGetYears;
@@ -61,5 +67,8 @@
 - (NSArray *)allTags;
 - (NSArray *)allTagImages;
 - (UIImage *)imageForCategory:(Tag *)tag;
+- (BOOL)findNoTags:(NSString *)tagName;
+- (NSArray *)categoriesForMonth:(NSNumber *)month inYear:(NSNumber *)year;
+- (NSArray *)sortedTagsByPercentageFromSections:(NSArray *)tags sections:(NSArray *)sections;
 
 @end

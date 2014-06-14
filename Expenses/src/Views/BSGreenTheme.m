@@ -10,13 +10,18 @@
 
 @implementation BSGreenTheme
 
+- (UIColor *)tintColor {
+    return [self greenColor];
+}
 
+- (UIColor *)selectedTintColor {
+    return [UIColor colorWithRed:218.0/256.0 green:104.0/256.0 blue:44.0/256.0 alpha:1.0];
+}
 
 - (UIColor *)navigationBarBackgroundColor
 {
     return [UIColor colorWithRed:12.0/256.0 green:34.0/256.0 blue:11.0/256.0 alpha:1.0];
 }
-
 
 - (UIColor *)navigationBarTextColor
 {
@@ -35,7 +40,7 @@
 
 - (UIColor *)blueColor
 {
-    return [UIColor blueColor];
+    return [UIColor colorWithRed:75.0/256.0 green:132.0/256.0 blue:197.0/256.0 alpha:1.0];
 }
 
 - (UIColor *)brownColor

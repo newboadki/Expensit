@@ -105,7 +105,7 @@ static NSString const * kNofilterText = @"No Filter"; // make it a localizable k
         imageFrame.origin.x += 20;
         imageView.frame = imageFrame;
 
-        imageView.tintColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor];
+        imageView.tintColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme blueColor];
     }
     else
     {

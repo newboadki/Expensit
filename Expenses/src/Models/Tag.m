@@ -15,4 +15,6 @@
 
 @dynamic iconImageName;
 
+@dynamic color;
+
 @end

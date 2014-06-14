@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol BSUIThemeProtocol <NSObject>
+- (UIColor *)tintColor;
+- (UIColor *)selectedTintColor;
 - (UIColor *)navigationBarBackgroundColor;
 - (UIColor *)navigationBarTextColor;
 - (UIColor *)redColor;

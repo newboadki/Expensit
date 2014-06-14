@@ -20,7 +20,7 @@
 
     // Nav Bar buttons
     BSThemeManager *manager =  ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
-    UIImage *imageGreen = [manager.theme stretchableImageForNavBarDecisionButtonsWithStrokeColor:[manager.theme greenColor] fillColor:nil];
+    UIImage *imageGreen = [manager.theme stretchableImageForNavBarDecisionButtonsWithStrokeColor:[manager.theme tintColor] fillColor:nil];
     UIImage *imageRed = [manager.theme stretchableImageForNavBarDecisionButtonsWithStrokeColor:[manager.theme redColor] fillColor:nil];
     
     UIBarButtonItem *doneButton = self.navigationItem.rightBarButtonItem;

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSHeaderButton.h"
 
 @interface BSDailyEntryHeaderView : UICollectionReusableView
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet BSHeaderButton *pieChartButton;
 
 @end

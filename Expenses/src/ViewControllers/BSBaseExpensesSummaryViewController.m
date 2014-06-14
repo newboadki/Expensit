@@ -18,6 +18,7 @@
 #import "BSNavigationControllerViewController.h"
 #import "BSVisualEffects.h"
 #import "BSModalSelectorViewTransitioningDelegate.h"
+#import "BSAnimatedBlurEffectTransitioningDelegate.h"
 
 
 static Tag *tagBeingFilterBy = nil;
@@ -63,6 +64,7 @@ static Tag *tagBeingFilterBy = nil;
     
     // Category filter view controller transitioning delegate
     self.categoryFilterViewTransitioningDelegate = [[BSModalSelectorViewTransitioningDelegate alloc] init];
+    self.animatedBlurEffectTransitioningDelegate = [[BSAnimatedBlurEffectTransitioningDelegate alloc] init];
 }
 
 
@@ -75,6 +77,7 @@ static Tag *tagBeingFilterBy = nil;
     [self.collectionView reloadData];
     
     // Apply filter before calculating section to go to
+    // TODO: This is wrong, it's taking a screeshot every time
     [self filterChangedToCategory:tagBeingFilterBy];
 
     // Scroll to selected section
@@ -296,6 +299,13 @@ static Tag *tagBeingFilterBy = nil;
 }
 
 
+- (NSFetchRequest *)graphFetchRequest
+{
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
+    return nil;
+}
+
+
 - (NSString*) sectionNameKeyPath
 {
     @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
@@ -312,6 +322,13 @@ static Tag *tagBeingFilterBy = nil;
 - (NSArray *)graphExpensesResults
 {
     @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
+}
+
+
+- (NSArray *)dataForGraphWithFetchRequestResults:(NSArray*) results
+{
+    @throw [NSException exceptionWithName:@"Implement in subclasses" reason:@"This methods should be implemented by the subclasses" userInfo:nil];
+
 }
 
 

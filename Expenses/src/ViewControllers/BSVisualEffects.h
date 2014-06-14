@@ -14,6 +14,6 @@
 
 + (UIImage *)blurredViewImageFromView:(UIView *)originalView;
 
-+ (UIImage *)imageForCategory:(Tag *)tag;
++ (UIImage *)screenshotFromView:(UIView *)originalView;
 
 @end

@@ -16,4 +16,6 @@
 
 @property (nonatomic, copy) NSString * iconImageName;
 
+@property (nonatomic, strong) UIColor *color;
+
 @end

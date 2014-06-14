@@ -37,10 +37,8 @@
     // Apply fixtures
     BSCoreDataController *coreDataController = [[BSCoreDataController alloc] init];
     coreDataController.coreDataHelper = self.coreDataHelper;
-    BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
-    [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
     
-    
+  
     // Create sample entries the first time
     // TODO add categories
     if ([self isFirstTheAppEverRun])
@@ -49,6 +47,10 @@
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-300.0" category:nil];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"06/07/2012"] description:@"Pocket money" value:@"100.0" category:nil];
     }
+    
+    // This should be after we already have any entries!!!
+    BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
+    [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
 
     return YES;
 }

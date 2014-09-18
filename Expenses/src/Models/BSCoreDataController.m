@@ -121,7 +121,7 @@
 - (BOOL)createTags:(NSArray *)tags
 {
     NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
     
     for (NSString *tagName in tags)
     {
@@ -214,7 +214,7 @@
 - (Tag *)tagForName:(NSString *)tagName
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", tagName]];
     
@@ -225,11 +225,13 @@
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[[Tag class] description] inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    return [self resultsForRequest:fetchRequest error:nil];
+    NSError *err = nil;
+    NSArray *result = [self resultsForRequest:fetchRequest error:&err];
+    return result;
 }
 
 - (NSArray *)allTagImages

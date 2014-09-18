@@ -47,23 +47,24 @@ static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVe
     return YES;
 }
 
-- (NSMutableArray *)appliedFixturesVersionNumbersFromUserDefaults
+- (NSArray *)appliedFixturesVersionNumbersFromUserDefaults
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults mutableArrayValueForKey:kAppliedFixturesVersionNumbersKey];
+    return [userDefaults arrayForKey:kAppliedFixturesVersionNumbersKey];
 }
 
 - (BOOL)addVersionNumberToAppliedFixturesInUserDefaults:(NSNumber *)version
 {
     BOOL added = NO;
 
-    NSMutableArray *appliedVersionNumbers = [self appliedFixturesVersionNumbersFromUserDefaults];
+    NSArray *appliedVersionNumbers = [self appliedFixturesVersionNumbersFromUserDefaults];
     
         if (![appliedVersionNumbers containsObject:version])
         {
-            [appliedVersionNumbers addObject:version];
+            NSMutableArray *extendedArray = [NSMutableArray arrayWithArray:appliedVersionNumbers];
+            [extendedArray addObject:version];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:appliedVersionNumbers forKey:kAppliedFixturesVersionNumbersKey];
+            [userDefaults setObject:extendedArray forKey:kAppliedFixturesVersionNumbersKey];
             added = YES;
         }
 

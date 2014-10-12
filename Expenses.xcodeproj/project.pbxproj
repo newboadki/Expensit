@@ -326,7 +326,8 @@
 		00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
 		00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
 		00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPerEntrySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
-		52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.xcconfig"; path = "Pods/Pods-ExpensesTests.xcconfig"; sourceTree = "<group>"; };
+		6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.release.xcconfig"; sourceTree = "<group>"; };
+		8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpensesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -475,7 +476,7 @@
 				007B8271177476780052FE84 /* ExpensesTests */,
 				007B824B177476780052FE84 /* Frameworks */,
 				007B824A177476780052FE84 /* Products */,
-				52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */,
+				B1466D4121231B4DFA16CD4F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -688,6 +689,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B1466D4121231B4DFA16CD4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */,
+				6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -879,7 +889,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-ExpensesTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55F1F04CA2046A291CDA402 /* Check Pods Manifest.lock */ = {
@@ -1173,7 +1183,7 @@
 		};
 		007B827F177476780052FE84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */;
+			baseConfigurationReference = 8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1191,6 +1201,7 @@
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1215,7 +1226,7 @@
 		};
 		007B8280177476780052FE84 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52380A6188244349BF214DD8 /* Pods-ExpensesTests.xcconfig */;
+			baseConfigurationReference = 6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1230,6 +1241,7 @@
 					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
 					"$(SRCROOT)/ExpensesTests/OCMock/Headers/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

@@ -68,7 +68,6 @@
         fromViewController.view.alpha = 0.9;
         fromViewController.view.userInteractionEnabled = NO;
         
-        [transitionContext.containerView addSubview:fromViewController.view];
         [transitionContext.containerView addSubview:toViewController.view];
         
         contentView.frame = contentStartFrame;
@@ -95,13 +94,7 @@
         UIView *contentView = [fromViewController.view viewWithTag:100];
         CGRect contentEndFrame = contentView.frame;
         contentEndFrame.origin.y -= contentEndFrame.size.height;
-        
-        
-        
         toViewController.view.userInteractionEnabled = YES;
-        
-        [transitionContext.containerView addSubview:toViewController.view];
-        [transitionContext.containerView addSubview:fromViewController.view];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             toViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;

@@ -53,7 +53,6 @@
 
         toViewController.view.userInteractionEnabled = NO;
         
-        [transitionContext.containerView addSubview:fromViewController.view];
         [transitionContext.containerView addSubview:toViewController.view];
         
         backgroundOriginalImageView.alpha = 1.0;
@@ -76,11 +75,6 @@
         
         backgroundOriginalImageView.image = self.originalImage;
         backgroundBlurredImageView.image = [BSVisualEffects screenshotFromView:fromViewController.view];
-
-        
-        
-        [transitionContext.containerView addSubview:toViewController.view];
-        [transitionContext.containerView addSubview:fromViewController.view];
 
         backgroundOriginalImageView_initialAnimation.alpha = 0.0;
         backgroundBlurredImageView_initialAnimation.alpha = 0.0;

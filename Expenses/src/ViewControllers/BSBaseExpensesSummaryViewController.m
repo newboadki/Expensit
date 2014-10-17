@@ -77,10 +77,14 @@ static Tag *tagBeingFilterBy = nil;
     [self.collectionView reloadData];
     
     // Apply filter before calculating section to go to
-    // TODO: This is wrong, it's taking a screeshot every time
-    [self filterChangedToCategory:tagBeingFilterBy];
+    [self filterChangedToCategory:tagBeingFilterBy takingScreenshot:NO]; // No need for taking a screenshot
 
     // Scroll to selected section
+    [self scrollToSelectedSection];
+}
+
+- (void)scrollToSelectedSection
+{
     if (self.shouldScrollToSelectedSection && self.firstTimeViewWillAppear)
     {
         self.firstTimeViewWillAppear = NO;
@@ -274,8 +278,6 @@ static Tag *tagBeingFilterBy = nil;
                                                                       sectionNameKeyPath:self.sectionNameKeyPath
                                                                                cacheName:nil];
 
-    //_fetchedResultsController.delegate = self;
-    
     // Execute the request
 	NSError *error = nil;
 	if (![_fetchedResultsController performFetch:&error])
@@ -347,10 +349,15 @@ static Tag *tagBeingFilterBy = nil;
 
 - (void)filterChangedToCategory:(Tag *)tag
 {
+    [self filterChangedToCategory:tag takingScreenshot:YES];
+}
+
+- (void)filterChangedToCategory:(Tag *)tag takingScreenshot:(BOOL)shouldTakeScreenshot
+{
     // So we remember when bringing the modal view back again
     // The argument is already a Tag* reference or nil
     tagBeingFilterBy = tag;
- 
+    
     // Change button
     UIBarButtonItem *filterButton = [self buttonForCategory:tag];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
@@ -364,10 +371,15 @@ static Tag *tagBeingFilterBy = nil;
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
     
-    // Refresh blurry background after collectionview reloaded
-    [self performSelector:@selector(blurrContentViewBackground) withObject:nil afterDelay:0.1];
+    if (shouldTakeScreenshot)
+    {
+        // Refresh blurry background after collectionview reloaded
+        [self performSelector:@selector(blurrContentViewBackground) withObject:nil afterDelay:0.1];
+    }
+   
 }
 
+#pragma mark - Filter icons
 
 - (void)blurrContentViewBackground
 {
@@ -387,9 +399,6 @@ static Tag *tagBeingFilterBy = nil;
     blurrContainer.bounds = rect;
 }
 
-
-
-#pragma mark - Filter icons
 
 - (UIBarButtonItem *)buttonForCategory:(Tag *)tag {
 

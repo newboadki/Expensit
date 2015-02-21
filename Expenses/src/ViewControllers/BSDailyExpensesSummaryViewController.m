@@ -137,7 +137,7 @@
         NSString *year = [sectionInfo.name componentsSeparatedByString:@"/"][1];
         
         
-        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%@/%@/%d", year, month, selectedIndexPath.row + 1];
+        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%@/%@/%ld", year, month, selectedIndexPath.row + 1];
         dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])

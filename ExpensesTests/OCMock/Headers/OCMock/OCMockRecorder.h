@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------
-//  $Id: OCMockRecorder.h 57 2010-07-19 06:14:27Z erik $
-//  Copyright (c) 2004-2010 by Mulle Kybernetik. See License file for details.
+//  $Id$
+//  Copyright (c) 2004-2013 by Mulle Kybernetik. See License file for details.
 //---------------------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
@@ -8,12 +8,15 @@
 @interface OCMockRecorder : NSProxy 
 {
 	id				signatureResolver;
+    BOOL            recordedAsClassMethod;
+    BOOL            ignoreNonObjectArgs;
 	NSInvocation	*recordedInvocation;
 	NSMutableArray	*invocationHandlers;
 }
 
 - (id)initWithSignatureResolver:(id)anObject;
 
+- (BOOL)matchesSelector:(SEL)sel;
 - (BOOL)matchesInvocation:(NSInvocation *)anInvocation;
 - (void)releaseInvocation;
 
@@ -25,6 +28,10 @@
 #if NS_BLOCKS_AVAILABLE
 - (id)andDo:(void (^)(NSInvocation *))block; 
 #endif
+- (id)andForwardToRealObject;
+
+- (id)classMethod;
+- (id)ignoringNonObjectArgs;
 
 - (NSArray *)invocationHandlers;
 

@@ -219,6 +219,7 @@
 		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = ../Tag.m; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
+		0039450E1A990C110081A5EE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
 		0053A7D318F9E43600D63918 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
@@ -492,6 +493,7 @@
 		007B824B177476780052FE84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0039450E1A990C110081A5EE /* libOCMock.a */,
 				000D047E1775A92F002D0AB8 /* libKiwi.a */,
 				007B83051775A0370052FE84 /* libCoreDataStackHelper.a */,
 				007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */,
@@ -1198,16 +1200,15 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
-					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
-					"$(inherited)",
+					"<Multiple",
+					"values>",
+					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
-					"/Users/borja/code/Objective-C/Expenses/ExpensesTests/OCMock",
+					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1237,17 +1238,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
-					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
-					"$(SRCROOT)/ExpensesTests/OCMock/Headers/**",
-					"$(inherited)",
+					"<Multiple",
+					"values>",
+					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
-					"/Users/borja/code/Objective-C/Expenses/ExpensesTests/OCMock",
+					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

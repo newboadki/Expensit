@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//  $Id: OCMockObject.h 52 2009-08-14 07:21:10Z erik $
+//  $Id$
 //  Copyright (c) 2004-2008 by Mulle Kybernetik. See License file for details.
 //---------------------------------------------------------------------------------------
 
@@ -11,6 +11,7 @@
 	BOOL			expectationOrderMatters;
 	NSMutableArray	*recorders;
 	NSMutableArray	*expectations;
+	NSMutableArray	*rejections;
 	NSMutableArray	*exceptions;
 }
 
@@ -29,13 +30,18 @@
 
 - (id)stub;
 - (id)expect;
+- (id)reject;
 
 - (void)verify;
+- (void)verifyWithDelay:(NSTimeInterval)delay;
+
+- (void)stopMocking;
 
 // internal use only
 
 - (id)getNewRecorder;
 - (BOOL)handleInvocation:(NSInvocation *)anInvocation;
 - (void)handleUnRecordedInvocation:(NSInvocation *)anInvocation;
+- (BOOL)handleSelector:(SEL)sel;
 
 @end

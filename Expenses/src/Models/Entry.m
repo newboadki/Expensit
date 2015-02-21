@@ -30,9 +30,9 @@
     if (_date != date)
     {
         _date = date;
-        self.day = [NSNumber numberWithInt:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.date]];
-        self.month = [NSNumber numberWithInt:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.date]];
-        self.year = [NSNumber numberWithInt:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.date]];
+        self.day = [NSNumber numberWithInteger:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.date]];
+        self.month = [NSNumber numberWithInteger:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.date]];
+        self.year = [NSNumber numberWithInteger:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.date]];
         self.monthYear = [NSString stringWithFormat:@"%@/%@", [self.month stringValue], [self.year stringValue]];
         self.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.day stringValue], [self.month stringValue], [self.year stringValue]];
         self.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [self.year stringValue], [self.month stringValue], [self.day stringValue]];

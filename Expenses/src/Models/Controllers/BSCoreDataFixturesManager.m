@@ -41,7 +41,10 @@ static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVe
     NSString *selectorName = [NSString stringWithFormat:@"%@_%@", kApplyFixtureMethodName, [version stringValue]];
     if ([self respondsToSelector:NSSelectorFromString(selectorName)])
     {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:NSSelectorFromString(selectorName)];
+        #pragma clang diagnostic pop
     }
 
     return YES;

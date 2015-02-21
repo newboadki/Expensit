@@ -204,7 +204,7 @@ static Tag *tagBeingFilterBy = nil;
     NSMutableDictionary *occurences = [NSMutableDictionary dictionary];
     for (UICollectionViewCell *cell in visibleCells)
     {
-        NSNumber *sectionNumber = [NSNumber numberWithInt:[self.collectionView indexPathForCell:cell].section];
+        NSNumber *sectionNumber = [NSNumber numberWithInteger:[self.collectionView indexPathForCell:cell].section];
         NSNumber * count = occurences[sectionNumber];
         if (count)
         {

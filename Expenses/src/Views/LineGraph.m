@@ -229,7 +229,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     if (lastGradient != 0 )
     {
         // we need to add the last path
-        [self addNewSubpathTo:subpaths withMoneyIn:pointsIn moneyOut:pointsOut initialSubPathIndex:initialSubpathIndex currentIndex:[pointsIn count]-1 gradient:lastGradient];
+        [self addNewSubpathTo:subpaths withMoneyIn:pointsIn moneyOut:pointsOut initialSubPathIndex:initialSubpathIndex currentIndex:[pointsIn count]-(NSUInteger)1 gradient:lastGradient];
     }
     
     return subpaths;
@@ -259,22 +259,22 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 }
 
 
-- (void) addNewSubpathTo:(NSMutableArray*)subpaths withMoneyIn:(NSMutableArray*)moneyIn moneyOut:(NSMutableArray*)moneyOut initialSubPathIndex:(int)initialIndex currentIndex:(int)currentIndex gradient:(int)gradient
+- (void) addNewSubpathTo:(NSMutableArray*)subpaths withMoneyIn:(NSMutableArray*)moneyIn moneyOut:(NSMutableArray*)moneyOut initialSubPathIndex:(NSUInteger)initialIndex currentIndex:(NSInteger)currentIndex gradient:(NSInteger)gradient
 {
     UIBezierPath *subpath = [UIBezierPath bezierPath];
     CGPoint initialPoint = [moneyIn[initialIndex] CGPointValue];
     [subpath moveToPoint:initialPoint];
     
-    int initialLoopValue = initialIndex;
+    NSInteger initialLoopValue = initialIndex;
     if (initialIndex+1 < [moneyIn count]) {
         initialLoopValue = initialIndex + 1;
     }
     
-    for (int i = initialLoopValue ; i<=currentIndex; i++) {
+    for (NSInteger i = initialLoopValue ; i<=currentIndex; i++) {
         [subpath addLineToPoint:[(NSValue*)moneyIn[i] CGPointValue]];
     }
     
-    for (int i = currentIndex ; i>=initialIndex; i--) {
+    for (NSInteger i = currentIndex ; i>=initialIndex; i--) {
         [subpath addLineToPoint:[(NSValue*)moneyOut[i] CGPointValue]];
     }
     
@@ -312,7 +312,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 }
 
 
-- (void) strokeGraphLineWithPoints:(NSArray*)points andLength:(int)length lineColor:(UIColor*)lineColor
+- (void) strokeGraphLineWithPoints:(NSArray*)points andLength:(NSUInteger)length lineColor:(UIColor*)lineColor
 {
     /*************************************************************************************************/
     /* Creates a path following the points in point and stroke them.                                 */
@@ -320,7 +320,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     CGContextRef con = UIGraphicsGetCurrentContext();
     CGContextSaveGState(con);
     
-        const float* colors = CGColorGetComponents( lineColor.CGColor );
+        const CGFloat *colors = CGColorGetComponents( lineColor.CGColor );
         CGContextSetRGBStrokeColor(con, colors[0], colors[1], colors[2], 1.0);
         CGContextSetLineWidth(con, 1.5);
         CGContextSetLineJoin(con, kCGLineJoinRound);
@@ -332,7 +332,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             CGContextMoveToPoint(con, point.x, point.y);
         }
     
-        for (int i=1; i<length; i++)
+        for (NSInteger i=1; i<length; i++)
         {
             point = [(NSValue*)points[i] CGPointValue];
             CGContextAddLineToPoint(con, point.x, point.y);
@@ -365,7 +365,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 }
 
 
-- (void) drawGridInRect:(CGRect)rect horizontalLines:(int)horizontalLines verticalLines:(int)verticalLines xValues:(NSArray *)xValues maxYValue:(CGFloat)maxYValue
+- (void) drawGridInRect:(CGRect)rect horizontalLines:(NSUInteger)horizontalLines verticalLines:(NSUInteger)verticalLines xValues:(NSArray *)xValues maxYValue:(CGFloat)maxYValue
 {
     [self drawVerticalBackgroundLinesInRect:rect numberOfLines:verticalLines color:self.backgroundVerticalLinesColor xValuesNames:xValues];
     [self drawHorizontalBackgroundLinesInRect:rect numberOfLines:horizontalLines color:self.backgroundHorizontalLinesColor lineWidth:0.5 dashed:YES maxYValue:maxYValue];
@@ -418,12 +418,12 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 }
 
 
-- (void) drawVerticalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color xValuesNames:(NSArray *)xvalues
+- (void) drawVerticalBackgroundLinesInRect:(CGRect)rect numberOfLines:(NSInteger)numberOfLines color:(UIColor*)color xValuesNames:(NSArray *)xvalues
 {
     /*************************************************************************************************/
     /*                                                                                               */
     /*************************************************************************************************/
-    int numberOfRegions = numberOfLines - 1; // because we're creating lines at the edges too.
+    NSInteger numberOfRegions = numberOfLines - 1; // because we're creating lines at the edges too.
     CGFloat distanceBetweenLines = (rect.size.width / (float)numberOfRegions);
     CGContextRef con = UIGraphicsGetCurrentContext();
     CGContextSaveGState(con);
@@ -492,16 +492,16 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 }
 
 
-- (void) drawHorizontalBackgroundLinesInRect:(CGRect)rect numberOfLines:(int)numberOfLines color:(UIColor*)color lineWidth:(float)lineWidth dashed:(BOOL)dashed maxYValue:(CGFloat)maxYValue
+- (void) drawHorizontalBackgroundLinesInRect:(CGRect)rect numberOfLines:(NSInteger)numberOfLines color:(UIColor*)color lineWidth:(CGFloat)lineWidth dashed:(BOOL)dashed maxYValue:(CGFloat)maxYValue
 {
     /*************************************************************************************************/
     /*                                                                                               */
     /*************************************************************************************************/
     CGFloat graphicDomainToUserDomainScalingFactor = (maxYValue / rect.size.height);
-    int numberOfRegions = numberOfLines-1; // because we're creating lines at the edges too.
+    NSInteger numberOfRegions = numberOfLines-1; // because we're creating lines at the edges too.
     CGFloat userDomainExtra = kGraphDrawableAreaTopMargin * graphicDomainToUserDomainScalingFactor;//maxYValue - ((rect.size.height - kGraphDrawableAreaTopMargin) * ((float)maxYValue / (float)rect.size.height));
     CGFloat graphMaxYUserDomain = maxYValue + userDomainExtra;
-    float distanceBetweenLines = (rect.size.height / numberOfRegions);
+    CGFloat distanceBetweenLines = (rect.size.height / numberOfRegions);
     CGFloat yValuesStep = graphMaxYUserDomain / (float)numberOfRegions;
     CGFloat yValueIncrement = 0;
     CGContextRef con = UIGraphicsGetCurrentContext();
@@ -516,7 +516,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             
         if (dashed)
         {
-            const float sizes[2] = {3, 2};
+            const CGFloat sizes[2] = {3, 2};
             [horizontalLinePath setLineDash:sizes count:2 phase:0.0];
         }
         

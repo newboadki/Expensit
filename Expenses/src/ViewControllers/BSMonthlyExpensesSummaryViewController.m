@@ -104,7 +104,7 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:selectedIndexPath.section];
 
         // Create the name of the section to go to in the next VC
-        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%d/%@", selectedIndexPath.row+1 ,sectionInfo.name]; // there are 12 months (0-11) that's why we add 1. The section name is the year
+        NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%ld/%@", selectedIndexPath.row+1 ,sectionInfo.name]; // there are 12 months (0-11) that's why we add 1. The section name is the year
         dailyExpensesViewController.nameOfSectionToBeShown = sectionNameToScrollTo;
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])

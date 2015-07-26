@@ -88,7 +88,10 @@
         monthlyExpensesViewController.coreDataStackHelper = self.coreDataStackHelper;
         UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
-        monthlyExpensesViewController.nameOfSectionToBeShown = self.fetchedResultsController.fetchedObjects[selectedIndexPath.row][@"year"];
+
+        monthlyExpensesViewController.nameOfSectionToBeShown = [[self.fetchedResultsController.fetchedObjects valueForKey:[NSString stringWithFormat:@"%@", @(selectedIndexPath.row)]] valueForKey:@"year"];//[selectedIndexPath.row][@"year"];
+
+        
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

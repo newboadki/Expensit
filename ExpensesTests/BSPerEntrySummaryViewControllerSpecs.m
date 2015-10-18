@@ -5,6 +5,32 @@
 #import "DateTimeHelper.h"
 #import "Tag.h"
 
+
+@interface PerEntryTestHelper : NSObject
++ (NSArray*) entryForDate:(NSString*)dateString fromArray:(NSArray*)results;
+@end
+
+@implementation PerEntryTestHelper
+
++ (NSArray*) entryForDate:(NSString*)dateString fromArray:(NSArray*)results
+{
+    NSArray *components = [dateString componentsSeparatedByString:@"/"];
+    NSDecimalNumber *day = [NSDecimalNumber decimalNumberWithString:components[0]];
+    NSDecimalNumber *month = [NSDecimalNumber decimalNumberWithString:components[1]];
+    NSDecimalNumber *year = [NSDecimalNumber decimalNumberWithString:components[2]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day = %@ AND month = %@ AND year = %@ ", day,  month, year];
+    
+    return [results filteredArrayUsingPredicate:predicate];
+}
+
+@end
+
+
+@interface BSIndividualExpensesSummaryViewController ()
+- (NSArray *)graphSurplusResults;
+@end
+
+
 SPEC_BEGIN(BSPerEntrySummaryViewControllerSpecs)
 
 __block CoreDataStackHelper *coreDataStackHelper = nil;
@@ -12,8 +38,10 @@ __block BSCoreDataController *coreDataController = nil;
 __block BSIndividualExpensesSummaryViewController *perEntryViewController = nil;
 
 beforeAll(^{
-    coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];
-    [coreDataStackHelper destroySQLPersistentStoreCoordinator];
+    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBaseEntrySummary" stringByAppendingString:@".sqlite"]];
+
+    coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBaseEntrySummary"];
+
     
     coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:coreDataStackHelper];
     perEntryViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
@@ -22,23 +50,64 @@ beforeAll(^{
 
     perEntryViewController.coreDataStackHelper = coreDataStackHelper;
     perEntryViewController.coreDataController = coreDataController;
+});
+
+afterAll(^{
+    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBaseEntrySummary" stringByAppendingString:@".sqlite"]];
+});
+
+describe(@"Per entry calculations", ^{
     
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Oyster card" value:@"-5" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Pizza" value:@"-10" category:nil];
+    beforeAll(^{
+        NSArray *tags = @[@"Basic"];
+        [coreDataController createTags:tags];
+        Tag *foodTag = [coreDataController tagForName:@"Basic"];
+        
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Oyster card" value:@"-5" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Pizza" value:@"-10" category:foodTag];
+        
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2012"] description:@"Food and drinks" value:@"-20.5" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"21.0" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"-7.0" category:foodTag];
+        
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"12" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"-5" category:foodTag];
+        [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Food and drinks" value:@"-10" category:foodTag];
+    });
     
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2012"] description:@"Food and drinks" value:@"-20.5" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"21.0" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"-7.0" category:nil];
-    
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"12" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"-5" category:nil];
-    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Food and drinks" value:@"-10" category:nil];
+    afterAll(^{
+        NSArray *monthlyResults = [coreDataStackHelper.managedObjectContext executeFetchRequest:[coreDataController fetchRequestForAllEntries] error:nil];
+        for (NSManagedObject *obj in monthlyResults)
+        {
+            [coreDataStackHelper.managedObjectContext deleteObject:obj];
+            
+        }
+        [coreDataController saveChanges];
+    });
 
     
-    
+    it(@"testIndividualEntriesCalculations", ^{
+        
+        [perEntryViewController filterChangedToCategory:nil];
+        NSArray *entryResults = perEntryViewController.fetchedResultsController.fetchedObjects;
+        [[theValue([entryResults count]) should] equal:theValue(10)];
+        
+        
+        [[theValue([[PerEntryTestHelper entryForDate:@"13/01/2013" fromArray:entryResults] count]) should] equal:theValue(2)];
+        [[theValue([[PerEntryTestHelper entryForDate:@"05/03/2013" fromArray:entryResults] count]) should] equal:theValue(2)];
+        
+        [[theValue([[PerEntryTestHelper entryForDate:@"02/01/2012" fromArray:entryResults] count]) should] equal:theValue(1)];
+        [[theValue([[PerEntryTestHelper entryForDate:@"03/03/2012" fromArray:entryResults] count]) should] equal:theValue(2)];
+        
+        [[theValue([[PerEntryTestHelper entryForDate:@"19/06/2011" fromArray:entryResults] count]) should] equal:theValue(2)];
+        [[theValue([[PerEntryTestHelper entryForDate:@"21/12/2011" fromArray:entryResults] count]) should] equal:theValue(1)];
+        
+        
+    });
 });
+
 
 describe(@"Category filtering", ^{
 
@@ -61,6 +130,17 @@ describe(@"Category filtering", ^{
         [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Food and drinks" value:@"-5.60" category:billsTag];
         [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Trip" value:@"-100" category:travelTag];
     });
+    
+    afterAll(^{
+        NSArray *monthlyResults = [coreDataStackHelper.managedObjectContext executeFetchRequest:[coreDataController fetchRequestForAllEntries] error:nil];
+        for (NSManagedObject *obj in monthlyResults)
+        {
+            [coreDataStackHelper.managedObjectContext deleteObject:obj];
+            
+        }
+        [coreDataController saveChanges];
+    });
+
     
     
     beforeEach(^{

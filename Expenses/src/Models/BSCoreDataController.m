@@ -117,7 +117,6 @@
     [self.coreDataHelper.managedObjectContext deleteObject:model];
 }
 
-
 - (BOOL)createTags:(NSArray *)tags
 {
     NSManagedObjectContext *context = self.coreDataHelper.managedObjectContext;
@@ -217,8 +216,12 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", tagName]];
-    
-    return [[self resultsForRequest:fetchRequest error:nil] lastObject];
+    NSError *err = nil;
+    Tag *result = [[self resultsForRequest:fetchRequest error:&err] lastObject];
+    if (err) {
+        NSLog(@"---=A %@", err);
+    }
+    return result;
 }
 
 - (NSArray *)allTags
@@ -342,6 +345,13 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
 
+- (NSFetchRequest *)fetchRequestForAllEntries
+{
+    // Get a base request
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    [self commonConfigureFetchResquest:fetchRequest];
+    return fetchRequest;
+}
 
 #pragma mark - Requests
 

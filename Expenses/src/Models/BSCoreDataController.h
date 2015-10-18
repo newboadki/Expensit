@@ -30,6 +30,10 @@
 - (BOOL)setOtherTagForAllEntriesWithoutTag;
 - (BOOL)setIsAmountNegativeFromSignOfAmount;
 
+
+#pragma mark - Utility requests
+- (NSFetchRequest *)fetchRequestForAllEntries;
+
 #pragma mark - Summary requests
 - (NSFetchRequest *)fetchRequestForYearlySummary;
 - (NSFetchRequest *)fetchRequestForMonthlySummary;

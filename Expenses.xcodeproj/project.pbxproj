@@ -7,39 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
-		000481EA1780C67A00E7F401 /* BSDailyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000481E91780C67A00E7F401 /* BSDailyExpensesSummaryTests.m */; };
-		000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */; };
+		000260D11BCC5CF100B2444E /* BSDailySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */; settings = {ASSET_TAGS = (); }; };
+		000260D21BCC5D5700B2444E /* BSMonthlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */; settings = {ASSET_TAGS = (); }; };
+		000260D31BCC5DCF00B2444E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */; settings = {ASSET_TAGS = (); }; };
+		000260D51BCC5F2D00B2444E /* BSYearlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */; settings = {ASSET_TAGS = (); }; };
 		000CDF56183D724100BE6266 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000CDF55183D724100BE6266 /* BSEntryDetailsFormViewController.m */; };
-		000CDF57183D724100BE6266 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000CDF55183D724100BE6266 /* BSEntryDetailsFormViewController.m */; };
 		000D04E41775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
-		000D04E51775BD56002D0AB8 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E31775BD56002D0AB8 /* Entry.m */; };
 		000D04EA1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */; };
-		000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04E81775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m */; };
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F71775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
-		000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D04F61775D20F002D0AB8 /* BSCoreDataController.m */; };
 		0017DB151937DC050052DCF4 /* libBSPieChartView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0017DB0C1937DBE80052DCF4 /* libBSPieChartView.a */; };
 		001ECAA118DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */; };
-		001ECAA218DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */; };
 		001FF01318E2178D004F06DB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */; };
-		001FF01418E2178D004F06DB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */; };
 		002487AD1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
-		002487AE1809B403006652DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 002487AC1809B403006652DF /* Tag.m */; };
-		0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
 		0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
-		0053A7D618F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
 		005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
-		005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
 		005DF5F4178B5A9A00DC1800 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F3178B5A9A00DC1800 /* LineGraph.m */; };
-		005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F3178B5A9A00DC1800 /* LineGraph.m */; };
 		005DF5F8178CA9D300DC1800 /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */; };
-		005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5F7178CA9D300DC1800 /* BSGraphViewController.m */; };
 		005F7643180991740062DAF8 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 005F7642180991740062DAF8 /* BSCoreDataFixturesManager.m */; };
-		005F7644180991740062DAF8 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 005F7642180991740062DAF8 /* BSCoreDataFixturesManager.m */; };
 		00735EB41788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */; };
-		00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00735EB31788351200725DFD /* BSYearlyExpensesSummaryViewController.m */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -52,81 +39,42 @@
 		007B826B177476780052FE84 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B826A177476780052FE84 /* XCTest.framework */; };
 		007B826C177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B826D177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
-		007B826E177476780052FE84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8252177476780052FE84 /* CoreData.framework */; };
 		007B8276177476780052FE84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 007B8274177476780052FE84 /* InfoPlist.strings */; };
 		007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
-		007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		0080504B193B0DAE0029C9DA /* BSPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080504A193B0DAE0029C9DA /* BSPieChartViewController.m */; };
-		0080504C193B0DAE0029C9DA /* BSPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080504A193B0DAE0029C9DA /* BSPieChartViewController.m */; };
 		0080504F193B16E60029C9DA /* BSCategoryPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080504E193B16E60029C9DA /* BSCategoryPieChartView.m */; };
-		00805050193B16E60029C9DA /* BSCategoryPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080504E193B16E60029C9DA /* BSCategoryPieChartView.m */; };
-		00843877193D485400B14AB5 /* libBSPieChartView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0017DB0C1937DBE80052DCF4 /* libBSPieChartView.a */; };
 		008F766C18D2E9C80059CB55 /* libBSStaticFormTableViewControllerComponent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 008F766518D2E9910059CB55 /* libBSStaticFormTableViewControllerComponent.a */; };
-		008F766D18D2E9CE0059CB55 /* libBSStaticFormTableViewControllerComponent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 008F766518D2E9910059CB55 /* libBSStaticFormTableViewControllerComponent.a */; };
-		008F767B18D32EF20059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
 		008F767C18D32EF50059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
 		008F768818D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F768718D44B400059CB55 /* BSDateToDatePickerCellConvertor.m */; };
-		008F768918D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F768718D44B400059CB55 /* BSDateToDatePickerCellConvertor.m */; };
 		009C9EDF17B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
-		009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EDE17B68FD300DE1A97 /* BSGreenTheme.m */; };
 		009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE217B6912900DE1A97 /* BSThemeManager.m */; };
-		009C9EE417B6912900DE1A97 /* BSThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE217B6912900DE1A97 /* BSThemeManager.m */; };
 		009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */; };
-		009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EE617B6939100DE1A97 /* BSThemeManager_iOS7.m */; };
 		009C9EEC17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
-		009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */ = {isa = PBXBuildFile; fileRef = 009C9EEB17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m */; };
 		009D00FA19426FA000B850D4 /* BSHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D00F919426FA000B850D4 /* BSHeaderButton.m */; };
-		009D00FB19426FA000B850D4 /* BSHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D00F919426FA000B850D4 /* BSHeaderButton.m */; };
 		009D010C194307A500B850D4 /* BSChartLegendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D010B194307A500B850D4 /* BSChartLegendCollectionViewCell.m */; };
-		009D010D194307A500B850D4 /* BSChartLegendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D010B194307A500B850D4 /* BSChartLegendCollectionViewCell.m */; };
 		009D01191943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D01181943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
-		009D011A1943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D01181943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
 		00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
-		00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
 		00BD78A0182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD789F182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m */; };
-		00BD78A1182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD789F182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m */; };
 		00BD78A4182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD78A3182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
-		00BD78A5182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD78A3182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
 		00BD78A8183195F50004A808 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD78A7183195F50004A808 /* BSAmountToTextControlCellConvertor.m */; };
-		00BD78A9183195F50004A808 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BD78A7183195F50004A808 /* BSAmountToTextControlCellConvertor.m */; };
 		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
-		00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
-		00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
 		00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
-		00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
 		00BEAFD017775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
-		00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFCF17775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m */; };
 		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
-		00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
-		00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
-		00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
 		00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
-		00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
 		00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
-		00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
 		00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
-		00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
-		00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
 		00E9F178177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */; };
-		00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F177177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m */; };
-		00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */; };
 		00F8144B1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
-		00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F8144A1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m */; };
 		00F9213A17FF769000CACB4D /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 00F9213917FF769000CACB4D /* OCMock */; };
 		00F9B3BB18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */; };
-		00F9B3BC18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BA18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m */; };
 		00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
-		00F9B3C018E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
-		00F9B3CB18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */; };
-		00F9B3D318EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */; };
-		00F9B3D518F30B21009F626E /* BSDailySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */; };
-		00F9B3D718F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */; };
 		EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */; };
 /* End PBXBuildFile section */
 
@@ -352,12 +300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00843877193D485400B14AB5 /* libBSPieChartView.a in Frameworks */,
-				008F766D18D2E9CE0059CB55 /* libBSStaticFormTableViewControllerComponent.a in Frameworks */,
-				00BEAFBC17771FCF00A59EE2 /* libDateTimeHelper.a in Frameworks */,
-				007B83071775A03E0052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
-				007B826E177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
 				EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */,
@@ -968,57 +911,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0053A7D618F9E43600D63918 /* BSYearlyLayout.m in Sources */,
-				008F768918D44B400059CB55 /* BSDateToDatePickerCellConvertor.m in Sources */,
-				00E9F175177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
-				000481EC1780CEEA00E7F401 /* BSPerEntrySummaryTests.m in Sources */,
-				00F9B3CB18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m in Sources */,
-				000D04E51775BD56002D0AB8 /* Entry.m in Sources */,
-				005DF5F9178CA9D300DC1800 /* BSGraphViewController.m in Sources */,
-				00BEAFCB17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
-				000D04F81775D20F002D0AB8 /* BSCoreDataController.m in Sources */,
-				009C9EED17B694B000DE1A97 /* BSThemeManager_iOS6_andBelow.m in Sources */,
-				00F9B3D518F30B21009F626E /* BSDailySummaryViewControllerSpecs.m in Sources */,
-				005DF5ED178B58A500DC1800 /* BSGraphView.m in Sources */,
-				005DF5F5178B5A9A00DC1800 /* LineGraph.m in Sources */,
-				00BD78A5182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
-				00BEAFD517775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
-				00E9F16D177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
-				00F9B3D718F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */,
-				009D011A1943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
-				00D7E0FA178F40A100474A30 /* BSDailyLayout.m in Sources */,
-				001FF01418E2178D004F06DB /* UIImage+ImageEffects.m in Sources */,
-				005F7644180991740062DAF8 /* BSCoreDataFixturesManager.m in Sources */,
-				009C9EE417B6912900DE1A97 /* BSThemeManager.m in Sources */,
-				000481E817805C8700E7F401 /* Expenses.xcdatamodeld in Sources */,
-				009C9EE817B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
-				00E9F179177F47E000A1A212 /* BSDailyExpensesSummaryViewController.m in Sources */,
-				0038B1F118B415580095CBF6 /* BSYearlyExpensesSummaryTests.m in Sources */,
-				001ECAA218DDECF200B7D027 /* BSCategoryFilterViewController.m in Sources */,
-				00BEAFD117775DA400A59EE2 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
-				00D7E0F6178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
-				00F8144C1775FC4000F2D0A8 /* BSIndividualExpensesSummaryViewController.m in Sources */,
-				009D00FB19426FA000B850D4 /* BSHeaderButton.m in Sources */,
-				00E9F17B1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m in Sources */,
-				008F767B18D32EF20059CB55 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
-				00BD78A9183195F50004A808 /* BSAmountToTextControlCellConvertor.m in Sources */,
-				00F9B3D318EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m in Sources */,
-				00805050193B16E60029C9DA /* BSCategoryPieChartView.m in Sources */,
-				00BD78A1182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
-				000481EA1780C67A00E7F401 /* BSDailyExpensesSummaryTests.m in Sources */,
-				009D010D194307A500B850D4 /* BSChartLegendCollectionViewCell.m in Sources */,
-				00D7E0F2178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
-				0080504C193B0DAE0029C9DA /* BSPieChartViewController.m in Sources */,
-				00A5DB7717C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */,
-				00735EB51788351200725DFD /* BSYearlyExpensesSummaryViewController.m in Sources */,
-				00BEAFCD17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
-				00F9B3C018E76414009F626E /* BSVisualEffects.m in Sources */,
-				000CDF57183D724100BE6266 /* BSEntryDetailsFormViewController.m in Sources */,
-				002487AE1809B403006652DF /* Tag.m in Sources */,
-				009C9EE017B68FD300DE1A97 /* BSGreenTheme.m in Sources */,
-				000D04EB1775C8C5002D0AB8 /* BSBaseExpensesSummaryViewController.m in Sources */,
-				00D7E0FE178F491200474A30 /* BSSingleEntryCell.m in Sources */,
-				00F9B3BC18E76299009F626E /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
+				000260D31BCC5DCF00B2444E /* BSPerEntrySummaryViewControllerSpecs.m in Sources */,
+				000260D51BCC5F2D00B2444E /* BSYearlySummaryViewControllerSpecs.m in Sources */,
+				000260D11BCC5CF100B2444E /* BSDailySummaryViewControllerSpecs.m in Sources */,
+				000260D21BCC5D5700B2444E /* BSMonthlySummaryViewControllerSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -1163,6 +1060,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_CODE_COVERAGE = YES;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

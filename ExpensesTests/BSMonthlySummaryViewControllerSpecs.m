@@ -27,6 +27,7 @@
 
 @interface BSMonthlyExpensesSummaryViewController ()
 - (NSArray *)graphSurplusResults;
+- (NSArray *)graphExpensesResults;
 @end
 
 

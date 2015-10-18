@@ -89,9 +89,8 @@
         UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
 
-        monthlyExpensesViewController.nameOfSectionToBeShown = [[self.fetchedResultsController.fetchedObjects valueForKey:[NSString stringWithFormat:@"%@", @(selectedIndexPath.row)]] valueForKey:@"year"];//[selectedIndexPath.row][@"year"];
-
-        
+        NSString *results = [self.fetchedResultsController.fetchedObjects[selectedIndexPath.row] valueForKey:@"year"];
+        monthlyExpensesViewController.nameOfSectionToBeShown = results;//[selectedIndexPath.row][@"year"];
     }
     else if ([[segue identifier] isEqualToString:@"DisplayGraphView"])
     {

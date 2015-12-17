@@ -161,8 +161,8 @@
 		0017DB061937DBE80052DCF4 /* BSPieChartView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BSPieChartView.xcodeproj; path = ../BSPieChartView/BSPieChartView.xcodeproj; sourceTree = "<group>"; };
 		001ECA9F18DDECF200B7D027 /* BSCategoryFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterViewController.h; sourceTree = "<group>"; };
 		001ECAA018DDECF200B7D027 /* BSCategoryFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterViewController.m; sourceTree = "<group>"; };
-		001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "../UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "../UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		002487AB1809B403006652DF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = ../Tag.h; sourceTree = "<group>"; };
 		002487AC1809B403006652DF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = ../Tag.m; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
@@ -527,8 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				0053A7D218F9D59700D63918 /* iPad */,
-				001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */,
-				001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */,
 				0022AD50180FA651006C736C /* Protocols */,
 				00BEAFC517775D6C00A59EE2 /* Views */,
 				000D04E61775C864002D0AB8 /* ViewControllers */,
@@ -602,6 +600,8 @@
 		00BEAFC517775D6C00A59EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */,
+				001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */,
 				009C9EDB17B68F2A00DE1A97 /* Themes */,
 				005DF5F2178B5A9A00DC1800 /* LineGraph.h */,
 				005DF5F3178B5A9A00DC1800 /* LineGraph.m */,

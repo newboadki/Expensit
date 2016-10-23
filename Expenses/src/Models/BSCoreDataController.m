@@ -262,7 +262,7 @@
 }
 
 
-- (NSArray *)categoriesForMonth:(NSNumber *)month inYear:(NSNumber *)year
+- (NSArray *)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year
 {
     // Get a base request
     NSFetchRequest *fetchRequest = [self baseFetchRequest];
@@ -459,7 +459,7 @@
 }
 
 
-- (void)modifyfetchRequest:(NSFetchRequest*)request toFilterByCategory:(id)category
+- (void)modifyfetchRequest:(NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(id)category
 {
     NSPredicate *predicate = nil;
     
@@ -610,14 +610,13 @@
     for (NSNumber *amount in absoluteAmountPerTag)
     {
         BSPieChartSectionInfo *info = [[BSPieChartSectionInfo alloc] init];
-        Tag *tag = nil;
-            tag = tags[i];
-            info.name = [tag name];
-            info.percentage = ([amount floatValue] / total);
-            percentageSum += info.percentage;
-            info.color = tag.color;
-            i++;
-            [sections addObject:info];
+        Tag *tag = tags[i];
+        info.name = [tag name];
+        info.percentage = ([amount floatValue] / total);
+        percentageSum += info.percentage;
+        info.color = tag.color;
+        i++;
+        [sections addObject:info];
     }
     
     NSSortDescriptor *orderASC = [NSSortDescriptor sortDescriptorWithKey:@"percentage" ascending:YES];
@@ -675,8 +674,6 @@
     results = [self resultsForRequest:fetchRequest error:nil];
     CGFloat expenses = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
     
-    
-    
     return (income + fabs(expenses));
 }
 
@@ -684,7 +681,8 @@
 #pragma mark - Execution of queries
 
 - (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error {
-    return [self.coreDataHelper.managedObjectContext executeFetchRequest:request error:error];
+    NSArray *output = [self.coreDataHelper.managedObjectContext executeFetchRequest:request error:error];
+    return output;
 }
 
 @end

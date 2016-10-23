@@ -9,24 +9,25 @@
 #import "BSAppDelegate.h"
 #import "CoreDataStackHelper.h"
 #import "BSBaseExpensesSummaryViewController.h"
+#import "BSYearlyExpensesSummaryViewController.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
 #import "BSGreenTheme.h"
 #import "BSConstants.h"
 #import "BSCoreDataFixturesManager.h"
+#import "Expensit-Swift.h"
 
 @implementation BSAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+        
     // Core Data Helper
     self.coreDataHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType
                                                                      resourceName:@"Expenses"
                                                                         extension:@"momd"
                                                               persistentStoreName:@"expensesDataBase"];
- 
-
 
     // Theme
     self.themeManager = [BSThemeManager manager];
@@ -44,13 +45,31 @@
     if ([self isFirstTheAppEverRun])
     {
         BSCoreDataController *controller = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataHelper];
-        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-300.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"30/10/2015"] description:@"Food and drinks" value:@"-700.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"11/09/2014"] description:@"Food and drinks" value:@"-350.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-100.0" category:nil];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"06/07/2012"] description:@"Pocket money" value:@"100.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"07/07/2012"] description:@"Pocket money" value:@"100.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/07/2012"] description:@"Pocket money" value:@"100.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"04/08/2012"] description:@"Pocket money" value:@"100.0" category:nil];
+        [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/08/2012"] description:@"Pocket money" value:@"100.0" category:nil];
     }
     
     // This should be after we already have any entries!!!
     BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
     [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
+    
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    BSBaseNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataHelper coreDataController:coreDataController];
+    
+    BSYearlyExpensesSummaryViewController *baseViewController = (BSYearlyExpensesSummaryViewController *)navigationController.topViewController;
+    baseViewController.navigationTransitionManager = transitionManager;
+    BSShowYearlyEntriesController *yearlyController = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataHelper
+                                                                                                      coreDataController:coreDataController];
+    
+    baseViewController.showEntriesPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:baseViewController
+                                                                                               showEntriesController:yearlyController];
+    
 
     return YES;
 }
@@ -84,8 +103,29 @@
     [self.coreDataHelper saveContext];
 }
 
-- (BOOL)isFirstTheAppEverRun {
+// 3D Touch - Quick access Handling
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler
+{
     
+    UINavigationController *navigationController =  (UINavigationController *)self.window.rootViewController;
+    UIViewController *viewController = navigationController.topViewController;
+    
+    if ([viewController conformsToProtocol:@protocol(BSUIViewControllerAbilityToAddEntry)]) {
+        id<BSUIViewControllerAbilityToAddEntry> vc = (id<BSUIViewControllerAbilityToAddEntry>)viewController;
+        [vc addButtonTappedWithPresentationCompletedBlock:^{
+            if (completionHandler)
+            {
+                completionHandler(YES);
+            }
+        }];
+    } else {
+        completionHandler(NO);
+    }
+}
+
+- (BOOL)isFirstTheAppEverRun
+{
     BOOL isFirstTime = NO;
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectoryPath = nil;

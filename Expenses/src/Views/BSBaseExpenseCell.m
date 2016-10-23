@@ -34,16 +34,64 @@
     }
 }
 
-
-- (void) configure
+- (void) setIsPositive:(BOOL)isPositive
 {
+    // Assign
+    _isPositive = isPositive;
+    
+    // Configure
+    
+    if (_isPositive) {
+        self.amountLabel.textColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor];
+        if (self.amountLabel.text.length != 0 ) {
+          self.amountLabel.backgroundColor = [[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor] colorWithAlphaComponent:0.1];
+        }
+    } else {
+        self.amountLabel.textColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor];
+        if (self.amountLabel.text.length != 0 ) {
+          self.amountLabel.backgroundColor = [[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor] colorWithAlphaComponent:0.1];
+        }
+    }
+}
+
+- (void)configure
+{    
+    self.amountLabel.layer.cornerRadius = 5.0;
     self.amountLabel.adjustsFontSizeToFitWidth = YES;
+    
     if (![self selectedBackgroundView])
     {
+        UIColor *selectedColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme selectedCellColor];
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
-        self.selectedBackgroundView.backgroundColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme selectedCellColor];
+        self.selectedBackgroundView.backgroundColor = selectedColor ;
+    }
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    [self changeColor:highlighted];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    [self changeColor:selected];
+}
+
+- (void)changeColor:(BOOL)on {
+    if (on)
+    {
+        UIColor *selectedColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme selectedCellColor];
+        self.title.backgroundColor = selectedColor;
+    }
+    else
+    {
+        UIColor *unselectedColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme unselectedCellColor];
+        self.title.backgroundColor = unselectedColor;
     }
 
 }
+
 
 @end

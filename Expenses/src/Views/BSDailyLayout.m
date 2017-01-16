@@ -22,9 +22,7 @@
 
 
 - (CGSize) itemSize {
-    
-    
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width / 6.0, 60);
+    return CGSizeMake(self.collectionView.bounds.size.width / 6.0, 60);
 }
 
 @end

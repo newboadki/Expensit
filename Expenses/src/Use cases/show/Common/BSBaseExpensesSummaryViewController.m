@@ -59,6 +59,7 @@ static Tag *tagBeingFilterBy = nil;
     // Category filter view controller transitioning delegate
     self.categoryFilterViewTransitioningDelegate = [[BSModalSelectorViewTransitioningDelegate alloc] init];
     self.animatedBlurEffectTransitioningDelegate = [[BSAnimatedBlurEffectTransitioningDelegate alloc] init];
+    
 }
 
 
@@ -77,9 +78,21 @@ static Tag *tagBeingFilterBy = nil;
         // Scroll to selected section
         [self scrollToSelectedSection];
     }];
+    
+    /// We are doing this here beucase we want child view controllers to adapt to a new size.
+    /// Now, we are also overriding viewWillTransitionToSize:withTransitionCoordinator: and invalidating the layout too.
+    /// but there are some scenarios: landscape, yearly VC presented, then navigate to the monthly summary VC, it turns out that
+    /// when the MonthlyLayout layout class gets called the bounds of the ViewController is still landscape.
+    /// After viewWillAppear, bounds are correct and we need to recalculate the Monthly layout. There should be a better way.
+    [self.collectionViewLayout invalidateLayout];
 
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    
+}
 
 - (void)scrollToSelectedSection
 {
@@ -131,19 +144,19 @@ static Tag *tagBeingFilterBy = nil;
 
 - (void)orientationChanged:(NSNotification *)notification
 {
-    if (self == [[self navigationController] topViewController]) {
-        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-        if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView)
-        {
-            [self performSegueWithIdentifier:@"DisplayGraphView" sender:self];
-            self.isShowingLandscapeView = YES;
-        }
-        else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView )
-        {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            self.isShowingLandscapeView = NO;
-        }
-    }
+//    if (self == [[self navigationController] topViewController]) {
+//        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+//        if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView)
+//        {
+//            [self performSegueWithIdentifier:@"DisplayGraphView" sender:self];
+//            self.isShowingLandscapeView = YES;
+//        }
+//        else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView )
+//        {
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//            self.isShowingLandscapeView = NO;
+//        }
+//    }
 }
 
 
@@ -335,6 +348,15 @@ static Tag *tagBeingFilterBy = nil;
 {
     UIBarButtonItem *filterButton = self.navigationItem.rightBarButtonItems[1];
     [filterButton setImage:image];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    /// We do this to let collection views re-calculate their layout as it is done programmatically in layout classes,
+    /// since we wanted the number of cells and rows to be constant to make it look like a regular calendar.
+    [self.collectionViewLayout invalidateLayout];
 }
 
 @end

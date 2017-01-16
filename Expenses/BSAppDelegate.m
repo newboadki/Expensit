@@ -59,18 +59,10 @@
     BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
     [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
     
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    BSBaseNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataHelper coreDataController:coreDataController];
+    ContainerViewController *mainContainerViewController = (ContainerViewController *)self.window.rootViewController;
     
-    BSYearlyExpensesSummaryViewController *baseViewController = (BSYearlyExpensesSummaryViewController *)navigationController.topViewController;
-    baseViewController.navigationTransitionManager = transitionManager;
-    BSShowYearlyEntriesController *yearlyController = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataHelper
-                                                                                                      coreDataController:coreDataController];
+    mainContainerViewController.coreDataController = coreDataController;
     
-    baseViewController.showEntriesPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:baseViewController
-                                                                                               showEntriesController:yearlyController];
-    
-
     return YES;
 }
 

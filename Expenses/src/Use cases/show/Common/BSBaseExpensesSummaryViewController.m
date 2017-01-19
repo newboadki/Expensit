@@ -31,6 +31,11 @@ static Tag *tagBeingFilterBy = nil;
 @implementation BSBaseExpensesSummaryViewController
 
 
+- (void)handleEvent:(id<ContainmentEvent>)event fromSender:(id<ContainmentEventSource>)sender {
+    
+}
+
+
 #pragma mark - view life cycle
 
 - (void)viewDidLoad
@@ -358,6 +363,9 @@ static Tag *tagBeingFilterBy = nil;
     /// since we wanted the number of cells and rows to be constant to make it look like a regular calendar.
     [self.collectionViewLayout invalidateLayout];
 }
+
+
+
 
 @end
 

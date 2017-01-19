@@ -1062,15 +1062,19 @@
         <!--Chart ViewController-->
         <scene sceneID="SdY-bu-DaN">
             <objects>
-                <viewController id="AV8-eo-eBA" userLabel="Chart ViewController" sceneMemberID="viewController">
+                <viewController id="AV8-eo-eBA" userLabel="Chart ViewController" customClass="BSGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j0J-2G-XfP"/>
                         <viewControllerLayoutGuide type="bottom" id="fnV-tx-Uu1"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WqC-fE-iTg">
+                    <view key="view" contentMode="scaleToFill" id="WqC-fE-iTg" customClass="LineGraph">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="327.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97355422179999995" green="1" blue="0.69245711750000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="currencyFormatter" destination="AV8-eo-eBA" id="t7J-EN-1P6"/>
+                            <outlet property="dataSource" destination="AV8-eo-eBA" id="IqC-CI-0km"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5a-vk-cZL" userLabel="First Responder" sceneMemberID="firstResponder"/>

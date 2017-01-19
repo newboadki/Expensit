@@ -13,6 +13,7 @@
 #import "BSCoreDataController.h"
 #import "BSStaticTableAddEntryFormCellActionDataSource.h"
 #import "BSCategoryFilterDelegate.h"
+#import "ContainmentEventsAPI.h"
 
 @class CoreDataStackHelper, BSCoreDataController;
 
@@ -27,7 +28,7 @@
 @end
 
 
-@interface BSBaseExpensesSummaryViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout, BSCategoryFilterDelegate, BSUIViewControllerAbilityToAddEntry, BSAbstractExpensesSummaryUserInterfaceProtocol>
+@interface BSBaseExpensesSummaryViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout, BSCategoryFilterDelegate, BSUIViewControllerAbilityToAddEntry, BSAbstractExpensesSummaryUserInterfaceProtocol, ContainmentEventHandler, ContainmentEventSource>
 
 @property (strong, nonatomic, nullable) UICollectionViewLayout *layout;
 //@property (strong, nonatomic, nullable) NSFetchedResultsController *fetchedResultsController;
@@ -50,10 +51,14 @@
  */
 @property (assign, nonatomic) BOOL firstTimeViewWillAppear;
 
+
+@property (nonatomic, nullable) id<ContainmentEventsManager> containmentEventsDelegate;
+
 /*!
  @disscusion This is mainly used to calculate which section to take into consideration to calculate the data to feed a chart in landscape.
  @returns the name of the section that is predominantely visible, the one that occupies the most space.
  */
 - (nullable NSString *) visibleSectionName;//should be protected
+
 
 @end

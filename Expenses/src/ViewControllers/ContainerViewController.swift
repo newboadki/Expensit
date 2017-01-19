@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ContainerViewController : UIViewController {
         
     public var coreDataController : BSCoreDataController!
@@ -76,38 +77,6 @@ class ContainerViewController : UIViewController {
                                                                          attribute: .top,
                                                                          multiplier: 1,
                                                                          constant: 0)
-        
-        
-        
-        print(self.childViewControllers.count)
-        
-        for vc in self.childViewControllers {
-            if vc is UINavigationController {
-                let navigationViewController = vc as! UINavigationController
-                yearlyViewController = navigationViewController.topViewController as! BSYearlyExpensesSummaryViewController
-                let transitionManager = BSYearlySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataController.coreDataHelper, coreDataController: self.coreDataController)
-                yearlyViewController.navigationTransitionManager = transitionManager
-                let yearlyController = BSShowYearlyEntriesController(coreDataStackHelper: self.coreDataController.coreDataHelper, coreDataController: self.coreDataController)
-                let yearlyPresenter = BSShowYearlyEntriesPresenter(showEntriesUserInterface: yearlyViewController, showEntriesController: yearlyController)
-                
-                yearlyViewController.showEntriesPresenter = yearlyPresenter
-            }
-        }
-        
-        
-//        BSBaseNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataHelper coreDataController:coreDataController];
-        
-        
-        
-        //    BSYearlyExpensesSummaryViewController *baseViewController = (BSYearlyExpensesSummaryViewController *)navigationController.topViewController;
-        //    baseViewController.navigationTransitionManager = transitionManager;
-        //    BSShowYearlyEntriesController *yearlyController = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataHelper
-        //                                                                                                      coreDataController:coreDataController];
-        //
-        //    baseViewController.showEntriesPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:baseViewController
-        //                                                                                               showEntriesController:yearlyController];
-
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -169,10 +138,32 @@ class ContainerViewController : UIViewController {
                     }
                 }
             }
-            //self.yearlyViewController.collectionView?.collectionViewLayout.invalidateLayout()
         }
         
         super.viewWillLayoutSubviews()
     }
+    
+    override func addChildViewController(_ childController: UIViewController) {
+        super.addChildViewController(childController)
+        
+        if childController is UINavigationController {
+            let navigationViewController = childController as! UINavigationController
+            yearlyViewController = navigationViewController.topViewController as! BSYearlyExpensesSummaryViewController
+            let transitionManager = BSYearlySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataController.coreDataHelper, coreDataController: self.coreDataController)
+            yearlyViewController.navigationTransitionManager = transitionManager
+            let yearlyController = BSShowYearlyEntriesController(coreDataStackHelper: self.coreDataController.coreDataHelper, coreDataController: self.coreDataController)
+            let yearlyPresenter = BSShowYearlyEntriesPresenter(showEntriesUserInterface: yearlyViewController, showEntriesController: yearlyController)
+            
+            yearlyViewController.showEntriesPresenter = yearlyPresenter
+        } else if childController is BSGraphViewController {
+            let graphViewController = childController as! BSGraphViewController
+            
+            let yearlyLineGraphController : BSGraphLineControllerProtocol = BSYearlySummaryGraphLineController(coreDataStackHelper : self.coreDataController.coreDataHelper, coreDataController : self.coreDataController)
+            let yearlyLineGraphPresenter : BSGraphLinePresenterProtocol = BSYearlySummaryGraphLinePresenter(yearlySummaryGraphLineController: yearlyLineGraphController, section: "2013")
+            graphViewController.lineGraphPresenter = yearlyLineGraphPresenter
+            
+        }
+    }
+    
 }
 

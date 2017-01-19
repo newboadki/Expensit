@@ -389,6 +389,7 @@
 		00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTriangularAccesoryView.h; sourceTree = "<group>"; };
 		00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTriangularAccesoryView.m; sourceTree = "<group>"; };
 		00B683761D0D502900584F43 /* BSCoreDataControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataControllerProtocol.swift; sourceTree = "<group>"; };
+		00BAA0741E31415A00EC2C10 /* ContainmentEventsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEventsAPI.h; sourceTree = "<group>"; };
 		00BD789E182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTagToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
 		00BD789F182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTagToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
 		00BD78A2182FF4DB0004A808 /* BSEntryTypeToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryTypeToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
@@ -674,6 +675,7 @@
 				00F9B3BD18E76414009F626E /* BSVisualEffects.h */,
 				00F9B3BE18E76414009F626E /* BSVisualEffects.m */,
 				0056DAEA1E2766710091CE1C /* ContainerViewController.swift */,
+				00BAA0741E31415A00EC2C10 /* ContainmentEventsAPI.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

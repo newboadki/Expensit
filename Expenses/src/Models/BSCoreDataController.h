@@ -14,19 +14,17 @@
 
 @interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) CoreDataStackHelper *coreDataHelper;
-@property (strong, nonatomic) NSFetchedResultsController* fetchedResultsController;
-@property (weak, nonatomic)   id <BSCoreDataControllerDelegateProtocol> delegate;
+@property (strong, nonatomic, nonnull) CoreDataStackHelper *coreDataHelper;
 
-- (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper;
-- (void) insertNewEntryWithDate:(NSDate*)date description:(NSString*)description value:(NSString*)value category:(Tag *)tag;
-- (Entry *) newEntry;
+- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName delegate:(nullable id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(nonnull CoreDataStackHelper *)coreDataHelper;
+- (void)insertNewEntryWithDate:(nonnull NSDate *)date description:(nullable NSString *)description value:(nonnull NSString *)value category:(nonnull Tag *)tag;
+- (nonnull Entry *)newEntry;
 - (void)discardChanges;
 - (BOOL)saveChanges;
-- (BOOL) saveEntry:(Entry *)entry error:(NSError **)error;
-- (void)deleteModel:(id)model;
-- (BOOL)createTags:(NSArray *)tags;
-- (BOOL)setTagForAllEntriesTo:(NSString *)tag;
+- (BOOL)saveEntry:(nonnull Entry *)entry error:(NSError **)error;
+- (void)deleteModel:(nonnull id)model;
+- (BOOL)createTags:(nonnull NSArray *)tags;
+- (BOOL)setTagForAllEntriesTo:(nonnull NSString *)tag;
 - (BOOL)setOtherTagForAllEntriesWithoutTag;
 - (BOOL)setIsAmountNegativeFromSignOfAmount;
 

@@ -25,7 +25,7 @@
     if (self)
     {
         _entityName = [entityName copy];
-        _delegate = delegate;
+        //_delegate = delegate;
         _coreDataHelper = coreDataHelper;
     }
     

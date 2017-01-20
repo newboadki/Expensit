@@ -30,25 +30,25 @@
 
 
 #pragma mark - Utility requests
-- (NSFetchRequest *)fetchRequestForAllEntries;
+- (nonnull NSFetchRequest *)fetchRequestForAllEntries;
 
 #pragma mark - Summary requests
-- (NSFetchRequest *)fetchRequestForYearlySummary;
-- (NSFetchRequest *)fetchRequestForMonthlySummary;
-- (NSFetchRequest *)fetchRequestForDaylySummary;
-- (NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
+- (nonnull NSFetchRequest *)fetchRequestForYearlySummary;
+- (nonnull NSFetchRequest *)fetchRequestForMonthlySummary;
+- (nonnull NSFetchRequest *)fetchRequestForDaylySummary;
+- (nonnull NSFetchRequest *)fetchRequestForIndividualEntriesSummary;
 /*!
  @discussion category can be either a Tag instance or an NSString instance signifying 'No filter'
  */
-- (void)modifyfetchRequest:(NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(id)category;
+- (void)modifyfetchRequest:(nonnull NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(nonnull id)category;
 
 #pragma mark - Line Graph requests
-- (NSFetchRequest <NSFetchRequestResult>*)graphYearlySurplusFetchRequest;
-- (NSFetchRequest <NSFetchRequestResult>*)graphYearlyExpensesFetchRequest;
-- (NSFetchRequest <NSFetchRequestResult>*)graphMonthlySurplusFetchRequestForSectionName:(NSString *)sectionName;
-- (NSFetchRequest <NSFetchRequestResult>*)graphMonthlyExpensesFetchRequestForSectionName:(NSString *)sectionName;
-- (NSFetchRequest <NSFetchRequestResult>*)graphDailySurplusFetchRequestForSectionName:(NSString *)sectionName;
-- (NSFetchRequest <NSFetchRequestResult>*)graphDailyExpensesFetchRequestForSectionName:(NSString *)sectionName;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphYearlySurplusFetchRequest;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphYearlyExpensesFetchRequest;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphMonthlySurplusFetchRequestForSectionName:(nonnull NSString *)sectionName;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphMonthlyExpensesFetchRequestForSectionName:(nonnull NSString *)sectionName;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphDailySurplusFetchRequestForSectionName:(nonnull NSString *)sectionName;
+- (nonnull NSFetchRequest <NSFetchRequestResult>*)graphDailyExpensesFetchRequestForSectionName:(nonnull NSString *)sectionName;
 
 #pragma mark - Pie Chart Graph requests
 - (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest;

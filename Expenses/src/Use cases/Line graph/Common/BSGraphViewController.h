@@ -13,11 +13,11 @@
 @protocol BSGraphLinePresenterProtocol;
 
 @interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol, LineGraphCurrencyFormatterProtocol, ContainmentEventSource, ContainmentEventHandler>
-@property (strong, nonatomic) NSArray *moneyIn;
-@property (strong, nonatomic) NSArray *moneyOut;
-@property (strong, nonatomic) NSArray *xValues;
-@property (strong, nonatomic) NSString *graphTitle;
+@property (strong, nonatomic, nonnull) NSArray *moneyIn;
+@property (strong, nonatomic, nonnull) NSArray *moneyOut;
+@property (strong, nonatomic, nonnull) NSArray *xValues;
+@property (strong, nonatomic, nullable) NSString *graphTitle;
 
 @property (strong, nonatomic, nullable) id<BSGraphLinePresenterProtocol> lineGraphPresenter;
-
+@property (nonatomic, nullable) id<ContainmentEventsManager> containmentEventsDelegate;
 @end

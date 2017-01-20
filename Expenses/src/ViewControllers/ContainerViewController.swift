@@ -157,13 +157,22 @@ class ContainerViewController : UIViewController {
             yearlyViewController.showEntriesPresenter = yearlyPresenter
         } else if childController is BSGraphViewController {
             let graphViewController = childController as! BSGraphViewController
+            graphViewController.containmentEventsDelegate = self;
             
             let yearlyLineGraphController : BSGraphLineControllerProtocol = BSYearlySummaryGraphLineController(coreDataStackHelper : self.coreDataController.coreDataHelper, coreDataController : self.coreDataController)
             let yearlyLineGraphPresenter : BSGraphLinePresenterProtocol = BSYearlySummaryGraphLinePresenter(yearlySummaryGraphLineController: yearlyLineGraphController, section: "2013")
             graphViewController.lineGraphPresenter = yearlyLineGraphPresenter
             
+            
+            
         }
     }
     
+}
+
+extension ContainerViewController : ContainmentEventsManager {
+    func raise(_ event: ContainmentEvent!, fromSender sender: ContainmentEventSource!) {
+        
+    }
 }
 

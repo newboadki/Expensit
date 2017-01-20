@@ -22,3 +22,4 @@
 #import "BSPieChartViewController.h"
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
 #import "BSYearlyExpensesSummaryViewController.h"
+#import "ContainmentEventsAPI.h"

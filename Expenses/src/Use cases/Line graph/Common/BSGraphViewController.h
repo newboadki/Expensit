@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LineGraph.h"
+#import "ContainmentEventsAPI.h"
 
 @protocol BSGraphLinePresenterProtocol;
 
-@interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol, LineGraphCurrencyFormatterProtocol>
+@interface BSGraphViewController : UIViewController <LineGraphDataSourceProtocol, LineGraphCurrencyFormatterProtocol, ContainmentEventSource, ContainmentEventHandler>
 @property (strong, nonatomic) NSArray *moneyIn;
 @property (strong, nonatomic) NSArray *moneyOut;
 @property (strong, nonatomic) NSArray *xValues;

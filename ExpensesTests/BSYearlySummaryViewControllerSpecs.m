@@ -42,7 +42,7 @@ beforeAll(^{
     
     [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBaseYearly" stringByAppendingString:@".sqlite"]];
     
-    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:coreDataStackHelper];
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
     yearlyViewController = [[BSYearlyExpensesSummaryViewController alloc] init];
     KWMock *collectionMock = [KWMock nullMockForClass:UICollectionView.class];
     [yearlyViewController stub:@selector(collectionView) andReturn:collectionMock];

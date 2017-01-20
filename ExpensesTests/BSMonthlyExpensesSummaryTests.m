@@ -38,7 +38,7 @@
     self.coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];
     
     
-    self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataStackHelper];
+    self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:self.coreDataStackHelper];
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     self.monthlyViewController = [storyboard instantiateViewControllerWithIdentifier:@"BSMonthlyExpensesSummaryViewController"];

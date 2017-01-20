@@ -20,7 +20,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
         let delegate = UIApplication.shared.delegate as! BSAppDelegate
         self.editingEntry = entryToEdit
         self.coreDataStackHelper = delegate.coreDataHelper;
-        self.coreDataController = BSCoreDataController(entityName : "Entry", delegate:nil, coreDataHelper:self.coreDataStackHelper)
+        self.coreDataController = BSCoreDataController(entityName : "Entry", coreDataHelper:self.coreDataStackHelper)
         
         super.init()
     }

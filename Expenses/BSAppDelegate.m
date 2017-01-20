@@ -44,7 +44,7 @@
     // TODO add categories
     if ([self isFirstTheAppEverRun])
     {
-        BSCoreDataController *controller = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:self.coreDataHelper];
+        BSCoreDataController *controller = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:self.coreDataHelper];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"30/10/2015"] description:@"Food and drinks" value:@"-700.0" category:nil];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"11/09/2014"] description:@"Food and drinks" value:@"-350.0" category:nil];
         [controller insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2013"] description:@"Food and drinks" value:@"-100.0" category:nil];

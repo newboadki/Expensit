@@ -43,7 +43,7 @@ beforeAll(^{
     coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase1"];
 
     
-    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:coreDataStackHelper];
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
     monthlyViewController = [[BSMonthlyExpensesSummaryViewController alloc] init];
 
     BSShowMonthlyEntriesController *controller = [[BSShowMonthlyEntriesController alloc] initWithCoreDataStackHelper:coreDataStackHelper

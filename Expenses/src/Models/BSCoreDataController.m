@@ -19,13 +19,12 @@
 @implementation BSCoreDataController
 
 
-- (id)initWithEntityName:(NSString*)entityName delegate:(id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(CoreDataStackHelper*)coreDataHelper
+- (id)initWithEntityName:(NSString *)entityName coreDataHelper:(CoreDataStackHelper*)coreDataHelper
 {
     self = [super init];
     if (self)
     {
         _entityName = [entityName copy];
-        //_delegate = delegate;
         _coreDataHelper = coreDataHelper;
     }
     

@@ -43,7 +43,7 @@ beforeAll(^{
     coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];
 
     
-    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:coreDataStackHelper];
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
     dailyViewController = [[BSDailyExpensesSummaryViewController alloc] init];
     KWMock *collectionMock = [KWMock nullMockForClass:UICollectionView.class];
     [dailyViewController stub:@selector(collectionView) andReturn:collectionMock];

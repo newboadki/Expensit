@@ -16,8 +16,8 @@
 
 @property (strong, nonatomic, nonnull) CoreDataStackHelper *coreDataHelper;
 
-- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName delegate:(nullable id<BSCoreDataControllerDelegateProtocol>)delegate coreDataHelper:(nonnull CoreDataStackHelper *)coreDataHelper;
-- (void)insertNewEntryWithDate:(nonnull NSDate *)date description:(nullable NSString *)description value:(nonnull NSString *)value category:(nonnull Tag *)tag;
+- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName coreDataHelper:(nonnull CoreDataStackHelper *)coreDataHelper;
+- (void)insertNewEntryWithDate:(nonnull NSDate *)date description:(nullable NSString *)description value:(nonnull NSString *)value category:(nullable Tag *)tag;
 - (nonnull Entry *)newEntry;
 - (void)discardChanges;
 - (BOOL)saveChanges;

@@ -35,7 +35,7 @@ static BSDailySummaryGraphLineController *controller;
                                                                           resourceName:@"Expenses"
                                                                              extension:@"momd"
                                                                    persistentStoreName:@"myTestDataBaseLineGraphTests"];
-    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" delegate:nil coreDataHelper:coreDataStackHelper];
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
     controller = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:coreDataStackHelper
                                                                           coreDataController:coreDataController];
     

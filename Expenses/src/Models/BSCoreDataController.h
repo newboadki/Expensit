@@ -21,7 +21,7 @@
 - (nonnull Entry *)newEntry;
 - (void)discardChanges;
 - (BOOL)saveChanges;
-- (BOOL)saveEntry:(nonnull Entry *)entry error:(NSError **)error;
+- (BOOL)saveEntry:(nonnull Entry *)entry error:(NSError * _Nullable * _Nullable)error;
 - (void)deleteModel:(nonnull id)model;
 - (BOOL)createTags:(nonnull NSArray *)tags;
 - (BOOL)setTagForAllEntriesTo:(nonnull NSString *)tag;

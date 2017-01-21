@@ -82,12 +82,17 @@
  */
 - (nullable Tag *)tagForName:(nonnull NSString *)tagName;
 
-/*! @discussion Ordered by name ASC. */
-- (NSArray *)allTags;
-- (NSArray *)allTagImages;
-- (UIImage *)imageForCategory:(Tag *)tag;
-- (BOOL)findNoTags:(NSString *)tagName;
-- (NSArray *)categoriesForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
+
+
+/**
+ @discussion Ordered by name ASC.
+ @return All tags available.
+ */
+- (nonnull NSArray *)allTags;
+- (nonnull NSArray *)allTagImages;
+- (nullable UIImage *)imageForCategory:(nullable Tag *)tag;
+- (BOOL)findNoTags:(nonnull NSString *)tagName;
+- (nonnull NSArray *)categoriesForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
 - (nullable NSArray *)sortedTagsByPercentageFromSections:(nonnull NSArray *)tags sections:(nullable NSArray *)sections;
 
 @end

@@ -51,19 +51,36 @@
 - (nonnull NSFetchRequest <NSFetchRequestResult>*)graphDailyExpensesFetchRequestForSectionName:(nonnull NSString *)sectionName;
 
 #pragma mark - Pie Chart Graph requests
-- (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest;
-- (NSArray *)expensesByCategoryForMonth:(NSNumber *)month inYear:(NSNumber *)year;
+- (nonnull NSFetchRequest *)expensesByCategoryMonthlyFetchRequest;
+
+// TODO: Document what it means to havemonth as an optional
+- (nonnull NSArray *)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
 
 
 #pragma mark - Other requests
-- (NSFetchRequest *)requestToGetYears;
+- (nonnull NSFetchRequest *)requestToGetYears;
 
 #pragma mark - Execution of requests
-- (NSArray *) resultsForRequest:(NSFetchRequest *)request error:(NSError **)error;
+
+/**
+ Executes a fetch request and returns the results in an array.
+
+ @param request Fetch request to be run.
+ @param error Optional error if something went wrong.
+ @return Returns an array of fetched results. Nil if there was an error. Only in that case error should be consulted.
+ */
+- (nullable NSArray *)resultsForRequest:(nonnull NSFetchRequest *)request error:(NSError *_Nullable *_Nullable)error;
 
 #pragma mark - Tags
 
-- (Tag *)tagForName:(NSString *)tagName;
+
+/**
+ Returns a Tag object representing a given name
+
+ @param tagName The name of the tag being fetched.
+ @return A tag for the given name or nil if the name was not recognised.
+ */
+- (nullable Tag *)tagForName:(nonnull NSString *)tagName;
 
 /*! @discussion Ordered by name ASC. */
 - (NSArray *)allTags;

@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @protocol LineGraphDataSourceProtocol
-- (NSArray*) moneyIn;
-- (NSArray*) moneyOut;
-- (NSArray*) xValues;
-- (NSString *) graphTitle;
+- (nonnull NSArray*) moneyIn;
+- (nonnull NSArray*) moneyOut;
+- (nonnull NSArray*) xValues;
+- (nullable NSString *) graphTitle;
 @end
 
 @protocol LineGraphCurrencyFormatterProtocol
-- (NSString *) formattedStringForNumber:(NSNumber *)number;
+- (nonnull NSString *)formattedStringForNumber:(nonnull NSNumber *)number;
 @end
 
 
 @interface LineGraph : UIView
 
-@property (assign, nonatomic) IBOutlet id <LineGraphDataSourceProtocol> dataSource;
-@property (assign, nonatomic) IBOutlet id <LineGraphCurrencyFormatterProtocol> currencyFormatter;
+@property (assign, nonatomic, nullable) IBOutlet id <LineGraphDataSourceProtocol> dataSource;
+@property (assign, nonatomic, nullable) IBOutlet id <LineGraphCurrencyFormatterProtocol> currencyFormatter;
 
 @end

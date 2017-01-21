@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BSCoreDataControllerDelegateProtocol.h"
 #import "BSAppDelegate.h"
-#import "BSCurrencyHelper.h"
-#import "BSCoreDataController.h"
-#import "BSStaticTableAddEntryFormCellActionDataSource.h"
 #import "BSCategoryFilterDelegate.h"
 #import "ContainmentEventsAPI.h"
 
-@class CoreDataStackHelper, BSCoreDataController;
+@class CoreDataStackHelper;
+@class BSCoreDataController;
 
 
 @protocol BSAbstractExpensesSummaryUserInterfaceProtocol;

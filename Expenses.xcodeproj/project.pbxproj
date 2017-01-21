@@ -315,7 +315,6 @@
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		000D04F51775D20F002D0AB8 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCoreDataController.h; path = ../BSCoreDataController.h; sourceTree = "<group>"; };
 		000D04F61775D20F002D0AB8 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSCoreDataController.m; path = ../BSCoreDataController.m; sourceTree = "<group>"; };
-		000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCoreDataControllerDelegateProtocol.h; path = ../BSCoreDataControllerDelegateProtocol.h; sourceTree = "<group>"; };
 		0017DB061937DBE80052DCF4 /* BSPieChartView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BSPieChartView.xcodeproj; path = ../BSPieChartView/BSPieChartView.xcodeproj; sourceTree = "<group>"; };
 		001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "../UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "../UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -714,7 +713,6 @@
 			children = (
 				000D04F51775D20F002D0AB8 /* BSCoreDataController.h */,
 				000D04F61775D20F002D0AB8 /* BSCoreDataController.m */,
-				000D04F91775D3D1002D0AB8 /* BSCoreDataControllerDelegateProtocol.h */,
 				005F7641180991740062DAF8 /* BSCoreDataFixturesManager.h */,
 				005F7642180991740062DAF8 /* BSCoreDataFixturesManager.m */,
 			);
@@ -1429,7 +1427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/** $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**";
@@ -1463,7 +1461,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/** $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**";
 				VALIDATE_PRODUCT = YES;

@@ -9,7 +9,7 @@
 #ifndef Expenses_BSBaseExpensesSummaryViewController_Protected_h
 #define Expenses_BSBaseExpensesSummaryViewController_Protected_h
 
-#import "BSGraphViewController.h"
+
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
 
 @class BSDisplaySectionData;

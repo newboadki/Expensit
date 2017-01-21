@@ -10,7 +10,9 @@
 #import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
 #import "Tag.h"
+#import "Entry.h"
 #import "BSPieChartSectionInfo.h"
+
 
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;

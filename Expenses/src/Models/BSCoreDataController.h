@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSCoreDataControllerDelegateProtocol.h"
-#import "Entry.h"
 
+
+
+@class Tag;
+@class Entry;
 @class CoreDataStackHelper;
 
 @interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate>

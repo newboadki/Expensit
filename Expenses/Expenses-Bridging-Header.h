@@ -7,7 +7,6 @@
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
 #import "BSAppDelegate.h"
-#import "BSCoreDataControllerDelegateProtocol.h"
 #import "DateTimeHelper.h"
 #import "BSCurrencyHelper.h"
 #import "BSEntryDetailsFormViewController.h"

@@ -8,17 +8,11 @@
 
 #import "BSBaseExpensesSummaryViewController.h"
 #import "BSBaseExpenseCell.h"
-#import "DateTimeHelper.h"
-#import "BSGraphViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
-#import "BSCoreDataController.h"
 #import "BSEntryDetailsFormViewController.h"
-#import "BSCategoryFilterViewController.h"
-#import "BSNavigationControllerViewController.h"
 #import "BSVisualEffects.h"
 #import "BSModalSelectorViewTransitioningDelegate.h"
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
-#import "BSCategoryFilterViewController.h"
 #import "Expensit-Swift.h"
 
 static Tag *tagBeingFilterBy = nil;

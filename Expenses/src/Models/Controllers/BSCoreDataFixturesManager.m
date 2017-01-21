@@ -8,6 +8,7 @@
 
 #import "BSCoreDataFixturesManager.h"
 #import "CoreDataStackHelper.h"
+#import "Tag.h"
 
 static NSString * const kAppliedFixturesVersionNumbersKey = @"appliedFixturesVersionNumbersKey";
 static NSString * const kApplyFixtureMethodName = @"applyFixtureForModelObjectVersion";

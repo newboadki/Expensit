@@ -14,6 +14,7 @@
 #import "BSModalSelectorViewTransitioningDelegate.h"
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
 #import "Expensit-Swift.h"
+#import "BSStaticTableAddEntryFormCellActionDataSource.h"
 
 static Tag *tagBeingFilterBy = nil;
 

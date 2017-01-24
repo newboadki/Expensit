@@ -16,6 +16,7 @@
 #import "BSConstants.h"
 #import "BSCoreDataFixturesManager.h"
 #import "Expensit-Swift.h"
+#import "BSContainerViewController.h"
 
 @implementation BSAppDelegate
 
@@ -59,7 +60,7 @@
     BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
     [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
     
-    ContainerViewController *mainContainerViewController = (ContainerViewController *)self.window.rootViewController;
+    BSContainerViewController *mainContainerViewController = (BSContainerViewController *)self.window.rootViewController;
     
     mainContainerViewController.coreDataController = coreDataController;
     

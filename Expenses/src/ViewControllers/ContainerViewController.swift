@@ -79,22 +79,12 @@ class ContainerViewController : UIViewController {
                                                                          constant: 0)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
     override open func viewWillLayoutSubviews() {
         
         if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
             let size = self.view.bounds.size
             if size.width >= size.height {
                 self.landscapeAlreadyPresented = true
-                // LANDSCAPE
-                
-                ()
                 
                 // Disable the constraints for the Chart container view to be placed vertically in the stackView
                 if self.chartContainerHeightIsOneThirdOfSuperviewHeight.isActive {

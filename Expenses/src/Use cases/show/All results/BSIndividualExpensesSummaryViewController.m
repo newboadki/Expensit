@@ -21,6 +21,11 @@
 
 @implementation BSIndividualExpensesSummaryViewController
 
+- (ExpensesSummaryType)summaryType {
+    return AllEntriesExpensesSummaryType;
+}
+
+
 #pragma mark - View Cycle
 
 - (void)viewWillAppear:(BOOL)animated {

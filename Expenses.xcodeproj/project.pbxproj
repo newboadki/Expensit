@@ -124,6 +124,7 @@
 		0045D6221DBCE1E8006AA5AE /* BSPerEntrySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */; };
 		0045D6231DBCE1FD006AA5AE /* BSYearlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */; };
 		0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */; };
+		00535F081E3F212800AD7A7C /* ContainmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00535F071E3F212800AD7A7C /* ContainmentEvent.m */; };
 		0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
 		00592F1D1E35E55E009182D2 /* BSContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00592F1C1E35E55E009182D2 /* BSContainerViewController.m */; };
 		00592F1E1E35E55E009182D2 /* BSContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00592F1C1E35E55E009182D2 /* BSContainerViewController.m */; };
@@ -328,6 +329,9 @@
 		00418B8B1D23045F00DB4528 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		0045FD7A182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		0045FD7B182989B70074AAD1 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
+		00535F061E3F212800AD7A7C /* ContainmentEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEvent.h; sourceTree = "<group>"; };
+		00535F071E3F212800AD7A7C /* ContainmentEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainmentEvent.m; sourceTree = "<group>"; };
+		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
 		0053A7D318F9E43600D63918 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
 		0053A7D418F9E43600D63918 /* BSYearlyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyLayout.m; sourceTree = "<group>"; };
 		0056DAEA1E2766710091CE1C /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -541,6 +545,7 @@
 				000A9A661D09F21B0045523A /* BSAbstractShowEntriesController.swift */,
 				000A9A681D09F21B0045523A /* BSAbstractShowEntriesPresenter.swift */,
 				000A9A691D09F21B0045523A /* BSDisplaySectionData.swift */,
+				00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -679,6 +684,8 @@
 				00592F1B1E35E55E009182D2 /* BSContainerViewController.h */,
 				00592F1C1E35E55E009182D2 /* BSContainerViewController.m */,
 				00BAA0741E31415A00EC2C10 /* ContainmentEventsAPI.h */,
+				00535F061E3F212800AD7A7C /* ContainmentEvent.h */,
+				00535F071E3F212800AD7A7C /* ContainmentEvent.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1228,6 +1235,7 @@
 				00BD78A0182FF35A0004A808 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
 				009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
 				0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */,
+				00535F081E3F212800AD7A7C /* ContainmentEvent.m in Sources */,
 				000A9A3A1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
 				000A9A381D09EB710045523A /* BSAddEntryController.swift in Sources */,
 				009D00FA19426FA000B850D4 /* BSHeaderButton.m in Sources */,

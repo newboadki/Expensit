@@ -11,6 +11,8 @@
 
 
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
+#import "ExpensesSummaryType.h"
+
 
 @class BSDisplaySectionData;
 
@@ -19,6 +21,6 @@
 @property (nonatomic, strong) BSAnimatedBlurEffectTransitioningDelegate *animatedBlurEffectTransitioningDelegate;
 @property (nonatomic, strong) NSArray <BSDisplaySectionData *>*sections;
 @property (nonatomic, strong) NSArray *entries;
-
+@property (nonatomic, assign, readonly) ExpensesSummaryType summaryType;
 @end
 #endif

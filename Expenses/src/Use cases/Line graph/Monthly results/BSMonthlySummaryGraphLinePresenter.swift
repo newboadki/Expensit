@@ -48,7 +48,15 @@ import Foundation
         for dic in data {
             let dictionary = dic as! NSDictionary
             let month = dictionary["month"] as! Int
-            graphData[month-1] = dictionary["monthlySum"] as! NSNumber
+            let monthlySum = dictionary["monthlySum"] as! NSNumber
+            if monthlySum.compare(NSNumber(floatLiteral: 0.0)) == .orderedDescending {
+                // positive
+                graphData[month-1] = monthlySum
+            } else {
+                // negative
+                let decimalValue = NSDecimalNumber(value: monthlySum.doubleValue)
+                graphData[month-1] = decimalValue.multiplying(by: NSDecimalNumber(value: -1.0))
+            }            
         }
         
         return graphData

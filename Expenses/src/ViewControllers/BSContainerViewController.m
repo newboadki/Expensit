@@ -10,18 +10,32 @@
 #import "BSCoreDataController.h"
 #import "BSYearlyExpensesSummaryViewController.h"
 #import "BSGraphViewController.h"
+#import "ExpensesSummaryType.h"
 #import "Expensit-Swift.h"
 
 @interface BSContainerViewController ()
 
 @property (nonatomic, strong, nullable) BSYearlyExpensesSummaryViewController *yearlyViewController;
+@property (nonatomic, strong, nullable) BSGraphViewController *graphViewController;
 @property (nonatomic) BOOL landscapeAlreadyPresented;
+@property (nonatomic, strong) BSYearlySummaryNavigationTransitionManager *yearlyTransitionManager;
+@property (nonatomic, strong) BSMonthlySummaryNavigationTransitionManager *monthlyTransitionManager;
+@property (nonatomic, strong) BSDailySummaryNavigationTransitionManager *dailyTransitionManager;
 @end
 
 @implementation BSContainerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
+//    self.yearlyTransitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
+//                                                                                                coreDataController:self.coreDataController];
+//    self.monthlyTransitionManager = [[BSMonthlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
+//                                                                                                coreDataController:self.coreDataController];
+//    self.dailyTransitionManager = [[BSDailySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
+//                                                                                                coreDataController:self.coreDataController];
+    
     
     self.chartContainerBottomEqualsSuperviewBottom = [NSLayoutConstraint constraintWithItem: self.chartContainer
                                                                                   attribute: NSLayoutAttributeBottom
@@ -115,25 +129,75 @@
     if([childController isKindOfClass:UINavigationController.class]) {
         UINavigationController *navigationViewController = (UINavigationController *)childController;
         self.yearlyViewController = (BSYearlyExpensesSummaryViewController *)navigationViewController.topViewController;
-        BSYearlySummaryNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+        BSYearlySummaryNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController containmentEventsDelegate:self];
         self.yearlyViewController.navigationTransitionManager = transitionManager;
         
         BSShowYearlyEntriesController * yearlyController = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
         BSShowYearlyEntriesPresenter * yearlyPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:self.yearlyViewController showEntriesController:yearlyController];
         self.yearlyViewController.showEntriesPresenter = yearlyPresenter;
+        self.yearlyViewController.containmentEventsDelegate = self;
         
     } else if ([childController isKindOfClass:BSGraphViewController.class] ) {
-        BSGraphViewController *graphViewController = (BSGraphViewController *)childController;
-        graphViewController.containmentEventsDelegate = self;
+        self.graphViewController = (BSGraphViewController *)childController;
+        self.graphViewController.containmentEventsDelegate = self;
         
         id<BSGraphLineControllerProtocol>yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
         id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:@"2013"];
-        graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
+        self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
     }
 }
 
-- (void)raiseEvent:(id<ContainmentEvent>)event fromSender:(id<ContainmentEventSource>)sender {
+
+
+#pragma mark - ContainmentEventsManager
+
+- (void)raiseEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender {
     
+    switch (event.type) {
+        case ChildControlledContentChanged:
+        {
+            NSString *sectionName = (NSString *)event.userInfo[@"SectionName"];
+            NSNumber *summaryTypeNumber = (NSNumber *)event.userInfo[@"SummaryType"];
+            ExpensesSummaryType type = (ExpensesSummaryType)[summaryTypeNumber intValue];
+            
+            switch (type) {
+
+                case YearlyExpensesSummaryType: {
+                    id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:sectionName];
+                    self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
+                    [self.graphViewController.view setNeedsDisplay];
+                    break;
+                }
+                case MonthlyExpensesSummaryType: {
+                    id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLinePresenterProtocol> monthlyLineGraphPresenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:monthlyLineGraphController section:sectionName];
+                    self.graphViewController.lineGraphPresenter = monthlyLineGraphPresenter;
+                    [self.graphViewController.view setNeedsDisplay];
+                    break;
+                }
+                case DailyExpensesSummaryType:
+                {
+                    id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLinePresenterProtocol> dailyLineGraphPresenter = [[BSDailySummaryGraphLinePresenter alloc] initWithDailySummaryGraphLineController:dailyLineGraphController section:sectionName];
+                    self.graphViewController.lineGraphPresenter = dailyLineGraphPresenter;
+                    [self.graphViewController.view setNeedsDisplay];
+                    break;
+                }
+                case AllEntriesExpensesSummaryType:
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            break;
+        }
+        default:
+            break;
+    }
 }
+
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContainmentEventsAPI.h"
 
-@interface BSNavigationControllerViewController : UINavigationController
+@interface BSNavigationControllerViewController : UINavigationController <ContainmentEventHandler>
+
+@property (nonatomic) id<ContainmentEventsManager> containmentEventsDelegate;
 
 @end

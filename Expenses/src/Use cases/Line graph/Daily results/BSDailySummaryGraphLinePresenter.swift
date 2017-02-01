@@ -60,13 +60,12 @@ import Foundation
             let dictionary = dic as! NSDictionary
             let day = dictionary["day"] as! Int
             let dailySum = dictionary["dailySum"] as! NSNumber
-            let dailySumAsFloat = dailySum.floatValue
-//            if dailySumAsFloat > 0 {
-//                graphData[day] = NSNumber(value: dailySumAsFloat)
-//            } else {
-//                graphData[day] = NSNumber(value: -dailySumAsFloat)
-//            }
-            graphData[day] = dailySum
+            let dailySumAsDouble = dailySum.doubleValue
+            if dailySumAsDouble > 0 {
+                graphData[day] = NSNumber(value: dailySumAsDouble)
+            } else {
+                graphData[day] = NSNumber(value: -dailySumAsDouble)
+            }
         }
         
         return graphData

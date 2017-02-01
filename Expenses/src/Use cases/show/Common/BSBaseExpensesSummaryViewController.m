@@ -13,20 +13,22 @@
 #import "BSVisualEffects.h"
 #import "BSModalSelectorViewTransitioningDelegate.h"
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
-#import "Expensit-Swift.h"
+#import "ContainmentEvent.h"
 #import "BSStaticTableAddEntryFormCellActionDataSource.h"
+#import "Expensit-Swift.h"
 
 static Tag *tagBeingFilterBy = nil;
 
 @interface BSBaseExpensesSummaryViewController ()
 @property (nonatomic, assign) BOOL isShowingLandscapeView;
 @property (nonatomic, strong) BSModalSelectorViewTransitioningDelegate *categoryFilterViewTransitioningDelegate;
+@property (nonatomic, assign) BOOL visibleSenctionNameAlreadyCalculated;
 @end
 
 @implementation BSBaseExpensesSummaryViewController
 
 
-- (void)handleEvent:(id<ContainmentEvent>)event fromSender:(id<ContainmentEventSource>)sender {
+- (void)handleEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender {
     
 }
 
@@ -117,6 +119,32 @@ static Tag *tagBeingFilterBy = nil;
         CGPoint offset = self.collectionView.contentOffset;
         offset.y -= header.frame.size.height;
         self.collectionView.contentOffset = offset;
+    }
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (!self.visibleSenctionNameAlreadyCalculated) {
+        // Template method to ask subclasses what the event is? Do we need this?
+        ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
+        [self.containmentEventsDelegate raiseEvent:event fromSender:self];
+    }
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)willDecelerate {
+    
+    // If it will decelerate, then do not calculate it, since the scrolling will continue due to incercia simulation.
+    // So set flag to be recognised by
+    self.visibleSenctionNameAlreadyCalculated = !willDecelerate;
+    
+    if (willDecelerate) {
+        self.visibleSenctionNameAlreadyCalculated = NO;
+    } else {
+        self.visibleSenctionNameAlreadyCalculated = YES;
+        // Template method to ask subclasses what the event is? Do we need this?
+        ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType)}];
+        [self.containmentEventsDelegate raiseEvent:event fromSender:self];
     }
 }
 

@@ -20,6 +20,11 @@
 
 @implementation BSMonthlyExpensesSummaryViewController
 
+- (ExpensesSummaryType)summaryType {
+    return MonthlyExpensesSummaryType;
+}
+
+
 
 #pragma mark - View Cycle
 

@@ -10,6 +10,13 @@
 
 @protocol LineGraphDataSourceProtocol
 - (nonnull NSArray*) moneyIn;
+
+
+/**
+ 
+ @discussion Possitive valuesd
+ @return array of positive values
+ */
 - (nonnull NSArray*) moneyOut;
 - (nonnull NSArray*) xValues;
 - (nullable NSString *) graphTitle;

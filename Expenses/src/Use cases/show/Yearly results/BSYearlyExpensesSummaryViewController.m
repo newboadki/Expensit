@@ -17,7 +17,9 @@
 
 @implementation BSYearlyExpensesSummaryViewController
 
-
+- (ExpensesSummaryType)summaryType {
+    return YearlyExpensesSummaryType;
+}
 
 #pragma mark - UICollectionViewDataSource
 

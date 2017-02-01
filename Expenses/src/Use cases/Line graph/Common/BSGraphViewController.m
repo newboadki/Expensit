@@ -8,6 +8,7 @@
 
 #import "BSGraphViewController.h"
 #import "BSCurrencyHelper.h"
+#import "ContainmentEvent.h"
 #import "Expensit-Swift.h"
 
 @interface BSGraphViewController ()
@@ -63,6 +64,15 @@
     /// We do this to let collection views re-calculate their layout as it is done programmatically in layout classes,
     /// since we wanted the number of cells and rows to be constant to make it look like a regular calendar.
     [self.view setNeedsDisplay];
+}
+
+
+
+#pragma mark - ContainmentEventHandler
+
+- (void)handleEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender
+{
+    
 }
 
 @end

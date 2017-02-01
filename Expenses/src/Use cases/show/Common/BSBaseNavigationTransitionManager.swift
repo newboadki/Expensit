@@ -14,13 +14,14 @@ class BSBaseNavigationTransitionManager: NSObject
     var coreDataStackHelper : CoreDataStackHelper
     var coreDataController : BSCoreDataController
     var categoryFilterTransitioningDelegate :BSModalSelectorViewTransitioningDelegate
+    var containmentEventsDelegate: ContainmentEventsManager?
     
-    init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController)
+    init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController, containmentEventsDelegate: ContainmentEventsManager)
     {
         self.coreDataStackHelper = coreDataStackHelper
         self.coreDataController = coreDataController
         self.categoryFilterTransitioningDelegate = BSModalSelectorViewTransitioningDelegate()
-        
+        self.containmentEventsDelegate = containmentEventsDelegate
         super.init()
     }
     

@@ -13,7 +13,14 @@ import Foundation
     var section : String { get set }
     
     func graphTitle() -> String
+    
     func income() -> [AnyObject]
+    
+    
+    /// Positive Values representing the expenses
+    ///
+    /// - Discussion: The values must be positive
+    /// - Returns: Array of positive values
     func expenses() -> [AnyObject]
     func abscissaValues() -> [String]
 }

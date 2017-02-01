@@ -78,7 +78,7 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     
     // MODIFY DATA FOR DRAWING
     NSMutableArray *benefits = [[self.dataSource moneyIn] mutableCopy];
-    NSMutableArray *expenses = [[self.dataSource moneyOut] mutableCopy];
+    NSMutableArray *expenses = [[self.dataSource moneyOut] mutableCopy]; // This class expects these values to be positive! Otherwise, negative values will not be correctly drawn.
     
     if (!benefits || !expenses) {
         return;
@@ -127,8 +127,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             [self drawIntersectionPaths:subpaths];
         }
     
-    
-
     CGContextRestoreGState(theContext);
 }
 

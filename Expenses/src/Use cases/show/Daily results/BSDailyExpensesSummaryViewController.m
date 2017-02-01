@@ -22,6 +22,9 @@
 
 @implementation BSDailyExpensesSummaryViewController
 
+- (ExpensesSummaryType)summaryType {
+    return DailyExpensesSummaryType;
+}
 
 
 #pragma mark - UICollectionViewDataSource

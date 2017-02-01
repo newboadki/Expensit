@@ -65,8 +65,16 @@ import Foundation
             }
             if monthDictionary != nil
             {
-                let value = monthDictionary!["yearlySum"] as! NSNumber
-                graphData.append(value)
+                let yearlySum = monthDictionary!["yearlySum"] as! NSNumber
+                if yearlySum.compare(NSNumber(floatLiteral: 0.0)) == .orderedDescending {
+                    // positive
+                    graphData.append(yearlySum)
+                } else {
+                    // negative
+                    let decimalValue = NSDecimalNumber(value: yearlySum.doubleValue)
+                    graphData.append(decimalValue.multiplying(by: NSDecimalNumber(value: -1.0)))
+                }
+                
             }
             else
             {

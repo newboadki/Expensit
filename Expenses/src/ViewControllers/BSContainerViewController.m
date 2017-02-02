@@ -117,8 +117,7 @@
 
             }
         }
-    }
-  
+    }    
     [super viewWillLayoutSubviews];
 }
 

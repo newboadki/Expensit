@@ -34,7 +34,7 @@
         <scene sceneID="4Jy-9v-7CR">
             <objects>
                 <collectionViewController storyboardIdentifier="BSYearlyExpensesSummaryViewController" autoresizesArchivedViewToFullSize="NO" id="hVc-YE-t2T" customClass="BSYearlyExpensesSummaryViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="xt9-c7-2OQ">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="xt9-c7-2OQ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="717"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -522,7 +522,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BSEntrySegmentedOptionCell" id="7AV-1F-6oL" customClass="BSEntrySegmentedOptionCell">
-                                <rect key="frame" x="0.0" y="187" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="188" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7AV-1F-6oL" id="J9F-nH-0iW">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
@@ -991,7 +991,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-qT-ynq" userLabel="Chart container">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="327.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="311"/>
                                 <connections>
                                     <segue destination="AV8-eo-eBA" kind="embed" id="BrR-Ks-XuY"/>
                                 </connections>
@@ -1011,7 +1011,7 @@
                             <constraint firstItem="f38-49-sZy" firstAttribute="top" secondItem="7md-Gc-ge4" secondAttribute="bottom" id="UqH-UD-UZI"/>
                             <constraint firstItem="ewc-qT-ynq" firstAttribute="leading" secondItem="buD-AN-gt3" secondAttribute="leading" id="X2c-kU-LUJ"/>
                             <constraint firstItem="ewc-qT-ynq" firstAttribute="height" secondItem="buD-AN-gt3" secondAttribute="height" multiplier="0.3" id="ZF4-F2-LoL">
-                                <variation key="heightClass=regular-widthClass=regular" constant="20.199999999999989"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="3.8000000000000114"/>
                             </constraint>
                             <constraint firstItem="7md-Gc-ge4" firstAttribute="top" secondItem="buD-AN-gt3" secondAttribute="top" id="i6H-uv-SN1"/>
                             <constraint firstItem="ewc-qT-ynq" firstAttribute="top" secondItem="cUI-cE-pbw" secondAttribute="bottom" constant="-20" id="nIb-pG-wMK"/>
@@ -1058,7 +1058,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x76-N4-gyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3369" y="179"/>
+            <point key="canvasLocation" x="-3369.53125" y="178.7109375"/>
         </scene>
         <!--Chart ViewController-->
         <scene sceneID="SdY-bu-DaN">
@@ -1069,7 +1069,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fnV-tx-Uu1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WqC-fE-iTg" customClass="LineGraph">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="327.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="311"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97355422179999995" green="1" blue="0.69245711750000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>

@@ -128,7 +128,7 @@ static BSDailySummaryGraphLineController *controller;
     // Jan 2013
     BSDailySummaryGraphLinePresenter *presenter = [[BSDailySummaryGraphLinePresenter alloc] initWithDailySummaryGraphLineController:controller section:@"1/2013"];
     NSArray *dailyReults = [presenter expenses];
-    NSArray <NSNumber*>* expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(-20),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    NSArray <NSNumber*>* expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(20),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
     XCTAssert([dailyReults count] == 31);
     NSUInteger count = 0;
     for (NSNumber *dailySum in dailyReults) {
@@ -138,7 +138,7 @@ static BSDailySummaryGraphLineController *controller;
 
     // March 2013
     presenter.section = @"3/2013";
-    expectation = @[@0, @0, @0,@0,@0,@(-15),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    expectation = @[@0, @0, @0,@0,@0,@(15),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
     dailyReults = [presenter expenses];
     XCTAssert([dailyReults count] == 31);
     count = 0;
@@ -150,7 +150,7 @@ static BSDailySummaryGraphLineController *controller;
     // Jan 2012
     presenter.section = @"1/2012";
     dailyReults = [presenter expenses];
-    expectation = @[@0, @0, @(-20.5),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    expectation = @[@0, @0, @(20.5),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
     dailyReults = [presenter expenses];
     XCTAssert([dailyReults count] == 31);
     count = 0;
@@ -162,7 +162,7 @@ static BSDailySummaryGraphLineController *controller;
     // March 2012
     presenter.section = @"3/2012";
     dailyReults = [presenter expenses];
-    expectation = @[@0, @0, @0, @(-7), @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    expectation = @[@0, @0, @0, @(7), @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
     XCTAssert([dailyReults count] == 31);
     count = 0;
     for (NSNumber *dailySum in dailyReults) {
@@ -173,7 +173,7 @@ static BSDailySummaryGraphLineController *controller;
     // Jun 2011
     presenter.section = @"6/2011";
     dailyReults = [presenter expenses];
-    expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(-5),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(5),@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
     XCTAssert([dailyReults count] == 30);
     count = 0;
     for (NSNumber *dailySum in dailyReults) {
@@ -184,7 +184,7 @@ static BSDailySummaryGraphLineController *controller;
     // Dec 2011
     presenter.section = @"12/2011";
     dailyReults = [presenter expenses];
-    expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(-10),@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    expectation = @[@0, @0, @0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@(10),@0,@0,@0,@0,@0,@0,@0,@0,@0];
     XCTAssert([dailyReults count] == 31);
     count = 0;
     for (NSNumber *dailySum in dailyReults) {

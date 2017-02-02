@@ -206,7 +206,7 @@ static BSShowYearlyEntriesPresenter *presenter;
     NSArray <NSString*>*abscissaValues = [presenter abscissaValues];
     
     
-    NSArray <NSNumber*>* surplusExpectation = @[@(-57), @(-71.5), @(-260.9)];
+    NSArray <NSNumber*>* surplusExpectation = @[@(57), @(71.5), @(260.9)];
     NSArray <NSNumber*>* abscissaValuesExpectation = @[@"2011", @"2012", @"2013"];
     XCTAssert([surplusExpectation count] == 3);
     XCTAssert([abscissaValuesExpectation count] == 3);

@@ -342,7 +342,7 @@
     // Jan 2013
     BSMonthlySummaryGraphLinePresenter *presenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:controller section:@"2013"];
     NSArray <NSNumber*>*monthlyResults = [presenter expenses];
-    NSArray <NSNumber*>* expectation = @[@(-20), @(-90), @(-15), @(-17), @(-20.5), @(-131), @(-20.5), @(-33.5), @(-2.5), @(-7.8), @0, @(-10.1)];
+    NSArray <NSNumber*>* expectation = @[@(20), @(90), @(15), @(17), @(20.5), @(131), @(20.5), @(33.5), @(2.5), @(7.8), @0, @(10.1)];
     XCTAssert([monthlyResults count] == 12);
     NSUInteger count = 0;
     for (NSNumber *monthlySum in monthlyResults) {
@@ -354,7 +354,7 @@
     // 2012
     presenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:controller section:@"2012"];
     monthlyResults = [presenter expenses];
-    expectation = @[ @(-20.5), @0, @(-12), @0, @0, @0, @(-18.5), @0, @(-20.5), @0, @0, @0];
+    expectation = @[ @(20.5), @0, @(12), @0, @0, @0, @(18.5), @0, @(20.5), @0, @0, @0];
     XCTAssert([monthlyResults count] == 12);
     count = 0;
     for (NSNumber *monthlySum in monthlyResults) {
@@ -366,7 +366,7 @@
     // 2011
     presenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:controller section:@"2011"];
     monthlyResults = [presenter expenses];
-    expectation = @[ @(-20.5), @0, @(-1), @0, @(-20.5), @0, @(-5), @0, @0, @0, @0, @(-10)];
+    expectation = @[ @(20.5), @0, @(1), @0, @(20.5), @0, @(5), @0, @0, @0, @0, @(10)];
     XCTAssert([monthlyResults count] == 12);
     count = 0;
     for (NSNumber *monthlySum in monthlyResults) {

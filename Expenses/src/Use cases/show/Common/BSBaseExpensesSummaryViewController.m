@@ -90,10 +90,12 @@ static Tag *tagBeingFilterBy = nil;
 
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     
-    
+    ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
+    [self.containmentEventsDelegate raiseEvent:event fromSender:self];
 }
 
 - (void)scrollToSelectedSection

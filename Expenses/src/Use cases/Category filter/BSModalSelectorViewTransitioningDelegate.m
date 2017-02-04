@@ -29,8 +29,6 @@
 }
 
 
-
-
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     return 0.5;
@@ -46,7 +44,7 @@
     
     if (self.isSetupAnimation)
     {
-        toViewController.view.frame = CGRectMake(0, 64, fromViewController.view.frame.size.width, 215);
+        toViewController.view.frame = CGRectMake(0, fromViewController.view.frame.origin.y + 64, fromViewController.view.frame.size.width, 215);
         UIView *contentView = [toViewController.view viewWithTag:100];
         CGRect contentStartFrame = contentView.frame;
         contentStartFrame.origin.y -= contentStartFrame.size.height;

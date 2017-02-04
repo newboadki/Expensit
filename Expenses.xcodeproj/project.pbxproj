@@ -601,8 +601,8 @@
 			isa = PBXGroup;
 			children = (
 				000A9A9D1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift */,
-				000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */,
 				000A9AAE1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.h */,
+				000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */,
 				000A9AA91D0AF0DB0045523A /* BSCategoryFilterViewController.h */,
 				000A9AAA1D0AF0DB0045523A /* BSCategoryFilterViewController.m */,
 				002B06AD1DAA71A1002D944C /* BSCategoryFilterDelegate.h */,

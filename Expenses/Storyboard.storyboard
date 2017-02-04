@@ -959,29 +959,39 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Food for the week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-KO-vLZ">
-                                            <rect key="frame" x="20" y="9" width="149" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food for the week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-KO-vLZ">
+                                            <rect key="frame" x="20" y="10" width="138" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="39.85" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MU-Pg-77B">
-                                            <rect key="frame" x="182" y="9" width="100" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="39.85" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MU-Pg-77B">
+                                            <rect key="frame" x="237" y="10" width="45" height="21"/>
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6qQ-hi-2rU" customClass="BSTriangularAccesoryView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qQ-hi-2rU" customClass="BSTriangularAccesoryView">
                                             <rect key="frame" x="299" y="15" width="10" height="10"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="10" id="hyY-Wg-XSU"/>
+                                                <constraint firstAttribute="height" constant="10" id="l6g-hd-enq"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="IyP-KO-vLZ" firstAttribute="leading" secondItem="CqC-Bq-eKo" secondAttribute="leadingMargin" constant="12" id="8LD-60-5Wu"/>
+                                    <constraint firstItem="9MU-Pg-77B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IyP-KO-vLZ" secondAttribute="trailing" constant="13" id="Wmo-8f-7tj"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="6qQ-hi-2rU" secondAttribute="trailing" constant="3" id="fS1-wt-NpV"/>
+                                    <constraint firstItem="6qQ-hi-2rU" firstAttribute="leading" secondItem="9MU-Pg-77B" secondAttribute="trailing" constant="17" id="jBa-go-fZn"/>
+                                    <constraint firstItem="9MU-Pg-77B" firstAttribute="centerY" secondItem="CqC-Bq-eKo" secondAttribute="centerY" id="l3H-ZG-EjI"/>
+                                    <constraint firstItem="IyP-KO-vLZ" firstAttribute="centerY" secondItem="CqC-Bq-eKo" secondAttribute="centerY" id="ouq-w8-VhR"/>
+                                    <constraint firstItem="6qQ-hi-2rU" firstAttribute="centerY" secondItem="CqC-Bq-eKo" secondAttribute="centerY" id="uGe-I8-ENZ"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="amountLabel" destination="9MU-Pg-77B" id="soO-CP-9lR"/>
                                     <outlet property="title" destination="IyP-KO-vLZ" id="RG5-6O-yqc"/>
@@ -993,7 +1003,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="53"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVh-vu-QTF">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVh-vu-QTF">
                                     <rect key="frame" x="8" y="16" width="752" height="21"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                                     <nil key="highlightedColor"/>
@@ -1144,8 +1154,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7gU-IS-qsc"/>
-        <segue reference="5Ma-8x-FnT"/>
         <segue reference="VMT-65-EvS"/>
         <segue reference="mhk-lY-BLe"/>
+        <segue reference="SvB-fj-3Fl"/>
     </inferredMetricsTieBreakers>
 </document>

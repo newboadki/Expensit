@@ -11,5 +11,5 @@ import Foundation
 
 @objc protocol BSAbstractExpensesSummaryUserInterfaceProtocol
 {
-    func displayImage(for image : UIImage)
+    func displayCategoryImage(_ image : UIImage)
 }

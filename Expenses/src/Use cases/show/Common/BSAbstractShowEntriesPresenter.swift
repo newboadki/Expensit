@@ -38,8 +38,10 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     func viewIsReadyToDisplayImage(for category : Tag?) {
-        _ = self.showEntriesController.image(for: category)
-        // TODO: It crah the app. self.userInteface.displayImage(for : image!)
+                
+        if let image = self.showEntriesController.image(for: category) {
+            self.userInteface.displayCategoryImage(image)
+        }
     }
     
     func filterButtonTapped() {

@@ -374,7 +374,7 @@ static Tag *tagBeingFilterBy = nil;
 
 #pragma mark - BSAbstractExpensesSummaryUserInterfaceProtocol
 
-- (void)displayImageForCategory:(UIImage *)image
+- (void)displayCategoryImage:(UIImage *)image
 {
     UIBarButtonItem *filterButton = self.navigationItem.rightBarButtonItems[1];
     [filterButton setImage:image];

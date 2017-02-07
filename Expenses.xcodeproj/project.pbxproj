@@ -337,6 +337,7 @@
 		0056DAEA1E2766710091CE1C /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		00592F1B1E35E55E009182D2 /* BSContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSContainerViewController.h; sourceTree = "<group>"; };
 		00592F1C1E35E55E009182D2 /* BSContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSContainerViewController.m; sourceTree = "<group>"; };
+		005B7AF41E48F66000185706 /* BSSupportedOrientationsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSupportedOrientationsDelegate.h; sourceTree = "<group>"; };
 		005DF5EA178B58A500DC1800 /* BSGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGraphView.h; sourceTree = "<group>"; };
 		005DF5EB178B58A500DC1800 /* BSGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphView.m; sourceTree = "<group>"; };
 		005F7641180991740062DAF8 /* BSCoreDataFixturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataFixturesManager.h; sourceTree = "<group>"; };
@@ -675,6 +676,7 @@
 			children = (
 				00805040193B0D2C0029C9DA /* Graphs */,
 				009D01171943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.h */,
+				005B7AF41E48F66000185706 /* BSSupportedOrientationsDelegate.h */,
 				009D01181943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m */,
 				00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */,
 				00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */,

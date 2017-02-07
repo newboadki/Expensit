@@ -16,7 +16,11 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    return self.visibleViewController.supportedInterfaceOrientations;
+}
+
+- (BOOL)shouldAutorotate {
+    return self.visibleViewController.shouldAutorotate;
 }
 
 - (void)handleEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender {

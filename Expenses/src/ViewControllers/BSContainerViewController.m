@@ -13,29 +13,27 @@
 #import "ExpensesSummaryType.h"
 #import "Expensit-Swift.h"
 
+
+
 @interface BSContainerViewController ()
 
+@property (nonatomic, strong, nullable) UINavigationController *navController;
 @property (nonatomic, strong, nullable) BSYearlyExpensesSummaryViewController *yearlyViewController;
 @property (nonatomic, strong, nullable) BSGraphViewController *graphViewController;
 @property (nonatomic) BOOL landscapeAlreadyPresented;
 @property (nonatomic, strong) BSYearlySummaryNavigationTransitionManager *yearlyTransitionManager;
 @property (nonatomic, strong) BSMonthlySummaryNavigationTransitionManager *monthlyTransitionManager;
 @property (nonatomic, strong) BSDailySummaryNavigationTransitionManager *dailyTransitionManager;
+@property (nonatomic, assign) BOOL shouldHandleEvents;
+
+@property (nonatomic, nullable, copy) NSString *lastSectionName;
+@property (nonatomic, assign) ExpensesSummaryType lastSummaryType;
 @end
 
 @implementation BSContainerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
-//    self.yearlyTransitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
-//                                                                                                coreDataController:self.coreDataController];
-//    self.monthlyTransitionManager = [[BSMonthlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
-//                                                                                                coreDataController:self.coreDataController];
-//    self.dailyTransitionManager = [[BSDailySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
-//                                                                                                coreDataController:self.coreDataController];
-    
     
     self.chartContainerBottomEqualsSuperviewBottom = [NSLayoutConstraint constraintWithItem: self.chartContainer
                                                                                   attribute: NSLayoutAttributeBottom
@@ -75,6 +73,7 @@
     
     if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular && self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassRegular) {
         
+        self.shouldHandleEvents = YES;
         CGSize size = self.view.bounds.size;
         
         if (size.width >= size.height) {
@@ -114,10 +113,53 @@
                                                               self.calendarContainerTrailingEqualsSuperviewTrailing,
                                                               self.calendarContainerHeightisTwoThirdsOfSuperviewsHeight]];
                 }
-
             }
         }
-    }    
+    }
+    
+    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact &&
+        self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
+        // This means (as defined in the StoryBoard) that we are going to present the line chart, therefore we need to determine the presenter.
+        // And this is challenging, becuase the does not now, it will need to ask the calendar viewController, through a protocol, what's the type of graph and what is the section name?
+        // Only then we'll be able to reuse the code in raiseEvent:switch (event.type) {
+        
+        
+        NSLog(@"-> Name: %@, Type: %lu", self.lastSectionName, (unsigned long)self.lastSummaryType);
+        
+        switch (self.lastSummaryType) {
+                
+            case YearlyExpensesSummaryType: {
+                id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:self.lastSectionName];
+                self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
+                [self.graphViewController.view setNeedsDisplay];
+                break;
+            }
+            case MonthlyExpensesSummaryType: {
+                id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLinePresenterProtocol> monthlyLineGraphPresenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:monthlyLineGraphController section:self.lastSectionName];
+                self.graphViewController.lineGraphPresenter = monthlyLineGraphPresenter;
+                [self.graphViewController.view setNeedsDisplay];
+                break;
+            }
+            case DailyExpensesSummaryType:
+            {
+                id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLinePresenterProtocol> dailyLineGraphPresenter = [[BSDailySummaryGraphLinePresenter alloc] initWithDailySummaryGraphLineController:dailyLineGraphController section:self.lastSectionName];
+                self.graphViewController.lineGraphPresenter = dailyLineGraphPresenter;
+                [self.graphViewController.view setNeedsDisplay];
+                break;
+            }
+            case AllEntriesExpensesSummaryType:
+                
+                break;
+                
+            default:
+                break;
+        }
+
+    }
+    
     [super viewWillLayoutSubviews];
 }
 
@@ -126,8 +168,8 @@
     [super addChildViewController:childController];
     
     if([childController isKindOfClass:UINavigationController.class]) {
-        UINavigationController *navigationViewController = (UINavigationController *)childController;
-        self.yearlyViewController = (BSYearlyExpensesSummaryViewController *)navigationViewController.topViewController;
+        self.navController = (UINavigationController *)childController;
+        self.yearlyViewController = (BSYearlyExpensesSummaryViewController *)self.navController.topViewController;
         BSYearlySummaryNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController containmentEventsDelegate:self];
         self.yearlyViewController.navigationTransitionManager = transitionManager;
         
@@ -152,12 +194,20 @@
 
 - (void)raiseEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender {
     
+    
     switch (event.type) {
         case ChildControlledContentChanged:
         {
             NSString *sectionName = (NSString *)event.userInfo[@"SectionName"];
             NSNumber *summaryTypeNumber = (NSNumber *)event.userInfo[@"SummaryType"];
             ExpensesSummaryType type = (ExpensesSummaryType)[summaryTypeNumber intValue];
+            self.lastSectionName = sectionName;
+            self.lastSummaryType = type;
+            
+            if (!self.shouldHandleEvents) {
+                return;
+            }
+
             
             switch (type) {
 

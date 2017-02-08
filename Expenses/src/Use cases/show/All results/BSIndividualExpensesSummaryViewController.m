@@ -65,15 +65,10 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
-
     BSDisplaySectionData *sectionInfo = self.sections[indexPath.section];
-    NSArray *components = [sectionInfo.title componentsSeparatedByString:@"/"];
-    headerView.titleLabel.text = [NSString stringWithFormat:@"%@ %@ %@", [components objectAtIndex:2],
-                                  [DateTimeHelper monthNameForMonthNumber:[NSDecimalNumber decimalNumberWithString:[components objectAtIndex:1]]],
-                                  [components objectAtIndex:0]];
+    headerView.titleLabel.text = sectionInfo.title;
     
-    return headerView;
-    
+    return headerView;    
 }
 
 

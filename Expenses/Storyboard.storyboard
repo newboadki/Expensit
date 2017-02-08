@@ -771,7 +771,7 @@
                                 <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4V-ic-cPZ">
                                     <rect key="frame" x="18" y="26" width="0.0" height="0.0"/>
                                     <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                     <color key="textColor" red="0.28194060773480667" green="0.28194060773480667" blue="0.28194060773480667" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -881,7 +881,7 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5l-a0-8pw">
                                     <rect key="frame" x="18" y="26" width="0.0" height="0.0"/>
                                     <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                     <color key="textColor" red="0.29875258977900554" green="0.29875258977900554" blue="0.29875258977900554" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -1093,13 +1093,13 @@
                                 <exclude reference="ewc-qT-ynq"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="DsX-20-g7X"/>
+                                <exclude reference="lmx-3L-z0C"/>
                                 <exclude reference="X2c-kU-LUJ"/>
                                 <exclude reference="ZF4-F2-LoL"/>
                                 <exclude reference="ZbI-xs-fQk"/>
                                 <exclude reference="muR-YO-SZD"/>
                                 <exclude reference="zLx-Hm-UtQ"/>
-                                <exclude reference="lmx-3L-z0C"/>
+                                <exclude reference="DsX-20-g7X"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
@@ -1108,10 +1108,10 @@
                                 <exclude reference="7md-Gc-ge4"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="lmx-3L-z0C"/>
                                 <include reference="ZbI-xs-fQk"/>
                                 <include reference="muR-YO-SZD"/>
                                 <include reference="nIb-pG-wMK"/>
-                                <include reference="lmx-3L-z0C"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1119,11 +1119,11 @@
                                 <include reference="ewc-qT-ynq"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="DsX-20-g7X"/>
-                                <exclude reference="i6H-uv-SN1"/>
                                 <include reference="X2c-kU-LUJ"/>
                                 <include reference="ZF4-F2-LoL"/>
                                 <include reference="zLx-Hm-UtQ"/>
+                                <include reference="DsX-20-g7X"/>
+                                <exclude reference="i6H-uv-SN1"/>
                             </mask>
                         </variation>
                     </view>
@@ -1173,9 +1173,9 @@
         <image name="filter_all" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xiw-zN-IxC"/>
-        <segue reference="3Wo-jm-gLj"/>
-        <segue reference="ppL-ZX-bTD"/>
         <segue reference="KYv-wR-Vdw"/>
+        <segue reference="7gU-IS-qsc"/>
+        <segue reference="VMT-65-EvS"/>
+        <segue reference="mhk-lY-BLe"/>
     </inferredMetricsTieBreakers>
 </document>

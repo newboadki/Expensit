@@ -27,7 +27,10 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
             let year = components[0]
             let month = components[1]
             let day = components[2]
-            let reversed = "\(day)/\(month)/\(year)"
+            
+            // TODO: Need to encapsulate. This string needs to match the one created at BSShowDailyEntriesPresenter.
+             let reversed = "\(day) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
+            
             let sectionData = BSDisplaySectionData(title: reversed, entries: entries)
             sections.append(sectionData)
         }

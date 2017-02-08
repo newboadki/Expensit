@@ -61,12 +61,6 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
                 let entryData = BSDisplayEntry(title: dayString as String , value: dailySumString as String, signOfAmount: sign)
                 entries[day.intValue - 1] = entryData
             }
-           // let sectionTitle = coreDatasectionInfo.name
-//            let month = sectionTitle.components(separatedBy: "/")[0]
-//            let year = sectionTitle.components(separatedBy: "/")[1]
-            
-
-            //let sectionData = BSDisplaySectionData(title: DateTimeHelper.monthNameAndYearString(fromMonthNumberAndYear: "\(month)/\(year)"), entries: entries)
             
             let sectionData = BSDisplaySectionData(title: coreDatasectionInfo.name, entries: entries)
             sections.append(sectionData)
@@ -79,10 +73,8 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
     func sectionName(forSelected indexPath : IndexPath, sectionTitle: String) -> String {
         let month = sectionTitle.components(separatedBy: "/")[0]
         let year = sectionTitle.components(separatedBy: "/")[1]
-        
-        //return DateTimeHelper.monthNameAndYearString(fromMonthNumberAndYear: "\(month)/\(year)")
-        return "\((indexPath as NSIndexPath).row + 1)/\(month)/\(year)"
-        
+        // TODO: Need to encapsulate. This string needs to match the one created at BSShowAllEntriesPresenter.
+        return "\((indexPath as NSIndexPath).row + 1) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
     }
 
 }

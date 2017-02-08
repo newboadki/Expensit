@@ -112,11 +112,4 @@
     
 }
 
-- (void)orientationChanged:(NSNotification *)notification
-{
-}
-
-
-
-
 @end

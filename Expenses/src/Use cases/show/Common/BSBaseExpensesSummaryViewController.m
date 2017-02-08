@@ -20,7 +20,6 @@
 static Tag *tagBeingFilterBy = nil;
 
 @interface BSBaseExpensesSummaryViewController ()
-@property (nonatomic, assign) BOOL isShowingLandscapeView;
 @property (nonatomic, strong) BSModalSelectorViewTransitioningDelegate *categoryFilterViewTransitioningDelegate;
 @property (nonatomic, assign) BOOL visibleSenctionNameAlreadyCalculated;
 @end
@@ -41,14 +40,6 @@ static Tag *tagBeingFilterBy = nil;
     
     self.firstTimeViewWillAppear = YES;
     
-    // Prepare for Landscape
-    self.isShowingLandscapeView = NO;
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(orientationChanged:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
-
     // NavBar buttons
     UIBarButtonItem *filterButton = self.navigationItem.rightBarButtonItems[1];
     
@@ -170,26 +161,6 @@ static Tag *tagBeingFilterBy = nil;
 
 
 
-#pragma mark - Landscape Presentation
-
-- (void)orientationChanged:(NSNotification *)notification
-{
-//    if (self == [[self navigationController] topViewController]) {
-//        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-//        if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView)
-//        {
-//            [self performSegueWithIdentifier:@"DisplayGraphView" sender:self];
-//            self.isShowingLandscapeView = YES;
-//        }
-//        else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView )
-//        {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//            self.isShowingLandscapeView = NO;
-//        }
-//    }
-}
-
-
 #pragma mark - segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -291,15 +262,6 @@ static Tag *tagBeingFilterBy = nil;
 - (BOOL) shouldScrollToSelectedSection
 {
     return YES;
-}
-
-
-#pragma mark - Dealloc
-
-- (void)dealloc
-{
-    // Remove notification observations
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 

@@ -64,7 +64,12 @@ import Foundation
             if dailySumAsDouble > 0 {
                 graphData[day] = NSNumber(value: dailySumAsDouble)
             } else {
-                graphData[day] = NSNumber(value: -dailySumAsDouble)
+                if day > 0 && day < numberOfDaysInMonth.length {
+                    print(">> \(day)")
+                    graphData[day] = NSNumber(value: -dailySumAsDouble)
+                } else {
+                    
+                }
             }
         }
         

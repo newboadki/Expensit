@@ -19,7 +19,22 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
             var entries = [BSDisplayEntry]()
             for i in 0 ..< coreDatasectionInfo.numberOfObjects {
                 let coreDataEntry : Entry = coreDatasectionInfo.objects![i] as! Entry
-                let entryData = BSDisplayEntry(title: coreDataEntry.desc , value: BSCurrencyHelper.amountFormatter().string(from: coreDataEntry.value), signOfAmount: .zero)
+                
+                let r : ComparisonResult = coreDataEntry.value.compare(0)
+                var sign : BSNumberSignType
+                
+                switch r
+                {
+                case ComparisonResult.orderedAscending:
+                    sign = .negative
+                case ComparisonResult.orderedDescending:
+                    sign = .positive
+                case ComparisonResult.orderedSame:
+                    sign = .zero
+                }
+
+                
+                let entryData = BSDisplayEntry(title: coreDataEntry.desc , value: BSCurrencyHelper.amountFormatter().string(from: coreDataEntry.value), signOfAmount: sign)
                 entries.append(entryData)
             }
             
@@ -27,6 +42,7 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
             let year = components[0]
             let month = components[1]
             let day = components[2]
+        
             
             // TODO: Need to encapsulate. This string needs to match the one created at BSShowDailyEntriesPresenter.
              let reversed = "\(day) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"

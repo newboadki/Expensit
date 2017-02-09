@@ -59,6 +59,20 @@
     cell.title.text = entry.title;
     cell.amountLabel.text = entry.value;
     
+    switch (entry.signOfAmount)
+    {
+        case BSNumberSignTypeZero:
+            cell.isPositive = YES;
+            break;
+        case BSNumberSignTypePositive:
+            cell.isPositive = YES;
+            break;
+        case BSNumberSignTypeNegative:
+            cell.isPositive = NO;
+            break;
+    }
+
+    
     return cell;
 }   
 

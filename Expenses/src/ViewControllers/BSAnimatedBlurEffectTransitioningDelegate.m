@@ -8,6 +8,7 @@
 
 #import "BSAnimatedBlurEffectTransitioningDelegate.h"
 #import "BSVisualEffects.h"
+#import "Expensit-Swift.h"
 
 @interface BSAnimatedBlurEffectTransitioningDelegate ()
 @property (nonatomic) BOOL isSetupAnimation;
@@ -29,6 +30,13 @@
     return self;
 }
 
+- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented
+                                                      presentingViewController:(UIViewController *)presenting
+                                                          sourceViewController:(UIViewController *)source {
+    
+    return [[PieChartPresentationController alloc] initWithPresentedViewController:presented
+                                                          presentingViewController:presenting];
+}
 
 
 
@@ -45,22 +53,9 @@
     
     if (self.isSetupAnimation)
     {
-        UIImageView *backgroundOriginalImageView = (UIImageView*)[toViewController.view viewWithTag:200];
-        UIImageView *backgroundBlurredImageView = (UIImageView*)[toViewController.view viewWithTag:300];
-        backgroundOriginalImageView.image = [BSVisualEffects screenshotFromView:fromViewController.view];
-        self.originalImage = backgroundOriginalImageView.image;
-        backgroundBlurredImageView.image = [BSVisualEffects blurredViewImageFromView:fromViewController.view];
-
         toViewController.view.userInteractionEnabled = NO;
-        
         [transitionContext.containerView addSubview:toViewController.view];
-        
-        backgroundOriginalImageView.alpha = 1.0;
-        backgroundBlurredImageView.alpha = 0.0;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-            backgroundOriginalImageView.alpha = 0.0;
-            backgroundBlurredImageView.alpha = 1.0;
-            
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
             toViewController.view.userInteractionEnabled = YES;
@@ -68,25 +63,9 @@
     }
     else
     {
-        UIImageView *backgroundOriginalImageView_initialAnimation = (UIImageView*)[fromViewController.view viewWithTag:200];
-        UIImageView *backgroundBlurredImageView_initialAnimation = (UIImageView*)[fromViewController.view viewWithTag:300];
-        UIImageView *backgroundOriginalImageView = (UIImageView*)[fromViewController.view viewWithTag:400];
-        UIImageView *backgroundBlurredImageView = (UIImageView*)[fromViewController.view viewWithTag:500];
-        
-        backgroundOriginalImageView.image = self.originalImage;
-        backgroundBlurredImageView.image = [BSVisualEffects screenshotFromView:fromViewController.view];
-
-        backgroundOriginalImageView_initialAnimation.alpha = 0.0;
-        backgroundBlurredImageView_initialAnimation.alpha = 0.0;
-
-        backgroundOriginalImageView.alpha = 0.0;
-        backgroundBlurredImageView.alpha = 1.0;
-
         toViewController.view.userInteractionEnabled = NO;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-            backgroundOriginalImageView.alpha = 1.0;
-            backgroundBlurredImageView.alpha = 0.0;
-
+            fromViewController.view.alpha = 0.0;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
             toViewController.view.userInteractionEnabled = YES;

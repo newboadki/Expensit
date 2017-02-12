@@ -117,8 +117,9 @@
         }
     }
     
-    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact &&
-        self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
+    if ((self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact &&
+         self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) || (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular &&
+                                                                                        self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) ) {
         // This means (as defined in the StoryBoard) that we are going to present the line chart, therefore we need to determine the presenter.
         // And this is challenging, becuase the does not now, it will need to ask the calendar viewController, through a protocol, what's the type of graph and what is the section name?
         // Only then we'll be able to reuse the code in raiseEvent:switch (event.type) {

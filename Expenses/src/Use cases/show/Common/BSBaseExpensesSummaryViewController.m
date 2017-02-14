@@ -107,7 +107,15 @@ static Tag *tagBeingFilterBy = nil;
         NSInteger sectionToScrollTo = [uniqueSectionNames indexOfObject:[filteredArray lastObject]];
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo];
+
+        
+        
+        ///TODO: layoutIfNeeded is not needed on iPhone. On iPad, these two lines make the scrolling be close to what it should be.
+        /// The reason for the bug is not known yet.
+        [self.collectionView layoutIfNeeded];
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        [self.collectionView layoutIfNeeded];
+
         UIView *header = (UIView *)[self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
         CGPoint offset = self.collectionView.contentOffset;
         offset.y -= header.frame.size.height;

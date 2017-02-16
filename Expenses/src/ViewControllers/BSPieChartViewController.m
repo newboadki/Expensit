@@ -129,7 +129,7 @@
 
 - (CGFloat)sectionsWidth
 {
-    return 40.0f;
+    return 50.0f;
 }
 
 - (CGFloat)initialAngle

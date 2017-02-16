@@ -42,6 +42,10 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
     
     func configureMonthlyExpensesPieGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate)
     {
+        
+        segue.destination.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
+        segue.destination.modalPresentationStyle = .custom
+
         let graphViewController = segue.destination as! BSPieChartViewController
         self.configureMonthylExpensesPieGraphViewController(graphViewController,
                                                             month: month,

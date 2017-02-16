@@ -54,8 +54,10 @@
     if (self.isSetupAnimation)
     {
         toViewController.view.userInteractionEnabled = NO;
-        [transitionContext.containerView addSubview:toViewController.view];
+        [transitionContext.containerView addSubview:[transitionContext viewForKey:UITransitionContextToViewKey]];
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
             toViewController.view.userInteractionEnabled = YES;

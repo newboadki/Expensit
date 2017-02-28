@@ -8,50 +8,88 @@
 
 import Foundation
 
+struct DisplayModelToCoreDataModelMap {
+    var diplayEntry: BSDisplayEntry
+    var entity: Entry
+}
+
+struct AuxiliarlyDisplaySection {
+    var title: String
+    var date: Date
+    var entries: [DisplayModelToCoreDataModelMap]
+}
+
 class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
-     
+    
+    // This contains
+    fileprivate var auxiliarySections = [AuxiliarlyDisplaySection]()
+    
     override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
     {
         var sections = [BSDisplaySectionData]()
+        auxiliarySections = [AuxiliarlyDisplaySection]()
         
         for coreDatasectionInfo in data
         {
-            var entries = [BSDisplayEntry]()
+            //var entries = [BSDisplayEntry]()
+            var auxEntries = [DisplayModelToCoreDataModelMap]()
+            
             for i in 0 ..< coreDatasectionInfo.numberOfObjects {
-                let coreDataEntry : Entry = coreDatasectionInfo.objects![i] as! Entry
-                
-                let r : ComparisonResult = coreDataEntry.value.compare(0)
-                var sign : BSNumberSignType
-                
-                switch r
-                {
-                case ComparisonResult.orderedAscending:
-                    sign = .negative
-                case ComparisonResult.orderedDescending:
-                    sign = .positive
-                case ComparisonResult.orderedSame:
-                    sign = .zero
-                }
 
-                
+                let coreDataEntry : Entry = coreDatasectionInfo.objects![i] as! Entry
+                let sign : BSNumberSignType = self.sign(for: coreDataEntry.value)
                 let entryData = BSDisplayEntry(title: coreDataEntry.desc , value: BSCurrencyHelper.amountFormatter().string(from: coreDataEntry.value), signOfAmount: sign)
-                entries.append(entryData)
+                let auxEntry = DisplayModelToCoreDataModelMap(diplayEntry: entryData, entity: coreDataEntry)
+                auxEntries.append(auxEntry)
             }
             
-            let components = coreDatasectionInfo.name.components(separatedBy: "/")
-            let year = components[0]
-            let month = components[1]
-            let day = components[2]
-        
+            let (year, month, day) = self.dateComponents(from: coreDatasectionInfo.name)
+            let date = DateTimeHelper.date(withFormat: nil, stringDate: "\(day)/\(month)/\(year)")
             
             // TODO: Need to encapsulate. This string needs to match the one created at BSShowDailyEntriesPresenter.
-             let reversed = "\(day) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
+            let reversed = "\(day) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
+            let auxSection = AuxiliarlyDisplaySection(title: reversed, date: date!, entries: auxEntries)
             
-            let sectionData = BSDisplaySectionData(title: reversed, entries: entries)
-            sections.append(sectionData)
+            auxiliarySections.append(auxSection)
         }
         
+        auxiliarySections = auxiliarySections.sorted { $0.date < $1.date }
+        sections = auxiliarySections.map {
+            let displayEntries = $0.entries.map { $0.diplayEntry }
+            return  BSDisplaySectionData(title: $0.title, entries: displayEntries)
+        }
         return sections
+    }
+    
+    
+    public func entry(for indexPath: NSIndexPath) -> Entry {
+        return self.auxiliarySections[indexPath.section].entries[indexPath.row].entity
+    }
+    
+    
+    
+    
+    // MARK: - Helpers
+    
+    fileprivate func sign(for value: NSNumber) -> BSNumberSignType {
+        
+        switch value.compare(0)
+        {
+            case .orderedAscending:
+                return .negative
+            
+            case .orderedDescending:
+                return .positive
+            
+            case .orderedSame:
+                return .zero
+        }
+    }
+    
+    
+    fileprivate func dateComponents(from dateString: String) -> (String, String, String) {
+        let components = dateString.components(separatedBy: "/")
+        return (year: components[0], month: components[1], day: components[2])
     }
     
 }

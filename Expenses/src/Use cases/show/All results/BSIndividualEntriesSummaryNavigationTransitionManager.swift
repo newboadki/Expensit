@@ -13,11 +13,8 @@ class BSIndividualEntriesSummaryNavigationTransitionManager : BSBaseNavigationTr
 {
     func configureEditEntryViewControllerWithSegue(_ segue : UIStoryboardSegue, selectedIndexPath indexPath: NSIndexPath, allEntriesPresenter: BSAbstractExpensesSummaryPresenterEventsProtocol)
     {
-        
-        let entry = allEntriesPresenter.showEntriesController._fetchedResultsController?.sections?[indexPath.section].objects?[indexPath.row] as! Entry
-        
-        
-        
+        let presenter = allEntriesPresenter as! BSShowAllEntriesPresenter
+        let entry = presenter.entry(for: indexPath)
         let navigationController = segue.destination as! UINavigationController
         let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, isEditing:true);
         let addEntryVC = navigationController.topViewController as! BSEntryDetailsFormViewController

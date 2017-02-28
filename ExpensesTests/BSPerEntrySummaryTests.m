@@ -85,13 +85,8 @@
 {
     [self.individualEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         XCTAssertTrue(sections.count == 6);
-        BSDisplaySectionData *sectionData_21_12_2011 = sections[0];
-        XCTAssertTrue(sectionData_21_12_2011.entries.count == 1);
-        BSDisplayEntry * e1 = sectionData_21_12_2011.entries[0];
-        XCTAssertTrue([e1.title isEqual:@"Food and drinks"]);
-        XCTAssertTrue([e1.value isEqual:@"-$10.00"]);
-
-        BSDisplaySectionData *sectionData_19_06_2011 = sections[1];
+        
+        BSDisplaySectionData *sectionData_19_06_2011 = sections[0];
         XCTAssertTrue(sectionData_19_06_2011.entries.count == 2);
         BSDisplayEntry * e2 = sectionData_19_06_2011.entries[0];
         XCTAssertTrue([e2.title isEqual:@"Food and drinks"]);
@@ -99,6 +94,14 @@
         BSDisplayEntry * e3 = sectionData_19_06_2011.entries[1];
         XCTAssertTrue([e3.title isEqual:@"Food and drinks"]);
         XCTAssertTrue([e3.value isEqual:@"-$5.00"]);
+
+    
+        BSDisplaySectionData *sectionData_21_12_2011 = sections[1];
+        XCTAssertTrue(sectionData_21_12_2011.entries.count == 1);
+        BSDisplayEntry * e1 = sectionData_21_12_2011.entries[0];
+        XCTAssertTrue([e1.title isEqual:@"Food and drinks"]);
+        XCTAssertTrue([e1.value isEqual:@"-$10.00"]);
+
         
         BSDisplaySectionData *sectionData_02_01_2012 = sections[2];
         XCTAssertTrue(sectionData_02_01_2012.entries.count == 1);

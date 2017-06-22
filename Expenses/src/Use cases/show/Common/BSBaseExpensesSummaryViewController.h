@@ -54,6 +54,11 @@
  */
 @property (strong, nonatomic, nullable) id<BSAbstractExpensesSummaryPresenterEventsProtocol> showEntriesPresenter;
 
+
+/**
+ A transition manager contains the knwoledge of how the UI should change according to different events.
+ This way the VC is decoupled from the knowledge of which other VC should follow it or be presented after it.
+ */
 @property (strong, nonatomic, nullable) BSBaseNavigationTransitionManager *navigationTransitionManager;
 
 /*! When the user is in a particular summary screen and selects a cell, this property is set by

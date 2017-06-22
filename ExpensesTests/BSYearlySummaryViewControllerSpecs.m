@@ -52,7 +52,6 @@ beforeAll(^{
     
     BSShowYearlyEntriesPresenter *yearlyPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:yearlyViewController
                                                                                                showEntriesController:yearlyController];
-    yearlyViewController.showEntriesController = yearlyController;
     yearlyViewController.showEntriesPresenter = yearlyPresenter;
     
     KWMock *navItemMock = [KWMock nullMockForClass:UINavigationItem.class];
@@ -170,7 +169,7 @@ describe(@"Category filtering", ^{
 
         
         [yearlyViewController filterChangedToCategory:foodTag];
-        NSArray *yearlyResults = yearlyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *yearlyResults = yearlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         NSPredicate *predicate2011 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2011"]];
         NSPredicate *predicate2012 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2012"]];

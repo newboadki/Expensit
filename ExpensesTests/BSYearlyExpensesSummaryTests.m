@@ -54,7 +54,6 @@ static BSShowYearlyEntriesPresenter *presenter;
                                                                                           coreDataController:coreDataController];
     presenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:yearlyViewController
                                                                                          showEntriesController:controller];
-    yearlyViewController.showEntriesController = controller;
     yearlyViewController.showEntriesPresenter = presenter;
 
     
@@ -155,7 +154,7 @@ static BSShowYearlyEntriesPresenter *presenter;
     
     [yearlyViewController filterChangedToCategory:foodTag];
     
-    // Thi preenter i not the ame intance i created at the top of the file
+    // This preenter is not the same instance that is created at the top of the file
     [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         XCTAssertTrue(sections.count == 1);
         BSDisplaySectionData *sectionData = sections.firstObject;

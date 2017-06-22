@@ -11,26 +11,49 @@
 #import "BSCategoryFilterDelegate.h"
 #import "ContainmentEventsAPI.h"
 
+
+/** Forward declarations */
 @class CoreDataStackHelper;
 @class BSCoreDataController;
-
-
+@class BSBaseNavigationTransitionManager;
 @protocol BSAbstractExpensesSummaryUserInterfaceProtocol;
 @protocol BSAbstractExpensesSummaryPresenterEventsProtocol;
 @protocol BSAbstractShowEntriesControllerProtocol;
-@class BSBaseNavigationTransitionManager;
 
+
+/**
+ Classes conforming to this protocol can handle the user intent to add a new entry.
+ */
 @protocol BSUIViewControllerAbilityToAddEntry <NSObject>
 - (void)addButtonTappedWithPresentationCompletedBlock:(void (^ __nullable)(void))completion ;
 @end
 
 
-@interface BSBaseExpensesSummaryViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout, BSCategoryFilterDelegate, BSUIViewControllerAbilityToAddEntry, BSAbstractExpensesSummaryUserInterfaceProtocol, ContainmentEventHandler, ContainmentEventSource>
 
-@property (strong, nonatomic, nullable) UICollectionViewLayout *layout;
-//@property (strong, nonatomic, nullable) NSFetchedResultsController *fetchedResultsController;
+/**
+ Abstract view controller that is responsible for presenting a 
+ collection of entries grouped in sections.
+ 
+ Subclasses are responsible for specifying the type of entries displayed
+ and the type of grouping.
+ */
+@interface BSBaseExpensesSummaryViewController : UICollectionViewController <UICollectionViewDataSource,
+                                                            UICollectionViewDelegate,
+                                                            NSFetchedResultsControllerDelegate,
+                                                            UICollectionViewDelegateFlowLayout,
+                                                            BSCategoryFilterDelegate,
+                                                            BSUIViewControllerAbilityToAddEntry,
+                                                            BSAbstractExpensesSummaryUserInterfaceProtocol,
+                                                            ContainmentEventHandler,
+                                                            ContainmentEventSource>
+
+/**
+ Each summary screen retrieves data from the system from a presenter.
+ Each summary screen communicates events to the sytem through a presenter.
+ Subclasses can specialize the presenter.
+ */
 @property (strong, nonatomic, nullable) id<BSAbstractExpensesSummaryPresenterEventsProtocol> showEntriesPresenter;
-@property (strong, nonatomic, nullable) id<BSAbstractShowEntriesControllerProtocol> showEntriesController;
+
 @property (strong, nonatomic, nullable) BSBaseNavigationTransitionManager *navigationTransitionManager;
 
 /*! When the user is in a particular summary screen and selects a cell, this property is set by

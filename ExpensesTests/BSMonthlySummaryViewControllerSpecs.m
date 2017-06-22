@@ -50,7 +50,6 @@ beforeAll(^{
                                                                                               coreDataController:coreDataController];
     BSShowMonthlyEntriesPresenter *presenter = [[BSShowMonthlyEntriesPresenter alloc] initWithShowEntriesUserInterface:monthlyViewController
                                                                                                  showEntriesController:controller];
-    monthlyViewController.showEntriesController = controller;
     monthlyViewController.showEntriesPresenter = presenter;
 });
 
@@ -180,7 +179,7 @@ describe(@"Category filtering", ^{
         [monthlyViewController stub:@selector(collectionView) andReturn:collectionMock];
 
         [monthlyViewController filterChangedToCategory:foodTag];
-        NSArray *monthlyResults = monthlyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *monthlyResults = monthlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         NSPredicate *predicateJuly = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"7"]];
         NSPredicate *predicateOctober = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"10"]];

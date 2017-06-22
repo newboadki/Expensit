@@ -52,7 +52,6 @@ beforeAll(^{
     BSShowDailyEntriesController *controller = [[BSShowDailyEntriesController alloc] initWithCoreDataStackHelper:coreDataStackHelper
                                                                                           coreDataController:coreDataController];
     BSShowDailyEntriesPresenter *presenter = [[BSShowDailyEntriesPresenter alloc] initWithShowEntriesUserInterface:dailyViewController showEntriesController:controller];
-    dailyViewController.showEntriesController = controller;
     dailyViewController.showEntriesPresenter = presenter;
 });
 
@@ -103,7 +102,7 @@ describe(@"Daily calculations", ^{
         [dailyViewController stub:@selector(navigationItem) andReturn:navItemMock];
         
         [dailyViewController filterChangedToCategory:nil];
-        NSArray *dailyResults = dailyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = dailyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         [[theValue([dailyResults count]) should] equal:theValue(6)];
         
         
@@ -168,7 +167,7 @@ describe(@"Category filtering", ^{
     
     it(@"Only take into account entries from the food category", ^{
         [dailyViewController filterChangedToCategory:foodTag];
-        NSArray *dailyResults = dailyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = dailyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
         NSPredicate *predicate_19_July_2012 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2012)]];
@@ -182,7 +181,7 @@ describe(@"Category filtering", ^{
     
     it(@"Only take into account entries from the travel category", ^{
         [dailyViewController filterChangedToCategory:travelTag];
-        NSArray *dailyResults = dailyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = dailyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
         NSPredicate *predicate_02_Oct_2012 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(2),  [NSString stringWithFormat:@"%@/%@", @(10), @(2013)]];
@@ -196,7 +195,7 @@ describe(@"Category filtering", ^{
 
     it(@"Only take into account entries from the bills category", ^{
         [dailyViewController filterChangedToCategory:billsTag];
-        NSArray *dailyResults = dailyViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = dailyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         NSPredicate *predicate_02_Oct_2013 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(2),  [NSString stringWithFormat:@"%@/%@", @(10), @(2013)]];
         NSArray *results_02_Oct_2013 =  [[dailyResults filteredArrayUsingPredicate:predicate_02_Oct_2013] lastObject];

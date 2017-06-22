@@ -48,7 +48,6 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
         let allController = BSShowAllEntriesController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
         let allPresenter = BSShowAllEntriesPresenter(showEntriesUserInterface: allExpensesViewController, showEntriesController: allController)
                 
-        allExpensesViewController.showEntriesController = (allController as BSAbstractShowEntriesControllerProtocol)
         allExpensesViewController.showEntriesPresenter = allPresenter
         allExpensesViewController.containmentEventsDelegate = self.containmentEventsDelegate!
         

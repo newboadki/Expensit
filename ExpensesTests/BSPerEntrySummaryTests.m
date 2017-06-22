@@ -39,14 +39,8 @@
                                                                                           coreDataController:self.coreDataController];
     BSShowAllEntriesPresenter *presenter = [[BSShowAllEntriesPresenter alloc] initWithShowEntriesUserInterface:self.individualEntryViewController
                                                                                          showEntriesController:controller];
-    self.individualEntryViewController.showEntriesController = controller;
     self.individualEntryViewController.showEntriesPresenter = presenter;
 
-    
-    
-    
-    
-    
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:nil];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:nil];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Oyster card" value:@"-5" category:nil];

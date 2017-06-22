@@ -20,7 +20,6 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
         let dailyPresenter = BSShowDailyEntriesPresenter(showEntriesUserInterface: dailyExpensesViewController, showEntriesController: dailyController)
         let dailyNavigationManager = BSDailySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, containmentEventsDelegate:self.containmentEventsDelegate!)
         
-        dailyExpensesViewController.showEntriesController = (dailyController as BSAbstractShowEntriesControllerProtocol)
         dailyExpensesViewController.showEntriesPresenter = dailyPresenter
         dailyExpensesViewController.showDailyEntriesPresenter = dailyPresenter
         dailyExpensesViewController.navigationTransitionManager = dailyNavigationManager

@@ -54,7 +54,6 @@ beforeAll(^{
                                                                                           coreDataController:coreDataController];
     BSShowAllEntriesPresenter *presenter = [[BSShowAllEntriesPresenter alloc] initWithShowEntriesUserInterface:perEntryViewController
                                                                                          showEntriesController:controller];
-    perEntryViewController.showEntriesController = controller;
     perEntryViewController.showEntriesPresenter = presenter;
     
     
@@ -102,7 +101,7 @@ describe(@"Per entry calculations", ^{
     it(@"testIndividualEntriesCalculations", ^{
         
         [perEntryViewController filterChangedToCategory:nil];
-        NSArray *entryResults = perEntryViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *entryResults = perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         [[theValue([entryResults count]) should] equal:theValue(10)];
         
         
@@ -168,7 +167,7 @@ describe(@"Category filtering", ^{
     
     it(@"Only take into account entries from the food category", ^{
         [perEntryViewController filterChangedToCategory:foodTag];
-        NSArray *dailyResults = perEntryViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         [[theValue([dailyResults count]) should] equal:theValue(3)];
         [[[dailyResults[0] valueForKey:@"value"] should] equal:@(-50)];
@@ -181,7 +180,7 @@ describe(@"Category filtering", ^{
     
     it(@"Only take into account entries from the travel category", ^{
         [perEntryViewController filterChangedToCategory:travelTag];
-        NSArray *dailyResults = perEntryViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
 
         [[theValue([dailyResults count]) should] equal:theValue(2)];
         [[[dailyResults[0] valueForKey:@"value"] should] equal:@(-25)];
@@ -193,7 +192,7 @@ describe(@"Category filtering", ^{
 
     it(@"Only take into account entries from the bills category", ^{
         [perEntryViewController filterChangedToCategory:billsTag];
-        NSArray *dailyResults = perEntryViewController.showEntriesController._fetchedResultsController.fetchedObjects;
+        NSArray *dailyResults = perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
         
         [[theValue([dailyResults count]) should] equal:theValue(1)];
         [[[dailyResults[0] valueForKey:@"value"] should] equal:@(-5.60)];

@@ -19,8 +19,7 @@ class BSYearlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMan
         let monthlyPresenter = BSShowMonthlyEntriesPresenter(showEntriesUserInterface: monthlyExpensesViewController, showEntriesController: monthlyController)
         let monthlyNavigationManager = BSMonthlySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, containmentEventsDelegate:self.containmentEventsDelegate!)
         
-        monthlyExpensesViewController.showEntriesController = (monthlyController as BSAbstractShowEntriesControllerProtocol)
-        monthlyExpensesViewController.showEntriesPresenter = monthlyPresenter        
+        monthlyExpensesViewController.showEntriesPresenter = monthlyPresenter
         monthlyExpensesViewController.navigationTransitionManager = monthlyNavigationManager
         monthlyExpensesViewController.containmentEventsDelegate = self.containmentEventsDelegate!
     }

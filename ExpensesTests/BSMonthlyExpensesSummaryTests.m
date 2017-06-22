@@ -47,7 +47,6 @@
                                                                  coreDataController:self.coreDataController];
     self.presenter = [[BSShowMonthlyEntriesPresenter alloc] initWithShowEntriesUserInterface:self.monthlyViewController
                                                                  showEntriesController:self.controller];
-    self.monthlyViewController.showEntriesController = self.controller;
     self.monthlyViewController.showEntriesPresenter = self.presenter;
     
     // 2013

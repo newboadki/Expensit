@@ -17,16 +17,29 @@
 #import "BSStaticTableAddEntryFormCellActionDataSource.h"
 #import "Expensit-Swift.h"
 
+
 static Tag *tagBeingFilterBy = nil;
+
 
 @interface BSBaseExpensesSummaryViewController ()
 @property (nonatomic, strong) BSModalSelectorViewTransitioningDelegate *categoryFilterViewTransitioningDelegate;
 @property (nonatomic, assign) BOOL visibleSenctionNameAlreadyCalculated;
 @end
 
+
+
 @implementation BSBaseExpensesSummaryViewController
 
+#pragma mark - ContainmentEventHandler
 
+
+/**
+ As this view controller can be part of a more complex view hierarchy and contained without a container view controller,
+ By conforming to this protocol, it gets the chance to react to certain UI events.
+
+ @param event instance of a UI-related event.
+ @param sender Source of the event.
+ */
 - (void)handleEvent:(ContainmentEvent *)event fromSender:(id<ContainmentEventSource>)sender {
     
 }
@@ -52,7 +65,6 @@ static Tag *tagBeingFilterBy = nil;
     // Category filter view controller transitioning delegate
     self.categoryFilterViewTransitioningDelegate = [[BSModalSelectorViewTransitioningDelegate alloc] init];
     self.animatedBlurEffectTransitioningDelegate = [[BSAnimatedBlurEffectTransitioningDelegate alloc] init];
-    
 }
 
 
@@ -78,21 +90,25 @@ static Tag *tagBeingFilterBy = nil;
     /// when the MonthlyLayout layout class gets called the bounds of the ViewController is still landscape.
     /// After viewWillAppear, bounds are correct and we need to recalculate the Monthly layout. There should be a better way.
     [self.collectionViewLayout invalidateLayout];
-
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    // Let know interested parties that a section is visible. This is being used in certain trait collections
+    // to update other view, like a chart that represents the data contained in the visible section.
     ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
     [self.containmentEventsDelegate raiseEvent:event fromSender:self];
 }
+
 
 - (void)scrollToSelectedSection
 {
     if (self.shouldScrollToSelectedSection && self.firstTimeViewWillAppear)
     {
+        // Determine the index path
         self.firstTimeViewWillAppear = NO;
         NSArray *sectionNames = [self.sections valueForKeyPath:@"title"];
         NSMutableArray* uniqueSectionNames = [[NSMutableArray alloc] init];
@@ -105,17 +121,15 @@ static Tag *tagBeingFilterBy = nil;
         }
         NSArray *filteredArray = [uniqueSectionNames filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self = %@", self.nameOfSectionToBeShown]];
         NSInteger sectionToScrollTo = [uniqueSectionNames indexOfObject:[filteredArray lastObject]];
-        
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo];
 
-        
-        
         ///TODO: layoutIfNeeded is not needed on iPhone. On iPad, these two lines make the scrolling be close to what it should be.
         /// The reason for the bug is not known yet.
         [self.collectionView layoutIfNeeded];
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         [self.collectionView layoutIfNeeded];
 
+        // Scroll to the header
         UIView *header = (UIView *)[self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
         CGPoint offset = self.collectionView.contentOffset;
         offset.y -= header.frame.size.height;

@@ -46,14 +46,12 @@
                                                             BSAbstractExpensesSummaryUserInterfaceProtocol,
                                                             ContainmentEventHandler,
                                                             ContainmentEventSource>
-
 /**
  Each summary screen retrieves data from the system from a presenter.
  Each summary screen communicates events to the sytem through a presenter.
  Subclasses can specialize the presenter.
  */
 @property (strong, nonatomic, nullable) id<BSAbstractExpensesSummaryPresenterEventsProtocol> showEntriesPresenter;
-
 
 /**
  A transition manager contains the knwoledge of how the UI should change according to different events.
@@ -67,23 +65,22 @@
  months that have entries in the daily summary screen.*/
 @property (copy, nonatomic, nullable) NSString *nameOfSectionToBeShown;
 
-@property (strong, nonatomic, nullable) NSString *indexPathToScrollTo;
-
-@property (assign, nonatomic) BOOL shouldScrollToSelectedSection;
-
 /*!
  @disscusion When this viewController is inside a navigation controller or another container, it can dissapear and appear again.
  */
 @property (assign, nonatomic) BOOL firstTimeViewWillAppear;
 
 
+/**
+ Delegate object that receives UI events and it will propagate it to a set of interested parties.
+ */
 @property (nonatomic, nullable) id<ContainmentEventsManager> containmentEventsDelegate;
 
 /*!
  @disscusion This is mainly used to calculate which section to take into consideration to calculate the data to feed a chart in landscape.
  @returns the name of the section that is predominantely visible, the one that occupies the most space.
  */
-- (nullable NSString *) visibleSectionName;//should be protected
+- (nullable NSString *) visibleSectionName;
 
 
 @end

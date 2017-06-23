@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSArray <BSDisplaySectionData *>*sections;
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, assign, readonly) ExpensesSummaryType summaryType;
+@property (assign, nonatomic) BOOL shouldScrollToSelectedSection;
 @end
 #endif

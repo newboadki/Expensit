@@ -434,8 +434,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
 
     CGContextTranslateCTM(con, CGRectGetMinX(rect), self.bounds.size.height);
     CGContextScaleCTM(con, 1, -1);
-
-//    [self.dataSource.graphTitle drawAtPoint:CGPointMake((rect.size.width/2.0)-10, 5) forWidth:50 withFont:[UIFont systemFontOfSize:10] fontSize:10 lineBreakMode:NSLineBreakByTruncatingTail baselineAdjustment:UIBaselineAdjustmentNone];
         [self.dataSource.graphTitle drawAtPoint:CGPointMake((rect.size.width/2.0)-10, 5) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                                                                          NSForegroundColorAttributeName : [UIColor whiteColor] }];
         UIBezierPath* verticalLinePath = [UIBezierPath bezierPath];
@@ -448,13 +446,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
         [verticalLinePath stroke];
 
         if ([xvalues count] > 0) {
-//            [self.dataSource.graphTitle drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin)
-//                                           forWidth:50
-//                                           withFont:[UIFont systemFontOfSize:7]
-//                                           fontSize:7
-//                                      lineBreakMode:NSLineBreakByTruncatingTail
-//                                 baselineAdjustment:UIBaselineAdjustmentNone];
-
             [xvalues[0] drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                                    NSForegroundColorAttributeName : [UIColor whiteColor] }];
         }
@@ -465,14 +456,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             CGContextTranslateCTM(con, distanceBetweenLines, 0.0);
             [color setStroke];
             [verticalLinePath stroke];
-
-//            [self.dataSource.graphTitle drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin)
-//                                           forWidth:50
-//                                           withFont:[UIFont systemFontOfSize:7]
-//                                           fontSize:7
-//                                      lineBreakMode:NSLineBreakByTruncatingTail
-//                                 baselineAdjustment:UIBaselineAdjustmentNone];
-
             [xvalues[i] drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                            NSForegroundColorAttributeName : [UIColor whiteColor] }];
         }
@@ -481,14 +464,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
         CGContextTranslateCTM(con, distanceBetweenLines, 0.0);
         [color setStroke];
         [verticalLinePath stroke];
-    
-//    [self.dataSource.graphTitle drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin)
-//                                   forWidth:50
-//                                   withFont:[UIFont systemFontOfSize:7]
-//                                   fontSize:7
-//                              lineBreakMode:NSLineBreakByTruncatingTail
-//                         baselineAdjustment:UIBaselineAdjustmentNone];
-
         [[xvalues lastObject] drawAtPoint:CGPointMake(-5, CGRectGetMaxY(rect) + kGraphXValuesTopMargin) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                            NSForegroundColorAttributeName : [UIColor whiteColor] }];
 
@@ -533,9 +508,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
             CGContextSaveGState(con);
                 CGContextScaleCTM(con, 1, -1);
             
-
-//            [[self.currencyFormatter formattedStringForNumber:@(yValueIncrement)] drawAtPoint:CGPointMake(5, 10)  forWidth:50 withFont:[UIFont systemFontOfSize:7] fontSize:7 lineBreakMode:NSLineBreakByTruncatingTail baselineAdjustment:UIBaselineAdjustmentNone];
-            
                 [[NSString stringWithFormat:@"%@", [self.currencyFormatter formattedStringForNumber:@(yValueIncrement)]] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor] }];
             CGContextRestoreGState(con);
@@ -547,8 +519,6 @@ static const CGFloat kGraphXValuesTopMargin = 5.0f;
     CGContextSaveGState(con);
     CGContextScaleCTM(con, 1, -1);
     
-//    [[self.currencyFormatter formattedStringForNumber:@(yValueIncrement)] drawAtPoint:CGPointMake(5, 10)  forWidth:50 withFont:[UIFont systemFontOfSize:7] fontSize:7 lineBreakMode:NSLineBreakByTruncatingTail baselineAdjustment:UIBaselineAdjustmentNone];
-
     [[NSString stringWithFormat:@"%@", [self.currencyFormatter formattedStringForNumber:@(yValueIncrement)]] drawAtPoint:CGPointMake(5, 10) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:7],
                                                                                                              NSForegroundColorAttributeName : [UIColor whiteColor] }];
     CGContextRestoreGState(con);

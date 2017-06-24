@@ -22,5 +22,10 @@ import Foundation
     /// - Discussion: The values must be positive
     /// - Returns: Array of positive values
     func expenses() -> [AnyObject]
+    
+    
+    /// X-Axis labels
+    ///
+    /// - Returns: Array of labels
     func abscissaValues() -> [String]
 }

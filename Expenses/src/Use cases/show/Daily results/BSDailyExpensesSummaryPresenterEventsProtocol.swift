@@ -9,9 +9,15 @@
 import Foundation
 
 
-@objc protocol BSDailyExpensesSummaryPresenterEventsProtocol : BSAbstractExpensesSummaryPresenterEventsProtocol {    
-    func arrayDayNumbersInMonthFromVisibleSection(_ section: String) -> [String]
+@objc protocol BSDailyExpensesSummaryPresenterEventsProtocol : BSAbstractExpensesSummaryPresenterEventsProtocol {
     
+    /// User-readble representation of the title of a section.
+    ///
+    /// - Parameters:
+    ///   - indexPath: Index.row represents the day of the month.
+    ///   - sectionTitle: String formated date: "<month>/<year>"
+    /// - Returns: User-readble representation of the title of a section.
+    /// - Important: TODO: Need to encapsulate. This string needs to match the one created at BSShowAllEntriesPresenter.
     @objc(sectionNameForSelectedIndexPath:sectionTitle:)
     func sectionName(forSelected indexPath : IndexPath, sectionTitle: String) -> String
 }

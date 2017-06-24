@@ -8,10 +8,12 @@
 
 import Foundation
 
+
 @objc enum BSNumberSignType : Int
 {
     case zero = 0, positive, negative
 }
+
 
 class BSDisplaySectionData : NSObject
 {
@@ -27,6 +29,7 @@ class BSDisplaySectionData : NSObject
     }
 }
 
+
 class BSDisplayEntry : NSObject
 {
     let title : String?
@@ -40,5 +43,4 @@ class BSDisplayEntry : NSObject
         self.signOfAmount =  signOfAmount
         super.init()
     }
-
 }

@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
+
+
+/// Contains template code to be adapted by concrete implementations of presenters.
 class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresenterEventsProtocol {
     
     var showEntriesController : BSAbstractShowEntriesControllerProtocol
     var userInteface : BSAbstractExpensesSummaryUserInterfaceProtocol
+    
     
     init!(showEntriesUserInterface: BSAbstractExpensesSummaryUserInterfaceProtocol,
          showEntriesController : BSAbstractShowEntriesControllerProtocol) {
@@ -22,20 +26,26 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     
-    /// BSBaseExpensesSummaryPresenterEventsProtocol
+    // MARK: BSBaseExpensesSummaryPresenterEventsProtocol
     
     func filterChanged(to category : Tag) {
         self.showEntriesController.filter(by : category)
     }
     
+    
     func viewIsReadyToDisplayEntriesCompletionBlock(_ block: ( _ sections : [BSDisplaySectionData] ) -> () )
     {
+        // Let controller subclasses retrieve the right type of information
         let dictionary = self.showEntriesController.entriesForSummary()        
+        
+        // Let presenter subclasses arrange the data for the user-interface
         let sec = dictionary["sections"] as! [NSFetchedResultsSectionInfo]
         let output = self.displayDataFromEntriesForSummary(sec)
-        // CallBack hen data i ready
+        
+        // CallBack once we have the data ready
         block( output)
     }
+    
     
     func viewIsReadyToDisplayImage(for category : Tag?) {
                 
@@ -44,18 +54,19 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
         }
     }
     
+    
     func filterButtonTapped() {
         
     }
+    
     
     func addNewEntryButtonTapped() {
         
     }
     
+    
     func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
     {
         return []
-    }
-
-    
+    }    
 }

@@ -10,14 +10,22 @@
 import Foundation
 import UIKit
 
+
+/// This class contains template code for subclasses to specialize.
 class BSAbstractShowEntriesController : NSObject, BSAbstractShowEntriesControllerProtocol {
  
     var coreDataStackHelper : CoreDataStackHelper
     var coreDataController : BSCoreDataController
     var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     
-    /// Initializer
     
+    // MARK: Itinializers
+    
+    /// Designated Initializer
+    ///
+    /// - Parameters:
+    ///   - coreDataStackHelper: helper
+    ///   - coreDataController: controller
     required init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController)
     {
         self.coreDataStackHelper = coreDataStackHelper
@@ -27,7 +35,7 @@ class BSAbstractShowEntriesController : NSObject, BSAbstractShowEntriesControlle
     
     
     
-    /// BSAbstractShowEntriesControllerProtocol
+    // MARK: BSAbstractShowEntriesControllerProtocol
     
     func filter(by category : Tag)
     {
@@ -47,7 +55,7 @@ class BSAbstractShowEntriesController : NSObject, BSAbstractShowEntriesControlle
         return self.coreDataController.image(forCategory: category)
     }
 
-    // FETCH CONTROLLER
+    // MARK: Fetch controller
     func fetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult>?
     {
         

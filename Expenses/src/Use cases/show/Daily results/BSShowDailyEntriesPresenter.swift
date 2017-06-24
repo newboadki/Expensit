@@ -13,17 +13,14 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
 
     var visibleSection : String = ""
         
-    func arrayDayNumbersInMonthFromVisibleSection(_ section: String) -> [String]
-    {
-        let monthNumber = section.components(separatedBy: "/")[0]
-        let numberOfDaysInMonth = DateTimeHelper.numberOfDays(inMonth: monthNumber)
-        let dayNumbers : [Int] = Array(1...numberOfDaysInMonth.length)
-        
-        return dayNumbers.map { "\($0)" }
-    }
+
     
-    /// BSDailyExpensesSummaryPresenterEventsProtocol
+    // MARK: BSDailyExpensesSummaryPresenterEventsProtocol
     
+    /// Transforms the CoreData query results into view-models adapted for a Daily summary
+    ///
+    /// - Parameter data: CoreData query results
+    /// - Returns: Array of view-models
     override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
     {        
         var sections = [BSDisplaySectionData]()
@@ -70,10 +67,16 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
     }
     
     
+    /// User-readble representation of the title of a section.
+    ///
+    /// - Parameters:
+    ///   - indexPath: Index.row represents the day of the month.
+    ///   - sectionTitle: String formated date: "<month>/<year>"
+    /// - Returns: User-readble representation of the title of a section.
+    /// - Important: TODO: Need to encapsulate. This string needs to match the one created at BSShowAllEntriesPresenter.
     func sectionName(forSelected indexPath : IndexPath, sectionTitle: String) -> String {
         let month = sectionTitle.components(separatedBy: "/")[0]
         let year = sectionTitle.components(separatedBy: "/")[1]
-        // TODO: Need to encapsulate. This string needs to match the one created at BSShowAllEntriesPresenter.
         return "\((indexPath as NSIndexPath).row + 1) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
     }
 

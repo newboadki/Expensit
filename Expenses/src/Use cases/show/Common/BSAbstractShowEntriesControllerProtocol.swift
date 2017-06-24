@@ -40,6 +40,7 @@ import Foundation
     func sectionNameKeyPath() -> String?
     
     
-    /// TODO: Do not expose this.
+    /// TODO: Do not expose this. It is here to facilitate the tests, which need to be modified to 
+    /// check for the expectations.
     var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
 }

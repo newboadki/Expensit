@@ -24,6 +24,13 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
     // This contains
     fileprivate var auxiliarySections = [AuxiliarlyDisplaySection]()
     
+    
+    // MARK: BSDailyExpensesSummaryPresenterEventsProtocol
+    
+    /// Transforms the CoreData query results into view-models adapted for a All-entries summary
+    ///
+    /// - Parameter data: CoreData query results
+    /// - Returns: Array of view-models
     override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
     {
         var sections = [BSDisplaySectionData]()

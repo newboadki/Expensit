@@ -11,8 +11,12 @@ import Foundation
 
 class BSShowMonthlyEntriesPresenter : BSAbstractShowEntriesPresenter
 {    
-    /// From BSAbstractShowEntriesPresenter
+    // MARK: From BSAbstractShowEntriesPresenter
     
+    /// Transforms the CoreData query results into view-models adapted for a Monthly summary
+    ///
+    /// - Parameter data: CoreData query results
+    /// - Returns: Array of view-models
     override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
     {
         var sections = [BSDisplaySectionData]()

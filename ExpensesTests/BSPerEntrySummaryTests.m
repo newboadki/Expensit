@@ -26,33 +26,32 @@
 {
     [super setUp];
     
-    self.coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite"]];
+    self.coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];    
     
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:self.coreDataStackHelper];
     self.individualEntryViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
     
     
-    
-    
-    BSShowAllEntriesController *controller = [[BSShowAllEntriesController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper
-                                                                                          coreDataController:self.coreDataController];
-    BSShowAllEntriesPresenter *presenter = [[BSShowAllEntriesPresenter alloc] initWithShowEntriesUserInterface:self.individualEntryViewController
-                                                                                         showEntriesController:controller];
+    BSShowAllEntriesController *controller = [[BSShowAllEntriesController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper coreDataController:self.coreDataController];
+    BSShowAllEntriesPresenter *presenter = [[BSShowAllEntriesPresenter alloc] initWithShowEntriesUserInterface:self.individualEntryViewController showEntriesController:controller];
     self.individualEntryViewController.showEntriesPresenter = presenter;
 
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Oyster card" value:@"-5" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Pizza" value:@"-10" category:nil];
+    NSArray *tags = @[@"Basic"];
+    [self.coreDataController createTags:tags];
+    Tag *foodTag = [self.coreDataController tagForName:@"Basic"];
+
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Oyster card" value:@"-5" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"05/03/2013"] description:@"Pizza" value:@"-10" category:foodTag];
     
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2012"] description:@"Food and drinks" value:@"-20.5" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"21.0" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"-7.0" category:nil];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/01/2012"] description:@"Food and drinks" value:@"-20.5" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"21.0" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"03/03/2012"] description:@"Food and drinks" value:@"-7.0" category:foodTag];
     
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"12" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"-5" category:nil];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Food and drinks" value:@"-10" category:nil];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"12" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/06/2011"] description:@"Food and drinks" value:@"-5" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Food and drinks" value:@"-10" category:foodTag];
 }
 
 
@@ -70,8 +69,19 @@
 
 - (void)tearDown
 {
+    
+    NSArray *monthlyResults = [self.coreDataStackHelper.managedObjectContext executeFetchRequest:[self.coreDataController fetchRequestForAllEntries] error:nil];
+    for (NSManagedObject *obj in monthlyResults)
+    {
+        [self.coreDataStackHelper.managedObjectContext deleteObject:obj];
+        
+    }
+    [self.coreDataController saveChanges];
+
     self.coreDataStackHelper = nil;
     self.individualEntryViewController = nil;
+
+    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite"]];
     [super tearDown];
 }
 
@@ -130,6 +140,108 @@
         XCTAssertTrue([e8.title isEqual:@"Pizza"]);
         XCTAssertTrue([e8.value isEqual:@"-$10.00"]);
     }];
+}
+
+@end
+
+@interface BSPerEntrySummaryCategoryFilteringTests : XCTestCase
+@property (strong, nonatomic) BSIndividualExpensesSummaryViewController *perEntryViewController;
+@end
+
+@implementation BSPerEntrySummaryCategoryFilteringTests
+
+static CoreDataStackHelper *coreDataStackHelper;
+static BSCoreDataController *coreDataController;
+static Tag* foodTag;
+static Tag* billsTag;
+static Tag* travelTag;
+
++ (void)setUp {
+    coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase3"];
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
+    
+    NSArray *tags = @[@"Food", @"Bills", @"Travel"];
+    [coreDataController createTags:tags];
+    foodTag = [coreDataController tagForName:@"Food"];
+    billsTag = [coreDataController tagForName:@"Bills"];
+    travelTag =[coreDataController tagForName:@"Travel"];
+    
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Fish and Chips" value:@"-1000" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Gasoline" value:@"-25" category:travelTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2012"] description:@"Dinner" value:@"-30" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Food and drinks" value:@"-5.60" category:billsTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Trip" value:@"-100" category:travelTag];
+}
+
+- (void)setUp
+{
+    self.perEntryViewController = [[BSIndividualExpensesSummaryViewController alloc] init];
+    
+    BSShowAllEntriesController *controller = [[BSShowAllEntriesController alloc] initWithCoreDataStackHelper:coreDataStackHelper coreDataController:coreDataController];
+    BSShowAllEntriesPresenter *presenter = [[BSShowAllEntriesPresenter alloc] initWithShowEntriesUserInterface:self.perEntryViewController showEntriesController:controller];
+    self.perEntryViewController.showEntriesPresenter = presenter;
+    
+
+    
+    self.perEntryViewController.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewLayout new]];
+    
+    UINavigationItem *navItemMock = [UINavigationItem new];
+    navItemMock.rightBarButtonItems = @[[UIBarButtonItem new], [UIBarButtonItem new]];
+    [self.perEntryViewController setValue:navItemMock forKey:@"navigationItem"];
+
+
+    [super setUp];
+}
+
++ (void)tearDown {
+    NSArray *monthlyResults = [coreDataStackHelper.managedObjectContext executeFetchRequest:[coreDataController fetchRequestForAllEntries] error:nil];
+    for (NSManagedObject *obj in monthlyResults)
+    {
+        [coreDataStackHelper.managedObjectContext deleteObject:obj];
+        
+    }
+    [coreDataController saveChanges];
+
+    BOOL success = [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase3" stringByAppendingString:@".sqlite"]];
+    [super tearDown];
+}
+
+- (void)testOnlyTakeIntoAccountEntriesFromTheFoodCategory {
+    [self.perEntryViewController filterChangedToCategory:foodTag];
+    NSArray *dailyResults = self.perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    
+    XCTAssertTrue([dailyResults count] == 3);
+    XCTAssertTrue([[dailyResults[0] valueForKey:@"value"] isEqualToNumber:@(-50)]);
+    XCTAssertTrue([(id)[dailyResults[0] valueForKey:@"tag"] isEqual:foodTag]);
+    
+    XCTAssertTrue([[dailyResults[1] valueForKey:@"value"] isEqualToNumber:@(-1000)]);
+    XCTAssertTrue([[dailyResults[1] valueForKey:@"tag"] isEqual:foodTag]);
+    
+    XCTAssertTrue([[dailyResults[2] valueForKey:@"value"] isEqualToNumber:@(-30)]);
+    XCTAssertTrue([[dailyResults[2] valueForKey:@"tag"] isEqual:foodTag]);
+
+}
+
+- (void)testOnlyTakeIntoAccountEntriesFromTheTravelCategory {
+    [self.perEntryViewController filterChangedToCategory:travelTag];
+    NSArray *dailyResults = self.perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    
+    XCTAssertTrue([dailyResults count] == 2);
+    XCTAssertTrue([[dailyResults[0] valueForKey:@"value"] isEqualToNumber:@(-25)]);
+    XCTAssertTrue([(id)[dailyResults[0] valueForKey:@"tag"] isEqual:travelTag]);
+    
+    XCTAssertTrue([[dailyResults[1] valueForKey:@"value"] isEqualToNumber:@(-100)]);
+    XCTAssertTrue([[dailyResults[1] valueForKey:@"tag"] isEqual:travelTag]);
+}
+
+- (void)testOnlyTakeIntoAccountEntriesFromTheBillsCategory {
+    [self.perEntryViewController filterChangedToCategory:billsTag];
+    NSArray *dailyResults = self.perEntryViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    
+    XCTAssertTrue([dailyResults count] == 1);
+    XCTAssertTrue([[dailyResults[0] valueForKey:@"value"] isEqualToNumber:@(-5.60)]);
+    XCTAssertTrue([(id)[dailyResults[0] valueForKey:@"tag"] isEqual:billsTag]);
 }
 
 @end

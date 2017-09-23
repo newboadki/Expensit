@@ -30,13 +30,12 @@
 {
     [super setUp];
     
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite"]];
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite-shm"]];
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite-wal"]];
-
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"myTestDataBase"];
     
-    self.coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase"];
-    
+    self.coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType
+                                                                          resourceName:@"Expenses"
+                                                                             extension:@"momd"
+                                                                   persistentStoreName:@"myTestDataBase"];
     
     self.coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:self.coreDataStackHelper];
 
@@ -44,9 +43,9 @@
     self.monthlyViewController = [storyboard instantiateViewControllerWithIdentifier:@"BSMonthlyExpensesSummaryViewController"];
 
     self.controller = [[BSShowMonthlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper
-                                                                 coreDataController:self.coreDataController];
+                                                                       coreDataController:self.coreDataController];
     self.presenter = [[BSShowMonthlyEntriesPresenter alloc] initWithShowEntriesUserInterface:self.monthlyViewController
-                                                                 showEntriesController:self.controller];
+                                                                       showEntriesController:self.controller];
     self.monthlyViewController.showEntriesPresenter = self.presenter;
     
     // 2013
@@ -104,6 +103,14 @@
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Food and drinks" value:@"-10" category:nil];
 }
 
+- (void)tearDown
+{
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"myTestDataBase"];
+    self.coreDataStackHelper = nil;
+    self.monthlyViewController = nil;
+    [super tearDown];
+}
+
 
 - (NSDictionary*) resultDictionaryForDate:(NSString*)dateString fromArray:(NSArray*)results
 {
@@ -115,18 +122,6 @@
     return [[results filteredArrayUsingPredicate:predicate] lastObject];
 }
 
-
-- (void)tearDown
-{
-    self.coreDataStackHelper = nil;
-    self.monthlyViewController = nil;
-    
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite"]];
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite-shm"]];
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBase" stringByAppendingString:@".sqlite-wal"]];
-
-    [super tearDown];
-}
 
 - (void) testMonthlyCalculations
 {
@@ -374,6 +369,37 @@
     }
 }
 
+- (void)testCategoryFiltering {
+    
+    Tag* foodTag;
+    Tag* billsTag;
+    Tag* travelTag;
+
+    NSArray *tags = @[@"Food", @"Bills", @"Travel"];
+    [self.coreDataController createTags:tags];
+    foodTag = [self.coreDataController tagForName:@"Food"];
+    billsTag = [self.coreDataController tagForName:@"Bills"];
+    travelTag = [self.coreDataController tagForName:@"Travel"];
+    
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"China trip" value:@"-1000" category:travelTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"23/07/2011"] description:@"Food and drinks" value:@"-25" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Electricity" value:@"-10" category:billsTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/10/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Rent" value:@"-10" category:billsTag];
+    
+    [self.monthlyViewController filterChangedToCategory:foodTag];
+    NSArray *monthlyResults = self.monthlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    
+    NSPredicate *predicateJuly = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"7"]];
+    NSPredicate *predicateOctober = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"10"]];
+    NSArray *resultsJuly =  [[monthlyResults filteredArrayUsingPredicate:predicateJuly] lastObject];
+    NSArray *resultsOctober =  [[monthlyResults filteredArrayUsingPredicate:predicateOctober] lastObject];
+    
+    XCTAssertTrue([monthlyResults count] == 2);
+    XCTAssertTrue([[resultsJuly valueForKey:@"monthlySum"] isEqual:@(-75)]);
+    XCTAssertTrue([[resultsOctober valueForKey:@"monthlySum"] isEqual:@(-5)]);
+}
 
 - (NSString *)visibleSectionNameMock {
     return self.expectedVisibleSectionName;

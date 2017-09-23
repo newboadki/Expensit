@@ -120,10 +120,6 @@
 		0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
 		0045D61C1DBCC72A006AA5AE /* BSDailyExpensesLineGraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */; };
 		0045D61D1DBCC75B006AA5AE /* BSMonthlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */; };
-		0045D61F1DBCE025006AA5AE /* BSMonthlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */; };
-		0045D6201DBCE137006AA5AE /* BSDailySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */; };
-		0045D6221DBCE1E8006AA5AE /* BSPerEntrySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */; };
-		0045D6231DBCE1FD006AA5AE /* BSYearlySummaryViewControllerSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */; };
 		0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */; };
 		00535F081E3F212800AD7A7C /* ContainmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00535F071E3F212800AD7A7C /* ContainmentEvent.m */; };
 		0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
@@ -170,6 +166,8 @@
 		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
 		00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
 		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
+		00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */; };
+		00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
 		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
 		00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
@@ -180,7 +178,7 @@
 		00F95EE31D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F95EE21D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */; };
 		00F95EE41D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F95EE21D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */; };
 		00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
-		EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */; };
+		FCDD29C542D0DB3C8641F9A9 /* libPods-ExpensesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E437B0D21F3767D9B88D5238 /* libPods-ExpensesTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +408,9 @@
 		00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummanryEntryCell.m; sourceTree = "<group>"; };
 		00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
 		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
+		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
+		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
+		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
 		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
 		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
 		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
@@ -428,13 +429,9 @@
 		00F95EE21D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSIndividualEntriesSummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
 		00F9B3BD18E76414009F626E /* BSVisualEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVisualEffects.h; sourceTree = "<group>"; };
 		00F9B3BE18E76414009F626E /* BSVisualEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVisualEffects.m; sourceTree = "<group>"; };
-		00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
-		00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
-		00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
-		00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPerEntrySummaryViewControllerSpecs.m; sourceTree = "<group>"; };
-		6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.release.xcconfig"; sourceTree = "<group>"; };
-		8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpensesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31EDD94E02A906607757624E /* Pods-ExpensesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ADFE574A316B33052E107328 /* Pods-ExpensesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests.release.xcconfig"; sourceTree = "<group>"; };
+		E437B0D21F3767D9B88D5238 /* libPods-ExpensesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpensesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,7 +457,7 @@
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
-				EFE250C42B1E431B916B4A53 /* libPods-ExpensesTests.a in Frameworks */,
+				FCDD29C542D0DB3C8641F9A9 /* libPods-ExpensesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +762,7 @@
 				007B8271177476780052FE84 /* ExpensesTests */,
 				007B824B177476780052FE84 /* Frameworks */,
 				007B824A177476780052FE84 /* Products */,
-				B1466D4121231B4DFA16CD4F /* Pods */,
+				7D472295929F9E2DB526D3D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -791,7 +788,7 @@
 				007B8250177476780052FE84 /* UIKit.framework */,
 				007B8252177476780052FE84 /* CoreData.framework */,
 				007B826A177476780052FE84 /* XCTest.framework */,
-				FCDFF005933C413E97D8C439 /* libPods-ExpensesTests.a */,
+				E437B0D21F3767D9B88D5238 /* libPods-ExpensesTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -829,13 +826,12 @@
 				0089F8C017FB7C2D000DFEC6 /* OCMock */,
 				007B8272177476780052FE84 /* Supporting Files */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
-				00F9B3D218EC2E19009F626E /* BSMonthlySummaryViewControllerSpecs.m */,
 				003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */,
-				00F9B3D418F30B21009F626E /* BSDailySummaryViewControllerSpecs.m */,
-				00F9B3D618F312C9009F626E /* BSPerEntrySummaryViewControllerSpecs.m */,
-				00F9B3CA18E8AF36009F626E /* BSYearlySummaryViewControllerSpecs.m */,
+				00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */,
 				0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */,
 				000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */,
+				00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */,
+				00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */,
 			);
 			path = ExpensesTests;
 			sourceTree = "<group>";
@@ -987,11 +983,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B1466D4121231B4DFA16CD4F /* Pods */ = {
+		7D472295929F9E2DB526D3D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */,
-				6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */,
+				31EDD94E02A906607757624E /* Pods-ExpensesTests.debug.xcconfig */,
+				ADFE574A316B33052E107328 /* Pods-ExpensesTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1020,11 +1016,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 007B827E177476780052FE84 /* Build configuration list for PBXNativeTarget "ExpensesTests" */;
 			buildPhases = (
-				A55F1F04CA2046A291CDA402 /* Check Pods Manifest.lock */,
+				5EE0CC982DB29C1D5F3BF243 /* [CP] Check Pods Manifest.lock */,
 				007B8265177476780052FE84 /* Sources */,
 				007B8266177476780052FE84 /* Frameworks */,
 				007B8267177476780052FE84 /* Resources */,
-				414BC91745FC41D2BC248335 /* Copy Pods Resources */,
+				9A50DE35C17307C80DE74040 /* [CP] Embed Pods Frameworks */,
+				BF3C20EECC0960A0846D1FCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1178,34 +1175,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		414BC91745FC41D2BC248335 /* Copy Pods Resources */ = {
+		5EE0CC982DB29C1D5F3BF243 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExpensesTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55F1F04CA2046A291CDA402 /* Check Pods Manifest.lock */ = {
+		9A50DE35C17307C80DE74040 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF3C20EECC0960A0846D1FCC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1317,7 +1332,6 @@
 				000A9A9F1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */,
 				000A9A7C1D09F3B50045523A /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
-				0045D6231DBCE1FD006AA5AE /* BSYearlySummaryViewControllerSpecs.m in Sources */,
 				000A9A971D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */,
 				000A9A8E1D09F6F90045523A /* BSDailyExpensesSummaryViewController.m in Sources */,
 				000A9A771D09F2290045523A /* BSShowAllEntriesController.swift in Sources */,
@@ -1334,7 +1348,6 @@
 				000A9A9B1D09F90E0045523A /* LineGraph.m in Sources */,
 				000A9A141D09E5590045523A /* BSYearlySummaryNavigationTransitionManager.swift in Sources */,
 				000A9AC71D0C14000045523A /* BSPieGraphControllerProtocol.swift in Sources */,
-				0045D6201DBCE137006AA5AE /* BSDailySummaryViewControllerSpecs.m in Sources */,
 				000A9A541D09F2030045523A /* BSShowMonthlyEntriesController.swift in Sources */,
 				000A9A391D09EB710045523A /* BSAddEntryController.swift in Sources */,
 				000A9AB01D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
@@ -1344,7 +1357,6 @@
 				000A9AA21D09FB760045523A /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				000A9A711D09F21B0045523A /* BSAbstractShowEntriesPresenter.swift in Sources */,
 				000A9A4A1D09F1F00045523A /* BSShowYearlyEntriesController.swift in Sources */,
-				0045D6221DBCE1E8006AA5AE /* BSPerEntrySummaryViewControllerSpecs.m in Sources */,
 				009332691D1C6206004B1DC2 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				000A9ADA1D0C46E60045523A /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				00F95EE41D5F75BB005F9108 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
@@ -1362,12 +1374,13 @@
 				000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */,
 				000A9A601D09F20E0045523A /* BSShowDailyEntriesController.swift in Sources */,
+				00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */,
+				00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				000A9A3B1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
 				00418B8D1D23045F00DB4528 /* PaddingLabel.swift in Sources */,
 				000A9A7F1D09F3CB0045523A /* BSDailySummaryNavigationTransitionManager.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
-				0045D61F1DBCE025006AA5AE /* BSMonthlySummaryViewControllerSpecs.m in Sources */,
 				000A9A101D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				000A9A581D09F2030045523A /* BSShowMonthlyEntriesPresenter.swift in Sources */,
@@ -1505,7 +1518,7 @@
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1545,7 +1558,7 @@
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1564,7 +1577,7 @@
 		};
 		007B827F177476780052FE84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C7CDFF4784CB7B9A30F1A00 /* Pods-ExpensesTests.debug.xcconfig */;
+			baseConfigurationReference = 31EDD94E02A906607757624E /* Pods-ExpensesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = YES;
@@ -1587,6 +1600,7 @@
 					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1615,7 +1629,7 @@
 		};
 		007B8280177476780052FE84 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B6C9F993D76B24CAD6E0133 /* Pods-ExpensesTests.release.xcconfig */;
+			baseConfigurationReference = ADFE574A316B33052E107328 /* Pods-ExpensesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = YES;
@@ -1634,6 +1648,7 @@
 					"$(PROJECT_DIR)/ExpensesTests/OCMock/**",
 				);
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

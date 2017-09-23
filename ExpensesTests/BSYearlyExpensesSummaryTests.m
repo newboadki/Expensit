@@ -196,7 +196,6 @@ static BSShowYearlyEntriesPresenter *presenter;
 
 - (void) testGraphYearlyExpensesCalculations
 {
-    
     BSYearlySummaryGraphLineController *controller = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:coreDataStackHelper coreDataController:coreDataController];
     
     BSYearlySummaryGraphLinePresenter *presenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:controller section:@"2011"];
@@ -215,6 +214,88 @@ static BSShowYearlyEntriesPresenter *presenter;
         XCTAssertTrue([abscissaValues[count] isEqual:abscissaValuesExpectation[count]]);
         count++;
     }
+}
+
+@end
+
+
+@interface BSYearlyExpensesSummaryCategoryFilteringTests : XCTestCase
+@end
+
+@implementation BSYearlyExpensesSummaryCategoryFilteringTests
+
+static Tag* foodTag;
+static Tag* billsTag;
+static Tag* travelTag;
+
+
+- (void)setUp
+{
+    [super setUp];
+
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"BSYESummaryTestsDataBase"];
+    
+    coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType
+                                                                     resourceName:@"Expenses"
+                                                                        extension:@"momd"
+                                                              persistentStoreName:@"BSYESummaryTestsDataBase"];
+    
+    coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
+    
+    NSArray *tags = @[@"Food", @"Bills", @"Travel"];
+    [coreDataController createTags:tags];
+    foodTag = [coreDataController tagForName:@"Food"];
+    billsTag = [coreDataController tagForName:@"Bills"];
+    travelTag = [coreDataController tagForName:@"Travel"];
+    
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"China trip" value:@"-1000" category:travelTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-25" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Electricity" value:@"-10" category:billsTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
+    [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Rent" value:@"-10" category:billsTag];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    yearlyViewController = [storyboard instantiateViewControllerWithIdentifier:@"BSYearlyExpensesSummaryViewController"];
+    
+    
+    yearlyViewController.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewLayout new]];
+    
+    UINavigationItem *navItemMock = [UINavigationItem new];
+    navItemMock.rightBarButtonItems = @[[UIBarButtonItem new], [UIBarButtonItem new]];
+    [yearlyViewController setValue:navItemMock forKey:@"navigationItem"];
+
+    
+    controller = [[BSShowYearlyEntriesController alloc]
+                  initWithCoreDataStackHelper:coreDataStackHelper
+                                                                 coreDataController:coreDataController];
+    presenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:yearlyViewController
+                                                                 showEntriesController:controller];
+    yearlyViewController.showEntriesPresenter = presenter;
+    
+
+}
+
+- (void)tearDown
+{
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"BSYESummaryTestsDataBase"];
+    coreDataStackHelper = nil;
+    yearlyViewController = nil;
+    [super tearDown];
+}
+
+- (void)testOnlyTakeIntoAccountEntriesFromTheSpecifiedCategory {
+    [yearlyViewController filterChangedToCategory:foodTag];
+    NSArray *yearlyResults = yearlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    
+    NSPredicate *predicate2011 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2011"]];
+    NSPredicate *predicate2012 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2012"]];
+    NSArray *results2011 =  [[yearlyResults filteredArrayUsingPredicate:predicate2011] lastObject];
+    NSArray *results2012 =  [[yearlyResults filteredArrayUsingPredicate:predicate2012] lastObject];
+    
+    XCTAssertTrue([yearlyResults count] == 2);
+    XCTAssertTrue([[results2012 valueForKey:@"yearlySum"] isEqual:@(-5)]);
+    XCTAssertTrue([[results2011 valueForKey:@"yearlySum"] isEqual:@(-75)]);
 }
 
 @end

@@ -13,11 +13,13 @@
 #import "DateTimeHelper.h"
 #import "OCMock/Headers/OCMock/OCMock.h"
 #import "Expensit-Swift.h"
+#import "DailyTestHelper.h"
 
 static CoreDataStackHelper *coreDataStackHelper;
 static BSCoreDataController *coreDataController;
 static NSString *expectedVisibleSectionName;
 static BSDailySummaryGraphLineController *controller;
+
 
 @interface BSDailyExpensesLineGraphTests : XCTestCase
 @end
@@ -29,7 +31,7 @@ static BSDailySummaryGraphLineController *controller;
 {
     [super setUp];
     
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBaseLineGraphTests" stringByAppendingString:@".sqlite"]];
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"myTestDataBaseLineGraphTests"];
     
     coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType
                                                                           resourceName:@"Expenses"
@@ -54,7 +56,7 @@ static BSDailySummaryGraphLineController *controller;
 }
 
 + (void)tearDown {
-    [CoreDataStackHelper destroySQLPersistentStoreCoordinatorWithName:[@"myTestDataBaseLineGraphTests" stringByAppendingString:@".sqlite"]];
+    [CoreDataStackHelper destroyAllExtensionsForSQLPersistentStoreCoordinatorWithName:@"myTestDataBaseLineGraphTests"];
 }
 
 
@@ -192,5 +194,4 @@ static BSDailySummaryGraphLineController *controller;
         count++;
     }
 }
-
 @end

@@ -40,7 +40,9 @@
     BSCoreDataController *coreDataController = [[BSCoreDataController alloc] init];
     coreDataController.coreDataHelper = self.coreDataHelper;
     
-  
+    self.coreDataFetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:coreDataController];
+
+    
     // Create sample entries the first time
     // TODO add categories
     if ([self isFirstTheAppEverRun])
@@ -63,6 +65,9 @@
     BSContainerViewController *mainContainerViewController = (BSContainerViewController *)self.window.rootViewController;
     
     mainContainerViewController.coreDataController = coreDataController;
+    mainContainerViewController.coreDataFetchController = self.coreDataFetchController;
+    
+//    id m = [coreDataController entriesGroupedByMonth];
     
     return YES;
 }

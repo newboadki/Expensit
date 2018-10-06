@@ -13,8 +13,6 @@
 
 
 /** Forward declarations */
-@class CoreDataStackHelper;
-@class BSCoreDataController;
 @class BSBaseNavigationTransitionManager;
 @protocol BSAbstractExpensesSummaryUserInterfaceProtocol;
 @protocol BSAbstractExpensesSummaryPresenterEventsProtocol;

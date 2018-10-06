@@ -10,13 +10,15 @@
 #import "BSStaticFormProtocols.h"
 
 @class BSCoreDataController;
+@class BSAddEntryController;
 
 @interface BSStaticTableAddEntryFormCellActionDataSource : NSObject <BSStaticFormTableViewCellActionDataSourceProtocol>
 
 @property (nonatomic, strong) BSCoreDataController *coreDataController;
+@property (nonatomic, strong) BSAddEntryController *addEntryController;
 
 @property (nonatomic, assign) BOOL isEditing;
 
-- (instancetype)initWithCoreDataController:(BSCoreDataController *)coreDataController isEditing:(BOOL)isEditing;
+- (instancetype)initWithCoreDataController:(BSCoreDataController *)coreDataController addEntryController:(BSAddEntryController *)addEntryController isEditing:(BOOL)isEditing;
 
 @end

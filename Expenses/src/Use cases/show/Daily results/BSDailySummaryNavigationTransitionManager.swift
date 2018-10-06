@@ -19,7 +19,7 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
     }
     
     func configureDailylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
-        let dailyLineGraphController : BSGraphLineControllerProtocol = BSDailySummaryGraphLineController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let dailyLineGraphController : BSGraphLineControllerProtocol = BSDailySummaryGraphLineController(coreDataFetchController:self.coreDataFetchController)
         let dailyLineGraphPresenter : BSGraphLinePresenterProtocol = BSDailySummaryGraphLinePresenter(dailySummaryGraphLineController: dailyLineGraphController, section: section)
         graphViewController.lineGraphPresenter = dailyLineGraphPresenter
     }
@@ -33,7 +33,7 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
     func configureDailyExpensesPieGraphViewControllerWithSegue(_ graphViewController: BSPieChartViewController, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate) {
         graphViewController.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
         graphViewController.modalPresentationStyle = .custom
-        let pieGraphController : BSPieGraphControllerProtocol = BSExpensesSummaryPieGraphController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let pieGraphController : BSPieGraphControllerProtocol = BSExpensesSummaryPieGraphController(dataProvider: self.coreDataFetchController)
         let pieGraphPresenter : BSPieGraphPresenterProtocol = BSExpensesSummaryPieGraphPresenter(pieGraphController: pieGraphController, month: month, year: NSNumber(integerLiteral: year))
         graphViewController.pieGraphPresenter = pieGraphPresenter
         
@@ -43,9 +43,9 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
     {
         let allExpensesViewController = segue.destination as! BSIndividualExpensesSummaryViewController
         allExpensesViewController.nameOfSectionToBeShown = nameOfSectionToBeShown;
-        let dailyNavigationManager = BSIndividualEntriesSummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, containmentEventsDelegate:self.containmentEventsDelegate!)
+        let dailyNavigationManager = BSIndividualEntriesSummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, coreDataFetchController: self.coreDataFetchController, containmentEventsDelegate:self.containmentEventsDelegate!)
         allExpensesViewController.navigationTransitionManager = dailyNavigationManager
-        let allController = BSShowAllEntriesController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let allController = BSShowAllEntriesController(dataProvider: self.coreDataFetchController)
         let allPresenter = BSShowAllEntriesPresenter(showEntriesUserInterface: allExpensesViewController, showEntriesController: allController)
                 
         allExpensesViewController.showEntriesPresenter = allPresenter

@@ -9,7 +9,6 @@
 #import "BSCategoryFilterViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BSAppDelegate.h"
-#import "Tag.h"
 #import "Expensit-Swift.h"
 
 static NSString const * kNofilterText = @"No Filter"; // make it a localizable key
@@ -104,9 +103,9 @@ static NSString const * kNofilterText = @"No Filter"; // make it a localizable k
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 40, 0, 100, imageView.frame.size.height)];
     id element = self.categories[row];
-    if ([element isKindOfClass:Tag.class])
+    if ([element isKindOfClass:BSExpenseCategory.class])
     {
-        Tag *tag = (Tag *)element;
+        BSExpenseCategory *tag = (BSExpenseCategory *)element;
         label.text = [tag name];
         imageView = [[UIImageView alloc] initWithImage:self.categoryImages[row-1]];
         CGRect imageFrame = imageView.frame;

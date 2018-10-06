@@ -11,5 +11,5 @@ import Foundation
 @objc protocol BSAddEntryInterfaceProtocol {
     
     @objc(displayEntry:)
-    func display(entry : Entry)
+    func display(entry : BSDisplayExpensesSummaryEntry)
 }

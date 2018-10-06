@@ -28,26 +28,25 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     
     // MARK: BSBaseExpensesSummaryPresenterEventsProtocol
     
-    func filterChanged(to category : Tag) {
+    func filterChanged(to category : BSExpenseCategory?) {
         self.showEntriesController.filter(by : category)
     }
     
     
-    func viewIsReadyToDisplayEntriesCompletionBlock(_ block: ( _ sections : [BSDisplaySectionData] ) -> () )
+    func viewIsReadyToDisplayEntriesCompletionBlock(_ block: ( _ sections : [BSDisplayExpensesSummarySection] ) -> () )
     {
         // Let controller subclasses retrieve the right type of information
-        let dictionary = self.showEntriesController.entriesForSummary()        
+        let groupedEntities = self.showEntriesController.entriesForSummary()
         
         // Let presenter subclasses arrange the data for the user-interface
-        let sec = dictionary["sections"] as! [NSFetchedResultsSectionInfo]
-        let output = self.displayDataFromEntriesForSummary(sec)
+        let output = self.displayDataFromEntriesForSummary(groupedEntities)
         
         // CallBack once we have the data ready
         block( output)
     }
     
     
-    func viewIsReadyToDisplayImage(for category : Tag?) {
+    func viewIsReadyToDisplayImage(for category : BSExpenseCategory?) {
                 
         if let image = self.showEntriesController.image(for: category) {
             self.userInteface.displayCategoryImage(image)
@@ -65,8 +64,9 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     
-    func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
+    func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
     {
         return []
-    }    
+    }
+    
 }

@@ -15,9 +15,9 @@ class BSYearlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMan
     {
         let monthlyExpensesViewController = segue.destination as! BSMonthlyExpensesSummaryViewController
         monthlyExpensesViewController.nameOfSectionToBeShown = nameOfSectionToBeShown;
-        let monthlyController = BSShowMonthlyEntriesController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let monthlyController = BSShowMonthlyEntriesController(dataProvider: self.coreDataFetchController)
         let monthlyPresenter = BSShowMonthlyEntriesPresenter(showEntriesUserInterface: monthlyExpensesViewController, showEntriesController: monthlyController)
-        let monthlyNavigationManager = BSMonthlySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, containmentEventsDelegate:self.containmentEventsDelegate!)
+        let monthlyNavigationManager = BSMonthlySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, coreDataFetchController: self.coreDataFetchController, containmentEventsDelegate:self.containmentEventsDelegate!)
         
         monthlyExpensesViewController.showEntriesPresenter = monthlyPresenter
         monthlyExpensesViewController.navigationTransitionManager = monthlyNavigationManager
@@ -31,7 +31,7 @@ class BSYearlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMan
     }
     
     func configureYearlyExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
-        let yearlyLineGraphController : BSGraphLineControllerProtocol = BSYearlySummaryGraphLineController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let yearlyLineGraphController : BSGraphLineControllerProtocol = BSYearlySummaryGraphLineController(coreDataFetchController:self.coreDataFetchController)
         let yearlyLineGraphPresenter : BSGraphLinePresenterProtocol = BSYearlySummaryGraphLinePresenter(yearlySummaryGraphLineController: yearlyLineGraphController, section: section)
         graphViewController.lineGraphPresenter = yearlyLineGraphPresenter
 

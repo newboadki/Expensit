@@ -21,24 +21,25 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
-    {        
-        var sections = [BSDisplaySectionData]()
+    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
+    {
         
-        for coreDatasectionInfo in data
+        var displaySections = [BSDisplayExpensesSummarySection]()
+        
+        for section in sections
         {
-            var entries = [BSDisplayEntry]()
-            let monthNumber = coreDatasectionInfo.name.components(separatedBy: "/")[0]
+            var entries = [BSDisplayExpensesSummaryEntry]()
+            let monthNumber = section.groupKey.components(separatedBy: "/")[0]
             let numberOfDayInMonths = DateTimeHelper.numberOfDays(inMonth: monthNumber).length
             for i in 0 ..< numberOfDayInMonths {
                 
-                let dayData = BSDisplayEntry(title: "\(i+1)" , value: "", signOfAmount: .zero)
+                let dayData = BSDisplayExpensesSummaryEntry(title: "\(i+1)" , value: "", signOfAmount: .zero, date: nil, tag: nil)
                 entries.append(dayData)
             }
             
-            for entryDic in (coreDatasectionInfo.objects)!
+            for entryEntity in section.entries
             {
-                let value = (entryDic as AnyObject).value(forKey: "dailySum") as! NSNumber
+                let value = entryEntity.value
                 let r : ComparisonResult = value.compare(0)
                 var sign : BSNumberSignType
                 
@@ -51,19 +52,21 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
                 case ComparisonResult.orderedSame:
                     sign = .zero
                 }
-                let day = (entryDic as AnyObject).value(forKey: "day") as! NSNumber
+                let day = NSNumber(value: entryEntity.day!)
                 let dayString = "\(day)"
                 let dailySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
                 
-                let entryData = BSDisplayEntry(title: dayString as String , value: dailySumString as String, signOfAmount: sign)
+                let dateString = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: entryEntity.date)
+                print("!!!> \(dateString ?? "MISSING")")
+                let entryData = BSDisplayExpensesSummaryEntry(title: dayString as String , value: dailySumString as String, signOfAmount: sign, date: dateString, tag: nil)
                 entries[day.intValue - 1] = entryData
             }
             
-            let sectionData = BSDisplaySectionData(title: coreDatasectionInfo.name, entries: entries)
-            sections.append(sectionData)
+            let sectionData = BSDisplayExpensesSummarySection(title: section.groupKey, entries: entries)
+            displaySections.append(sectionData)
         }
         
-        return sections
+        return displaySections
     }
     
     
@@ -77,7 +80,9 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
     func sectionName(forSelected indexPath : IndexPath, sectionTitle: String) -> String {
         let month = sectionTitle.components(separatedBy: "/")[0]
         let year = sectionTitle.components(separatedBy: "/")[1]
-        return "\((indexPath as NSIndexPath).row + 1) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
+        //return "\((indexPath as NSIndexPath).row + 1) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
+//        return "\((indexPath as NSIndexPath).row + 1)/\(month)/\(year)"
+        return "\(year)/\(month)/\((indexPath as NSIndexPath).row + 1)"
     }
 
 }

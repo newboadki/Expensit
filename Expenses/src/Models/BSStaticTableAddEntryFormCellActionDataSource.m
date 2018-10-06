@@ -17,7 +17,6 @@
 #import "BSConstants.h"
 #import "BSCoreDataController.h"
 #import "CoreDataStackHelper.h"
-#import "Tag.h"
 
 #import <UIKit/UIKit.h>
 
@@ -27,6 +26,8 @@
 #import "BSDateToDatePickerCellConvertor.h"
 
 #import "BSAppDelegate.h"
+
+#import "Expensit-Swift.h"
 
 @interface BSStaticTableAddEntryFormCellActionDataSource ()
 @property (nonatomic, assign) BOOL showingDatePicker;
@@ -41,12 +42,13 @@
 
 #pragma mark - Initialisers
 
-- (instancetype)initWithCoreDataController:(BSCoreDataController *)coreDataController isEditing:(BOOL)isEditing
+- (instancetype)initWithCoreDataController:(BSCoreDataController *)coreDataController addEntryController:(BSAddEntryController *)addEntryController isEditing:(BOOL)isEditing
 {
     self = [super init];
     if (self)
     {
         _coreDataController = coreDataController;
+        _addEntryController = addEntryController;
         _isEditing = isEditing;
     }
     return self;
@@ -193,15 +195,13 @@
         if (!self.showingCategoryPicker)
         {
             self.showingCategoryPicker = YES;
-            // Update the data model
-            BSTagToSegmentedControlCellConvertor *tagToSegmentedControlConvertor = [[BSTagToSegmentedControlCellConvertor alloc] init];
-            tagToSegmentedControlConvertor.coreDataController = self.coreDataController;
+            // Update the data model            
 
             NSArray *tags = [[self.coreDataController allTags] valueForKeyPath:@"name"];
             NSArray *tagsImages = [self.coreDataController allTagImages];
             UIColor *grayColor = [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme grayColor];
             NSDictionary *tagsExtraParams = @{@"options": tags, @"optionImages": tagsImages, @"width": @230, @"colors" : @[grayColor, grayColor, grayColor, grayColor, grayColor]};
-            BSStaticTableViewCellInfo *categoryPickerCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailValuePickerCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:tagsExtraParams];
+            BSStaticTableViewCellInfo *categoryPickerCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailValuePickerCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:nil extraParams:tagsExtraParams];
             BSStaticTableViewSectionInfo *si = [self sharedSectionsInfo][0];
             [si.cellClassesInfo insertObject:categoryPickerCellInfo atIndex:[self indexPathForCategoryPickerCell].row];
             
@@ -251,8 +251,8 @@
     
     BSStaticTableViewCellChangeOfValueEvent *changeEvent = (BSStaticTableViewCellChangeOfValueEvent *)event;
     id model = changeEvent.value;
-    [self.coreDataController deleteModel:model];
-    [self.coreDataController saveChanges];
+
+    [self.addEntryController deleteWithEntry:model];
     
     // The action to be taken by the view controller is to dismiss itself
     return @[[[BSStaticTableViewDismissYourselfAction alloc] init]];
@@ -268,19 +268,17 @@
         return _sharedSectionInfo;
     }
     
-    BSTagToSegmentedControlCellConvertor *tagToSegmentedControlConvertor = [[BSTagToSegmentedControlCellConvertor alloc] init];
-    tagToSegmentedControlConvertor.coreDataController = self.coreDataController;
-    BSEntryTypeToSegmentedControlCellConvertor *typeToSegmentedControlVoncertor = [[BSEntryTypeToSegmentedControlCellConvertor alloc] init];
+    BSEntryTypeToSegmentedControlCellConvertor *typeToSegmentedControlVonvertor = [[BSEntryTypeToSegmentedControlCellConvertor alloc] init];
     BSDateToDatePickerCellConvertor *dateConvertor = [[BSDateToDatePickerCellConvertor alloc] init];
     NSDictionary *typeExtraParams = @{@"options": @[@"Expense", @"Benefit"], @"colors" : @[[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor], [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor]]};
     
     
-    BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:[[BSAmountToTextControlCellConvertor alloc] init] extraParams:nil];
+    BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:nil extraParams:nil];
     BSStaticTableViewCellInfo *descriptionCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"desc" displayPropertyName:@"Description" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:UIKeyboardTypeAlphabet valueConvertor:nil extraParams:nil];
     BSStaticTableViewCellInfo *dateButtonCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailDescriptionAndButtonCell class] propertyName:@"date"displayPropertyName:@"When" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:dateConvertor extraParams:nil];
 
-    BSStaticTableViewCellInfo *categoryCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailDescriptionAndButtonCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:tagToSegmentedControlConvertor extraParams:nil]; // nil because we need to search the tag entity and that's not for the cell to do
-    BSStaticTableViewCellInfo *typeCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"isAmountNegative" displayPropertyName:@"Type" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:typeToSegmentedControlVoncertor extraParams:typeExtraParams]; // nil because the type it's determined by the sign of the value not by a property in itself
+    BSStaticTableViewCellInfo *categoryCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailDescriptionAndButtonCell class] propertyName:@"tag" displayPropertyName:@"Group" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:nil extraParams:nil]; // nil because we need to search the tag entity and that's not for the cell to do
+    BSStaticTableViewCellInfo *typeCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntrySegmentedOptionCell class] propertyName:@"isAmountNegative" displayPropertyName:@"Type" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:typeToSegmentedControlVonvertor extraParams:typeExtraParams]; // nil because the type it's determined by the sign of the value not by a property in itself
     
     
     _sharedSectionInfo = [NSMutableArray arrayWithArray:@[[[BSStaticTableViewSectionInfo alloc] initWithSection:0 cellsInfo:[NSMutableArray arrayWithArray:@[amountCellInfo, descriptionCellInfo, dateButtonCellInfo, typeCellInfo, categoryCellInfo]]]]];

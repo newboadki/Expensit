@@ -10,10 +10,12 @@
 #import "ContainmentEventsAPI.h"
 
 @class BSCoreDataController;
+@class BSCoreDataFetchController;
 
 @interface BSContainerViewController : UIViewController <ContainmentEventsManager>
 
 @property (nonatomic, strong, nullable) BSCoreDataController *coreDataController;
+@property (nonatomic, strong, nullable) BSCoreDataFetchController *coreDataFetchController;
 
 
 /// VIEWS

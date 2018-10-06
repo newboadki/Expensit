@@ -49,11 +49,7 @@
     if (self.isEditingEntry)
     {
         [self.addEntryPresenter userCancelledEditionOfExistingEntry];
-    }
-    else
-    {
-        [self.addEntryPresenter userCancelledCreationOfNewEntry:self.entryModel];
-    }
+    }    
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -93,7 +89,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)displayEntry:(Entry * _Nonnull)entry {
+- (void)displayEntry:(BSDisplayExpensesSummaryEntry * _Nonnull)entry {
     self.entryModel = entry;
     [self.tableView reloadData];
 }

@@ -13,13 +13,15 @@ class BSBaseNavigationTransitionManager: NSObject
 {
     var coreDataStackHelper : CoreDataStackHelper
     var coreDataController : BSCoreDataController
+    var coreDataFetchController : BSCoreDataFetchController
     var categoryFilterTransitioningDelegate :BSModalSelectorViewTransitioningDelegate
     var containmentEventsDelegate: ContainmentEventsManager?
     
-    init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController, containmentEventsDelegate: ContainmentEventsManager)
+    init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController, coreDataFetchController : BSCoreDataFetchController, containmentEventsDelegate: ContainmentEventsManager)
     {
         self.coreDataStackHelper = coreDataStackHelper
         self.coreDataController = coreDataController
+        self.coreDataFetchController = coreDataFetchController
         self.categoryFilterTransitioningDelegate = BSModalSelectorViewTransitioningDelegate()
         self.containmentEventsDelegate = containmentEventsDelegate
         super.init()
@@ -27,12 +29,28 @@ class BSBaseNavigationTransitionManager: NSObject
     
     func configureAddEntryViewControllerWithSegue(_ segue : UIStoryboardSegue)
     {
+        let entry = BSDisplayExpensesSummaryEntry(title: "", value: "", signOfAmount: .zero, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date()), tag: "Other")
+        let addEntryController = BSAddEntryController(entryToEdit:entry, coreDataFetchController: self.coreDataFetchController)
         let navigationController = segue.destination as! UINavigationController
-        let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, isEditing:false);
+        let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, addEntryController: addEntryController, isEditing: false);
         let addEntryVC = navigationController.topViewController as! BSEntryDetailsFormViewController
         let appDelegate = UIApplication.shared.delegate as! BSAppDelegate
 
-        addEntryVC.addEntryController = BSAddEntryController(entryToEdit:nil)
+        addEntryVC.addEntryController = addEntryController
+        addEntryVC.addEntryPresenter = BSAddEntryPresenter(addEntryController: addEntryVC.addEntryController!, userInterface:addEntryVC)
+        addEntryVC.isEditingEntry = false;
+        addEntryVC.cellActionDataSource = cellActionsDataSource;
+        addEntryVC.appearanceDelegate = appDelegate.themeManager;
+    }
+    
+    func configureAddEntryViewControllerWithNavigationController(_ navigationController : UINavigationController)
+    {
+        let addEntryController = BSAddEntryController(entryToEdit:nil, coreDataFetchController: self.coreDataFetchController)
+        let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, addEntryController: addEntryController, isEditing: false);
+        let addEntryVC = navigationController.topViewController as! BSEntryDetailsFormViewController
+        let appDelegate = UIApplication.shared.delegate as! BSAppDelegate
+        
+        addEntryVC.addEntryController = addEntryController
         addEntryVC.addEntryPresenter = BSAddEntryPresenter(addEntryController: addEntryVC.addEntryController!, userInterface:addEntryVC)
         addEntryVC.isEditingEntry = false;
         addEntryVC.cellActionDataSource = cellActionsDataSource;
@@ -45,7 +63,7 @@ class BSBaseNavigationTransitionManager: NSObject
     {
         
         let categoryFilterViewController = segue.destination as! BSCategoryFilterViewController
-        let categoryFilterController = BSCategoryFilterController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let categoryFilterController = BSCategoryFilterController(dataProvider : self.coreDataController)
         categoryFilterViewController.categoryFilterPresenter = BSCategoryFilterPresenter(categoryFilterController: categoryFilterController)
         categoryFilterViewController.transitioningDelegate = categoryFilterViewTransitioningDelegate
         categoryFilterViewController.delegate = categoryFilterViewControllerDelegate

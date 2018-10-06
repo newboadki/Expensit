@@ -9,14 +9,24 @@
 import Foundation
 
 
-class BSShowMonthlyEntriesController: BSAbstractShowEntriesController
-{    
-    override func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return self.coreDataController.fetchRequestForMonthlySummary()
+@objc class BSShowMonthlyEntriesController : NSObject, BSAbstractShowEntriesControllerProtocol {
+    
+    private var dataProvider: BSCoreDataFetchController
+    
+    public init(dataProvider: BSCoreDataFetchController) {
+        self.dataProvider = dataProvider
     }
-
-    override func sectionNameKeyPath() -> String? {
-        return "year"
+    
+    func filter(by category: BSExpenseCategory?) {
+        self.dataProvider.filter(summaryType:.monthly, by: category)
     }
-            
+    
+    func entriesForSummary() -> [BSEntryEntityGroup] {
+        return self.dataProvider.entriesGroupedByMonth()
+    }
+    
+    func image(for category: BSExpenseCategory?) -> UIImage? {
+        return self.dataProvider.image(for: category)
+    }
+    
 }

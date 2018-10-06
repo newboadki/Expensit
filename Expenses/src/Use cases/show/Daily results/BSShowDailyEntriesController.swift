@@ -8,16 +8,23 @@
 
 import Foundation
 
-
-
-class BSShowDailyEntriesController: BSAbstractShowEntriesController {
+@objc class BSShowDailyEntriesController : NSObject, BSAbstractShowEntriesControllerProtocol {
     
-    override func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return self.coreDataController.fetchRequestForDaylySummary()
+    private var dataProvider: BSCoreDataFetchController
+    
+    public init(dataProvider: BSCoreDataFetchController) {
+        self.dataProvider = dataProvider
     }
-
-    override func sectionNameKeyPath() -> String? {
-        return "monthYear"
+    
+    func filter(by category: BSExpenseCategory?) {
+        self.dataProvider.filter(summaryType:.daily, by: category)
     }
-
+    
+    func entriesForSummary() -> [BSEntryEntityGroup] {
+        return self.dataProvider.entriesGroupedByDay()
+    }
+    
+    func image(for category: BSExpenseCategory?) -> UIImage? {
+        return self.dataProvider.image(for: category)
+    }
 }

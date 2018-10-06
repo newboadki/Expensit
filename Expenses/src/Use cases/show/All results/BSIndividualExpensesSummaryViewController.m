@@ -7,7 +7,6 @@
 //
 
 #import "BSIndividualExpensesSummaryViewController.h"
-#import "Entry.h"
 #import "BSDailySummanryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "BSEntryDetailsFormViewController.h"
@@ -51,7 +50,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BSDisplayEntry *entry = self.sections[indexPath.section].entries[indexPath.row];
+    BSDisplayExpensesSummaryEntry *entry = self.sections[indexPath.section].entries[indexPath.row];
     BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
 
     // configure the cell
@@ -79,7 +78,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     BSDailyEntryHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self reuseIdentifierForHeader] forIndexPath:indexPath];
-    BSDisplaySectionData *sectionInfo = self.sections[indexPath.section];
+    BSDisplayExpensesSummarySection *sectionInfo = self.sections[indexPath.section];
     headerView.titleLabel.text = sectionInfo.title;
     
     return headerView;    
@@ -117,6 +116,7 @@
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
         [individualEntriesTransitionManager configureEditEntryViewControllerWithSegue:segue
                                                                     selectedIndexPath:selectedIndexPath
+                                                                         displayEntry:self.sections[selectedIndexPath.section].entries[selectedIndexPath.row]
                                                                   allEntriesPresenter:self.showEntriesPresenter];
     }
     else

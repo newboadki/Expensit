@@ -14,12 +14,12 @@
 #import "ExpensesSummaryType.h"
 
 
-@class BSDisplaySectionData;
+@class BSDisplayExpensesSummarySection;
 
 @interface BSBaseExpensesSummaryViewController ()
 
 @property (nonatomic, strong) BSAnimatedBlurEffectTransitioningDelegate *animatedBlurEffectTransitioningDelegate;
-@property (nonatomic, strong) NSArray <BSDisplaySectionData *>*sections;
+@property (nonatomic, strong) NSArray <BSDisplayExpensesSummarySection *>*sections;
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, assign, readonly) ExpensesSummaryType summaryType;
 @property (assign, nonatomic) BOOL shouldScrollToSelectedSection;

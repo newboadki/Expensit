@@ -7,7 +7,6 @@
 //
 
 #import "BSYearlyExpensesSummaryViewController.h"
-#import "Entry.h"
 #import "BSYearlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
@@ -31,7 +30,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)sectionIndex
 {
-    BSDisplaySectionData *sectionData = self.sections[sectionIndex];
+    BSDisplayExpensesSummarySection *sectionData = self.sections[sectionIndex];
     return sectionData.numberOfEntries;
 }
 
@@ -40,7 +39,7 @@
 {
     [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     
-    BSDisplayEntry *itemForYear = self.sections[indexPath.section].entries[indexPath.row];
+    BSDisplayExpensesSummaryEntry *itemForYear = self.sections[indexPath.section].entries[indexPath.row];
     BSYearlySummaryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
     
     // Determine the text of the labels

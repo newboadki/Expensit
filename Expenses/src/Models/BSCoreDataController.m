@@ -12,10 +12,13 @@
 #import "Tag.h"
 #import "Entry.h"
 #import "BSPieChartSectionInfo.h"
-
+#import "Expensit-Swift.h"
+#import <CoreData/CoreData.h>
 
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation BSCoreDataController
@@ -92,24 +95,15 @@
 
 
 - (BOOL)saveChanges
-{
+{   
     return [self.coreDataHelper.managedObjectContext save:nil];
 }
 
 
 - (BOOL) saveEntry:(Entry *)entry error:(NSError **)error {
     
-    BOOL isCurrentValueNegative = ([entry.value compare:@(-1)] == NSOrderedAscending);
-    
-    if (isCurrentValueNegative ^ [entry.isAmountNegative boolValue]) // XOR True when the inputs are different (true output means we need to multiply by -1)
-    {
-        if (![entry.value isEqualToNumber:[NSDecimalNumber notANumber]])
-        {
-            entry.value = [entry.value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-        }
-    }
-    
-    return [self.coreDataHelper.managedObjectContext save:error];
+    BOOL saved = [self.coreDataHelper.managedObjectContext save:error];
+    return saved;
 }
 
 
@@ -225,7 +219,7 @@
     return result;
 }
 
-- (NSArray *)allTags
+- (NSArray<BSExpenseCategory *> *)allTags
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
@@ -235,16 +229,22 @@
     
     NSError *err = nil;
     NSArray *result = [self resultsForRequest:fetchRequest error:&err];
-    return result;
+    
+    NSMutableArray<BSExpenseCategory *> *entities = [NSMutableArray array];
+    for (Tag *t in result) {
+        BSExpenseCategory *cat  = [[BSExpenseCategory alloc] initWithName:t.name iconName:t.iconImageName color:t.color];
+        [entities addObject:cat];
+    }
+    return entities;
 }
 
 - (NSArray *)allTagImages
 {
     NSMutableArray *images = [NSMutableArray array];
     
-    for (Tag *tag in [self allTags])
+    for (BSExpenseCategory *tag in [self allTags])
     {
-        [images addObject:[self imageForCategory:tag]];
+        [images addObject:[self imageForCategoryName:tag.iconName]];
     }
     
     return [NSArray arrayWithArray:images];
@@ -252,18 +252,23 @@
 
 - (UIImage *)imageForCategory:(Tag *)tag
 {
-    if (!tag.iconImageName)
+    return [self imageForCategoryName:tag.iconImageName];
+}
+
+- (nullable UIImage *)imageForCategoryName:(nullable NSString *)tagName
+{
+    if (!tagName)
     {
         return [[UIImage imageNamed:@"filter_all.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     else
     {
-        return [[UIImage imageNamed:tag.iconImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        return [[UIImage imageNamed:tagName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
 }
 
 
-- (NSArray *)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year
+- (NSArray <Tag *>*)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year
 {
     // Get a base request
     NSFetchRequest *fetchRequest = [self baseFetchRequest];
@@ -298,21 +303,22 @@
 
 }
 
-- (NSArray *)sortedTagsByPercentageFromSections:(NSArray *)tags sections:(NSArray *)sections {
-    NSMutableArray *results = [NSMutableArray array];
-    
-    for (BSPieChartSectionInfo *section in sections.reverseObjectEnumerator.allObjects)
-    {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", section.name];
-        Tag *tag = [[tags filteredArrayUsingPredicate:predicate] firstObject];
-        if (tag)
-        {
-            [results addObject:tag];
-        }
-    }
-    
-    return results;
-}
+// Move to coredatafetchcontroller
+//- (nullable NSArray <BSExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <BSExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections {
+//    NSMutableArray *results = [NSMutableArray array];
+//    
+//    for (BSPieChartSectionInfo *section in sections.reverseObjectEnumerator.allObjects)
+//    {
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", section.name];
+//        BSExpenseCategory *tag = [[tags filteredArrayUsingPredicate:predicate] firstObject];
+//        if (tag)
+//        {
+//            [results addObject:tag];
+//        }
+//    }
+//    
+//    return results;
+//}
 
 
 
@@ -350,7 +356,7 @@
 {
     // Get a base request
     NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
+    [self configureForIndividualEntriesFetchRequest:fetchRequest];
     return fetchRequest;
 }
 
@@ -371,19 +377,24 @@
     NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
     NSPropertyDescription *yearDescription = propertiesByName[@"year"];
     
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"value"];
     NSExpression *sumExpression = [NSExpression
                                    expressionForFunction:@"sum:"
                                    arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription =
-    [[NSExpressionDescription alloc] init];
+
+    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
     [sumExpressionDescription setName:@"yearlySum"];
     [sumExpressionDescription setExpression:sumExpression];
     [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription]];
+
+    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+    [minDateExpressionDescription setName:@"date"];
+    [minDateExpressionDescription setExpression:minDateExpression];
+    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+
+    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription, minDateExpressionDescription]];
     [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
     [fetchRequest setResultType:NSDictionaryResultType];
 
@@ -413,7 +424,14 @@
     [sumExpressionDescription setExpression:sumExpression];
     [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
     
-    [fetchRequest setPropertiesToFetch:@[monthDescription, yearDescription, sumExpressionDescription]];
+    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+    [minDateExpressionDescription setName:@"date"];
+    [minDateExpressionDescription setExpression:minDateExpression];
+    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+
+    [fetchRequest setPropertiesToFetch:@[monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription]];
     [fetchRequest setPropertiesToGroupBy:@[monthDescription, yearDescription]];
     [fetchRequest setResultType:NSDictionaryResultType];
     
@@ -444,7 +462,14 @@
     [sumExpressionDescription setExpression:sumExpression];
     [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
     
-    [fetchRequest setPropertiesToFetch:@[monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription]];
+    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+    [minDateExpressionDescription setName:@"date"];
+    [minDateExpressionDescription setExpression:minDateExpression];
+    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+
+    [fetchRequest setPropertiesToFetch:@[monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription, minDateExpressionDescription]];
     [fetchRequest setPropertiesToGroupBy:@[dayMonthYearDescription, monthYearDescription, dayDescription]];
     [fetchRequest setResultType:NSDictionaryResultType];
 
@@ -584,7 +609,7 @@
 }
 
 
-- (NSArray *)expensesByCategoryForMonth:(NSNumber *)month inYear:(NSNumber *)year
+- (nonnull NSArray <BSPieChartSectionInfo *>*)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year
 {
     NSArray *tags = [self allTags];
     NSMutableArray *absoluteAmountPerTag = [NSMutableArray arrayWithCapacity:[tags count]];
@@ -684,6 +709,30 @@
 - (NSArray *)resultsForRequest:(NSFetchRequest *)request error:(NSError **)error {
     NSArray *output = [self.coreDataHelper.managedObjectContext executeFetchRequest:request error:error];
     return output;
+}
+
+#pragma mark - ExpenseSummaryDataGatewayProtocol
+
+#pragma mark - NSFetchResultsController
+
+- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByYear {
+    NSFetchRequest *request = [self fetchRequestForYearlySummary];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByMonth {
+    NSFetchRequest *request = [self fetchRequestForMonthlySummary];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"year" cacheName:nil];
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByDay {
+    NSFetchRequest *request = [self fetchRequestForDaylySummary];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"monthYear" cacheName:nil];
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerForAllEntries {
+    NSFetchRequest *request = [self fetchRequestForAllEntries];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"yearMonthDay" cacheName:nil];
 }
 
 @end

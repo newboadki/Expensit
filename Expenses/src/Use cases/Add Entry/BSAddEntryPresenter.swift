@@ -67,7 +67,11 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
         let value: NSDecimalNumber
             
         if let enteredValue = entry.value, enteredValue.count > 0 {
-            value = BSCurrencyHelper.amountFormatter().number(from: enteredValue) as! NSDecimalNumber
+            if let decimalValue = BSCurrencyHelper.amountFormatter().number(from: enteredValue)?.decimalValue {
+                value = NSDecimalNumber(decimal: decimalValue)
+            } else {
+                value = NSDecimalNumber(string: "0")
+            }
         } else {
             value = NSDecimalNumber(string: "0")
         }

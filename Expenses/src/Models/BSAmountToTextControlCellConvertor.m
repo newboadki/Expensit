@@ -8,48 +8,36 @@
 
 #import "BSAmountToTextControlCellConvertor.h"
 #import <objc/runtime.h>
+#import "BSCurrencyHelper.h"
 
 @implementation BSAmountToTextControlCellConvertor
 
 - (id)cellValueForModelValue:(id)modelValue
 {
-    NSString *cellValue = nil;
-    NSDecimalNumber *number = modelValue;
-    
-    switch ([number compare:@0])
-    {
-        case NSOrderedSame:
-        case NSOrderedAscending:
-        {
-            number = [number decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-            break;
-        }
-        case NSOrderedDescending:
-        default:
-            break;
-    }
-
-    cellValue = [number stringValue];
-
-    
-    if ([cellValue isEqualToString:@"0"])
-    {
-        cellValue = @"";
-    }
-    
-    if (cellValue == nil)
-    {
-        cellValue = @"";
-    }
-    
-    return cellValue;
+//    NSString *cellValue = nil;
+    NSString *numberString = modelValue;
+    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithDecimal:[[[BSCurrencyHelper amountFormatter] numberFromString:numberString] decimalValue]];
+    NSString *formattedString = [[BSCurrencyHelper amountFormatter] stringFromNumber:number];
+    return formattedString;
 }
 
 
 - (id)modelValueForCellValue:(id)cellValue
 {
-    NSString *stringValue = [cellValue stringByReplacingOccurrencesOfString:@"," withString:@"."];
-    return [NSDecimalNumber decimalNumberWithString:stringValue];
+    NSNumber *number = [[BSCurrencyHelper amountFormatter] numberFromString:cellValue];
+    if (number != nil)
+    {
+        // The number was a correctly formatted currency amount
+        return cellValue;
+    }
+    else
+    {
+        // The number was an incorrectly formatted currency amount.
+        // At the moment the textfield allows the user to delete everything even the currency symbol, which would make
+        // [BSCurrencyHelper amountFormatter] numberFromString: fail
+        NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:cellValue];
+        return [[BSCurrencyHelper amountFormatter] stringFromNumber:decimalNumber];
+    }
 }
 
 

@@ -17,15 +17,18 @@ class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
+    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
     {
-        var sections = [BSDisplaySectionData]()
-        for coreDatasectionInfo in data
+        var displaySections = [BSDisplayExpensesSummarySection]()
+        
+        for section in sections
         {
-            var entries = [BSDisplayEntry]()
-            for entryDic in (coreDatasectionInfo.objects)!
+            let entryEntities = section.entries
+            
+            for entryEntity in entryEntities
             {
-                let value = (entryDic as AnyObject).value(forKey: "yearlySum") as! NSNumber
+                var displayEntries = [BSDisplayExpensesSummaryEntry]()
+                let value = entryEntity.value
                 let r : ComparisonResult = value.compare(0)
                 var sign : BSNumberSignType
                 
@@ -38,19 +41,17 @@ class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
                     case ComparisonResult.orderedSame:
                         sign = .zero
                 }
-                let year = (entryDic as AnyObject).value(forKey: "year") as! NSNumber
-                let yearString = NSString(format:"\(year)" as NSString)
+                let year = entryEntity.year
+                let yearString =  (year != nil) ? "\(year!)" : "" // NSString(format:"\(String(describing: year))" as NSString)
                 let yearlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
                 
-                let entryData = BSDisplayEntry(title: yearString as String , value: yearlySumString as String, signOfAmount: sign)
-                entries.append(entryData)
+                let displayEntry = BSDisplayExpensesSummaryEntry(title: yearString as String , value: yearlySumString as String, signOfAmount: sign, date:nil, tag: nil)
+                displayEntries.append(displayEntry)
+                let sectionData = BSDisplayExpensesSummarySection(title: displayEntry.title, entries: displayEntries)
+                displaySections.append(sectionData)
             }
-            
-            let sectionData = BSDisplaySectionData(title: coreDatasectionInfo.name, entries: entries)
-            sections.append(sectionData)
         }
         
-        return sections
+        return displaySections
     }
-    
 }

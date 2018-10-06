@@ -10,6 +10,6 @@ import Foundation
 
 @objc protocol BSPieGraphPresenterProtocol
 {    
-    func categories() -> [AnyObject]?
-    func sections() -> [AnyObject]?
+    func categories() -> [BSExpenseCategory]?
+    func sections() -> [BSPieChartSectionInfo]?
 }

@@ -8,54 +8,26 @@
 
 import Foundation
 
-@objc class BSYearlySummaryGraphLineController: NSObject, BSCoreDataControllerProtocol, BSGraphLineControllerProtocol
+@objc class BSYearlySummaryGraphLineController: NSObject, BSGraphLineControllerProtocol
 {
-    var coreDataStackHelper : CoreDataStackHelper
-    var coreDataController : BSCoreDataController
+    var coreDataFetchController : BSCoreDataFetchController
     
     /// CoreDataController protocol
-    required init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController)
+    required init(coreDataFetchController: BSCoreDataFetchController)
     {
-        self.coreDataStackHelper = coreDataStackHelper
-        self.coreDataController = coreDataController
+        self.coreDataFetchController = coreDataFetchController
     }
-
     
     /// BSGraphLineControllerProtocol
-        
     func abscissaValues() -> [NSDictionary] {
-        let request = self.coreDataController.requestToGetYears()
-        
-        do {
-            let output = try self.coreDataController.results(for: request)
-            return output as! [NSDictionary]
-        }
-        catch {
-            return []
-        }
+        return coreDataFetchController.abscissaValuesForYearlyLineGraph()
     }
     
     func graphSurplusResults(for section: String) -> [AnyObject] {
-        let request = self.coreDataController.graphYearlySurplusFetchRequest()
-        do {
-            let output = try self.coreDataController.results(for: request)
-            return output as [AnyObject]
-        }
-        catch {
-            return []
-        }        
+        return self.coreDataFetchController.graphSurplusResultsForYearlyLineGraph(for:section)
     }
     
     func graphExpensesResults(for section: String) -> [AnyObject] {
-        let request = self.coreDataController.graphYearlyExpensesFetchRequest()
-        do {
-            let output = try self.coreDataController.results(for: request)
-            return output as [AnyObject]
-        }
-        catch {
-            return []
-        }
+        return self.coreDataFetchController.graphExpensesResultsForYearlyLineGraph(for:section)
     }
-
-    
 }

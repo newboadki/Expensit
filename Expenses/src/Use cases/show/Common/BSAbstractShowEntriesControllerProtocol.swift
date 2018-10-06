@@ -10,25 +10,24 @@ import Foundation
 
 
 /// Summary screens' controller objects have a number of characteristics collected in this protocol.
-@objc protocol BSAbstractShowEntriesControllerProtocol : BSCoreDataControllerProtocol {
+@objc protocol BSAbstractShowEntriesControllerProtocol {
     
     /// Changes internal configuration to filter accordanly next time entries for summary gets called.
     ///
     /// - Parameter category: The category to filter by.
-    func filter(by category : Tag)
+    func filter(by category : BSExpenseCategory?)
     
     
     /// Fetches a collection of entries, groupped by sectionNameKeyPath
     ///
-    /// - Returns: A dictionary containing the results groupped by sectionNameKeyPath.
-    func entriesForSummary() -> NSDictionary
-    
+    /// - Returns: An array of EntryEntityGroup an entity container grouped by a key
+    func entriesForSummary() -> [BSEntryEntityGroup]
     
     /// Fetches an image for a given category
     ///
     /// - Parameter category: The category to search an image for.
     /// - Returns: An image. Nil if there was an error.
-    func image(for category :Tag?) -> UIImage?
+    func image(for category: BSExpenseCategory?) -> UIImage?
     
     
     /// A string descriptor for the sections in the fetched results.
@@ -37,10 +36,10 @@ import Foundation
     /// that users of the controllers don't need to understand.
     ///
     /// - Returns: Descriptor of a section in the summary result.
-    func sectionNameKeyPath() -> String?
+    @objc optional func sectionNameKeyPath() -> String?
     
     
     /// TODO: Do not expose this. It is here to facilitate the tests, which need to be modified to 
     /// check for the expectations.
-    var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
+    @objc optional var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
 }

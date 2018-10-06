@@ -17,25 +17,24 @@ class BSShowMonthlyEntriesPresenter : BSAbstractShowEntriesPresenter
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
+    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
     {
-        var sections = [BSDisplaySectionData]()
-        
-        for coreDatasectionInfo in data
+        var displaySections = [BSDisplayExpensesSummarySection]()
+
+        for section in sections
         {
-            var entries = [BSDisplayEntry]()
+            var entries = [BSDisplayExpensesSummaryEntry]()
             for i in 0 ..< 12 {
-                
-                let monthData = BSDisplayEntry(title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased() , value: "", signOfAmount: .zero)
+                let monthData = BSDisplayExpensesSummaryEntry(title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
                 entries.append(monthData)
             }
-
-            for entryDic in (coreDatasectionInfo.objects)!
+            
+            for entryEntity in section.entries
             {
-                let value = (entryDic as AnyObject).value(forKey: "monthlySum") as! NSNumber
+                let value = entryEntity.value
                 let r : ComparisonResult = value.compare(0)
                 var sign : BSNumberSignType
-                
+
                 switch r
                 {
                 case ComparisonResult.orderedAscending:
@@ -45,19 +44,19 @@ class BSShowMonthlyEntriesPresenter : BSAbstractShowEntriesPresenter
                 case ComparisonResult.orderedSame:
                     sign = .zero
                 }
-                let month = (entryDic as AnyObject).value(forKey: "month") as! NSNumber
+                let month = NSNumber(value: entryEntity.month!)
                 let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
                 let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-                
-                let entryData = BSDisplayEntry(title: monthString as String , value: monthlySumString as String, signOfAmount: sign)
+
+                let entryData = BSDisplayExpensesSummaryEntry(title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
                 entries[month.intValue - 1] = entryData
             }
-            
-            let sectionData = BSDisplaySectionData(title: coreDatasectionInfo.name, entries: entries)
-            sections.append(sectionData)
+
+            let sectionData = BSDisplayExpensesSummarySection(title: section.groupKey, entries: entries)
+            displaySections.append(sectionData)
         }
-        
-        return sections
+
+        return displaySections
     }
 
 }

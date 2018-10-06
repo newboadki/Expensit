@@ -9,7 +9,7 @@
 import Foundation
 
 struct DisplayModelToCoreDataModelMap {
-    var diplayEntry: BSDisplayEntry
+    var diplayEntry: BSDisplayExpensesSummaryEntry
     var entity: Entry
 }
 
@@ -31,48 +31,37 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ data : [NSFetchedResultsSectionInfo]) -> [BSDisplaySectionData]
+    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
     {
-        var sections = [BSDisplaySectionData]()
-        auxiliarySections = [AuxiliarlyDisplaySection]()
+        var displaySections = [BSDisplayExpensesSummarySection]()
         
-        for coreDatasectionInfo in data
+        for section in sections
         {
-            //var entries = [BSDisplayEntry]()
-            var auxEntries = [DisplayModelToCoreDataModelMap]()
-            
-            for i in 0 ..< coreDatasectionInfo.numberOfObjects {
+            print(section.groupKey)
+            var displayEntries = [BSDisplayExpensesSummaryEntry]()
+            let (day, month, year) = self.dateComponents(from: section.groupKey)
+            let date = DateTimeHelper.date(withFormat: nil, stringDate: "\(day)/\(month)/\(year)")
 
-                let coreDataEntry : Entry = coreDatasectionInfo.objects![i] as! Entry
-                let sign : BSNumberSignType = self.sign(for: coreDataEntry.value)
-                let entryData = BSDisplayEntry(title: coreDataEntry.desc , value: BSCurrencyHelper.amountFormatter().string(from: coreDataEntry.value), signOfAmount: sign)
-                let auxEntry = DisplayModelToCoreDataModelMap(diplayEntry: entryData, entity: coreDataEntry)
-                auxEntries.append(auxEntry)
+            for i in 0 ..< section.entries.count
+            {
+                let entryEntity : BSExpenseEntry = section.entries[i]
+                let sign : BSNumberSignType = self.sign(for: entryEntity.value)
+                let displayEntry = BSDisplayExpensesSummaryEntry(title: entryEntity.entryDescription , value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value), signOfAmount: sign, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date), tag: entryEntity.category?.name)
+                displayEntry.identifier = entryEntity.identifier
+                displayEntries.append(displayEntry)
             }
             
-            let (year, month, day) = self.dateComponents(from: coreDatasectionInfo.name)
-            let date = DateTimeHelper.date(withFormat: nil, stringDate: "\(day)/\(month)/\(year)")
-            
-            // TODO: Need to encapsulate. This string needs to match the one created at BSShowDailyEntriesPresenter.
-            let reversed = "\(day) \(DateTimeHelper.monthName(forMonthNumber: NSDecimalNumber(string: month))!) \(year)"
-            let auxSection = AuxiliarlyDisplaySection(title: reversed, date: date!, entries: auxEntries)
-            
-            auxiliarySections.append(auxSection)
+            let displaySection = BSDisplayExpensesSummarySection(title: section.groupKey, entries: displayEntries)
+            displaySections.append(displaySection)
         }
-        
-        auxiliarySections = auxiliarySections.sorted { $0.date < $1.date }
-        sections = auxiliarySections.map {
-            let displayEntries = $0.entries.map { $0.diplayEntry }
-            return  BSDisplaySectionData(title: $0.title, entries: displayEntries)
-        }
-        return sections
+
+        return displaySections
     }
     
     
     public func entry(for indexPath: NSIndexPath) -> Entry {
         return self.auxiliarySections[indexPath.section].entries[indexPath.row].entity
     }
-    
     
     
     
@@ -96,7 +85,7 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
     
     fileprivate func dateComponents(from dateString: String) -> (String, String, String) {
         let components = dateString.components(separatedBy: "/")
-        return (year: components[0], month: components[1], day: components[2])
+        return (year: components[2], month: components[1], day: components[0])
     }
     
 }

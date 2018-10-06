@@ -10,6 +10,6 @@ import Foundation
 
 @objc protocol BSCategoryFilterControllerProtocol {
 
-    func allTags() -> [Tag]
+    func allTags() -> [BSExpenseCategory]
     func allTagsImages() -> [UIImage]
 }

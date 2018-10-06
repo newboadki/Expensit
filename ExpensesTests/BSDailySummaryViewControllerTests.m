@@ -11,9 +11,9 @@
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
-#import "Tag.h"
 #import "Expensit-Swift.h"
 #import "DailyTestHelper.h"
+#import "Tag.h"
 
 
 @interface BSDailyExpensesSummaryViewController ()
@@ -29,6 +29,7 @@
 static CoreDataStackHelper *coreDataStackHelper = nil;
 static BSCoreDataController *coreDataController = nil;
 static BSDailyExpensesSummaryViewController *dailyViewController = nil;
+static BSCoreDataFetchController *fetchController;
 
 + (void)setUp {
     [super setUp];
@@ -38,18 +39,13 @@ static BSDailyExpensesSummaryViewController *dailyViewController = nil;
     
     
     coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
+    fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:coreDataController];
     dailyViewController = [[BSDailyExpensesSummaryViewController alloc] init];
     dailyViewController.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewLayout new]];
     
-    
-    
-    
-    BSShowDailyEntriesController *controller = [[BSShowDailyEntriesController alloc] initWithCoreDataStackHelper:coreDataStackHelper
-                                                                                              coreDataController:coreDataController];
+    BSShowDailyEntriesController *controller = [[BSShowDailyEntriesController alloc] initWithDataProvider:fetchController];
     BSShowDailyEntriesPresenter *presenter = [[BSShowDailyEntriesPresenter alloc] initWithShowEntriesUserInterface:dailyViewController showEntriesController:controller];
     dailyViewController.showEntriesPresenter = presenter;
-    
-    
     
     NSArray *tags = @[@"Basic"];
     [coreDataController createTags:tags];
@@ -104,17 +100,31 @@ static BSDailyExpensesSummaryViewController *dailyViewController = nil;
     navItemMock.rightBarButtonItems = @[[UIBarButtonItem new], [UIBarButtonItem new]];
     [dailyViewController setValue:navItemMock forKey:@"navigationItem"];
     
-    
     [dailyViewController filterChangedToCategory:nil];
-    NSArray *dailyResults = dailyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
     
-    XCTAssertTrue([dailyResults count] == 6);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"13/01/2013" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@80]);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"05/03/2013" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@(-15)]);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"02/01/2012" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@(-20.5)]);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"03/03/2012" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@(14)]);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"19/06/2011" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@7]);
-    XCTAssertTrue([[[DailyTestHelper resultDictionaryForDate:@"21/12/2011" fromArray:dailyResults] valueForKey:@"dailySum"] isEqual:@(-10)]);
+    NSPredicate *predicate_Jan_2013 = [NSPredicate predicateWithFormat:@"title = %@", @"1/2013"];
+    NSPredicate *predicate_Mar_2013 = [NSPredicate predicateWithFormat:@"title = %@", @"3/2013"];
+    NSPredicate *predicate_Jan_2012 = [NSPredicate predicateWithFormat:@"title = %@", @"1/2012"];
+    NSPredicate *predicate_Mar_2012 = [NSPredicate predicateWithFormat:@"title = %@", @"3/2012"];
+    NSPredicate *predicate_Jun_2011 = [NSPredicate predicateWithFormat:@"title = %@", @"6/2011"];
+    NSPredicate *predicate_Dec_2011 = [NSPredicate predicateWithFormat:@"title = %@", @"12/2011"];
+    
+    [dailyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> *sections) {
+        
+        BSDisplayExpensesSummarySection* jan2013 = [sections filteredArrayUsingPredicate:predicate_Jan_2013].firstObject;
+        BSDisplayExpensesSummarySection* march2013 = [sections filteredArrayUsingPredicate:predicate_Mar_2013].firstObject;
+        BSDisplayExpensesSummarySection* jan2012 = [sections filteredArrayUsingPredicate:predicate_Jan_2012].firstObject;
+        BSDisplayExpensesSummarySection* march2012 = [sections filteredArrayUsingPredicate:predicate_Mar_2012].firstObject;
+        BSDisplayExpensesSummarySection* jun2011 = [sections filteredArrayUsingPredicate:predicate_Jun_2011].firstObject;
+        BSDisplayExpensesSummarySection* dec2011 = [sections filteredArrayUsingPredicate:predicate_Dec_2011].firstObject;
+        
+        XCTAssertTrue([jan2013.entries[12].value isEqualToString:@"$80.00"]);// 12 becuase the day was 13th
+        XCTAssertTrue([march2013.entries[4].value isEqualToString:@"-$15.00"]); // 4 because the day was 5th
+        XCTAssertTrue([jan2012.entries[1].value isEqualToString:@"-$20.50"]); // 4 because the day was 5th
+        XCTAssertTrue([march2012.entries[2].value isEqualToString:@"$14.00"]); // 2 because the day was 3rd
+        XCTAssertTrue([jun2011.entries[18].value isEqualToString:@"$7.00"]); // 18 because the day was 19th
+        XCTAssertTrue([dec2011.entries[20].value isEqualToString:@"-$10.00"]); // 20 because the day was 21st
+    }];
 }
 
 @end
@@ -131,6 +141,11 @@ static BSDailyExpensesSummaryViewController *dvc = nil;
 static Tag* foodTag;
 static Tag* billsTag;
 static Tag* travelTag;
+static BSExpenseCategory* foodCategory;
+static BSExpenseCategory* billsCategory;
+static BSExpenseCategory* travelCategory;
+
+static BSCoreDataFetchController *fetchController;
 
 + (void)setUp {
     [super setUp];
@@ -139,10 +154,11 @@ static Tag* travelTag;
     cdsh = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"myTestDataBase2"];
     
     cdc = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:cdsh];
+    fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:cdc];
     dvc = [[BSDailyExpensesSummaryViewController alloc] init];
     dvc.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewLayout new]];
 
-    BSShowDailyEntriesController *controller = [[BSShowDailyEntriesController alloc] initWithCoreDataStackHelper:cdsh coreDataController:cdc];
+    BSShowDailyEntriesController *controller = [[BSShowDailyEntriesController alloc] initWithDataProvider:fetchController];
     BSShowDailyEntriesPresenter *presenter = [[BSShowDailyEntriesPresenter alloc] initWithShowEntriesUserInterface:dvc showEntriesController:controller];
     dvc.showEntriesPresenter = presenter;
     
@@ -156,12 +172,15 @@ static Tag* travelTag;
     foodTag = [cdc tagForName:@"Food"];
     billsTag = [cdc tagForName:@"Bills"];
     travelTag = [cdc tagForName:@"Travel"];
+    foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    travelCategory = [[BSExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
+    billsCategory = [[BSExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
     
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Fish and Chips" value:@"-1000" category:foodTag];
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Gasoline" value:@"-25" category:travelTag];
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2012"] description:@"Dinner" value:@"-30" category:foodTag];
-    [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Food and drinks" value:@"-5.60" category:billsTag];
+    [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Electricity" value:@"-5.60" category:billsTag];
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"02/10/2013"] description:@"Trip" value:@"-100" category:travelTag];
 }
 
@@ -190,41 +209,56 @@ static Tag* travelTag;
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheFoodCategory {
-    [dvc filterChangedToCategory:foodTag];
-    NSArray *dailyResults = dvc.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
-    
-    NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
-    NSPredicate *predicate_19_July_2012 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2012)]];
-    NSArray *results_19_July_2011 =  [[dailyResults filteredArrayUsingPredicate:predicate_19_July_2011] lastObject];
-    NSArray *results_19_July_2012 =  [[dailyResults filteredArrayUsingPredicate:predicate_19_July_2012] lastObject];
-    
-    XCTAssertTrue([dailyResults count] == 2);
-    XCTAssertTrue([[results_19_July_2011 valueForKey:@"dailySum"] isEqual:@(-1050)]);
-    XCTAssertTrue([[results_19_July_2012 valueForKey:@"dailySum"] isEqual:@(-30)]);
+    [dvc filterChangedToCategory:foodCategory];
+
+    NSPredicate *predicate_July_2011 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
+    NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"date = %@", [NSString stringWithFormat:@"19/07/2011"]];
+    NSPredicate *predicate_July_2012 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(7), @(2012)]];
+    NSPredicate *predicate_19_July_2012 = [NSPredicate predicateWithFormat:@"date = %@", [NSString stringWithFormat:@"19/07/2012"]];
+
+    [dvc.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> *sections) {
+        
+        BSDisplayExpensesSummarySection* july2011 = [sections filteredArrayUsingPredicate:predicate_July_2011].firstObject;
+        BSDisplayExpensesSummarySection* july2012 = [sections filteredArrayUsingPredicate:predicate_July_2012].firstObject;
+        BSDisplayExpensesSummaryEntry *july_19_2011 = [july2011.entries filteredArrayUsingPredicate:predicate_19_July_2011].firstObject;
+        BSDisplayExpensesSummaryEntry *july_19_2012 = [july2012.entries filteredArrayUsingPredicate:predicate_19_July_2012].firstObject;
+        
+        XCTAssertTrue([july_19_2011.value isEqualToString:@"-$1,050.00"]);
+        XCTAssertTrue([july_19_2012.value isEqualToString:@"-$30.00"]);
+    }];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheTravelCategory {
-    [dvc filterChangedToCategory:travelTag];
-    NSArray *dailyResults = dvc.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    [dvc filterChangedToCategory:travelCategory];
     
-    NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(19),  [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
-    NSPredicate *predicate_02_Oct_2012 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(2),  [NSString stringWithFormat:@"%@/%@", @(10), @(2013)]];
-    NSArray *results_19_July_2011 =  [[dailyResults filteredArrayUsingPredicate:predicate_19_July_2011] lastObject];
-    NSArray *results_02_Oct_2012 =  [[dailyResults filteredArrayUsingPredicate:predicate_02_Oct_2012] lastObject];
-        
-    XCTAssertTrue([dailyResults count] == 2);
-    XCTAssertTrue([[results_19_July_2011 valueForKey:@"dailySum"] isEqual:@(-25)]);
-    XCTAssertTrue([[results_02_Oct_2012 valueForKey:@"dailySum"] isEqual:@(-100)]);
+    NSPredicate *predicate_July_2011 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
+    NSPredicate *predicate_19_July_2011 = [NSPredicate predicateWithFormat:@"date = %@", [NSString stringWithFormat:@"19/07/2011"]];
+    NSPredicate *predicate_Oct_2013 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(10), @(2013)]];
+    NSPredicate *predicate_02_Oct_2013 = [NSPredicate predicateWithFormat:@"date = %@", [NSString stringWithFormat:@"02/10/2013"]];
+
+    [dvc.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> *sections) {
+        BSDisplayExpensesSummarySection* july2011 = [sections filteredArrayUsingPredicate:predicate_July_2011].firstObject;
+        BSDisplayExpensesSummarySection* october2012 = [sections filteredArrayUsingPredicate:predicate_Oct_2013].firstObject;
+        BSDisplayExpensesSummaryEntry *july_19_2011 = [july2011.entries filteredArrayUsingPredicate:predicate_19_July_2011].firstObject;
+        BSDisplayExpensesSummaryEntry *october_02_2013 = [october2012.entries filteredArrayUsingPredicate:predicate_02_Oct_2013].firstObject;
+
+        XCTAssertTrue([july_19_2011.title isEqualToString:@"19"]);
+        XCTAssertTrue([july_19_2011.value isEqualToString:@"-$25.00"]);        
+        XCTAssertTrue([october_02_2013.title isEqualToString:@"2"]);
+        XCTAssertTrue([october_02_2013.value isEqualToString:@"-$100.00"]);
+    }];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheBillsCategory {
-    [dvc filterChangedToCategory:billsTag];
-    NSArray *dailyResults = dvc.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    [dvc filterChangedToCategory:billsCategory];
     
-    NSPredicate *predicate_02_Oct_2013 = [NSPredicate predicateWithFormat:@"day = %@ AND monthYear = %@", @(2),  [NSString stringWithFormat:@"%@/%@", @(10), @(2013)]];
-    NSArray *results_02_Oct_2013 =  [[dailyResults filteredArrayUsingPredicate:predicate_02_Oct_2013] lastObject];
-    
-    XCTAssertTrue([dailyResults count] == 1);
-    XCTAssertTrue([[results_02_Oct_2013 valueForKey:@"dailySum"] isEqual:@(-5.60)]);
+    [dvc.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> *sections) {
+        XCTAssertTrue(sections.count == 1);
+        BSDisplayExpensesSummarySection *results_02_Oct_2013 = sections.firstObject;
+        NSPredicate *predicate_02_Oct_2013 = [NSPredicate predicateWithFormat:@"date = %@", @"02/10/2013"];
+        BSDisplayExpensesSummaryEntry *e_02_Oct_2013 =  [[results_02_Oct_2013.entries filteredArrayUsingPredicate:predicate_02_Oct_2013] lastObject];
+        XCTAssertTrue([e_02_Oct_2013.title isEqual:@"2"]);
+        XCTAssertTrue([e_02_Oct_2013.value isEqual:@"-$5.60"]);
+    }];
 }
 @end

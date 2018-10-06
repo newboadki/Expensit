@@ -23,21 +23,21 @@ import Foundation
     ///
     /// - Parameter category: New category selected in the UI.
     @objc(filterChangedToCategory:)
-    func filterChanged(to category : Tag)
+    func filterChanged(to category : BSExpenseCategory?)
     
     
     /// The UI requests new data to be displayed
     ///
     /// - Parameter _: A completion block that is called asynchronously 
     //    and receives view-models to be presented.
-    func viewIsReadyToDisplayEntriesCompletionBlock(_: ( _ sections : [BSDisplaySectionData]) -> ())
+    func viewIsReadyToDisplayEntriesCompletionBlock(_: ( _ sections : [BSDisplayExpensesSummarySection]) -> ())
     
     
     /// Requests a new image for the category selector UI-control.
     ///
     /// - Parameter category: Category selected in the UI.
     @objc(viewIsReadyToDisplayImageForCategory:)
-    func viewIsReadyToDisplayImage(for category : Tag?)
+    func viewIsReadyToDisplayImage(for category : BSExpenseCategory?)
     
     
     /// Notifies the system of an important UI-related event

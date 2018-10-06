@@ -8,7 +8,6 @@
 
 #import "BSMonthlyExpensesSummaryViewController.h"
 #import "BSBaseExpensesSummaryViewController+Protected.h"
-#import "Entry.h"
 #import "BSMonthlySummaryEntryCell.h"
 #import "BSDailyEntryHeaderView.h"
 #import "DateTimeHelper.h"
@@ -51,7 +50,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BSDisplayEntry *itemForMonth = self.sections[indexPath.section].entries[indexPath.row];    
+    BSDisplayExpensesSummaryEntry *itemForMonth = self.sections[indexPath.section].entries[indexPath.row];    
     BSMonthlySummaryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
     
     // Determine the text of the labels
@@ -127,7 +126,7 @@
     {
         UICollectionViewCell *selectedCell = (UICollectionViewCell*)sender;
         NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:selectedCell];
-        BSDisplaySectionData *sectionInfo = self.sections[selectedIndexPath.section];
+        BSDisplayExpensesSummarySection *sectionInfo = self.sections[selectedIndexPath.section];
         NSString *sectionNameToScrollTo = [NSString stringWithFormat:@"%ld/%@", selectedIndexPath.row+1 ,sectionInfo.title]; // there are 12 months (0-11) that's why we add 1. The section name is the year
         [monthlyTransitionManager configureDailyExpensesViewControllerWithSegue:segue nameOfSectionToBeShown:sectionNameToScrollTo];
     }

@@ -7,37 +7,28 @@
 //
 
 #import "BSDateToDatePickerCellConvertor.h"
+#import "DateTimeHelper.h"
 
 static NSDateFormatter *_dateFormatter;
 
 @implementation BSDateToDatePickerCellConvertor
 
-- (id)cellValueForModelValue:(id)modelValue
+- (id)cellValueForModelValue:(NSString *)modelValue
 {
+    return [[self dateFormatter] dateFromString:modelValue];
+}
+
+
+- (id)modelValueForCellValue:(NSDate *)cellValue
+{
+    return [[self dateFormatter] stringFromDate:cellValue];
+}
+
+
+- (NSString *)cellStringValueValueForModelValue:(NSString *)modelValue
+{
+    // Beucase the value comes from a viewModel and it is formatted already
     return modelValue;
-}
-
-
-- (id)modelValueForCellValue:(id)cellValue
-{
-    return cellValue;
-}
-
-
-- (NSString *)cellStringValueValueForModelValue:(id)modelValue
-{
-    NSDate* date = nil;
-    
-    if (modelValue)
-    {
-        date = modelValue;
-    }
-    else
-    {
-        date = [NSDate date];
-    }
-
-    return [[self dateFormatter] stringFromDate:date];
 }
 
 - (NSDateFormatter *)dateFormatter
@@ -48,7 +39,7 @@ static NSDateFormatter *_dateFormatter;
     }
     
     _dateFormatter = [[NSDateFormatter alloc] init];
-    _dateFormatter.dateFormat = @"dd MMM yyyy";
+    _dateFormatter.dateFormat = DEFAULT_DATE_FORMAT;
 
     return _dateFormatter;
 }

@@ -130,14 +130,14 @@
         switch (self.lastSummaryType) {
                 
             case YearlyExpensesSummaryType: {
-                id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                 id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:self.lastSectionName];
                 self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
                 [self.graphViewController.view setNeedsDisplay];
                 break;
             }
             case MonthlyExpensesSummaryType: {
-                id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                 id<BSGraphLinePresenterProtocol> monthlyLineGraphPresenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:monthlyLineGraphController section:self.lastSectionName];
                 self.graphViewController.lineGraphPresenter = monthlyLineGraphPresenter;
                 [self.graphViewController.view setNeedsDisplay];
@@ -145,7 +145,7 @@
             }
             case DailyExpensesSummaryType:
             {
-                id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                 id<BSGraphLinePresenterProtocol> dailyLineGraphPresenter = [[BSDailySummaryGraphLinePresenter alloc] initWithDailySummaryGraphLineController:dailyLineGraphController section:self.lastSectionName];
                 self.graphViewController.lineGraphPresenter = dailyLineGraphPresenter;
                 [self.graphViewController.view setNeedsDisplay];
@@ -171,10 +171,13 @@
     if([childController isKindOfClass:UINavigationController.class]) {
         self.navController = (UINavigationController *)childController;
         self.yearlyViewController = (BSYearlyExpensesSummaryViewController *)self.navController.topViewController;
-        BSYearlySummaryNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController containmentEventsDelegate:self];
+        BSYearlySummaryNavigationTransitionManager *transitionManager = [[BSYearlySummaryNavigationTransitionManager alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper
+                                                                                                                                     coreDataController:self.coreDataController
+                                                                                                                                coreDataFetchController:self.coreDataFetchController
+                                                                                                                              containmentEventsDelegate:self];
         self.yearlyViewController.navigationTransitionManager = transitionManager;
         
-        BSShowYearlyEntriesController * yearlyController = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+        BSShowYearlyEntriesController * yearlyController = [[BSShowYearlyEntriesController alloc] initWithDataProvider:self.coreDataFetchController];
         BSShowYearlyEntriesPresenter * yearlyPresenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:self.yearlyViewController showEntriesController:yearlyController];
         self.yearlyViewController.showEntriesPresenter = yearlyPresenter;
         self.yearlyViewController.containmentEventsDelegate = self;
@@ -183,7 +186,7 @@
         self.graphViewController = (BSGraphViewController *)childController;
         self.graphViewController.containmentEventsDelegate = self;
         
-        id<BSGraphLineControllerProtocol>yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+        id<BSGraphLineControllerProtocol>yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
         id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:@"2013"];
         self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
     }
@@ -213,14 +216,14 @@
             switch (type) {
 
                 case YearlyExpensesSummaryType: {
-                    id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLineControllerProtocol> yearlyLineGraphController = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                     id<BSGraphLinePresenterProtocol> yearlyLineGraphPresenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:yearlyLineGraphController section:sectionName];
                     self.graphViewController.lineGraphPresenter = yearlyLineGraphPresenter;
                     [self.graphViewController.view setNeedsDisplay];
                     break;
                 }
                 case MonthlyExpensesSummaryType: {
-                    id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLineControllerProtocol> monthlyLineGraphController = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                     id<BSGraphLinePresenterProtocol> monthlyLineGraphPresenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:monthlyLineGraphController section:sectionName];
                     self.graphViewController.lineGraphPresenter = monthlyLineGraphPresenter;
                     [self.graphViewController.view setNeedsDisplay];
@@ -228,7 +231,7 @@
                 }
                 case DailyExpensesSummaryType:
                 {
-                    id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataController.coreDataHelper coreDataController:self.coreDataController];
+                    id<BSGraphLineControllerProtocol> dailyLineGraphController = [[BSDailySummaryGraphLineController alloc] initWithCoreDataFetchController:self.coreDataFetchController];
                     id<BSGraphLinePresenterProtocol> dailyLineGraphPresenter = [[BSDailySummaryGraphLinePresenter alloc] initWithDailySummaryGraphLineController:dailyLineGraphController section:sectionName];
                     self.graphViewController.lineGraphPresenter = dailyLineGraphPresenter;
                     [self.graphViewController.view setNeedsDisplay];

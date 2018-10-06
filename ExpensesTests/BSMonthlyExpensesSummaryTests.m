@@ -13,6 +13,7 @@
 #import "DateTimeHelper.h"
 #import "OCMock/Headers/OCMock/OCMock.h"
 #import "Expensit-Swift.h"
+#import "Tag.h"
 
 @interface BSMonthlyExpensesSummaryTests : XCTestCase
 @property (strong, nonatomic) CoreDataStackHelper *coreDataStackHelper;
@@ -21,7 +22,7 @@
 @property (strong, nonatomic) NSString *expectedVisibleSectionName;
 @property (strong, nonatomic) BSShowMonthlyEntriesController *controller;
 @property (strong, nonatomic) BSShowMonthlyEntriesPresenter *presenter;
-
+@property (strong, nonatomic) BSCoreDataFetchController *fetchController;
 @end
 
 @implementation BSMonthlyExpensesSummaryTests
@@ -42,8 +43,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     self.monthlyViewController = [storyboard instantiateViewControllerWithIdentifier:@"BSMonthlyExpensesSummaryViewController"];
 
-    self.controller = [[BSShowMonthlyEntriesController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper
-                                                                       coreDataController:self.coreDataController];
+    self.fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:self.coreDataController];
+    self.controller = [[BSShowMonthlyEntriesController alloc] initWithDataProvider:self.fetchController];
     self.presenter = [[BSShowMonthlyEntriesPresenter alloc] initWithShowEntriesUserInterface:self.monthlyViewController
                                                                        showEntriesController:self.controller];
     self.monthlyViewController.showEntriesPresenter = self.presenter;
@@ -128,60 +129,60 @@
     [self.monthlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         XCTAssertTrue(sections.count == 3);
         
-        BSDisplaySectionData *sectionData_2011 = sections[0];
+        BSDisplayExpensesSummarySection *sectionData_2011 = sections[0];
         XCTAssertTrue(sectionData_2011.entries.count == 12);
         XCTAssertTrue([sectionData_2011.title isEqualToString:@"2011"]);
         
-        BSDisplayEntry * e1 = sectionData_2011.entries[0];
+        BSDisplayExpensesSummaryEntry * e1 = sectionData_2011.entries[0];
         XCTAssertTrue([e1.title isEqual:@"JAN"]);
         XCTAssertTrue([e1.value isEqual:@"-$20.50"]);
 
-        BSDisplayEntry * e2 = sectionData_2011.entries[1];
+        BSDisplayExpensesSummaryEntry * e2 = sectionData_2011.entries[1];
         XCTAssertTrue([e2.title isEqual:@"FEB"]);
         XCTAssertTrue([e2.value isEqual:@"$220.50"]);
 
-        BSDisplayEntry * e3 = sectionData_2011.entries[2];
+        BSDisplayExpensesSummaryEntry * e3 = sectionData_2011.entries[2];
         XCTAssertTrue([e3.title isEqual:@"MAR"]);
         XCTAssertTrue([e3.value isEqual:@"$2.00"]);
 
-        BSDisplayEntry * e4 = sectionData_2011.entries[3];
+        BSDisplayExpensesSummaryEntry * e4 = sectionData_2011.entries[3];
         XCTAssertTrue([e4.title isEqual:@"APR"]);
         XCTAssertTrue([e4.value isEqual:@"$50.50"]);
 
-        BSDisplayEntry * e5 = sectionData_2011.entries[4];
+        BSDisplayExpensesSummaryEntry * e5 = sectionData_2011.entries[4];
         XCTAssertTrue([e5.title isEqual:@"MAY"]);
         XCTAssertTrue([e5.value isEqual:@"-$20.50"]);
 
-        BSDisplayEntry * e6 = sectionData_2011.entries[5];
+        BSDisplayExpensesSummaryEntry * e6 = sectionData_2011.entries[5];
         XCTAssertTrue([e6.title isEqual:@"JUN"]);
         XCTAssertTrue([e6.value isEqual:@"$32.50"]);
 
-        BSDisplayEntry * e7 = sectionData_2011.entries[6];
+        BSDisplayExpensesSummaryEntry * e7 = sectionData_2011.entries[6];
         XCTAssertTrue([e7.title isEqual:@"JUL"]);
         XCTAssertTrue([e7.value isEqual:@"-$5.00"]);
 
-        BSDisplayEntry * e8 = sectionData_2011.entries[7];
+        BSDisplayExpensesSummaryEntry * e8 = sectionData_2011.entries[7];
         XCTAssertTrue([e8.title isEqual:@"AUG"]);
         XCTAssertTrue([e8.value isEqual:@""]);
 
-        BSDisplayEntry * e9 = sectionData_2011.entries[8];
+        BSDisplayExpensesSummaryEntry * e9 = sectionData_2011.entries[8];
         XCTAssertTrue([e9.title isEqual:@"SEP"]);
         XCTAssertTrue([e9.value isEqual:@""]);
 
-        BSDisplayEntry * e10 = sectionData_2011.entries[9];
+        BSDisplayExpensesSummaryEntry * e10 = sectionData_2011.entries[9];
         XCTAssertTrue([e10.title isEqual:@"OCT"]);
         XCTAssertTrue([e10.value isEqual:@""]);
 
-        BSDisplayEntry * e11 = sectionData_2011.entries[10];
+        BSDisplayExpensesSummaryEntry * e11 = sectionData_2011.entries[10];
         XCTAssertTrue([e11.title isEqual:@"NOV"]);
         XCTAssertTrue([e11.value isEqual:@""]);
 
-        BSDisplayEntry * e12 = sectionData_2011.entries[11];
+        BSDisplayExpensesSummaryEntry * e12 = sectionData_2011.entries[11];
         XCTAssertTrue([e12.title isEqual:@"DEC"]);
         XCTAssertTrue([e12.value isEqual:@"-$10.00"]);
 
         
-        BSDisplaySectionData *sectionData_2012 = sections[1];
+        BSDisplayExpensesSummarySection *sectionData_2012 = sections[1];
         XCTAssertTrue(sectionData_2012.entries.count == 12);
         XCTAssertTrue([sectionData_2012.title isEqualToString:@"2012"]);
         
@@ -233,7 +234,7 @@
         XCTAssertTrue([e12.title isEqual:@"DEC"]);
         XCTAssertTrue([e12.value isEqual:@"$50.50"]);
 
-        BSDisplaySectionData *sectionData_2013 = sections[2];
+        BSDisplayExpensesSummarySection *sectionData_2013 = sections[2];
         XCTAssertTrue(sectionData_2013.entries.count == 12);
         XCTAssertTrue([sectionData_2013.title isEqualToString:@"2013"]);
         
@@ -290,7 +291,7 @@
 
 - (void) testGraphMonthlySurplusCalculations
 {
-    BSMonthlySummaryGraphLineController * controller = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper coreDataController:self.coreDataController];
+    BSMonthlySummaryGraphLineController * controller = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.fetchController];
     
     // Jan 2013
     BSMonthlySummaryGraphLinePresenter *presenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:controller section:@"2013"];
@@ -331,7 +332,7 @@
 
 - (void) testGraphMonthlyExpensesCalculations
 {
-    BSMonthlySummaryGraphLineController * controller = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataStackHelper:self.coreDataStackHelper coreDataController:self.coreDataController];
+    BSMonthlySummaryGraphLineController * controller = [[BSMonthlySummaryGraphLineController alloc] initWithCoreDataFetchController:self.fetchController];
     
     // Jan 2013
     BSMonthlySummaryGraphLinePresenter *presenter = [[BSMonthlySummaryGraphLinePresenter alloc] initWithMonthlySummaryGraphLineController:controller section:@"2013"];
@@ -378,27 +379,31 @@
     NSArray *tags = @[@"Food", @"Bills", @"Travel"];
     [self.coreDataController createTags:tags];
     foodTag = [self.coreDataController tagForName:@"Food"];
+    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     billsTag = [self.coreDataController tagForName:@"Bills"];
     travelTag = [self.coreDataController tagForName:@"Travel"];
+
     
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"China trip" value:@"-1000" category:travelTag];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"23/07/2011"] description:@"Food and drinks" value:@"-25" category:foodTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"China trip" value:@"-1000" category:travelTag];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Electricity" value:@"-10" category:billsTag];
-    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/10/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
     [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Rent" value:@"-10" category:billsTag];
+    [self.coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/10/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
     
-    [self.monthlyViewController filterChangedToCategory:foodTag];
-    NSArray *monthlyResults = self.monthlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
+    [self.monthlyViewController filterChangedToCategory:foodCategory];
+    NSPredicate *predicate_2011 = [NSPredicate predicateWithFormat:@"title = %@", @"2011"];
+    NSPredicate *predicate_2012 = [NSPredicate predicateWithFormat:@"title = %@", @"2012"];
     
-    NSPredicate *predicateJuly = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"7"]];
-    NSPredicate *predicateOctober = [NSPredicate predicateWithFormat:@"month = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"10"]];
-    NSArray *resultsJuly =  [[monthlyResults filteredArrayUsingPredicate:predicateJuly] lastObject];
-    NSArray *resultsOctober =  [[monthlyResults filteredArrayUsingPredicate:predicateOctober] lastObject];
-    
-    XCTAssertTrue([monthlyResults count] == 2);
-    XCTAssertTrue([[resultsJuly valueForKey:@"monthlySum"] isEqual:@(-75)]);
-    XCTAssertTrue([[resultsOctober valueForKey:@"monthlySum"] isEqual:@(-5)]);
+    [self.monthlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {
+        
+        BSDisplayExpensesSummarySection* _2011 = [sections filteredArrayUsingPredicate:predicate_2011].firstObject;
+        BSDisplayExpensesSummarySection* _2012 = [sections filteredArrayUsingPredicate:predicate_2012].firstObject;
+        
+        XCTAssertTrue([_2011.entries[6].value isEqualToString:@"-$75.00"]);// 6 becuase the month was 7th
+        XCTAssertTrue([_2011.entries[11].value isEqualToString:@""]);// 11 becuase the month was 12th
+        XCTAssertTrue([_2012.entries[9].value isEqualToString:@"-$5.00"]); //  9 because the day was 10th
+    }];
 }
 
 - (NSString *)visibleSectionNameMock {

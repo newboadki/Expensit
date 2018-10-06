@@ -8,14 +8,24 @@
 
 import Foundation
 
-class BSShowYearlyEntriesController: BSAbstractShowEntriesController {
+@objc class BSShowYearlyEntriesController : NSObject, BSAbstractShowEntriesControllerProtocol {
+        
+    private var dataProvider: BSCoreDataFetchController
     
-    override func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return self.coreDataController.fetchRequestForYearlySummary()
+    public init(dataProvider: BSCoreDataFetchController) {
+        self.dataProvider = dataProvider
     }
-
-    override func sectionNameKeyPath() -> String? {
-        return nil
+    
+    func filter(by category: BSExpenseCategory?) {
+        self.dataProvider.filter(summaryType:.yearly, by: category)
     }
-
+    
+    func entriesForSummary() -> [BSEntryEntityGroup] {
+        return self.dataProvider.entriesGroupedByYear()
+    }
+    
+    func image(for category: BSExpenseCategory?) -> UIImage? {
+        return self.dataProvider.image(for: category)
+    }
+    
 }

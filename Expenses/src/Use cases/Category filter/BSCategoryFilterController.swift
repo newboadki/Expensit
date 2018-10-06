@@ -8,14 +8,20 @@
 
 import Foundation
 
-class BSCategoryFilterController: BSAbstractShowEntriesController, BSCategoryFilterControllerProtocol {
-        
-    func allTags() -> [Tag] {
-        return self.coreDataController.allTags() as! [Tag]
+class BSCategoryFilterController: BSCategoryFilterControllerProtocol {
+    
+    private var dataProvider: BSCoreDataController
+    
+    public init(dataProvider: BSCoreDataController) {
+        self.dataProvider = dataProvider
+    }
+    
+    func allTags() -> [BSExpenseCategory] {
+        return self.dataProvider.allTags()
     }
 
     func allTagsImages() -> [UIImage] {
-        return self.coreDataController.allTagImages() as! [UIImage]
+        return self.dataProvider.allTagImages() as! [UIImage]
     }
 
 }

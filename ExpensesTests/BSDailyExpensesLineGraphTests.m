@@ -19,6 +19,7 @@ static CoreDataStackHelper *coreDataStackHelper;
 static BSCoreDataController *coreDataController;
 static NSString *expectedVisibleSectionName;
 static BSDailySummaryGraphLineController *controller;
+static BSCoreDataFetchController *fetchController;
 
 
 @interface BSDailyExpensesLineGraphTests : XCTestCase
@@ -38,8 +39,8 @@ static BSDailySummaryGraphLineController *controller;
                                                                              extension:@"momd"
                                                                    persistentStoreName:@"myTestDataBaseLineGraphTests"];
     coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
-    controller = [[BSDailySummaryGraphLineController alloc] initWithCoreDataStackHelper:coreDataStackHelper
-                                                                          coreDataController:coreDataController];
+    fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:coreDataController];
+    controller = [[BSDailySummaryGraphLineController alloc] initWithCoreDataFetchController:fetchController];
     
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Food and drinks" value:@"-20.0" category:nil];
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"13/01/2013"] description:@"Salary" value:@"100.0" category:nil];

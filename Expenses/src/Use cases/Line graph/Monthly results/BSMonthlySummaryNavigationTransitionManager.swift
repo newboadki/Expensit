@@ -16,9 +16,9 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
     {
         let dailyExpensesViewController = segue.destination as! BSDailyExpensesSummaryViewController
         dailyExpensesViewController.nameOfSectionToBeShown = nameOfSectionToBeShown;
-        let dailyController = BSShowDailyEntriesController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let dailyController = BSShowDailyEntriesController(dataProvider: self.coreDataFetchController)
         let dailyPresenter = BSShowDailyEntriesPresenter(showEntriesUserInterface: dailyExpensesViewController, showEntriesController: dailyController)
-        let dailyNavigationManager = BSDailySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, containmentEventsDelegate:self.containmentEventsDelegate!)
+        let dailyNavigationManager = BSDailySummaryNavigationTransitionManager(coreDataStackHelper: self.coreDataStackHelper, coreDataController: self.coreDataController, coreDataFetchController: self.coreDataFetchController, containmentEventsDelegate:self.containmentEventsDelegate!)
         
         dailyExpensesViewController.showEntriesPresenter = dailyPresenter
         dailyExpensesViewController.showDailyEntriesPresenter = dailyPresenter
@@ -33,7 +33,7 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
     }
     
     func configureMonthylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
-        let monthlyLineGraphController : BSGraphLineControllerProtocol = BSMonthlySummaryGraphLineController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let monthlyLineGraphController : BSGraphLineControllerProtocol = BSMonthlySummaryGraphLineController(coreDataFetchController:self.coreDataFetchController)
         let monthlyLineGraphPresenter : BSGraphLinePresenterProtocol = BSMonthlySummaryGraphLinePresenter(monthlySummaryGraphLineController: monthlyLineGraphController, section: section)
         graphViewController.lineGraphPresenter = monthlyLineGraphPresenter
 
@@ -57,7 +57,7 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
         graphViewController.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
         graphViewController.modalPresentationStyle = .custom
         
-        let pieGraphController : BSPieGraphControllerProtocol = BSExpensesSummaryPieGraphController(coreDataStackHelper : self.coreDataStackHelper, coreDataController : self.coreDataController)
+        let pieGraphController : BSPieGraphControllerProtocol = BSExpensesSummaryPieGraphController(dataProvider: self.coreDataFetchController)
         let pieGraphPresenter : BSPieGraphPresenterProtocol = BSExpensesSummaryPieGraphPresenter(pieGraphController: pieGraphController, month: month, year: NSNumber(integerLiteral: year))
         graphViewController.pieGraphPresenter = pieGraphPresenter
     }

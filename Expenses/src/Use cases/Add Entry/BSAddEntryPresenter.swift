@@ -13,11 +13,13 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
     var addEntryController : BSAddEntryControllerProtocol
     var userInterface : BSAddEntryInterfaceProtocol
     var indexPathOfEntryToEdit : NSIndexPath?
+    var displayEntry: BSDisplayExpensesSummaryEntry?
 
-    init(addEntryController: BSAddEntryControllerProtocol, userInterface : BSAddEntryInterfaceProtocol, indexPathOfEntryToEdit: NSIndexPath) {
+    init(displayEntry: BSDisplayExpensesSummaryEntry?, addEntryController: BSAddEntryControllerProtocol, userInterface : BSAddEntryInterfaceProtocol, indexPathOfEntryToEdit: NSIndexPath) {
         self.addEntryController = addEntryController
         self.userInterface = userInterface
         self.indexPathOfEntryToEdit = indexPathOfEntryToEdit
+        self.displayEntry = displayEntry
     }
 
     init(addEntryController: BSAddEntryControllerProtocol, userInterface : BSAddEntryInterfaceProtocol) {
@@ -25,8 +27,11 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
         self.userInterface = userInterface        
     }
     
-    func save(entry : Entry, successBlock :()->(), failureBlock:(_ error : NSError) -> () ) {
-        self.addEntryController.save(entry: entry, successBlock: {
+    func save(entry : BSDisplayExpensesSummaryEntry, successBlock :()->(), failureBlock:(_ error : NSError) -> () )
+    {
+        let entity = self.entryEntity(fromViewModel: entry)
+        
+        self.addEntryController.save(entry: entity, successBlock: {
             successBlock()
             }) { (error) in
                 failureBlock(error)
@@ -36,28 +41,51 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
     func userCancelledEditionOfExistingEntry() {
         self.addEntryController.discardChanges()
     }
-    
-    func userCancelledCreationOfNewEntry(_ entry : Entry) {
-        self.addEntryController.delete(entry: entry)
-        self.addEntryController.saveChanges()
-    }
-    
+        
     func userSelectedNext() {
-        let entry = self.addEntryController.newEntry()
-        self.userInterface.display(entry: entry)
+//        let entry = self.addEntryController.newEntry()
+//        self.userInterface.display(entry: entry)
     }
     
     func userInterfaceReadyToDiplayEntry()
     {
         if let entry = self.addEntryController.editingEntry
         {
-            // Editing            
+            // Editing
             self.userInterface.display(entry: entry)
         }
         else
         {
             // Creating
-            self.userInterface.display(entry: self.addEntryController.newEntry())
+            let entry = BSDisplayExpensesSummaryEntry(title: "", value: "", signOfAmount:.positive, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date()), tag: nil)
+            self.userInterface.display(entry: entry)
         }
+    }
+    
+    private func entryEntity(fromViewModel entry: BSDisplayExpensesSummaryEntry) -> BSExpenseEntry {
+        let date = DateTimeHelper.date(withFormat: DEFAULT_DATE_FORMAT, stringDate: entry.date)
+        let value: NSDecimalNumber
+            
+        if let enteredValue = entry.value, enteredValue.count > 0 {
+            value = BSCurrencyHelper.amountFormatter().number(from: enteredValue) as! NSDecimalNumber
+        } else {
+            value = NSDecimalNumber(string: "0")
+        }
+        let category = BSExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
+        let entity = BSExpenseEntry(date: date, value:value, description: entry.desc, category: category)
+        entity.identifier = entry.identifier
+        if entry.isAmountNegative {
+            if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {
+                // Has to be negative but it's positive, then change it
+                entity.value = entity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+            }
+            
+        } else {
+            if NSDecimalNumber(string: "0").compare(entity.value) == .orderedDescending {
+                // Has to be positive but it's negative, then change it
+                entity.value = entity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+            }
+        }
+        return entity
     }
 }

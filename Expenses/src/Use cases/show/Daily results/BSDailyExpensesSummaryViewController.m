@@ -7,7 +7,6 @@
 //
 
 #import "BSDailyExpensesSummaryViewController.h"
-#import "Entry.h"
 #import "BSDailyEntryHeaderView.h"
 #import "BSDailySummanryEntryCell.h"
 #import "DateTimeHelper.h"
@@ -43,7 +42,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BSDisplayEntry *itemForDayMonthYear = self.sections[indexPath.section].entries[indexPath.row];
+    BSDisplayExpensesSummaryEntry *itemForDayMonthYear = self.sections[indexPath.section].entries[indexPath.row];
     BSDailySummanryEntryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ExpenseCell" forIndexPath:indexPath];
     
     // Determine the text of the labels

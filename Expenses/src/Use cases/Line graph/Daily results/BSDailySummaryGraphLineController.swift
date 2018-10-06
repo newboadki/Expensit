@@ -9,44 +9,26 @@
 import Foundation
 
 
-@objc class BSDailySummaryGraphLineController: NSObject, BSCoreDataControllerProtocol, BSGraphLineControllerProtocol
+@objc class BSDailySummaryGraphLineController: NSObject, BSGraphLineControllerProtocol
 {
-    var coreDataStackHelper : CoreDataStackHelper
-    var coreDataController : BSCoreDataController
+    var coreDataFetchController : BSCoreDataFetchController
     
     /// CoreDataController protocol
-    required init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController)
+    required init(coreDataFetchController: BSCoreDataFetchController)
     {
-        self.coreDataStackHelper = coreDataStackHelper
-        self.coreDataController = coreDataController
+        self.coreDataFetchController = coreDataFetchController
     }
 
     /// BSGraphLineControllerProtocol
     func abscissaValues() -> [NSDictionary] {
-        return []
+        return coreDataFetchController.abscissaValuesForDailyLineGraph()
     }
     
     func graphSurplusResults(for section: String) -> [AnyObject] {
-        let request = self.coreDataController.graphDailySurplusFetchRequest(forSectionName: section)
-        
-        do {
-            let output = try self.coreDataController.results(for: request)
-            return output as [AnyObject]
-        }
-        catch {
-            return []
-        }
+        return self.coreDataFetchController.graphSurplusResultsForDailyLineGraph(for:section)
     }
     
     func graphExpensesResults(for section: String) -> [AnyObject] {
-        let request = self.coreDataController.graphDailyExpensesFetchRequest(forSectionName: section)
-        do {
-            let output = try self.coreDataController.results(for: request)
-            return output as [AnyObject]
-        }
-        catch {
-            return []
-        }
-        
+        return self.coreDataFetchController.graphExpensesResultsForDailyLineGraph(for:section)
     }
 }

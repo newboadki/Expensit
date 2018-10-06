@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
+#import "ExpenseSummaryDataGatewayProtocol.h"
 
 @class Tag;
 @class Entry;
 @class CoreDataStackHelper;
+@class BSExpenseCategory;
+@class BSPieChartSectionInfo;
 
-@interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate>
+
+@interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate, ExpenseSummaryDataGatewayProtocol>
 
 @property (strong, nonatomic, nonnull) CoreDataStackHelper *coreDataHelper;
 
@@ -42,7 +44,7 @@
 /*!
  @discussion category can be either a Tag instance or an NSString instance signifying 'No filter'
  */
-- (void)modifyfetchRequest:(nonnull NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(nonnull id)category;
+- (void)modifyfetchRequest:(nonnull NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(nullable id)category;
 
 #pragma mark - Line Graph requests
 - (nonnull NSFetchRequest <NSFetchRequestResult>*)graphYearlySurplusFetchRequest;
@@ -56,7 +58,7 @@
 - (nonnull NSFetchRequest *)expensesByCategoryMonthlyFetchRequest;
 
 // TODO: Document what it means to havemonth as an optional
-- (nonnull NSArray *)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
+- (nonnull NSArray <BSPieChartSectionInfo *>*)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
 
 
 #pragma mark - Other requests
@@ -90,11 +92,19 @@
  @discussion Ordered by name ASC.
  @return All tags available.
  */
-- (nonnull NSArray *)allTags;
+- (nonnull NSArray<BSExpenseCategory *> *)allTags;
 - (nonnull NSArray *)allTagImages;
 - (nullable UIImage *)imageForCategory:(nullable Tag *)tag;
+- (nullable UIImage *)imageForCategoryName:(nullable NSString *)tagName;
 - (BOOL)findNoTags:(nonnull NSString *)tagName;
-- (nonnull NSArray *)categoriesForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year;
-- (nullable NSArray *)sortedTagsByPercentageFromSections:(nonnull NSArray *)tags sections:(nullable NSArray *)sections;
+- (NSArray <Tag *>*)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year;
+//- (nullable NSArray <BSExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <BSExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections;
+
+
+// PUBLIC API
+- (NSFetchedResultsController *_Nonnull)fetchedResultsControllerForEntriesGroupedByYear;
+- (NSFetchedResultsController *_Nonnull)fetchedResultsControllerForEntriesGroupedByMonth;
+- (NSFetchedResultsController *_Nonnull)fetchedResultsControllerForEntriesGroupedByDay;
+- (NSFetchedResultsController *_Nonnull)fetchedResultsControllerForAllEntries;
 
 @end

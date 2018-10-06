@@ -18,7 +18,7 @@
 #import "Expensit-Swift.h"
 
 
-static Tag *tagBeingFilterBy = nil;
+static BSExpenseCategory *tagBeingFilterBy = nil;
 
 
 @interface BSBaseExpensesSummaryViewController ()
@@ -171,14 +171,8 @@ static Tag *tagBeingFilterBy = nil;
 {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
     UINavigationController *navController = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"addEntryNavigationController"];
-        
-    BSStaticTableAddEntryFormCellActionDataSource *cellActionsDataSource = [[BSStaticTableAddEntryFormCellActionDataSource alloc] initWithCoreDataController:nil isEditing:NO];
-    BSEntryDetailsFormViewController *addEntryVC = (BSEntryDetailsFormViewController*)navController.topViewController;
-    addEntryVC.isEditingEntry = NO;
-    addEntryVC.cellActionDataSource = cellActionsDataSource;
-    addEntryVC.appearanceDelegate = ((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager;
     
-    [self presentViewController:navController animated:YES completion:completion];
+    [self.navigationTransitionManager configureAddEntryViewControllerWithNavigationController:navController];
 }
 
 
@@ -264,7 +258,7 @@ static Tag *tagBeingFilterBy = nil;
         }
     }
     
-    BSDisplaySectionData *sectionInfo = nil;
+    BSDisplayExpensesSummarySection *sectionInfo = nil;
     
     if ([self.sections count] > 0)
     {
@@ -290,13 +284,13 @@ static Tag *tagBeingFilterBy = nil;
 
 #pragma mark - BSCategoryFilterDelegate
 
-- (void)filterChangedToCategory:(Tag *)tag
+- (void)filterChangedToCategory:(BSExpenseCategory *)tag
 {
     [self filterChangedToCategory:tag takingScreenshot:YES];
 }
 
 
-- (void)filterChangedToCategory:(Tag *)tag takingScreenshot:(BOOL)shouldTakeScreenshot
+- (void)filterChangedToCategory:(BSExpenseCategory *)tag takingScreenshot:(BOOL)shouldTakeScreenshot
 {
     // So we remember when bringing the modal view back again
     // The argument is already a Tag* reference or nil
@@ -310,7 +304,7 @@ static Tag *tagBeingFilterBy = nil;
     self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
 
     // Notify that flilter changed
-    [self.showEntriesPresenter filterChangedToCategory:tag]; // thi could be unified ith previou
+    [self.showEntriesPresenter filterChangedToCategory:tag]; // this could be unified with previous
     
     [self.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         

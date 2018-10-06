@@ -22,6 +22,7 @@ static BSCoreDataController *coreDataController;
 static BSYearlyExpensesSummaryViewController *yearlyViewController;
 static BSShowYearlyEntriesController *controller;
 static BSShowYearlyEntriesPresenter *presenter;
+static BSCoreDataFetchController *fetchController;
 
 
 @interface BSYearlyExpensesSummaryTests : XCTestCase
@@ -41,7 +42,7 @@ static BSShowYearlyEntriesPresenter *presenter;
     coreDataStackHelper = [[CoreDataStackHelper alloc] initWithPersitentStoreType:NSSQLiteStoreType resourceName:@"Expenses" extension:@"momd" persistentStoreName:@"BSYESummaryTestsDataBase"];
     
     coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
-    
+    fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:coreDataController];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     yearlyViewController = [storyboard instantiateViewControllerWithIdentifier:@"BSYearlyExpensesSummaryViewController"];
@@ -50,8 +51,7 @@ static BSShowYearlyEntriesPresenter *presenter;
     yearlyViewController.collectionView = nil;
     yearlyViewController.collectionView = nil;
 
-    controller = [[BSShowYearlyEntriesController alloc] initWithCoreDataStackHelper:coreDataStackHelper
-                                                                                          coreDataController:coreDataController];
+    controller = [[BSShowYearlyEntriesController alloc] initWithDataProvider:fetchController];
     presenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:yearlyViewController
                                                                                          showEntriesController:controller];
     yearlyViewController.showEntriesPresenter = presenter;
@@ -116,21 +116,42 @@ static BSShowYearlyEntriesPresenter *presenter;
 
 - (void) test_yearly_calculations_With_no_filter
 {
-    [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
-        XCTAssertTrue(sections.count == 1);
-        BSDisplaySectionData *sectionData = sections.firstObject;
-        XCTAssertTrue(sectionData.entries.count == 3);
+    [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray <BSDisplayExpensesSummarySection *>* _Nullable sections) {
         
-        BSDisplayEntry * e1 = sectionData.entries[0];
-        BSDisplayEntry * e2 = sectionData.entries[1];
-        BSDisplayEntry * e3 = sectionData.entries[2];
+        XCTAssertTrue(sections.count == 3);
+
+        BSDisplayExpensesSummarySection *_2013 = sections[0];
+        XCTAssertTrue(_2013.entries.count == 1);
+        XCTAssertTrue([_2013.entries.firstObject.value isEqualToString:@"-$6.90"]);
+        XCTAssertTrue([_2013.entries.firstObject.title isEqualToString:@"2013"]);
         
-        XCTAssertTrue([e1.title isEqual:@"2013"]);
-        XCTAssertTrue([e1.value isEqual:@"-$6.90"]);
-        XCTAssertTrue([e2.title isEqual:@"2012"]);
-        XCTAssertTrue([e2.value isEqual:@"$398.50"]);
-        XCTAssertTrue([e3.title isEqual:@"2011"]);
-        XCTAssertTrue([e3.value isEqual:@"$249.50"]);
+        BSDisplayExpensesSummarySection *_2012 = sections[1];
+        XCTAssertTrue(_2012.entries.count == 1);
+        XCTAssertTrue([_2012.entries.firstObject.value isEqualToString:@"$398.50"]);
+        XCTAssertTrue([_2012.entries.firstObject.title isEqualToString:@"2012"]);
+        
+        BSDisplayExpensesSummarySection *_2011 = sections[2];
+        XCTAssertTrue(_2011.entries.count == 1);
+        XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"$249.50"]);
+        XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
+
+        
+        
+        
+//        XCTAssertTrue(sections.count == 1);
+//        BSDisplayExpensesSummarySection *sectionData = sections.firstObject;
+//        XCTAssertTrue(sectionData.entries.count == 3);
+//
+//        BSDisplayExpensesSummaryEntry * e1 = sectionData.entries[0];
+//        BSDisplayExpensesSummaryEntry * e2 = sectionData.entries[1];
+//        BSDisplayExpensesSummaryEntry * e3 = sectionData.entries[2];
+//
+//        XCTAssertTrue([e1.title isEqual:@"2013"]);
+//        XCTAssertTrue([e1.value isEqual:@"-$6.90"]);
+//        XCTAssertTrue([e2.title isEqual:@"2012"]);
+//        XCTAssertTrue([e2.value isEqual:@"$398.50"]);
+//        XCTAssertTrue([e3.title isEqual:@"2011"]);
+//        XCTAssertTrue([e3.value isEqual:@"$249.50"]);
     }];
 }
 
@@ -142,7 +163,6 @@ static BSShowYearlyEntriesPresenter *presenter;
     Tag* billsTag = [coreDataController tagForName:@"Bills"];
     Tag* travelTag = [coreDataController tagForName:@"Travel"];
     
-    
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"China trip" value:@"-1000" category:travelTag];
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-25" category:foodTag];
@@ -150,30 +170,29 @@ static BSShowYearlyEntriesPresenter *presenter;
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Rent" value:@"-10" category:billsTag];    
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
     
-
-    
-    [yearlyViewController filterChangedToCategory:foodTag];
+    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    [yearlyViewController filterChangedToCategory:foodCategory];
     
     // This preenter is not the same instance that is created at the top of the file
     [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
-        XCTAssertTrue(sections.count == 1);
-        BSDisplaySectionData *sectionData = sections.firstObject;
-        XCTAssertTrue(sectionData.entries.count == 2);
-
-        BSDisplayEntry * e1 = sectionData.entries[0];
-        BSDisplayEntry * e2 = sectionData.entries[1];
-
-        XCTAssertTrue([e1.title isEqual:@"2012"]);
-        XCTAssertTrue([e1.value isEqual:@"-$5.00"]);
-        XCTAssertTrue([e2.title isEqual:@"2011"]);
-        XCTAssertTrue([e2.value isEqual:@"-$75.00"]);
+        XCTAssertTrue(sections.count == 2);
+        
+        BSDisplayExpensesSummarySection *_2012 = sections.firstObject;
+        XCTAssertTrue(_2012.entries.count == 1);
+        XCTAssertTrue([_2012.entries.firstObject.value isEqualToString:@"-$5.00"]);
+        XCTAssertTrue([_2012.entries.firstObject.title isEqualToString:@"2012"]);
+        
+        BSDisplayExpensesSummarySection *_2011 = sections.lastObject;
+        XCTAssertTrue(_2011.entries.count == 1);
+        XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"-$75.00"]);
+        XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
     }];
 }
 
 - (void) testGraphYearlySurplusCalculations
 {
     
-    BSYearlySummaryGraphLineController *controller = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:coreDataStackHelper coreDataController:coreDataController];
+    BSYearlySummaryGraphLineController *controller = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataFetchController:fetchController];
     
     BSYearlySummaryGraphLinePresenter *presenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:controller section:@"2011"];
     
@@ -196,7 +215,7 @@ static BSShowYearlyEntriesPresenter *presenter;
 
 - (void) testGraphYearlyExpensesCalculations
 {
-    BSYearlySummaryGraphLineController *controller = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataStackHelper:coreDataStackHelper coreDataController:coreDataController];
+    BSYearlySummaryGraphLineController *controller = [[BSYearlySummaryGraphLineController alloc] initWithCoreDataFetchController:fetchController];
     
     BSYearlySummaryGraphLinePresenter *presenter = [[BSYearlySummaryGraphLinePresenter alloc] initWithYearlySummaryGraphLineController:controller section:@"2011"];
     
@@ -241,10 +260,13 @@ static Tag* travelTag;
                                                               persistentStoreName:@"BSYESummaryTestsDataBase"];
     
     coreDataController = [[BSCoreDataController alloc] initWithEntityName:@"Entry" coreDataHelper:coreDataStackHelper];
-    
+    fetchController = [[BSCoreDataFetchController alloc] initWithCoreDataController:coreDataController];
+
     NSArray *tags = @[@"Food", @"Bills", @"Travel"];
     [coreDataController createTags:tags];
     foodTag = [coreDataController tagForName:@"Food"];
+    foodTag.iconImageName = @"";
+    foodTag.color = UIColor.blueColor;
     billsTag = [coreDataController tagForName:@"Bills"];
     travelTag = [coreDataController tagForName:@"Travel"];
     
@@ -266,14 +288,10 @@ static Tag* travelTag;
     [yearlyViewController setValue:navItemMock forKey:@"navigationItem"];
 
     
-    controller = [[BSShowYearlyEntriesController alloc]
-                  initWithCoreDataStackHelper:coreDataStackHelper
-                                                                 coreDataController:coreDataController];
+    controller = [[BSShowYearlyEntriesController alloc] initWithDataProvider:fetchController];
     presenter = [[BSShowYearlyEntriesPresenter alloc] initWithShowEntriesUserInterface:yearlyViewController
                                                                  showEntriesController:controller];
     yearlyViewController.showEntriesPresenter = presenter;
-    
-
 }
 
 - (void)tearDown
@@ -285,17 +303,23 @@ static Tag* travelTag;
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheSpecifiedCategory {
-    [yearlyViewController filterChangedToCategory:foodTag];
-    NSArray *yearlyResults = yearlyViewController.showEntriesPresenter.showEntriesController._fetchedResultsController.fetchedObjects;
-    
-    NSPredicate *predicate2011 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2011"]];
-    NSPredicate *predicate2012 = [NSPredicate predicateWithFormat:@"year = %@", (NSNumber *)[NSDecimalNumber decimalNumberWithString:@"2012"]];
-    NSArray *results2011 =  [[yearlyResults filteredArrayUsingPredicate:predicate2011] lastObject];
-    NSArray *results2012 =  [[yearlyResults filteredArrayUsingPredicate:predicate2012] lastObject];
-    
-    XCTAssertTrue([yearlyResults count] == 2);
-    XCTAssertTrue([[results2012 valueForKey:@"yearlySum"] isEqual:@(-5)]);
-    XCTAssertTrue([[results2011 valueForKey:@"yearlySum"] isEqual:@(-75)]);
+    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    [yearlyViewController filterChangedToCategory:foodCategory];
+
+    [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {
+        XCTAssertTrue(sections.count == 2);
+        
+        BSDisplayExpensesSummarySection *_2012 = sections.firstObject;
+        XCTAssertTrue(_2012.entries.count == 1);
+        XCTAssertTrue([_2012.entries.firstObject.value isEqualToString:@"-$5.00"]);
+        XCTAssertTrue([_2012.entries.firstObject.title isEqualToString:@"2012"]);
+        
+        BSDisplayExpensesSummarySection *_2011 = sections.lastObject;
+        XCTAssertTrue(_2011.entries.count == 1);
+        XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"-$75.00"]);
+        XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
+    }];
 }
 
 @end
+

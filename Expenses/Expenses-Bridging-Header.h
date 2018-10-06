@@ -23,3 +23,4 @@
 #import "BSYearlyExpensesSummaryViewController.h"
 #import "ContainmentEventsAPI.h"
 #import "BSVisualEffects.h"
+#import "BSPieChartSectionInfo.h"

@@ -8,7 +8,6 @@
 
 #import "BSPieChartViewController.h"
 #import "BSChartLegendCollectionViewCell.h"
-#import "Tag.h"
 #import "BSPieChartView.h"
 #import "Expensit-Swift.h"
 
@@ -158,7 +157,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BSChartLegendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PieChartLegend" forIndexPath:indexPath];
-    Tag *category = self.categories[indexPath.row];
+    BSExpenseCategory *category = self.categories[indexPath.row];
     cell.label.text = category.name;
     cell.bulletPoint.backgroundColor = category.color;
     

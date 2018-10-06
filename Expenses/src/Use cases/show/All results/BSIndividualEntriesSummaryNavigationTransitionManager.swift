@@ -11,18 +11,21 @@ import UIKit
 
 class BSIndividualEntriesSummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
 {
-    func configureEditEntryViewControllerWithSegue(_ segue : UIStoryboardSegue, selectedIndexPath indexPath: NSIndexPath, allEntriesPresenter: BSAbstractExpensesSummaryPresenterEventsProtocol)
+    func configureEditEntryViewControllerWithSegue(_ segue : UIStoryboardSegue,
+                                                   selectedIndexPath indexPath: NSIndexPath,
+                                                   displayEntry: BSDisplayExpensesSummaryEntry,
+                                                   allEntriesPresenter: BSAbstractExpensesSummaryPresenterEventsProtocol)
     {
+        let addEntryController = BSAddEntryController(entryToEdit:nil, coreDataFetchController: self.coreDataFetchController)
         let presenter = allEntriesPresenter as! BSShowAllEntriesPresenter
-        let entry = presenter.entry(for: indexPath)
         let navigationController = segue.destination as! UINavigationController
-        let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, isEditing:true);
+        let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, addEntryController:addEntryController, isEditing:true);
         let addEntryVC = navigationController.topViewController as! BSEntryDetailsFormViewController
         addEntryVC.isEditingEntry = true
         let appDelegate = UIApplication.shared.delegate as! BSAppDelegate
         
-        addEntryVC.addEntryController = BSAddEntryController(entryToEdit : entry)
-        addEntryVC.addEntryPresenter = BSAddEntryPresenter(addEntryController: addEntryVC.addEntryController!, userInterface: addEntryVC, indexPathOfEntryToEdit: indexPath)        
+        addEntryVC.addEntryController = BSAddEntryController(entryToEdit : displayEntry, coreDataFetchController: self.coreDataFetchController)
+        addEntryVC.addEntryPresenter = BSAddEntryPresenter(displayEntry: displayEntry, addEntryController: addEntryVC.addEntryController!, userInterface: addEntryVC, indexPathOfEntryToEdit: indexPath)        
         addEntryVC.cellActionDataSource = cellActionsDataSource;
         addEntryVC.appearanceDelegate = appDelegate.themeManager;
     }

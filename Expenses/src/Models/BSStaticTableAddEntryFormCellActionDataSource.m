@@ -272,8 +272,10 @@
     BSDateToDatePickerCellConvertor *dateConvertor = [[BSDateToDatePickerCellConvertor alloc] init];
     NSDictionary *typeExtraParams = @{@"options": @[@"Expense", @"Benefit"], @"colors" : @[[((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme redColor], [((BSAppDelegate *)[[UIApplication sharedApplication] delegate]).themeManager.theme greenColor]]};
     
+    BSAmountToTextControlCellConvertor *amountConvertor = [[BSAmountToTextControlCellConvertor alloc] init];
     
-    BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:nil extraParams:nil];
+    
+    BSStaticTableViewCellInfo *amountCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"value" displayPropertyName:@"Amount" shouldBecomeFirstResponderWhenNotEditing:!self.isEditing keyboardType:UIKeyboardTypeDecimalPad valueConvertor:amountConvertor extraParams:nil];
     BSStaticTableViewCellInfo *descriptionCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryTextDetail class] propertyName:@"desc" displayPropertyName:@"Description" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:UIKeyboardTypeAlphabet valueConvertor:nil extraParams:nil];
     BSStaticTableViewCellInfo *dateButtonCellInfo = [[BSStaticTableViewCellInfo alloc] initWithCellClass:[BSEntryDetailDescriptionAndButtonCell class] propertyName:@"date"displayPropertyName:@"When" shouldBecomeFirstResponderWhenNotEditing:NO keyboardType:0 valueConvertor:dateConvertor extraParams:nil];
 

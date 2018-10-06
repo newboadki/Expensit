@@ -14,7 +14,6 @@
 
 - (id)cellValueForModelValue:(id)modelValue
 {
-//    NSString *cellValue = nil;
     NSString *numberString = modelValue;
     NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithDecimal:[[[BSCurrencyHelper amountFormatter] numberFromString:numberString] decimalValue]];
     NSString *formattedString = [[BSCurrencyHelper amountFormatter] stringFromNumber:number];

@@ -13,12 +13,7 @@ import Foundation
 /// UI components (normally VC) will communicate events to the presents through this protocol
 @objc protocol BSAbstractExpensesSummaryPresenterEventsProtocol
 {
-    
-    /// TODO: Do not expose this. It is here to facilitate unit tests.
-    var showEntriesController : BSAbstractShowEntriesControllerProtocol {get}
-    
-    
-    /// Indicates that the user changed the filter for the system to react 
+    /// Indicates that the user changed the filter for the system to react
     /// accordanly and prepare new data to display.
     ///
     /// - Parameter category: New category selected in the UI.

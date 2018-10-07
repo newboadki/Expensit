@@ -36,10 +36,5 @@ import Foundation
     /// that users of the controllers don't need to understand.
     ///
     /// - Returns: Descriptor of a section in the summary result.
-    @objc optional func sectionNameKeyPath() -> String?
-    
-    
-    /// TODO: Do not expose this. It is here to facilitate the tests, which need to be modified to 
-    /// check for the expectations.
-    @objc optional var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
+    @objc optional func sectionNameKeyPath() -> String?    
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// This is a domain model representing an entry
 class BSExpenseEntry : NSObject {
 
     var identifier: NSCopying?

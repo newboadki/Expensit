@@ -16,8 +16,7 @@ class BSIndividualEntriesSummaryNavigationTransitionManager : BSBaseNavigationTr
                                                    displayEntry: BSDisplayExpensesSummaryEntry,
                                                    allEntriesPresenter: BSAbstractExpensesSummaryPresenterEventsProtocol)
     {
-        let addEntryController = BSAddEntryController(entryToEdit:nil, coreDataFetchController: self.coreDataFetchController)
-        let presenter = allEntriesPresenter as! BSShowAllEntriesPresenter
+        let addEntryController = BSAddEntryController(entryToEdit:nil, coreDataFetchController: self.coreDataFetchController)        
         let navigationController = segue.destination as! UINavigationController
         let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, addEntryController:addEntryController, isEditing:true);
         let addEntryVC = navigationController.topViewController as! BSEntryDetailsFormViewController

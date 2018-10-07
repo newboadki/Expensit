@@ -30,21 +30,13 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
     func save(entry : BSExpenseEntry, successBlock :()->(), failureBlock:(_ error : NSError) -> () )
     {
-        do
-        {
-            if NSDecimalNumber(string: "0").compare(entry.value) == .orderedDescending ||
-                NSDecimalNumber(string: "0").compare(entry.value) == .orderedSame
-            {
-                failureBlock(NSError(domain: "Could not save", code: 1, userInfo: nil))
-            }
-            let _ = try self.coreDataFetchController.save(existingEntry: entry)
-            successBlock()
-        }
-        catch
+        if NSDecimalNumber(string: "0").compare(entry.value) == .orderedDescending ||
+            NSDecimalNumber(string: "0").compare(entry.value) == .orderedSame
         {
             failureBlock(NSError(domain: "Could not save", code: 1, userInfo: nil))
         }
-        
+        let _ = self.coreDataFetchController.save(existingEntry: entry)
+        successBlock()        
     }
     
     func discardChanges() {

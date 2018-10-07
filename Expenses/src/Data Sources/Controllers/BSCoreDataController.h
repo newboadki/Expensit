@@ -16,7 +16,7 @@
 @class BSPieChartSectionInfo;
 
 
-@interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate, ExpenseSummaryDataGatewayProtocol>
+@interface BSCoreDataController : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic, nonnull) CoreDataStackHelper *coreDataHelper;
 

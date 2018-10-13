@@ -9,8 +9,8 @@
 import Foundation
 
 
-/// This protocol decouples view from the business knowledge to organize the information.
-/// UI components (normally VC) will communicate events to the presents through this protocol
+/// This protocol decouples the views to display summaries from the business knowledge to organize the information.
+/// UI components (normally VC) will communicate events to the presenter through this protocol
 @objc protocol BSAbstractExpensesSummaryPresenterEventsProtocol
 {
     /// Indicates that the user changed the filter for the system to react

@@ -72,18 +72,6 @@ static BSExpenseCategory *tagBeingFilterBy = nil;
 {
     [super viewWillAppear:animated];
     
-    // Request data
-    [self.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {        
-        self.sections = sections;
-        [self.collectionView reloadData];
-        
-        // Apply filter before calculating section to go to
-        [self filterChangedToCategory:tagBeingFilterBy takingScreenshot:NO];
-        
-        // Scroll to selected section
-        [self scrollToSelectedSection];
-    }];
-    
     /// We are doing this here beucase we want child view controllers to adapt to a new size.
     /// Now, we are also overriding viewWillTransitionToSize:withTransitionCoordinator: and invalidating the layout too.
     /// but there are some scenarios: landscape, yearly VC presented, then navigate to the monthly summary VC, it turns out that
@@ -97,10 +85,22 @@ static BSExpenseCategory *tagBeingFilterBy = nil;
 {
     [super viewDidAppear:animated];
     
-    // Let know interested parties that a section is visible. This is being used in certain trait collections
-    // to update other view, like a chart that represents the data contained in the visible section.
-    ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
-    [self.containmentEventsDelegate raiseEvent:event fromSender:self];
+    // Request data
+    [self.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
+        self.sections = sections;
+        [self.collectionView reloadData];
+        
+        // Apply filter before calculating section to go to
+        [self filterChangedToCategory:tagBeingFilterBy takingScreenshot:NO];
+        
+        // Scroll to selected section
+        [self scrollToSelectedSection];
+        
+        // Let know interested parties that a section is visible. This is being used in certain trait collections
+        // to update other view, like a chart that represents the data contained in the visible section.
+        ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
+        [self.containmentEventsDelegate raiseEvent:event fromSender:self];
+    }];
 }
 
 

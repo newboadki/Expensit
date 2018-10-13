@@ -116,6 +116,7 @@ static BSCoreDataFetchController *fetchController;
 
 - (void) test_yearly_calculations_With_no_filter
 {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray <BSDisplayExpensesSummarySection *>* _Nullable sections) {
         
         XCTAssertTrue(sections.count == 3);
@@ -134,29 +135,14 @@ static BSCoreDataFetchController *fetchController;
         XCTAssertTrue(_2011.entries.count == 1);
         XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"$249.50"]);
         XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
-
-        
-        
-        
-//        XCTAssertTrue(sections.count == 1);
-//        BSDisplayExpensesSummarySection *sectionData = sections.firstObject;
-//        XCTAssertTrue(sectionData.entries.count == 3);
-//
-//        BSDisplayExpensesSummaryEntry * e1 = sectionData.entries[0];
-//        BSDisplayExpensesSummaryEntry * e2 = sectionData.entries[1];
-//        BSDisplayExpensesSummaryEntry * e3 = sectionData.entries[2];
-//
-//        XCTAssertTrue([e1.title isEqual:@"2013"]);
-//        XCTAssertTrue([e1.value isEqual:@"-$6.90"]);
-//        XCTAssertTrue([e2.title isEqual:@"2012"]);
-//        XCTAssertTrue([e2.value isEqual:@"$398.50"]);
-//        XCTAssertTrue([e3.title isEqual:@"2011"]);
-//        XCTAssertTrue([e3.value isEqual:@"$249.50"]);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void) test_yearly_calculations_With_filter
 {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     NSArray *tags = @[@"Food", @"Bills", @"Travel"];
     [coreDataController createTags:tags];
     Tag* foodTag = [coreDataController tagForName:@"Food"];
@@ -186,7 +172,9 @@ static BSCoreDataFetchController *fetchController;
         XCTAssertTrue(_2011.entries.count == 1);
         XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"-$75.00"]);
         XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void) testGraphYearlySurplusCalculations
@@ -302,7 +290,9 @@ static Tag* travelTag;
     [super tearDown];
 }
 
-- (void)testOnlyTakeIntoAccountEntriesFromTheSpecifiedCategory {
+- (void)testOnlyTakeIntoAccountEntriesFromTheSpecifiedCategory
+{
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     [yearlyViewController filterChangedToCategory:foodCategory];
 
@@ -318,7 +308,10 @@ static Tag* travelTag;
         XCTAssertTrue(_2011.entries.count == 1);
         XCTAssertTrue([_2011.entries.firstObject.value isEqualToString:@"-$75.00"]);
         XCTAssertTrue([_2011.entries.firstObject.title isEqualToString:@"2011"]);
+        [expectation fulfill];
     }];
+    
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 @end

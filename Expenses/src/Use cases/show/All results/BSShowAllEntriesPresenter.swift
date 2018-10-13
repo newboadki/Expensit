@@ -36,8 +36,7 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
         var displaySections = [BSDisplayExpensesSummarySection]()
         
         for section in sections
-        {
-            print(section.groupKey)
+        {            
             var displayEntries = [BSDisplayExpensesSummaryEntry]()
             let (day, month, year) = self.dateComponents(from: section.groupKey)
             let date = DateTimeHelper.date(withFormat: nil, stringDate: "\(day)/\(month)/\(year)")

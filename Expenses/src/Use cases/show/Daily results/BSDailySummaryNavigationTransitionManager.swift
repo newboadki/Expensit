@@ -52,8 +52,4 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
         allExpensesViewController.containmentEventsDelegate = self.containmentEventsDelegate!
         
     }
-    
-    
-
-
 }

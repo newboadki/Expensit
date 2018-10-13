@@ -96,6 +96,8 @@ static BSCoreDataFetchController *fetchController;
 
 - (void)testDailyCalculations {
     
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     UINavigationItem *navItemMock = [UINavigationItem new];
     navItemMock.rightBarButtonItems = @[[UIBarButtonItem new], [UIBarButtonItem new]];
     [dailyViewController setValue:navItemMock forKey:@"navigationItem"];
@@ -124,7 +126,9 @@ static BSCoreDataFetchController *fetchController;
         XCTAssertTrue([march2012.entries[2].value isEqualToString:@"$14.00"]); // 2 because the day was 3rd
         XCTAssertTrue([jun2011.entries[18].value isEqualToString:@"$7.00"]); // 18 because the day was 19th
         XCTAssertTrue([dec2011.entries[20].value isEqualToString:@"-$10.00"]); // 20 because the day was 21st
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 @end
@@ -209,6 +213,8 @@ static BSCoreDataFetchController *fetchController;
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheFoodCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     [dvc filterChangedToCategory:foodCategory];
 
     NSPredicate *predicate_July_2011 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
@@ -225,10 +231,14 @@ static BSCoreDataFetchController *fetchController;
         
         XCTAssertTrue([july_19_2011.value isEqualToString:@"-$1,050.00"]);
         XCTAssertTrue([july_19_2012.value isEqualToString:@"-$30.00"]);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheTravelCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     [dvc filterChangedToCategory:travelCategory];
     
     NSPredicate *predicate_July_2011 = [NSPredicate predicateWithFormat:@"title = %@", [NSString stringWithFormat:@"%@/%@", @(7), @(2011)]];
@@ -246,10 +256,15 @@ static BSCoreDataFetchController *fetchController;
         XCTAssertTrue([july_19_2011.value isEqualToString:@"-$25.00"]);        
         XCTAssertTrue([october_02_2013.title isEqualToString:@"2"]);
         XCTAssertTrue([october_02_2013.value isEqualToString:@"-$100.00"]);
+        [expectation fulfill];
     }];
+    
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheBillsCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     [dvc filterChangedToCategory:billsCategory];
     
     [dvc.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> *sections) {
@@ -259,6 +274,9 @@ static BSCoreDataFetchController *fetchController;
         BSDisplayExpensesSummaryEntry *e_02_Oct_2013 =  [[results_02_Oct_2013.entries filteredArrayUsingPredicate:predicate_02_Oct_2013] lastObject];
         XCTAssertTrue([e_02_Oct_2013.title isEqual:@"2"]);
         XCTAssertTrue([e_02_Oct_2013.value isEqual:@"-$5.60"]);
+        [expectation fulfill];
     }];
+    
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 @end

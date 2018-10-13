@@ -25,14 +25,6 @@
 }
 
 
-#pragma mark - View Cycle
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if ([self.sections count] == 0) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
 
 #pragma mark - UICollectionViewDataSource
 

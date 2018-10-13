@@ -126,6 +126,8 @@
 
 - (void) testMonthlyCalculations
 {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     [self.monthlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         XCTAssertTrue(sections.count == 3);
         
@@ -285,7 +287,11 @@
         e12 = sectionData_2013.entries[11];
         XCTAssertTrue([e12.title isEqual:@"DEC"]);
         XCTAssertTrue([e12.value isEqual:@"-$10.10"]);
-    }];    
+        
+        [expectation fulfill];        
+    }];
+    
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 
@@ -372,6 +378,7 @@
 
 - (void)testCategoryFiltering {
     
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     Tag* foodTag;
     Tag* billsTag;
     Tag* travelTag;
@@ -403,7 +410,9 @@
         XCTAssertTrue([_2011.entries[6].value isEqualToString:@"-$75.00"]);// 6 becuase the month was 7th
         XCTAssertTrue([_2011.entries[11].value isEqualToString:@""]);// 11 becuase the month was 12th
         XCTAssertTrue([_2012.entries[9].value isEqualToString:@"-$5.00"]); //  9 because the day was 10th
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (NSString *)visibleSectionNameMock {

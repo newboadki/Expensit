@@ -88,6 +88,8 @@
 
 - (void) testIndividualEntriesCalculations
 {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     [self.individualEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^( NSArray * _Nullable sections) {
         XCTAssertTrue(sections.count == 6);
 
@@ -138,7 +140,9 @@
         BSDisplayExpensesSummaryEntry * e8 = sectionData_05_03_2013.entries[1];
         XCTAssertTrue([e8.title isEqual:@"Pizza"]);
         XCTAssertTrue([e8.value isEqual:@"-$10.00"]);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 @end
@@ -209,6 +213,8 @@ static Tag* travelTag;
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheFoodCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     [self.perEntryViewController filterChangedToCategory:foodCategory];
     
@@ -229,10 +235,14 @@ static Tag* travelTag;
         XCTAssertTrue([jul_19_2012.entries.firstObject.value isEqualToString:@"-$30.00"]);
         XCTAssertTrue([jul_19_2012.entries.firstObject.tag isEqualToString:@"Food"]);
         XCTAssertTrue([jul_19_2012.entries.firstObject.desc isEqualToString:@"Dinner"]);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheTravelCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     BSExpenseCategory *travelCategory = [[BSExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
     [self.perEntryViewController filterChangedToCategory:travelCategory];
 
@@ -246,17 +256,23 @@ static Tag* travelTag;
         BSDisplayExpensesSummarySection *oct_2_2013 = sections.lastObject;
         XCTAssertTrue([oct_2_2013.entries.firstObject.value isEqualToString:@"-$100.00"]);
         XCTAssertTrue(oct_2_2013.entries.count == 1);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 - (void)testOnlyTakeIntoAccountEntriesFromTheBillsCategory {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
+    
     BSExpenseCategory *billsCategory = [[BSExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
     [self.perEntryViewController filterChangedToCategory:billsCategory];
     
     [self.perEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {        
         XCTAssertTrue([sections.firstObject.entries.firstObject.value isEqualToString:@"-$5.60"]);
         XCTAssertTrue(sections.firstObject.entries.count == 1);
+        [expectation fulfill];
     }];
+    [self waitForExpectations:@[expectation] timeout:10];
 }
 
 @end

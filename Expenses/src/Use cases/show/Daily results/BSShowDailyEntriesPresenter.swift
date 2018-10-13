@@ -57,7 +57,6 @@ class BSShowDailyEntriesPresenter : BSAbstractShowEntriesPresenter, BSDailyExpen
                 let dailySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
                 
                 let dateString = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: entryEntity.date)
-                print("!!!> \(dateString ?? "MISSING")")
                 let entryData = BSDisplayExpensesSummaryEntry(title: dayString as String , value: dailySumString as String, signOfAmount: sign, date: dateString, tag: nil)
                 entries[day.intValue - 1] = entryData
             }

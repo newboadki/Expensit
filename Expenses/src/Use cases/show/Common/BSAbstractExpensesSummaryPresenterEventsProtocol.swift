@@ -25,7 +25,7 @@ import Foundation
     ///
     /// - Parameter _: A completion block that is called asynchronously 
     //    and receives view-models to be presented.
-    func viewIsReadyToDisplayEntriesCompletionBlock(_: ( _ sections : [BSDisplayExpensesSummarySection]) -> ())
+    func viewIsReadyToDisplayEntriesCompletionBlock(_: @escaping ( _ sections : [BSDisplayExpensesSummarySection]) -> ())
     
     
     /// Requests a new image for the category selector UI-control.

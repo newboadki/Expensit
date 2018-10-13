@@ -16,12 +16,14 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     
     var showEntriesController : BSAbstractShowEntriesControllerProtocol
     var userInteface : BSAbstractExpensesSummaryUserInterfaceProtocol
+    var backgroundQueue: DispatchQueue
     
     
     init!(showEntriesUserInterface: BSAbstractExpensesSummaryUserInterfaceProtocol,
          showEntriesController : BSAbstractShowEntriesControllerProtocol) {
         self.userInteface = showEntriesUserInterface
         self.showEntriesController = showEntriesController
+        self.backgroundQueue = DispatchQueue(label: "com.expensit.presenter.background.queue")
         super.init()
     }
     
@@ -33,16 +35,20 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     
-    func viewIsReadyToDisplayEntriesCompletionBlock(_ block: ( _ sections : [BSDisplayExpensesSummarySection] ) -> () )
+    func viewIsReadyToDisplayEntriesCompletionBlock(_ block: @escaping ( _ sections : [BSDisplayExpensesSummarySection] ) -> () )
     {
         // Let controller subclasses retrieve the right type of information
-        let groupedEntities = self.showEntriesController.entriesForSummary()
-        
-        // Let presenter subclasses arrange the data for the user-interface
-        let output = self.displayDataFromEntriesForSummary(groupedEntities)
-        
-        // CallBack once we have the data ready
-        block( output)
+        self.backgroundQueue.async {
+            let groupedEntities = self.showEntriesController.entriesForSummary()
+            
+            // Let presenter subclasses arrange the data for the user-interface
+            let output = self.displayDataFromEntriesForSummary(groupedEntities)
+            
+            // CallBack once we have the data ready
+            DispatchQueue.main.async {
+                block( output)
+            }
+        }
     }
     
     

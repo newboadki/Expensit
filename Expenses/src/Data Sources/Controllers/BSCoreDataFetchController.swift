@@ -38,7 +38,7 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Filtering
     
-    public func filter(summaryType: FetchControllerType, by category: BSExpenseCategory?) {
+    public func filter(summaryType: FetchControllerType, by category: ExpenseCategory?) {
         let fetchController = self.fetchControllers[summaryType]
         if let category = category {
             let tag = self.coreDataController.tag(forName: category.name)
@@ -48,7 +48,7 @@ class BSCoreDataFetchController: NSObject {
         }
     }
     
-    public func image(for category: BSExpenseCategory?) -> UIImage? {
+    public func image(for category: ExpenseCategory?) -> UIImage? {
         return self.coreDataController.image(forCategoryName: category?.name)
     }
     
@@ -56,11 +56,11 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Summary results
     
-    public func entriesGroupedByYear() -> [BSEntryEntityGroup]
+    public func entriesGroupedByYear() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.yearly]
         let sections = self.performRequest(on: fetchController!)
-        var results = [BSEntryEntityGroup]()
+        var results = [ExpensesGroup]()
         
         guard sections != nil else {
             return results
@@ -68,29 +68,29 @@ class BSCoreDataFetchController: NSObject {
         
         for sectionInfo in sections!
         {
-            var entriesForKey = [BSExpenseEntry]()
+            var entriesForKey = [Expense]()
             if let objects = sectionInfo.objects
             {
                 for case let data as NSDictionary in objects
                 {
                     let yearlySum = data["yearlySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = BSExpenseEntry(date: date, value: yearlySum, description: nil, category: nil)
+                    let entry = Expense(date: date, value: yearlySum, description: nil, category: nil)
                     entriesForKey.append(entry)
                 }
             }
-            let section = BSEntryEntityGroup(key: sectionInfo.name, entries: entriesForKey)
+            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
             results.append(section)
         }
         
         return results
     }
 
-    public func entriesGroupedByMonth() -> [BSEntryEntityGroup]
+    public func entriesGroupedByMonth() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.monthly]
         let sections = self.performRequest(on: fetchController!)
-        var results = [BSEntryEntityGroup]()
+        var results = [ExpensesGroup]()
         
         guard sections != nil else {
             return results
@@ -98,44 +98,44 @@ class BSCoreDataFetchController: NSObject {
         
         for sectionInfo in sections!
         {
-            var entriesForKey = [BSExpenseEntry]()
+            var entriesForKey = [Expense]()
             if let objects = sectionInfo.objects {
                 for case let data as NSDictionary in objects {
                     let monthlySum = data["monthlySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = BSExpenseEntry(date: date, value: monthlySum, description: nil, category: nil)
+                    let entry = Expense(date: date, value: monthlySum, description: nil, category: nil)
                     entriesForKey.append(entry)
                 }
             }
-            let section = BSEntryEntityGroup(key: sectionInfo.name, entries: entriesForKey)
+            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
             results.append(section)
         }
         
         return results
     }
 
-    public func entriesGroupedByDay() -> [BSEntryEntityGroup] {
+    public func entriesGroupedByDay() -> [ExpensesGroup] {
         
         let fetchController = self.fetchControllers[.daily]
         let sections = self.performRequest(on: fetchController!)
-        var results = [BSEntryEntityGroup]()
+        var results = [ExpensesGroup]()
         
         guard sections != nil else {
             return results
         }
         
         for sectionInfo in sections! {
-            var entriesForKey = [BSExpenseEntry]()
+            var entriesForKey = [Expense]()
             if let objects = sectionInfo.objects {
                 for case let data as NSDictionary in objects {
                     let dailySum = data["dailySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = BSExpenseEntry(date: date, value: dailySum, description: nil, category: nil)
+                    let entry = Expense(date: date, value: dailySum, description: nil, category: nil)
                     entriesForKey.append(entry)
                 }
             }
             
-            let section = BSEntryEntityGroup(key: sectionInfo.name, entries: entriesForKey)
+            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
             results.append(section)
         }
         
@@ -143,11 +143,11 @@ class BSCoreDataFetchController: NSObject {
 
     }
 
-    public func allEntries() -> [BSEntryEntityGroup]
+    public func allEntries() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.all]
         let sections = self.performRequest(on: fetchController!)
-        var results = [BSEntryEntityGroup]()
+        var results = [ExpensesGroup]()
         
         guard sections != nil else {
             return results
@@ -155,18 +155,18 @@ class BSCoreDataFetchController: NSObject {
         
         for sectionInfo in sections!
         {
-            var entriesForKey = [BSExpenseEntry]()
+            var entriesForKey = [Expense]()
             if let objects = sectionInfo.objects
             {
                 for case let coreDataEntry as Entry in objects
                 {
-                    let category = BSExpenseCategory(name: coreDataEntry.tag.name, iconName: coreDataEntry.tag.iconImageName ?? "", color: coreDataEntry.tag.color ?? UIColor.black)
-                    let entry = BSExpenseEntry(date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+                    let category = ExpenseCategory(name: coreDataEntry.tag.name, iconName: coreDataEntry.tag.iconImageName ?? "", color: coreDataEntry.tag.color ?? UIColor.black)
+                    let entry = Expense(date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
                     entriesForKey.append(entry)
                 }
             }
-            let section = BSEntryEntityGroup(key: sectionInfo.name, entries: entriesForKey)
+            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
             results.append(section)
         }
         
@@ -175,7 +175,7 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Editing
     
-    public func save(existingEntry expenseEntryEntity: BSExpenseEntry) -> (Bool, NSError?)
+    public func save(existingEntry expenseEntryEntity: Expense) -> (Bool, NSError?)
     {
         var entryToSave: Entry?
         
@@ -199,7 +199,7 @@ class BSCoreDataFetchController: NSObject {
         }
     }
 
-    public func delete(entry: BSExpenseEntry)
+    public func delete(entry: Expense)
     {
         if let identifier = entry.identifier as? NSManagedObjectID {
             let coreDataEntry = self.coreDataController.coreDataHelper.managedObjectContext.object(with: identifier) as! Entry
@@ -331,19 +331,19 @@ extension BSCoreDataFetchController {
 // MARK: - Categories
 extension BSCoreDataFetchController {
     
-    func categories(forMonth month: NSNumber?, inYear year: NSNumber) -> [BSExpenseCategory]? {
+    func categories(forMonth month: NSNumber?, inYear year: NSNumber) -> [ExpenseCategory]? {
         let tags = self.coreDataController.categories(forMonth: month, inYear: year)
-        let categories = tags?.map({ (tag) -> BSExpenseCategory in
-            return BSExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
+        let categories = tags?.map({ (tag) -> ExpenseCategory in
+            return ExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
         })
         
         return categories
     }
     
     
-    func sortedCategoriesByPercentage(fromCategories categories: [BSExpenseCategory], sections: [BSPieChartSectionInfo]) -> [BSExpenseCategory]
+    func sortedCategoriesByPercentage(fromCategories categories: [ExpenseCategory], sections: [BSPieChartSectionInfo]) -> [ExpenseCategory]
     {
-        var results = [BSExpenseCategory]()
+        var results = [ExpenseCategory]()
 
         for section in sections.reversed() {
             let filteredArray = categories.filter() { $0.name == section.name }

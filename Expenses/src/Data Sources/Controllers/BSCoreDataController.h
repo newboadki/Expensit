@@ -12,7 +12,7 @@
 @class Tag;
 @class Entry;
 @class CoreDataStackHelper;
-@class BSExpenseCategory;
+@class ExpenseCategory;
 @class BSPieChartSectionInfo;
 
 
@@ -92,13 +92,12 @@
  @discussion Ordered by name ASC.
  @return All tags available.
  */
-- (nonnull NSArray<BSExpenseCategory *> *)allTags;
+- (nonnull NSArray<ExpenseCategory *> *)allTags;
 - (nonnull NSArray *)allTagImages;
 - (nullable UIImage *)imageForCategory:(nullable Tag *)tag;
 - (nullable UIImage *)imageForCategoryName:(nullable NSString *)tagName;
 - (BOOL)findNoTags:(nonnull NSString *)tagName;
 - (NSArray <Tag *>*)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year;
-//- (nullable NSArray <BSExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <BSExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections;
 
 
 // PUBLIC API

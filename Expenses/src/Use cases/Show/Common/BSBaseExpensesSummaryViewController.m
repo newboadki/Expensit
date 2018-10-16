@@ -18,7 +18,7 @@
 #import "Expensit-Swift.h"
 
 
-static BSExpenseCategory *tagBeingFilterBy = nil;
+static ExpenseCategory *tagBeingFilterBy = nil;
 
 
 @interface BSBaseExpensesSummaryViewController ()
@@ -284,13 +284,13 @@ static BSExpenseCategory *tagBeingFilterBy = nil;
 
 #pragma mark - BSCategoryFilterDelegate
 
-- (void)filterChangedToCategory:(BSExpenseCategory *)tag
+- (void)filterChangedToCategory:(ExpenseCategory *)tag
 {
     [self filterChangedToCategory:tag takingScreenshot:YES];
 }
 
 
-- (void)filterChangedToCategory:(BSExpenseCategory *)tag takingScreenshot:(BOOL)shouldTakeScreenshot
+- (void)filterChangedToCategory:(ExpenseCategory *)tag takingScreenshot:(BOOL)shouldTakeScreenshot
 {
     // So we remember when bringing the modal view back again
     // The argument is already a Tag* reference or nil

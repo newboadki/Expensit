@@ -219,7 +219,7 @@
     return result;
 }
 
-- (NSArray<BSExpenseCategory *> *)allTags
+- (NSArray<ExpenseCategory *> *)allTags
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
@@ -230,9 +230,9 @@
     NSError *err = nil;
     NSArray *result = [self resultsForRequest:fetchRequest error:&err];
     
-    NSMutableArray<BSExpenseCategory *> *entities = [NSMutableArray array];
+    NSMutableArray<ExpenseCategory *> *entities = [NSMutableArray array];
     for (Tag *t in result) {
-        BSExpenseCategory *cat  = [[BSExpenseCategory alloc] initWithName:t.name iconName:t.iconImageName color:t.color];
+        ExpenseCategory *cat  = [[ExpenseCategory alloc] initWithName:t.name iconName:t.iconImageName color:t.color];
         [entities addObject:cat];
     }
     return entities;
@@ -242,7 +242,7 @@
 {
     NSMutableArray *images = [NSMutableArray array];
     
-    for (BSExpenseCategory *tag in [self allTags])
+    for (ExpenseCategory *tag in [self allTags])
     {
         [images addObject:[self imageForCategoryName:tag.iconName]];
     }
@@ -304,13 +304,13 @@
 }
 
 // Move to coredatafetchcontroller
-//- (nullable NSArray <BSExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <BSExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections {
+//- (nullable NSArray <ExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <ExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections {
 //    NSMutableArray *results = [NSMutableArray array];
 //    
 //    for (BSPieChartSectionInfo *section in sections.reverseObjectEnumerator.allObjects)
 //    {
 //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", section.name];
-//        BSExpenseCategory *tag = [[tags filteredArrayUsingPredicate:predicate] firstObject];
+//        ExpenseCategory *tag = [[tags filteredArrayUsingPredicate:predicate] firstObject];
 //        if (tag)
 //        {
 //            [results addObject:tag];

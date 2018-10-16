@@ -17,7 +17,7 @@ class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
+    override func displayDataFromEntriesForSummary(_ sections : [ExpensesGroup]) -> [BSDisplayExpensesSummarySection]
     {
         var displaySections = [BSDisplayExpensesSummarySection]()
         

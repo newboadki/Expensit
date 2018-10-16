@@ -1,5 +1,5 @@
 //
-//  BSExpenseCategory.swift
+//  ExpenseCategory.swift
 //  Expenses
 //
 //  Created by Borja Arias Drake on 15/12/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BSExpenseCategory : NSObject {
+class ExpenseCategory : NSObject {
 
     var name: String
     var iconName: String

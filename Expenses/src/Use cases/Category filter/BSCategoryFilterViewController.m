@@ -103,9 +103,9 @@ static NSString const * kNofilterText = @"No Filter"; // make it a localizable k
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 40, 0, 100, imageView.frame.size.height)];
     id element = self.categories[row];
-    if ([element isKindOfClass:BSExpenseCategory.class])
+    if ([element isKindOfClass:ExpenseCategory.class])
     {
-        BSExpenseCategory *tag = (BSExpenseCategory *)element;
+        ExpenseCategory *tag = (ExpenseCategory *)element;
         label.text = [tag name];
         imageView = [[UIImageView alloc] initWithImage:self.categoryImages[row-1]];
         CGRect imageFrame = imageView.frame;

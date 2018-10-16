@@ -62,7 +62,7 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
         }
     }
     
-    private func entryEntity(fromViewModel entry: BSDisplayExpensesSummaryEntry) -> BSExpenseEntry {
+    private func entryEntity(fromViewModel entry: BSDisplayExpensesSummaryEntry) -> Expense {
         let date = DateTimeHelper.date(withFormat: DEFAULT_DATE_FORMAT, stringDate: entry.date)
         let value: NSDecimalNumber
             
@@ -75,8 +75,8 @@ class BSAddEntryPresenter: NSObject, BSAddEntryPresenterEventsProtocol {
         } else {
             value = NSDecimalNumber(string: "0")
         }
-        let category = BSExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
-        let entity = BSExpenseEntry(date: date, value:value, description: entry.desc, category: category)
+        let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
+        let entity = Expense(date: date, value:value, description: entry.desc, category: category)
         entity.identifier = entry.identifier
         if entry.isAmountNegative {
             if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {

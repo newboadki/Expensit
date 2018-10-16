@@ -157,7 +157,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BSChartLegendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PieChartLegend" forIndexPath:indexPath];
-    BSExpenseCategory *category = self.categories[indexPath.row];
+    ExpenseCategory *category = self.categories[indexPath.row];
     cell.label.text = category.name;
     cell.bulletPoint.backgroundColor = category.color;
     

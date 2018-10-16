@@ -16,7 +16,7 @@ class BSCategoryFilterController: BSCategoryFilterControllerProtocol {
         self.dataProvider = dataProvider
     }
     
-    func allTags() -> [BSExpenseCategory] {
+    func allTags() -> [ExpenseCategory] {
         return self.dataProvider.allTags()
     }
 

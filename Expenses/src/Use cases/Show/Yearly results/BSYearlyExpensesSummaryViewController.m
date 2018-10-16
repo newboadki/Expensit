@@ -109,10 +109,9 @@
     return NO;
 }
 
-- (void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews
+{
     [super viewWillLayoutSubviews];
-    
-    NSLog(@"W:%f, H:%f", self.collectionView.frame.size.width, self.collectionView.frame.size.height);
 }
 
 @end

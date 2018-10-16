@@ -11,12 +11,12 @@ import UIKit
 
 /// This class is simply a container of Expense entry entities groupped by a key.
 /// They usually represent sections of related entry entities.
-class BSEntryEntityGroup: NSObject
+class ExpensesGroup: NSObject
 {
     let groupKey: String
-    let entries: [BSExpenseEntry]
+    let entries: [Expense]
     
-    init(key: String, entries: [BSExpenseEntry])
+    init(key: String, entries: [Expense])
     {
         self.groupKey = key
         self.entries = entries

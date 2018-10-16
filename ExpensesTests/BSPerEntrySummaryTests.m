@@ -215,7 +215,7 @@ static Tag* travelTag;
 - (void)testOnlyTakeIntoAccountEntriesFromTheFoodCategory {
     XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     
-    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    ExpenseCategory *foodCategory = [[ExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     [self.perEntryViewController filterChangedToCategory:foodCategory];
     
     [self.perEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {
@@ -243,7 +243,7 @@ static Tag* travelTag;
 - (void)testOnlyTakeIntoAccountEntriesFromTheTravelCategory {
     XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     
-    BSExpenseCategory *travelCategory = [[BSExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
+    ExpenseCategory *travelCategory = [[ExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
     [self.perEntryViewController filterChangedToCategory:travelCategory];
 
     [self.perEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {
@@ -264,7 +264,7 @@ static Tag* travelTag;
 - (void)testOnlyTakeIntoAccountEntriesFromTheBillsCategory {
     XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
     
-    BSExpenseCategory *billsCategory = [[BSExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
+    ExpenseCategory *billsCategory = [[ExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
     [self.perEntryViewController filterChangedToCategory:billsCategory];
     
     [self.perEntryViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {        

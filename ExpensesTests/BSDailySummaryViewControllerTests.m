@@ -145,9 +145,9 @@ static BSDailyExpensesSummaryViewController *dvc = nil;
 static Tag* foodTag;
 static Tag* billsTag;
 static Tag* travelTag;
-static BSExpenseCategory* foodCategory;
-static BSExpenseCategory* billsCategory;
-static BSExpenseCategory* travelCategory;
+static ExpenseCategory* foodCategory;
+static ExpenseCategory* billsCategory;
+static ExpenseCategory* travelCategory;
 
 static BSCoreDataFetchController *fetchController;
 
@@ -176,9 +176,9 @@ static BSCoreDataFetchController *fetchController;
     foodTag = [cdc tagForName:@"Food"];
     billsTag = [cdc tagForName:@"Bills"];
     travelTag = [cdc tagForName:@"Travel"];
-    foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
-    travelCategory = [[BSExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
-    billsCategory = [[BSExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
+    foodCategory = [[ExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    travelCategory = [[ExpenseCategory alloc] initWithName:travelTag.name iconName:travelTag.iconImageName color:travelTag.color];
+    billsCategory = [[ExpenseCategory alloc] initWithName:billsTag.name iconName:billsTag.iconImageName color:billsTag.color];
     
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Food and drinks" value:@"-50" category:foodTag];
     [cdc insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2011"] description:@"Fish and Chips" value:@"-1000" category:foodTag];

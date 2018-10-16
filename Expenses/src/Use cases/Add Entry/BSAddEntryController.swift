@@ -28,7 +28,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
 
     /// BSAddEntryControllerProtocol
     
-    func save(entry : BSExpenseEntry, successBlock :()->(), failureBlock:(_ error : NSError) -> () )
+    func save(entry : Expense, successBlock :()->(), failureBlock:(_ error : NSError) -> () )
     {
         if NSDecimalNumber(string: "0").compare(entry.value) == .orderedDescending ||
             NSDecimalNumber(string: "0").compare(entry.value) == .orderedSame
@@ -43,7 +43,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
         self.coreDataController.discardChanges()
     }
     
-    func delete(entry : BSExpenseEntry) {
+    func delete(entry : Expense) {
         self.coreDataFetchController.delete(entry: entry)
     }
     

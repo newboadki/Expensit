@@ -31,7 +31,7 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
+    override func displayDataFromEntriesForSummary(_ sections : [ExpensesGroup]) -> [BSDisplayExpensesSummarySection]
     {
         var displaySections = [BSDisplayExpensesSummarySection]()
         
@@ -43,7 +43,7 @@ class BSShowAllEntriesPresenter : BSAbstractShowEntriesPresenter {
 
             for i in 0 ..< section.entries.count
             {
-                let entryEntity : BSExpenseEntry = section.entries[i]
+                let entryEntity : Expense = section.entries[i]
                 let sign : BSNumberSignType = self.sign(for: entryEntity.value)
                 let displayEntry = BSDisplayExpensesSummaryEntry(title: entryEntity.entryDescription , value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value), signOfAmount: sign, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date), tag: entryEntity.category?.name)
                 displayEntry.identifier = entryEntity.identifier

@@ -6,11 +6,11 @@
 //  Copyright © 2017 Borja Arias Drake. All rights reserved.
 //
 
-@class BSExpenseEntry;
+@class Expense;
 
 @protocol ExpenseSummaryDataGatewayProtocol
-- (NSDictionary<NSString *, NSArray<BSExpenseEntry *> *> * _Nonnull)entriesGroupedByDay;
-- (NSDictionary<NSString *, NSArray<BSExpenseEntry *> *> * _Nonnull)entriesGroupedByMonth;
-- (NSDictionary<NSString *, NSArray<BSExpenseEntry *> *> * _Nonnull)entriesGroupedByYear;
-- (NSArray<BSExpenseEntry *> * _Nonnull)allEntries;
+- (NSDictionary<NSString *, NSArray<Expense *> *> * _Nonnull)entriesGroupedByDay;
+- (NSDictionary<NSString *, NSArray<Expense *> *> * _Nonnull)entriesGroupedByMonth;
+- (NSDictionary<NSString *, NSArray<Expense *> *> * _Nonnull)entriesGroupedByYear;
+- (NSArray<Expense *> * _Nonnull)allEntries;
 @end

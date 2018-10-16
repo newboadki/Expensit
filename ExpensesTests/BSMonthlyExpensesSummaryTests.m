@@ -386,7 +386,7 @@
     NSArray *tags = @[@"Food", @"Bills", @"Travel"];
     [self.coreDataController createTags:tags];
     foodTag = [self.coreDataController tagForName:@"Food"];
-    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    ExpenseCategory *foodCategory = [[ExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     billsTag = [self.coreDataController tagForName:@"Bills"];
     travelTag = [self.coreDataController tagForName:@"Travel"];
 

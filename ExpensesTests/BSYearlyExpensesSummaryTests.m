@@ -156,7 +156,7 @@ static BSCoreDataFetchController *fetchController;
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"21/12/2011"] description:@"Rent" value:@"-10" category:billsTag];    
     [coreDataController insertNewEntryWithDate:[DateTimeHelper dateWithFormat:nil stringDate:@"19/07/2012"] description:@"Food and drinks" value:@"-5" category:foodTag];
     
-    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    ExpenseCategory *foodCategory = [[ExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     [yearlyViewController filterChangedToCategory:foodCategory];
     
     // This preenter is not the same instance that is created at the top of the file
@@ -293,7 +293,7 @@ static Tag* travelTag;
 - (void)testOnlyTakeIntoAccountEntriesFromTheSpecifiedCategory
 {
     XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@""];
-    BSExpenseCategory *foodCategory = [[BSExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
+    ExpenseCategory *foodCategory = [[ExpenseCategory alloc] initWithName:foodTag.name iconName:foodTag.iconImageName color:foodTag.color];
     [yearlyViewController filterChangedToCategory:foodCategory];
 
     [yearlyViewController.showEntriesPresenter viewIsReadyToDisplayEntriesCompletionBlock:^(NSArray<BSDisplayExpensesSummarySection *> * _Nonnull sections) {

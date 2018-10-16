@@ -18,7 +18,7 @@ import Foundation
     ///
     /// - Parameter category: New category selected in the UI.
     @objc(filterChangedToCategory:)
-    func filterChanged(to category : BSExpenseCategory?)
+    func filterChanged(to category : ExpenseCategory?)
     
     
     /// The UI requests new data to be displayed
@@ -32,7 +32,7 @@ import Foundation
     ///
     /// - Parameter category: Category selected in the UI.
     @objc(viewIsReadyToDisplayImageForCategory:)
-    func viewIsReadyToDisplayImage(for category : BSExpenseCategory?)
+    func viewIsReadyToDisplayImage(for category : ExpenseCategory?)
     
     
     /// Notifies the system of an important UI-related event

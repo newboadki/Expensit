@@ -16,16 +16,16 @@ import Foundation
     /// Fetches a collection of entries, groupped by sectionNameKeyPath
     ///
     /// - Returns: An array of EntryEntityGroup an entity container grouped by a key
-    func entriesForSummary() -> [BSEntryEntityGroup]
+    func entriesForSummary() -> [ExpensesGroup]
     
     /// Fetches an image for a given category
     ///
     /// - Parameter category: The category to search an image for.
     /// - Returns: An image. Nil if there was an error.
-    func image(for category: BSExpenseCategory?) -> UIImage?
+    func image(for category: ExpenseCategory?) -> UIImage?
     
     /// Changes internal configuration to filter accordanly next time entries for summary gets called.
     ///
     /// - Parameter category: The category to filter by.
-    func filter(by category : BSExpenseCategory?)
+    func filter(by category : ExpenseCategory?)
 }

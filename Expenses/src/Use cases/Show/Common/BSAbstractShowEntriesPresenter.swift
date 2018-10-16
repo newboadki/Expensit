@@ -30,7 +30,7 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     
     // MARK: BSBaseExpensesSummaryPresenterEventsProtocol
     
-    func filterChanged(to category : BSExpenseCategory?) {
+    func filterChanged(to category : ExpenseCategory?) {
         self.showEntriesController.filter(by : category)
     }
     
@@ -52,7 +52,7 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     
-    func viewIsReadyToDisplayImage(for category : BSExpenseCategory?) {
+    func viewIsReadyToDisplayImage(for category : ExpenseCategory?) {
                 
         if let image = self.showEntriesController.image(for: category) {
             self.userInteface.displayCategoryImage(image)
@@ -70,7 +70,7 @@ class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresen
     }
     
     
-    func displayDataFromEntriesForSummary(_ sections : [BSEntryEntityGroup]) -> [BSDisplayExpensesSummarySection]
+    func displayDataFromEntriesForSummary(_ sections : [ExpensesGroup]) -> [BSDisplayExpensesSummarySection]
     {
         return []
     }

@@ -10,7 +10,7 @@ import Foundation
 
 
 /// An expense represents the cost incurred in or required for something.
-class BSExpenseEntry : NSObject {
+class Expense : NSObject {
 
     var identifier: NSCopying?
     var date: Date?
@@ -20,7 +20,7 @@ class BSExpenseEntry : NSObject {
     /// Categories are optional, becuase aggragated values are also represented as an expenses entry.
     /// For example the aggregation of all yearly entries is an value with an associated date, from which only the year is representative.
     /// In the case of aggregated entries, the category does not make sense, because multiple categories might be included.
-    var category: BSExpenseCategory?
+    var category: ExpenseCategory?
     
     var year: UInt? {
         get {
@@ -40,7 +40,7 @@ class BSExpenseEntry : NSObject {
         }
     }
 
-    init(date: Date?, value: NSDecimalNumber, description: String?, category: BSExpenseCategory?) {
+    init(date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
         self.date = date
         self.value = value
         self.entryDescription = description

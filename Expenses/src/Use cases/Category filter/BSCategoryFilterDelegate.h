@@ -7,10 +7,10 @@
 //
 
 
-@class BSExpenseCategory;
+@class ExpenseCategory;
 
 @protocol BSCategoryFilterDelegate <NSObject>
 
-- (void)filterChangedToCategory:(BSExpenseCategory * _Nullable)category;
+- (void)filterChangedToCategory:(ExpenseCategory * _Nullable)category;
 
 @end

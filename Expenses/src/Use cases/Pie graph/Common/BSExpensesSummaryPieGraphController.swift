@@ -16,12 +16,12 @@ class BSExpensesSummaryPieGraphController : BSPieGraphControllerProtocol {
         self.dataProvider = dataProvider
     }
     
-    func sortedTagsByPercentage(fromSections tags: [BSExpenseCategory], sections : [BSPieChartSectionInfo]) -> [BSExpenseCategory]? {
+    func sortedTagsByPercentage(fromSections tags: [ExpenseCategory], sections : [BSPieChartSectionInfo]) -> [ExpenseCategory]? {
         return self.dataProvider.sortedCategoriesByPercentage(fromCategories: tags, sections: sections)
     }
     
     // make month nil
-    func categories(forMonth month: NSNumber?, year : NSNumber) -> [BSExpenseCategory]? {
+    func categories(forMonth month: NSNumber?, year : NSNumber) -> [ExpenseCategory]? {
         return self.dataProvider.categories(forMonth: month, inYear: year)
     }
     

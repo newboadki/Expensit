@@ -23,15 +23,15 @@ import Foundation
     
     // MARK: - BSAbstractShowEntriesControllerProtocol
     
-    func filter(by category: BSExpenseCategory?) {
+    func filter(by category: ExpenseCategory?) {
         self.dataProvider.filter(summaryType:.monthly, by: category)
     }
     
-    func entriesForSummary() -> [BSEntryEntityGroup] {
+    func entriesForSummary() -> [ExpensesGroup] {
         return self.dataProvider.entriesGroupedByMonth()
     }
     
-    func image(for category: BSExpenseCategory?) -> UIImage? {
+    func image(for category: ExpenseCategory?) -> UIImage? {
         return self.dataProvider.image(for: category)
     }
     

@@ -16,15 +16,15 @@ import Foundation
         self.dataProvider = dataProvider
     }
     
-    func filter(by category: BSExpenseCategory?) {
+    func filter(by category: ExpenseCategory?) {
         self.dataProvider.filter(summaryType:.all, by: category)
     }
     
-    func entriesForSummary() -> [BSEntryEntityGroup] {
+    func entriesForSummary() -> [ExpensesGroup] {
         return self.dataProvider.allEntries()
     }
     
-    func image(for category: BSExpenseCategory?) -> UIImage? {
+    func image(for category: ExpenseCategory?) -> UIImage? {
         return self.dataProvider.image(for: category)
     }
 }

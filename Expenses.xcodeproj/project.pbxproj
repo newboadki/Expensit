@@ -664,7 +664,6 @@
 		000D04E11775BD56002D0AB8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00223BB92169FFCA00E76784 /* Data sources */,
 				00223BB22169FF5800E76784 /* Business Domain */,
 				00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */,
 				00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */,
@@ -710,13 +709,6 @@
 				00223BB52169FF5800E76784 /* BSExpenseEntry.swift */,
 			);
 			path = "Business Domain";
-			sourceTree = "<group>";
-		};
-		00223BB92169FFCA00E76784 /* Data sources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Data sources";
 			sourceTree = "<group>";
 		};
 		00223BC1216A007200E76784 /* Data Sources */ = {
@@ -787,12 +779,12 @@
 				000A9A9C1D09FAB00045523A /* Category filter */,
 				000A9A321D09EB710045523A /* Add entry */,
 				000A9A081D09E5590045523A /* Line graph */,
-				0077D5711CED01FF00003F71 /* show */,
+				0077D5711CED01FF00003F71 /* Show */,
 			);
 			path = "Use cases";
 			sourceTree = "<group>";
 		};
-		0077D5711CED01FF00003F71 /* show */ = {
+		0077D5711CED01FF00003F71 /* Show */ = {
 			isa = PBXGroup;
 			children = (
 				000A9A421D09ED0A0045523A /* Common */,
@@ -801,7 +793,7 @@
 				000A9A431D09ED0A0045523A /* Daily results */,
 				000A9A461D09EF710045523A /* All results */,
 			);
-			path = show;
+			path = Show;
 			sourceTree = "<group>";
 		};
 		007B8240177476780052FE84 = {

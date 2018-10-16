@@ -13,9 +13,15 @@ import Foundation
     
     private var dataProvider: BSCoreDataFetchController
     
+    
+    // MARK: - Initializers
+    
     public init(dataProvider: BSCoreDataFetchController) {
         self.dataProvider = dataProvider
     }
+    
+    
+    // MARK: - BSAbstractShowEntriesControllerProtocol
     
     func filter(by category: BSExpenseCategory?) {
         self.dataProvider.filter(summaryType:.monthly, by: category)

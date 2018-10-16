@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// This is a domain model representing an entry
+/// An expense represents the cost incurred in or required for something.
 class BSExpenseEntry : NSObject {
 
     var identifier: NSCopying?

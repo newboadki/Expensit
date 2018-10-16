@@ -29,8 +29,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if (self) {
-//        self.backgroundColor = [UIColor redColor];
+    if (self)
+    {
         
     }
     return self;

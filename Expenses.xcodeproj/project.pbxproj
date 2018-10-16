@@ -94,7 +94,6 @@
 		0045D61C1DBCC72A006AA5AE /* BSDailyExpensesLineGraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */; };
 		0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000481EB1780CEEA00E7F401 /* BSPerEntrySummaryTests.m */; };
 		00535F081E3F212800AD7A7C /* ContainmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00535F071E3F212800AD7A7C /* ContainmentEvent.m */; };
-		0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053A7D418F9E43600D63918 /* BSYearlyLayout.m */; };
 		0058AA5221765F45007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4621765F44007AD175 /* BSAbstractShowEntriesPresenter.swift */; };
 		0058AA5321765F45007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4721765F44007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift */; };
 		0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
@@ -139,6 +138,20 @@
 		0058AAB8217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */; };
 		0058AAB9217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */; };
 		0058AABA217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */; };
+		0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AABB21766548007AD175 /* BSYearlyLayout.m */; };
+		0058AABF21766549007AD175 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AABB21766548007AD175 /* BSYearlyLayout.m */; };
+		0058AAC421766573007AD175 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC021766573007AD175 /* BSMonthlyGridLayout.m */; };
+		0058AAC521766573007AD175 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC021766573007AD175 /* BSMonthlyGridLayout.m */; };
+		0058AAC621766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC321766573007AD175 /* BSMonthlySummaryEntryCell.m */; };
+		0058AAC721766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC321766573007AD175 /* BSMonthlySummaryEntryCell.m */; };
+		0058AACE2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC82176659E007AD175 /* BSDailySummanryEntryCell.m */; };
+		0058AACF2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC82176659E007AD175 /* BSDailySummanryEntryCell.m */; };
+		0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AACC2176659E007AD175 /* BSDailyLayout.m */; };
+		0058AAD12176659E007AD175 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AACC2176659E007AD175 /* BSDailyLayout.m */; };
+		0058AAD22176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AACD2176659E007AD175 /* BSDailyEntryHeaderView.m */; };
+		0058AAD32176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AACD2176659E007AD175 /* BSDailyEntryHeaderView.m */; };
+		0058AAD621766659007AD175 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAD521766659007AD175 /* BSBaseExpenseCell.m */; };
+		0058AAD721766659007AD175 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAD521766659007AD175 /* BSBaseExpenseCell.m */; };
 		00592F1D1E35E55E009182D2 /* BSContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00592F1C1E35E55E009182D2 /* BSContainerViewController.m */; };
 		00592F1E1E35E55E009182D2 /* BSContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00592F1C1E35E55E009182D2 /* BSContainerViewController.m */; };
 		005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF5EB178B58A500DC1800 /* BSGraphView.m */; };
@@ -169,17 +182,11 @@
 		009D01191943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D01181943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
 		00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */; };
 		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
-		00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */; };
-		00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */; };
-		00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */; };
 		00CC8CC42167E527003180FE /* BSMonthlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */; };
 		00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */; };
 		00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */; };
 		00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */; };
-		00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */; };
-		00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0F8178F40A100474A30 /* BSDailyLayout.m */; };
 		00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */; };
-		00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */; };
 		00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
 		00F9213A17FF769000CACB4D /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 00F9213917FF769000CACB4D /* OCMock */; };
 		00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F9B3BE18E76414009F626E /* BSVisualEffects.m */; };
@@ -327,8 +334,6 @@
 		00535F061E3F212800AD7A7C /* ContainmentEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEvent.h; sourceTree = "<group>"; };
 		00535F071E3F212800AD7A7C /* ContainmentEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainmentEvent.m; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
-		0053A7D318F9E43600D63918 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
-		0053A7D418F9E43600D63918 /* BSYearlyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyLayout.m; sourceTree = "<group>"; };
 		0056DAEA1E2766710091CE1C /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		0058AA4621765F44007AD175 /* BSAbstractShowEntriesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractShowEntriesPresenter.swift; sourceTree = "<group>"; };
 		0058AA4721765F44007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractExpensesSummaryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
@@ -358,11 +363,25 @@
 		0058AAAE217662D0007AD175 /* BSShowAllEntriesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowAllEntriesPresenter.swift; sourceTree = "<group>"; };
 		0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSIndividualEntriesSummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
 		0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowAllEntriesController.swift; sourceTree = "<group>"; };
+		0058AABB21766548007AD175 /* BSYearlyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyLayout.m; sourceTree = "<group>"; };
+		0058AABC21766549007AD175 /* BSYearlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlySummaryEntryCell.h; sourceTree = "<group>"; };
+		0058AABD21766549007AD175 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
+		0058AAC021766573007AD175 /* BSMonthlyGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyGridLayout.m; sourceTree = "<group>"; };
+		0058AAC121766573007AD175 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
+		0058AAC221766573007AD175 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
+		0058AAC321766573007AD175 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
+		0058AAC82176659E007AD175 /* BSDailySummanryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummanryEntryCell.m; sourceTree = "<group>"; };
+		0058AAC92176659E007AD175 /* BSDailySummanryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailySummanryEntryCell.h; sourceTree = "<group>"; };
+		0058AACA2176659E007AD175 /* BSDailyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyLayout.h; sourceTree = "<group>"; };
+		0058AACB2176659E007AD175 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
+		0058AACC2176659E007AD175 /* BSDailyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyLayout.m; sourceTree = "<group>"; };
+		0058AACD2176659E007AD175 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
+		0058AAD421766659007AD175 /* BSBaseExpenseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpenseCell.h; sourceTree = "<group>"; };
+		0058AAD521766659007AD175 /* BSBaseExpenseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpenseCell.m; sourceTree = "<group>"; };
 		00592F1B1E35E55E009182D2 /* BSContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSContainerViewController.h; sourceTree = "<group>"; };
 		00592F1C1E35E55E009182D2 /* BSContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSContainerViewController.m; sourceTree = "<group>"; };
 		005DF5EA178B58A500DC1800 /* BSGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGraphView.h; sourceTree = "<group>"; };
 		005DF5EB178B58A500DC1800 /* BSGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphView.m; sourceTree = "<group>"; };
-		00735EB6178835CD00725DFD /* BSYearlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlySummaryEntryCell.h; sourceTree = "<group>"; };
 		0077D58B1CED11CB00003F71 /* ExpensesTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpensesTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0077D58C1CED11DC00003F71 /* Expenses-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Expenses-Bridging-Header.h"; sourceTree = "<group>"; };
 		007B8249177476780052FE84 /* Expensit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,25 +431,13 @@
 		00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTriangularAccesoryView.m; sourceTree = "<group>"; };
 		00BAA0741E31415A00EC2C10 /* ContainmentEventsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEventsAPI.h; sourceTree = "<group>"; };
 		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
-		00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyEntryHeaderView.h; sourceTree = "<group>"; };
-		00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyEntryHeaderView.m; sourceTree = "<group>"; };
-		00BEAFC817775D6C00A59EE2 /* BSDailySummanryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailySummanryEntryCell.h; sourceTree = "<group>"; };
-		00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailySummanryEntryCell.m; sourceTree = "<group>"; };
-		00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlySummaryEntryCell.h; sourceTree = "<group>"; };
-		00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlySummaryEntryCell.m; sourceTree = "<group>"; };
 		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
 		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
 		00D7E0EF178DE50F00474A30 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
 		00D7E0F0178DE50F00474A30 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
-		00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyGridLayout.h; sourceTree = "<group>"; };
-		00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyGridLayout.m; sourceTree = "<group>"; };
-		00D7E0F7178F40A100474A30 /* BSDailyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyLayout.h; sourceTree = "<group>"; };
-		00D7E0F8178F40A100474A30 /* BSDailyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyLayout.m; sourceTree = "<group>"; };
 		00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSingleEntryCell.h; sourceTree = "<group>"; };
 		00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSingleEntryCell.m; sourceTree = "<group>"; };
-		00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpenseCell.h; sourceTree = "<group>"; };
-		00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpenseCell.m; sourceTree = "<group>"; };
 		00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
 		00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
 		00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryTests.m; sourceTree = "<group>"; };
@@ -776,6 +783,8 @@
 		0058AA4821765F45007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0058AAD421766659007AD175 /* BSBaseExpenseCell.h */,
+				0058AAD521766659007AD175 /* BSBaseExpenseCell.m */,
 				0058AA4921765F45007AD175 /* BSBaseExpensesSummaryViewController.h */,
 				0058AA4A21765F45007AD175 /* BSBaseExpensesSummaryViewController+Protected.h */,
 				0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */,
@@ -812,6 +821,9 @@
 		0058AA632176605D007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0058AABD21766549007AD175 /* BSYearlyLayout.h */,
+				0058AABB21766548007AD175 /* BSYearlyLayout.m */,
+				0058AABC21766549007AD175 /* BSYearlySummaryEntryCell.h */,
 				0058AA642176605D007AD175 /* BSYearlyExpensesSummaryViewController.h */,
 				0058AA682176605D007AD175 /* BSYearlyExpensesSummaryViewController.m */,
 			);
@@ -844,6 +856,10 @@
 		0058AA8721766163007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0058AAC221766573007AD175 /* BSMonthlyGridLayout.h */,
+				0058AAC021766573007AD175 /* BSMonthlyGridLayout.m */,
+				0058AAC121766573007AD175 /* BSMonthlySummaryEntryCell.h */,
+				0058AAC321766573007AD175 /* BSMonthlySummaryEntryCell.m */,
 				0058AA8821766163007AD175 /* BSMonthlyExpensesSummaryViewController.h */,
 				0058AA8921766163007AD175 /* BSMonthlyExpensesSummaryViewController.m */,
 			);
@@ -876,6 +892,12 @@
 		0058AA95217661DA007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0058AACB2176659E007AD175 /* BSDailyEntryHeaderView.h */,
+				0058AACD2176659E007AD175 /* BSDailyEntryHeaderView.m */,
+				0058AACA2176659E007AD175 /* BSDailyLayout.h */,
+				0058AACC2176659E007AD175 /* BSDailyLayout.m */,
+				0058AAC92176659E007AD175 /* BSDailySummanryEntryCell.h */,
+				0058AAC82176659E007AD175 /* BSDailySummanryEntryCell.m */,
 				0058AA96217661DA007AD175 /* BSDailyExpensesSummaryViewController.h */,
 				0058AA97217661DA007AD175 /* BSDailyExpensesSummaryViewController.m */,
 			);
@@ -1139,26 +1161,11 @@
 				001FF01118E2178D004F06DB /* UIImage+ImageEffects.h */,
 				001FF01218E2178D004F06DB /* UIImage+ImageEffects.m */,
 				009C9EDB17B68F2A00DE1A97 /* Themes */,
-				00BEAFC617775D6C00A59EE2 /* BSDailyEntryHeaderView.h */,
-				00BEAFC717775D6C00A59EE2 /* BSDailyEntryHeaderView.m */,
 				009D010A194307A500B850D4 /* BSChartLegendCollectionViewCell.h */,
 				009D010B194307A500B850D4 /* BSChartLegendCollectionViewCell.m */,
-				00BEAFC817775D6C00A59EE2 /* BSDailySummanryEntryCell.h */,
-				00BEAFC917775D6C00A59EE2 /* BSDailySummanryEntryCell.m */,
-				00BEAFD217775F2900A59EE2 /* BSMonthlySummaryEntryCell.h */,
-				00BEAFD317775F2900A59EE2 /* BSMonthlySummaryEntryCell.m */,
-				00E9F16A177F1A2C00A1A212 /* BSBaseExpenseCell.h */,
-				00E9F16B177F1A2C00A1A212 /* BSBaseExpenseCell.m */,
-				00735EB6178835CD00725DFD /* BSYearlySummaryEntryCell.h */,
 				005DF5EA178B58A500DC1800 /* BSGraphView.h */,
 				005DF5EB178B58A500DC1800 /* BSGraphView.m */,
-				00D7E0F3178F3A5000474A30 /* BSMonthlyGridLayout.h */,
-				00D7E0F4178F3A5000474A30 /* BSMonthlyGridLayout.m */,
-				00D7E0F7178F40A100474A30 /* BSDailyLayout.h */,
-				00D7E0F8178F40A100474A30 /* BSDailyLayout.m */,
 				00D7E0FB178F491200474A30 /* BSSingleEntryCell.h */,
-				0053A7D318F9E43600D63918 /* BSYearlyLayout.h */,
-				0053A7D418F9E43600D63918 /* BSYearlyLayout.m */,
 				00D7E0FC178F491200474A30 /* BSSingleEntryCell.m */,
 				00A5DB7417C12DC300FCE765 /* BSTriangularAccesoryView.h */,
 				00A5DB7517C12DC300FCE765 /* BSTriangularAccesoryView.m */,
@@ -1363,9 +1370,11 @@
 				000A9A211D09E99F0045523A /* BSMonthlySummaryNavigationTransitionManager.swift in Sources */,
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				00223BDF216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
+				0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */,
 				0058AA732176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
 				000A9A3E1D09EB710045523A /* BSAddEntryPresenter.swift in Sources */,
 				00223BDB216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
+				0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */,
 				00F9B3BF18E76414009F626E /* BSVisualEffects.m in Sources */,
 				00223BB82169FF5800E76784 /* Expense.swift in Sources */,
@@ -1373,12 +1382,13 @@
 				000A9A9E1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				005DF5EC178B58A500DC1800 /* BSGraphView.m in Sources */,
 				00223BDE216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
+				0058AAC421766573007AD175 /* BSMonthlyGridLayout.m in Sources */,
 				0058AAA821766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				0058AA5521765F45007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */,
+				0058AAD22176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
 				009C9EE717B6939100DE1A97 /* BSThemeManager_iOS7.m in Sources */,
-				0053A7D518F9E43600D63918 /* BSYearlyLayout.m in Sources */,
 				00535F081E3F212800AD7A7C /* ContainmentEvent.m in Sources */,
 				000A9A3A1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
 				000A9A381D09EB710045523A /* BSAddEntryController.swift in Sources */,
@@ -1388,15 +1398,15 @@
 				0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
 				0058AA9D217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
-				00E9F16C177F1A2C00A1A212 /* BSBaseExpenseCell.m in Sources */,
 				00223BEC216A020E00E76784 /* Tag.m in Sources */,
 				00223BCA216A007200E76784 /* BSCoreDataFetchController.swift in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
+				0058AAC621766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */,
 				00A5DB7617C12DC300FCE765 /* BSTriangularAccesoryView.m in Sources */,
 				009D01191943A08B00B850D4 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
 				0058AA5221765F45007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */,
 				000A9AD91D0C46E60045523A /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
-				00BEAFCA17775D6C00A59EE2 /* BSDailyEntryHeaderView.m in Sources */,
+				0058AACE2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				000A9ADC1D0C48C90045523A /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				009C9EE317B6912900DE1A97 /* BSThemeManager.m in Sources */,
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
@@ -1417,19 +1427,17 @@
 				00223BED216A020E00E76784 /* Entry.m in Sources */,
 				001FF01318E2178D004F06DB /* UIImage+ImageEffects.m in Sources */,
 				0058AA9121766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
-				00BEAFCC17775D6C00A59EE2 /* BSDailySummanryEntryCell.m in Sources */,
 				000A9AA41D09FBCA0045523A /* BSCategoryFilterPresenter.swift in Sources */,
 				00D7E0FD178F491200474A30 /* BSSingleEntryCell.m in Sources */,
 				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
-				00BEAFD417775F2900A59EE2 /* BSMonthlySummaryEntryCell.m in Sources */,
 				0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				0058AAB7217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
 				000A9A401D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
-				00D7E0F5178F3A5000474A30 /* BSMonthlyGridLayout.m in Sources */,
 				00223BDC216A014100E76784 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				000A9AA71D09FBDE0045523A /* BSCategoryFilterController.swift in Sources */,
 				000A9AAF1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
+				0058AAD621766659007AD175 /* BSBaseExpenseCell.m in Sources */,
 				00D7E0F1178DE50F00474A30 /* BSNavigationControllerViewController.m in Sources */,
 				00418B8C1D23045F00DB4528 /* PaddingLabel.swift in Sources */,
 				000A9AC81D0C14000045523A /* BSPieGraphInterfaceProtocol.swift in Sources */,
@@ -1441,7 +1449,6 @@
 				003C44B81E4F028200308852 /* PieChartPresentationController.swift in Sources */,
 				00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */,
 				0058AA7F2176605D007AD175 /* BSShowYearlyEntriesPresenter.swift in Sources */,
-				00D7E0F9178F40A100474A30 /* BSDailyLayout.m in Sources */,
 				000A9A131D09E5590045523A /* BSYearlySummaryNavigationTransitionManager.swift in Sources */,
 				0058AAB5217662D0007AD175 /* BSShowAllEntriesPresenter.swift in Sources */,
 				0058AAA5217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift in Sources */,
@@ -1459,9 +1466,11 @@
 				000A9AC91D0C14000045523A /* BSPieGraphInterfaceProtocol.swift in Sources */,
 				0058AA5E21765FA3007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				0058AA742176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
+				0058AACF2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */,
 				000A9A9F1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				0058AAA6217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift in Sources */,
+				0058AAD12176659E007AD175 /* BSDailyLayout.m in Sources */,
 				0058AA9221766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
 				0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */,
 				000A9A971D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */,
@@ -1499,6 +1508,7 @@
 				0058AA802176605D007AD175 /* BSShowYearlyEntriesPresenter.swift in Sources */,
 				00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */,
 				00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */,
+				0058AAD32176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				0058AABA217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */,
 				000A9A3B1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
@@ -1506,7 +1516,11 @@
 				0058AA5A21765F79007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */,
 				00CC8CC42167E527003180FE /* BSMonthlyExpensesSummaryTests.m in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
+				0058AAD721766659007AD175 /* BSBaseExpenseCell.m in Sources */,
+				0058AAC521766573007AD175 /* BSMonthlyGridLayout.m in Sources */,
+				0058AAC721766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */,
 				0058AA9E217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
+				0058AABF21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				0058AAB6217662D0007AD175 /* BSShowAllEntriesPresenter.swift in Sources */,
 				000A9A101D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,

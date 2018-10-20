@@ -45,6 +45,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
     func delete(entry : Expense) {
         self.coreDataFetchController.delete(entry: entry)
+        self.coreDataFetchController.saveChanges()
     }
     
     func saveChanges() {

@@ -175,6 +175,11 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Editing
     
+    public func saveChanges()
+    {
+        self.coreDataController.saveChanges()
+    }
+    
     public func save(existingEntry expenseEntryEntity: Expense) -> (Bool, NSError?)
     {
         var entryToSave: Entry?

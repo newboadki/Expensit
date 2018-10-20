@@ -97,7 +97,7 @@ static ExpenseCategory *tagBeingFilterBy = nil;
         [self scrollToSelectedSection];
         
         // Let know interested parties that a section is visible. This is being used in certain trait collections
-        // to update other view, like a chart that represents the data contained in the visible section.
+        // to update another view, like a chart that represents the data contained in the visible section.
         ContainmentEvent *event = [[ContainmentEvent alloc] initWithType:ChildControlledContentChanged userInfo:@{@"SectionName": [self visibleSectionName], @"SummaryType" : @(self.summaryType) }];
         [self.containmentEventsDelegate raiseEvent:event fromSender:self];
     }];

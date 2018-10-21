@@ -245,10 +245,7 @@
 
 - (NSArray *)actionsForEventInDelete:(BSStaticTableViewCellAbstractEvent *)event indexPath:(NSIndexPath *)indexPath
 {
-    // The model to delete should come in the event!!
-    
-    // We could use a better event name
-    
+    // TODO: Find a better event name
     BSStaticTableViewCellChangeOfValueEvent *changeEvent = (BSStaticTableViewCellChangeOfValueEvent *)event;
     id model = changeEvent.value;
 

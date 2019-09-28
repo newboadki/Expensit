@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class ExpenseCategory : NSObject {
+@objc class ExpenseCategory : NSObject {
 
-    var name: String
-    var iconName: String
-    var color: UIColor
+    @objc var name: String
+    @objc var iconName: String
+    @objc var color: UIColor
     
-    init(name: String, iconName: String, color: UIColor) {
+    @objc init(name: String, iconName: String, color: UIColor) {
         self.name = name
         self.iconName = iconName
         self.color = color

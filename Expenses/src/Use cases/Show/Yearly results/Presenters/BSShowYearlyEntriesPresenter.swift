@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
+@objc class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
 {
     
     // MARK: From BSAbstractShowEntriesPresenter
@@ -17,7 +17,7 @@ class BSShowYearlyEntriesPresenter : BSAbstractShowEntriesPresenter
     ///
     /// - Parameter data: CoreData query results
     /// - Returns: Array of view-models
-    override func displayDataFromEntriesForSummary(_ sections : [ExpensesGroup]) -> [BSDisplayExpensesSummarySection]
+    @objc override func displayDataFromEntriesForSummary(_ sections : [ExpensesGroup]) -> [BSDisplayExpensesSummarySection]
     {
         var displaySections = [BSDisplayExpensesSummarySection]()
         

@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
+@objc class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
 {
     
-    func configureDailyExpensesViewControllerWithSegue(_ segue : UIStoryboardSegue, nameOfSectionToBeShown : String)
+    @objc func configureDailyExpensesViewControllerWithSegue(_ segue : UIStoryboardSegue, nameOfSectionToBeShown : String)
     {
         let dailyExpensesViewController = segue.destination as! BSDailyExpensesSummaryViewController
         dailyExpensesViewController.nameOfSectionToBeShown = nameOfSectionToBeShown;
@@ -26,20 +26,20 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
         dailyExpensesViewController.containmentEventsDelegate = self.containmentEventsDelegate!
     }
     
-    func configureMonthlyExpensesLineGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, section : String)
+    @objc func configureMonthlyExpensesLineGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, section : String)
     {
         let graphViewController = segue.destination as! BSGraphViewController
         self.configureMonthylExpensesLineGraphViewController(graphViewController, section: section)
     }
     
-    func configureMonthylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
+    @objc func configureMonthylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
         let monthlyLineGraphController : BSGraphLineControllerProtocol = BSMonthlySummaryGraphLineController(coreDataFetchController:self.coreDataFetchController)
         let monthlyLineGraphPresenter : BSGraphLinePresenterProtocol = BSMonthlySummaryGraphLinePresenter(monthlySummaryGraphLineController: monthlyLineGraphController, section: section)
         graphViewController.lineGraphPresenter = monthlyLineGraphPresenter
 
     }
     
-    func configureMonthlyExpensesPieGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate)
+    @objc func configureMonthlyExpensesPieGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate)
     {
         
         segue.destination.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
@@ -52,7 +52,7 @@ class BSMonthlySummaryNavigationTransitionManager : BSBaseNavigationTransitionMa
                                                             animatedBlurEffectTransitioningDelegate: animatedBlurEffectTransitioningDelegate)
     }
     
-    func configureMonthylExpensesPieGraphViewController(_ graphViewController : BSPieChartViewController, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate) {
+    @objc func configureMonthylExpensesPieGraphViewController(_ graphViewController : BSPieChartViewController, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate) {
         
         graphViewController.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
         graphViewController.modalPresentationStyle = .custom

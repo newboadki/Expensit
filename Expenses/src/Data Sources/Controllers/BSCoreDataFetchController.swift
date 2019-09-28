@@ -8,9 +8,9 @@
 
 import UIKit
 
-class BSCoreDataFetchController: NSObject {
+@objc class BSCoreDataFetchController: NSObject {
 
-    public enum FetchControllerType {
+    @objc enum FetchControllerType: Int {
         case yearly
         case monthly
         case daily
@@ -24,7 +24,7 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Private
     
-    init(coreDataController: BSCoreDataController) {
+    @objc init(coreDataController: BSCoreDataController) {
         self.coreDataController = coreDataController
         self.fetchControllers = [FetchControllerType : NSFetchedResultsController<NSFetchRequestResult>]()
         self.fetchControllers[.yearly] = self.coreDataController.fetchedResultsControllerForEntriesGroupedByYear()
@@ -38,17 +38,17 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Filtering
     
-    public func filter(summaryType: FetchControllerType, by category: ExpenseCategory?) {
+    @objc func filter(summaryType: FetchControllerType, by category: ExpenseCategory?) {
         let fetchController = self.fetchControllers[summaryType]
         if let category = category {
             let tag = self.coreDataController.tag(forName: category.name)
-            self.coreDataController.modifyfetchRequest((fetchController?.fetchRequest)!, toFilterByCategory: tag)
+            self.coreDataController.modifyfetchRequest((fetchController!.fetchRequest), toFilterByCategory: tag)
         } else {
-            self.coreDataController.modifyfetchRequest((fetchController?.fetchRequest)!, toFilterByCategory: nil)
+            self.coreDataController.modifyfetchRequest((fetchController!.fetchRequest), toFilterByCategory: nil)
         }
     }
     
-    public func image(for category: ExpenseCategory?) -> UIImage? {
+    @objc func image(for category: ExpenseCategory?) -> UIImage? {
         return self.coreDataController.image(forCategoryName: category?.name)
     }
     
@@ -56,7 +56,7 @@ class BSCoreDataFetchController: NSObject {
     
     // MARK: - Summary results
     
-    public func entriesGroupedByYear() -> [ExpensesGroup]
+    @objc  func entriesGroupedByYear() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.yearly]
         let sections = self.performRequest(on: fetchController!)
@@ -86,7 +86,7 @@ class BSCoreDataFetchController: NSObject {
         return results
     }
 
-    public func entriesGroupedByMonth() -> [ExpensesGroup]
+    @objc  func entriesGroupedByMonth() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.monthly]
         let sections = self.performRequest(on: fetchController!)
@@ -114,7 +114,7 @@ class BSCoreDataFetchController: NSObject {
         return results
     }
 
-    public func entriesGroupedByDay() -> [ExpensesGroup] {
+    @objc  func entriesGroupedByDay() -> [ExpensesGroup] {
         
         let fetchController = self.fetchControllers[.daily]
         let sections = self.performRequest(on: fetchController!)
@@ -143,7 +143,7 @@ class BSCoreDataFetchController: NSObject {
 
     }
 
-    public func allEntries() -> [ExpensesGroup]
+    @objc public func allEntries() -> [ExpensesGroup]
     {
         let fetchController = self.fetchControllers[.all]
         let sections = self.performRequest(on: fetchController!)

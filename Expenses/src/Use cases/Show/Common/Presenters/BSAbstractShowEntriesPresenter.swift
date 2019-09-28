@@ -12,14 +12,14 @@ import UIKit
 
 
 /// Contains template code to be adapted by concrete implementations of presenters.
-class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresenterEventsProtocol {
+@objc class BSAbstractShowEntriesPresenter : NSObject, BSAbstractExpensesSummaryPresenterEventsProtocol {
     
     var showEntriesController : BSAbstractShowEntriesControllerProtocol
     var userInteface : BSAbstractExpensesSummaryUserInterfaceProtocol
     var backgroundQueue: DispatchQueue
     
     
-    init!(showEntriesUserInterface: BSAbstractExpensesSummaryUserInterfaceProtocol,
+    @objc init!(showEntriesUserInterface: BSAbstractExpensesSummaryUserInterfaceProtocol,
          showEntriesController : BSAbstractShowEntriesControllerProtocol) {
         self.userInteface = showEntriesUserInterface
         self.showEntriesController = showEntriesController

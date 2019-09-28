@@ -29,32 +29,8 @@
 		000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A291D09EA980045523A /* BSGraphLineControllerProtocol.swift */; };
 		000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
 		000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
-		000A9A381D09EB710045523A /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A331D09EB710045523A /* BSAddEntryController.swift */; };
-		000A9A391D09EB710045523A /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A331D09EB710045523A /* BSAddEntryController.swift */; };
-		000A9A3A1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A341D09EB710045523A /* BSAddEntryControllerProtocol.swift */; };
-		000A9A3B1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A341D09EB710045523A /* BSAddEntryControllerProtocol.swift */; };
-		000A9A3C1D09EB710045523A /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A351D09EB710045523A /* BSAddEntryInterfaceProtocol.swift */; };
-		000A9A3D1D09EB710045523A /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A351D09EB710045523A /* BSAddEntryInterfaceProtocol.swift */; };
-		000A9A3E1D09EB710045523A /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A361D09EB710045523A /* BSAddEntryPresenter.swift */; };
-		000A9A3F1D09EB710045523A /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A361D09EB710045523A /* BSAddEntryPresenter.swift */; };
-		000A9A401D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A371D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift */; };
-		000A9A411D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A371D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift */; };
-		000A9A961D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A951D09F7560045523A /* BSEntryDetailsFormViewController.m */; };
-		000A9A971D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A951D09F7560045523A /* BSEntryDetailsFormViewController.m */; };
 		000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A991D09F90E0045523A /* LineGraph.m */; };
 		000A9A9B1D09F90E0045523A /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A991D09F90E0045523A /* LineGraph.m */; };
-		000A9A9E1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A9D1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift */; };
-		000A9A9F1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A9D1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift */; };
-		000A9AA11D09FB760045523A /* BSCategoryFilterControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA01D09FB760045523A /* BSCategoryFilterControllerProtocol.swift */; };
-		000A9AA21D09FB760045523A /* BSCategoryFilterControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA01D09FB760045523A /* BSCategoryFilterControllerProtocol.swift */; };
-		000A9AA41D09FBCA0045523A /* BSCategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA31D09FBCA0045523A /* BSCategoryFilterPresenter.swift */; };
-		000A9AA51D09FBCA0045523A /* BSCategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA31D09FBCA0045523A /* BSCategoryFilterPresenter.swift */; };
-		000A9AA71D09FBDE0045523A /* BSCategoryFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA61D09FBDE0045523A /* BSCategoryFilterController.swift */; };
-		000A9AA81D09FBDE0045523A /* BSCategoryFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AA61D09FBDE0045523A /* BSCategoryFilterController.swift */; };
-		000A9AAB1D0AF0DB0045523A /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AAA1D0AF0DB0045523A /* BSCategoryFilterViewController.m */; };
-		000A9AAC1D0AF0DB0045523A /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AAA1D0AF0DB0045523A /* BSCategoryFilterViewController.m */; };
-		000A9AAF1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */; };
-		000A9AB01D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */; };
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		0017DB151937DC050052DCF4 /* libBSPieChartView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0017DB0C1937DBE80052DCF4 /* libBSPieChartView.a */; };
@@ -65,11 +41,6 @@
 		00223BCA216A007200E76784 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */; };
 		00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */; };
 		00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BCC216A00A300E76784 /* BSCoreDataController.m */; };
-		00223BDB216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BD1216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
-		00223BDC216A014100E76784 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BD7216A014100E76784 /* BSDateToDatePickerCellConvertor.m */; };
-		00223BDD216A014100E76784 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BD8216A014100E76784 /* BSAmountToTextControlCellConvertor.m */; };
-		00223BDE216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BD9216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m */; };
-		00223BDF216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BDA216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
 		00223BEC216A020E00E76784 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEA216A020E00E76784 /* Tag.m */; };
 		00223BED216A020E00E76784 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEB216A020E00E76784 /* Entry.m */; };
 		00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
@@ -194,10 +165,46 @@
 		00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2139D217BB12D00805207 /* BSVisualEffects.m */; };
 		00C213A4217BB1C200805207 /* BSPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A1217BB1C200805207 /* BSPieChartViewController.m */; };
 		00C213A5217BB1C200805207 /* BSCategoryPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A2217BB1C200805207 /* BSCategoryPieChartView.m */; };
+		00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
+		00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
+		00C213C0217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */; };
+		00C213C1217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */; };
+		00C213C2217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */; };
+		00C213C3217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */; };
+		00C213C4217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */; };
+		00C213C5217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */; };
+		00C213C6217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */; };
+		00C213C7217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */; };
+		00C213C8217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
+		00C213C9217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
+		00C213CA217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */; };
+		00C213CB217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */; };
+		00C213CC217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
+		00C213CD217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
+		00C213CE217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */; };
+		00C213CF217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */; };
+		00C213D0217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */; };
+		00C213D1217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */; };
+		00C213D2217BB3C800805207 /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BE217BB3C800805207 /* BSAddEntryController.swift */; };
+		00C213D3217BB3C800805207 /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BE217BB3C800805207 /* BSAddEntryController.swift */; };
+		00C213D4217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BF217BB3C800805207 /* BSAddEntryControllerProtocol.swift */; };
+		00C213D5217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BF217BB3C800805207 /* BSAddEntryControllerProtocol.swift */; };
+		00C213E2217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */; };
+		00C213E3217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */; };
+		00C213E4217BB4D000805207 /* BSCategoryFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */; };
+		00C213E5217BB4D000805207 /* BSCategoryFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */; };
+		00C213E6217BB4D000805207 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213DB217BB4D000805207 /* BSCategoryFilterViewController.m */; };
+		00C213E7217BB4D000805207 /* BSCategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213DB217BB4D000805207 /* BSCategoryFilterViewController.m */; };
+		00C213E8217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213DC217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m */; };
+		00C213E9217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213DC217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m */; };
+		00C213EA217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213E0217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift */; };
+		00C213EB217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213E0217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift */; };
+		00C213EC217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213E1217BB4D000805207 /* BSCategoryFilterPresenter.swift */; };
+		00C213ED217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213E1217BB4D000805207 /* BSCategoryFilterPresenter.swift */; };
+		00C213F3217C729F00805207 /* BSBSExpenseDeletionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213F2217C729F00805207 /* BSBSExpenseDeletionTests.m */; };
 		00CC8CC42167E527003180FE /* BSMonthlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */; };
 		00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */; };
 		00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */; };
-		00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */; };
 		00F9213A17FF769000CACB4D /* OCMock in Resources */ = {isa = PBXBuildFile; fileRef = 00F9213917FF769000CACB4D /* OCMock */; };
 /* End PBXBuildFile section */
 
@@ -281,23 +288,8 @@
 		000A9A241D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDailySummaryGraphLinePresenter.swift; sourceTree = "<group>"; };
 		000A9A291D09EA980045523A /* BSGraphLineControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSGraphLineControllerProtocol.swift; sourceTree = "<group>"; };
 		000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSGraphLinePresenterProtocol.swift; sourceTree = "<group>"; };
-		000A9A331D09EB710045523A /* BSAddEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryController.swift; sourceTree = "<group>"; };
-		000A9A341D09EB710045523A /* BSAddEntryControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryControllerProtocol.swift; sourceTree = "<group>"; };
-		000A9A351D09EB710045523A /* BSAddEntryInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryInterfaceProtocol.swift; sourceTree = "<group>"; };
-		000A9A361D09EB710045523A /* BSAddEntryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenter.swift; sourceTree = "<group>"; };
-		000A9A371D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
-		000A9A941D09F7560045523A /* BSEntryDetailsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsFormViewController.h; sourceTree = "<group>"; };
-		000A9A951D09F7560045523A /* BSEntryDetailsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsFormViewController.m; sourceTree = "<group>"; };
 		000A9A981D09F90E0045523A /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
 		000A9A991D09F90E0045523A /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
-		000A9A9D1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterPresenterEventsProtocol.swift; sourceTree = "<group>"; };
-		000A9AA01D09FB760045523A /* BSCategoryFilterControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterControllerProtocol.swift; sourceTree = "<group>"; };
-		000A9AA31D09FBCA0045523A /* BSCategoryFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterPresenter.swift; sourceTree = "<group>"; };
-		000A9AA61D09FBDE0045523A /* BSCategoryFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterController.swift; sourceTree = "<group>"; };
-		000A9AA91D0AF0DB0045523A /* BSCategoryFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterViewController.h; sourceTree = "<group>"; };
-		000A9AAA1D0AF0DB0045523A /* BSCategoryFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterViewController.m; sourceTree = "<group>"; };
-		000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSModalSelectorViewTransitioningDelegate.m; sourceTree = "<group>"; };
-		000A9AAE1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSModalSelectorViewTransitioningDelegate.h; sourceTree = "<group>"; };
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		0017DB061937DBE80052DCF4 /* BSPieChartView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BSPieChartView.xcodeproj; path = ../BSPieChartView/BSPieChartView.xcodeproj; sourceTree = "<group>"; };
@@ -312,21 +304,10 @@
 		00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataFixturesManager.m; sourceTree = "<group>"; };
 		00223BCC216A00A300E76784 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
 		00223BCD216A00A300E76784 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
-		00223BD0216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
-		00223BD1216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
-		00223BD3216A014100E76784 /* BSDateToDatePickerCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDateToDatePickerCellConvertor.h; sourceTree = "<group>"; };
-		00223BD4216A014100E76784 /* BSAmountToTextControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAmountToTextControlCellConvertor.h; sourceTree = "<group>"; };
-		00223BD5216A014100E76784 /* BSTagToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTagToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
-		00223BD6216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryTypeToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
-		00223BD7216A014100E76784 /* BSDateToDatePickerCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDateToDatePickerCellConvertor.m; sourceTree = "<group>"; };
-		00223BD8216A014100E76784 /* BSAmountToTextControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAmountToTextControlCellConvertor.m; sourceTree = "<group>"; };
-		00223BD9216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTagToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
-		00223BDA216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryTypeToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
 		00223BE8216A020E00E76784 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		00223BE9216A020E00E76784 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		00223BEA216A020E00E76784 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		00223BEB216A020E00E76784 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
-		002B06AD1DAA71A1002D944C /* BSCategoryFilterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterDelegate.h; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesLineGraphTests.m; sourceTree = "<group>"; };
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
@@ -442,11 +423,38 @@
 		00C213A1217BB1C200805207 /* BSPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPieChartViewController.m; sourceTree = "<group>"; };
 		00C213A2217BB1C200805207 /* BSCategoryPieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryPieChartView.m; sourceTree = "<group>"; };
 		00C213A3217BB1C200805207 /* BSPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPieChartViewController.h; sourceTree = "<group>"; };
+		00C213A6217BB2E800805207 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
+		00C213A7217BB2E800805207 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
+		00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
+		00C213AD217BB3C800805207 /* BSDateToDatePickerCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDateToDatePickerCellConvertor.h; sourceTree = "<group>"; };
+		00C213AE217BB3C800805207 /* BSAmountToTextControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAmountToTextControlCellConvertor.h; sourceTree = "<group>"; };
+		00C213AF217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTagToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
+		00C213B0217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryTypeToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
+		00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDateToDatePickerCellConvertor.m; sourceTree = "<group>"; };
+		00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAmountToTextControlCellConvertor.m; sourceTree = "<group>"; };
+		00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTagToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
+		00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryTypeToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
+		00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenter.swift; sourceTree = "<group>"; };
+		00C213B7217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
+		00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
+		00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsFormViewController.m; sourceTree = "<group>"; };
+		00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryInterfaceProtocol.swift; sourceTree = "<group>"; };
+		00C213BC217BB3C800805207 /* BSEntryDetailsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsFormViewController.h; sourceTree = "<group>"; };
+		00C213BE217BB3C800805207 /* BSAddEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryController.swift; sourceTree = "<group>"; };
+		00C213BF217BB3C800805207 /* BSAddEntryControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryControllerProtocol.swift; sourceTree = "<group>"; };
+		00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterControllerProtocol.swift; sourceTree = "<group>"; };
+		00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterController.swift; sourceTree = "<group>"; };
+		00C213DA217BB4D000805207 /* BSCategoryFilterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterDelegate.h; sourceTree = "<group>"; };
+		00C213DB217BB4D000805207 /* BSCategoryFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterViewController.m; sourceTree = "<group>"; };
+		00C213DC217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSModalSelectorViewTransitioningDelegate.m; sourceTree = "<group>"; };
+		00C213DD217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSModalSelectorViewTransitioningDelegate.h; sourceTree = "<group>"; };
+		00C213DE217BB4D000805207 /* BSCategoryFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterViewController.h; sourceTree = "<group>"; };
+		00C213E0217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterPresenterEventsProtocol.swift; sourceTree = "<group>"; };
+		00C213E1217BB4D000805207 /* BSCategoryFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterPresenter.swift; sourceTree = "<group>"; };
+		00C213F2217C729F00805207 /* BSBSExpenseDeletionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBSExpenseDeletionTests.m; sourceTree = "<group>"; };
 		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
 		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
-		00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
-		00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
 		00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		00F9213917FF769000CACB4D /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OCMock; path = ExpensesTests/OCMock; sourceTree = "<group>"; };
 		00F9213F1807456000CACB4D /* v1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.1.xcdatamodel; sourceTree = "<group>"; };
@@ -538,13 +546,9 @@
 		000A9A321D09EB710045523A /* Add entry */ = {
 			isa = PBXGroup;
 			children = (
-				000A9A941D09F7560045523A /* BSEntryDetailsFormViewController.h */,
-				000A9A951D09F7560045523A /* BSEntryDetailsFormViewController.m */,
-				000A9A331D09EB710045523A /* BSAddEntryController.swift */,
-				000A9A341D09EB710045523A /* BSAddEntryControllerProtocol.swift */,
-				000A9A351D09EB710045523A /* BSAddEntryInterfaceProtocol.swift */,
-				000A9A361D09EB710045523A /* BSAddEntryPresenter.swift */,
-				000A9A371D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift */,
+				00C213BD217BB3C800805207 /* Controllers */,
+				00C213AA217BB3C800805207 /* Presenters */,
+				00C213B9217BB3C800805207 /* Views */,
 			);
 			path = "Add entry";
 			sourceTree = "<group>";
@@ -608,15 +612,9 @@
 		000A9A9C1D09FAB00045523A /* Category filter */ = {
 			isa = PBXGroup;
 			children = (
-				000A9A9D1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift */,
-				000A9AAE1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.h */,
-				000A9AAD1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m */,
-				000A9AA91D0AF0DB0045523A /* BSCategoryFilterViewController.h */,
-				000A9AAA1D0AF0DB0045523A /* BSCategoryFilterViewController.m */,
-				002B06AD1DAA71A1002D944C /* BSCategoryFilterDelegate.h */,
-				000A9AA31D09FBCA0045523A /* BSCategoryFilterPresenter.swift */,
-				000A9AA61D09FBDE0045523A /* BSCategoryFilterController.swift */,
-				000A9AA01D09FB760045523A /* BSCategoryFilterControllerProtocol.swift */,
+				00C213D6217BB4D000805207 /* Controllers */,
+				00C213DF217BB4D000805207 /* Presenters */,
+				00C213D9217BB4D000805207 /* Views */,
 			);
 			path = "Category filter";
 			sourceTree = "<group>";
@@ -667,8 +665,6 @@
 			isa = PBXGroup;
 			children = (
 				00223BB22169FF5800E76784 /* Business Domain */,
-				00E9F172177F2E1F00A1A212 /* BSCurrencyHelper.h */,
-				00E9F173177F2E1F00A1A212 /* BSCurrencyHelper.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -696,8 +692,6 @@
 			isa = PBXGroup;
 			children = (
 				00223BE7216A020E00E76784 /* CoreData Models */,
-				00223BCF216A014100E76784 /* CellActionDataSources */,
-				00223BD2216A014100E76784 /* StaticTableViewCellConvertors */,
 				00223BC2216A007200E76784 /* Controllers */,
 			);
 			path = "Data Sources";
@@ -716,30 +710,6 @@
 				00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		00223BCF216A014100E76784 /* CellActionDataSources */ = {
-			isa = PBXGroup;
-			children = (
-				00223BD0216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.h */,
-				00223BD1216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m */,
-			);
-			path = CellActionDataSources;
-			sourceTree = "<group>";
-		};
-		00223BD2216A014100E76784 /* StaticTableViewCellConvertors */ = {
-			isa = PBXGroup;
-			children = (
-				00223BD3216A014100E76784 /* BSDateToDatePickerCellConvertor.h */,
-				00223BD4216A014100E76784 /* BSAmountToTextControlCellConvertor.h */,
-				00223BD5216A014100E76784 /* BSTagToSegmentedControlCellConvertor.h */,
-				00223BD6216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.h */,
-				00223BD7216A014100E76784 /* BSDateToDatePickerCellConvertor.m */,
-				00223BD8216A014100E76784 /* BSAmountToTextControlCellConvertor.m */,
-				00223BD9216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m */,
-				00223BDA216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m */,
-			);
-			path = StaticTableViewCellConvertors;
 			sourceTree = "<group>";
 		};
 		00223BE7216A020E00E76784 /* CoreData Models */ = {
@@ -913,8 +883,8 @@
 				0058AADD217667E9007AD175 /* BSTriangularAccesoryView.m */,
 				0058AAD8217667B0007AD175 /* BSSingleEntryCell.h */,
 				0058AAD9217667B0007AD175 /* BSSingleEntryCell.m */,
-				0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */,
 				0058AAAC217662D0007AD175 /* BSIndividualExpensesSummaryViewController.h */,
+				0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1083,6 +1053,7 @@
 				0089F8C017FB7C2D000DFEC6 /* OCMock */,
 				007B8272177476780052FE84 /* Supporting Files */,
 				0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */,
+				00C213F2217C729F00805207 /* BSBSExpenseDeletionTests.m */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */,
 				00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */,
@@ -1148,6 +1119,8 @@
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
+				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
 				0058AAF321766976007AD175 /* Views */,
 			);
 			path = Common;
@@ -1191,6 +1164,93 @@
 				00C21391217BB09F00805207 /* BSContainerViewController.m */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		00C213AA217BB3C800805207 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */,
+				00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */,
+				00C213AC217BB3C800805207 /* StaticTableViewCellConvertors */,
+				00C213B6217BB3C800805207 /* CellActionDataSources */,
+			);
+			name = Presenters;
+			path = "Expenses/src/Use cases/Add Entry/Presenters";
+			sourceTree = SOURCE_ROOT;
+		};
+		00C213AC217BB3C800805207 /* StaticTableViewCellConvertors */ = {
+			isa = PBXGroup;
+			children = (
+				00C213AD217BB3C800805207 /* BSDateToDatePickerCellConvertor.h */,
+				00C213AE217BB3C800805207 /* BSAmountToTextControlCellConvertor.h */,
+				00C213AF217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.h */,
+				00C213B0217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.h */,
+				00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */,
+				00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */,
+				00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */,
+				00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */,
+			);
+			path = StaticTableViewCellConvertors;
+			sourceTree = "<group>";
+		};
+		00C213B6217BB3C800805207 /* CellActionDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				00C213B7217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.h */,
+				00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */,
+			);
+			path = CellActionDataSources;
+			sourceTree = "<group>";
+		};
+		00C213B9217BB3C800805207 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */,
+				00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */,
+				00C213BC217BB3C800805207 /* BSEntryDetailsFormViewController.h */,
+			);
+			name = Views;
+			path = "Expenses/src/Use cases/Add Entry/Views";
+			sourceTree = SOURCE_ROOT;
+		};
+		00C213BD217BB3C800805207 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				00C213BE217BB3C800805207 /* BSAddEntryController.swift */,
+				00C213BF217BB3C800805207 /* BSAddEntryControllerProtocol.swift */,
+			);
+			name = Controllers;
+			path = "Expenses/src/Use cases/Add Entry/Controllers";
+			sourceTree = SOURCE_ROOT;
+		};
+		00C213D6217BB4D000805207 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */,
+				00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		00C213D9217BB4D000805207 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00C213DA217BB4D000805207 /* BSCategoryFilterDelegate.h */,
+				00C213DB217BB4D000805207 /* BSCategoryFilterViewController.m */,
+				00C213DC217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m */,
+				00C213DD217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.h */,
+				00C213DE217BB4D000805207 /* BSCategoryFilterViewController.h */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		00C213DF217BB4D000805207 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				00C213E0217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift */,
+				00C213E1217BB4D000805207 /* BSCategoryFilterPresenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1258,6 +1318,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 007B8240177476780052FE84;
@@ -1381,43 +1442,47 @@
 				0058AA5321765F45007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				0058AA9F217661DA007AD175 /* BSDailyExpensesSummaryViewController.m in Sources */,
 				000A9A251D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */,
+				00C213C0217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
+				00C213C8217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
 				00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */,
 				000A9A211D09E99F0045523A /* BSMonthlySummaryNavigationTransitionManager.swift in Sources */,
 				0058AADA217667B0007AD175 /* BSSingleEntryCell.m in Sources */,
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				0058AAF12176692C007AD175 /* BSChartLegendCollectionViewCell.m in Sources */,
-				00223BDF216A014100E76784 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
 				0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */,
+				00C213CE217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */,
 				0058AA732176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
-				000A9A3E1D09EB710045523A /* BSAddEntryPresenter.swift in Sources */,
-				00223BDB216A014100E76784 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 				0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */,
 				0058AAFD217669CC007AD175 /* BSHeaderButton.m in Sources */,
 				00223BB82169FF5800E76784 /* Expense.swift in Sources */,
 				0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
 				00C2139A217BB09F00805207 /* BSContainerViewController.m in Sources */,
-				000A9A9E1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
-				00223BDE216A014100E76784 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
+				00C213E6217BB4D000805207 /* BSCategoryFilterViewController.m in Sources */,
 				00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */,
 				0058AAC421766573007AD175 /* BSMonthlyGridLayout.m in Sources */,
 				0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
+				00C213EC217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */,
 				0058AAA821766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */,
+				00C213C6217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
 				0058AA5521765F45007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */,
 				0058AAD22176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */,
 				007B825B177476780052FE84 /* main.m in Sources */,
+				00C213CA217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */,
 				00C213A5217BB1C200805207 /* BSCategoryPieChartView.m in Sources */,
-				000A9A3A1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
-				000A9A381D09EB710045523A /* BSAddEntryController.swift in Sources */,
 				0058AADE217667E9007AD175 /* BSTriangularAccesoryView.m in Sources */,
 				0058AAA3217661DA007AD175 /* BSShowDailyEntriesPresenter.swift in Sources */,
 				0058AAB9217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */,
 				00C21392217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
+				00C213C4217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
 				0058AA9D217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
+				00C213EA217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
+				00C213D2217BB3C800805207 /* BSAddEntryController.swift in Sources */,
 				0058AAEB21766851007AD175 /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
+				00C213CC217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 				00223BEC216A020E00E76784 /* Tag.m in Sources */,
 				00223BCA216A007200E76784 /* BSCoreDataFetchController.swift in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
@@ -1425,38 +1490,31 @@
 				0058AA5221765F45007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */,
 				0058AACE2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
-				00223BDD216A014100E76784 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */,
-				000A9A961D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
 				000A9A1D1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */,
 				00C21382217BAE2900805207 /* BSThemeManager.m in Sources */,
 				0058AA8F21766164007AD175 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
-				000A9AAB1D0AF0DB0045523A /* BSCategoryFilterViewController.m in Sources */,
 				00C21394217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */,
 				00C21380217BAE2900805207 /* BSThemeManager_iOS7.m in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00223BED216A020E00E76784 /* Entry.m in Sources */,
+				00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				0058AA9121766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
-				000A9AA41D09FBCA0045523A /* BSCategoryFilterPresenter.swift in Sources */,
 				00C2137E217BAE2900805207 /* BSGreenTheme.m in Sources */,
-				00E9F174177F2E1F00A1A212 /* BSCurrencyHelper.m in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
+				00C213D0217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */,
 				0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				0058AAB7217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
-				000A9A401D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
-				00223BDC216A014100E76784 /* BSDateToDatePickerCellConvertor.m in Sources */,
-				000A9AA71D09FBDE0045523A /* BSCategoryFilterController.swift in Sources */,
-				000A9AAF1D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
+				00C213E8217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
 				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				0058AAD621766659007AD175 /* BSBaseExpenseCell.m in Sources */,
 				00C21396217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
 				0058AAB3217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				0058AAF92176699F007AD175 /* PaddingLabel.swift in Sources */,
 				000A9A0F1D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
-				000A9AA11D09FB760045523A /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				0058AA772176605D007AD175 /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				0058AA8D21766164007AD175 /* BSShowMonthlyEntriesPresenter.swift in Sources */,
 				00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */,
@@ -1464,12 +1522,15 @@
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				000A9A131D09E5590045523A /* BSYearlySummaryNavigationTransitionManager.swift in Sources */,
 				0058AAB5217662D0007AD175 /* BSShowAllEntriesPresenter.swift in Sources */,
+				00C213C2217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */,
+				00C213E4217BB4D000805207 /* BSCategoryFilterController.swift in Sources */,
+				00C213E2217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,
 				0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				00C213A4217BB1C200805207 /* BSPieChartViewController.m in Sources */,
 				0058AAA5217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift in Sources */,
-				000A9A3C1D09EB710045523A /* BSAddEntryInterfaceProtocol.swift in Sources */,
 				0058AA5721765F45007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */,
+				00C213D4217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1483,33 +1544,30 @@
 				0058AACF2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				0058AAFA2176699F007AD175 /* PaddingLabel.swift in Sources */,
 				00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */,
-				000A9A9F1D09FAD30045523A /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */,
 				0058AAA6217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift in Sources */,
 				0058AAD12176659E007AD175 /* BSDailyLayout.m in Sources */,
+				00C213C5217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				0058AA9221766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
 				00C21383217BAE2900805207 /* BSThemeManager.m in Sources */,
+				00C213EB217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */,
-				000A9A971D09F7560045523A /* BSEntryDetailsFormViewController.m in Sources */,
 				00C2139B217BB09F00805207 /* BSContainerViewController.m in Sources */,
 				00C21381217BAE2900805207 /* BSThemeManager_iOS7.m in Sources */,
 				00223BF0216A024200E76784 /* Expense.swift in Sources */,
-				000A9AAC1D0AF0DB0045523A /* BSCategoryFilterViewController.m in Sources */,
 				000A9A1E1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */,
 				0058AAA921766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				0058AAA4217661DA007AD175 /* BSShowDailyEntriesPresenter.swift in Sources */,
 				00C21397217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
 				00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */,
-				000A9A411D09EB710045523A /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
 				0058AAFE217669CC007AD175 /* BSHeaderButton.m in Sources */,
 				000A9A261D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */,
 				000A9A9B1D09F90E0045523A /* LineGraph.m in Sources */,
+				00C213E3217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				000A9A141D09E5590045523A /* BSYearlySummaryNavigationTransitionManager.swift in Sources */,
-				000A9A391D09EB710045523A /* BSAddEntryController.swift in Sources */,
 				0058AA5C21765F7F007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
-				000A9AB01D0AF1A90045523A /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
-				000A9AA51D09FBCA0045523A /* BSCategoryFilterPresenter.swift in Sources */,
-				000A9AA21D09FB760045523A /* BSCategoryFilterControllerProtocol.swift in Sources */,
+				00C213D3217BB3C800805207 /* BSAddEntryController.swift in Sources */,
+				00C213CB217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */,
 				0058AAB4217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
@@ -1518,9 +1576,10 @@
 				0045D61C1DBCC72A006AA5AE /* BSDailyExpensesLineGraphTests.m in Sources */,
 				0058AA9021766164007AD175 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				0058AA5921765F69007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */,
-				000A9A3F1D09EB710045523A /* BSAddEntryPresenter.swift in Sources */,
+				00C213F3217C729F00805207 /* BSBSExpenseDeletionTests.m in Sources */,
 				0058AAB8217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
 				000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */,
+				00C213C1217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
 				0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */,
 				0058AA802176605D007AD175 /* BSShowYearlyEntriesPresenter.swift in Sources */,
 				00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */,
@@ -1530,34 +1589,43 @@
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00C2137F217BAE2900805207 /* BSGreenTheme.m in Sources */,
 				0058AABA217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */,
-				000A9A3B1D09EB710045523A /* BSAddEntryControllerProtocol.swift in Sources */,
 				0058AADB217667B0007AD175 /* BSSingleEntryCell.m in Sources */,
+				00C213C7217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
 				0058AA5A21765F79007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */,
 				00CC8CC42167E527003180FE /* BSMonthlyExpensesSummaryTests.m in Sources */,
 				0058AAF22176692C007AD175 /* BSChartLegendCollectionViewCell.m in Sources */,
+				00C213ED217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				0058AAD721766659007AD175 /* BSBaseExpenseCell.m in Sources */,
 				0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				0058AAC521766573007AD175 /* BSMonthlyGridLayout.m in Sources */,
+				00C213E7217BB4D000805207 /* BSCategoryFilterViewController.m in Sources */,
 				0058AAC721766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */,
 				00C21393217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
 				00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
+				00C213C3217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				0058AA9E217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
 				0058AABF21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				0058AAB6217662D0007AD175 /* BSShowAllEntriesPresenter.swift in Sources */,
 				000A9A101D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
+				00C213D1217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				000A9A201D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
+				00C213C9217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
+				00C213E5217BB4D000805207 /* BSCategoryFilterController.swift in Sources */,
+				00C213D5217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */,
 				0058AA5B21765F7F007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				0058AA8E21766164007AD175 /* BSShowMonthlyEntriesPresenter.swift in Sources */,
 				0058AAEC21766851007AD175 /* BSExpensesSummaryPieGraphController.swift in Sources */,
+				00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				0058AA782176605D007AD175 /* BSYearlyExpensesSummaryViewController.m in Sources */,
 				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				000A9A221D09E99F0045523A /* BSMonthlySummaryNavigationTransitionManager.swift in Sources */,
-				000A9A3D1D09EB710045523A /* BSAddEntryInterfaceProtocol.swift in Sources */,
 				0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
-				000A9AA81D09FBDE0045523A /* BSCategoryFilterController.swift in Sources */,
+				00C213E9217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
+				00C213CF217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */,
+				00C213CD217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,7 +1799,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/Expenses-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1773,7 +1841,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/Expenses-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1824,7 +1892,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/ExpensesTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Expensit-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1870,7 +1938,7 @@
 				PROVISIONING_PROFILE = "9B115C84-B040-47D8-A059-52901AFC212B";
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/ExpensesTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Expensit-Swift.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				WRAPPER_EXTENSION = xctest;
 			};

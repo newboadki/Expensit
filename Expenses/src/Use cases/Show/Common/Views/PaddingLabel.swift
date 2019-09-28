@@ -27,7 +27,7 @@ class PaddingLabel: UILabel {
             super.drawText(in: self.bounds)     
             self.clearColor()
         } else {
-            super.drawText(in: UIEdgeInsetsInsetRect(rect, padding))
+            super.drawText(in: rect.inset(by: padding))
         }
         
     }

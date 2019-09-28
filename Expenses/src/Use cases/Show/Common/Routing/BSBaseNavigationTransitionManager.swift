@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BSBaseNavigationTransitionManager: NSObject
+@objc class BSBaseNavigationTransitionManager: NSObject
 {
     var coreDataStackHelper : CoreDataStackHelper
     var coreDataController : BSCoreDataController
@@ -17,7 +17,7 @@ class BSBaseNavigationTransitionManager: NSObject
     var categoryFilterTransitioningDelegate :BSModalSelectorViewTransitioningDelegate
     var containmentEventsDelegate: ContainmentEventsManager?
     
-    init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController, coreDataFetchController : BSCoreDataFetchController, containmentEventsDelegate: ContainmentEventsManager)
+    @objc init(coreDataStackHelper : CoreDataStackHelper, coreDataController : BSCoreDataController, coreDataFetchController : BSCoreDataFetchController, containmentEventsDelegate: ContainmentEventsManager)
     {
         self.coreDataStackHelper = coreDataStackHelper
         self.coreDataController = coreDataController
@@ -27,7 +27,7 @@ class BSBaseNavigationTransitionManager: NSObject
         super.init()
     }
     
-    func configureAddEntryViewControllerWithSegue(_ segue : UIStoryboardSegue)
+    @objc func configureAddEntryViewControllerWithSegue(_ segue : UIStoryboardSegue)
     {
         let entry = BSDisplayExpensesSummaryEntry(title: "", value: "", signOfAmount: .zero, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date()), tag: "Other")
         let addEntryController = BSAddEntryController(entryToEdit:entry, coreDataFetchController: self.coreDataFetchController)
@@ -43,7 +43,7 @@ class BSBaseNavigationTransitionManager: NSObject
         addEntryVC.appearanceDelegate = appDelegate.themeManager;
     }
     
-    func configureAddEntryViewControllerWithNavigationController(_ navigationController : UINavigationController)
+    @objc func configureAddEntryViewControllerWithNavigationController(_ navigationController : UINavigationController)
     {
         let addEntryController = BSAddEntryController(entryToEdit:nil, coreDataFetchController: self.coreDataFetchController)
         let cellActionsDataSource = BSStaticTableAddEntryFormCellActionDataSource(coreDataController: self.coreDataController, addEntryController: addEntryController, isEditing: false);
@@ -59,7 +59,7 @@ class BSBaseNavigationTransitionManager: NSObject
     
     
     // TODO: Creating the instance of categoryFilterViewTransitioningDelegate in this method does not work, there is a crash
-    func configureCategoryFilterViewControllerWithSegue(_ segue : UIStoryboardSegue, categoryFilterViewControllerDelegate: BSCategoryFilterDelegate, tagBeingFilterBy: AnyObject?, categoryFilterViewTransitioningDelegate: BSModalSelectorViewTransitioningDelegate)
+    @objc func configureCategoryFilterViewControllerWithSegue(_ segue : UIStoryboardSegue, categoryFilterViewControllerDelegate: BSCategoryFilterDelegate, tagBeingFilterBy: AnyObject?, categoryFilterViewTransitioningDelegate: BSModalSelectorViewTransitioningDelegate)
     {
         
         let categoryFilterViewController = segue.destination as! BSCategoryFilterViewController

@@ -16,7 +16,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     var editingEntry : BSDisplayExpensesSummaryEntry?
 
     
-    init(entryToEdit : BSDisplayExpensesSummaryEntry?, coreDataFetchController: BSCoreDataFetchController)
+    @objc init(entryToEdit : BSDisplayExpensesSummaryEntry?, coreDataFetchController: BSCoreDataFetchController)
     {
         let delegate = UIApplication.shared.delegate as! BSAppDelegate
         self.editingEntry = entryToEdit

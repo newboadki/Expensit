@@ -16,7 +16,7 @@ import Foundation
     
     // MARK: - Initializers
     
-    public init(dataProvider: BSCoreDataFetchController) {
+    @objc public init(dataProvider: BSCoreDataFetchController) {
         self.dataProvider = dataProvider
     }
     

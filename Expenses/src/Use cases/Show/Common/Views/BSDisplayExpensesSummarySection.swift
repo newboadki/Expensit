@@ -15,13 +15,13 @@ import Foundation
 }
 
 
-class BSDisplayExpensesSummarySection : NSObject
+@objc class BSDisplayExpensesSummarySection : NSObject
 {
-    let title : String?
-    let entries : [BSDisplayExpensesSummaryEntry]
-    var numberOfEntries : Int  { get { return entries.count } }
+    @objc let title : String?
+    @objc let entries : [BSDisplayExpensesSummaryEntry]
+    @objc var numberOfEntries : Int  { get { return entries.count } }
     
-    init(title : String?, entries : [BSDisplayExpensesSummaryEntry])
+    @objc init(title : String?, entries : [BSDisplayExpensesSummaryEntry])
     {
         self.title = title
         self.entries =  entries
@@ -30,22 +30,20 @@ class BSDisplayExpensesSummarySection : NSObject
 }
 
 // FIX-ME:
-class BSDisplayExpensesSummaryEntry : NSObject
+@objc class BSDisplayExpensesSummaryEntry : NSObject
 {
-    var identifier: NSCopying?
-    var title : String?
-    var value : String?
-    var signOfAmount : BSNumberSignType
-    var isAmountNegative : Bool
+    @objc var identifier: NSCopying?
+    @objc var title : String?
+    @objc var value : String?
+    @objc var signOfAmount : BSNumberSignType
+    @objc var isAmountNegative : Bool
 
     // FIX-ME: This should be in a different view model
-    var desc : String?
-    var date : String?
-    var tag : String?
+    @objc var desc : String?
+    @objc var date : String?
+    @objc var tag : String?
 
-    
-    
-    init(title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?)
+    @objc init(title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?)
     {
         self.title = title
         self.value = value

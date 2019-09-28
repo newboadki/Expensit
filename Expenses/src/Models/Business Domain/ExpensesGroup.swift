@@ -14,9 +14,9 @@ import UIKit
 class ExpensesGroup: NSObject
 {
     let groupKey: String
-    let entries: [Expense]
+    @objc let entries: [Expense]
     
-    init(key: String, entries: [Expense])
+    @objc init(key: String, entries: [Expense])
     {
         self.groupKey = key
         self.entries = entries

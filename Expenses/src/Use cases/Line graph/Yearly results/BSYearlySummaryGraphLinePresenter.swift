@@ -15,7 +15,7 @@ import Foundation
     var section: String
     
     
-    init(yearlySummaryGraphLineController : BSGraphLineControllerProtocol, section: String)
+    @objc init(yearlySummaryGraphLineController : BSGraphLineControllerProtocol, section: String)
     {
         self.yearlySummaryGraphLineController = yearlySummaryGraphLineController
         self.section = section

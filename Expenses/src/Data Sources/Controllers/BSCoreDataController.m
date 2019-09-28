@@ -484,8 +484,8 @@
     return fetchRequest;
 }
 
-
-- (void)modifyfetchRequest:(NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(id)category
+// (NSFetchRequest <NSFetchRequestResult*)
+- (void)modifyfetchRequest:(id)request toFilterByCategory:(id)category
 {
     NSPredicate *predicate = nil;
     

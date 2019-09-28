@@ -12,7 +12,7 @@ import Foundation
         
     private var dataProvider: BSCoreDataFetchController
     
-    public init(dataProvider: BSCoreDataFetchController) {
+   @objc public init(dataProvider: BSCoreDataFetchController) {
         self.dataProvider = dataProvider
     }
     

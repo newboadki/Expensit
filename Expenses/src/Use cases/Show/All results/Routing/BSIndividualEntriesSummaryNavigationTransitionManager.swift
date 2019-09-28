@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class BSIndividualEntriesSummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
+@objc class BSIndividualEntriesSummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
 {
-    func configureEditEntryViewControllerWithSegue(_ segue : UIStoryboardSegue,
+    @objc func configureEditEntryViewControllerWithSegue(_ segue : UIStoryboardSegue,
                                                    selectedIndexPath indexPath: NSIndexPath,
                                                    displayEntry: BSDisplayExpensesSummaryEntry,
                                                    allEntriesPresenter: BSAbstractExpensesSummaryPresenterEventsProtocol)

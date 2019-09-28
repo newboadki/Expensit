@@ -10,27 +10,27 @@ import Foundation
 
 import UIKit
 
-class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
+@objc class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionManager
 {
-    func configureDailyExpensesLineGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, section : String)
+    @objc func configureDailyExpensesLineGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, section : String)
     {
         let graphViewController = segue.destination as! BSGraphViewController
         self.configureDailylExpensesLineGraphViewController(graphViewController, section: section)
     }
     
-    func configureDailylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
+    @objc func configureDailylExpensesLineGraphViewController(_ graphViewController : BSGraphViewController, section : String) {
         let dailyLineGraphController : BSGraphLineControllerProtocol = BSDailySummaryGraphLineController(coreDataFetchController:self.coreDataFetchController)
         let dailyLineGraphPresenter : BSGraphLinePresenterProtocol = BSDailySummaryGraphLinePresenter(dailySummaryGraphLineController: dailyLineGraphController, section: section)
         graphViewController.lineGraphPresenter = dailyLineGraphPresenter
     }
 
-    func configureMonthlyExpensesPieGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate)
+    @objc func configureMonthlyExpensesPieGraphViewControllerWithSegue(_ segue : UIStoryboardSegue, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate)
     {
         let graphViewController = segue.destination as! BSPieChartViewController
         self.configureDailyExpensesPieGraphViewControllerWithSegue(graphViewController, month: month, year: year, animatedBlurEffectTransitioningDelegate: animatedBlurEffectTransitioningDelegate)
     }
     
-    func configureDailyExpensesPieGraphViewControllerWithSegue(_ graphViewController: BSPieChartViewController, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate) {
+    @objc func configureDailyExpensesPieGraphViewControllerWithSegue(_ graphViewController: BSPieChartViewController, month : NSNumber?, year: Int, animatedBlurEffectTransitioningDelegate: BSAnimatedBlurEffectTransitioningDelegate) {
         graphViewController.transitioningDelegate = animatedBlurEffectTransitioningDelegate;
         graphViewController.modalPresentationStyle = .custom
         let pieGraphController : BSPieGraphControllerProtocol = BSExpensesSummaryPieGraphController(dataProvider: self.coreDataFetchController)
@@ -39,7 +39,7 @@ class BSDailySummaryNavigationTransitionManager : BSBaseNavigationTransitionMana
         
     }
     
-    func configureAllExpensesViewControllerWithSegue(_ segue : UIStoryboardSegue, nameOfSectionToBeShown : String)
+    @objc func configureAllExpensesViewControllerWithSegue(_ segue : UIStoryboardSegue, nameOfSectionToBeShown : String)
     {
         let allExpensesViewController = segue.destination as! BSIndividualExpensesSummaryViewController
         allExpensesViewController.nameOfSectionToBeShown = nameOfSectionToBeShown;

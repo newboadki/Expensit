@@ -44,7 +44,8 @@
 /*!
  @discussion category can be either a Tag instance or an NSString instance signifying 'No filter'
  */
-- (void)modifyfetchRequest:(nonnull NSFetchRequest <NSFetchRequestResult>*)request toFilterByCategory:(nullable id)category;
+// NSFetchRequest <NSFetchRequestResult>*
+- (void)modifyfetchRequest:(nonnull id)request toFilterByCategory:(nullable id)category;
 
 #pragma mark - Line Graph requests
 - (nonnull NSFetchRequest <NSFetchRequestResult>*)graphYearlySurplusFetchRequest;

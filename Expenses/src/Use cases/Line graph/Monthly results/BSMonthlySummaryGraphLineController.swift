@@ -13,7 +13,7 @@ import Foundation
     var coreDataFetchController : BSCoreDataFetchController
     
     /// CoreDataController protocol
-    required init(coreDataFetchController: BSCoreDataFetchController)
+    @objc required init(coreDataFetchController: BSCoreDataFetchController)
     {
         self.coreDataFetchController = coreDataFetchController
     }
@@ -21,15 +21,15 @@ import Foundation
 
     /// BSGraphLineControllerProtocol
     
-    func abscissaValues() -> [NSDictionary] {
+    @objc func abscissaValues() -> [NSDictionary] {
         return self.coreDataFetchController.abscissaValuesForMonthlyLineGraph()
     }
     
-    func graphSurplusResults(for section: String) -> [AnyObject] {
+    @objc func graphSurplusResults(for section: String) -> [AnyObject] {
         return self.coreDataFetchController.graphSurplusResultsForMonthlyLineGraph(for:section)
     }
     
-    func graphExpensesResults(for section: String) -> [AnyObject] {
+    @objc func graphExpensesResults(for section: String) -> [AnyObject] {
         return self.coreDataFetchController.graphExpensesResultsForMonthlyLineGraph(for:section)
     }
 }

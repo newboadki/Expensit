@@ -44,7 +44,7 @@ import Foundation
     @objc var tag : String?
 
     @objc init(title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?)
-    {
+    {        
         self.title = title
         self.value = value
         self.desc = title

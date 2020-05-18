@@ -11,7 +11,7 @@ import UIKit
 
 /// This class is simply a container of Expense entry entities groupped by a key.
 /// They usually represent sections of related entry entities.
-class ExpensesGroup: NSObject
+class ExpensesGroup: NSObject, ObservableObject
 {
     let groupKey: String
     @objc let entries: [Expense]

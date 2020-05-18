@@ -29,7 +29,6 @@
                                                                      resourceName:@"Expenses"
                                                                         extension:@"momd"
                                                               persistentStoreName:@"expensesDataBase"];
-
     // Theme
     self.themeManager = [BSThemeManager manager];
     self.themeManager.theme = [[BSGreenTheme alloc] init];

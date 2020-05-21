@@ -17,61 +17,96 @@ protocol NavigationCoordinator {
 }
 
 
-struct MainNavigationCoordinator: NavigationCoordinator {
+class MainNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
+    var presenters: [String: AbstractEntriesSummaryPresenter]
+    
+    init(dataSources: [String: EntriesSummaryDataSource],
+         presenters: [String: AbstractEntriesSummaryPresenter]) {
+        self.dataSources = dataSources
+        self.presenters = presenters
+    }
     
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
-        return ListView(presenter: ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
-                        title: "Yearly Summary",
-                        navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources))
+        return ListView(presenter: presenters["yearly"]!,
+                        title: "Yearly Breakdown",
+                        navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
     }
 }
 
 // Tells you how to navigate to the next screen from the yearly summary
-struct YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
+class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         
     var dataSources: [String: EntriesSummaryDataSource]
+    var presenters: [String: AbstractEntriesSummaryPresenter]
     
+    init(dataSources: [String: EntriesSummaryDataSource],
+         presenters: [String: AbstractEntriesSummaryPresenter]) {
+        self.dataSources = dataSources
+        self.presenters = presenters
+    }
+
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator> {
-        return GridView(presenter: ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
+        return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
-                        title: "Monthly Summary",
-                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources))
+                        title: "Monthly Breakdown",
+                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
     }
 }
 
-struct MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
+class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
+    var presenters: [String: AbstractEntriesSummaryPresenter]
     
+    init(dataSources: [String: EntriesSummaryDataSource],
+         presenters: [String: AbstractEntriesSummaryPresenter]) {
+        self.dataSources = dataSources
+        self.presenters = presenters
+    }
+
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
-        return GridView(presenter: ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
+        return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
-        title: "",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources))
+        title: "Daily Breakdown",
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
     }
 }
 
-struct  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
+class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
+    var presenters: [String: AbstractEntriesSummaryPresenter]
     
+    init(dataSources: [String: EntriesSummaryDataSource],
+         presenters: [String: AbstractEntriesSummaryPresenter]) {
+        self.dataSources = dataSources
+        self.presenters = presenters
+    }
+
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<AllExpensesSummaryNavigationCoordinator> {
-        return ListView(presenter: ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
-                        title: "",
-                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources))
+        return ListView(presenter: presenters["all"]!,
+                        title: "All Entries",
+                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
     }
 }
 
-struct AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
+class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
+    var presenters: [String: AbstractEntriesSummaryPresenter]
     
+    init(dataSources: [String: EntriesSummaryDataSource],
+         presenters: [String: AbstractEntriesSummaryPresenter]) {
+        self.dataSources = dataSources
+        self.presenters = presenters
+    }
+
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
-        return GridView(presenter: ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: MockListDataSource())),
+        return GridView(presenter: presenters["all"]!,
         columnCount: 4,
         title: "",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources))
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
     }
 }

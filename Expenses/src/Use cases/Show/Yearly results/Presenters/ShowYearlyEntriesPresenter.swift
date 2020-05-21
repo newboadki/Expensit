@@ -9,10 +9,9 @@
 import Combine
 
 class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
-            
-    
+                
     override var title: String {
-        get {"Yearly Summary" }
+        get {"Yearly Breakdown" }
         
         set{ super.title = newValue}
         
@@ -20,6 +19,7 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
 
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
                         
+        print("Yearly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
             var displaySections = [ExpensesSummarySection]()

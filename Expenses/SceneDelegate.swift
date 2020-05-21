@@ -24,16 +24,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
         coreDataController.coreDataHelper = coreDataStackHelper!
         
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "13/05/2012"), description: "Good stuff", value: "90", category: nil)
+        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "21/05/2020"), description: "Gift", value: "90", category: nil)
         
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/07/2014"), description: "Good stuff", value: "3550", category: nil)
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Good stuff", value: "-1000", category: nil)
+        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
+        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
 
-        
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController),
-                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController)]
-        let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources ))
+                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController),
+                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataController: coreDataController)]
+
+        let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
+                                                               "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
+                                                               "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
+                                                               "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
+
+        
+        let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
+                                                                                                         presenters: presenters))
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

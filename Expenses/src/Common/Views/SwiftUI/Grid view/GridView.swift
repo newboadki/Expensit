@@ -28,7 +28,7 @@ struct GridView<NC: NavigationCoordinator>: View {
         self.presenter = presenter
         self.columnCount = columnCount
         self.title = title
-        self.navigationCoordinator = navigationCoordinator
+        self.navigationCoordinator = navigationCoordinator        
     }
     
     var body: some View {

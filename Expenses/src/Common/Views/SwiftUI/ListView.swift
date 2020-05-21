@@ -13,16 +13,34 @@ struct ListView<NC: NavigationCoordinator> : View {
     var title: String
     var navigationCoordinator: NC
     
+    init(presenter:AbstractEntriesSummaryPresenter,
+         title: String,
+         navigationCoordinator: NC) {
+        self.presenter = presenter
+        self.title = title
+        self.navigationCoordinator = navigationCoordinator
+    }
+    
     var body: some View {
-        VStack {
-            ForEach(self.presenter.sections) { section in
-                ForEach(section.entries) { entry in                            
-                    NavigationLink(destination: self.navigationCoordinator.nextView(forIdentifier: entry.title ?? "")) {
-                       HorizontalEntryView(title: entry.title ?? "-", amount: entry.value ?? "-", desc: "", sign: entry.signOfAmount).padding(10)
-                    }.buttonStyle(PlainButtonStyle())
+        ScrollView {
+            VStack {
+                ForEach(self.presenter.sections) { section in
+                    VStack {
+                        HStack {
+                            Text(section.title ?? "-").bold().padding().font(.system(size: 25)).foregroundColor(.init(red: 255.0/255.0, green: 87.0/255.0, blue: 51.0/255.0))
+                            Spacer()
+                        }
+                        
+                        ForEach(section.entries) { entry in
+                            NavigationLink(destination: self.navigationCoordinator.nextView(forIdentifier: entry.title ?? "")) {
+                               HorizontalEntryView(title: entry.title ?? "-", amount: entry.value ?? "-", desc: "", sign: entry.signOfAmount).padding(10)
+                            }.buttonStyle(PlainButtonStyle())
+                        }
+
+                    }
                 }
-            }
-        }.navigationBarTitle(self.presenter.title)
+            }.navigationBarTitle(self.presenter.title)
+        }
     }
 }
 

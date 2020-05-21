@@ -12,6 +12,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
         
+        print("Monthly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
             let sortedGroups = groups.sorted { (g1, g2) in

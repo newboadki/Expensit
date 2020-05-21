@@ -12,7 +12,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
     
-        
+        print("Daily Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
                         

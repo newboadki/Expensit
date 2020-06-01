@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GridViewSectionBodyRow <NC: NavigationCoordinator>: View {
     
-    var section: ExpensesSummarySection
+    var section: ExpensesSummarySectionViewModel
     var rowIndex: Int
     var navigationCoordinator: NC
     var numberOfColumns: Int

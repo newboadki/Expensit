@@ -11,14 +11,14 @@ import SwiftUI
 struct GridViewSectionBodyRowNavCell<NC:NavigationCoordinator>: View {
     
     //@ObservedObject var presenter: AbstractEntriesSummaryPresenter
-    var section: ExpensesSummarySection
+    var section: ExpensesSummarySectionViewModel
     var rowIndex: Int
     var columnIndex: Int
     var navigationCoordinator: NC
     var numberOfColumns: Int
     var preferredNumberOfColumns: Int
 
-    init(section: ExpensesSummarySection, rowIndex: Int,
+    init(section: ExpensesSummarySectionViewModel, rowIndex: Int,
          columnIndex: Int, navigationCoordinator: NC, numberOfColumns: Int, preferredNumberOfColumns: Int) {
         
         self.navigationCoordinator = navigationCoordinator
@@ -38,10 +38,10 @@ struct GridViewSectionBodyRowNavCell<NC:NavigationCoordinator>: View {
 
     }
     
-    private var entry: (_ : ExpensesSummarySection, _ : Int, _ : Int, _: Int) -> DisplayExpensesSummaryEntry = { (section, ri, ci, cc) in
+    private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
         guard (position >= 0) && (position < section.entries.count) else {
-            return DisplayExpensesSummaryEntry(id: 0, title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil)
+            return ExpensesSummaryEntryViewModel(id: 0, title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil)
         }
         return section.entries[position]
     }

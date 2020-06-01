@@ -9,14 +9,14 @@
 import Foundation
 
 
-class ExpensesSummarySection: Identifiable
+class ExpensesSummarySectionViewModel: Identifiable
 {
     var id: Int
     let title : String?
-    let entries : [DisplayExpensesSummaryEntry]
+    let entries : [ExpensesSummaryEntryViewModel]
     var numberOfEntries : Int  { get { return entries.count } }
     
-    init(id: Int, title : String?, entries : [DisplayExpensesSummaryEntry])
+    init(id: Int, title : String?, entries : [ExpensesSummaryEntryViewModel])
     {
         self.id = id
         self.title = title
@@ -25,7 +25,7 @@ class ExpensesSummarySection: Identifiable
 }
 
 
-struct DisplayExpensesSummaryEntry : Identifiable
+struct ExpensesSummaryEntryViewModel : Identifiable
 {
     var id: Int
     var title : String?

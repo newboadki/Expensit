@@ -11,7 +11,7 @@ import SwiftUI
 struct GridViewSectionBody<NC: NavigationCoordinator>: View {
 
     @ObservedObject var presenter: AbstractEntriesSummaryPresenter
-    var section: ExpensesSummarySection
+    var section: ExpensesSummarySectionViewModel
     var navigationCoordinator: NC
  
     var body: some View {

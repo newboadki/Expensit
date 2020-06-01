@@ -17,18 +17,18 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
         
     }
 
-    override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
+    override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
                         
         print("Yearly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
-            var displaySections = [ExpensesSummarySection]()
+            var displaySections = [ExpensesSummarySectionViewModel]()
             
             for (sectionIndex, section) in groups.enumerated()
             {
                 
                 let entryEntities = section.entries
-                var displayEntries = [DisplayExpensesSummaryEntry]()
+                var displayEntries = [ExpensesSummaryEntryViewModel]()
                 for (entryIndex, entryEntity) in entryEntities.enumerated()
                 {
                     
@@ -49,10 +49,10 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let yearString =  (year != nil) ? "\(year!)" : "" // NSString(format:"\(String(describing: year))" as NSString)
                     let yearlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
 
-                    let displayEntry = DisplayExpensesSummaryEntry(id: entryIndex, title: yearString as String , value: yearlySumString as String, signOfAmount: sign, date:nil, tag: nil)
+                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryIndex, title: yearString as String , value: yearlySumString as String, signOfAmount: sign, date:nil, tag: nil)
                     displayEntries.append(displayEntry)
                 }
-                let sectionData = ExpensesSummarySection(id: sectionIndex, title: section.groupKey, entries: displayEntries)
+                let sectionData = ExpensesSummarySectionViewModel(id: sectionIndex, title: section.groupKey, entries: displayEntries)
                 displaySections.append(sectionData)
             }
             return displaySections

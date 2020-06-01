@@ -10,14 +10,14 @@ import Combine
 
 class AbstractEntriesSummaryPresenter: ObservableObject {
         
-    @Published var sections: [ExpensesSummarySection]
+    @Published var sections: [ExpensesSummarySectionViewModel]
     private(set) var interactor: ExpensesSummaryInteractor
     private var subscription: AnyCancellable!
     
     var title: String
     
     init(interactor: ExpensesSummaryInteractor) {
-        self.sections = [ExpensesSummarySection]()
+        self.sections = [ExpensesSummarySectionViewModel]()
         self.title = ""
         self.interactor = interactor
         self.bind()
@@ -33,11 +33,11 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
         })
     }
     
-    func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
+    func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
         fatalError("Not implemented.")
     }
     
-    func numberOfRows(in section: ExpensesSummarySection) -> Int {
+    func numberOfRows(in section: ExpensesSummarySectionViewModel) -> Int {
         Int(ceil(Double(section.entries.count)/Double(preferredNumberOfColumns())))
     }
 
@@ -45,7 +45,7 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
         return 0
     }
 
-    func numberOfColumns(in rowIndex: Int, section: ExpensesSummarySection) -> Int {    
+    func numberOfColumns(in rowIndex: Int, section: ExpensesSummarySectionViewModel) -> Int {    
         if rowIndex < numberOfRows(in: section)-1 {
             return self.preferredNumberOfColumns()
         } else {

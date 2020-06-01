@@ -16,10 +16,10 @@ struct GridView<NC: NavigationCoordinator>: View {
     var columnCount: Int
     var title: String
     var navigationCoordinator: NC
-    private var entry: (_ : ExpensesSummarySection, _ : Int, _ : Int, _: Int) -> DisplayExpensesSummaryEntry = { (section, ri, ci, cc) in
+    private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
         guard (position >= 0) && (position < section.entries.count) else {
-            return DisplayExpensesSummaryEntry(id: 0, title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil)
+            return ExpensesSummaryEntryViewModel(id: 0, title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil)
         }
         return section.entries[position]
     }

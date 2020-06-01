@@ -10,7 +10,7 @@ import Combine
 
 class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
-    override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySection]> {
+    override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
         
         print("Monthly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
@@ -18,14 +18,14 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
             let sortedGroups = groups.sorted { (g1, g2) in
                 return (g1.groupKey > g2.groupKey)
             }
-            var displaySections = [ExpensesSummarySection]()
+            var displaySections = [ExpensesSummarySectionViewModel]()
 
             for (sectionIndex, section) in sortedGroups.enumerated() // Each section is a year
             {
-                var entries = [DisplayExpensesSummaryEntry]()
+                var entries = [ExpensesSummaryEntryViewModel]()
                 for i in 0 ..< 12 { // We always show all months even if they have no expenses
                     
-                    let monthData = DisplayExpensesSummaryEntry(id: i, title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
+                    let monthData = ExpensesSummaryEntryViewModel(id: i, title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
                     entries.append(monthData)
                 }
                 
@@ -48,11 +48,11 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
                     let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
 
-                    let entryData = DisplayExpensesSummaryEntry(id: entryIndex, title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
+                    let entryData = ExpensesSummaryEntryViewModel(id: entryIndex, title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
                     entries[month.intValue - 1] = entryData
                 }
 
-                let sectionData = ExpensesSummarySection(id:sectionIndex, title: section.groupKey, entries: entries)
+                let sectionData = ExpensesSummarySectionViewModel(id:sectionIndex, title: section.groupKey, entries: entries)
                 displaySections.append(sectionData)
             }
 

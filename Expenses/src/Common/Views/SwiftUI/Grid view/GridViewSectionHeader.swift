@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GridViewSectionHeader: View {
     
-    var section: ExpensesSummarySection
+    var section: ExpensesSummarySectionViewModel
             
     var body: some View {
         HStack {

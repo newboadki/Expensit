@@ -21,17 +21,22 @@ class MainNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var coreDataFetchController: BSCoreDataFetchController
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter]) {
+         presenters: [String: AbstractEntriesSummaryPresenter],
+         coreDataFetchController: BSCoreDataFetchController) {
         self.dataSources = dataSources
         self.presenters = presenters
+        self.coreDataFetchController = coreDataFetchController
     }
     
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["yearly"]!,
                         title: "Yearly Breakdown",
-                        navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
+                        navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources,
+                                                                                          presenters: presenters, coreDataFetchController: self.coreDataFetchController),
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
     }
 }
 
@@ -40,18 +45,22 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var coreDataFetchController: BSCoreDataFetchController
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter]) {
+         presenters: [String: AbstractEntriesSummaryPresenter],
+         coreDataFetchController: BSCoreDataFetchController) {
         self.dataSources = dataSources
         self.presenters = presenters
+        self.coreDataFetchController = coreDataFetchController
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
                         title: "Monthly Breakdown",
-                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
+                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController),
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
     }
 }
 
@@ -59,18 +68,21 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var coreDataFetchController: BSCoreDataFetchController
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter]) {
+         presenters: [String: AbstractEntriesSummaryPresenter],
+         coreDataFetchController: BSCoreDataFetchController) {
         self.dataSources = dataSources
         self.presenters = presenters
+        self.coreDataFetchController = coreDataFetchController
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
     }
 }
 
@@ -78,17 +90,20 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var coreDataFetchController: BSCoreDataFetchController
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter]) {
+         presenters: [String: AbstractEntriesSummaryPresenter],
+         coreDataFetchController: BSCoreDataFetchController) {
         self.dataSources = dataSources
         self.presenters = presenters
+        self.coreDataFetchController = coreDataFetchController
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<AllExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["all"]!,
                         title: "All Entries",
-                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
+                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
     }
 }
 
@@ -96,17 +111,20 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var coreDataFetchController: BSCoreDataFetchController
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter]) {
+         presenters: [String: AbstractEntriesSummaryPresenter],
+         coreDataFetchController: BSCoreDataFetchController) {
         self.dataSources = dataSources
         self.presenters = presenters
+        self.coreDataFetchController = coreDataFetchController
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["all"]!,
         columnCount: 4,
         title: "",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters))
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
     }
 }

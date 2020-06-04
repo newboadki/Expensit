@@ -13,9 +13,12 @@ import SwiftUI
 
 struct GridView<NC: NavigationCoordinator>: View {
     @ObservedObject var presenter: AbstractEntriesSummaryPresenter
+    @State private var showEntryForm = false
     var columnCount: Int
     var title: String
     var navigationCoordinator: NC
+    var entryFormCoordinator: EntryFormNavigationCoordinator
+    
     private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
         guard (position >= 0) && (position < section.entries.count) else {
@@ -24,11 +27,12 @@ struct GridView<NC: NavigationCoordinator>: View {
         return section.entries[position]
     }
     
-    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String, navigationCoordinator: NC) {
+    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String, navigationCoordinator: NC, entryFormCoordinator: EntryFormNavigationCoordinator) {
         self.presenter = presenter
         self.columnCount = columnCount
         self.title = title
-        self.navigationCoordinator = navigationCoordinator        
+        self.navigationCoordinator = navigationCoordinator
+        self.entryFormCoordinator = entryFormCoordinator
     }
     
     var body: some View {
@@ -39,6 +43,13 @@ struct GridView<NC: NavigationCoordinator>: View {
 
             }
         }.navigationBarTitle(self.title)
+         .navigationBarItems(trailing:
+             Button("+") {
+                 self.showEntryForm.toggle()
+             }.sheet(isPresented: $showEntryForm) {
+                self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
+             }
+         )
     }
     
     private func rows(sectionCount: Int, colCount: Int) -> Int {

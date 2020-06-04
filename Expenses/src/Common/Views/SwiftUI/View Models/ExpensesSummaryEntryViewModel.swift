@@ -18,8 +18,10 @@ struct ExpensesSummaryEntryViewModel : Identifiable
     var desc : String?
     var date : String?
     var tag : String?
+    var tagId : Int
+    var dateTime: Date
 
-    init(id: Int, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?)
+    init(id: Int, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?, tagId: Int = 2, dateTime: Date = Date())
     {
         self.id = id
         self.title = title
@@ -29,5 +31,7 @@ struct ExpensesSummaryEntryViewModel : Identifiable
         self.signOfAmount =  signOfAmount
         self.isAmountNegative = (signOfAmount == .negative) ? true : false
         self.tag = tag
+        self.tagId = tagId
+        self.dateTime = dateTime
     }
 }

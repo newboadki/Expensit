@@ -24,10 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
         coreDataController.coreDataHelper = coreDataStackHelper!
         
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "21/05/2020"), description: "Gift", value: "90", category: nil)
-        
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "21/05/2020"), description: "Gift", value: "90", category: nil)
+//        
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
 
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController),
@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
-                                                                                                         presenters: presenters))
+                                                                                                         presenters: presenters, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController)))
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

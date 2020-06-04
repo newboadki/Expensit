@@ -9,13 +9,11 @@
 import Foundation
 import Combine
 
-
-protocol EntriesSummaryDataSource {
-    var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {get}    
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {get}    
+protocol PerformsCoreDataRequests {
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {get}
 }
 
-extension EntriesSummaryDataSource {
+extension PerformsCoreDataRequests {
     func performRequest() -> [NSFetchedResultsSectionInfo]? {
         do
         {
@@ -27,4 +25,8 @@ extension EntriesSummaryDataSource {
             return nil
         }
     }
+}
+
+protocol EntriesSummaryDataSource: PerformsCoreDataRequests {
+    var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {get}            
 }

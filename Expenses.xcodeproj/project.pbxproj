@@ -151,6 +151,8 @@
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
 		00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901A2487D5770099AAC1 /* DatePickerView.swift */; };
+		00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */; };
+		00AA9020248923F70099AAC1 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */; };
 		00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
 		00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */; };
 		00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */; };
@@ -435,6 +437,8 @@
 		00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA90182487BE420099AAC1 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		00AA901A2487D5770099AAC1 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesInteractor.swift; sourceTree = "<group>"; };
+		00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
 		00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummarySectionViewModel.swift; sourceTree = "<group>"; };
 		00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationView.swift; sourceTree = "<group>"; };
@@ -767,6 +771,7 @@
 				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
 				00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */,
 				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
+				00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */,
 				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
 				00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */,
 				00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */,
@@ -1217,11 +1222,20 @@
 			path = ListView;
 			sourceTree = "<group>";
 		};
+		00AA901C248921CB0099AAC1 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
 				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
+				00AA901C248921CB0099AAC1 /* Interactors */,
 				0058AAF321766976007AD175 /* Views */,
 			);
 			path = Common;
@@ -1565,6 +1579,8 @@
 				00AA90012484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift in Sources */,
 				00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */,
 				0058AADA217667B0007AD175 /* BSSingleEntryCell.m in Sources */,
+				00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */,
+				00AA9020248923F70099AAC1 /* CategoriesDataSource.swift in Sources */,
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				0058AAF12176692C007AD175 /* BSChartLegendCollectionViewCell.m in Sources */,
 				0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */,

@@ -27,9 +27,12 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                 let (day, month, year) = self.dateComponents(from: section.groupKey)
                 let date = DateTimeHelper.date(withFormat: nil, stringDate: "\(day)/\(month)/\(year)")
 
-                for i in 0 ..< section.entries.count
+                let sortedEntries = section.entries.sorted { (e1, e2) in
+                    return (e1.date! < e2.date!)
+                }
+                for i in 0 ..< sortedEntries.count
                 {
-                    let entryEntity : Expense = section.entries[i]
+                    let entryEntity : Expense = sortedEntries[i]
                     let sign : BSNumberSignType = self.sign(for: entryEntity.value)
                     let displayEntry = ExpensesSummaryEntryViewModel(id:i, title: entryEntity.entryDescription , value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value), signOfAmount: sign, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date), tag: entryEntity.category?.name)
                     //displayEntry.identifier = entryEntity.identifier

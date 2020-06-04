@@ -10,18 +10,18 @@ import Foundation
 
 class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
-    var coreDataStackHelper : CoreDataStackHelper
-    var coreDataController : BSCoreDataController
+//    var coreDataStackHelper : CoreDataStackHelper
+//    var coreDataController : BSCoreDataController
     var coreDataFetchController : BSCoreDataFetchController
     var editingEntry : BSDisplayExpensesSummaryEntry?
 
     
     @objc init(entryToEdit : BSDisplayExpensesSummaryEntry?, coreDataFetchController: BSCoreDataFetchController)
     {
-        let delegate = UIApplication.shared.delegate as! BSAppDelegate
+//        let delegate = UIApplication.shared.delegate as! BSAppDelegate
         self.editingEntry = entryToEdit
-        self.coreDataStackHelper = delegate.coreDataHelper;
-        self.coreDataController = BSCoreDataController(entityName : "Entry", coreDataHelper:self.coreDataStackHelper)
+//        self.coreDataStackHelper = delegate.coreDataHelper;
+//        self.coreDataController = BSCoreDataController(entityName : "Entry", coreDataHelper:self.coreDataStackHelper)
         self.coreDataFetchController = coreDataFetchController
         super.init()
     }
@@ -30,17 +30,25 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
     func save(entry : Expense, successBlock :()->(), failureBlock:(_ error : NSError) -> () )
     {
-        if NSDecimalNumber(string: "0").compare(entry.value) == .orderedDescending ||
-            NSDecimalNumber(string: "0").compare(entry.value) == .orderedSame
+        if NSDecimalNumber(string: "0").compare(entry.value) == .orderedSame
         {
-            failureBlock(NSError(domain: "Could not save", code: 1, userInfo: nil))
+            failureBlock(NSError(domain: "Could not save!!", code: 1, userInfo: nil))
+            return
         }
-        let _ = self.coreDataFetchController.save(existingEntry: entry)
-        successBlock()        
+        let (success, error) = self.coreDataFetchController.save(existingEntry: entry)
+        if success {
+            successBlock()
+        } else {
+            if let err = error {
+                failureBlock(err)
+            } else {
+                failureBlock(NSError(domain: "Could not save!!", code: 1, userInfo: nil))
+            }
+        }                
     }
     
     func discardChanges() {
-        self.coreDataController.discardChanges()
+//        self.coreDataController.discardChanges()
     }
     
     func delete(entry : Expense) {
@@ -49,7 +57,7 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     }
     
     func saveChanges() {
-        self.coreDataController.saveChanges()
+//        self.coreDataController.saveChanges()
     }
     
     func newEntry() -> BSDisplayExpensesSummaryEntry {

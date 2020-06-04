@@ -9,16 +9,20 @@
 import SwiftUI
 
 struct ListView<NC: NavigationCoordinator> : View {
-    @ObservedObject var presenter: AbstractEntriesSummaryPresenter    
+    @ObservedObject var presenter: AbstractEntriesSummaryPresenter
+    @State private var showEntryForm = false
     var title: String
     var navigationCoordinator: NC
+    var entryFormCoordinator: EntryFormNavigationCoordinator
     
     init(presenter:AbstractEntriesSummaryPresenter,
          title: String,
-         navigationCoordinator: NC) {
+         navigationCoordinator: NC,
+         entryFormCoordinator: EntryFormNavigationCoordinator) {
         self.presenter = presenter
         self.title = title
         self.navigationCoordinator = navigationCoordinator
+        self.entryFormCoordinator = entryFormCoordinator
     }
     
     var body: some View {
@@ -39,7 +43,15 @@ struct ListView<NC: NavigationCoordinator> : View {
 
                     }
                 }
-            }.navigationBarTitle(self.presenter.title)
+            }.navigationBarTitle(Text(self.presenter.title), displayMode: .inline)
+             .navigationBarItems(trailing:
+                Button("+") {
+                    self.showEntryForm.toggle()
+                    print("Showing entry: \(self.showEntryForm)")
+                }.sheet(isPresented: $showEntryForm) {
+                    self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
+                }
+            )
         }
     }
 }

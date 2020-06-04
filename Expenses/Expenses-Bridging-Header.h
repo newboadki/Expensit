@@ -24,3 +24,4 @@
 #import "ContainmentEventsAPI.h"
 #import "BSVisualEffects.h"
 #import "BSPieChartSectionInfo.h"
+#import "BSCoreDataFixturesManager.h"

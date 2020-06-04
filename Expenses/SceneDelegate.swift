@@ -28,6 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
+        
+        let migrationManager = BSCoreDataFixturesManager()
+        migrationManager.applyMissingFixtures(on: coreDataStackHelper?.managedObjectModel, coreDataController: coreDataController)
+//        BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
+//        [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
+
 
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController),

@@ -12,11 +12,19 @@ class EntryFormPresenter: ObservableObject {
     
     @Published var entry: ExpensesSummaryEntryViewModel
     
-    var categories: [String] = ["Car", "House", "Work"]
     private var storageInteractor: BSAddEntryController
+    private var categoriesInteractor: GetCategoriesInteractor
     
-    init(storageInteractor: BSAddEntryController) {
+    lazy var categories: [String] = {
+        self.categoriesInteractor.allCategories().map { expenseCategory in
+            return expenseCategory.name
+        }
+    }()
+    
+    init(storageInteractor: BSAddEntryController,
+         categoriesInteractor: GetCategoriesInteractor) {
         self.storageInteractor = storageInteractor
+        self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
         self.entry = ExpensesSummaryEntryViewModel(id: 0,
                                                    title: "",

@@ -35,7 +35,7 @@ struct EntryFormView: View {
                                        categories: presenter.categories,
                                        selectedIndex: categoryBinding())
                         .onTapGesture { self.isCategoryPickerExpanded = !self.isCategoryPickerExpanded }
-                        .animation(.linear(duration: 0.3))
+                        .animation(.linear(duration: 0.3))                    
                 }
 
                 Section {

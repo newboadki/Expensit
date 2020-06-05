@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
         coreDataController.coreDataHelper = coreDataStackHelper!
         
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "21/05/2020"), description: "Gift", value: "90", category: nil)
+        let tag = coreDataController.tag(forName: "Food")
+        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/06/2020"), description: "Have a good one!", value: "90", category: tag)
 //        
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
@@ -35,8 +36,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
 
 
-        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController),
-                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController),
+        let selectedCategoryDataSource = SelectedCategoryDataSource()
+        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController,
+                                                                                                           selectedCategoryDataSource: selectedCategoryDataSource),
+                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController,
+                                                                                                             selectedCategoryDataSource: selectedCategoryDataSource),
                                                                "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController),
                                                                "all" : AllEntriesCoreDataExpensesDataSource(coreDataController: coreDataController)]
 
@@ -47,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
-                                                                                                         presenters: presenters, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController)))
+                                                                                                         presenters: presenters, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

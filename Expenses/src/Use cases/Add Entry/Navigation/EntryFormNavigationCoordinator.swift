@@ -22,7 +22,6 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
     }
     
     func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView {
-        
         let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
         let storageInteractor = BSAddEntryController(entryToEdit:nil,
                                                      coreDataFetchController:self.coreDataFetchController)

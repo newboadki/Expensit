@@ -153,6 +153,12 @@
 		00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901A2487D5770099AAC1 /* DatePickerView.swift */; };
 		00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */; };
 		00AA9020248923F70099AAC1 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */; };
+		00AA9022248930250099AAC1 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AA9021248930250099AAC1 /* TODO.txt */; };
+		00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9023248A30550099AAC1 /* CategoryFilterView.swift */; };
+		00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */; };
+		00AA9028248A36B20099AAC1 /* CategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */; };
+		00AA902A248A43150099AAC1 /* SelectedCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */; };
+		00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */; };
 		00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
 		00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */; };
 		00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */; };
@@ -439,6 +445,12 @@
 		00AA901A2487D5770099AAC1 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesInteractor.swift; sourceTree = "<group>"; };
 		00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
+		00AA9021248930250099AAC1 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		00AA9023248A30550099AAC1 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
+		00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterPresenter.swift; sourceTree = "<group>"; };
+		00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterInteractor.swift; sourceTree = "<group>"; };
+		00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryDataSource.swift; sourceTree = "<group>"; };
+		00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummarySectionViewModel.swift; sourceTree = "<group>"; };
 		00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationView.swift; sourceTree = "<group>"; };
@@ -597,6 +609,7 @@
 		000A9A321D09EB710045523A /* Add entry */ = {
 			isa = PBXGroup;
 			children = (
+				00AA902D248A5C870099AAC1 /* Navigation */,
 				00C213BD217BB3C800805207 /* Controllers */,
 				00C213AA217BB3C800805207 /* Presenters */,
 				00C213B9217BB3C800805207 /* Views */,
@@ -773,6 +786,7 @@
 				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
 				00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */,
 				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
+				00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */,
 				00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */,
 				00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */,
 				00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */,
@@ -807,6 +821,10 @@
 		0058AA4821765F45007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0016A7392476F15900F47C99 /* Grid view */,
+				00AA901024862BA90099AAC1 /* ListView */,
+				00AA900724862B980099AAC1 /* Navigation */,
+				00AA90022484FBB70099AAC1 /* View Models */,
 				0058AAFB217669CC007AD175 /* BSHeaderButton.h */,
 				0058AAFC217669CC007AD175 /* BSHeaderButton.m */,
 				0058AAF82176699F007AD175 /* PaddingLabel.swift */,
@@ -1100,6 +1118,7 @@
 				007B83151775A6330052FE84 /* source */,
 				007B825D177476780052FE84 /* BSAppDelegate.h */,
 				007B825E177476780052FE84 /* BSAppDelegate.m */,
+				00AA9021248930250099AAC1 /* TODO.txt */,
 				007B8263177476780052FE84 /* Images.xcassets */,
 				007B8260177476780052FE84 /* Expenses.xcdatamodeld */,
 				007B8255177476780052FE84 /* Supporting Files */,
@@ -1210,6 +1229,7 @@
 			children = (
 				00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */,
 				00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */,
+				00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1230,6 +1250,14 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
+		00AA902D248A5C870099AAC1 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1244,10 +1272,6 @@
 		00B6E4792357861A00F028F3 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				0016A7392476F15900F47C99 /* Grid view */,
-				00AA901024862BA90099AAC1 /* ListView */,
-				00AA900724862B980099AAC1 /* Navigation */,
-				00AA90022484FBB70099AAC1 /* View Models */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1332,7 +1356,6 @@
 		00C213B9217BB3C800805207 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */,
 				00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */,
 				00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */,
 				00C213BC217BB3C800805207 /* BSEntryDetailsFormViewController.h */,
@@ -1359,6 +1382,7 @@
 			children = (
 				00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */,
 				00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */,
+				00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1371,6 +1395,7 @@
 				00C213DC217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m */,
 				00C213DD217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.h */,
 				00C213DE217BB4D000805207 /* BSCategoryFilterViewController.h */,
+				00AA9023248A30550099AAC1 /* CategoryFilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1380,6 +1405,7 @@
 			children = (
 				00C213E0217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift */,
 				00C213E1217BB4D000805207 /* BSCategoryFilterPresenter.swift */,
+				00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -1545,6 +1571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00AA9022248930250099AAC1 /* TODO.txt in Resources */,
 				007B8259177476780052FE84 /* InfoPlist.strings in Resources */,
 				007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
 				007B8264177476780052FE84 /* Images.xcassets in Resources */,
@@ -1578,6 +1605,7 @@
 				00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */,
 				00AA90012484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift in Sources */,
 				00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */,
+				00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */,
 				0058AADA217667B0007AD175 /* BSSingleEntryCell.m in Sources */,
 				00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */,
 				00AA9020248923F70099AAC1 /* CategoriesDataSource.swift in Sources */,
@@ -1638,6 +1666,7 @@
 				000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
+				00AA902A248A43150099AAC1 /* SelectedCategoryDataSource.swift in Sources */,
 				00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */,
 				000A9A1D1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */,
 				0016A7302476EC6700F47C99 /* ShowAllEntriesPresenter.swift in Sources */,
@@ -1645,6 +1674,7 @@
 				00C21394217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */,
 				00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */,
+				00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */,
 				00C21380217BAE2900805207 /* BSThemeManager_iOS7.m in Sources */,
 				00A38C1B24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
@@ -1657,6 +1687,7 @@
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA901424863F8A0099AAC1 /* EntryFormPresenter.swift in Sources */,
 				00C213D0217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */,
+				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
 				0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAB7217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
@@ -1676,6 +1707,7 @@
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C213C2217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				00C213E4217BB4D000805207 /* BSCategoryFilterController.swift in Sources */,
+				00AA9028248A36B20099AAC1 /* CategoryFilterInteractor.swift in Sources */,
 				00C213E2217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				00A38C1024545A4E00E05596 /* ShowYearlyEntriesPresenter.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,

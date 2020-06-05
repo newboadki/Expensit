@@ -16,15 +16,25 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
     
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-    private var coreDataController: BSCoreDataController
+    private(set) var coreDataController: BSCoreDataController
     
-    init(coreDataController: BSCoreDataController) {
+    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    
+    private var cancellableSelectedCategoryUpdates: AnyCancellable?
+    
+    init(coreDataController: BSCoreDataController,
+         selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.coreDataController = coreDataController
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByYear()
+        self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
 
-        self.groupedExpenses = entriesGroupedByYear()
+        
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+            self.filter(by: selectedCategory)
+            self.groupedExpenses = self.entriesGroupedByYear()
+        }                
     }
     
     private func entriesGroupedByYear() -> [ExpensesGroup]

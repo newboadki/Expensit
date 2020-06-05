@@ -15,7 +15,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
         
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-    private var coreDataController: BSCoreDataController
+    private(set) var coreDataController: BSCoreDataController
     
     init(coreDataController: BSCoreDataController) {
         self.coreDataController = coreDataController

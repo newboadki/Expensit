@@ -11,6 +11,7 @@ import Combine
 
 protocol PerformsCoreDataRequests {
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {get}
+    var coreDataController: BSCoreDataController {get}
 }
 
 extension PerformsCoreDataRequests {
@@ -23,6 +24,15 @@ extension PerformsCoreDataRequests {
         catch
         {
             return nil
+        }
+    }
+    
+    func filter(by category: ExpenseCategory?) {
+        if let category = category {
+            let tag = self.coreDataController.tag(forName: category.name)
+            self.coreDataController.modifyfetchRequest((fetchedResultsController.fetchRequest), toFilterByCategory: tag)
+        } else {
+            self.coreDataController.modifyfetchRequest((fetchedResultsController.fetchRequest), toFilterByCategory: nil)
         }
     }
 }

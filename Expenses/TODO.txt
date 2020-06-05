@@ -1,0 +1,9 @@
+
+- Adding some entries does not update the views.
+- Ordering of entries is messed, particularly on all entries.
+- Add entry form does not look nice
+- Filtering by category.
+- Data sources, too many layers.
+- Make numbers look better inside Cells.
+- Add entry currency formatting.
+- Animations.

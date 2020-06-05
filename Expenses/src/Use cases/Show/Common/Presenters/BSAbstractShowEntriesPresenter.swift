@@ -17,16 +17,14 @@ import UIKit
     var showEntriesController : BSAbstractShowEntriesControllerProtocol
     var userInteface : BSAbstractExpensesSummaryUserInterfaceProtocol
     var backgroundQueue: DispatchQueue
-    
-    
+        
     @objc init!(showEntriesUserInterface: BSAbstractExpensesSummaryUserInterfaceProtocol,
          showEntriesController : BSAbstractShowEntriesControllerProtocol) {
         self.userInteface = showEntriesUserInterface
         self.showEntriesController = showEntriesController
         self.backgroundQueue = DispatchQueue(label: "com.expensit.presenter.background.queue")
         super.init()
-    }
-    
+    }    
     
     // MARK: BSBaseExpensesSummaryPresenterEventsProtocol
     

@@ -22,7 +22,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByDay()
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = entriesGroupedByDay()
     }
     

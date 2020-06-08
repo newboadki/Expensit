@@ -16,18 +16,23 @@ class CategoryFilterPresenter {
             print("------")
             UserDefaults.standard.set(selectedIndex, forKey: "selectedIndex")
             let selectedCategory = categories[selectedIndex]
-            filterByCategoryInteractor.filter(by: selectedCategory)
+            let optionalCategory = (selectedCategory.name == "None") ? nil : selectedCategory
+            filterByCategoryInteractor.filter(by: optionalCategory)
         }
     }
     
     lazy var categoryNames: [String] = {
-        self.categoriesInteractor.allCategories().map { expenseCategory in
+        var r = self.categoriesInteractor.allCategories().map { expenseCategory in
             return expenseCategory.name
         }
+        r.append("None")
+        return r
     }()
 
     lazy var categories: [ExpenseCategory] = {
-        self.categoriesInteractor.allCategories()
+        var r = self.categoriesInteractor.allCategories()
+        r.append(ExpenseCategory(name: "None", iconName: "", color: .black))
+        return r
     }()
 
     // Private

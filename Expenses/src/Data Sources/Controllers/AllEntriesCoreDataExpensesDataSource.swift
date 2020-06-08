@@ -22,7 +22,7 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForAllEntries()
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = allEntries()
     }
     

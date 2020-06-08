@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
         coreDataController.coreDataHelper = coreDataStackHelper!
         
-        let tag = coreDataController.tag(forName: "Food")
-        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/06/2020"), description: "Have a good one!", value: "90", category: tag)
+//        let tag = coreDataController.tag(forName: "Food")
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/06/2020"), description: "Have a good one!", value: "90", category: tag)
 //        
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)

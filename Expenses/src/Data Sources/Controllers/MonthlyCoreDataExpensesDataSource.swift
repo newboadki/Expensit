@@ -27,7 +27,7 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = entriesGroupedByMonth()
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in

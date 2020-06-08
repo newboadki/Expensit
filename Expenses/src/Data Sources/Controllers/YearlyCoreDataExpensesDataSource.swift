@@ -28,10 +28,10 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByYear()
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
 
         
-        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in            
             self.filter(by: selectedCategory)
             self.groupedExpenses = self.entriesGroupedByYear()
         }                
@@ -66,8 +66,8 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
         return results
     }
     
-    @objc func contextObjectsDidChange(_ notification: Notification) {
-        self.groupedExpenses = entriesGroupedByYear()        
+    @objc func contextObjectsDidSave(_ notification: Notification) {
+        self.groupedExpenses = self.entriesGroupedByYear()
     }
     
     

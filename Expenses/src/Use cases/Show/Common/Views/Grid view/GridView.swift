@@ -18,6 +18,7 @@ struct GridView<NC: NavigationCoordinator>: View {
     var title: String
     var navigationCoordinator: NC
     var entryFormCoordinator: EntryFormNavigationCoordinator
+    var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     
     private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
@@ -27,12 +28,13 @@ struct GridView<NC: NavigationCoordinator>: View {
         return section.entries[position]
     }
     
-    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String, navigationCoordinator: NC, entryFormCoordinator: EntryFormNavigationCoordinator) {
+    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String, navigationCoordinator: NC, entryFormCoordinator: EntryFormNavigationCoordinator, categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator) {
         self.presenter = presenter
         self.columnCount = columnCount
         self.title = title
         self.navigationCoordinator = navigationCoordinator
         self.entryFormCoordinator = entryFormCoordinator
+        self.categoryFilterNavgationCoordinator = categoryFilterNavgationCoordinator
     }
     
     var body: some View {
@@ -44,11 +46,8 @@ struct GridView<NC: NavigationCoordinator>: View {
             }
         }.navigationBarTitle(self.title)
          .navigationBarItems(trailing:
-             Button("+") {
-                 self.showEntryForm.toggle()
-             }.sheet(isPresented: $showEntryForm) {
-                self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
-             }
+             NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
+                                   categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator)
          )
     }
     

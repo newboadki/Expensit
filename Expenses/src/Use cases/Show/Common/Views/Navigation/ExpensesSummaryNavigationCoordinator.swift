@@ -68,7 +68,8 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                         columnCount: 3,
                         title: "Monthly Breakdown",
                         navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+                        selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }
 
@@ -93,7 +94,8 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+        selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }
 
@@ -144,6 +146,7 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         return GridView(presenter: presenters["all"]!,
         columnCount: 4,
         title: "",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController))
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+        selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }

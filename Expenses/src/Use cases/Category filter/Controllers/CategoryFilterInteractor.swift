@@ -16,7 +16,7 @@ class CategoryFilterInteractor {
         self.dataSource = dataSource
     }
     
-    func filter(by category: ExpenseCategory) {
+    func filter(by category: ExpenseCategory?) {
         self.dataSource.selectedCategory = category
     }
 }

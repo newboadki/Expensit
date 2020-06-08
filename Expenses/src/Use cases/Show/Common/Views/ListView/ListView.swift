@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ListView<NC: NavigationCoordinator> : View {
     @ObservedObject var presenter: AbstractEntriesSummaryPresenter
-    @State private var showEntryForm = false
+//    @State private var showEntryForm = false
+//    @State private var showCategoryFilter = false
     var title: String
     var navigationCoordinator: NC
     var entryFormCoordinator: EntryFormNavigationCoordinator
@@ -48,13 +49,8 @@ struct ListView<NC: NavigationCoordinator> : View {
                 }
             }.navigationBarTitle(Text(self.presenter.title), displayMode: .inline)
              .navigationBarItems(trailing:
-                Button("+") {
-                    self.showEntryForm.toggle()
-                    print("Showing entry: \(self.showEntryForm)")
-                }.sheet(isPresented: $showEntryForm) {
-                    //self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
-                    self.categoryFilterNavgationCoordinator.categoryFilterView(forIdentifier:"", isPresented: self.$showEntryForm)
-                }
+                NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
+                                      categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator)
             )
         }
     }

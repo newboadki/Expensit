@@ -16,14 +16,23 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
         
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     private(set) var coreDataController: BSCoreDataController
+    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    private var cancellableSelectedCategoryUpdates: AnyCancellable?
     
-    init(coreDataController: BSCoreDataController) {
+    init(coreDataController: BSCoreDataController,
+         selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.coreDataController = coreDataController
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByDay()
+        self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = entriesGroupedByDay()
+        
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+            self.filter(by: selectedCategory)
+            self.groupedExpenses = self.entriesGroupedByDay()
+        }
     }
     
     private func entriesGroupedByDay() -> [ExpensesGroup] {                

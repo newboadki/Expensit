@@ -6,7 +6,7 @@
 //  Copyright © 2020 Borja Arias Drake. All rights reserved.
 //
 
-import Foundation
+import Combine
 
 class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
     
@@ -16,14 +16,24 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     private(set) var coreDataController: BSCoreDataController
+    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    private var cancellableSelectedCategoryUpdates: AnyCancellable?
+
     
-    init(coreDataController: BSCoreDataController) {
+    init(coreDataController: BSCoreDataController,
+         selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.coreDataController = coreDataController
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForAllEntries()
+        self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = allEntries()
+        
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+            self.filter(by: selectedCategory)
+            self.groupedExpenses = self.allEntries()
+        }
     }
     
     private func allEntries() -> [ExpensesGroup] {

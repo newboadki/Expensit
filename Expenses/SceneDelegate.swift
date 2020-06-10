@@ -41,8 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController,
                                                                                                              selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController),
-                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataController: coreDataController)]
+                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController,
+                                                                                                         selectedCategoryDataSource: selectedCategoryDataSource),
+                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataController: coreDataController,
+                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource)]
 
         let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
                                                                "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),

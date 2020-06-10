@@ -24,12 +24,13 @@ struct EntryBoxView: View {
             if !amount.isEmpty {
                 VStack {
                     Text(amount)
-                        .font(.system(size: 8))
-                        .padding(.horizontal)
+                        .font(.system(size: 10))
+                        .padding(.all, 2)
                         .background(self.color(for: sign))
                         .cornerRadius(5)
-                }.frame(width: nil, height: 35, alignment: .center)
+                }
             }
+            Spacer()
 
         }.frame(width: nil, height: 70, alignment: .center)
     }

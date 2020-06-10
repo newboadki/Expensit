@@ -26,8 +26,17 @@ struct EntryFormView: View {
         return NavigationView {
             List {
                 Section {
-                    TextField("Amount", text: amountBinding())
+                    TextField("Amount", text: amountBinding()).foregroundColor(presenter.entry.isAmountNegative ? .red : .green)
                     TextField("Description", text: descBinding())
+                    HStack {
+                        Text("Type")
+                        
+                        Picker(selection: entryTypeBinding(), label: Text("")) {
+                            Text("Expense").tag(true)
+                            Text("Income").tag(false)
+                        }.pickerStyle(SegmentedPickerStyle())
+
+                    }
                 }
 
                 Section {
@@ -99,6 +108,18 @@ private extension EntryFormView {
             }
         )
     }
+    
+    func entryTypeBinding() -> Binding<Bool> {
+        return Binding<Bool>(
+            get: {
+                self.presenter.entry.isAmountNegative
+            },
+            set: {
+                self.presenter.entry.isAmountNegative = $0
+            }
+        )
+    }
+
 }
 
 //struct EntryFormView_Previews: PreviewProvider {

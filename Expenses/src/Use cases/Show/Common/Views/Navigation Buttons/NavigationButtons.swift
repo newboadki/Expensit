@@ -28,22 +28,9 @@ struct NavigationButtonsView: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                self.showCategoryFilter.toggle()
-            }) {
-                Image(self.presenter.selectedCategoryImageName)
-            }.sheet(isPresented: $showCategoryFilter) {
-                self.categoryFilterNavgationCoordinator.categoryFilterView(forIdentifier:"", isPresented: self.$showCategoryFilter)
-            }
+            CategoryFilterButtonView(categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator, presenter: self.presenter)
             
-
-            Button(action: {
-                self.showEntryForm.toggle()
-            }) {
-                Image(systemName: "plus")
-            }.sheet(isPresented: $showEntryForm) {
-                self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
-            }
+            AddEntryButton(entryFormCoordinator: self.entryFormCoordinator)
         }
     }
 }

@@ -226,6 +226,8 @@
 		00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */; };
 		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
+		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
+		00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B82494F751007B0A46 /* AddEntryButton.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
@@ -519,6 +521,8 @@
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
 		00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInteractor.swift; sourceTree = "<group>"; };
 		00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsPresenter.swift; sourceTree = "<group>"; };
+		00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterButtonView.swift; sourceTree = "<group>"; };
+		00D869B82494F751007B0A46 /* AddEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryButton.swift; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
@@ -1269,6 +1273,8 @@
 			isa = PBXGroup;
 			children = (
 				00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */,
+				00D869B82494F751007B0A46 /* AddEntryButton.swift */,
+				00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */,
 				00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */,
 			);
 			path = "Navigation Buttons";
@@ -1682,6 +1688,7 @@
 				0058AACE2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
 				00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */,
+				00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */,
 				000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
@@ -1714,6 +1721,7 @@
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,
 				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				0058AAD621766659007AD175 /* BSBaseExpenseCell.m in Sources */,
+				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
 				00C21396217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
 				00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */,

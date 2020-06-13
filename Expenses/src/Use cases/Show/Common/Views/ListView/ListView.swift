@@ -9,15 +9,20 @@
 import SwiftUI
 
 struct ListView<NC: NavigationCoordinator> : View {
-    @ObservedObject var presenter: AbstractEntriesSummaryPresenter
-//    @State private var showEntryForm = false
-//    @State private var showCategoryFilter = false
-    var title: String
-    var navigationCoordinator: NC
-    var entryFormCoordinator: EntryFormNavigationCoordinator
-    var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
+    
+    // MARK: Private Properties
+    
+    @ObservedObject private var presenter: AbstractEntriesSummaryPresenter
+    private var navigationButtonsPresenter: NavigationButtonsPresenter
+    private var title: String
+    private var navigationCoordinator: NC
+    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
+    
+    // MARK: Initializers
     
     init(presenter:AbstractEntriesSummaryPresenter,
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          title: String,
          navigationCoordinator: NC,
          entryFormCoordinator: EntryFormNavigationCoordinator,
@@ -27,6 +32,7 @@ struct ListView<NC: NavigationCoordinator> : View {
         self.navigationCoordinator = navigationCoordinator
         self.entryFormCoordinator = entryFormCoordinator
         self.categoryFilterNavgationCoordinator = categoryFilterNavgationCoordinator
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
     var body: some View {
@@ -50,7 +56,8 @@ struct ListView<NC: NavigationCoordinator> : View {
             }.navigationBarTitle(Text(self.presenter.title), displayMode: .inline)
              .navigationBarItems(trailing:
                 NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
-                                      categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator)
+                                      categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator,
+                                      presenter: navigationButtonsPresenter)
             )
         }
     }

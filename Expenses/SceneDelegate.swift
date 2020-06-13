@@ -51,9 +51,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                                "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
                                                                "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
 
-        
+        let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
-                                                                                                         presenters: presenters, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
+                                                                                                         presenters: presenters,
+                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

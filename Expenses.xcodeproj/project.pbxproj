@@ -156,7 +156,7 @@
 		00AA9022248930250099AAC1 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AA9021248930250099AAC1 /* TODO.txt */; };
 		00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9023248A30550099AAC1 /* CategoryFilterView.swift */; };
 		00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */; };
-		00AA9028248A36B20099AAC1 /* CategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */; };
+		00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */; };
 		00AA902A248A43150099AAC1 /* SelectedCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */; };
 		00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */; };
 		00AA9030248CDBA10099AAC1 /* NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */; };
@@ -224,6 +224,8 @@
 		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */; };
 		00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */; };
+		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
+		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
@@ -449,7 +451,7 @@
 		00AA9021248930250099AAC1 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		00AA9023248A30550099AAC1 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
 		00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterPresenter.swift; sourceTree = "<group>"; };
-		00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterInteractor.swift; sourceTree = "<group>"; };
+		00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCategoryFilterInteractor.swift; sourceTree = "<group>"; };
 		00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryDataSource.swift; sourceTree = "<group>"; };
 		00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtons.swift; sourceTree = "<group>"; };
@@ -515,6 +517,8 @@
 		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
 		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
+		00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInteractor.swift; sourceTree = "<group>"; };
+		00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsPresenter.swift; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
@@ -1265,6 +1269,7 @@
 			isa = PBXGroup;
 			children = (
 				00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */,
+				00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */,
 			);
 			path = "Navigation Buttons";
 			sourceTree = "<group>";
@@ -1393,7 +1398,8 @@
 			children = (
 				00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */,
 				00C213D8217BB4D000805207 /* BSCategoryFilterController.swift */,
-				00AA9027248A36B20099AAC1 /* CategoryFilterInteractor.swift */,
+				00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */,
+				00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1625,6 +1631,7 @@
 				0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */,
 				00C213CE217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */,
 				0058AA732176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
+				00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */,
 				0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */,
 				0058AAFD217669CC007AD175 /* BSHeaderButton.m in Sources */,
@@ -1658,6 +1665,7 @@
 				0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
 				0058AA9D217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
 				00C213EA217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
+				00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */,
 				00C213D2217BB3C800805207 /* BSAddEntryController.swift in Sources */,
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
 				00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */,
@@ -1718,7 +1726,7 @@
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C213C2217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */,
 				00C213E4217BB4D000805207 /* BSCategoryFilterController.swift in Sources */,
-				00AA9028248A36B20099AAC1 /* CategoryFilterInteractor.swift in Sources */,
+				00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */,
 				00C213E2217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift in Sources */,
 				00A38C1024545A4E00E05596 /* ShowYearlyEntriesPresenter.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,

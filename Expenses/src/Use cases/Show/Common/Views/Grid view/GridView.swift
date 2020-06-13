@@ -12,13 +12,14 @@ import SwiftUI
 
 
 struct GridView<NC: NavigationCoordinator>: View {
-    @ObservedObject var presenter: AbstractEntriesSummaryPresenter
+    @ObservedObject private var presenter: AbstractEntriesSummaryPresenter
+    private var navigationButtonsPresenter: NavigationButtonsPresenter
     @State private var showEntryForm = false
-    var columnCount: Int
-    var title: String
-    var navigationCoordinator: NC
-    var entryFormCoordinator: EntryFormNavigationCoordinator
-    var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
+    private var columnCount: Int
+    private var title: String
+    private var navigationCoordinator: NC
+    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     
     private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
@@ -28,8 +29,13 @@ struct GridView<NC: NavigationCoordinator>: View {
         return section.entries[position]
     }
     
-    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String, navigationCoordinator: NC, entryFormCoordinator: EntryFormNavigationCoordinator, categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator) {
+    init(presenter: AbstractEntriesSummaryPresenter, columnCount: Int, title: String,
+         navigationButtonsPresenter: NavigationButtonsPresenter,
+         navigationCoordinator: NC,
+         entryFormCoordinator: EntryFormNavigationCoordinator,
+         categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator) {
         self.presenter = presenter
+        self.navigationButtonsPresenter = navigationButtonsPresenter
         self.columnCount = columnCount
         self.title = title
         self.navigationCoordinator = navigationCoordinator
@@ -47,7 +53,7 @@ struct GridView<NC: NavigationCoordinator>: View {
         }.navigationBarTitle(self.title)
          .navigationBarItems(trailing:
              NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
-                                   categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator)
+                                   categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator, presenter: navigationButtonsPresenter)
          )
     }
     

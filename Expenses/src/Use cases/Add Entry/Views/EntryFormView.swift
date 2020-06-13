@@ -35,7 +35,6 @@ struct EntryFormView: View {
                             Text("Expense").tag(true)
                             Text("Income").tag(false)
                         }.pickerStyle(SegmentedPickerStyle())
-
                     }
                 }
 

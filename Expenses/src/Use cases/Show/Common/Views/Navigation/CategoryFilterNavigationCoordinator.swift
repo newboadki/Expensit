@@ -21,7 +21,7 @@ class CategoryFilterNavigationCoordinator {
     func categoryFilterView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> CategoryFilterView {
         let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource: categoriesDataSource)
-        let filterByCategoryInteractor = CategoryFilterInteractor(dataSource: selectedCategoryDataSource)
+        let filterByCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let presenter = CategoryFilterPresenter(categoriesInteractor: categoriesInteractor,
                                                 filterByCategoryInteractor: filterByCategoryInteractor)
         return CategoryFilterView(presenter: presenter,

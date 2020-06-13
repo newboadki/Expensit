@@ -21,24 +21,30 @@ class MainNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
          selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["yearly"]!,
+                        navigationButtonsPresenter: navigationButtonsPresenter,
                         title: "Yearly Breakdown",
                         navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources,
-                                                                                          presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: selectedCategoryDataSource),
+                                                                                          presenters: presenters,
+                                                                                          navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: selectedCategoryDataSource),
                         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
                         categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource))
@@ -50,24 +56,30 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
          selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
                         title: "Monthly Breakdown",
-                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        navigationButtonsPresenter: navigationButtonsPresenter,
+                        navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
+                                                                                          navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource),
                         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
                         selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
@@ -77,24 +89,30 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
          selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+        navigationButtonsPresenter: navigationButtonsPresenter,
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
+                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                         coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
         selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }
@@ -103,23 +121,29 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
          selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> ListView<AllExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["all"]!,
+                        navigationButtonsPresenter: navigationButtonsPresenter,
                         title: "All Entries",
-                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
+                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
+                                                                                       navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                       coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
                         categoryFilterNavgationCoordinator:CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
                                                                                                selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
@@ -129,24 +153,30 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
+    var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
+         navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
          selectedCategoryDataSource: SelectedCategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
+        self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
     func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
         return GridView(presenter: presenters["all"]!,
         columnCount: 4,
         title: "",
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters, coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+        navigationButtonsPresenter: navigationButtonsPresenter,
+        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
+                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                         coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
         selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }

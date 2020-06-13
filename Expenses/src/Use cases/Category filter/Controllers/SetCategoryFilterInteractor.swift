@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CategoryFilterInteractor {
+class SetCategoryFilterInteractor {
     
     private var dataSource: SelectedCategoryDataSource
     

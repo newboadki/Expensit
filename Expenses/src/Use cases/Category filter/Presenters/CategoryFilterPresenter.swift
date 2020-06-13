@@ -13,10 +13,9 @@ class CategoryFilterPresenter {
     // Internal
     var selectedIndex: Int {
         didSet {
-            print("------")
             UserDefaults.standard.set(selectedIndex, forKey: "selectedIndex")
             let selectedCategory = categories[selectedIndex]
-            let optionalCategory = (selectedCategory.name == "None") ? nil : selectedCategory
+            let optionalCategory = (selectedCategory.name == "All") ? nil : selectedCategory
             filterByCategoryInteractor.filter(by: optionalCategory)
         }
     }
@@ -25,23 +24,23 @@ class CategoryFilterPresenter {
         var r = self.categoriesInteractor.allCategories().map { expenseCategory in
             return expenseCategory.name
         }
-        r.append("None")
+        r.append("All")
         return r
     }()
 
     lazy var categories: [ExpenseCategory] = {
         var r = self.categoriesInteractor.allCategories()
-        r.append(ExpenseCategory(name: "None", iconName: "", color: .black))
+        r.append(ExpenseCategory(name: "All", iconName: "filter_all", color: .black))
         return r
     }()
 
     // Private
     private var categoriesInteractor: GetCategoriesInteractor
-    private var filterByCategoryInteractor: CategoryFilterInteractor
+    private var filterByCategoryInteractor: SetCategoryFilterInteractor
     
     // MAR: - Initializers
     init(categoriesInteractor: GetCategoriesInteractor,
-         filterByCategoryInteractor: CategoryFilterInteractor) {
+         filterByCategoryInteractor: SetCategoryFilterInteractor) {
         self.categoriesInteractor = categoriesInteractor
         self.filterByCategoryInteractor = filterByCategoryInteractor
         if let stored = UserDefaults.standard.object(forKey: "selectedIndex") as? Int {
@@ -49,8 +48,5 @@ class CategoryFilterPresenter {
         } else {
             self.selectedIndex = 0
         }
-        
-        
-        
     }
 }

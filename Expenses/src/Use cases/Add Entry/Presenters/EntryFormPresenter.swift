@@ -26,7 +26,7 @@ class EntryFormPresenter: ObservableObject {
         self.storageInteractor = storageInteractor
         self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
-        self.entry = ExpensesSummaryEntryViewModel(id: "0",
+        self.entry = ExpensesSummaryEntryViewModel(id: DateIdentifier(),
                                                    title: "",
                                                    value: "",
                                                    signOfAmount: .negative,
@@ -58,7 +58,7 @@ class EntryFormPresenter: ObservableObject {
             value = NSDecimalNumber(string: "0")
         }
         let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
-        let entity = Expense(date: date, value:value, description: entry.desc, category: category)
+        let entity = Expense(dateIdentifier: DateIdentifier(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category)
         entity.identifier = nil
         if entry.isAmountNegative {
             if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {

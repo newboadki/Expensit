@@ -12,7 +12,8 @@ import Foundation
 /// An expense represents the cost incurred in or required for something.
 class Expense : NSObject {
 
-    var identifier: NSCopying? // Related to underlying storage system
+    var identifier: NSCopying? // Related to the underlying storage system
+    let dateIdentifier: DateIdentifier
     var date: Date?
     var value: NSDecimalNumber
     var entryDescription: String?
@@ -40,11 +41,13 @@ class Expense : NSObject {
         }
     }
 
-    init(date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
+    init(dateIdentifier: DateIdentifier, date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
+        self.dateIdentifier = dateIdentifier
         self.date = date
         self.value = value
         self.entryDescription = description
         self.category = category
+        
         super.init()
     }
 }

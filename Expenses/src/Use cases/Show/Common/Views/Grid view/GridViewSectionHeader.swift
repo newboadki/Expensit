@@ -16,8 +16,7 @@ struct GridViewSectionHeader<NC: GridViewSectionHeaderNavigationCoordinator>: Vi
     @State private var isNextViewPresented = false
             
     var body: some View {
-        let components = self.presenter.dateComponents(fromIdentifier: self.section.id)
-        
+                
         return HStack {
             Text("\(section.title ?? "-")").bold().padding().font(.system(size: 25)).foregroundColor(.init(red: 255.0/255.0, green: 87.0/255.0, blue: 51.0/255.0))
             Spacer()
@@ -29,8 +28,8 @@ struct GridViewSectionHeader<NC: GridViewSectionHeaderNavigationCoordinator>: Vi
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }.sheet(isPresented: $isNextViewPresented) {
                 self.navigationCoordinator.nextView(forIdentifier: "",
-                                                           params: (year: components.year,
-                                                                    month: components.month),
+                                                    params: (year: self.section.id.year,
+                                                             month: self.section.id.month),
                                                            isPresented: self.$isNextViewPresented)
             }
             

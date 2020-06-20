@@ -14,9 +14,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
-            let sortedGroups = groups.sorted { (g1, g2) in
-                return (g1.groupKey > g2.groupKey)
-            }
+            let sortedGroups = groups
             var displaySections = [ExpensesSummarySectionViewModel]()
 
             // Each section is a year
@@ -25,9 +23,12 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 var entries = [ExpensesSummaryEntryViewModel]()
                 // We always show all months even if they have no expenses
                 for i in 0 ..< 12 {
-                    
-                    let identifier = "\(section.groupKey)/\(i+1)"
-                    let monthData = ExpensesSummaryEntryViewModel(id: identifier, title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
+                    let monthData = ExpensesSummaryEntryViewModel(id: DateIdentifier(year: section.groupKey.year, month: UInt(i+1), day: nil),
+                                                                  title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(),
+                                                                  value: "",
+                                                                  signOfAmount: .zero,
+                                                                  date: nil,
+                                                                  tag: nil)
                     entries.append(monthData)
                 }
                 
@@ -50,12 +51,16 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let month = NSNumber(value: entryEntity.month!)
                     let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
                     let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-                    let identifier = "\(section.groupKey)/\(month)"
-                    let entryData = ExpensesSummaryEntryViewModel(id: identifier, title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
+                    let entryData = ExpensesSummaryEntryViewModel(id: entryEntity.dateIdentifier,
+                                                                  title: monthString as String,
+                                                                  value: monthlySumString as String,
+                                                                  signOfAmount: sign,
+                                                                  date: nil,
+                                                                  tag: nil)
                     entries[month.intValue - 1] = entryData
                 }
 
-                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: section.groupKey, entries: entries)
+                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: "\(section.groupKey.year ?? 0)", entries: entries)
                 displaySections.append(sectionData)
             }
 
@@ -65,24 +70,5 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
     override func preferredNumberOfColumns() -> Int {
         return 4
-    }
-    
-    override func dateComponents(fromIdentifier identifier: String) -> (year: Int, month: Int?, day: Int?) {
-        let components = identifier.components(separatedBy: "/")
-        var year: Int = 0
-        var month: Int? = nil
-        if let y = components.first,
-            let n = Int(y) {
-            year = n
-        }
-        
-        if components.count >= 2 {
-            month = Int(components[1])
-        }
-        
-        return (year, month, nil)
-    }
-
-    
-    
+    }    
 }

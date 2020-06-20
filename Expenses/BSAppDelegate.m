@@ -8,8 +8,6 @@
 
 #import "BSAppDelegate.h"
 #import "CoreDataStackHelper.h"
-#import "BSBaseExpensesSummaryViewController.h"
-#import "BSYearlyExpensesSummaryViewController.h"
 #import "BSCoreDataController.h"
 #import "DateTimeHelper.h"
 #import "BSGreenTheme.h"
@@ -105,20 +103,20 @@
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler
 {
     
-    UINavigationController *navigationController =  (UINavigationController *)self.window.rootViewController;
-    UIViewController *viewController = navigationController.topViewController;
-    
-    if ([viewController conformsToProtocol:@protocol(BSUIViewControllerAbilityToAddEntry)]) {
-        id<BSUIViewControllerAbilityToAddEntry> vc = (id<BSUIViewControllerAbilityToAddEntry>)viewController;
-        [vc addButtonTappedWithPresentationCompletedBlock:^{
-            if (completionHandler)
-            {
-                completionHandler(YES);
-            }
-        }];
-    } else {
-        completionHandler(NO);
-    }
+//    UINavigationController *navigationController =  (UINavigationController *)self.window.rootViewController;
+//    UIViewController *viewController = navigationController.topViewController;
+//    
+//    if ([viewController conformsToProtocol:@protocol(BSUIViewControllerAbilityToAddEntry)]) {
+//        id<BSUIViewControllerAbilityToAddEntry> vc = (id<BSUIViewControllerAbilityToAddEntry>)viewController;
+//        [vc addButtonTappedWithPresentationCompletedBlock:^{
+//            if (completionHandler)
+//            {
+//                completionHandler(YES);
+//            }
+//        }];
+//    } else {
+//        completionHandler(NO);
+//    }
 }
 
 - (BOOL)isFirstTheAppEverRun

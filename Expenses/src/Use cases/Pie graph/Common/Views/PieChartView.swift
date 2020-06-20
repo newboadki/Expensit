@@ -21,7 +21,10 @@ struct PieChartView: View {
     var body: some View {
         
         return VStack {
-            Text("\(presenter.title) Breakdown").bold()
+            Text("\(presenter.title) Category Breakdown")
+                .font(.system(size: 35))
+                .fontWeight(.black)
+                .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
             Spacer()
             ZStack {
                 ForEach(presenter.sections) { section in

@@ -56,122 +56,122 @@ import UIKit
     
     // MARK: - Summary results
     
-    @objc  func entriesGroupedByYear() -> [ExpensesGroup]
-    {
-        let fetchController = self.fetchControllers[.yearly]
-        let sections = self.performRequest(on: fetchController!)
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections!
-        {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects
-            {
-                for case let data as NSDictionary in objects
-                {
-                    let yearlySum = data["yearlySum"] as! NSDecimalNumber
-                    let date = data["date"] as! Date
-                    let entry = Expense(date: date, value: yearlySum, description: nil, category: nil)
-                    entriesForKey.append(entry)
-                }
-            }
-            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
-            results.append(section)
-        }
-        
-        return results
-    }
-
-    @objc  func entriesGroupedByMonth() -> [ExpensesGroup]
-    {
-        let fetchController = self.fetchControllers[.monthly]
-        let sections = self.performRequest(on: fetchController!)
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections!
-        {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects {
-                for case let data as NSDictionary in objects {
-                    let monthlySum = data["monthlySum"] as! NSDecimalNumber
-                    let date = data["date"] as! Date
-                    let entry = Expense(date: date, value: monthlySum, description: nil, category: nil)
-                    entriesForKey.append(entry)
-                }
-            }
-            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
-            results.append(section)
-        }
-        
-        return results
-    }
-
-    @objc  func entriesGroupedByDay() -> [ExpensesGroup] {
-        
-        let fetchController = self.fetchControllers[.daily]
-        let sections = self.performRequest(on: fetchController!)
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections! {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects {
-                for case let data as NSDictionary in objects {
-                    let dailySum = data["dailySum"] as! NSDecimalNumber
-                    let date = data["date"] as! Date
-                    let entry = Expense(date: date, value: dailySum, description: nil, category: nil)
-                    entriesForKey.append(entry)
-                }
-            }
-            
-            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
-            results.append(section)
-        }
-        
-        return results
-
-    }
-
-    @objc public func allEntries() -> [ExpensesGroup]
-    {
-        let fetchController = self.fetchControllers[.all]
-        let sections = self.performRequest(on: fetchController!)
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections!
-        {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects
-            {
-                for case let coreDataEntry as Entry in objects
-                {
-                    let category = ExpenseCategory(name: coreDataEntry.tag.name, iconName: coreDataEntry.tag.iconImageName ?? "", color: coreDataEntry.tag.color ?? UIColor.black)
-                    let entry = Expense(date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
-                    entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
-                    entriesForKey.append(entry)
-                }
-            }
-            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
-            results.append(section)
-        }
-        
-        return results
-    }
+//    @objc  func entriesGroupedByYear() -> [ExpensesGroup]
+//    {
+//        let fetchController = self.fetchControllers[.yearly]
+//        let sections = self.performRequest(on: fetchController!)
+//        var results = [ExpensesGroup]()
+//        
+//        guard sections != nil else {
+//            return results
+//        }
+//        
+//        for sectionInfo in sections!
+//        {
+//            var entriesForKey = [Expense]()
+//            if let objects = sectionInfo.objects
+//            {
+//                for case let data as NSDictionary in objects
+//                {
+//                    let yearlySum = data["yearlySum"] as! NSDecimalNumber
+//                    let date = data["date"] as! Date
+//                    let entry = Expense(date: date, value: yearlySum, description: nil, category: nil)
+//                    entriesForKey.append(entry)
+//                }
+//            }
+//            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
+//            results.append(section)
+//        }
+//        
+//        return results
+//    }
+//
+//    @objc  func entriesGroupedByMonth() -> [ExpensesGroup]
+//    {
+//        let fetchController = self.fetchControllers[.monthly]
+//        let sections = self.performRequest(on: fetchController!)
+//        var results = [ExpensesGroup]()
+//        
+//        guard sections != nil else {
+//            return results
+//        }
+//        
+//        for sectionInfo in sections!
+//        {
+//            var entriesForKey = [Expense]()
+//            if let objects = sectionInfo.objects {
+//                for case let data as NSDictionary in objects {
+//                    let monthlySum = data["monthlySum"] as! NSDecimalNumber
+//                    let date = data["date"] as! Date
+//                    let entry = Expense(date: date, value: monthlySum, description: nil, category: nil)
+//                    entriesForKey.append(entry)
+//                }
+//            }
+//            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
+//            results.append(section)
+//        }
+//        
+//        return results
+//    }
+//
+//    @objc  func entriesGroupedByDay() -> [ExpensesGroup] {
+//        
+//        let fetchController = self.fetchControllers[.daily]
+//        let sections = self.performRequest(on: fetchController!)
+//        var results = [ExpensesGroup]()
+//        
+//        guard sections != nil else {
+//            return results
+//        }
+//        
+//        for sectionInfo in sections! {
+//            var entriesForKey = [Expense]()
+//            if let objects = sectionInfo.objects {
+//                for case let data as NSDictionary in objects {
+//                    let dailySum = data["dailySum"] as! NSDecimalNumber
+//                    let date = data["date"] as! Date
+//                    let entry = Expense(date: date, value: dailySum, description: nil, category: nil)
+//                    entriesForKey.append(entry)
+//                }
+//            }
+//            
+//            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
+//            results.append(section)
+//        }
+//        
+//        return results
+//
+//    }
+//
+//    @objc public func allEntries() -> [ExpensesGroup]
+//    {
+//        let fetchController = self.fetchControllers[.all]
+//        let sections = self.performRequest(on: fetchController!)
+//        var results = [ExpensesGroup]()
+//        
+//        guard sections != nil else {
+//            return results
+//        }
+//        
+//        for sectionInfo in sections!
+//        {
+//            var entriesForKey = [Expense]()
+//            if let objects = sectionInfo.objects
+//            {
+//                for case let coreDataEntry as Entry in objects
+//                {
+//                    let category = ExpenseCategory(name: coreDataEntry.tag.name, iconName: coreDataEntry.tag.iconImageName ?? "", color: coreDataEntry.tag.color ?? UIColor.black)
+//                    let entry = Expense(date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+//                    entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
+//                    entriesForKey.append(entry)
+//                }
+//            }
+//            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
+//            results.append(section)
+//        }
+//        
+//        return results
+//    }
     
     // MARK: - Editing
     

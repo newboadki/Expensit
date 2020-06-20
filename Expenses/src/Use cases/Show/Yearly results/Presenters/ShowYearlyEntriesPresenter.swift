@@ -24,7 +24,7 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
             let groups = expensesGroups as [ExpensesGroup]
             var displaySections = [ExpensesSummarySectionViewModel]()
             
-            for (sectionIndex, section) in groups.enumerated()
+            for section in groups
             {
                 let entryEntities = section.entries
                 var displayEntries = [ExpensesSummaryEntryViewModel]()
@@ -46,12 +46,16 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let year = entryEntity.year
                     let yearString =  (year != nil) ? "\(year!)" : "" // NSString(format:"\(String(describing: year))" as NSString)
                     let yearlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-
-                    let displayEntry = ExpensesSummaryEntryViewModel(id: yearString, title: yearString as String , value: yearlySumString as String, signOfAmount: sign, date:nil, tag: nil)
+                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryEntity.dateIdentifier,
+                                                                     title: yearString as String,
+                                                                     value: yearlySumString as String,
+                                                                     signOfAmount: sign,
+                                                                     date:nil,
+                                                                     tag: nil)
                     displayEntries.append(displayEntry)
                 }
                 
-                let sectionData = ExpensesSummarySectionViewModel(id:"\(sectionIndex)", title: section.groupKey, entries: displayEntries)
+                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: "", entries: displayEntries)
                 displaySections.append(sectionData)
             }
             return displaySections

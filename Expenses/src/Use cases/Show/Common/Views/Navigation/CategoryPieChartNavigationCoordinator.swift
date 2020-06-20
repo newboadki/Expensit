@@ -24,7 +24,7 @@ class CategoryPieChartNavigationCoordinator: GridViewSectionHeaderNavigationCoor
     // MARK: - GridViewSectionHeaderNavigationCoordinator
     
     func nextView(forIdentifier currentViewIdentifier: String, params: Any?, isPresented: Binding<Bool>) -> PieChartView {
-        guard let p = params as? (year: Int, month: Int?) else {
+        guard let p = params as? (year: UInt, month: UInt?) else {
             return PieChartView(isPresented: isPresented,
                                 presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider: self.fetchController),
                                                              month: 0,
@@ -33,7 +33,7 @@ class CategoryPieChartNavigationCoordinator: GridViewSectionHeaderNavigationCoor
         
         return PieChartView(isPresented: isPresented,
                             presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider: self.fetchController),
-                                                         month: (p.month != nil) ? NSNumber(integerLiteral: p.month!) : nil,
-                                                         year: NSNumber(integerLiteral: p.year)))
+                                                         month: (p.month != nil) ? NSNumber(integerLiteral: Int(p.month!)) : nil,
+                                                         year: NSNumber(integerLiteral: Int(p.year))))
     }
 }

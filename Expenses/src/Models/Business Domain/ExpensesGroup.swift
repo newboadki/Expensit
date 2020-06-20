@@ -13,10 +13,10 @@ import UIKit
 /// They usually represent sections of related entry entities.
 class ExpensesGroup: NSObject, ObservableObject
 {
-    let groupKey: String
-    @objc let entries: [Expense]
+    let groupKey: DateIdentifier
+    let entries: [Expense]
     
-    @objc init(key: String, entries: [Expense])
+    init(groupKey key: DateIdentifier, entries: [Expense])
     {
         self.groupKey = key
         self.entries = entries

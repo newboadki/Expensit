@@ -55,28 +55,5 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
                 return self.preferredNumberOfColumns()
             }
         }        
-    }
-    
-    func dateComponents(fromIdentifier identifier: String) -> (year: Int, month: Int?, day: Int?) {
-        let components = identifier.components(separatedBy: "/")
-        var year: Int = 0
-        var month: Int? = nil
-        var day: Int? = nil
-
-        if let d = components.first,
-           let n = Int(d) {
-           day = n
-       }
-       
-       if components.count >= 3 {
-           month = Int(components[1])
-           year = Int(components[2]) ?? 0
-       }
-       
-       return (year, month, day)
-    }
-
-//    func type() -> SummaryType {
-//        fatalError("Not implemented.")
-//    }
+    }    
 }

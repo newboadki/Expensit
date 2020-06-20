@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        let food = coreDataController.tag(forName: "Food")
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/12/2019"), description: "Burguers", value: "-120", category: food)
-//
+////
 //        let work = coreDataController.tag(forName: "Bills")
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "27/04/2020"), description: "Have a good one!", value: "500", category: work)
 //

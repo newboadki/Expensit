@@ -499,7 +499,6 @@
 }
 
 
-
 #pragma mark - Line Graphs Requests
 
 - (NSFetchRequest *) graphYearlySurplusFetchRequest

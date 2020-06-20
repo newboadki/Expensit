@@ -24,9 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
         coreDataController.coreDataHelper = coreDataStackHelper!
         
-//        let tag = coreDataController.tag(forName: "Food")
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/06/2020"), description: "Have a good one!", value: "90", category: tag)
-//        
+//        let food = coreDataController.tag(forName: "Food")
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/12/2019"), description: "Burguers", value: "-120", category: food)
+//
+//        let work = coreDataController.tag(forName: "Bills")
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "27/04/2020"), description: "Have a good one!", value: "500", category: work)
+//
+//        let t3 = coreDataController.tag(forName: "Drinks")
+//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "01/03/2020"), description: "Have a good one!", value: "4000", category: t3)
+
+////
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
         
@@ -54,8 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
                                                                                                          presenters: presenters,
-                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
-        
+                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))                
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

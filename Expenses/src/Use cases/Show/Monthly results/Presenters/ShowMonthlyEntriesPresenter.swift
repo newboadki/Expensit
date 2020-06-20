@@ -11,8 +11,7 @@ import Combine
 class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
-        
-        print("Monthly Presenter called.")
+                
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
             let sortedGroups = groups.sorted { (g1, g2) in
@@ -20,16 +19,20 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
             }
             var displaySections = [ExpensesSummarySectionViewModel]()
 
-            for (sectionIndex, section) in sortedGroups.enumerated() // Each section is a year
+            // Each section is a year
+            for section in sortedGroups
             {
                 var entries = [ExpensesSummaryEntryViewModel]()
-                for i in 0 ..< 12 { // We always show all months even if they have no expenses
+                // We always show all months even if they have no expenses
+                for i in 0 ..< 12 {
                     
-                    let monthData = ExpensesSummaryEntryViewModel(id: i, title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
+                    let identifier = "\(section.groupKey)/\(i+1)"
+                    let monthData = ExpensesSummaryEntryViewModel(id: identifier, title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(), value: "", signOfAmount: .zero, date: nil, tag: nil)
                     entries.append(monthData)
                 }
                 
-                for (entryIndex, entryEntity) in section.entries.enumerated() // No populate the month that do have expenses
+                // Now populate the month that do have expenses
+                for entryEntity in section.entries
                 {
                     let value = entryEntity.value
                     let r : ComparisonResult = value.compare(0)
@@ -47,12 +50,12 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let month = NSNumber(value: entryEntity.month!)
                     let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
                     let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-
-                    let entryData = ExpensesSummaryEntryViewModel(id: entryIndex, title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
+                    let identifier = "\(section.groupKey)/\(month)"
+                    let entryData = ExpensesSummaryEntryViewModel(id: identifier, title: monthString as String , value: monthlySumString as String, signOfAmount: sign, date: nil, tag: nil)
                     entries[month.intValue - 1] = entryData
                 }
 
-                let sectionData = ExpensesSummarySectionViewModel(id:sectionIndex, title: section.groupKey, entries: entries)
+                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: section.groupKey, entries: entries)
                 displaySections.append(sectionData)
             }
 
@@ -63,4 +66,23 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     override func preferredNumberOfColumns() -> Int {
         return 4
     }
+    
+    override func dateComponents(fromIdentifier identifier: String) -> (year: Int, month: Int?, day: Int?) {
+        let components = identifier.components(separatedBy: "/")
+        var year: Int = 0
+        var month: Int? = nil
+        if let y = components.first,
+            let n = Int(y) {
+            year = n
+        }
+        
+        if components.count >= 2 {
+            month = Int(components[1])
+        }
+        
+        return (year, month, nil)
+    }
+
+    
+    
 }

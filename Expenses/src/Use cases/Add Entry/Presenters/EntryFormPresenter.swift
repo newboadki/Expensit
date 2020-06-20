@@ -26,7 +26,7 @@ class EntryFormPresenter: ObservableObject {
         self.storageInteractor = storageInteractor
         self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
-        self.entry = ExpensesSummaryEntryViewModel(id: 0,
+        self.entry = ExpensesSummaryEntryViewModel(id: "0",
                                                    title: "",
                                                    value: "",
                                                    signOfAmount: .negative,

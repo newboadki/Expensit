@@ -17,7 +17,7 @@ protocol PerformsCoreDataRequests {
 extension PerformsCoreDataRequests {
     func performRequest() -> [NSFetchedResultsSectionInfo]? {
         do
-        {
+        {            
             try fetchedResultsController.performFetch()
             return fetchedResultsController.sections
         }

@@ -10,7 +10,7 @@ import Foundation
 
 struct ExpensesSummaryEntryViewModel : Identifiable
 {
-    var id: Int
+    var id: String
     var title : String?
     var value : String?
     var signOfAmount : BSNumberSignType
@@ -21,7 +21,7 @@ struct ExpensesSummaryEntryViewModel : Identifiable
     var tagId : Int
     var dateTime: Date
 
-    init(id: Int, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?, tagId: Int = 2, dateTime: Date = Date())
+    init(id: String, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?, tagId: Int = 2, dateTime: Date = Date())
     {
         self.id = id
         self.title = title

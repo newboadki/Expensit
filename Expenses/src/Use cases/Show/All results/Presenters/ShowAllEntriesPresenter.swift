@@ -34,12 +34,12 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                 {
                     let entryEntity : Expense = sortedEntries[i]
                     let sign : BSNumberSignType = self.sign(for: entryEntity.value)
-                    let displayEntry = ExpensesSummaryEntryViewModel(id:i, title: entryEntity.entryDescription , value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value), signOfAmount: sign, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date), tag: entryEntity.category?.name)
+                    let displayEntry = ExpensesSummaryEntryViewModel(id:"\(i)", title: entryEntity.entryDescription , value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value), signOfAmount: sign, date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date), tag: entryEntity.category?.name)
                     //displayEntry.identifier = entryEntity.identifier
                     displayEntries.append(displayEntry)
                 }
                 
-                let displaySection = ExpensesSummarySectionViewModel(id:sectionIndex, title: section.groupKey, entries: displayEntries)
+                let displaySection = ExpensesSummarySectionViewModel(id:"\(sectionIndex)", title: section.groupKey, entries: displayEntries)
                 displaySections.append(displaySection)
             }
 

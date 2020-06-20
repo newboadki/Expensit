@@ -14,6 +14,5 @@ extension Date {
     public func component(_ component: Calendar.Component) -> UInt
     {
         return UInt(Calendar(identifier: .gregorian).component(component, from: self))
-        
     }
 }

@@ -60,16 +60,35 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
                         tagColor = coreDataEntry.tag.color
                     }
                     let category = ExpenseCategory(name: tagName, iconName: iconImageName, color: tagColor)
-                    let entry = Expense(date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+                    let entry = Expense(dateIdentifier: DateIdentifier(year: coreDataEntry.date.component(.year), month: coreDataEntry.date.component(.month), day: coreDataEntry.date.component(.day)), date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
                     entriesForKey.append(entry)
                 }
             }
-            let section = ExpensesGroup(key: sectionInfo.name, entries: entriesForKey)
+            let section = ExpensesGroup(groupKey: dateIdentifier(fromSectionKey: sectionInfo.name), entries: entriesForKey)
             results.append(section)
         }
         
         return results
+    }
+    
+    private func dateIdentifier(fromSectionKey key: String) -> DateIdentifier {
+        let components = key.components(separatedBy: "/")
+        var year: UInt? = nil
+        var month: UInt? = nil
+        var day: UInt? = nil
+
+        if let d = components.first,
+            let n = UInt(d) {
+            day = n
+        }
+        
+        if components.count >= 3 {
+            month = UInt(components[1])
+            year = UInt(components[2])
+        }
+        
+        return DateIdentifier(year: year, month: month, day: day)
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {

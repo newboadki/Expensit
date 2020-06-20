@@ -38,7 +38,6 @@
 		00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
 		00223BB82169FF5800E76784 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB52169FF5800E76784 /* Expense.swift */; };
 		00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC3216A007200E76784 /* BSCategoryFilterManager.m */; };
-		00223BCA216A007200E76784 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */; };
 		00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */; };
 		00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BCC216A00A300E76784 /* BSCoreDataController.m */; };
 		00223BEC216A020E00E76784 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEA216A020E00E76784 /* Tag.m */; };
@@ -46,7 +45,6 @@
 		00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
 		00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
 		00223BF0216A024200E76784 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB52169FF5800E76784 /* Expense.swift */; };
-		00223BF1216A02A600E76784 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */; };
 		00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
 		00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */; };
 		0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */; };
@@ -55,34 +53,18 @@
 		0058AA5221765F45007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4621765F44007AD175 /* BSAbstractShowEntriesPresenter.swift */; };
 		0058AA5321765F45007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4721765F44007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift */; };
 		0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
-		0058AA5521765F45007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4C21765F45007AD175 /* BSBaseExpensesSummaryViewController.m */; };
 		0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */; };
-		0058AA5721765F45007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4F21765F45007AD175 /* BSBaseNavigationTransitionManager.swift */; };
 		0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
 		0058AA5921765F69007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4621765F44007AD175 /* BSAbstractShowEntriesPresenter.swift */; };
-		0058AA5A21765F79007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4F21765F45007AD175 /* BSBaseNavigationTransitionManager.swift */; };
-		0058AA5B21765F7F007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4C21765F45007AD175 /* BSBaseExpensesSummaryViewController.m */; };
 		0058AA5C21765F7F007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */; };
 		0058AA5D21765F99007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
 		0058AA5E21765FA3007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4721765F44007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift */; };
 		0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
-		0058AA732176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA622176605D007AD175 /* BSShowYearlyEntriesController.swift */; };
-		0058AA742176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA622176605D007AD175 /* BSShowYearlyEntriesController.swift */; };
 		0058AA9021766164007AD175 /* BSMonthlyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA8921766163007AD175 /* BSMonthlyExpensesSummaryViewController.m */; };
-		0058AA9121766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA8C21766164007AD175 /* BSShowMonthlyEntriesController.swift */; };
-		0058AA9221766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA8C21766164007AD175 /* BSShowMonthlyEntriesController.swift */; };
-		0058AA9D217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA94217661DA007AD175 /* BSShowDailyEntriesController.swift */; };
-		0058AA9E217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA94217661DA007AD175 /* BSShowDailyEntriesController.swift */; };
 		0058AAA0217661DA007AD175 /* BSDailyExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA97217661DA007AD175 /* BSDailyExpensesSummaryViewController.m */; };
 		0058AAA6217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA9C217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift */; };
 		0058AAA821766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAA721766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift */; };
 		0058AAA921766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAA721766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift */; };
-		0058AAB3217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */; };
-		0058AAB4217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */; };
-		0058AAB7217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */; };
-		0058AAB8217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */; };
-		0058AAB9217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */; };
-		0058AABA217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */; };
 		0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AABB21766548007AD175 /* BSYearlyLayout.m */; };
 		0058AABF21766549007AD175 /* BSYearlyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AABB21766548007AD175 /* BSYearlyLayout.m */; };
 		0058AAC421766573007AD175 /* BSMonthlyGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAC021766573007AD175 /* BSMonthlyGridLayout.m */; };
@@ -184,8 +166,6 @@
 		00C213A5217BB1C200805207 /* BSCategoryPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A2217BB1C200805207 /* BSCategoryPieChartView.m */; };
 		00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
 		00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
-		00C213C0217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */; };
-		00C213C1217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */; };
 		00C213C2217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */; };
 		00C213C3217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B1217BB3C800805207 /* BSDateToDatePickerCellConvertor.m */; };
 		00C213C4217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */; };
@@ -194,12 +174,8 @@
 		00C213C7217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */; };
 		00C213C8217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
 		00C213C9217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */; };
-		00C213CA217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */; };
-		00C213CB217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */; };
 		00C213CC217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
 		00C213CD217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */; };
-		00C213CE217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */; };
-		00C213CF217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */; };
 		00C213D0217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */; };
 		00C213D1217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */; };
 		00C213D2217BB3C800805207 /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C213BE217BB3C800805207 /* BSAddEntryController.swift */; };
@@ -235,6 +211,8 @@
 		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
 		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
 		00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C59249DFE01007B0A46 /* Date+Components.swift */; };
+		00D86C5C249E10A3007B0A46 /* DateIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */; };
+		00D86C5E249E2104007B0A46 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
@@ -339,7 +317,6 @@
 		00223BB52169FF5800E76784 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		00223BC3216A007200E76784 /* BSCategoryFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterManager.m; sourceTree = "<group>"; };
 		00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataFixturesManager.h; sourceTree = "<group>"; };
-		00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataFetchController.swift; sourceTree = "<group>"; };
 		00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseSummaryDataGatewayProtocol.h; sourceTree = "<group>"; };
 		00223BC7216A007200E76784 /* BSCategoryFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterManager.h; sourceTree = "<group>"; };
 		00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataFixturesManager.m; sourceTree = "<group>"; };
@@ -358,28 +335,15 @@
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
 		0058AA4621765F44007AD175 /* BSAbstractShowEntriesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractShowEntriesPresenter.swift; sourceTree = "<group>"; };
 		0058AA4721765F44007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractExpensesSummaryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
-		0058AA4921765F45007AD175 /* BSBaseExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBaseExpensesSummaryViewController.h; sourceTree = "<group>"; };
-		0058AA4A21765F45007AD175 /* BSBaseExpensesSummaryViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSBaseExpensesSummaryViewController+Protected.h"; sourceTree = "<group>"; };
 		0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractExpensesSummaryUserInterfaceProtocol.swift; sourceTree = "<group>"; };
-		0058AA4C21765F45007AD175 /* BSBaseExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBaseExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDisplayExpensesSummarySection.swift; sourceTree = "<group>"; };
-		0058AA4F21765F45007AD175 /* BSBaseNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSBaseNavigationTransitionManager.swift; sourceTree = "<group>"; };
 		0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractShowEntriesControllerProtocol.swift; sourceTree = "<group>"; };
-		0058AA622176605D007AD175 /* BSShowYearlyEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowYearlyEntriesController.swift; sourceTree = "<group>"; };
-		0058AA642176605D007AD175 /* BSYearlyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyExpensesSummaryViewController.h; sourceTree = "<group>"; };
-		0058AA682176605D007AD175 /* BSYearlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		0058AA8821766163007AD175 /* BSMonthlyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMonthlyExpensesSummaryViewController.h; sourceTree = "<group>"; };
 		0058AA8921766163007AD175 /* BSMonthlyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMonthlyExpensesSummaryViewController.m; sourceTree = "<group>"; };
-		0058AA8C21766164007AD175 /* BSShowMonthlyEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowMonthlyEntriesController.swift; sourceTree = "<group>"; };
-		0058AA94217661DA007AD175 /* BSShowDailyEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowDailyEntriesController.swift; sourceTree = "<group>"; };
 		0058AA96217661DA007AD175 /* BSDailyExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDailyExpensesSummaryViewController.h; sourceTree = "<group>"; };
 		0058AA97217661DA007AD175 /* BSDailyExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesSummaryViewController.m; sourceTree = "<group>"; };
 		0058AA9C217661DA007AD175 /* BSDailySummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDailySummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
 		0058AAA721766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDailyExpensesSummaryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
-		0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIndividualExpensesSummaryViewController.m; sourceTree = "<group>"; };
-		0058AAAC217662D0007AD175 /* BSIndividualExpensesSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIndividualExpensesSummaryViewController.h; sourceTree = "<group>"; };
-		0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSIndividualEntriesSummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
-		0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSShowAllEntriesController.swift; sourceTree = "<group>"; };
 		0058AABB21766548007AD175 /* BSYearlyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyLayout.m; sourceTree = "<group>"; };
 		0058AABC21766549007AD175 /* BSYearlySummaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlySummaryEntryCell.h; sourceTree = "<group>"; };
 		0058AABD21766549007AD175 /* BSYearlyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSYearlyLayout.h; sourceTree = "<group>"; };
@@ -494,7 +458,6 @@
 		00C213A3217BB1C200805207 /* BSPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPieChartViewController.h; sourceTree = "<group>"; };
 		00C213A6217BB2E800805207 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
 		00C213A7217BB2E800805207 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
-		00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenterEventsProtocol.swift; sourceTree = "<group>"; };
 		00C213AD217BB3C800805207 /* BSDateToDatePickerCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDateToDatePickerCellConvertor.h; sourceTree = "<group>"; };
 		00C213AE217BB3C800805207 /* BSAmountToTextControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAmountToTextControlCellConvertor.h; sourceTree = "<group>"; };
 		00C213AF217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTagToSegmentedControlCellConvertor.h; sourceTree = "<group>"; };
@@ -503,12 +466,9 @@
 		00C213B2217BB3C800805207 /* BSAmountToTextControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAmountToTextControlCellConvertor.m; sourceTree = "<group>"; };
 		00C213B3217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTagToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
 		00C213B4217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryTypeToSegmentedControlCellConvertor.m; sourceTree = "<group>"; };
-		00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryPresenter.swift; sourceTree = "<group>"; };
 		00C213B7217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStaticTableAddEntryFormCellActionDataSource.h; sourceTree = "<group>"; };
 		00C213B8217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStaticTableAddEntryFormCellActionDataSource.m; sourceTree = "<group>"; };
-		00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSEntryDetailsFormViewController.m; sourceTree = "<group>"; };
 		00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryInterfaceProtocol.swift; sourceTree = "<group>"; };
-		00C213BC217BB3C800805207 /* BSEntryDetailsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSEntryDetailsFormViewController.h; sourceTree = "<group>"; };
 		00C213BE217BB3C800805207 /* BSAddEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryController.swift; sourceTree = "<group>"; };
 		00C213BF217BB3C800805207 /* BSAddEntryControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryControllerProtocol.swift; sourceTree = "<group>"; };
 		00C213D7217BB4D000805207 /* BSCategoryFilterControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCategoryFilterControllerProtocol.swift; sourceTree = "<group>"; };
@@ -537,6 +497,8 @@
 		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
 		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00D86C59249DFE01007B0A46 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
+		00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIdentifier.swift; sourceTree = "<group>"; };
+		00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataFetchController.swift; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
@@ -786,6 +748,7 @@
 				00223BB32169FF5800E76784 /* ExpensesGroup.swift */,
 				00223BB42169FF5800E76784 /* ExpenseCategory.swift */,
 				00223BB52169FF5800E76784 /* Expense.swift */,
+				00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */,
 			);
 			path = "Business Domain";
 			sourceTree = "<group>";
@@ -806,8 +769,8 @@
 				00223BCC216A00A300E76784 /* BSCoreDataController.m */,
 				00223BC3216A007200E76784 /* BSCategoryFilterManager.m */,
 				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
-				00223BC5216A007200E76784 /* BSCoreDataFetchController.swift */,
 				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
+				00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */,
 				00AA901F248923F70099AAC1 /* CategoriesDataSource.swift */,
 				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
 				00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */,
@@ -855,10 +818,7 @@
 				0058AAF82176699F007AD175 /* PaddingLabel.swift */,
 				0058AAD421766659007AD175 /* BSBaseExpenseCell.h */,
 				0058AAD521766659007AD175 /* BSBaseExpenseCell.m */,
-				0058AA4921765F45007AD175 /* BSBaseExpensesSummaryViewController.h */,
-				0058AA4A21765F45007AD175 /* BSBaseExpensesSummaryViewController+Protected.h */,
 				0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */,
-				0058AA4C21765F45007AD175 /* BSBaseExpensesSummaryViewController.m */,
 				0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */,
 			);
 			path = Views;
@@ -867,7 +827,6 @@
 		0058AA4E21765F45007AD175 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
-				0058AA4F21765F45007AD175 /* BSBaseNavigationTransitionManager.swift */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -884,7 +843,6 @@
 		0058AA602176605D007AD175 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0058AA622176605D007AD175 /* BSShowYearlyEntriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -895,8 +853,6 @@
 				0058AABD21766549007AD175 /* BSYearlyLayout.h */,
 				0058AABB21766548007AD175 /* BSYearlyLayout.m */,
 				0058AABC21766549007AD175 /* BSYearlySummaryEntryCell.h */,
-				0058AA642176605D007AD175 /* BSYearlyExpensesSummaryViewController.h */,
-				0058AA682176605D007AD175 /* BSYearlyExpensesSummaryViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -947,7 +903,6 @@
 		0058AA8B21766164007AD175 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0058AA8C21766164007AD175 /* BSShowMonthlyEntriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -955,7 +910,6 @@
 		0058AA93217661DA007AD175 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0058AA94217661DA007AD175 /* BSShowDailyEntriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -999,8 +953,6 @@
 				0058AADD217667E9007AD175 /* BSTriangularAccesoryView.m */,
 				0058AAD8217667B0007AD175 /* BSSingleEntryCell.h */,
 				0058AAD9217667B0007AD175 /* BSSingleEntryCell.m */,
-				0058AAAC217662D0007AD175 /* BSIndividualExpensesSummaryViewController.h */,
-				0058AAAB217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1016,7 +968,6 @@
 		0058AAAF217662D0007AD175 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
-				0058AAB0217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -1024,7 +975,6 @@
 		0058AAB1217662D0007AD175 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0058AAB2217662D0007AD175 /* BSShowAllEntriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1363,8 +1313,6 @@
 			isa = PBXGroup;
 			children = (
 				00AA901324863F8A0099AAC1 /* EntryFormPresenter.swift */,
-				00C213AB217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift */,
-				00C213B5217BB3C800805207 /* BSAddEntryPresenter.swift */,
 				00C213AC217BB3C800805207 /* StaticTableViewCellConvertors */,
 				00C213B6217BB3C800805207 /* CellActionDataSources */,
 			);
@@ -1399,9 +1347,7 @@
 		00C213B9217BB3C800805207 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				00C213BA217BB3C800805207 /* BSEntryDetailsFormViewController.m */,
 				00C213BB217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift */,
-				00C213BC217BB3C800805207 /* BSEntryDetailsFormViewController.h */,
 				00AA901124863CB70099AAC1 /* EntryFormView.swift */,
 				00AA90182487BE420099AAC1 /* CategoryPickerView.swift */,
 				00AA901A2487D5770099AAC1 /* DatePickerView.swift */,
@@ -1660,7 +1606,6 @@
 				0058AA5321765F45007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				00E72B112472F72700C89235 /* GridViewSectionBodyRowNavCell.swift in Sources */,
 				000A9A251D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */,
-				00C213C0217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
 				00C213C8217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
 				00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */,
 				00AA90012484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift in Sources */,
@@ -1672,8 +1617,6 @@
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				0058AAF12176692C007AD175 /* BSChartLegendCollectionViewCell.m in Sources */,
 				0058AAD02176659E007AD175 /* BSDailyLayout.m in Sources */,
-				00C213CE217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */,
-				0058AA732176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
 				00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */,
 				0058AABE21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */,
@@ -1690,25 +1633,22 @@
 				00C213E6217BB4D000805207 /* BSCategoryFilterViewController.m in Sources */,
 				00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */,
 				0058AAC421766573007AD175 /* BSMonthlyGridLayout.m in Sources */,
+				00D86C5E249E2104007B0A46 /* BSCoreDataFetchController.swift in Sources */,
 				00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */,
 				0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C213EC217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */,
 				0058AAA821766222007AD175 /* BSDailyExpensesSummaryPresenterEventsProtocol.swift in Sources */,
 				00C213C6217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
-				0058AA5521765F45007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */,
 				0058AAD22176659E007AD175 /* BSDailyEntryHeaderView.m in Sources */,
 				00A38C0424541B9C00E05596 /* ExpensesSummaryInteractor.swift in Sources */,
-				00C213CA217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */,
 				00C213A5217BB1C200805207 /* BSCategoryPieChartView.m in Sources */,
 				0058AADE217667E9007AD175 /* BSTriangularAccesoryView.m in Sources */,
 				008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */,
-				0058AAB9217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */,
 				00A38C132454ABBD00E05596 /* ListView.swift in Sources */,
 				00C21392217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
 				00C213C4217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
-				0058AA9D217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
 				00C213EA217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */,
 				00C213D2217BB3C800805207 /* BSAddEntryController.swift in Sources */,
@@ -1721,7 +1661,6 @@
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00C213CC217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 				00223BEC216A020E00E76784 /* Tag.m in Sources */,
-				00223BCA216A007200E76784 /* BSCoreDataFetchController.swift in Sources */,
 				00A38C1D245574D500E05596 /* Environment.swift in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
 				0058AAC621766573007AD175 /* BSMonthlySummaryEntryCell.m in Sources */,
@@ -1751,7 +1690,6 @@
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
 				00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */,
-				0058AA9121766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
 				00C2137E217BAE2900805207 /* BSGreenTheme.m in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA901424863F8A0099AAC1 /* EntryFormPresenter.swift in Sources */,
@@ -1759,7 +1697,6 @@
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
 				0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
-				0058AAB7217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
 				00C213E8217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,
 				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
@@ -1769,7 +1706,7 @@
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
 				00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */,
-				0058AAB3217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */,
+				00D86C5C249E10A3007B0A46 /* DateIdentifier.swift in Sources */,
 				0058AAF92176699F007AD175 /* PaddingLabel.swift in Sources */,
 				000A9A0F1D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
 				00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */,
@@ -1785,7 +1722,6 @@
 				0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				00AA9030248CDBA10099AAC1 /* NavigationButtons.swift in Sources */,
 				00C213A4217BB1C200805207 /* BSPieChartViewController.m in Sources */,
-				0058AA5721765F45007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */,
 				00C213D4217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1794,9 +1730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00223BF1216A02A600E76784 /* BSCoreDataFetchController.swift in Sources */,
 				0058AA5E21765FA3007AD175 /* BSAbstractExpensesSummaryPresenterEventsProtocol.swift in Sources */,
-				0058AA742176605D007AD175 /* BSShowYearlyEntriesController.swift in Sources */,
 				0058AACF2176659E007AD175 /* BSDailySummanryEntryCell.m in Sources */,
 				0058AAFA2176699F007AD175 /* PaddingLabel.swift in Sources */,
 				00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */,
@@ -1805,7 +1739,6 @@
 				0058AAD12176659E007AD175 /* BSDailyLayout.m in Sources */,
 				00C213C5217BB3C800805207 /* BSAmountToTextControlCellConvertor.m in Sources */,
 				0001059823409B440073BFAF /* YearlySummaryTests.swift in Sources */,
-				0058AA9221766164007AD175 /* BSShowMonthlyEntriesController.swift in Sources */,
 				00C21383217BAE2900805207 /* BSThemeManager.m in Sources */,
 				00C213EB217BB4D000805207 /* BSCategoryFilterPresenterEventsProtocol.swift in Sources */,
 				0045D5BF1DBA9A12006AA5AE /* BSYearlyExpensesSummaryTests.m in Sources */,
@@ -1824,8 +1757,6 @@
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
 				0058AA5C21765F7F007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
 				00C213D3217BB3C800805207 /* BSAddEntryController.swift in Sources */,
-				00C213CB217BB3C800805207 /* BSAddEntryPresenter.swift in Sources */,
-				0058AAB4217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				0058AA5D21765F99007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
@@ -1834,9 +1765,7 @@
 				0058AA9021766164007AD175 /* BSMonthlyExpensesSummaryViewController.m in Sources */,
 				0058AA5921765F69007AD175 /* BSAbstractShowEntriesPresenter.swift in Sources */,
 				00C213F3217C729F00805207 /* BSBSExpenseDeletionTests.m in Sources */,
-				0058AAB8217662D0007AD175 /* BSIndividualEntriesSummaryNavigationTransitionManager.swift in Sources */,
 				000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */,
-				00C213C1217BB3C800805207 /* BSAddEntryPresenterEventsProtocol.swift in Sources */,
 				0045D6241DBCE29F006AA5AE /* BSPerEntrySummaryTests.m in Sources */,
 				00D57E1C1F744BDE00EC9127 /* DailyTestHelper.m in Sources */,
 				00D57E191F74437D00EC9127 /* BSDailySummaryViewControllerTests.m in Sources */,
@@ -1844,10 +1773,8 @@
 				0058AADF217667E9007AD175 /* BSTriangularAccesoryView.m in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00C2137F217BAE2900805207 /* BSGreenTheme.m in Sources */,
-				0058AABA217662D0007AD175 /* BSShowAllEntriesController.swift in Sources */,
 				0058AADB217667B0007AD175 /* BSSingleEntryCell.m in Sources */,
 				00C213C7217BB3C800805207 /* BSTagToSegmentedControlCellConvertor.m in Sources */,
-				0058AA5A21765F79007AD175 /* BSBaseNavigationTransitionManager.swift in Sources */,
 				00CC8CC42167E527003180FE /* BSMonthlyExpensesSummaryTests.m in Sources */,
 				0058AAF22176692C007AD175 /* BSChartLegendCollectionViewCell.m in Sources */,
 				00C213ED217BB4D000805207 /* BSCategoryFilterPresenter.swift in Sources */,
@@ -1863,7 +1790,6 @@
 				00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C213C3217BB3C800805207 /* BSDateToDatePickerCellConvertor.m in Sources */,
-				0058AA9E217661DA007AD175 /* BSShowDailyEntriesController.swift in Sources */,
 				0058AABF21766549007AD175 /* BSYearlyLayout.m in Sources */,
 				000A9A101D09E5590045523A /* BSYearlySummaryGraphLineController.swift in Sources */,
 				00C213D1217BB3C800805207 /* BSAddEntryInterfaceProtocol.swift in Sources */,
@@ -1872,13 +1798,11 @@
 				00C213C9217BB3C800805207 /* BSEntryTypeToSegmentedControlCellConvertor.m in Sources */,
 				00C213E5217BB4D000805207 /* BSCategoryFilterController.swift in Sources */,
 				00C213D5217BB3C800805207 /* BSAddEntryControllerProtocol.swift in Sources */,
-				0058AA5B21765F7F007AD175 /* BSBaseExpensesSummaryViewController.m in Sources */,
 				0058AAEC21766851007AD175 /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				00C213E9217BB4D000805207 /* BSModalSelectorViewTransitioningDelegate.m in Sources */,
-				00C213CF217BB3C800805207 /* BSEntryDetailsFormViewController.m in Sources */,
 				00C213CD217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

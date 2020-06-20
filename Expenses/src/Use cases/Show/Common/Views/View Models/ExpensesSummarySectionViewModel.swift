@@ -10,12 +10,12 @@ import Foundation
 
 class ExpensesSummarySectionViewModel: Identifiable
 {
-    let id: String
+    let id: DateIdentifier
     let title : String?
     let entries : [ExpensesSummaryEntryViewModel]
     var numberOfEntries : Int  { get { return entries.count } }
         
-    init(id: String, title : String?, entries : [ExpensesSummaryEntryViewModel])
+    init(id: DateIdentifier, title : String?, entries : [ExpensesSummaryEntryViewModel])
     {
         self.id = id
         self.title = title

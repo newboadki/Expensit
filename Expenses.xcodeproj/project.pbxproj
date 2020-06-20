@@ -234,6 +234,7 @@
 		00D869DB249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */; };
 		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
 		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
+		00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C59249DFE01007B0A46 /* Date+Components.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
@@ -535,6 +536,7 @@
 		00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleBetweenZeroAndOne.swift; sourceTree = "<group>"; };
 		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
 		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
+		00D86C59249DFE01007B0A46 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
@@ -1300,6 +1302,7 @@
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				00D86C58249DFDE4007B0A46 /* Extensions */,
 				00D869D8249B8147007B0A46 /* Models */,
 				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
 				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
@@ -1457,6 +1460,14 @@
 				00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		00D86C58249DFDE4007B0A46 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				00D86C59249DFE01007B0A46 /* Date+Components.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1733,6 +1744,7 @@
 				00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */,
 				00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */,
 				00C21380217BAE2900805207 /* BSThemeManager_iOS7.m in Sources */,
+				00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */,
 				00A38C1B24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00223BED216A020E00E76784 /* Entry.m in Sources */,

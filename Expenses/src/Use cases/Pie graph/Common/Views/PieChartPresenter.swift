@@ -41,9 +41,6 @@ class PieChartPresenter: ObservableObject {
                                                          start: sum,
                                                          end: sum + endAngle,
                                                         color: info.color)
-                
-                
-                print("\(info.percentage) -> from \(sum) to \(sum + endAngle).")
                 sum += endAngle
                 return model
             }

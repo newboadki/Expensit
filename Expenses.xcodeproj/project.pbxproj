@@ -228,6 +228,12 @@
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
 		00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B82494F751007B0A46 /* AddEntryButton.swift */; };
+		00D869BB24954D21007B0A46 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869BA24954D21007B0A46 /* Arc.swift */; };
+		00D869BD24954DBE007B0A46 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869BC24954DBE007B0A46 /* PieChartView.swift */; };
+		00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */; };
+		00D869DB249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */; };
+		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
+		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
@@ -523,6 +529,12 @@
 		00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsPresenter.swift; sourceTree = "<group>"; };
 		00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterButtonView.swift; sourceTree = "<group>"; };
 		00D869B82494F751007B0A46 /* AddEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryButton.swift; sourceTree = "<group>"; };
+		00D869BA24954D21007B0A46 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		00D869BC24954DBE007B0A46 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSectionInfoViewModel.swift; sourceTree = "<group>"; };
+		00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleBetweenZeroAndOne.swift; sourceTree = "<group>"; };
+		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
+		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
@@ -1043,6 +1055,10 @@
 				00C213A2217BB1C200805207 /* BSCategoryPieChartView.m */,
 				00C213A3217BB1C200805207 /* BSPieChartViewController.h */,
 				00C213A1217BB1C200805207 /* BSPieChartViewController.m */,
+				00D869BA24954D21007B0A46 /* Arc.swift */,
+				00D869BC24954DBE007B0A46 /* PieChartView.swift */,
+				00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */,
+				00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1241,6 +1257,7 @@
 				00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */,
 				00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */,
 				00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */,
+				00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1283,6 +1300,7 @@
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				00D869D8249B8147007B0A46 /* Models */,
 				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
 				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
 				00AA901C248921CB0099AAC1 /* Interactors */,
@@ -1431,6 +1449,14 @@
 				00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */,
 			);
 			path = Presenters;
+			sourceTree = "<group>";
+		};
+		00D869D8249B8147007B0A46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1644,7 +1670,9 @@
 				00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */,
 				00A38C162454D02D00E05596 /* AppDelegate.swift in Sources */,
 				00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */,
+				00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */,
 				00223BB82169FF5800E76784 /* Expense.swift in Sources */,
+				00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */,
 				0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
 				00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */,
 				00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */,
@@ -1676,6 +1704,8 @@
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
 				00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */,
 				0058AAEB21766851007AD175 /* BSExpensesSummaryPieGraphController.swift in Sources */,
+				00D869BD24954DBE007B0A46 /* PieChartView.swift in Sources */,
+				00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */,
 				00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */,
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00C213CC217BB3C800805207 /* BSStaticTableAddEntryFormCellActionDataSource.m in Sources */,
@@ -1691,6 +1721,7 @@
 				00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */,
 				000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */,
+				00D869DB249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift in Sources */,
 				007B825F177476780052FE84 /* BSAppDelegate.m in Sources */,
 				00AA902A248A43150099AAC1 /* SelectedCategoryDataSource.swift in Sources */,
 				00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */,
@@ -1723,6 +1754,7 @@
 				0058AAD621766659007AD175 /* BSBaseExpenseCell.m in Sources */,
 				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
 				00C21396217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
+				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
 				00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */,
 				0058AAB3217662D0007AD175 /* BSIndividualExpensesSummaryViewController.m in Sources */,

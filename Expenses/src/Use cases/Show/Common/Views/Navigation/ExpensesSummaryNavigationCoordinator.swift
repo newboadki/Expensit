@@ -72,7 +72,7 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
                         title: "Monthly Breakdown",
@@ -80,8 +80,10 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                         navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
                                                                                           navigationButtonsPresenter: navigationButtonsPresenter,
                                                                                           coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
-                        selectedCategoryDataSource: self.selectedCategoryDataSource))
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
+                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+                                                                                                selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
     }
 }
 
@@ -105,7 +107,7 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
@@ -113,7 +115,7 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
                                                                          navigationButtonsPresenter: navigationButtonsPresenter,
                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
-        selectedCategoryDataSource: self.selectedCategoryDataSource))
+                                                                                                                                                                                                                                                                                                                                                                                           selectedCategoryDataSource: self.selectedCategoryDataSource), headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
     }
 }
 
@@ -169,7 +171,7 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["all"]!,
         columnCount: 4,
         title: "",
@@ -177,6 +179,7 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
                                                                          navigationButtonsPresenter: navigationButtonsPresenter,
                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
-        selectedCategoryDataSource: self.selectedCategoryDataSource))
+        selectedCategoryDataSource: self.selectedCategoryDataSource),
+        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
     }
 }

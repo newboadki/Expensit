@@ -18,10 +18,14 @@ struct TestDataGenerator {
         static let income = "Income"
     }
     
-    func generate() {
+    lazy var coreDataController: BSCoreDataController = {
+        TestCoreDataStackHelper.coreDataController()
+    }()
+    
+    mutating func generate() {
         let storeName = "expensit-test-data"
         CoreDataStackHelper.destroyAllExtensionsForSQLPersistentStoreCoordinator(withName: storeName)
-        let coreDataController = TestCoreDataStackHelper.coreDataController()
+        
                 
         coreDataController.createTags([TestDataGenerator.Tags.food, TestDataGenerator.Tags.bills, TestDataGenerator.Tags.travel])
         let food = coreDataController.tag(forName: TestDataGenerator.Tags.food);
@@ -45,11 +49,13 @@ struct TestDataGenerator {
         coreDataController.insertNewEntry(with: d("09/03/2014"), description: "Lunch", value: "-11.4", category: food)
         coreDataController.insertNewEntry(with: d("29/03/2014"), description: "Trip to San Francisco", value: "3900", category: travel)
         coreDataController.insertNewEntry(with: d("29/03/2014"), description: "Trip to the coast", value: "-120.9", category: travel)
-        coreDataController.insertNewEntry(with: d("31/09/2014"), description: "Salary", value: "5000", category: income)
+        coreDataController.insertNewEntry(with: d("30/09/2014"), description: "Salary", value: "5000", category: income)
         coreDataController.insertNewEntry(with: d("15/10/2014"), description: "Internet", value: "-45.0", category: bills)
         coreDataController.insertNewEntry(with: d("17/11/2014"), description: "Electricity Bills", value: "-45.0", category: bills)
         coreDataController.insertNewEntry(with: d("20/12/2014"), description: "Gas Bills", value: "-90.0", category: bills)
 
+        // 2015
+        coreDataController.insertNewEntry(with: d("11/08/2015"), description: "Gas Bills", value: "-90.0", category: bills)
         
         /*
         Yearly summary:
@@ -82,7 +88,7 @@ struct TestDataGenerator {
 
          */
         
-    }
+    }    
 }
 
 private func d(_ text: String) -> Date {
@@ -91,6 +97,6 @@ private func d(_ text: String) -> Date {
 
 fileprivate extension DateTimeHelper {
     static func date(_ textDate: String) -> Date {
-        return DateTimeHelper.date(withFormat:nil, stringDate: textDate)
+        return DateTimeHelper.date(withFormat:"dd/MM/yyyy", stringDate: textDate)
     }
 }

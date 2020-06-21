@@ -10,18 +10,12 @@ import Foundation
 
 class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
-//    var coreDataStackHelper : CoreDataStackHelper
-//    var coreDataController : BSCoreDataController
     var coreDataFetchController : BSCoreDataFetchController
     var editingEntry : BSDisplayExpensesSummaryEntry?
-
     
     @objc init(entryToEdit : BSDisplayExpensesSummaryEntry?, coreDataFetchController: BSCoreDataFetchController)
     {
-//        let delegate = UIApplication.shared.delegate as! BSAppDelegate
         self.editingEntry = entryToEdit
-//        self.coreDataStackHelper = delegate.coreDataHelper;
-//        self.coreDataController = BSCoreDataController(entityName : "Entry", coreDataHelper:self.coreDataStackHelper)
         self.coreDataFetchController = coreDataFetchController
         super.init()
     }

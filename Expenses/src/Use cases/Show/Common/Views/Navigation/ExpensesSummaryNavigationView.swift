@@ -15,9 +15,7 @@ struct ExpensesSummaryNavigationView<NC: NavigationCoordinator>: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                self.navigationCoordinator.nextView(forIdentifier: "")
-            }
+            self.navigationCoordinator.nextView(forIdentifier: "")
         }
     }
 }

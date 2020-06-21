@@ -37,8 +37,7 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                      value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value),
                                                                      signOfAmount: sign,
                                                                      date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: date),
-                                                                     tag: entryEntity.category?.name)
-                    //displayEntry.identifier = entryEntity.identifier
+                                                                     tag: entryEntity.category?.name)                    
                     displayEntries.append(displayEntry)
                 }
                 

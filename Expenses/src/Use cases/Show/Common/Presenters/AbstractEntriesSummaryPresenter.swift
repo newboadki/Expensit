@@ -8,13 +8,18 @@
 
 import Combine
 
+
+/// The presenter classes for the expense summaries return the view-models that is the purely-visual data that certain view needs. 
 class AbstractEntriesSummaryPresenter: ObservableObject {
-        
+    
+    // MARK: - Properties
     @Published var sections: [ExpensesSummarySectionViewModel]
+    var title: String
+    
     private(set) var interactor: ExpensesSummaryInteractor
     private var subscription: AnyCancellable!
-    
-    var title: String
+        
+    // MARK: - Initializers
     
     init(interactor: ExpensesSummaryInteractor) {
         self.sections = [ExpensesSummarySectionViewModel]()
@@ -27,11 +32,8 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
         self.subscription.cancel()
     }
 
-    private func bind() {
-        self.subscription = displayDataFromEntriesForSummary().sink(receiveValue: { viewSections in
-            self.sections = viewSections
-        })
-    }
+
+    // MARK: - API
     
     func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
         fatalError("Not implemented.")
@@ -55,5 +57,14 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
                 return self.preferredNumberOfColumns()
             }
         }        
-    }    
+    }
+    
+    // MARK: - Private methods
+    
+    private func bind() {
+        self.subscription = displayDataFromEntriesForSummary().sink(receiveValue: { viewSections in
+            self.sections = viewSections
+        })
+    }
+    
 }

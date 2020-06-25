@@ -40,6 +40,8 @@
 		00223BED216A020E00E76784 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEB216A020E00E76784 /* Entry.m */; };
 		00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
 		00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
+		00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */; };
+		00374F4824A2652F00D69BFB /* ShowMonthlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */; };
 		00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
 		00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */; };
 		0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
@@ -146,6 +148,8 @@
 		00C273E8249F265600E1DF0F /* ExpensesSummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C0324541B9C00E05596 /* ExpensesSummaryInteractor.swift */; };
 		00C273E9249F269000E1DF0F /* AbstractEntriesSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1124549E9100E05596 /* AbstractEntriesSummaryPresenter.swift */; };
 		00C273EA249F269900E1DF0F /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
+		00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273EB249F501C00E1DF0F /* TestHelpers.swift */; };
+		00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */; };
 		00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
 		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
@@ -276,6 +280,7 @@
 		00223BEB216A020E00E76784 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDailyExpensesLineGraphTests.m; sourceTree = "<group>"; };
+		00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySummaryTests.swift; sourceTree = "<group>"; };
 		0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSYearlyExpensesSummaryTests.m; sourceTree = "<group>"; };
 		0039450E1A990C110081A5EE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
@@ -375,6 +380,7 @@
 		00C213F2217C729F00805207 /* BSBSExpenseDeletionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBSExpenseDeletionTests.m; sourceTree = "<group>"; };
 		00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryController.swift; sourceTree = "<group>"; };
 		00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryControllerProtocol.swift; sourceTree = "<group>"; };
+		00C273EB249F501C00E1DF0F /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSummaryDataSource.swift; sourceTree = "<group>"; };
 		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
@@ -882,6 +888,7 @@
 				007B8272177476780052FE84 /* Supporting Files */,
 				0038B1F018B415580095CBF6 /* BSYearlyExpensesSummaryTests.m */,
 				0001059723409B440073BFAF /* YearlySummaryTests.swift */,
+				00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */,
 				00C213F2217C729F00805207 /* BSBSExpenseDeletionTests.m */,
 				00E9F17A1780500C00A1A212 /* BSMonthlyExpensesSummaryTests.m */,
 				003168331DB3927800E08207 /* BSDailyExpensesLineGraphTests.m */,
@@ -890,6 +897,7 @@
 				00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */,
 				00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */,
 				00010595233F5AD70073BFAF /* TestDataGenerator.swift */,
+				00C273EB249F501C00E1DF0F /* TestHelpers.swift */,
 				0001059923409DDF0073BFAF /* TestCoreDataStackHelper.swift */,
 			);
 			path = ExpensesTests;
@@ -1453,7 +1461,9 @@
 				0058AA5C21765F7F007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */,
+				00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */,
 				00C273DC249F208A00E1DF0F /* BSCoreDataFetchController.swift in Sources */,
+				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00C273E4249F20E200E1DF0F /* BSAddEntryControllerProtocol.swift in Sources */,
 				0058AA5D21765F99007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
@@ -1466,6 +1476,7 @@
 				0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				00AA9015248640FD0099AAC1 /* EntryFormPresenter.swift in Sources */,
 				00C273E2249F20D300E1DF0F /* GetCategoriesInteractor.swift in Sources */,
+				00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */,
 				00C21393217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
 				00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
@@ -1479,6 +1490,7 @@
 				00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				00C273E8249F265600E1DF0F /* ExpensesSummaryInteractor.swift in Sources */,
+				00374F4824A2652F00D69BFB /* ShowMonthlyEntriesPresenter.swift in Sources */,
 				0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

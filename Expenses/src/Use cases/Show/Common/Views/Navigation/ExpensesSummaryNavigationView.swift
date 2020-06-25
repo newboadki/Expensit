@@ -17,5 +17,6 @@ struct ExpensesSummaryNavigationView<NC: NavigationCoordinator>: View {
         NavigationView {
             self.navigationCoordinator.nextView(forIdentifier: "")
         }
+        .accentColor(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
     }
 }

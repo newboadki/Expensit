@@ -11,25 +11,79 @@ import XCTest
 class YearlySummaryTests: XCTestCase {
     
     private var presenter: ShowYearlyEntriesPresenter!
+    private var selectedCategoryDataSource: SelectedCategoryDataSource!
+    private var setCategoryInteractor: SetCategoryFilterInteractor!
     
     override func setUp() {
         var tg = TestDataGenerator()
         tg.generate()
-                
+        
+        selectedCategoryDataSource = SelectedCategoryDataSource()
+        setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let yearlySummaryDataSource = YearlyCoreDataExpensesDataSource(coreDataController:tg.coreDataController,
-                                                                       selectedCategoryDataSource: SelectedCategoryDataSource())
+                                                                       selectedCategoryDataSource: selectedCategoryDataSource)
         presenter = ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: yearlySummaryDataSource))
     }
 
     override func tearDown() {
         
     }
+}
 
-    func testExample() {
-        XCTAssert(presenter.sections.count == 1, "There should be one section.")
-        XCTAssert(presenter.sections.first!.entries.count == 3, "There should be x years.")
+// MARK: - Category Filter tests
+extension YearlySummaryTests {
+    
+    func test_yearly_breakdown_all_categories() {
+        Test.assertTheresOnlyOneSection(presenter: presenter)
+        Test.assertEqualEntries([Test.Expense(title: "2015", value: "-$163.20"),
+                                 Test.Expense(title: "2014", value: "$8,437.70"),
+                                 Test.Expense(title: "2013", value: "$5,034.10")],
+                                inSection: 0,
+                                presenter: presenter)
+    }
+    
+    func test_yearly_breakdown_food() {
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
+        
+        Test.assertTheresOnlyOneSection(presenter: presenter)
+        
+        Test.assertEqualEntries([Test.Expense(title: "2014", value: "-$161.40"),
+                                 Test.Expense(title: "2013", value: "-$60.00")],
+                                inSection: 0,
+                                presenter: presenter)
+    }
+    
+    func test_yearly_breakdown_bills() {
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
+        
+        Test.assertTheresOnlyOneSection(presenter: presenter)
+        
+        Test.assertEqualEntries([Test.Expense(title: "2014", value: "-$180.00"),
+                                 Test.Expense(title: "2013", value: "-$45.00")],
+                                inSection: 0,
+                                presenter: presenter)
+    }
+    
+    func test_yearly_breakdown_travel() {
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
+        
+        Test.assertTheresOnlyOneSection(presenter: presenter)
+        
+        Test.assertEqualEntries([Test.Expense(title: "2015", value: "-$163.20"),
+                                 Test.Expense(title: "2014", value: "$3,779.10"),
+                                 Test.Expense(title: "2013", value: "-$320.90")],
+                                inSection: 0,
+                                presenter: presenter)
     }
 
-    
-
+    func test_yearly_breakdown_incoming() {
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
+                
+        Test.assertTheresOnlyOneSection(presenter: presenter)
+        
+        Test.assertEqualEntries([Test.Expense(title: "2014", value: "$5,000.00"),
+                                 Test.Expense(title: "2013", value: "$5,550.00")],
+                                inSection: 0,
+                                presenter: presenter)
+    }
 }

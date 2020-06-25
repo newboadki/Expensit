@@ -27,7 +27,7 @@ struct TestDataGenerator {
         CoreDataStackHelper.destroyAllExtensionsForSQLPersistentStoreCoordinator(withName: storeName)
         
                 
-        coreDataController.createTags([TestDataGenerator.Tags.food, TestDataGenerator.Tags.bills, TestDataGenerator.Tags.travel])
+        coreDataController.createTags([TestDataGenerator.Tags.food, TestDataGenerator.Tags.bills, TestDataGenerator.Tags.travel, TestDataGenerator.Tags.income])
         let food = coreDataController.tag(forName: TestDataGenerator.Tags.food);
         let bills = coreDataController.tag(forName: TestDataGenerator.Tags.bills);
         let travel = coreDataController.tag(forName: TestDataGenerator.Tags.travel);
@@ -39,9 +39,11 @@ struct TestDataGenerator {
         coreDataController.insertNewEntry(with: d("02/01/2013"), description: "Sarah returned some money she owned", value: "50", category: income)
         coreDataController.insertNewEntry(with: d("30/01/2013"), description: "Trip to Istria", value: "-320.9", category: travel)
         coreDataController.insertNewEntry(with: d("31/01/2013"), description: "Salary", value: "5000", category: income)
+        
         coreDataController.insertNewEntry(with: d("15/02/2013"), description: "Breakfast", value: "-15.0", category: food)
         coreDataController.insertNewEntry(with: d("17/02/2013"), description: "Electricity Bills", value: "-45.0", category: bills)
         coreDataController.insertNewEntry(with: d("20/02/2013"), description: "Night out", value: "-90.0", category: nil)
+        
         coreDataController.insertNewEntry(with: d("15/11/2013"), description: "Salary", value: "500", category: income)
 
         // 2014
@@ -49,13 +51,17 @@ struct TestDataGenerator {
         coreDataController.insertNewEntry(with: d("09/03/2014"), description: "Lunch", value: "-11.4", category: food)
         coreDataController.insertNewEntry(with: d("29/03/2014"), description: "Trip to San Francisco", value: "3900", category: travel)
         coreDataController.insertNewEntry(with: d("29/03/2014"), description: "Trip to the coast", value: "-120.9", category: travel)
+        
         coreDataController.insertNewEntry(with: d("30/09/2014"), description: "Salary", value: "5000", category: income)
+        
         coreDataController.insertNewEntry(with: d("15/10/2014"), description: "Internet", value: "-45.0", category: bills)
+        
         coreDataController.insertNewEntry(with: d("17/11/2014"), description: "Electricity Bills", value: "-45.0", category: bills)
+        
         coreDataController.insertNewEntry(with: d("20/12/2014"), description: "Gas Bills", value: "-90.0", category: bills)
 
         // 2015
-        coreDataController.insertNewEntry(with: d("11/08/2015"), description: "Gas Bills", value: "-90.0", category: bills)
+        coreDataController.insertNewEntry(with: d("11/08/2015"), description: "Trip to Motovun", value: "-163.2", category: travel)
         
         /*
         Yearly summary:

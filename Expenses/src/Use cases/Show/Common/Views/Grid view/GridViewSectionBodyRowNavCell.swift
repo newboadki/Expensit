@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct GridViewSectionBodyRowNavCell<NC:NavigationCoordinator>: View {
-    
-    //@ObservedObject var presenter: AbstractEntriesSummaryPresenter
+        
     var section: ExpensesSummarySectionViewModel
     var rowIndex: Int
     var columnIndex: Int
@@ -30,7 +29,7 @@ struct GridViewSectionBodyRowNavCell<NC:NavigationCoordinator>: View {
     }
     
     var body: some View {
-        NavigationLink(destination: self.navigationCoordinator.nextView(forIdentifier: self.entry(self.section, self.rowIndex, columnIndex, self.preferredNumberOfColumns).title ?? "")) {
+        NavigationLink(destination: self.navigationCoordinator.nextView(forIdentifier: (self.entry(self.section, self.rowIndex, columnIndex, self.preferredNumberOfColumns).id))) {
             EntryBoxView(title: "\(self.entry(self.section, self.rowIndex, columnIndex, self.preferredNumberOfColumns).title ?? "")",
                         amount: "\(self.entry(self.section, self.rowIndex, columnIndex, self.preferredNumberOfColumns).value ?? "")",
                         sign: self.entry(self.section, self.rowIndex, columnIndex, self.preferredNumberOfColumns).signOfAmount)

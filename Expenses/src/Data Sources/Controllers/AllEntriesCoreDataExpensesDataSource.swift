@@ -27,8 +27,7 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
-        self.groupedExpenses = allEntries()
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)        
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
             self.filter(by: selectedCategory)
@@ -60,9 +59,9 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
                         tagColor = coreDataEntry.tag.color
                     }
                     let category = ExpenseCategory(name: tagName, iconName: iconImageName, color: tagColor)
-                    let entry = Expense(dateIdentifier: DateIdentifier(year: coreDataEntry.date.component(.year), month: coreDataEntry.date.component(.month), day: coreDataEntry.date.component(.day)), date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+                    let entry = Expense(dateIdentifier: DateIdentifier(year: coreDataEntry.date.component(.year), month: coreDataEntry.date.component(.month), day: coreDataEntry.date.component(.day), hour:coreDataEntry.date.component(.hour), minute: coreDataEntry.date.component(.minute), second:coreDataEntry.date.component(.second)), date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
-                    entriesForKey.append(entry)
+                    entriesForKey.append(entry)                    
                 }
             }
             let section = ExpensesGroup(groupKey: dateIdentifier(fromSectionKey: sectionInfo.name), entries: entriesForKey)

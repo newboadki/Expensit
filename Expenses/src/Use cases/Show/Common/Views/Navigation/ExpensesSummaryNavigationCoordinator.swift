@@ -13,9 +13,8 @@ import SwiftUI
 protocol NavigationCoordinator {
     associatedtype T: View
     
-    func nextView(forIdentifier currentViewIdentifier: String) -> T
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> T
 }
-
 
 class MainNavigationCoordinator: NavigationCoordinator {
     
@@ -37,7 +36,7 @@ class MainNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
-    func nextView(forIdentifier currentViewIdentifier: String) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["yearly"]!,
                         navigationButtonsPresenter: navigationButtonsPresenter,
                         title: "Yearly Breakdown",
@@ -72,7 +71,7 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<MonthlyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> GridView<MonthlyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
                         title: "Monthly Breakdown",
@@ -107,7 +106,7 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
@@ -139,11 +138,11 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: String) -> ListView<AllExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> ListView<AllExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["all"]!,
-                        navigationButtonsPresenter: navigationButtonsPresenter,
-                        title: "All Entries",
-                        navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
+                                  navigationButtonsPresenter: navigationButtonsPresenter,
+                                  title: "All Entries",
+                                  navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
                                                                                        navigationButtonsPresenter: navigationButtonsPresenter,
                                                                                        coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
                         categoryFilterNavgationCoordinator:CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
@@ -151,13 +150,14 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     }
 }
 
-class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
+class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
     var selectedCategoryDataSource: SelectedCategoryDataSource
+    @State private var isAddEntryFormPresented: Bool = false
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
@@ -170,16 +170,17 @@ class AllExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
-
-    func nextView(forIdentifier currentViewIdentifier: String) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
-        return GridView(presenter: presenters["all"]!,
-        columnCount: 4,
-        title: "",
-        navigationButtonsPresenter: navigationButtonsPresenter,
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
-                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                         coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
-        selectedCategoryDataSource: self.selectedCategoryDataSource),
-        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
+    
+    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> EntryFormView {
+        let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
+        let storageInteractor = BSAddEntryController(entryToEdit:nil,
+                                                     coreDataFetchController:self.coreDataFetchController)
+        let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
+        let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
+                                           categoriesInteractor: categoriesInteractor,
+                                           getExpenseInteractor: EntryForDateIdentifierInteractor(dataSource: IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)),
+                                           entryIdentifier: currentViewIdentifier)
+        return EntryFormView(presenter: presenter,
+                             beingPresented: self.$isAddEntryFormPresented)
     }
 }

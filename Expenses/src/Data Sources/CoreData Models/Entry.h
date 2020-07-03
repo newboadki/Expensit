@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSNumber * day;
 @property (nonatomic, strong) NSNumber * month;
 @property (nonatomic, strong) NSNumber * year;
+@property (nonatomic, strong) NSNumber * hour;
+@property (nonatomic, strong) NSNumber * minute;
+@property (nonatomic, strong) NSNumber * second;
 @property (nonatomic, strong) NSDate  * date;
 @property (nonatomic, strong) NSDecimalNumber * value;
 @property (nonatomic, strong) NSString *desc;
@@ -25,5 +28,7 @@
 @property (nonatomic, strong) NSNumber *isAmountNegative;
 
 - (NSString*) dayAndMonth;
+
+
 
 @end

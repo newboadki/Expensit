@@ -27,7 +27,8 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
                                                      coreDataFetchController:self.coreDataFetchController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
-                                           categoriesInteractor: categoriesInteractor)
+                                           categoriesInteractor: categoriesInteractor,
+                                           getExpenseInteractor: EntryForDateIdentifierInteractor(dataSource: IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)))
         return EntryFormView(presenter: presenter,
                              beingPresented: isPresented)
     }

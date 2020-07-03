@@ -14,6 +14,9 @@ class EntryFormPresenter: ObservableObject {
     
     private var storageInteractor: BSAddEntryController
     private var categoriesInteractor: GetCategoriesInteractor
+    private var getExpenseInteractor:  EntryForDateIdentifierInteractor
+    
+    var entryIdentifier: DateIdentifier?
     
     lazy var categories: [String] = {
         self.categoriesInteractor.allCategories().map { expenseCategory in
@@ -22,8 +25,12 @@ class EntryFormPresenter: ObservableObject {
     }()
     
     init(storageInteractor: BSAddEntryController,
-         categoriesInteractor: GetCategoriesInteractor) {
+         categoriesInteractor: GetCategoriesInteractor,
+         getExpenseInteractor:  EntryForDateIdentifierInteractor,
+         entryIdentifier: DateIdentifier? = nil) {
+        self.entryIdentifier = entryIdentifier
         self.storageInteractor = storageInteractor
+        self.getExpenseInteractor = getExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
         self.entry = ExpensesSummaryEntryViewModel(id: DateIdentifier(),
@@ -31,7 +38,23 @@ class EntryFormPresenter: ObservableObject {
                                                    value: "",
                                                    signOfAmount: .negative,
                                                    date: now,
-                                                   tag: nil)
+                                                   tag: nil,
+                                                   tagId: 0)
+        
+        if let id = entryIdentifier,
+           let expense = self.getExpenseInteractor.entry(for: id) {
+            var index = 0
+            if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                index = i
+            }
+            self.entry = ExpensesSummaryEntryViewModel(id: id,
+                                                       title: expense.entryDescription,
+                                                       value: "\(expense.value)",
+                                                       signOfAmount: .negative,
+                                                       date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: expense.date),
+                                                       tag: expense.category?.name,
+                                                       tagId: index)
+        }
     }
     
     func handleSaveButtonPressed() {

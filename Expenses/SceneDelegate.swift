@@ -61,7 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
                                                                                                          presenters: presenters,
-                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))                
+                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

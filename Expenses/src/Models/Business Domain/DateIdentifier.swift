@@ -12,4 +12,7 @@ struct DateIdentifier: Hashable {
     var year: UInt?
     var month: UInt?
     var day: UInt?
+    var hour: UInt? = nil
+    var minute: UInt? = nil
+    var second: UInt? = nil
 }

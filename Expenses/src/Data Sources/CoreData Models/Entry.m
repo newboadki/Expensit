@@ -9,10 +9,9 @@
 #import "Entry.h"
 #import "DateTimeHelper.h"
 
-
 @implementation Entry
 
-@dynamic day, month, year;
+@dynamic day, month, year, hour, minute, second;
 @synthesize date = _date;
 @dynamic value;
 @dynamic desc;
@@ -33,6 +32,9 @@
         self.day = [NSNumber numberWithInteger:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.date]];
         self.month = [NSNumber numberWithInteger:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.date]];
         self.year = [NSNumber numberWithInteger:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.date]];
+        self.hour = [NSNumber numberWithInteger:[DateTimeHelper hourOfDateUsingCurrentCalendar:self.date]];
+        self.minute = [NSNumber numberWithInteger:[DateTimeHelper minuteOfDateUsingCurrentCalendar:self.date]];
+        self.second = [NSNumber numberWithInteger:[DateTimeHelper secondOfDateUsingCurrentCalendar:self.date]];
         self.monthYear = [NSString stringWithFormat:@"%@/%@", [self.month stringValue], [self.year stringValue]];
         self.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.day stringValue], [self.month stringValue], [self.year stringValue]];
         self.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [self.year stringValue], [self.month stringValue], [self.day stringValue]];

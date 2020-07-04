@@ -173,12 +173,12 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     
     func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> EntryFormView {
         let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
-        let storageInteractor = BSAddEntryController(entryToEdit:nil,
-                                                     coreDataFetchController:self.coreDataFetchController)
+        let storageInteractor = BSAddEntryController(coreDataFetchController:self.coreDataFetchController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
+        let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
                                            categoriesInteractor: categoriesInteractor,
-                                           getExpenseInteractor: EntryForDateIdentifierInteractor(dataSource: IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)),
+                                           getExpenseInteractor: EntryForDateIdentifierInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
                                            entryIdentifier: currentViewIdentifier)
         return EntryFormView(presenter: presenter,
                              beingPresented: self.$isAddEntryFormPresented)

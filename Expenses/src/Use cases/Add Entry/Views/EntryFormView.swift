@@ -118,11 +118,4 @@ private extension EntryFormView {
             }
         )
     }
-
 }
-
-//struct EntryFormView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EntryFormView(presenter: EntryFormPresenter(storageInteractor: <#BSAddEntryController#>))
-//    }
-//}

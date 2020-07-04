@@ -152,6 +152,7 @@
 		00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */; };
 		00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
 		00C370BC24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */; };
+		00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */; };
 		00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
 		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
@@ -386,6 +387,7 @@
 		00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualExpensesDataSource.swift; sourceTree = "<group>"; };
 		00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryForDateIdentifierInteractor.swift; sourceTree = "<group>"; };
 		00C370BD24AF8AFD00298CC0 /* v1.0.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.9.xcdatamodel; sourceTree = "<group>"; };
+		00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseInteractor.swift; sourceTree = "<group>"; };
 		00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSummaryDataSource.swift; sourceTree = "<group>"; };
 		00D57E181F74437C00EC9127 /* BSDailySummaryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDailySummaryViewControllerTests.m; sourceTree = "<group>"; };
@@ -1139,6 +1141,7 @@
 				00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */,
 				00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */,
 				00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */,
+				00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */,
 			);
 			name = Controllers;
 			path = "Expenses/src/Use cases/Add Entry/Controllers";
@@ -1443,6 +1446,7 @@
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
 				00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */,
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
+				00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */,
 				00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */,
 				00A38C1024545A4E00E05596 /* ShowYearlyEntriesPresenter.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,

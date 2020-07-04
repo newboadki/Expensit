@@ -40,6 +40,19 @@ class Expense : NSObject {
             return self.date?.component(.day)
         }
     }
+    
+    var isAmountNegative: BSNumberSignType {
+        get {
+            switch value.compare(0) {
+                case .orderedAscending:
+                    return .negative
+                case .orderedDescending:
+                    return .positive
+                case .orderedSame:
+                    return .zero                
+            }
+        }
+    }
 
     init(dateIdentifier: DateIdentifier, date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
         self.dateIdentifier = dateIdentifier

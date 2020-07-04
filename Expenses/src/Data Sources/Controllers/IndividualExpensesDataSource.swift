@@ -17,6 +17,51 @@ class IndividualExpensesDataSource {
     }
     
     func expense(for identifier: DateIdentifier) -> Expense? {
+        guard let first = self.entry(for: identifier) else {
+            return nil
+        }
+
+        let category = ExpenseCategory(name: first.tag.name,
+                                       iconName: first.tag.iconImageName,
+                                       color: first.tag.color)
+        
+        return Expense(dateIdentifier: identifier,
+                       date: first.date,
+                       value: first.value,
+                       description: first.desc,
+                       category: category)
+    }
+    
+    func saveChanges(in expense: Expense, with identifier: DateIdentifier) -> Result<Bool, Error> {
+        guard let first = self.entry(for: identifier) else {
+            return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
+        }
+        
+        first.date = expense.date
+        first.value = expense.value
+        first.desc = expense.entryDescription
+        
+        let request = Tag.fetchRequest()
+        request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
+        if let tags = try? context.fetch(request) as? [Tag] {
+            if let firstTag = tags.first {
+                first.tag = firstTag
+            }
+        }
+
+        do {
+            try context.save()
+        } catch {
+            return .failure(error)
+        }
+        
+        return .success(true)
+    }
+}
+
+private extension IndividualExpensesDataSource {
+    
+    func entry(for identifier: DateIdentifier) -> Entry? {
         guard let y = identifier.year,
             let mo = identifier.month,
             let d = identifier.day,
@@ -42,15 +87,7 @@ class IndividualExpensesDataSource {
         guard let first = results.first else {
             return nil
         }
-
-        let category = ExpenseCategory(name: first.tag.name,
-                                       iconName: first.tag.iconImageName,
-                                       color: first.tag.color)
         
-        return Expense(dateIdentifier: identifier,
-                       date: first.date,
-                       value: first.value,
-                       description: first.desc,
-                       category: category)
+        return first
     }
 }

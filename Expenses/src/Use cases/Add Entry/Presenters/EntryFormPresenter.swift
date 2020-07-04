@@ -15,6 +15,7 @@ class EntryFormPresenter: ObservableObject {
     private var storageInteractor: BSAddEntryController
     private var categoriesInteractor: GetCategoriesInteractor
     private var getExpenseInteractor:  EntryForDateIdentifierInteractor
+    private var editExpenseInteractor:  EditExpenseInteractor
     
     var entryIdentifier: DateIdentifier?
     
@@ -27,10 +28,12 @@ class EntryFormPresenter: ObservableObject {
     init(storageInteractor: BSAddEntryController,
          categoriesInteractor: GetCategoriesInteractor,
          getExpenseInteractor:  EntryForDateIdentifierInteractor,
+         editExpenseInteractor:  EditExpenseInteractor,
          entryIdentifier: DateIdentifier? = nil) {
         self.entryIdentifier = entryIdentifier
         self.storageInteractor = storageInteractor
         self.getExpenseInteractor = getExpenseInteractor
+        self.editExpenseInteractor = editExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
         self.entry = ExpensesSummaryEntryViewModel(id: DateIdentifier(),
@@ -50,20 +53,28 @@ class EntryFormPresenter: ObservableObject {
             self.entry = ExpensesSummaryEntryViewModel(id: id,
                                                        title: expense.entryDescription,
                                                        value: "\(expense.value)",
-                                                       signOfAmount: .negative,
+                                                       signOfAmount: expense.isAmountNegative,
                                                        date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: expense.date),
                                                        tag: expense.category?.name,
-                                                       tagId: index)
+                                                       tagId: index,
+                                                       dateTime: expense.date!)
         }
     }
     
     func handleSaveButtonPressed() {
         self.entry.tag = categories[self.entry.tagId]
         let entity = entryEntity(fromViewModel: self.entry)
-        self.storageInteractor.save(entry: entity, successBlock: {
-            print("Entry saved successfully.")
-        }) { error in
-            print("Entry couldn't be saved due to \(error).")
+
+        if let id = self.entryIdentifier {
+            // EDIT
+            _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
+        } else {
+            // IF newEntry
+            self.storageInteractor.save(entry: entity, successBlock: {
+                print("Entry saved successfully.")
+            }) { error in
+                print("Entry couldn't be saved due to \(error).")
+            }
         }
     }
     

@@ -11,11 +11,9 @@ import Foundation
 class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
     
     var coreDataFetchController : BSCoreDataFetchController
-    var editingEntry : BSDisplayExpensesSummaryEntry?
     
-    @objc init(entryToEdit : BSDisplayExpensesSummaryEntry?, coreDataFetchController: BSCoreDataFetchController)
-    {
-        self.editingEntry = entryToEdit
+    @objc init(coreDataFetchController: BSCoreDataFetchController)
+    {        
         self.coreDataFetchController = coreDataFetchController
         super.init()
     }
@@ -41,20 +39,8 @@ class BSAddEntryController: NSObject, BSAddEntryControllerProtocol {
         }                
     }
     
-    func discardChanges() {
-//        self.coreDataController.discardChanges()
-    }
-    
     func delete(entry : Expense) {
         self.coreDataFetchController.delete(entry: entry)
         self.coreDataFetchController.saveChanges()
     }
-    
-    func saveChanges() {
-//        self.coreDataController.saveChanges()
-    }
-    
-    func newEntry() -> BSDisplayExpensesSummaryEntry {
-        return BSDisplayExpensesSummaryEntry(title: "", value: "", signOfAmount:.positive, date: Date().description, tag: nil)
-    }    
 }

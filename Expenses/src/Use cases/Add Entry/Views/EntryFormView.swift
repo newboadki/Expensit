@@ -57,7 +57,9 @@ struct EntryFormView: View {
                     self.presenter.handleSaveButtonPressed()
                     self.$isPresented.wrappedValue = false
                 }
-            )
+            ).onAppear {
+                self.presenter.onViewAppear()
+            }
         }
     }
 }

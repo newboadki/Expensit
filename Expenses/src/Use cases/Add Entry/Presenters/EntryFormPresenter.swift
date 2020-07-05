@@ -9,22 +9,23 @@
 import Combine
 
 class EntryFormPresenter: ObservableObject {
-    
-    @Published var entry: ExpensesSummaryEntryViewModel
-    
+        
+    // MARK: - Private
     private var storageInteractor: BSAddEntryController
     private var categoriesInteractor: GetCategoriesInteractor
     private var getExpenseInteractor:  EntryForDateIdentifierInteractor
     private var editExpenseInteractor:  EditExpenseInteractor
     
+    // MARK: - Internal
+    @Published var entry: ExpensesSummaryEntryViewModel
     var entryIdentifier: DateIdentifier?
-    
     lazy var categories: [String] = {
         self.categoriesInteractor.allCategories().map { expenseCategory in
             return expenseCategory.name
         }
     }()
     
+    // MARK: - Initializers
     init(storageInteractor: BSAddEntryController,
          categoriesInteractor: GetCategoriesInteractor,
          getExpenseInteractor:  EntryForDateIdentifierInteractor,
@@ -43,7 +44,9 @@ class EntryFormPresenter: ObservableObject {
                                                    date: now,
                                                    tag: nil,
                                                    tagId: 0)
-        
+    }
+    
+    func onViewAppear() {
         if let id = entryIdentifier,
            let expense = self.getExpenseInteractor.entry(for: id) {
             var index = 0
@@ -66,10 +69,10 @@ class EntryFormPresenter: ObservableObject {
         let entity = entryEntity(fromViewModel: self.entry)
 
         if let id = self.entryIdentifier {
-            // EDIT
+            // Editing existing entry
             _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
         } else {
-            // IF newEntry
+            // New Entry
             self.storageInteractor.save(entry: entity, successBlock: {
                 print("Entry saved successfully.")
             }) { error in

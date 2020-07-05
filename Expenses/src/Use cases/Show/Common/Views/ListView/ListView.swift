@@ -62,27 +62,3 @@ struct ListView<NC: NavigationCoordinator> : View {
         }
     }
 }
-
-//struct YearlyListView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        // presenter: ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: MockListDataSource())),
-//        ListView(presenter: ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: MockListDataSource())),
-//                 title: "Yearly Summary")
-//    }
-//}
-//
-//class MockListDataSource: EntriesSummaryDataSource {
-//    @Published var groupedExpenses = [ExpensesGroup]()
-//    var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
-//    var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
-//    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>    
-//    
-//    init() {
-//        self.fetchedResultsController = NSFetchedResultsController<NSFetchRequestResult>()
-//        self.groupedExpenses = [ExpensesGroup]()
-//        self.groupedExpenses.append(ExpensesGroup(key: "2019",
-//                                                  entries: [Expense(date: Date(), value: 27, description: nil, category: nil),
-//                                                            Expense(date: Date(), value: 5, description: nil, category: nil)]))
-//    }
-//}

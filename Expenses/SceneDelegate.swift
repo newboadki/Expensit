@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
 
 
-        let selectedCategoryDataSource = SelectedCategoryDataSource()
+        let selectedCategoryDataSource = CoreDataCategoryDataSource(coreDataController: coreDataController)
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController,
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController,

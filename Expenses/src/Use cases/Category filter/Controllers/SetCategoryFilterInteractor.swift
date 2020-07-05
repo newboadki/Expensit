@@ -10,13 +10,13 @@ import Foundation
 
 class SetCategoryFilterInteractor {
     
-    private var dataSource: SelectedCategoryDataSource
+    private var dataSource: CategoryDataSource
     
-    init(dataSource: SelectedCategoryDataSource) {
+    init(dataSource: CategoryDataSource) {
         self.dataSource = dataSource
     }
     
     func filter(by category: ExpenseCategory?) {
-        self.dataSource.selectedCategory = category
+        self.dataSource.set(selectedCategory: category)
     }
 }

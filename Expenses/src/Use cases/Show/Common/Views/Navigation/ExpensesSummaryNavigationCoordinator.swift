@@ -22,13 +22,13 @@ class MainNavigationCoordinator: NavigationCoordinator {
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
-    var selectedCategoryDataSource: SelectedCategoryDataSource
+    var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
@@ -57,13 +57,13 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
-    var selectedCategoryDataSource: SelectedCategoryDataSource
+    var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
@@ -92,13 +92,13 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
-    var selectedCategoryDataSource: SelectedCategoryDataSource
+    var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
@@ -124,13 +124,13 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
-    var selectedCategoryDataSource: SelectedCategoryDataSource
+    var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
@@ -156,14 +156,14 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataFetchController: BSCoreDataFetchController
-    var selectedCategoryDataSource: SelectedCategoryDataSource
+    var selectedCategoryDataSource: CategoryDataSource
     @State private var isAddEntryFormPresented: Bool = false
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
         self.coreDataFetchController = coreDataFetchController
@@ -172,7 +172,7 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     }
     
     func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> EntryFormView {
-        let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
+        let categoriesDataSource = CoreDataCategoryDataSource(coreDataController:self.coreDataFetchController.coreDataController)
         let storageInteractor = BSAddEntryController(coreDataFetchController:self.coreDataFetchController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)

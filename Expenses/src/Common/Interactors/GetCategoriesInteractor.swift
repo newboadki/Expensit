@@ -10,9 +10,9 @@ import Foundation
 
 class GetCategoriesInteractor {
     
-    private var dataSource: CategoriesDataSource
+    private var dataSource: CategoryDataSource
     
-    init(dataSource: CategoriesDataSource) {
+    init(dataSource: CategoryDataSource) {
         self.dataSource = dataSource
     }
     

@@ -16,12 +16,12 @@ class AbstractEntriesSummaryPresenter: ObservableObject {
     @Published var sections: [ExpensesSummarySectionViewModel]
     var title: String
     
-    private(set) var interactor: ExpensesSummaryInteractor
+    private(set) var interactor: ExpensesSummaryInteractorProtocol
     private var subscription: AnyCancellable!
         
     // MARK: - Initializers
     
-    init(interactor: ExpensesSummaryInteractor) {
+    init(interactor: ExpensesSummaryInteractorProtocol) {
         self.sections = [ExpensesSummarySectionViewModel]()
         self.title = ""
         self.interactor = interactor

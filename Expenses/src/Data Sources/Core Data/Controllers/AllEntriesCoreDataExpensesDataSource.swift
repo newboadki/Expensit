@@ -16,12 +16,12 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     private(set) var coreDataController: BSCoreDataController
-    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    private var selectedCategoryDataSource: CategoryDataSource
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
 
     
     init(coreDataController: BSCoreDataController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.coreDataController = coreDataController
         self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForAllEntries()
         self.selectedCategoryDataSource = selectedCategoryDataSource
@@ -29,7 +29,7 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)        
         
-        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
             self.groupedExpenses = self.allEntries()
         }

@@ -51,6 +51,8 @@
 		0039F7A524B1EEEC00772996 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A424B1EEEC00772996 /* Categories.swift */; };
 		0039F7A624B2031800772996 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A424B1EEEC00772996 /* Categories.swift */; };
 		0039F7A724B2033800772996 /* EntrySummaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A224B1EEAC00772996 /* EntrySummaries.swift */; };
+		0039F7A924B204C300772996 /* IndividualEntryDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */; };
+		0039F7AA24B204C700772996 /* IndividualEntryDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */; };
 		0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
 		0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */; };
 		0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
@@ -294,6 +296,7 @@
 		00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		0039F7A224B1EEAC00772996 /* EntrySummaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrySummaries.swift; sourceTree = "<group>"; };
 		0039F7A424B1EEEC00772996 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEntryDataSoure.swift; sourceTree = "<group>"; };
 		0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionHeader.swift; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
 		0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractExpensesSummaryUserInterfaceProtocol.swift; sourceTree = "<group>"; };
@@ -669,14 +672,10 @@
 				00223BCC216A00A300E76784 /* BSCoreDataController.m */,
 				00223BC3216A007200E76784 /* BSCategoryFilterManager.m */,
 				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
-				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
 				00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */,
-				00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */,
-				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
-				00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */,
-				00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */,
-				00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */,
-				00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */,
+				0039F7AD24B205ED00772996 /* Categories */,
+				0039F7AB24B205AF00772996 /* Summaries */,
+				0039F7AC24B205CC00772996 /* Fetching & Editing */,
 				00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */,
 				00223BC7216A007200E76784 /* BSCategoryFilterManager.h */,
 				00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */,
@@ -708,9 +707,38 @@
 			isa = PBXGroup;
 			children = (
 				0039F7A224B1EEAC00772996 /* EntrySummaries.swift */,
+				0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */,
 				0039F7A424B1EEEC00772996 /* Categories.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0039F7AB24B205AF00772996 /* Summaries */ = {
+			isa = PBXGroup;
+			children = (
+				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
+				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
+				00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */,
+				00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */,
+				00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */,
+			);
+			path = Summaries;
+			sourceTree = "<group>";
+		};
+		0039F7AC24B205CC00772996 /* Fetching & Editing */ = {
+			isa = PBXGroup;
+			children = (
+				00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */,
+			);
+			path = "Fetching & Editing";
+			sourceTree = "<group>";
+		};
+		0039F7AD24B205ED00772996 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		0058AA4521765F44007AD175 /* Presenters */ = {
@@ -1397,6 +1425,7 @@
 				00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */,
 				00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */,
 				0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */,
+				0039F7A924B204C300772996 /* IndividualEntryDataSoure.swift in Sources */,
 				00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */,
 				00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */,
 				00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */,
@@ -1519,6 +1548,7 @@
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */,
 				00C2137F217BAE2900805207 /* BSGreenTheme.m in Sources */,
+				0039F7AA24B204C700772996 /* IndividualEntryDataSoure.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */,

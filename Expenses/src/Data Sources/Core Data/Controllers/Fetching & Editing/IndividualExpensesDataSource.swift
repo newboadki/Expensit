@@ -8,7 +8,7 @@
 
 import CoreData
 
-class IndividualExpensesDataSource {
+class IndividualExpensesDataSource: IndividualEntryDataSoure {
     
     private var context: NSManagedObjectContext
     

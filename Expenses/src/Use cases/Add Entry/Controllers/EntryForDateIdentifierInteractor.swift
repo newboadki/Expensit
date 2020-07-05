@@ -9,9 +9,9 @@
 import Foundation
 
 class EntryForDateComponentsInteractor {
-    private var dataSource: IndividualExpensesDataSource
+    private var dataSource: IndividualEntryDataSoure
     
-    init(dataSource: IndividualExpensesDataSource) {
+    init(dataSource: IndividualEntryDataSoure) {
         self.dataSource = dataSource
     }
     

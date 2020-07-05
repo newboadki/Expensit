@@ -10,12 +10,11 @@ import Combine
 
 class PieChartPresenter: ObservableObject {
     
-    @Published var sections: [PieChartSectionInfoViewModel]
-    
-    
-    private var chartDataInteractor: BSExpensesSummaryPieGraphController
+    private var chartDataInteractor: BSPieGraphControllerProtocol
     private var month: NSNumber?
     private var year: NSNumber
+    
+    @Published var sections: [PieChartSectionInfoViewModel]
     var title: String {
         get {            
             if let m = month {
@@ -34,7 +33,7 @@ class PieChartPresenter: ObservableObject {
         }
     }
     
-    init(chartDataInteractor: BSExpensesSummaryPieGraphController, month: NSNumber?, year: NSNumber) {
+    init(chartDataInteractor: BSPieGraphControllerProtocol, month: NSNumber?, year: NSNumber) {
         self.month = month
         self.year = year
         self.chartDataInteractor = chartDataInteractor

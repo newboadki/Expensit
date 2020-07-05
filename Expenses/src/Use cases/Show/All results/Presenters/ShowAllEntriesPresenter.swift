@@ -15,9 +15,11 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
         print("All Entries Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
-            let groups = expensesGroups as [ExpensesGroup]
             var displaySections = [ExpensesSummarySectionViewModel]()
-            let sortedGroups = groups
+            let groups = expensesGroups as [ExpensesGroup]
+            let sortedGroups = groups.sorted { (lg, rg) in
+                return lg.groupKey > rg.groupKey
+            }
             
             for section in sortedGroups
             {
@@ -42,7 +44,14 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                     displayEntries.append(displayEntry)
                 }
                 
-                let displaySection = ExpensesSummarySectionViewModel(id:section.groupKey, title: dateTitle, entries: displayEntries)
+                let calendar = Calendar.current
+                let dateComponents = DateComponents(calendar: calendar,
+                                                    year: section.groupKey.year,
+                                                    month: section.groupKey.month,
+                                                    day: section.groupKey.day)
+                let sectionDate = calendar.date(from: dateComponents)!
+                let sectionDateString = DateTimeHelper.dateString(withFormat: DAY_MONTH_YEAR_DATE_FORMAT, date: sectionDate)
+                let displaySection = ExpensesSummarySectionViewModel(id:section.groupKey, title: sectionDateString, entries: displayEntries)
                 displaySections.append(displaySection)
             }
 

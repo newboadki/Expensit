@@ -73,18 +73,18 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
     
     private func dateIdentifier(fromSectionKey key: String) -> DateIdentifier {
         let components = key.components(separatedBy: "/")
-        var year: UInt? = nil
-        var month: UInt? = nil
-        var day: UInt? = nil
+        var year: Int? = nil
+        var month: Int? = nil
+        var day: Int? = nil
 
         if let d = components.first,
-            let n = UInt(d) {
-            day = n
+            let n = Int(d) {
+            year = n
         }
         
         if components.count >= 3 {
-            month = UInt(components[1])
-            year = UInt(components[2])
+            month = Int(components[1])
+            day = Int(components[2])
         }
         
         return DateIdentifier(year: year, month: month, day: day)

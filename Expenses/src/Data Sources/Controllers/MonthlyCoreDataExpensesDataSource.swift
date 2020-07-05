@@ -59,7 +59,7 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
                     entriesForKey.append(entry)
                 }
             }
-            let section = ExpensesGroup(groupKey: DateIdentifier(year: UInt(sectionInfo.name), month: nil, day: nil), entries: entriesForKey)
+            let section = ExpensesGroup(groupKey: DateIdentifier(year: Int(sectionInfo.name), month: nil, day: nil), entries: entriesForKey)
             results.append(section)
         }
         

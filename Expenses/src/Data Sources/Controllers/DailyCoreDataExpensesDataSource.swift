@@ -68,16 +68,16 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
     
     private func dateIdentifier(fromSectionKey key: String) -> DateIdentifier {
         let components = key.components(separatedBy: "/")
-        var year: UInt? = nil
-        var month: UInt? = nil
+        var year: Int? = nil
+        var month: Int? = nil
 
         if let d = components.first,
-            let n = UInt(d) {
+            let n = Int(d) {
             month = n
         }
         
         if components.count >= 2 {
-            year = UInt(components[1])
+            year = Int(components[1])
         }
         
         return DateIdentifier(year: year, month: month, day: nil)

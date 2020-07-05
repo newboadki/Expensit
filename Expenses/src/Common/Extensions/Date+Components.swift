@@ -11,8 +11,8 @@ import Foundation
 
 extension Date {
     
-    public func component(_ component: Calendar.Component) -> UInt {
-        return UInt(Calendar(identifier: .gregorian).component(component, from: self))
+    public func component(_ component: Calendar.Component) -> Int {
+        return Calendar(identifier: .gregorian).component(component, from: self)
     }
         
     public var yearNumber: NSNumber {

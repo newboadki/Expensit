@@ -23,19 +23,19 @@ class Expense : NSObject {
     /// In the case of aggregated entries, the category does not make sense, because multiple categories might be included.
     var category: ExpenseCategory?
     
-    var year: UInt? {
+    var year: Int? {
         get {
             return self.date?.component(.year)
         }
     }
 
-    var month: UInt? {
+    var month: Int? {
         get {
             return self.date?.component(.month)
         }
     }
 
-    var day: UInt? {
+    var day: Int? {
         get {
             return self.date?.component(.day)
         }

@@ -33,7 +33,6 @@
 		0017DB151937DC050052DCF4 /* libBSPieChartView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0017DB0C1937DBE80052DCF4 /* libBSPieChartView.a */; };
 		00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
 		00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
-		00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC3216A007200E76784 /* BSCategoryFilterManager.m */; };
 		00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */; };
 		00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BCC216A00A300E76784 /* BSCoreDataController.m */; };
 		00223BEC216A020E00E76784 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEA216A020E00E76784 /* Tag.m */; };
@@ -277,10 +276,8 @@
 		00223BB32169FF5800E76784 /* ExpensesGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesGroup.swift; sourceTree = "<group>"; };
 		00223BB42169FF5800E76784 /* ExpenseCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
 		00223BB52169FF5800E76784 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
-		00223BC3216A007200E76784 /* BSCategoryFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCategoryFilterManager.m; sourceTree = "<group>"; };
 		00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataFixturesManager.h; sourceTree = "<group>"; };
 		00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseSummaryDataGatewayProtocol.h; sourceTree = "<group>"; };
-		00223BC7216A007200E76784 /* BSCategoryFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCategoryFilterManager.h; sourceTree = "<group>"; };
 		00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataFixturesManager.m; sourceTree = "<group>"; };
 		00223BCC216A00A300E76784 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
 		00223BCD216A00A300E76784 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
@@ -668,16 +665,14 @@
 		00223BC2216A007200E76784 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				00223BCD216A00A300E76784 /* BSCoreDataController.h */,
-				00223BCC216A00A300E76784 /* BSCoreDataController.m */,
-				00223BC3216A007200E76784 /* BSCategoryFilterManager.m */,
-				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
-				00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */,
 				0039F7AD24B205ED00772996 /* Categories */,
 				0039F7AB24B205AF00772996 /* Summaries */,
 				0039F7AC24B205CC00772996 /* Fetching & Editing */,
+				00223BCD216A00A300E76784 /* BSCoreDataController.h */,
+				00223BCC216A00A300E76784 /* BSCoreDataController.m */,
+				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
+				00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */,
 				00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */,
-				00223BC7216A007200E76784 /* BSCategoryFilterManager.h */,
 				00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */,
 			);
 			path = Controllers;
@@ -1497,7 +1492,6 @@
 				0058AAF92176699F007AD175 /* PaddingLabel.swift in Sources */,
 				00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
-				00223BC9216A007200E76784 /* BSCategoryFilterManager.m in Sources */,
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */,
 				00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */,

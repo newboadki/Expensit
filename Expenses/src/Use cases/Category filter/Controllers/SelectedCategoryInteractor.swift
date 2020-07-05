@@ -10,14 +10,14 @@ import Combine
 
 class SelectedCategoryInteractor {
     
-    private var dataSource: SelectedCategoryDataSource
+    private var dataSource: CategoryDataSource
     
-    init(dataSource: SelectedCategoryDataSource) {
+    init(dataSource: CategoryDataSource) {
         self.dataSource = dataSource
     }
     
     func selectedCategory() -> Published<ExpenseCategory?>.Publisher {        
-        return dataSource.$selectedCategory
+        return dataSource.selectedCategoryPublisher
     }
 }
 

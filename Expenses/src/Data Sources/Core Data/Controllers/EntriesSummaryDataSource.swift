@@ -37,6 +37,3 @@ extension PerformsCoreDataRequests {
     }
 }
 
-protocol EntriesSummaryDataSource: PerformsCoreDataRequests {
-    var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {get}            
-}

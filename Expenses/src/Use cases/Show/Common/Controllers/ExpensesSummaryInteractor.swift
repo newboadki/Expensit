@@ -9,8 +9,8 @@
 import Foundation
 import Combine
 
-/* This use case consists of making a single query to the data source*/
-class ExpensesSummaryInteractor {
+/* This use case consists of making a single query to the data source. */
+class ExpensesSummaryInteractor: ExpensesSummaryInteractorProtocol {
     
     private var dataSource: EntriesSummaryDataSource
     

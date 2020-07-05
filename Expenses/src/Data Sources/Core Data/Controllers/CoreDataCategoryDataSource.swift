@@ -1,5 +1,5 @@
 //
-//  CategoriesDataSource.swift
+//  CoreDataCategoryDataSource.swift
 //  Expensit
 //
 //  Created by Borja Arias Drake on 04/06/2020.
@@ -9,7 +9,12 @@
 import Foundation
 import Combine
 
-class CategoriesDataSource {
+class CoreDataCategoryDataSource: CategoryDataSource {
+        
+    @Published var selectedCategory: ExpenseCategory?
+    var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
+    var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
+
     
     private var coreDataController: BSCoreDataController
 
@@ -23,5 +28,9 @@ class CategoriesDataSource {
                             iconName: coreDataTag.iconName,
                             color: coreDataTag.color)
         }
+    }
+    
+    func set(selectedCategory: ExpenseCategory?) {
+        self.selectedCategory = selectedCategory
     }
 }

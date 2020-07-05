@@ -10,16 +10,16 @@ import SwiftUI
 
 class CategoryFilterNavigationCoordinator {
     private var coreDataFetchController: BSCoreDataFetchController
-    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    private var selectedCategoryDataSource: CategoryDataSource
     
     init(coreDataFetchController: BSCoreDataFetchController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.coreDataFetchController = coreDataFetchController
         self.selectedCategoryDataSource = selectedCategoryDataSource
     }
     
     func categoryFilterView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> CategoryFilterView {
-        let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
+        let categoriesDataSource = CoreDataCategoryDataSource(coreDataController:self.coreDataFetchController.coreDataController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource: categoriesDataSource)
         let filterByCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let presenter = CategoryFilterPresenter(categoriesInteractor: categoriesInteractor,

@@ -19,6 +19,7 @@ static NSNumberFormatter *_amountFormatter = nil;
         _amountFormatter = [[NSNumberFormatter alloc] init];
         _amountFormatter.generatesDecimalNumbers = YES;
         [_amountFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        //[_amountFormatter setMaximumFractionDigits:0];
         [_amountFormatter setLocale:[NSLocale currentLocale]];        
     }
     

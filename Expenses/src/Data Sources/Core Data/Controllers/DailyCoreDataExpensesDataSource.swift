@@ -1,42 +1,41 @@
 //
-//  MonthlyCoreDataExpensesDataSource.swift
+//  DailyCoreDataExpensesDataSource.swift
 //  Expensit
 //
-//  Created by Borja Arias Drake on 26/04/2020.
+//  Created by Borja Arias Drake on 02/05/2020.
 //  Copyright © 2020 Borja Arias Drake. All rights reserved.
 //
 
 import Combine
 
-class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
-        
+class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
+    
     @Published var groupedExpenses = [ExpensesGroup]()
     var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
         
     private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     private(set) var coreDataController: BSCoreDataController
-    private var selectedCategoryDataSource: SelectedCategoryDataSource
+    private var selectedCategoryDataSource: CategoryDataSource
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
-
+    
     init(coreDataController: BSCoreDataController,
-         selectedCategoryDataSource: SelectedCategoryDataSource) {
+         selectedCategoryDataSource: CategoryDataSource) {
         self.coreDataController = coreDataController
-        self.fetchedResultsController =
-        self.coreDataController.fetchedResultsControllerForEntriesGroupedByMonth()
+        self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByDay()
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
-        self.groupedExpenses = entriesGroupedByMonth()
+        self.groupedExpenses = entriesGroupedByDay()
         
-        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.$selectedCategory.sink { selectedCategory in
+        self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
-            self.groupedExpenses = self.entriesGroupedByMonth()
+            self.groupedExpenses = self.entriesGroupedByDay()
         }
     }
     
-    private func entriesGroupedByMonth() -> [ExpensesGroup] {
+    private func entriesGroupedByDay() -> [ExpensesGroup] {                
         let sections = self.performRequest()
         var results = [ExpensesGroup]()
         
@@ -44,36 +43,54 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
             return results
         }
         
-        for sectionInfo in sections!
-        {
+        for sectionInfo in sections! {
             var entriesForKey = [Expense]()
             if let objects = sectionInfo.objects {
                 for case let data as NSDictionary in objects {
-                    let monthlySum = data["monthlySum"] as! NSDecimalNumber
+                    let dailySum = data["dailySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: nil),
+                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
                                         date: date,
-                                        value: monthlySum,
+                                        value: dailySum,
                                         description: nil,
                                         category: nil)
                     entriesForKey.append(entry)
                 }
             }
-            let section = ExpensesGroup(groupKey: DateComponents(year: Int(sectionInfo.name), month: nil, day: nil), entries: entriesForKey)
+            
+            let section = ExpensesGroup(groupKey: dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
             results.append(section)
         }
         
         return results
+
+    }
+    
+    private func dateComponents(fromSectionKey key: String) -> DateComponents {
+        let components = key.components(separatedBy: "/")
+        var year: Int? = nil
+        var month: Int? = nil
+
+        if let d = components.first,
+            let n = Int(d) {
+            month = n
+        }
+        
+        if components.count >= 2 {
+            year = Int(components[1])
+        }
+        
+        return DateComponents(year: year, month: month, day: nil)
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {
-        self.groupedExpenses = entriesGroupedByMonth()
+        self.groupedExpenses = entriesGroupedByDay()
     }
     
     
     // MARK: - NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.groupedExpenses = entriesGroupedByMonth()
+        self.groupedExpenses = entriesGroupedByDay()
     }
 
 }

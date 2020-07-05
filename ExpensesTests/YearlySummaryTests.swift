@@ -11,14 +11,14 @@ import XCTest
 class YearlySummaryTests: XCTestCase {
     
     private var presenter: ShowYearlyEntriesPresenter!
-    private var selectedCategoryDataSource: SelectedCategoryDataSource!
+    private var selectedCategoryDataSource: CoreDataCategoryDataSource!
     private var setCategoryInteractor: SetCategoryFilterInteractor!
     
     override func setUp() {
         var tg = TestDataGenerator()
         tg.generate()
         
-        selectedCategoryDataSource = SelectedCategoryDataSource()
+        selectedCategoryDataSource = CoreDataCategoryDataSource(coreDataController: tg.coreDataController)
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let yearlySummaryDataSource = YearlyCoreDataExpensesDataSource(coreDataController:tg.coreDataController,
                                                                        selectedCategoryDataSource: selectedCategoryDataSource)

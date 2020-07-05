@@ -11,20 +11,21 @@ import Combine
 class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
     override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
-    
-        print("Daily Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
+            let sortedGRoups = groups.sorted { (lg, rg) in
+                lg.groupKey > rg.groupKey
+            }
                         
             var displaySections = [ExpensesSummarySectionViewModel]()
             
-            for section in groups
+            for section in sortedGRoups
             {
                 var entries = [ExpensesSummaryEntryViewModel]()
                 let monthNumber = section.groupKey.month
                 let numberOfDayInMonths = DateTimeHelper.numberOfDays(inMonth: "\(monthNumber!)").length
                 for i in 0 ..< numberOfDayInMonths {                    
-                    let dayData = ExpensesSummaryEntryViewModel(id:DateIdentifier(year: section.groupKey.year, month: section.groupKey.month, day: UInt(i)),
+                    let dayData = ExpensesSummaryEntryViewModel(id:DateIdentifier(year: section.groupKey.year, month: section.groupKey.month, day: i),
                                                                 title: "\(i+1)",
                             value: "",
                         signOfAmount: .zero,
@@ -61,7 +62,14 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     entries[day.intValue - 1] = entryData
                 }
                 
-                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: "\(section.groupKey.month ?? 0)/\(section.groupKey.year ?? 0)", entries: entries)
+                let calendar = Calendar.current
+                let dateComponents = DateComponents(calendar: calendar,
+                                                    year: section.groupKey.year,
+                                                    month: section.groupKey.month,
+                                                    day: section.groupKey.day)
+                let sectionDate = calendar.date(from: dateComponents)!
+                let sectionDateString = DateTimeHelper.dateString(withFormat: MONTH_YEAR_DATE_FORMAT, date: sectionDate)                
+                let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: sectionDateString, entries: entries)
                 displaySections.append(sectionData)
             }
             

@@ -49,7 +49,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
                 for case let data as NSDictionary in objects {
                     let dailySum = data["dailySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = Expense(dateIdentifier: DateIdentifier(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
+                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
                                         date: date,
                                         value: dailySum,
                                         description: nil,
@@ -58,7 +58,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
                 }
             }
             
-            let section = ExpensesGroup(groupKey: dateIdentifier(fromSectionKey: sectionInfo.name), entries: entriesForKey)
+            let section = ExpensesGroup(groupKey: dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
             results.append(section)
         }
         
@@ -66,7 +66,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
 
     }
     
-    private func dateIdentifier(fromSectionKey key: String) -> DateIdentifier {
+    private func dateComponents(fromSectionKey key: String) -> DateComponents {
         let components = key.components(separatedBy: "/")
         var year: Int? = nil
         var month: Int? = nil
@@ -80,7 +80,7 @@ class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFet
             year = Int(components[1])
         }
         
-        return DateIdentifier(year: year, month: month, day: nil)
+        return DateComponents(year: year, month: month, day: nil)
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {

@@ -13,7 +13,7 @@ import SwiftUI
 protocol NavigationCoordinator {
     associatedtype T: View
     
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> T
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> T
 }
 
 class MainNavigationCoordinator: NavigationCoordinator {
@@ -36,7 +36,7 @@ class MainNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> ListView<YearlyExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["yearly"]!,
                         navigationButtonsPresenter: navigationButtonsPresenter,
                         title: "Yearly Breakdown",
@@ -71,7 +71,7 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> GridView<MonthlyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> GridView<MonthlyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["monthly"]!,
                         columnCount: 3,
                         title: "Monthly Breakdown",
@@ -106,7 +106,7 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
         columnCount: 7,
         title: "Daily Breakdown",
@@ -138,7 +138,7 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> ListView<AllExpensesSummaryNavigationCoordinator> {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> ListView<AllExpensesSummaryNavigationCoordinator> {
         return ListView(presenter: presenters["all"]!,
                                   navigationButtonsPresenter: navigationButtonsPresenter,
                                   title: "All Entries",
@@ -171,14 +171,14 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
-    func nextView(forIdentifier currentViewIdentifier: DateIdentifier?) -> EntryFormView {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> EntryFormView {
         let categoriesDataSource = CategoriesDataSource(coreDataController:self.coreDataFetchController.coreDataController)
         let storageInteractor = BSAddEntryController(coreDataFetchController:self.coreDataFetchController)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
                                            categoriesInteractor: categoriesInteractor,
-                                           getExpenseInteractor: EntryForDateIdentifierInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
+                                           getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
                                            entryIdentifier: currentViewIdentifier)
         return EntryFormView(presenter: presenter,
                              beingPresented: self.$isAddEntryFormPresented)

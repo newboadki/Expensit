@@ -16,7 +16,7 @@ class IndividualExpensesDataSource {
         self.context = context
     }
     
-    func expense(for identifier: DateIdentifier) -> Expense? {
+    func expense(for identifier: DateComponents) -> Expense? {
         guard let first = self.entry(for: identifier) else {
             return nil
         }
@@ -25,14 +25,14 @@ class IndividualExpensesDataSource {
                                        iconName: first.tag.iconImageName,
                                        color: first.tag.color)
         
-        return Expense(dateIdentifier: identifier,
+        return Expense(dateComponents: identifier,
                        date: first.date,
                        value: first.value,
                        description: first.desc,
                        category: category)
     }
     
-    func saveChanges(in expense: Expense, with identifier: DateIdentifier) -> Result<Bool, Error> {
+    func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
         guard let first = self.entry(for: identifier) else {
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
         }
@@ -61,7 +61,7 @@ class IndividualExpensesDataSource {
 
 private extension IndividualExpensesDataSource {
     
-    func entry(for identifier: DateIdentifier) -> Entry? {
+    func entry(for identifier: DateComponents) -> Entry? {
         guard let y = identifier.year,
             let mo = identifier.month,
             let d = identifier.day,

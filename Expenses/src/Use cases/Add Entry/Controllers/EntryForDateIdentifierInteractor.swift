@@ -1,5 +1,5 @@
 //
-//  EntryForDateIdentifierInteractor.swift
+//  EntryForDateComponentsInteractor.swift
 //  Expensit
 //
 //  Created by Borja Arias Drake on 03/07/2020.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-class EntryForDateIdentifierInteractor {
+class EntryForDateComponentsInteractor {
     private var dataSource: IndividualExpensesDataSource
     
     init(dataSource: IndividualExpensesDataSource) {
         self.dataSource = dataSource
     }
     
-    func entry(for identifier: DateIdentifier) -> Expense? {
+    func entry(for identifier: DateComponents) -> Expense? {
         return self.dataSource.expense(for: identifier)
     }
 }

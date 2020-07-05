@@ -44,6 +44,9 @@
 		00374F4824A2652F00D69BFB /* ShowMonthlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */; };
 		00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
 		00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */; };
+		0039F79D24B1A53800772996 /* EntryForDateIdentifierInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */; };
+		0039F79E24B1A53D00772996 /* EditExpenseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */; };
+		0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
 		0058AA5421765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4B21765F45007AD175 /* BSAbstractExpensesSummaryUserInterfaceProtocol.swift */; };
 		0058AA5621765F45007AD175 /* BSDisplayExpensesSummarySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA4D21765F45007AD175 /* BSDisplayExpensesSummarySection.swift */; };
 		0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
@@ -134,7 +137,7 @@
 		00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
 		00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
 		00C273DC249F208A00E1DF0F /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */; };
-		00C273DD249F209300E1DF0F /* DateIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */; };
+		00C273DD249F209300E1DF0F /* DateComponents+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */; };
 		00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00C273DF249F20A900E1DF0F /* SelectedCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9029248A43150099AAC1 /* SelectedCategoryDataSource.swift */; };
 		00C273E0249F20B000E1DF0F /* ExpensesSummaryEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90002484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift */; };
@@ -166,7 +169,7 @@
 		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
 		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
 		00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C59249DFE01007B0A46 /* Date+Components.swift */; };
-		00D86C5C249E10A3007B0A46 /* DateIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */; };
+		00D86C5C249E10A3007B0A46 /* DateComponents+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */; };
 		00D86C5E249E2104007B0A46 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
@@ -404,7 +407,7 @@
 		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
 		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00D86C59249DFE01007B0A46 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
-		00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIdentifier.swift; sourceTree = "<group>"; };
+		00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Components.swift"; sourceTree = "<group>"; };
 		00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataFetchController.swift; sourceTree = "<group>"; };
 		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
@@ -643,7 +646,6 @@
 				00223BB32169FF5800E76784 /* ExpensesGroup.swift */,
 				00223BB42169FF5800E76784 /* ExpenseCategory.swift */,
 				00223BB52169FF5800E76784 /* Expense.swift */,
-				00D86C5B249E10A3007B0A46 /* DateIdentifier.swift */,
 			);
 			path = "Business Domain";
 			sourceTree = "<group>";
@@ -1166,6 +1168,7 @@
 			isa = PBXGroup;
 			children = (
 				00D86C59249DFE01007B0A46 /* Date+Components.swift */,
+				00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1440,7 +1443,7 @@
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
 				00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */,
-				00D86C5C249E10A3007B0A46 /* DateIdentifier.swift in Sources */,
+				00D86C5C249E10A3007B0A46 /* DateComponents+Components.swift in Sources */,
 				0058AAF92176699F007AD175 /* PaddingLabel.swift in Sources */,
 				00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
@@ -1460,10 +1463,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0058AAFA2176699F007AD175 /* PaddingLabel.swift in Sources */,
+				0039F79D24B1A53800772996 /* EntryForDateIdentifierInteractor.swift in Sources */,
 				00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */,
 				00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */,
-				00C273DD249F209300E1DF0F /* DateIdentifier.swift in Sources */,
+				00C273DD249F209300E1DF0F /* DateComponents+Components.swift in Sources */,
 				00C21383217BAE2900805207 /* BSThemeManager.m in Sources */,
 				00C21381217BAE2900805207 /* BSThemeManager_iOS7.m in Sources */,
 				00010596233F5AD70073BFAF /* TestDataGenerator.swift in Sources */,
@@ -1491,12 +1495,14 @@
 				000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00C273E3249F20DB00E1DF0F /* CategoriesDataSource.swift in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
+				0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */,
 				00C2137F217BAE2900805207 /* BSGreenTheme.m in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				00AA9015248640FD0099AAC1 /* EntryFormPresenter.swift in Sources */,
 				00C273E2249F20D300E1DF0F /* GetCategoriesInteractor.swift in Sources */,
+				0039F79E24B1A53D00772996 /* EditExpenseInteractor.swift in Sources */,
 				00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */,
 				00C21393217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
 				00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */,

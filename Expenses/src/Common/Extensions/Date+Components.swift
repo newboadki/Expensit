@@ -14,35 +14,4 @@ extension Date {
     public func component(_ component: Calendar.Component) -> Int {
         return Calendar(identifier: .gregorian).component(component, from: self)
     }
-        
-    public var yearNumber: NSNumber {
-        get {
-            return NSNumber(value: component(.year))
-        }
-    }
-    
-    public var monthNumber: NSNumber {
-        get {
-            return NSNumber(value: component(.month))
-        }
-    }
-
-    public var dayNumber: NSNumber {
-        get {
-            return NSNumber(value: component(.day))
-        }
-    }
-
-    public var minuteNumber: NSNumber {
-        get {
-            return NSNumber(value: component(.minute))
-        }
-    }
-
-    public var secondNumber: NSNumber {
-        get {
-            return NSNumber(value: component(.second))
-        }
-    }
-
 }

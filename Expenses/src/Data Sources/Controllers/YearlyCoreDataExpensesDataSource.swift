@@ -55,7 +55,7 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
                 {
                     let yearlySum = data["yearlySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = Expense(dateIdentifier: DateIdentifier(year: date.component(.year), month: nil, day: nil),
+                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: nil, day: nil),
                                         date: date,
                                         value: yearlySum,
                                         description: nil,
@@ -63,7 +63,7 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
                     entriesForKey.append(entry)
                 }
             }
-            let section = ExpensesGroup(groupKey: DateIdentifier(), entries: entriesForKey)
+            let section = ExpensesGroup(groupKey: DateComponents(), entries: entriesForKey)
             results.append(section)
         }
         

@@ -46,7 +46,7 @@ class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let year = entryEntity.year
                     let yearString =  (year != nil) ? "\(year!)" : "" // NSString(format:"\(String(describing: year))" as NSString)
                     let yearlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryEntity.dateIdentifier,
+                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryEntity.dateComponents,
                                                                      title: yearString as String,
                                                                      value: yearlySumString as String,
                                                                      signOfAmount: sign,

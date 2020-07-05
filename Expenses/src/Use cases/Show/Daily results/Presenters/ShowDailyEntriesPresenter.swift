@@ -25,7 +25,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 let monthNumber = section.groupKey.month
                 let numberOfDayInMonths = DateTimeHelper.numberOfDays(inMonth: "\(monthNumber!)").length
                 for i in 0 ..< numberOfDayInMonths {                    
-                    let dayData = ExpensesSummaryEntryViewModel(id:DateIdentifier(year: section.groupKey.year, month: section.groupKey.month, day: i),
+                    let dayData = ExpensesSummaryEntryViewModel(id:DateComponents(year: section.groupKey.year, month: section.groupKey.month, day: i),
                                                                 title: "\(i+1)",
                             value: "",
                         signOfAmount: .zero,
@@ -53,7 +53,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let dayString = "\(day)"
                     let dailySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
                     let dateString = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: entryEntity.date)                    
-                    let entryData = ExpensesSummaryEntryViewModel(id:entryEntity.dateIdentifier,
+                    let entryData = ExpensesSummaryEntryViewModel(id:entryEntity.dateComponents,
                                                                   title: dayString as String,
                                                                   value: dailySumString as String,
                                                                   signOfAmount: sign,

@@ -23,7 +23,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 var entries = [ExpensesSummaryEntryViewModel]()
                 // We always show all months even if they have no expenses
                 for i in 0 ..< 12 {
-                    let monthData = ExpensesSummaryEntryViewModel(id: DateIdentifier(year: section.groupKey.year, month: Int(i+1), day: nil),
+                    let monthData = ExpensesSummaryEntryViewModel(id: DateComponents(year: section.groupKey.year, month: Int(i+1), day: nil),
                                                                   title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(),
                                                                   value: "",
                                                                   signOfAmount: .zero,
@@ -51,7 +51,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let month = NSNumber(value: entryEntity.month!)
                     let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
                     let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-                    let entryData = ExpensesSummaryEntryViewModel(id: entryEntity.dateIdentifier,
+                    let entryData = ExpensesSummaryEntryViewModel(id: entryEntity.dateComponents,
                                                                   title: monthString as String,
                                                                   value: monthlySumString as String,
                                                                   signOfAmount: sign,

@@ -19,7 +19,15 @@ class PieChartPresenter: ObservableObject {
     var title: String {
         get {            
             if let m = month {
-                return "\(m)/\(year)"
+                let calendar = Calendar.current
+                let dateComponents = DateComponents(calendar: calendar,
+                                                    year: year.intValue,
+                                                    month: m.intValue,
+                                                    day: nil)
+                let sectionDate = calendar.date(from: dateComponents)!
+                let sectionDateString = DateTimeHelper.dateString(withFormat: MONTH_YEAR_DATE_FORMAT, date: sectionDate)
+
+                return sectionDateString ?? "-"
             } else {
                 return "\(year)"
             }

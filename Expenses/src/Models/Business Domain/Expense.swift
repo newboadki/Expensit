@@ -13,7 +13,7 @@ import Foundation
 class Expense : NSObject {
 
     var identifier: NSCopying? // Related to the underlying storage system
-    let dateIdentifier: DateIdentifier
+    let dateComponents: DateComponents
     var date: Date?
     var value: NSDecimalNumber
     var entryDescription: String?
@@ -54,8 +54,8 @@ class Expense : NSObject {
         }
     }
 
-    init(dateIdentifier: DateIdentifier, date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
-        self.dateIdentifier = dateIdentifier
+    init(dateComponents: DateComponents, date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?) {
+        self.dateComponents = dateComponents
         self.date = date
         self.value = value
         self.entryDescription = description

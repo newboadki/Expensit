@@ -34,7 +34,7 @@ class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                 {
                     let entryEntity : Expense = sortedEntries[i]
                     let sign : BSNumberSignType = self.sign(for: entryEntity.value)
-                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryEntity.dateIdentifier,
+                    let displayEntry = ExpensesSummaryEntryViewModel(id: entryEntity.dateComponents,
                                                                      title: entryEntity.entryDescription,
                                                                      value: BSCurrencyHelper.amountFormatter().string(from: entryEntity.value),
                                                                      signOfAmount: sign,

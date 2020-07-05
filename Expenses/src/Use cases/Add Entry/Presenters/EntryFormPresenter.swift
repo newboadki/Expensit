@@ -13,12 +13,12 @@ class EntryFormPresenter: ObservableObject {
     // MARK: - Private
     private var storageInteractor: BSAddEntryController
     private var categoriesInteractor: GetCategoriesInteractor
-    private var getExpenseInteractor:  EntryForDateIdentifierInteractor
+    private var getExpenseInteractor:  EntryForDateComponentsInteractor
     private var editExpenseInteractor:  EditExpenseInteractor
     
     // MARK: - Internal
     @Published var entry: ExpensesSummaryEntryViewModel
-    var entryIdentifier: DateIdentifier?
+    var entryIdentifier: DateComponents?
     lazy var categories: [String] = {
         self.categoriesInteractor.allCategories().map { expenseCategory in
             return expenseCategory.name
@@ -28,16 +28,16 @@ class EntryFormPresenter: ObservableObject {
     // MARK: - Initializers
     init(storageInteractor: BSAddEntryController,
          categoriesInteractor: GetCategoriesInteractor,
-         getExpenseInteractor:  EntryForDateIdentifierInteractor,
+         getExpenseInteractor:  EntryForDateComponentsInteractor,
          editExpenseInteractor:  EditExpenseInteractor,
-         entryIdentifier: DateIdentifier? = nil) {
+         entryIdentifier: DateComponents? = nil) {
         self.entryIdentifier = entryIdentifier
         self.storageInteractor = storageInteractor
         self.getExpenseInteractor = getExpenseInteractor
         self.editExpenseInteractor = editExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
         let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
-        self.entry = ExpensesSummaryEntryViewModel(id: DateIdentifier(),
+        self.entry = ExpensesSummaryEntryViewModel(id: DateComponents(),
                                                    title: "",
                                                    value: "",
                                                    signOfAmount: .negative,
@@ -95,7 +95,7 @@ class EntryFormPresenter: ObservableObject {
             value = NSDecimalNumber(string: "0")
         }
         let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
-        let entity = Expense(dateIdentifier: DateIdentifier(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category)
+        let entity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category)
         entity.identifier = nil
         if entry.isAmountNegative {
             if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {

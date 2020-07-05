@@ -51,7 +51,7 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
                 for case let data as NSDictionary in objects {
                     let monthlySum = data["monthlySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
-                    let entry = Expense(dateIdentifier: DateIdentifier(year: date.component(.year), month: date.component(.month), day: nil),
+                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: nil),
                                         date: date,
                                         value: monthlySum,
                                         description: nil,
@@ -59,7 +59,7 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
                     entriesForKey.append(entry)
                 }
             }
-            let section = ExpensesGroup(groupKey: DateIdentifier(year: Int(sectionInfo.name), month: nil, day: nil), entries: entriesForKey)
+            let section = ExpensesGroup(groupKey: DateComponents(year: Int(sectionInfo.name), month: nil, day: nil), entries: entriesForKey)
             results.append(section)
         }
         

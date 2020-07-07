@@ -6,7 +6,6 @@
 #import "Entry.h"
 #import "CoreDataStackHelper.h"
 #import "BSCoreDataController.h"
-#import "BSAppDelegate.h"
 #import "DateTimeHelper.h"
 #import "BSCurrencyHelper.h"
 #import "LineGraph.h"

@@ -8,6 +8,12 @@
 
 import Foundation
 
+@objc enum BSNumberSignType : Int
+{
+    case zero = 0, positive, negative
+}
+
+
 struct ExpensesSummaryEntryViewModel : Identifiable
 {
     var id: DateComponents

@@ -7,6 +7,7 @@
 //
 
 import Combine
+import DateAndTime
 
 class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
@@ -23,7 +24,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
             {
                 var entries = [ExpensesSummaryEntryViewModel]()
                 let monthNumber = section.groupKey.month
-                let numberOfDayInMonths = DateTimeHelper.numberOfDays(inMonth: "\(monthNumber!)").length
+                let numberOfDayInMonths = DateConversion.numberOfDays(inMonthNamed: "\(monthNumber!)")
                 for i in 0 ..< numberOfDayInMonths {                    
                     let dayData = ExpensesSummaryEntryViewModel(id:DateComponents(year: section.groupKey.year, month: section.groupKey.month, day: i),
                                                                 title: "\(i+1)",
@@ -52,7 +53,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     let day = NSNumber(value: entryEntity.day!)
                     let dayString = "\(day)"
                     let dailySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
-                    let dateString = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: entryEntity.date)                    
+                    let dateString = DateConversion.string(from: entryEntity.date!)
                     let entryData = ExpensesSummaryEntryViewModel(id:entryEntity.dateComponents,
                                                                   title: dayString as String,
                                                                   value: dailySumString as String,
@@ -68,7 +69,7 @@ class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                     month: section.groupKey.month,
                                                     day: section.groupKey.day)
                 let sectionDate = calendar.date(from: dateComponents)!
-                let sectionDateString = DateTimeHelper.dateString(withFormat: MONTH_YEAR_DATE_FORMAT, date: sectionDate)                
+                let sectionDateString = DateConversion.string(withFormat: DateFormats.monthYear, from: sectionDate)
                 let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: sectionDateString, entries: entries)
                 displaySections.append(sectionData)
             }

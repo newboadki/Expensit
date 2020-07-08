@@ -7,7 +7,7 @@
 //
 
 #import "Entry.h"
-#import "DateTimeHelper.h"
+@import DateAndTime;
 
 @implementation Entry
 
@@ -29,12 +29,12 @@
     if (_date != date)
     {
         _date = date;
-        self.day = [NSNumber numberWithInteger:[DateTimeHelper dayOfDateUsingCurrentCalendar:self.date]];
-        self.month = [NSNumber numberWithInteger:[DateTimeHelper monthOfDateUsingCurrentCalendar:self.date]];
-        self.year = [NSNumber numberWithInteger:[DateTimeHelper yearOfDateUsingCurrentCalendar:self.date]];
-        self.hour = [NSNumber numberWithInteger:[DateTimeHelper hourOfDateUsingCurrentCalendar:self.date]];
-        self.minute = [NSNumber numberWithInteger:[DateTimeHelper minuteOfDateUsingCurrentCalendar:self.date]];
-        self.second = [NSNumber numberWithInteger:[DateTimeHelper secondOfDateUsingCurrentCalendar:self.date]];
+        self.day = [NSNumber numberWithInteger:[DateConversion dayOfDateUsingCurrentCalendar:self.date]];
+        self.month = [NSNumber numberWithInteger:[DateConversion monthOfDateUsingCurrentCalendar:self.date]];
+        self.year = [NSNumber numberWithInteger:[DateConversion yearOfDateUsingCurrentCalendar:self.date]];
+        self.hour = [NSNumber numberWithInteger:[DateConversion hourOfDateUsingCurrentCalendar:self.date]];
+        self.minute = [NSNumber numberWithInteger:[DateConversion minuteOfDateUsingCurrentCalendar:self.date]];
+        self.second = [NSNumber numberWithInteger:[DateConversion secondOfDateUsingCurrentCalendar:self.date]];
         self.monthYear = [NSString stringWithFormat:@"%@/%@", [self.month stringValue], [self.year stringValue]];
         self.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [self.day stringValue], [self.month stringValue], [self.year stringValue]];
         self.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [self.year stringValue], [self.month stringValue], [self.day stringValue]];

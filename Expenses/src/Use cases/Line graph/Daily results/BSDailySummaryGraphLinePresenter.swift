@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import DateAndTime
 
 @objc public class BSDailySummaryGraphLinePresenter: NSObject, BSGraphLinePresenterProtocol {
     
@@ -37,7 +37,7 @@ import Foundation
     func abscissaValues() -> [String] {
         var days = [String]()
         let monthNumber = self.section.components(separatedBy: "/")[0]
-        let numberOfDayInMonths = DateTimeHelper.numberOfDays(inMonth: monthNumber).length
+        let numberOfDayInMonths = DateConversion.numberOfDays(inMonthNamed: monthNumber)
         for i in 0 ..< numberOfDayInMonths {
             days.append("\(i+1)")
         }
@@ -53,8 +53,8 @@ import Foundation
     /// Helper private
     func dataForGraphFromQueryResults(_ data : [AnyObject])  -> [NSNumber] {
         let monthNumber = self.section.components(separatedBy: "/")[0]
-        let numberOfDaysInMonth = DateTimeHelper.numberOfDays(inMonth: monthNumber)
-        var graphData = Array<NSNumber>(repeating: 0, count: numberOfDaysInMonth.length)
+        let numberOfDaysInMonth = DateConversion.numberOfDays(inMonthNamed: monthNumber)
+        var graphData = Array<NSNumber>(repeating: 0, count: numberOfDaysInMonth)
         
         for dic in data {
             let dictionary = dic as! NSDictionary
@@ -64,7 +64,7 @@ import Foundation
             if dailySumAsDouble > 0 {
                 graphData[day] = NSNumber(value: dailySumAsDouble)
             } else {
-                if day > 0 && day < numberOfDaysInMonth.length {                    
+                if day > 0 && day < numberOfDaysInMonth {                    
                     graphData[day] = NSNumber(value: -dailySumAsDouble)
                 } else {
                     

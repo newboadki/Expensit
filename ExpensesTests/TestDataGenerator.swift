@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import DateAndTime
 
 struct TestDataGenerator {
     
@@ -98,11 +98,11 @@ struct TestDataGenerator {
 }
 
 private func d(_ text: String) -> Date {
-    return DateTimeHelper.date(text)
+    return DateConversion.date(text)
 }
 
-fileprivate extension DateTimeHelper {
+fileprivate extension DateConversion {
     static func date(_ textDate: String) -> Date {
-        return DateTimeHelper.date(withFormat:"dd/MM/yyyy", stringDate: textDate)
+        return DateConversion.date(withFormat:"dd/MM/yyyy", from: textDate)
     }
 }

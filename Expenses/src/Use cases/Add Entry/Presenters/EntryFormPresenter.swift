@@ -7,6 +7,7 @@
 //
 
 import Combine
+import DateAndTime
 
 class EntryFormPresenter: ObservableObject {
         
@@ -36,7 +37,7 @@ class EntryFormPresenter: ObservableObject {
         self.getExpenseInteractor = getExpenseInteractor
         self.editExpenseInteractor = editExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
-        let now = DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: Date())
+        let now = DateConversion.string(from: Date())
         self.entry = ExpensesSummaryEntryViewModel(id: DateComponents(),
                                                    title: "",
                                                    value: "",
@@ -57,10 +58,12 @@ class EntryFormPresenter: ObservableObject {
                                                        title: expense.entryDescription,
                                                        value: "\(expense.value)",
                                                        signOfAmount: expense.isAmountNegative,
-                                                       date: DateTimeHelper.dateString(withFormat: DEFAULT_DATE_FORMAT, date: expense.date),
+                                                       date: DateConversion.string(from: expense.date!),
                                                        tag: expense.category?.name,
                                                        tagId: index,
                                                        dateTime: expense.date!)
+            
+            print(self.entry)
         }
     }
     
@@ -82,7 +85,7 @@ class EntryFormPresenter: ObservableObject {
     }
     
     private func entryEntity(fromViewModel entry: ExpensesSummaryEntryViewModel) -> Expense {
-        let date = entry.dateTime //DateTimeHelper.date(withFormat: DEFAULT_DATE_FORMAT, stringDate: entry.date)
+        let date = entry.dateTime
         let value: NSDecimalNumber
             
         if let enteredValue = entry.value, enteredValue.count > 0 {

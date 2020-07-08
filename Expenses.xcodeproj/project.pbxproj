@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,6 +62,7 @@
 		0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
 		0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
 		0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */; };
+		0073704324B599DC00E10142 /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 0073704224B599DC00E10142 /* DateAndTime */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -105,7 +106,6 @@
 		00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
 		00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */; };
 		00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */; };
-		00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */; };
 		00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
 		00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
 		00C21392217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
@@ -189,20 +189,6 @@
 			remoteGlobalIDString = 007B829A17747A020052FE84;
 			remoteInfo = CoreDataStackHelperTests;
 		};
-		00BEAFB717771F4300A59EE2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 00BEAF8717771DFB00A59EE2;
-			remoteInfo = DateTimeHelper;
-		};
-		00BEAFB917771F4300A59EE2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 00BEAF9717771DFB00A59EE2;
-			remoteInfo = DateTimeHelperTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +242,7 @@
 		0058AAF521766976007AD175 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPieChartSectionInfo.m; sourceTree = "<group>"; };
 		0073703E24B5082500E10142 /* BSPieChartSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPieChartSectionInfo.h; sourceTree = "<group>"; };
+		0073704124B58DDB00E10142 /* DateAndTime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DateAndTime; path = ../DateTimeHelper/DateAndTime; sourceTree = "<group>"; };
 		0077D58B1CED11CB00003F71 /* ExpensesTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpensesTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0077D58C1CED11DC00003F71 /* Expenses-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Expenses-Bridging-Header.h"; sourceTree = "<group>"; };
 		007B8249177476780052FE84 /* Expensit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,7 +295,6 @@
 		00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummarySectionViewModel.swift; sourceTree = "<group>"; };
 		00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationView.swift; sourceTree = "<group>"; };
-		00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimeHelper.xcodeproj; path = ../DateTimeHelper/DateTimeHelper.xcodeproj; sourceTree = "<group>"; };
 		00C21384217BB03000805207 /* PieChartPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartPresentationController.swift; sourceTree = "<group>"; };
 		00C21388217BB09F00805207 /* ContainmentEventsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEventsAPI.h; sourceTree = "<group>"; };
 		00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAnimatedBlurEffectTransitioningDelegate.m; sourceTree = "<group>"; };
@@ -361,9 +347,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BEAFBB17771FC400A59EE2 /* libDateTimeHelper.a in Frameworks */,
 				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
+				0073704324B599DC00E10142 /* DateAndTime in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B824D177476780052FE84 /* Foundation.framework in Frameworks */,
@@ -889,7 +875,7 @@
 		007B83141775A3C40052FE84 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */,
+				0073704124B58DDB00E10142 /* DateAndTime */,
 				007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */,
 			);
 			name = Dependencies;
@@ -984,15 +970,6 @@
 			children = (
 			);
 			path = SwiftUI;
-			sourceTree = "<group>";
-		};
-		00BEAFB117771F4300A59EE2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */,
-				00BEAFBA17771F4300A59EE2 /* DateTimeHelperTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		00C21387217BB09F00805207 /* Navigation */ = {
@@ -1115,6 +1092,9 @@
 			dependencies = (
 			);
 			name = Expensit;
+			packageProductDependencies = (
+				0073704224B599DC00E10142 /* DateAndTime */,
+			);
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expensit.app */;
 			productType = "com.apple.product-type.application";
@@ -1175,10 +1155,6 @@
 					ProductGroup = 007B830C1775A3660052FE84 /* Products */;
 					ProjectRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */;
 				},
-				{
-					ProductGroup = 00BEAFB117771F4300A59EE2 /* Products */;
-					ProjectRef = 00BEAFB017771F4300A59EE2 /* DateTimeHelper.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1201,20 +1177,6 @@
 			fileType = wrapper.cfbundle;
 			path = CoreDataStackHelperTests.xctest;
 			remoteRef = 007B83121775A3660052FE84 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00BEAFB817771F4300A59EE2 /* libDateTimeHelper.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDateTimeHelper.a;
-			remoteRef = 00BEAFB717771F4300A59EE2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00BEAFBA17771F4300A59EE2 /* DateTimeHelperTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DateTimeHelperTests.xctest;
-			remoteRef = 00BEAFB917771F4300A59EE2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1481,7 +1443,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/** $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
+				);
 			};
 			name = Debug;
 		};
@@ -1529,7 +1494,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/** $(SRCROOT)/../DateTimeHelper/DateTimeHelper $(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
+				);
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1551,14 +1519,14 @@
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
-					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
@@ -1572,6 +1540,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1594,14 +1566,14 @@
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
-					"$(SRCROOT)/../BSStaticFormTableViewControllerComponent/BSStaticFormTableViewControllerComponent/Source/Headers/**",
-					"$(SRCROOT)/../DateTimeHelper/DateTimeHelper",
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos",
@@ -1614,6 +1586,10 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/Expenses-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper",
+					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1639,7 +1615,11 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
@@ -1674,7 +1654,11 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphonesimulator",
@@ -1722,6 +1706,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0073704224B599DC00E10142 /* DateAndTime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DateAndTime;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		007B8260177476780052FE84 /* Expenses.xcdatamodeld */ = {

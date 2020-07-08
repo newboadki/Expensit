@@ -7,6 +7,7 @@
 //
 
 import Combine
+import DateAndTime
 
 class PieChartPresenter: ObservableObject {
     
@@ -24,9 +25,7 @@ class PieChartPresenter: ObservableObject {
                                                     month: m.intValue,
                                                     day: nil)
                 let sectionDate = calendar.date(from: dateComponents)!
-                let sectionDateString = DateTimeHelper.dateString(withFormat: MONTH_YEAR_DATE_FORMAT, date: sectionDate)
-
-                return sectionDateString ?? "-"
+                return DateConversion.string(withFormat: DateFormats.monthYear, from: sectionDate)
             } else {
                 return "\(year)"
             }

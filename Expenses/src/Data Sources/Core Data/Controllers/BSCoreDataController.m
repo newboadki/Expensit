@@ -7,13 +7,13 @@
 //
 
 #import "BSCoreDataController.h"
-#import "DateTimeHelper.h"
 #import "CoreDataStackHelper.h"
 #import "Tag.h"
 #import "Entry.h"
 #import "BSPieChartSectionInfo.h"
 #import "Expensit-Swift.h"
 #import <CoreData/CoreData.h>
+@import DateAndTime;
 
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;
@@ -44,9 +44,9 @@
 
     // Configure
     newManagedObject.date = [NSDate date];
-    newManagedObject.day = [NSNumber numberWithInteger:[DateTimeHelper dayOfDateUsingCurrentCalendar:newManagedObject.date]];
-    newManagedObject.month = [NSNumber numberWithInteger:[DateTimeHelper monthOfDateUsingCurrentCalendar:newManagedObject.date]];
-    newManagedObject.year = [NSNumber numberWithInteger:[DateTimeHelper yearOfDateUsingCurrentCalendar:newManagedObject.date]];
+    newManagedObject.day = [NSNumber numberWithInteger:[DateConversion dayOfDateUsingCurrentCalendar:newManagedObject.date]];
+    newManagedObject.month = [NSNumber numberWithInteger:[DateConversion monthOfDateUsingCurrentCalendar:newManagedObject.date]];
+    newManagedObject.year = [NSNumber numberWithInteger:[DateConversion yearOfDateUsingCurrentCalendar:newManagedObject.date]];
     newManagedObject.monthYear = [NSString stringWithFormat:@"%@/%@", [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
     newManagedObject.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.day stringValue], [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
     newManagedObject.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.year stringValue], [newManagedObject.month stringValue], [newManagedObject.day stringValue]];
@@ -65,9 +65,9 @@
     
     // Configure    
     newManagedObject.date = date;
-    newManagedObject.day = [NSNumber numberWithInteger:[DateTimeHelper dayOfDateUsingCurrentCalendar:date]];
-    newManagedObject.month = [NSNumber numberWithInteger:[DateTimeHelper monthOfDateUsingCurrentCalendar:date]];
-    newManagedObject.year = [NSNumber numberWithInteger:[DateTimeHelper yearOfDateUsingCurrentCalendar:date]];
+    newManagedObject.day = [NSNumber numberWithInteger:[DateConversion dayOfDateUsingCurrentCalendar:date]];
+    newManagedObject.month = [NSNumber numberWithInteger:[DateConversion monthOfDateUsingCurrentCalendar:date]];
+    newManagedObject.year = [NSNumber numberWithInteger:[DateConversion yearOfDateUsingCurrentCalendar:date]];
     newManagedObject.monthYear = [NSString stringWithFormat:@"%@/%@", [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
     newManagedObject.dayMonthYear = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.day stringValue], [newManagedObject.month stringValue], [newManagedObject.year stringValue]];
     newManagedObject.yearMonthDay = [NSString stringWithFormat:@"%@/%@/%@", [newManagedObject.year stringValue], [newManagedObject.month stringValue], [newManagedObject.day stringValue]];

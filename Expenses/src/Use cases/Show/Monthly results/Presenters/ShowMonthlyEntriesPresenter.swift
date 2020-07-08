@@ -7,6 +7,7 @@
 //
 
 import Combine
+import DateAndTime
 
 class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
@@ -24,7 +25,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 // We always show all months even if they have no expenses
                 for i in 0 ..< 12 {
                     let monthData = ExpensesSummaryEntryViewModel(id: DateComponents(year: section.groupKey.year, month: Int(i+1), day: nil),
-                                                                  title: DateTimeHelper.monthName(forMonthNumber: NSNumber(value: i+1)).uppercased(),
+                                                                  title: DateConversion.monthName(for: i+1).uppercased(),
                                                                   value: "",
                                                                   signOfAmount: .zero,
                                                                   date: nil,
@@ -48,8 +49,8 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                     case ComparisonResult.orderedSame:
                         sign = .zero
                     }
-                    let month = NSNumber(value: entryEntity.month!)
-                    let monthString = DateTimeHelper.monthName(forMonthNumber: month).uppercased()
+                    let month = entryEntity.month!
+                    let monthString = DateConversion.monthName(for: month).uppercased()
                     let monthlySumString = BSCurrencyHelper.amountFormatter().string(from: value)!
                     let entryData = ExpensesSummaryEntryViewModel(id: entryEntity.dateComponents,
                                                                   title: monthString as String,
@@ -57,7 +58,7 @@ class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                   signOfAmount: sign,
                                                                   date: nil,
                                                                   tag: nil)
-                    entries[month.intValue - 1] = entryData
+                    entries[month - 1] = entryData
                 }
 
                 let sectionData = ExpensesSummarySectionViewModel(id:section.groupKey, title: "\(section.groupKey.year ?? 0)", entries: entries)

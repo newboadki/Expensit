@@ -62,7 +62,6 @@
 		0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
 		0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
 		0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */; };
-		0073704324B599DC00E10142 /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 0073704224B599DC00E10142 /* DateAndTime */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -145,6 +144,7 @@
 		00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */; };
 		00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
 		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
+		00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 00D7165B24B5E4DB0057281C /* DateAndTime */; };
 		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
@@ -211,6 +211,7 @@
 		000A9A991D09F90E0045523A /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		001359B024B5B7200071AEBD /* CoreExpenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreExpenses; sourceTree = "<group>"; };
 		0016A72F2476EC6700F47C99 /* ShowAllEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllEntriesPresenter.swift; sourceTree = "<group>"; };
 		00223BB32169FF5800E76784 /* ExpensesGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesGroup.swift; sourceTree = "<group>"; };
 		00223BB42169FF5800E76784 /* ExpenseCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
@@ -349,10 +350,10 @@
 			files = (
 				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
-				0073704324B599DC00E10142 /* DateAndTime in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B824D177476780052FE84 /* Foundation.framework in Frameworks */,
+				00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +885,7 @@
 		007B83151775A6330052FE84 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				001359B024B5B7200071AEBD /* CoreExpenses */,
 				00A38C142454D02D00E05596 /* AppDelegate.swift */,
 				00A38C1C245574D500E05596 /* Environment.swift */,
 				00A38C152454D02D00E05596 /* SceneDelegate.swift */,
@@ -1093,7 +1095,7 @@
 			);
 			name = Expensit;
 			packageProductDependencies = (
-				0073704224B599DC00E10142 /* DateAndTime */,
+				00D7165B24B5E4DB0057281C /* DateAndTime */,
 			);
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expensit.app */;
@@ -1708,7 +1710,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0073704224B599DC00E10142 /* DateAndTime */ = {
+		00D7165B24B5E4DB0057281C /* DateAndTime */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DateAndTime;
 		};

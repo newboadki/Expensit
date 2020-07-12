@@ -28,6 +28,25 @@ struct TestDataGenerator {
     
     mutating func generate() {
         
+//        let container = NSPersistentContainer(name: "Expenses")
+//        container.loadPersistentStores { description, error in
+//            if let error = error {
+//                print(error)
+//                // Add your error UI here
+//            } else {
+//                print("All seems good")
+//
+//            }
+//        }
+//        let context = container.viewContext
+//        let tag = Tag.init(entity: Tag.entity(), insertInto: context)
+//        tag.name = ""
+//        tag.iconImageName = ""
+//        tag.color = .black
+//
+
+        
+        
         let categoriesDataSource = CoreDataCategoryDataSource(context: coreDataContext)
         let ds = IndividualExpensesDataSource(context: coreDataContext)
         let storeName = "expensit-test-data"

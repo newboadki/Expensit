@@ -33,7 +33,6 @@
 		0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
 		0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
 		0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
-		0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
 		007B8251177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
@@ -58,6 +57,10 @@
 		00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00A6DA0624BA08A500562426 /* CoreExpenses */; };
 		00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
 		00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83111775A3660052FE84 /* libCoreDataStackHelper.a */; };
+		00A6DA2924BB1F8F00562426 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEB216A020E00E76784 /* Entry.m */; };
+		00A6DA2A24BB1F9900562426 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEA216A020E00E76784 /* Tag.m */; };
+		00A6DA2D24BB500800562426 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6DA2C24BB500800562426 /* CoreDataStack.swift */; };
+		00A6DA2F24BB562900562426 /* CoreDataModelMigrationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */; };
 		00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* EntryFormView.swift */; };
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
@@ -162,8 +165,6 @@
 		0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphPresenterProtocol.swift; sourceTree = "<group>"; };
 		0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphController.swift; sourceTree = "<group>"; };
 		0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphControllerProtocol.swift; sourceTree = "<group>"; };
-		0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPieChartSectionInfo.m; sourceTree = "<group>"; };
-		0073703E24B5082500E10142 /* BSPieChartSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPieChartSectionInfo.h; sourceTree = "<group>"; };
 		0073704124B58DDB00E10142 /* DateAndTime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DateAndTime; path = ../DateTimeHelper/DateAndTime; sourceTree = "<group>"; };
 		0077D58B1CED11CB00003F71 /* ExpensesTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpensesTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0077D58C1CED11DC00003F71 /* Expenses-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Expenses-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -196,6 +197,8 @@
 		00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00A38C1C245574D500E05596 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
+		00A6DA2C24BB500800562426 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelMigrationsInteractor.swift; sourceTree = "<group>"; };
 		00AA901124863CB70099AAC1 /* EntryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormView.swift; sourceTree = "<group>"; };
 		00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA90182487BE420099AAC1 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
@@ -443,8 +446,10 @@
 		0039F7A024B1EE7300772996 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				00A6DA2B24BB4FF300562426 /* Stack Helpers */,
 				00223BE7216A020E00E76784 /* CoreData Models */,
 				00223BC2216A007200E76784 /* Controllers */,
+				00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -491,8 +496,6 @@
 		0058AAE021766851007AD175 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				0073703E24B5082500E10142 /* BSPieChartSectionInfo.h */,
-				0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */,
 				0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */,
 				0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */,
 			);
@@ -662,6 +665,14 @@
 			);
 			name = source;
 			path = src;
+			sourceTree = "<group>";
+		};
+		00A6DA2B24BB4FF300562426 /* Stack Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				00A6DA2C24BB500800562426 /* CoreDataStack.swift */,
+			);
+			path = "Stack Helpers";
 			sourceTree = "<group>";
 		};
 		00AA900724862B980099AAC1 /* Navigation */ = {
@@ -908,6 +919,7 @@
 				00223BEC216A020E00E76784 /* Tag.m in Sources */,
 				00A38C1D245574D500E05596 /* Environment.swift in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
+				00A6DA2F24BB562900562426 /* CoreDataModelMigrationsInteractor.swift in Sources */,
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
 				00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */,
 				00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */,
@@ -915,7 +927,6 @@
 				00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */,
 				00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */,
-				0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00223BED216A020E00E76784 /* Entry.m in Sources */,
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
@@ -928,6 +939,7 @@
 				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
+				00A6DA2D24BB500800562426 /* CoreDataStack.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,
@@ -947,12 +959,14 @@
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */,
 				00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */,
+				00A6DA2A24BB1F9900562426 /* Tag.m in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
 				00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00C273E3249F20DB00E1DF0F /* CoreDataCategoryDataSource.swift in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */,
+				00A6DA2924BB1F8F00562426 /* Entry.m in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,

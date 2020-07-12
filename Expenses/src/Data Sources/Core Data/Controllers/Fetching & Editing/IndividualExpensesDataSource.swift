@@ -82,6 +82,12 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
             managedObject.second = NSNumber(integerLiteral: m)
         }
         managedObject.desc = expense.entryDescription
+        
+        let fetchRequest = Tag.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", expense.category!.name)
+        let tag = try! self.context.fetch(fetchRequest).last as! Tag
+
+        managedObject.tag = tag
 
         do {
             try context.save()

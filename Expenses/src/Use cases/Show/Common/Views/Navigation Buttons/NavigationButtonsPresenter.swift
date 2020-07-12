@@ -7,6 +7,7 @@
 //
 
 import Combine
+import CoreExpenses
 
 class NavigationButtonsPresenter: ObservableObject {
     

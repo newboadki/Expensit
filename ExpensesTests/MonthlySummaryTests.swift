@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import CoreExpenses
 
 class MonthlySummaryTests: XCTestCase {
     
@@ -18,9 +19,9 @@ class MonthlySummaryTests: XCTestCase {
         var tg = TestDataGenerator()
         tg.generate()
         
-        selectedCategoryDataSource = CoreDataCategoryDataSource(coreDataController: tg.coreDataController)
+        selectedCategoryDataSource = CoreDataCategoryDataSource(context: tg.coreDataContext)
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
-        let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataController:tg.coreDataController,
+        let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:tg.coreDataContext,
                                                                        selectedCategoryDataSource: selectedCategoryDataSource)
         presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource))
     }

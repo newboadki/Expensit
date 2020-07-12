@@ -7,26 +7,27 @@
 //
 
 import Foundation
+import CoreExpenses
 
 class BSExpensesSummaryPieGraphController : BSPieGraphControllerProtocol {
  
-    private var dataProvider: BSCoreDataFetchController
+    private var dataProvider: CategoryDataSource
     
-    public init(dataProvider: BSCoreDataFetchController) {
+    public init(dataProvider: CategoryDataSource) {
         self.dataProvider = dataProvider
     }
     
-    func sortedTagsByPercentage(fromSections tags: [ExpenseCategory], sections : [BSPieChartSectionInfo]) -> [ExpenseCategory]? {
+    func sortedTagsByPercentage(fromSections tags: [ExpenseCategory], sections : [PieChartSectionInfo]) -> [ExpenseCategory]? {
         return self.dataProvider.sortedCategoriesByPercentage(fromCategories: tags, sections: sections)
     }
     
     // make month nil
     func categories(forMonth month: NSNumber?, year : NSNumber) -> [ExpenseCategory]? {
-        return self.dataProvider.categories(forMonth: month, inYear: year)
+        return self.dataProvider.categories(forMonth: month?.intValue, inYear: year.intValue)
     }
     
-    func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) -> [BSPieChartSectionInfo]? {
-        return self.dataProvider.expensesByCategory(forMonth: month, inYear:year)
+    func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) -> [PieChartSectionInfo]? {
+        return self.dataProvider.expensesByCategory(forMonth: month?.intValue, inYear:year.intValue)
     }
 
 }

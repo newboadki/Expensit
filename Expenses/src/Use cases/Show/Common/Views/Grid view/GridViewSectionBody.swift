@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreExpenses
 
 struct GridViewSectionBody<NC: NavigationCoordinator>: View {
 

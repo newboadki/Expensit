@@ -7,26 +7,29 @@
 //
 
 import Combine
+import CoreExpenses
+import CoreData
 
-class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
+class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, CoreDataDataSource, PerformsCoreDataRequests, NSFetchedResultsControllerDelegate {
     
     @Published var groupedExpenses = [ExpensesGroup]()
     var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
         
-    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-    private(set) var coreDataController: BSCoreDataController
+    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    private(set) var coreDataContext: NSManagedObjectContext
     private var selectedCategoryDataSource: CategoryDataSource
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
 
     
-    init(coreDataController: BSCoreDataController,
+    init(coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
-        self.coreDataController = coreDataController
-        self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForAllEntries()
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
-        
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForIndividualEntriesSummary(),
+                                                                   managedObjectContext: coreDataContext, sectionNameKeyPath: "yearMonthDay", cacheName: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)        
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
@@ -101,4 +104,11 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
         self.groupedExpenses = allEntries()
     }
 
+    private func fetchRequestForIndividualEntriesSummary() -> NSFetchRequest<NSFetchRequestResult> {
+        let baseRequest = self.baseRequest()
+            
+        let sorDescriptor = NSSortDescriptor(key: "yearMonthDay", ascending: true)
+        baseRequest.sortDescriptors = [sorDescriptor]
+        return baseRequest
+    }
 }

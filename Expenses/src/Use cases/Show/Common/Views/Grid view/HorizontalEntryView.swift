@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import CoreExpenses
 
 struct HorizontalEntryView: View {
     var title: String

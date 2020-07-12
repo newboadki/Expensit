@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ExpenseSummaryDataGatewayProtocol.h"
+@import CoreExpenses;
+
 
 @class Tag;
 @class Entry;
 @class CoreDataStackHelper;
-@class ExpenseCategory;
+//@class ExpenseCategory;
 @class BSPieChartSectionInfo;
 
 
@@ -93,7 +95,7 @@
  @discussion Ordered by name ASC.
  @return All tags available.
  */
-- (nonnull NSArray<ExpenseCategory *> *)allTags;
+//- (nonnull NSArray<ExpenseCategory *> *)allTags;
 - (nonnull NSArray *)allTagImages;
 - (nullable UIImage *)imageForCategory:(nullable Tag *)tag;
 - (nullable UIImage *)imageForCategoryName:(nullable NSString *)tagName;

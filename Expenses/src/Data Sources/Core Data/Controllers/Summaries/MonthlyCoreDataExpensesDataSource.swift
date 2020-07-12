@@ -7,25 +7,29 @@
 //
 
 import Combine
+import CoreExpenses
+import CoreData
 
-class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
+class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, CoreDataDataSource, PerformsCoreDataRequests, NSFetchedResultsControllerDelegate {
         
     @Published var groupedExpenses = [ExpensesGroup]()
     var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
         
-    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-    private(set) var coreDataController: BSCoreDataController
+    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    private(set) var coreDataContext: NSManagedObjectContext
     private var selectedCategoryDataSource: CategoryDataSource
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
 
-    init(coreDataController: BSCoreDataController,
+    init(coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
-        self.coreDataController = coreDataController
-        self.fetchedResultsController =
-        self.coreDataController.fetchedResultsControllerForEntriesGroupedByMonth()
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForMonthlySummary(),
+                                                                   managedObjectContext: coreDataContext,
+                                                                   sectionNameKeyPath: "year",
+                                                                   cacheName: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
         self.groupedExpenses = entriesGroupedByMonth()
@@ -76,4 +80,32 @@ class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSF
         self.groupedExpenses = entriesGroupedByMonth()
     }
 
+    private func fetchRequestForMonthlySummary() -> NSFetchRequest<NSFetchRequestResult> {
+        let baseRequest = self.baseRequest()
+        
+        let propertiesByName = baseRequest.entity!.propertiesByName
+        let monthDescription = propertiesByName["month"]
+        let yearDescription = propertiesByName["year"]
+        
+        let keyPathExpression = NSExpression(forKeyPath: "value")
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
+        
+        let sumExpressionDescription = NSExpressionDescription()
+        sumExpressionDescription.name = "monthlySum"
+        sumExpressionDescription.expression = sumExpression
+        sumExpressionDescription.expressionResultType = .decimalAttributeType
+        
+        let dateExpression = NSExpression(forKeyPath: "date")
+        let minDateExpression = NSExpression(forFunction: "min:", arguments: [dateExpression])
+        let minDateExpressionDescription = NSExpressionDescription()
+        minDateExpressionDescription.name = "date"
+        minDateExpressionDescription.expression = minDateExpression
+        minDateExpressionDescription.expressionResultType = .dateAttributeType
+        
+        baseRequest.propertiesToFetch = [monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription]
+        baseRequest.propertiesToGroupBy = [monthDescription, yearDescription]
+        baseRequest.resultType = .dictionaryResultType
+        
+        return baseRequest
+    }
 }

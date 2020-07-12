@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreExpenses
 
 struct EntryBoxView: View {
     var title: String

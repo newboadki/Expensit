@@ -8,32 +8,65 @@
 
 import Foundation
 import Combine
+import CoreExpenses
+import CoreData
+
+protocol CoreDataDataSource {
+    func baseRequest() -> NSFetchRequest<NSFetchRequestResult>
+}
+
+extension CoreDataDataSource {
+    
+    func baseRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = Entry.fetchRequest()
+        request.fetchBatchSize = 50
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        return request
+    }
+}
 
 protocol PerformsCoreDataRequests {
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {get}
-    var coreDataController: BSCoreDataController {get}
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
+    var coreDataContext: NSManagedObjectContext {get}
 }
 
 extension PerformsCoreDataRequests {
-    func performRequest() -> [NSFetchedResultsSectionInfo]? {
-        do
-        {
-            try fetchedResultsController.performFetch()
-            return fetchedResultsController.sections
-        }
-        catch
-        {
+    func performRequest() -> [NSFetchedResultsSectionInfo]? {        
+        if let controller = self.fetchedResultsController {
+            do
+            {
+                try controller.performFetch()
+                return controller.sections
+            }
+            catch
+            {
+                return nil
+            }
+        } else {
             return nil
         }
     }
     
     func filter(by category: ExpenseCategory?) {
         if let category = category {
-            let tag = self.coreDataController.tag(forName: category.name)
-            self.coreDataController.modifyfetchRequest((fetchedResultsController.fetchRequest), toFilterByCategory: tag)
+            let tag = self.tag(forName: category.name)
+            self.modify(fetchRequest: fetchedResultsController!.fetchRequest, toFilterByCategory: tag)
         } else {
-            self.coreDataController.modifyfetchRequest((fetchedResultsController.fetchRequest), toFilterByCategory: nil)
+            self.modify(fetchRequest: fetchedResultsController!.fetchRequest, toFilterByCategory: nil)
         }
     }
+    
+    func modify(fetchRequest: NSFetchRequest<NSFetchRequestResult>, toFilterByCategory tag: Tag?) {
+        var predicate: NSPredicate? = nil
+        if let t = tag {
+            predicate = NSPredicate(format: "tag.name LIKE %@", t.name)
+        }
+        fetchRequest.predicate = predicate
+    }
+    
+    func tag(forName name: String) -> Tag {
+        let fetchRequest = Tag.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
+        return try! self.coreDataContext.fetch(fetchRequest).last as! Tag
+    }
 }
-

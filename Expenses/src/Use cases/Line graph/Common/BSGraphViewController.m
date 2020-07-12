@@ -8,7 +8,6 @@
 
 #import "BSGraphViewController.h"
 #import "BSCurrencyHelper.h"
-#import "ContainmentEvent.h"
 #import "Expensit-Swift.h"
 
 @interface BSGraphViewController ()

@@ -7,8 +7,8 @@
 //
 
 import SwiftUI
-
-
+import CoreExpenses
+import CoreData
 
 protocol NavigationCoordinator {
     associatedtype T: View
@@ -21,17 +21,17 @@ class MainNavigationCoordinator: NavigationCoordinator {
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
-    var coreDataFetchController: BSCoreDataFetchController
+    var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
-         coreDataFetchController: BSCoreDataFetchController,
+         coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
-        self.coreDataFetchController = coreDataFetchController
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
@@ -43,9 +43,10 @@ class MainNavigationCoordinator: NavigationCoordinator {
                         navigationCoordinator: YearlyExpensesSummaryNavigationCoordinator(dataSources: dataSources,
                                                                                           presenters: presenters,
                                                                                           navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: selectedCategoryDataSource),
-                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
-                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+                                                                                          coreDataContext: self.coreDataContext,
+                                                                                          selectedCategoryDataSource: selectedCategoryDataSource),
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataContext: self.coreDataContext,
                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }
@@ -56,17 +57,17 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
-    var coreDataFetchController: BSCoreDataFetchController
+    var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
-         coreDataFetchController: BSCoreDataFetchController,
+         coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
-        self.coreDataFetchController = coreDataFetchController
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
@@ -78,11 +79,12 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                         navigationButtonsPresenter: navigationButtonsPresenter,
                         navigationCoordinator:MonthlyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
                                                                                           navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                                          coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
-                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+                                                                                          coreDataContext: self.coreDataContext,
+                                                                                          selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataContext:self.coreDataContext,
                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
+                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext))
     }
 }
 
@@ -91,30 +93,35 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
-    var coreDataFetchController: BSCoreDataFetchController
+    var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
-         coreDataFetchController: BSCoreDataFetchController,
+         coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
-        self.coreDataFetchController = coreDataFetchController
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
 
     func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> GridView<DailyExpensesSummaryNavigationCoordinator, CategoryPieChartNavigationCoordinator> {
         return GridView(presenter: presenters["daily"]!,
-        columnCount: 7,
-        title: "Daily Breakdown",
-        navigationButtonsPresenter: navigationButtonsPresenter,
-        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
-                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                         coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController), categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
-                                                                                                                                                                                                                                                                                                                                                                                           selectedCategoryDataSource: self.selectedCategoryDataSource), headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(fetchController: self.coreDataFetchController))
+                        columnCount: 7,
+                        title: "Daily Breakdown",
+                        navigationButtonsPresenter: navigationButtonsPresenter,
+                        navigationCoordinator: DailyExpensesSummaryNavigationCoordinator(dataSources: dataSources,
+                                                                                         presenters: presenters,
+                                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                         coreDataContext: self.coreDataContext,
+                                                                                         selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataContext: self.coreDataContext,
+                                                                                                selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext))
     }
 }
 
@@ -123,17 +130,17 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
-    var coreDataFetchController: BSCoreDataFetchController
+    var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
-         coreDataFetchController: BSCoreDataFetchController,
+         coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
-        self.coreDataFetchController = coreDataFetchController
+        self.coreDataContext  = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
@@ -143,9 +150,11 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
                                   navigationButtonsPresenter: navigationButtonsPresenter,
                                   title: "All Entries",
                                   navigationCoordinator: AllExpensesSummaryNavigationCoordinator(dataSources: dataSources, presenters: presenters,
-                                                                                       navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                                       coreDataFetchController: self.coreDataFetchController, selectedCategoryDataSource: self.selectedCategoryDataSource), entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataFetchController: self.coreDataFetchController),
-                        categoryFilterNavgationCoordinator:CategoryFilterNavigationCoordinator(coreDataFetchController: self.coreDataFetchController,
+                                                                                                 navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                                 coreDataContext: self.coreDataContext,
+                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource),
+                                  entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        categoryFilterNavgationCoordinator:CategoryFilterNavigationCoordinator(coreDataContext: self.coreDataContext,
                                                                                                selectedCategoryDataSource: self.selectedCategoryDataSource))
     }
 }
@@ -155,27 +164,27 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     var dataSources: [String: EntriesSummaryDataSource]
     var presenters: [String: AbstractEntriesSummaryPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
-    var coreDataFetchController: BSCoreDataFetchController
+    var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     @State private var isAddEntryFormPresented: Bool = false
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
-         coreDataFetchController: BSCoreDataFetchController,
+         coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
         self.dataSources = dataSources
         self.presenters = presenters
-        self.coreDataFetchController = coreDataFetchController
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
     func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> EntryFormView {
-        let categoriesDataSource = CoreDataCategoryDataSource(coreDataController:self.coreDataFetchController.coreDataController)
-        let storageInteractor = BSAddEntryController(coreDataFetchController:self.coreDataFetchController)
+        let categoriesDataSource = CoreDataCategoryDataSource(context: coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
-        let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)
+        let individualEntryDataSource = IndividualExpensesDataSource(context: coreDataContext)
+        let storageInteractor = AddExpenseInteractor(dataSource: individualEntryDataSource)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
                                            categoriesInteractor: categoriesInteractor,
                                            getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),

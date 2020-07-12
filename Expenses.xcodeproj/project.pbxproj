@@ -11,56 +11,28 @@
 		0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001059923409DDF0073BFAF /* TestCoreDataStackHelper.swift */; };
 		000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
 		000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
-		000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A171D09E76D0045523A /* BSGraphViewController.m */; };
-		000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A171D09E76D0045523A /* BSGraphViewController.m */; };
-		000A9A1D1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1A1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift */; };
-		000A9A1E1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1A1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift */; };
 		000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */; };
 		000A9A201D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */; };
-		000A9A251D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A231D09EA110045523A /* BSDailySummaryGraphLineController.swift */; };
-		000A9A261D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A231D09EA110045523A /* BSDailySummaryGraphLineController.swift */; };
 		000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A241D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift */; };
 		000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A241D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift */; };
 		000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A291D09EA980045523A /* BSGraphLineControllerProtocol.swift */; };
 		000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A291D09EA980045523A /* BSGraphLineControllerProtocol.swift */; };
 		000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
 		000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
-		000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A991D09F90E0045523A /* LineGraph.m */; };
-		000A9A9B1D09F90E0045523A /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A991D09F90E0045523A /* LineGraph.m */; };
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
-		0016A7302476EC6700F47C99 /* ShowAllEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016A72F2476EC6700F47C99 /* ShowAllEntriesPresenter.swift */; };
-		00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
-		00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
-		00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */; };
-		00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BCC216A00A300E76784 /* BSCoreDataController.m */; };
 		00223BEC216A020E00E76784 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEA216A020E00E76784 /* Tag.m */; };
 		00223BED216A020E00E76784 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 00223BEB216A020E00E76784 /* Entry.m */; };
-		00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB32169FF5800E76784 /* ExpensesGroup.swift */; };
-		00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB42169FF5800E76784 /* ExpenseCategory.swift */; };
 		00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */; };
-		00374F4824A2652F00D69BFB /* ShowMonthlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */; };
 		00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
 		00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */; };
-		0039F79D24B1A53800772996 /* EntryForDateIdentifierInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */; };
-		0039F79E24B1A53D00772996 /* EditExpenseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */; };
 		0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
-		0039F7A324B1EEAC00772996 /* EntrySummaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A224B1EEAC00772996 /* EntrySummaries.swift */; };
-		0039F7A524B1EEEC00772996 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A424B1EEEC00772996 /* Categories.swift */; };
-		0039F7A624B2031800772996 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A424B1EEEC00772996 /* Categories.swift */; };
-		0039F7A724B2033800772996 /* EntrySummaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A224B1EEAC00772996 /* EntrySummaries.swift */; };
-		0039F7A924B204C300772996 /* IndividualEntryDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */; };
-		0039F7AA24B204C700772996 /* IndividualEntryDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */; };
-		0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
-		0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */; };
 		0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
 		0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
 		0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
 		0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
 		0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
 		0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
-		0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
-		0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAF521766976007AD175 /* UIImage+ImageEffects.m */; };
 		0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824E177476780052FE84 /* CoreGraphics.framework */; };
@@ -79,87 +51,46 @@
 		008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E740F236C292B00762E08 /* EntryBoxView.swift */; };
 		008E7412236CC54C00762E08 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7411236CC54C00762E08 /* GridView.swift */; };
 		008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7423236D840300762E08 /* HorizontalEntryView.swift */; };
-		00A38C0424541B9C00E05596 /* ExpensesSummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C0324541B9C00E05596 /* ExpensesSummaryInteractor.swift */; };
-		00A38C1024545A4E00E05596 /* ShowYearlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C0F24545A4E00E05596 /* ShowYearlyEntriesPresenter.swift */; };
-		00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1124549E9100E05596 /* AbstractEntriesSummaryPresenter.swift */; };
 		00A38C132454ABBD00E05596 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7421236D814000762E08 /* ListView.swift */; };
 		00A38C162454D02D00E05596 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C142454D02D00E05596 /* AppDelegate.swift */; };
 		00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C152454D02D00E05596 /* SceneDelegate.swift */; };
-		00A38C1B24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */; };
 		00A38C1D245574D500E05596 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1C245574D500E05596 /* Environment.swift */; };
-		00AA90012484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90002484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift */; };
+		00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00A6DA0624BA08A500562426 /* CoreExpenses */; };
+		00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
+		00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83111775A3660052FE84 /* libCoreDataStackHelper.a */; };
 		00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* EntryFormView.swift */; };
-		00AA901424863F8A0099AAC1 /* EntryFormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901324863F8A0099AAC1 /* EntryFormPresenter.swift */; };
-		00AA9015248640FD0099AAC1 /* EntryFormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901324863F8A0099AAC1 /* EntryFormPresenter.swift */; };
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
 		00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901A2487D5770099AAC1 /* DatePickerView.swift */; };
-		00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */; };
 		00AA9020248923F70099AAC1 /* CoreDataCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */; };
 		00AA9022248930250099AAC1 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AA9021248930250099AAC1 /* TODO.txt */; };
 		00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9023248A30550099AAC1 /* CategoryFilterView.swift */; };
-		00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */; };
-		00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */; };
 		00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */; };
 		00AA9030248CDBA10099AAC1 /* NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */; };
-		00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
 		00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */; };
 		00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */; };
 		00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
 		00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
-		00C21392217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
-		00C21393217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */; };
-		00C21394217BB09F00805207 /* ContainmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2138A217BB09F00805207 /* ContainmentEvent.m */; };
-		00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2138A217BB09F00805207 /* ContainmentEvent.m */; };
-		00C21396217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2138B217BB09F00805207 /* BSNavigationControllerViewController.m */; };
-		00C21397217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2138B217BB09F00805207 /* BSNavigationControllerViewController.m */; };
-		00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C2139D217BB12D00805207 /* BSVisualEffects.m */; };
-		00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
-		00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C213A6217BB2E800805207 /* BSCurrencyHelper.m */; };
-		00C273A9249F1E6F00E1DF0F /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C59249DFE01007B0A46 /* Date+Components.swift */; };
-		00C273D6249F200B00E1DF0F /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */; };
-		00C273D7249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */; };
-		00C273D8249F203900E1DF0F /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB52169FF5800E76784 /* Expense.swift */; };
-		00C273D9249F203900E1DF0F /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00223BB52169FF5800E76784 /* Expense.swift */; };
 		00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
 		00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
-		00C273DC249F208A00E1DF0F /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */; };
-		00C273DD249F209300E1DF0F /* DateComponents+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */; };
 		00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
-		00C273E0249F20B000E1DF0F /* ExpensesSummaryEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90002484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift */; };
-		00C273E1249F20B800E1DF0F /* BSAddEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */; };
-		00C273E2249F20D300E1DF0F /* GetCategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */; };
 		00C273E3249F20DB00E1DF0F /* CoreDataCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */; };
-		00C273E4249F20E200E1DF0F /* BSAddEntryControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */; };
 		00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001059723409B440073BFAF /* YearlySummaryTests.swift */; };
 		00C273E6249F25E500E1DF0F /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
-		00C273E7249F25EE00E1DF0F /* ShowYearlyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C0F24545A4E00E05596 /* ShowYearlyEntriesPresenter.swift */; };
-		00C273E8249F265600E1DF0F /* ExpensesSummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C0324541B9C00E05596 /* ExpensesSummaryInteractor.swift */; };
-		00C273E9249F269000E1DF0F /* AbstractEntriesSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1124549E9100E05596 /* AbstractEntriesSummaryPresenter.swift */; };
-		00C273EA249F269900E1DF0F /* ExpensesSummarySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */; };
 		00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273EB249F501C00E1DF0F /* TestHelpers.swift */; };
-		00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */; };
 		00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
-		00C370BC24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */; };
-		00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */; };
 		00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
 		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 00D7165B24B5E4DB0057281C /* DateAndTime */; };
-		00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */; };
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
 		00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B82494F751007B0A46 /* AddEntryButton.swift */; };
 		00D869BB24954D21007B0A46 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869BA24954D21007B0A46 /* Arc.swift */; };
 		00D869BD24954DBE007B0A46 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869BC24954DBE007B0A46 /* PieChartView.swift */; };
 		00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */; };
-		00D869DB249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */; };
 		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
 		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
-		00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C59249DFE01007B0A46 /* Date+Components.swift */; };
-		00D86C5C249E10A3007B0A46 /* DateComponents+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */; };
-		00D86C5E249E2104007B0A46 /* BSCoreDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
-		00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
 		00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */; };
 		00E72B112472F72700C89235 /* GridViewSectionBodyRowNavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B102472F72700C89235 /* GridViewSectionBodyRowNavCell.swift */; };
@@ -212,10 +143,6 @@
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		001359B024B5B7200071AEBD /* CoreExpenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreExpenses; sourceTree = "<group>"; };
-		0016A72F2476EC6700F47C99 /* ShowAllEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllEntriesPresenter.swift; sourceTree = "<group>"; };
-		00223BB32169FF5800E76784 /* ExpensesGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesGroup.swift; sourceTree = "<group>"; };
-		00223BB42169FF5800E76784 /* ExpenseCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
-		00223BB52169FF5800E76784 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataFixturesManager.h; sourceTree = "<group>"; };
 		00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseSummaryDataGatewayProtocol.h; sourceTree = "<group>"; };
 		00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataFixturesManager.m; sourceTree = "<group>"; };
@@ -229,18 +156,12 @@
 		00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySummaryTests.swift; sourceTree = "<group>"; };
 		0039450E1A990C110081A5EE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
-		0039F7A224B1EEAC00772996 /* EntrySummaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrySummaries.swift; sourceTree = "<group>"; };
-		0039F7A424B1EEEC00772996 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
-		0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEntryDataSoure.swift; sourceTree = "<group>"; };
 		0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionHeader.swift; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
-		0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAbstractShowEntriesControllerProtocol.swift; sourceTree = "<group>"; };
 		0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphPresenter.swift; sourceTree = "<group>"; };
 		0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphPresenterProtocol.swift; sourceTree = "<group>"; };
 		0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphController.swift; sourceTree = "<group>"; };
 		0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphControllerProtocol.swift; sourceTree = "<group>"; };
-		0058AAF421766976007AD175 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		0058AAF521766976007AD175 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		0073703D24B5082500E10142 /* BSPieChartSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPieChartSectionInfo.m; sourceTree = "<group>"; };
 		0073703E24B5082500E10142 /* BSPieChartSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPieChartSectionInfo.h; sourceTree = "<group>"; };
 		0073704124B58DDB00E10142 /* DateAndTime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DateAndTime; path = ../DateTimeHelper/DateAndTime; sourceTree = "<group>"; };
@@ -270,71 +191,41 @@
 		008E7421236D814000762E08 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		008E7423236D840300762E08 /* HorizontalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalEntryView.swift; sourceTree = "<group>"; };
 		009D011619430C6500B850D4 /* v1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.8.xcdatamodel; sourceTree = "<group>"; };
-		00A38C0324541B9C00E05596 /* ExpensesSummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryInteractor.swift; sourceTree = "<group>"; };
-		00A38C0F24545A4E00E05596 /* ShowYearlyEntriesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowYearlyEntriesPresenter.swift; sourceTree = "<group>"; };
-		00A38C1124549E9100E05596 /* AbstractEntriesSummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEntriesSummaryPresenter.swift; sourceTree = "<group>"; };
 		00A38C142454D02D00E05596 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Expenses/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		00A38C152454D02D00E05596 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Expenses/SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
-		00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMonthlyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00A38C1C245574D500E05596 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
-		00AA90002484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryEntryViewModel.swift; sourceTree = "<group>"; };
 		00AA901124863CB70099AAC1 /* EntryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormView.swift; sourceTree = "<group>"; };
-		00AA901324863F8A0099AAC1 /* EntryFormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormPresenter.swift; sourceTree = "<group>"; };
 		00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA90182487BE420099AAC1 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		00AA901A2487D5770099AAC1 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
-		00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesInteractor.swift; sourceTree = "<group>"; };
 		00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoryDataSource.swift; sourceTree = "<group>"; };
 		00AA9021248930250099AAC1 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		00AA9023248A30550099AAC1 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
-		00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterPresenter.swift; sourceTree = "<group>"; };
-		00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCategoryFilterInteractor.swift; sourceTree = "<group>"; };
 		00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtons.swift; sourceTree = "<group>"; };
-		00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummarySectionViewModel.swift; sourceTree = "<group>"; };
 		00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationView.swift; sourceTree = "<group>"; };
 		00C21384217BB03000805207 /* PieChartPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartPresentationController.swift; sourceTree = "<group>"; };
-		00C21388217BB09F00805207 /* ContainmentEventsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEventsAPI.h; sourceTree = "<group>"; };
-		00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAnimatedBlurEffectTransitioningDelegate.m; sourceTree = "<group>"; };
-		00C2138A217BB09F00805207 /* ContainmentEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainmentEvent.m; sourceTree = "<group>"; };
-		00C2138B217BB09F00805207 /* BSNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSNavigationControllerViewController.m; sourceTree = "<group>"; };
-		00C2138C217BB09F00805207 /* BSContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSContainerViewController.h; sourceTree = "<group>"; };
-		00C2138D217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAnimatedBlurEffectTransitioningDelegate.h; sourceTree = "<group>"; };
-		00C2138F217BB09F00805207 /* ContainmentEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainmentEvent.h; sourceTree = "<group>"; };
-		00C21390217BB09F00805207 /* BSNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSNavigationControllerViewController.h; sourceTree = "<group>"; };
-		00C21391217BB09F00805207 /* BSContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSContainerViewController.m; sourceTree = "<group>"; };
-		00C2139C217BB12D00805207 /* BSVisualEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSVisualEffects.h; sourceTree = "<group>"; };
-		00C2139D217BB12D00805207 /* BSVisualEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSVisualEffects.m; sourceTree = "<group>"; };
 		00C213A6217BB2E800805207 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
 		00C213A7217BB2E800805207 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
-		00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryController.swift; sourceTree = "<group>"; };
-		00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSAddEntryControllerProtocol.swift; sourceTree = "<group>"; };
 		00C273EB249F501C00E1DF0F /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualExpensesDataSource.swift; sourceTree = "<group>"; };
-		00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryForDateIdentifierInteractor.swift; sourceTree = "<group>"; };
 		00C370BD24AF8AFD00298CC0 /* v1.0.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.9.xcdatamodel; sourceTree = "<group>"; };
-		00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseInteractor.swift; sourceTree = "<group>"; };
 		00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSummaryDataSource.swift; sourceTree = "<group>"; };
 		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
-		00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInteractor.swift; sourceTree = "<group>"; };
 		00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsPresenter.swift; sourceTree = "<group>"; };
 		00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterButtonView.swift; sourceTree = "<group>"; };
 		00D869B82494F751007B0A46 /* AddEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryButton.swift; sourceTree = "<group>"; };
 		00D869BA24954D21007B0A46 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		00D869BC24954DBE007B0A46 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSectionInfoViewModel.swift; sourceTree = "<group>"; };
-		00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleBetweenZeroAndOne.swift; sourceTree = "<group>"; };
 		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
 		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
-		00D86C59249DFE01007B0A46 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
-		00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Components.swift"; sourceTree = "<group>"; };
 		00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataFetchController.swift; sourceTree = "<group>"; };
-		00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDailyEntriesPresenter.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
 		00E72B102472F72700C89235 /* GridViewSectionBodyRowNavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRowNavCell.swift; sourceTree = "<group>"; };
@@ -349,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
+				00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
@@ -361,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
@@ -426,9 +319,7 @@
 		000A9A321D09EB710045523A /* Add entry */ = {
 			isa = PBXGroup;
 			children = (
-				00C273CB249F200B00E1DF0F /* Controllers */,
 				00AA902D248A5C870099AAC1 /* Navigation */,
-				00C213AA217BB3C800805207 /* Presenters */,
 				00C213B9217BB3C800805207 /* Views */,
 			);
 			path = "Add entry";
@@ -437,52 +328,15 @@
 		000A9A421D09ED0A0045523A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0058AA5021765F45007AD175 /* Controllers */,
-				0058AA4521765F44007AD175 /* Presenters */,
 				0058AA4821765F45007AD175 /* Views */,
 				00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		000A9A431D09ED0A0045523A /* Daily results */ = {
-			isa = PBXGroup;
-			children = (
-				0058AA99217661DA007AD175 /* Presenters */,
-			);
-			path = "Daily results";
-			sourceTree = "<group>";
-		};
-		000A9A441D09ED0A0045523A /* Monthly results */ = {
-			isa = PBXGroup;
-			children = (
-				0058AA8521766163007AD175 /* Presenters */,
-			);
-			path = "Monthly results";
-			sourceTree = "<group>";
-		};
-		000A9A451D09ED0A0045523A /* Yearly results */ = {
-			isa = PBXGroup;
-			children = (
-				0058AA6B2176605D007AD175 /* Presenters */,
-			);
-			path = "Yearly results";
-			sourceTree = "<group>";
-		};
-		000A9A461D09EF710045523A /* All results */ = {
-			isa = PBXGroup;
-			children = (
-				00C370AE24ADAD8200298CC0 /* Views */,
-				0058AAAD217662D0007AD175 /* Presenters */,
-			);
-			path = "All results";
-			sourceTree = "<group>";
-		};
 		000A9A9C1D09FAB00045523A /* Category filter */ = {
 			isa = PBXGroup;
 			children = (
-				00C213D6217BB4D000805207 /* Controllers */,
-				00C213DF217BB4D000805207 /* Presenters */,
 				00C213D9217BB4D000805207 /* Views */,
 			);
 			path = "Category filter";
@@ -533,7 +387,6 @@
 		000D04E11775BD56002D0AB8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00223BB22169FF5800E76784 /* Business Domain */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -552,20 +405,9 @@
 			path = "Grid view";
 			sourceTree = "<group>";
 		};
-		00223BB22169FF5800E76784 /* Business Domain */ = {
-			isa = PBXGroup;
-			children = (
-				00223BB32169FF5800E76784 /* ExpensesGroup.swift */,
-				00223BB42169FF5800E76784 /* ExpenseCategory.swift */,
-				00223BB52169FF5800E76784 /* Expense.swift */,
-			);
-			path = "Business Domain";
-			sourceTree = "<group>";
-		};
 		00223BC1216A007200E76784 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0039F7A124B1EE8E00772996 /* Protocols */,
 				0039F7A024B1EE7300772996 /* Core Data */,
 			);
 			path = "Data Sources";
@@ -607,16 +449,6 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		0039F7A124B1EE8E00772996 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0039F7A224B1EEAC00772996 /* EntrySummaries.swift */,
-				0039F7A824B204C300772996 /* IndividualEntryDataSoure.swift */,
-				0039F7A424B1EEEC00772996 /* Categories.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		0039F7AB24B205AF00772996 /* Summaries */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,14 +477,6 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		0058AA4521765F44007AD175 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00A38C1124549E9100E05596 /* AbstractEntriesSummaryPresenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
 		0058AA4821765F45007AD175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,50 +484,8 @@
 				0016A7392476F15900F47C99 /* Grid view */,
 				00AA901024862BA90099AAC1 /* ListView */,
 				00AA900724862B980099AAC1 /* Navigation */,
-				00AA90022484FBB70099AAC1 /* View Models */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		0058AA5021765F45007AD175 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0058AA5121765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift */,
-				00A38C0324541B9C00E05596 /* ExpensesSummaryInteractor.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		0058AA6B2176605D007AD175 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00A38C0F24545A4E00E05596 /* ShowYearlyEntriesPresenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
-		0058AA8521766163007AD175 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00A38C1A24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
-		0058AA99217661DA007AD175 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00E72AFE246FD4D600C89235 /* ShowDailyEntriesPresenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
-		0058AAAD217662D0007AD175 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				0016A72F2476EC6700F47C99 /* ShowAllEntriesPresenter.swift */,
-			);
-			path = Presenters;
 			sourceTree = "<group>";
 		};
 		0058AAE021766851007AD175 /* Presenters */ = {
@@ -738,19 +520,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0058AAF321766976007AD175 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				00C21387217BB09F00805207 /* Navigation */,
-				00C2139C217BB12D00805207 /* BSVisualEffects.h */,
-				00C2139D217BB12D00805207 /* BSVisualEffects.m */,
-				0058AAF421766976007AD175 /* UIImage+ImageEffects.h */,
-				0058AAF521766976007AD175 /* UIImage+ImageEffects.m */,
-				00B6E4792357861A00F028F3 /* SwiftUI */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		0077D5671CED00D300003F71 /* Use cases */ = {
 			isa = PBXGroup;
 			children = (
@@ -767,10 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				000A9A421D09ED0A0045523A /* Common */,
-				000A9A451D09ED0A0045523A /* Yearly results */,
-				000A9A441D09ED0A0045523A /* Monthly results */,
-				000A9A431D09ED0A0045523A /* Daily results */,
-				000A9A461D09EF710045523A /* All results */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -899,15 +664,6 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		00AA90022484FBB70099AAC1 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				00B6E47A2357866400F028F3 /* ExpensesSummarySectionViewModel.swift */,
-				00AA90002484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		00AA900724862B980099AAC1 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -925,14 +681,6 @@
 				008E7421236D814000762E08 /* ListView.swift */,
 			);
 			path = ListView;
-			sourceTree = "<group>";
-		};
-		00AA901C248921CB0099AAC1 /* Interactors */ = {
-			isa = PBXGroup;
-			children = (
-				00AA901D248922120099AAC1 /* GetCategoriesInteractor.swift */,
-			);
-			path = Interactors;
 			sourceTree = "<group>";
 		};
 		00AA902D248A5C870099AAC1 /* Navigation */ = {
@@ -957,47 +705,12 @@
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				00D86C58249DFDE4007B0A46 /* Extensions */,
 				00D869D8249B8147007B0A46 /* Models */,
 				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
 				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
-				00AA901C248921CB0099AAC1 /* Interactors */,
-				0058AAF321766976007AD175 /* Views */,
 			);
 			path = Common;
 			sourceTree = "<group>";
-		};
-		00B6E4792357861A00F028F3 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
-		00C21387217BB09F00805207 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				00C21388217BB09F00805207 /* ContainmentEventsAPI.h */,
-				00C21389217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m */,
-				00C2138A217BB09F00805207 /* ContainmentEvent.m */,
-				00C2138B217BB09F00805207 /* BSNavigationControllerViewController.m */,
-				00C2138C217BB09F00805207 /* BSContainerViewController.h */,
-				00C2138D217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.h */,
-				00C2138F217BB09F00805207 /* ContainmentEvent.h */,
-				00C21390217BB09F00805207 /* BSNavigationControllerViewController.h */,
-				00C21391217BB09F00805207 /* BSContainerViewController.m */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		00C213AA217BB3C800805207 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00AA901324863F8A0099AAC1 /* EntryFormPresenter.swift */,
-			);
-			name = Presenters;
-			path = "Expenses/src/Use cases/Add Entry/Presenters";
-			sourceTree = SOURCE_ROOT;
 		};
 		00C213B9217BB3C800805207 /* Views */ = {
 			isa = PBXGroup;
@@ -1010,29 +723,12 @@
 			path = "Expenses/src/Use cases/Add Entry/Views";
 			sourceTree = SOURCE_ROOT;
 		};
-		00C213D6217BB4D000805207 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				00AA9027248A36B20099AAC1 /* SetCategoryFilterInteractor.swift */,
-				00D869B22494DAD8007B0A46 /* SelectedCategoryInteractor.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		00C213D9217BB4D000805207 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				00AA9023248A30550099AAC1 /* CategoryFilterView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		00C213DF217BB4D000805207 /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				00AA9025248A31770099AAC1 /* CategoryFilterPresenter.swift */,
-			);
-			path = Presenters;
 			sourceTree = "<group>";
 		};
 		00C273BA249F1FBD00E1DF0F /* Recovered References */ = {
@@ -1042,40 +738,11 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		00C273CB249F200B00E1DF0F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				00C273CC249F200B00E1DF0F /* BSAddEntryController.swift */,
-				00C273CD249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift */,
-				00C370BB24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift */,
-				00C370BE24B060D400298CC0 /* EditExpenseInteractor.swift */,
-			);
-			name = Controllers;
-			path = "Expenses/src/Use cases/Add Entry/Controllers";
-			sourceTree = SOURCE_ROOT;
-		};
-		00C370AE24ADAD8200298CC0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		00D869D8249B8147007B0A46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00D869DA249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		00D86C58249DFDE4007B0A46 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				00D86C59249DFE01007B0A46 /* Date+Components.swift */,
-				00D86C5B249E10A3007B0A46 /* DateComponents+Components.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1096,6 +763,7 @@
 			name = Expensit;
 			packageProductDependencies = (
 				00D7165B24B5E4DB0057281C /* DateAndTime */,
+				00A6DA0624BA08A500562426 /* CoreExpenses */,
 			);
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expensit.app */;
@@ -1115,6 +783,8 @@
 				0045D61B1DBABFEF006AA5AE /* PBXTargetDependency */,
 			);
 			name = ExpensesTests;
+			packageProductDependencies = (
+			);
 			productName = ExpensesTests;
 			productReference = 007B8269177476780052FE84 /* ExpensesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1214,39 +884,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E72B112472F72700C89235 /* GridViewSectionBodyRowNavCell.swift in Sources */,
-				000A9A251D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */,
-				00223BCB216A007200E76784 /* BSCoreDataFixturesManager.m in Sources */,
-				00AA90012484FB7C0099AAC1 /* ExpensesSummaryEntryViewModel.swift in Sources */,
 				00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */,
 				00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */,
-				00AA901E248922120099AAC1 /* GetCategoriesInteractor.swift in Sources */,
 				00AA9020248923F70099AAC1 /* CoreDataCategoryDataSource.swift in Sources */,
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */,
-				000A9A9A1D09F90E0045523A /* LineGraph.m in Sources */,
 				00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */,
 				00A38C162454D02D00E05596 /* AppDelegate.swift in Sources */,
 				00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */,
 				00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */,
 				00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */,
-				0039F7A924B204C300772996 /* IndividualEntryDataSoure.swift in Sources */,
 				00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */,
 				00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */,
-				00C2139E217BB12D00805207 /* BSVisualEffects.m in Sources */,
-				00D86C5E249E2104007B0A46 /* BSCoreDataFetchController.swift in Sources */,
-				00B6E47B2357866400F028F3 /* ExpensesSummarySectionViewModel.swift in Sources */,
 				0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
-				00223BB62169FF5800E76784 /* ExpensesGroup.swift in Sources */,
-				00A38C0424541B9C00E05596 /* ExpensesSummaryInteractor.swift in Sources */,
 				008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */,
 				00A38C132454ABBD00E05596 /* ListView.swift in Sources */,
-				00C21392217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
-				00D869B32494DAD8007B0A46 /* SelectedCategoryInteractor.swift in Sources */,
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
 				00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */,
 				00D869BD24954DBE007B0A46 /* PieChartView.swift in Sources */,
 				00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */,
-				00C273D6249F200B00E1DF0F /* BSAddEntryController.swift in Sources */,
 				00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */,
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00223BEC216A020E00E76784 /* Tag.m in Sources */,
@@ -1255,52 +911,26 @@
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
 				00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */,
 				00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */,
-				000A9A181D09E76D0045523A /* BSGraphViewController.m in Sources */,
-				00223BCE216A00A300E76784 /* BSCoreDataController.m in Sources */,
-				00D869DB249B816A007B0A46 /* DoubleBetweenZeroAndOne.swift in Sources */,
 				00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */,
-				000A9A1D1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */,
-				00C370BC24AF567100298CC0 /* EntryForDateIdentifierInteractor.swift in Sources */,
 				00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */,
-				0016A7302476EC6700F47C99 /* ShowAllEntriesPresenter.swift in Sources */,
-				0039F7A324B1EEAC00772996 /* EntrySummaries.swift in Sources */,
-				00C21394217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */,
-				00223BB72169FF5800E76784 /* ExpenseCategory.swift in Sources */,
 				0073703F24B5082500E10142 /* BSPieChartSectionInfo.m in Sources */,
-				00AA9026248A31770099AAC1 /* CategoryFilterPresenter.swift in Sources */,
-				00D86C5A249DFE01007B0A46 /* Date+Components.swift in Sources */,
-				00A38C1B24555BC200E05596 /* ShowMonthlyEntriesPresenter.swift in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00223BED216A020E00E76784 /* Entry.m in Sources */,
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
-				00C273D7249F200B00E1DF0F /* BSAddEntryControllerProtocol.swift in Sources */,
-				00C273D8249F203900E1DF0F /* Expense.swift in Sources */,
-				00C213A8217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
-				00AA901424863F8A0099AAC1 /* EntryFormPresenter.swift in Sources */,
-				0039F7A524B1EEEC00772996 /* Categories.swift in Sources */,
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
-				0058AA5821765F45007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 				00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,
 				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
-				00C21396217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
-				00A38C1224549E9100E05596 /* AbstractEntriesSummaryPresenter.swift in Sources */,
-				00D86C5C249E10A3007B0A46 /* DateComponents+Components.swift in Sources */,
-				00E72AFF246FD4D600C89235 /* ShowDailyEntriesPresenter.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
-				00C370BF24B060D400298CC0 /* EditExpenseInteractor.swift in Sources */,
-				00AA9028248A36B20099AAC1 /* SetCategoryFilterInteractor.swift in Sources */,
-				00A38C1024545A4E00E05596 /* ShowYearlyEntriesPresenter.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,
-				0058AAF621766976007AD175 /* UIImage+ImageEffects.m in Sources */,
 				00AA9030248CDBA10099AAC1 /* NavigationButtons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1309,58 +939,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0039F79D24B1A53800772996 /* EntryForDateIdentifierInteractor.swift in Sources */,
-				00223BEF216A024200E76784 /* ExpenseCategory.swift in Sources */,
 				00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */,
 				00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */,
-				00C273DD249F209300E1DF0F /* DateComponents+Components.swift in Sources */,
 				00010596233F5AD70073BFAF /* TestDataGenerator.swift in Sources */,
-				000A9A1E1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift in Sources */,
-				0039F7A624B2031800772996 /* Categories.swift in Sources */,
 				00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */,
-				00C21397217BB09F00805207 /* BSNavigationControllerViewController.m in Sources */,
-				00223BEE216A024200E76784 /* ExpensesGroup.swift in Sources */,
-				000A9A261D09EA110045523A /* BSDailySummaryGraphLineController.swift in Sources */,
-				00C273EA249F269900E1DF0F /* ExpensesSummarySectionViewModel.swift in Sources */,
-				00C273A9249F1E6F00E1DF0F /* Date+Components.swift in Sources */,
-				000A9A9B1D09F90E0045523A /* LineGraph.m in Sources */,
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
-				00C273E1249F20B800E1DF0F /* BSAddEntryController.swift in Sources */,
-				00C273D9249F203900E1DF0F /* Expense.swift in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */,
 				00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */,
-				00C273DC249F208A00E1DF0F /* BSCoreDataFetchController.swift in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
+				00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
-				00C273E4249F20E200E1DF0F /* BSAddEntryControllerProtocol.swift in Sources */,
-				0039F7A724B2033800772996 /* EntrySummaries.swift in Sources */,
-				000A9A191D09E76D0045523A /* BSGraphViewController.m in Sources */,
 				00C273E3249F20DB00E1DF0F /* CoreDataCategoryDataSource.swift in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */,
-				0039F7AA24B204C700772996 /* IndividualEntryDataSoure.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
-				0058AAF721766976007AD175 /* UIImage+ImageEffects.m in Sources */,
-				00AA9015248640FD0099AAC1 /* EntryFormPresenter.swift in Sources */,
-				00C273E2249F20D300E1DF0F /* GetCategoriesInteractor.swift in Sources */,
-				0039F79E24B1A53D00772996 /* EditExpenseInteractor.swift in Sources */,
-				00C273ED249F532400E1DF0F /* SetCategoryFilterInteractor.swift in Sources */,
-				00C21393217BB09F00805207 /* BSAnimatedBlurEffectTransitioningDelegate.m in Sources */,
-				00C21395217BB09F00805207 /* ContainmentEvent.m in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
-				00C273E7249F25EE00E1DF0F /* ShowYearlyEntriesPresenter.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				00C273E6249F25E500E1DF0F /* YearlyCoreDataExpensesDataSource.swift in Sources */,
-				00C273E9249F269000E1DF0F /* AbstractEntriesSummaryPresenter.swift in Sources */,
-				00C273E0249F20B000E1DF0F /* ExpensesSummaryEntryViewModel.swift in Sources */,
 				000A9A201D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
-				00C213A9217BB2E800805207 /* BSCurrencyHelper.m in Sources */,
 				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
-				00C273E8249F265600E1DF0F /* ExpensesSummaryInteractor.swift in Sources */,
-				00374F4824A2652F00D69BFB /* ShowMonthlyEntriesPresenter.swift in Sources */,
-				0058AA5F21765FA5007AD175 /* BSAbstractShowEntriesControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1614,7 +1213,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1653,7 +1252,7 @@
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1710,6 +1309,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00A6DA0624BA08A500562426 /* CoreExpenses */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreExpenses;
+		};
 		00D7165B24B5E4DB0057281C /* DateAndTime */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DateAndTime;

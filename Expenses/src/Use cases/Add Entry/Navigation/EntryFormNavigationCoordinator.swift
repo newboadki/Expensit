@@ -7,7 +7,8 @@
 //
 
 import SwiftUI
-
+import CoreExpenses
+import CoreData
 
 protocol EntryFormNavigationCoordinator {
     func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView
@@ -15,17 +16,17 @@ protocol EntryFormNavigationCoordinator {
 
 
 class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
-    private var coreDataFetchController: BSCoreDataFetchController
+    private var coreDataContext: NSManagedObjectContext
     
-    init(coreDataFetchController: BSCoreDataFetchController) {
-        self.coreDataFetchController = coreDataFetchController
+    init(coreDataContext: NSManagedObjectContext) {
+        self.coreDataContext = coreDataContext
     }
     
     func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView {
-        let categoriesDataSource = CoreDataCategoryDataSource(coreDataController:self.coreDataFetchController.coreDataController)
-        let storageInteractor = BSAddEntryController(coreDataFetchController:self.coreDataFetchController)
+        let categoriesDataSource = CoreDataCategoryDataSource(context: self.coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
-        let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataFetchController.coreDataController.coreDataHelper.managedObjectContext)
+        let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataContext)
+        let storageInteractor = AddExpenseInteractor(dataSource: individualEntryDataSource)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
                                            categoriesInteractor: categoriesInteractor,
                                            getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource),

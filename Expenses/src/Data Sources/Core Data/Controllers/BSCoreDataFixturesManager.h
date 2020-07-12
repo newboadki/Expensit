@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSCoreDataController.h"
 
 @interface BSCoreDataFixturesManager : NSObject
 

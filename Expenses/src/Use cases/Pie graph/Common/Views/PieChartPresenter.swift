@@ -8,6 +8,7 @@
 
 import Combine
 import DateAndTime
+import CoreExpenses
 
 class PieChartPresenter: ObservableObject {
     

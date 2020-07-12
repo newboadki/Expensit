@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreExpenses
 
 class BSExpensesSummaryPieGraphPresenter : NSObject, BSPieGraphPresenterProtocol
 {
@@ -28,7 +29,7 @@ class BSExpensesSummaryPieGraphPresenter : NSObject, BSPieGraphPresenterProtocol
         return self.pieGraphController.sortedTagsByPercentage(fromSections: categories!, sections: sections!)
     }
     
-    func sections() -> [BSPieChartSectionInfo]? {
+    func sections() -> [PieChartSectionInfo]? {
         return self.pieGraphController.expensesByCategory(forMonth: self.month, year: self.year)
     }
     

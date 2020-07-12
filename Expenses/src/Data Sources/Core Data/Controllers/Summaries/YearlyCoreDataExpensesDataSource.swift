@@ -8,26 +8,32 @@
 
 import Foundation
 import Combine
+import CoreExpenses
+import CoreData
 
-class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFetchedResultsControllerDelegate {
+class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, PerformsCoreDataRequests, CoreDataDataSource, NSFetchedResultsControllerDelegate {
 
     @Published var groupedExpenses = [ExpensesGroup]()
     var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
     
-    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-    private(set) var coreDataController: BSCoreDataController
+    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    private(set) var coreDataContext: NSManagedObjectContext
     
     private var selectedCategoryDataSource: CategoryDataSource
     
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
     
-    init(coreDataController: BSCoreDataController,
+    init(coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
-        self.coreDataController = coreDataController
-        self.fetchedResultsController = self.coreDataController.fetchedResultsControllerForEntriesGroupedByYear()
+        self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForYearlySummary(),
+                                                                   managedObjectContext: coreDataContext,
+                                                                   sectionNameKeyPath: nil,
+                                                                   cacheName: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
 
         
@@ -78,5 +84,34 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, NSFe
     // MARK: - NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.groupedExpenses = entriesGroupedByYear()
+    }
+    
+    private func fetchRequestForYearlySummary() -> NSFetchRequest<NSFetchRequestResult> {
+        let baseRequest = self.baseRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        baseRequest.sortDescriptors = [sortDescriptor]
+
+        let propertiesByName = baseRequest.entity!.propertiesByName
+        let yearDescription = propertiesByName["year"]
+        let keyPathExpression = NSExpression(forKeyPath: "value")
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
+
+        let sumExpressionDescription = NSExpressionDescription()
+        sumExpressionDescription.name = "yearlySum"
+        sumExpressionDescription.expression = sumExpression
+        sumExpressionDescription.expressionResultType = .decimalAttributeType
+
+        let dateExpression = NSExpression(forKeyPath: "date")
+        let minDateExpression = NSExpression(forFunction: "min:", arguments: [dateExpression])
+        let minDateExpressionDescription = NSExpressionDescription()
+        minDateExpressionDescription.name = "date"
+        minDateExpressionDescription.expression = minDateExpression
+        minDateExpressionDescription.expressionResultType = .dateAttributeType
+
+        baseRequest.propertiesToFetch = [yearDescription!, sumExpressionDescription, minDateExpressionDescription]
+        baseRequest.propertiesToGroupBy = [yearDescription!]
+        baseRequest.resultType = .dictionaryResultType
+        
+        return baseRequest
     }
 }

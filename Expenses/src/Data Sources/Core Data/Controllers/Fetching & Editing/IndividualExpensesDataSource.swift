@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreExpenses
 
 class IndividualExpensesDataSource: IndividualEntryDataSoure {
     
@@ -56,6 +57,38 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
         }
         
         return .success(true)
+    }
+    
+    func add(expense: Expense) -> Result<Bool, Error> {
+        let managedObject = Entry.init(entity: Entry.entity(), insertInto: context)
+        managedObject.value = expense.value
+        managedObject.date = expense.date
+        if let y = expense.dateComponents.year {
+            managedObject.year = NSNumber(integerLiteral: y)
+        }
+        if let m = expense.dateComponents.month {
+            managedObject.month = NSNumber(integerLiteral: m)
+        }
+        if let m = expense.dateComponents.day {
+            managedObject.day = NSNumber(integerLiteral: m)
+        }
+        if let m = expense.dateComponents.hour {
+            managedObject.hour = NSNumber(integerLiteral: m)
+        }
+        if let m = expense.dateComponents.minute {
+            managedObject.minute = NSNumber(integerLiteral: m)
+        }
+        if let m = expense.dateComponents.second {
+            managedObject.second = NSNumber(integerLiteral: m)
+        }
+        managedObject.desc = expense.entryDescription
+
+        do {
+            try context.save()
+            return .success(true)
+        } catch {
+            return .failure(error)
+        }
     }
 }
 

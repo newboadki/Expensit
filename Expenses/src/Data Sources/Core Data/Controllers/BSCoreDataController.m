@@ -15,6 +15,7 @@
 #import <CoreData/CoreData.h>
 @import DateAndTime;
 
+
 @interface BSCoreDataController ()
 @property (strong, nonatomic) NSString *entityName;
 
@@ -204,39 +205,38 @@
     return (err == nil);
 }
 
+//- (Tag *)tagForName:(NSString *)tagName
+//{
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", tagName]];
+//    NSError *err = nil;
+//    Tag *result = [[self resultsForRequest:fetchRequest error:&err] lastObject];
+//    if (err) {
+//        NSLog(@"---=A %@", err);
+//    }
+//    return result;
+//}
 
-- (Tag *)tagForName:(NSString *)tagName
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", tagName]];
-    NSError *err = nil;
-    Tag *result = [[self resultsForRequest:fetchRequest error:&err] lastObject];
-    if (err) {
-        NSLog(@"---=A %@", err);
-    }
-    return result;
-}
-
-- (NSArray<ExpenseCategory *> *)allTags
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
-    NSError *err = nil;
-    NSArray *result = [self resultsForRequest:fetchRequest error:&err];
-    
-    NSMutableArray<ExpenseCategory *> *entities = [NSMutableArray array];
-    for (Tag *t in result) {
-        ExpenseCategory *cat  = [[ExpenseCategory alloc] initWithName:t.name iconName:t.iconImageName color:t.color];
-        [entities addObject:cat];
-    }
-    return entities;
-}
+//- (NSArray<ExpenseCategory *> *)allTags
+//{
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Tag.class) inManagedObjectContext:self.coreDataHelper.managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+//    
+//    NSError *err = nil;
+//    NSArray *result = [self resultsForRequest:fetchRequest error:&err];
+//    
+//    NSMutableArray<ExpenseCategory *> *entities = [NSMutableArray array];
+//    for (Tag *t in result) {
+//        ExpenseCategory *cat  = [[ExpenseCategory alloc] initWithName:t.name iconName:t.iconImageName color:t.color];
+//        [entities addObject:cat];
+//    }
+//    return entities;
+//}
 
 - (NSArray *)allTagImages
 {
@@ -268,40 +268,40 @@
 }
 
 
-- (NSArray <Tag *>*)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year
-{
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-
-    // Predicate
-    // Predicate
-    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
-    if (month)
-    {
-        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
-    }
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:datePredicateString]];
-
-    // Configure
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
-
-    [fetchRequest setPropertiesToFetch:@[tagDescription]];
-    [fetchRequest setReturnsDistinctResults:YES];
-    [fetchRequest setResultType:NSDictionaryResultType];
-
-    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
-    NSMutableArray *tags = [NSMutableArray array];
-    for (NSDictionary *dic in results)
-    {
-        Tag* tag = (Tag *)[self.coreDataHelper.managedObjectContext existingObjectWithID:dic[@"tag"] error:nil];
-        [tags addObject:tag];
-    }
-    
-    return tags;
-
-}
+//- (NSArray <Tag *>*)categoriesForMonth:(nullable NSNumber *)month inYear:(NSNumber *)year
+//{
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//
+//    // Predicate
+//    // Predicate
+//    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
+//    if (month)
+//    {
+//        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
+//    }
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:datePredicateString]];
+//
+//    // Configure
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
+//
+//    [fetchRequest setPropertiesToFetch:@[tagDescription]];
+//    [fetchRequest setReturnsDistinctResults:YES];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//
+//    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
+//    NSMutableArray *tags = [NSMutableArray array];
+//    for (NSDictionary *dic in results)
+//    {
+//        Tag* tag = (Tag *)[self.coreDataHelper.managedObjectContext existingObjectWithID:dic[@"tag"] error:nil];
+//        [tags addObject:tag];
+//    }
+//    
+//    return tags;
+//
+//}
 
 // Move to coredatafetchcontroller
 //- (nullable NSArray <ExpenseCategory *>*)sortedTagsByPercentageFromSections:(nonnull NSArray <ExpenseCategory *>*)tags sections:(nullable NSArray <BSPieChartSectionInfo *> *)sections {
@@ -346,157 +346,157 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
 
-- (void)configureForIndividualEntriesFetchRequest:(NSFetchRequest *)fetchRequest {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"yearMonthDay" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
+//- (void)configureForIndividualEntriesFetchRequest:(NSFetchRequest *)fetchRequest {
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"yearMonthDay" ascending:YES];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//}
 
-- (NSFetchRequest *)fetchRequestForAllEntries
-{
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self configureForIndividualEntriesFetchRequest:fetchRequest];
-    return fetchRequest;
-}
+//- (NSFetchRequest *)fetchRequestForAllEntries
+//{
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self configureForIndividualEntriesFetchRequest:fetchRequest];
+//    return fetchRequest;
+//}
 
 #pragma mark - Requests
 
-- (NSFetchRequest *)fetchRequestForYearlySummary {
-
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-    
-    // Configure
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    
-    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-
-    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"yearlySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-
-    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
-    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
-    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
-    [minDateExpressionDescription setName:@"date"];
-    [minDateExpressionDescription setExpression:minDateExpression];
-    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
-
-    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription, minDateExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-
-    return fetchRequest;
-}
-
-
-- (NSFetchRequest *)fetchRequestForMonthlySummary {
-    
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-
-    // Configure
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"monthlySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
-    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
-    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
-    [minDateExpressionDescription setName:@"date"];
-    [minDateExpressionDescription setExpression:minDateExpression];
-    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
-
-    [fetchRequest setPropertiesToFetch:@[monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[monthDescription, yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    return fetchRequest;
-}
+//- (NSFetchRequest *)fetchRequestForYearlySummary {
+//
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//
+//    // Configure
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//
+//
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+//
+//    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//
+//    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [sumExpressionDescription setName:@"yearlySum"];
+//    [sumExpressionDescription setExpression:sumExpression];
+//    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//
+//    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+//    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+//    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [minDateExpressionDescription setName:@"date"];
+//    [minDateExpressionDescription setExpression:minDateExpression];
+//    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+//
+//    [fetchRequest setPropertiesToFetch:@[yearDescription, sumExpressionDescription, minDateExpressionDescription]];
+//    [fetchRequest setPropertiesToGroupBy:@[yearDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//
+//    return fetchRequest;
+//}
 
 
-- (NSFetchRequest *)fetchRequestForDaylySummary {
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
+//- (NSFetchRequest *)fetchRequestForMonthlySummary {
+//
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//
+//    // Configure
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
+//    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+//
+//    NSExpression *keyPathExpression = [NSExpression
+//                                       expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//
+//    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [sumExpressionDescription setName:@"monthlySum"];
+//    [sumExpressionDescription setExpression:sumExpression];
+//    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//
+//    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+//    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+//    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [minDateExpressionDescription setName:@"date"];
+//    [minDateExpressionDescription setExpression:minDateExpression];
+//    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+//
+//    [fetchRequest setPropertiesToFetch:@[monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription]];
+//    [fetchRequest setPropertiesToGroupBy:@[monthDescription, yearDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//
+//    return fetchRequest;
+//}
 
-    // Configure
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *dayMonthYearDescription = propertiesByName[@"dayMonthYear"];
-    NSPropertyDescription *dayDescription = propertiesByName[@"day"];
-    NSPropertyDescription *monthYearDescription = propertiesByName[@"monthYear"];
-    
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription =
-    [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"dailySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
-    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
-    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
-    [minDateExpressionDescription setName:@"date"];
-    [minDateExpressionDescription setExpression:minDateExpression];
-    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
 
-    [fetchRequest setPropertiesToFetch:@[monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription, minDateExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[dayMonthYearDescription, monthYearDescription, dayDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
+//- (NSFetchRequest *)fetchRequestForDaylySummary {
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//
+//    // Configure
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *dayMonthYearDescription = propertiesByName[@"dayMonthYear"];
+//    NSPropertyDescription *dayDescription = propertiesByName[@"day"];
+//    NSPropertyDescription *monthYearDescription = propertiesByName[@"monthYear"];
+//
+//    NSExpression *keyPathExpression = [NSExpression
+//                                       expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//
+//    NSExpressionDescription *sumExpressionDescription =
+//    [[NSExpressionDescription alloc] init];
+//    [sumExpressionDescription setName:@"dailySum"];
+//    [sumExpressionDescription setExpression:sumExpression];
+//    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//
+//    NSExpression *dateExpression = [NSExpression expressionForKeyPath:@"date"];
+//    NSExpression *minDateExpression = [NSExpression expressionForFunction:@"min:" arguments:[NSArray arrayWithObject:dateExpression]];
+//    NSExpressionDescription *minDateExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [minDateExpressionDescription setName:@"date"];
+//    [minDateExpressionDescription setExpression:minDateExpression];
+//    [minDateExpressionDescription setExpressionResultType:NSDateAttributeType];
+//
+//    [fetchRequest setPropertiesToFetch:@[monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription, minDateExpressionDescription]];
+//    [fetchRequest setPropertiesToGroupBy:@[dayMonthYearDescription, monthYearDescription, dayDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//
+//    return fetchRequest;
+//}
 
-    return fetchRequest;
-}
 
-
-- (NSFetchRequest *)fetchRequestForIndividualEntriesSummary {
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self configureForIndividualEntriesFetchRequest:fetchRequest];
-    return fetchRequest;
-}
+//- (NSFetchRequest *)fetchRequestForIndividualEntriesSummary {
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self configureForIndividualEntriesFetchRequest:fetchRequest];
+//    return fetchRequest;
+//}
 
 // (NSFetchRequest <NSFetchRequestResult*)
-- (void)modifyfetchRequest:(id)request toFilterByCategory:(id)category
-{
-    NSPredicate *predicate = nil;
-    
-    if (category)
-    {
-        Tag *tag = (Tag *)category;
-        predicate = [NSPredicate predicateWithFormat:@"tag.name LIKE %@", [tag name]];
-    }
-
-    [request setPredicate:predicate];
-}
+//- (void)modifyfetchRequest:(id)request toFilterByCategory:(id)category
+//{
+//    NSPredicate *predicate = nil;
+//    
+//    if (category)
+//    {
+//        Tag *tag = (Tag *)category;
+//        predicate = [NSPredicate predicateWithFormat:@"tag.name LIKE %@", [tag name]];
+//    }
+//
+//    [request setPredicate:predicate];
+//}
 
 
 #pragma mark - Line Graphs Requests
@@ -576,131 +576,131 @@
 
 #pragma mark - Pie Chart Graph requests
 
-- (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest
-{
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-    
-    
-    // Configure
-    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
-    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
-    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
-    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
-    
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
-    [sumExpressionDescription setName:@"monthlyCategorySum"];
-    [sumExpressionDescription setExpression:sumExpression];
-    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[tagDescription, monthDescription, yearDescription, sumExpressionDescription]];
-    [fetchRequest setPropertiesToGroupBy:@[tagDescription, monthDescription, yearDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    return fetchRequest;
-}
+//- (NSFetchRequest *)expensesByCategoryMonthlyFetchRequest
+//{
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//
+//
+//    // Configure
+//    NSDictionary* propertiesByName = [[fetchRequest entity] propertiesByName];
+//    NSPropertyDescription *monthDescription = propertiesByName[@"month"];
+//    NSPropertyDescription *yearDescription = propertiesByName[@"year"];
+//    NSPropertyDescription *tagDescription = propertiesByName[@"tag"];
+//
+//    NSExpression *keyPathExpression = [NSExpression
+//                                       expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//
+//    NSExpressionDescription *sumExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [sumExpressionDescription setName:@"monthlyCategorySum"];
+//    [sumExpressionDescription setExpression:sumExpression];
+//    [sumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//
+//    [fetchRequest setPropertiesToFetch:@[tagDescription, monthDescription, yearDescription, sumExpressionDescription]];
+//    [fetchRequest setPropertiesToGroupBy:@[tagDescription, monthDescription, yearDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//
+//    return fetchRequest;
+//}
 
 
-- (nonnull NSArray <BSPieChartSectionInfo *>*)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year
-{
-    NSArray *tags = [self allTags];
-    NSMutableArray *absoluteAmountPerTag = [NSMutableArray arrayWithCapacity:[tags count]];
-    NSUInteger i = 0;
-    
-    for (Tag *tag in tags)
-    {
-        CGFloat absoluteAmount = [self absoluteSumOfEntriesForCategoryName:tag.name fromMonth:month inYear:year];
-        absoluteAmountPerTag[i] = @(absoluteAmount);
-        i++;
-    }
-    
-    
-    CGFloat total = 0;
-    for (NSNumber *number in absoluteAmountPerTag)
-    {
-        total += [number floatValue];
-    }
-    
-    
-    i = 0;
-    CGFloat percentageSum = 0;
-    NSMutableArray *sections = [NSMutableArray array];
-    for (NSNumber *amount in absoluteAmountPerTag)
-    {
-        BSPieChartSectionInfo *info = [[BSPieChartSectionInfo alloc] init];
-        Tag *tag = tags[i];
-        info.name = [tag name];
-        info.percentage = ([amount floatValue] / total);
-        percentageSum += info.percentage;
-        info.color = tag.color;
-        i++;
-        [sections addObject:info];
-    }
-    
-    NSSortDescriptor *orderASC = [NSSortDescriptor sortDescriptorWithKey:@"percentage" ascending:YES];
-    [sections sortUsingDescriptors:@[orderASC]];
-    NSMutableArray *sectionsCopy = [NSMutableArray array];
-    
-    for (BSPieChartSectionInfo *sec in sections)
-    {
-        if (sec.percentage != 0)
-        {
-            [sectionsCopy addObject:sec];
-        }
-    }
-    
-    return sectionsCopy;
-}
+//- (nonnull NSArray <BSPieChartSectionInfo *>*)expensesByCategoryForMonth:(nullable NSNumber *)month inYear:(nonnull NSNumber *)year
+//{
+//    NSArray *tags = [self allTags];
+//    NSMutableArray *absoluteAmountPerTag = [NSMutableArray arrayWithCapacity:[tags count]];
+//    NSUInteger i = 0;
+//    
+//    for (Tag *tag in tags)
+//    {
+//        CGFloat absoluteAmount = [self absoluteSumOfEntriesForCategoryName:tag.name fromMonth:month inYear:year];
+//        absoluteAmountPerTag[i] = @(absoluteAmount);
+//        i++;
+//    }
+//    
+//    
+//    CGFloat total = 0;
+//    for (NSNumber *number in absoluteAmountPerTag)
+//    {
+//        total += [number floatValue];
+//    }
+//    
+//    
+//    i = 0;
+//    CGFloat percentageSum = 0;
+//    NSMutableArray *sections = [NSMutableArray array];
+//    for (NSNumber *amount in absoluteAmountPerTag)
+//    {
+//        BSPieChartSectionInfo *info = [[BSPieChartSectionInfo alloc] init];
+//        Tag *tag = tags[i];
+//        info.name = [tag name];
+//        info.percentage = ([amount floatValue] / total);
+//        percentageSum += info.percentage;
+//        info.color = tag.color;
+//        i++;
+//        [sections addObject:info];
+//    }
+//    
+//    NSSortDescriptor *orderASC = [NSSortDescriptor sortDescriptorWithKey:@"percentage" ascending:YES];
+//    [sections sortUsingDescriptors:@[orderASC]];
+//    NSMutableArray *sectionsCopy = [NSMutableArray array];
+//    
+//    for (BSPieChartSectionInfo *sec in sections)
+//    {
+//        if (sec.percentage != 0)
+//        {
+//            [sectionsCopy addObject:sec];
+//        }
+//    }
+//    
+//    return sectionsCopy;
+//}
 
-- (CGFloat)absoluteSumOfEntriesForCategoryName:(NSString *)name fromMonth:(NSNumber *)month inYear:(NSNumber *)year
-{
-    // Get a base request
-    NSFetchRequest *fetchRequest = [self baseFetchRequest];
-    [self commonConfigureFetchResquest:fetchRequest];
-    
-    // Predicate
-    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
-    if (month)
-    {
-        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
-    }
-    NSPredicate *incomePredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value > 0"], name];
-    NSPredicate *expensesPredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value < 0"], name];
-
-    [fetchRequest setPredicate:incomePredicate];
-    
-    // Configure
-    NSExpression *keyPathExpression = [NSExpression
-                                       expressionForKeyPath:@"value"];
-    NSExpression *sumExpression = [NSExpression
-                                   expressionForFunction:@"sum:"
-                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    NSExpressionDescription *absoluteSumExpressionDescription = [[NSExpressionDescription alloc] init];
-    [absoluteSumExpressionDescription setName:@"monthlyCategoryAbsoluteSum"];
-    [absoluteSumExpressionDescription setExpression:sumExpression];
-    [absoluteSumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[absoluteSumExpressionDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
-    CGFloat income = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
-    
-    
-    [fetchRequest setPredicate:expensesPredicate];
-    results = [self resultsForRequest:fetchRequest error:nil];
-    CGFloat expenses = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
-    
-    return (income + fabs(expenses));
-}
+//- (CGFloat)absoluteSumOfEntriesForCategoryName:(NSString *)name fromMonth:(NSNumber *)month inYear:(NSNumber *)year
+//{
+//    // Get a base request
+//    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+//    [self commonConfigureFetchResquest:fetchRequest];
+//    
+//    // Predicate
+//    NSString *datePredicateString = [NSString stringWithFormat:@"year = %@", year];
+//    if (month)
+//    {
+//        datePredicateString = [datePredicateString stringByAppendingString:[NSString stringWithFormat:@" AND month = %@", month]];
+//    }
+//    NSPredicate *incomePredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value > 0"], name];
+//    NSPredicate *expensesPredicate = [NSPredicate predicateWithFormat:[datePredicateString stringByAppendingString:@" AND tag.name LIKE %@ AND value < 0"], name];
+//
+//    [fetchRequest setPredicate:incomePredicate];
+//    
+//    // Configure
+//    NSExpression *keyPathExpression = [NSExpression
+//                                       expressionForKeyPath:@"value"];
+//    NSExpression *sumExpression = [NSExpression
+//                                   expressionForFunction:@"sum:"
+//                                   arguments:[NSArray arrayWithObject:keyPathExpression]];
+//    
+//    NSExpressionDescription *absoluteSumExpressionDescription = [[NSExpressionDescription alloc] init];
+//    [absoluteSumExpressionDescription setName:@"monthlyCategoryAbsoluteSum"];
+//    [absoluteSumExpressionDescription setExpression:sumExpression];
+//    [absoluteSumExpressionDescription setExpressionResultType:NSDecimalAttributeType];
+//    
+//    [fetchRequest setPropertiesToFetch:@[absoluteSumExpressionDescription]];
+//    [fetchRequest setResultType:NSDictionaryResultType];
+//    
+//    NSArray *results = [self resultsForRequest:fetchRequest error:nil];
+//    CGFloat income = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
+//    
+//    
+//    [fetchRequest setPredicate:expensesPredicate];
+//    results = [self resultsForRequest:fetchRequest error:nil];
+//    CGFloat expenses = [[[results firstObject] valueForKey:@"monthlyCategoryAbsoluteSum"] floatValue];
+//    
+//    return (income + fabs(expenses));
+//}
 
 
 #pragma mark - Execution of queries
@@ -714,24 +714,24 @@
 
 #pragma mark - NSFetchResultsController
 
-- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByYear {
-    NSFetchRequest *request = [self fetchRequestForYearlySummary];
-    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-}
+//- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByYear {
+//    NSFetchRequest *request = [self fetchRequestForYearlySummary];
+//    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//}
 
-- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByMonth {
-    NSFetchRequest *request = [self fetchRequestForMonthlySummary];
-    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"year" cacheName:nil];
-}
+//- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByMonth {
+//    NSFetchRequest *request = [self fetchRequestForMonthlySummary];
+//    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"year" cacheName:nil];
+//}
 
-- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByDay {
-    NSFetchRequest *request = [self fetchRequestForDaylySummary];
-    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"monthYear" cacheName:nil];
-}
+//- (NSFetchedResultsController *)fetchedResultsControllerForEntriesGroupedByDay {
+//    NSFetchRequest *request = [self fetchRequestForDaylySummary];
+//    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"monthYear" cacheName:nil];
+//}
 
-- (NSFetchedResultsController *)fetchedResultsControllerForAllEntries {
-    NSFetchRequest *request = [self fetchRequestForAllEntries];
-    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"yearMonthDay" cacheName:nil];
-}
+//- (NSFetchedResultsController *)fetchedResultsControllerForAllEntries {
+//    NSFetchRequest *request = [self fetchRequestForAllEntries];
+//    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataHelper.managedObjectContext sectionNameKeyPath:@"yearMonthDay" cacheName:nil];
+//}
 
 @end

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import CoreExpenses
 
-@objc protocol BSPieGraphPresenterProtocol
+protocol BSPieGraphPresenterProtocol
 {    
     func categories() -> [ExpenseCategory]?
-    func sections() -> [BSPieChartSectionInfo]?
+    func sections() -> [PieChartSectionInfo]?
 }

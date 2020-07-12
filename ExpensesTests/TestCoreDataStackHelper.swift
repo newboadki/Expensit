@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
 class TestCoreDataStackHelper {
     
-    static func coreDataController() -> BSCoreDataController {
+    static func coreDataContext() -> NSManagedObjectContext {
         let storeName = "expensit-test-data"
         
         CoreDataStackHelper.destroyAllExtensionsForSQLPersistentStoreCoordinator(withName: storeName)
@@ -20,6 +21,6 @@ class TestCoreDataStackHelper {
                                                  extension: "momd",
                                                  persistentStoreName: storeName)
         
-        return BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataHelper!)
+        return coreDataHelper!.managedObjectContext
     }
 }

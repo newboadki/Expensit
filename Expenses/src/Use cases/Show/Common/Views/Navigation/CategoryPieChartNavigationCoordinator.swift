@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 
 protocol GridViewSectionHeaderNavigationCoordinator {
@@ -15,10 +16,10 @@ protocol GridViewSectionHeaderNavigationCoordinator {
 }
 
 class CategoryPieChartNavigationCoordinator: GridViewSectionHeaderNavigationCoordinator {
-    private var fetchController: BSCoreDataFetchController
+    private var coreDataContext: NSManagedObjectContext
     
-    init(fetchController: BSCoreDataFetchController) {
-        self.fetchController = fetchController
+    init(coreDataContext: NSManagedObjectContext) {
+        self.coreDataContext = coreDataContext
     }
     
     // MARK: - GridViewSectionHeaderNavigationCoordinator
@@ -26,13 +27,13 @@ class CategoryPieChartNavigationCoordinator: GridViewSectionHeaderNavigationCoor
     func nextView(forIdentifier currentViewIdentifier: String, params: Any?, isPresented: Binding<Bool>) -> PieChartView {
         guard let p = params as? (year: Int, month: Int?) else {
             return PieChartView(isPresented: isPresented,
-                                presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider: self.fetchController),
+                                presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider:     CoreDataCategoryDataSource(context: self.coreDataContext)),
                                                              month: 0,
                                                              year: 0))
         }
         
         return PieChartView(isPresented: isPresented,
-                            presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider: self.fetchController),
+                            presenter: PieChartPresenter(chartDataInteractor: BSExpensesSummaryPieGraphController(dataProvider: CoreDataCategoryDataSource(context: self.coreDataContext)),
                                                          month: (p.month != nil) ? NSNumber(integerLiteral: Int(p.month!)) : nil,
                                                          year: NSNumber(integerLiteral: Int(p.year))))
     }

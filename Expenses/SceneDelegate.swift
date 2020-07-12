@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import CoreExpenses
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,9 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                       resourceName: "Expenses",
                                                       extension: "momd",
                                                       persistentStoreName: "expensesDataBase")
-        let coreDataController = BSCoreDataController(entityName: "Entry", coreDataHelper: coreDataStackHelper!)
-        coreDataController.coreDataHelper = coreDataStackHelper!
-        
+
 //        let food = coreDataController.tag(forName: "Food")
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/12/2019"), description: "Burguers", value: "-120", category: food)
 ////
@@ -36,21 +35,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 ////
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
 //        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
-        
-        let migrationManager = BSCoreDataFixturesManager()
-        migrationManager.applyMissingFixtures(on: coreDataStackHelper?.managedObjectModel, coreDataController: coreDataController)
+
+//        let migrationManager = BSCoreDataFixturesManager()
+//        migrationManager.applyMissingFixtures(on: coreDataStackHelper?.managedObjectModel, coreDataController: coreDataController)
 //        BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
 //        [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
 
 
-        let selectedCategoryDataSource = CoreDataCategoryDataSource(coreDataController: coreDataController)
-        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataController:coreDataController,
+        let selectedCategoryDataSource = CoreDataCategoryDataSource(context: coreDataStackHelper!.managedObjectContext)
+        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataController:coreDataController,
+                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
                                                                                                              selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataController:coreDataController,
+                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
                                                                                                          selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataController: coreDataController,
+                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
                                                                                                             selectedCategoryDataSource: selectedCategoryDataSource)]
 
         let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
@@ -61,7 +60,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
                                                                                                          presenters: presenters,
-                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter, coreDataFetchController: BSCoreDataFetchController(coreDataController: coreDataController), selectedCategoryDataSource: selectedCategoryDataSource))
+                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                                         coreDataContext: coreDataStackHelper!.managedObjectContext,
+            selectedCategoryDataSource: selectedCategoryDataSource))
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -69,6 +70,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+
+        // TESTING
+//        // Use a UIHostingController as window root view controller.
+//        if let windowScene = scene as? UIWindowScene {
+//            let window = UIWindow(windowScene: windowScene)
+//            window.rootViewController = UIHostingController(rootView: Text("Hey"))
+//            self.window = window
+//            window.makeKeyAndVisible()
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -9,47 +9,35 @@
 import UIKit
 import SwiftUI
 import CoreExpenses
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var presenter: ShowYearlyEntriesPresenter!
+    var context: NSManagedObjectContext!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        
-        let coreDataStackHelper = CoreDataStackHelper(persitentStoreType: NSSQLiteStoreType,
-                                                      resourceName: "Expenses",
-                                                      extension: "momd",
-                                                      persistentStoreName: "expensesDataBase")
+        // Initialize CoreData's Stack
+        CoreDataStack.context { result in
+            switch result {
+                case .failure(let coreDataError):
+                    print(coreDataError)
+                case .success(let context):
+                    self.context = context
+            }
+        }
 
-//        let food = coreDataController.tag(forName: "Food")
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "05/12/2019"), description: "Burguers", value: "-120", category: food)
-////
-//        let work = coreDataController.tag(forName: "Bills")
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "27/04/2020"), description: "Have a good one!", value: "500", category: work)
-//
-//        let t3 = coreDataController.tag(forName: "Drinks")
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "01/03/2020"), description: "Have a good one!", value: "4000", category: t3)
-
-////
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "07/12/2019"), description: "Dinner", value: "3550", category: nil)
-//        coreDataController.insertNewEntry(with: DateTimeHelper.date(withFormat: "dd/MM/yyyy", stringDate: "25/01/2014"), description: "Aniversary", value: "-1000", category: nil)
-
-//        let migrationManager = BSCoreDataFixturesManager()
-//        migrationManager.applyMissingFixtures(on: coreDataStackHelper?.managedObjectModel, coreDataController: coreDataController)
-//        BSCoreDataFixturesManager *manager = [[BSCoreDataFixturesManager alloc] init];
-//        [manager applyMissingFixturesOnManagedObjectModel:self.coreDataHelper.managedObjectModel coreDataController:coreDataController];
-
-
-        let selectedCategoryDataSource = CoreDataCategoryDataSource(context: coreDataStackHelper!.managedObjectContext)
-        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
+        // Dependency injection
+        let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
+        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
+                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                              selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
+                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                          selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:coreDataStackHelper!.managedObjectContext,
+                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                             selectedCategoryDataSource: selectedCategoryDataSource)]
 
         let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
@@ -61,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
                                                                                                          presenters: presenters,
                                                                                                          navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                                                         coreDataContext: coreDataStackHelper!.managedObjectContext,
+                                                                                                         coreDataContext: self.context,
             selectedCategoryDataSource: selectedCategoryDataSource))
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -71,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
 
-        // TESTING
+//        // TESTING
 //        // Use a UIHostingController as window root view controller.
 //        if let windowScene = scene as? UIWindowScene {
 //            let window = UIWindow(windowScene: windowScene)

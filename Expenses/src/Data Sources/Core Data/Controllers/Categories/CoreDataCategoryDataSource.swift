@@ -32,11 +32,10 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
     }
     
     func create(categories: [String]) -> Result<Bool, Error> {
-        for name in categories {
-            
+        for name in categories {            
             let tag = Tag.init(entity: Tag.entity(), insertInto: context)
             tag.name = name
-            tag.iconImageName = ""
+            tag.iconImageName = "filter_food.png"
             tag.color = .black
             try? context.save()
         }

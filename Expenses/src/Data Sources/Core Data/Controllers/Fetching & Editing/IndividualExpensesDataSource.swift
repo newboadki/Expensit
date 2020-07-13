@@ -22,9 +22,12 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
             return nil
         }
 
-        let category = ExpenseCategory(name: first.tag.name,
-                                       iconName: first.tag.iconImageName,
-                                       color: first.tag.color)
+        var category: ExpenseCategory? = nil
+        if let tag = first.tag {
+            category = ExpenseCategory(name: tag.name,
+                                       iconName: tag.iconImageName,
+                                       color: tag.color)
+        }
         
         return Expense(dateComponents: identifier,
                        date: first.date,
@@ -38,7 +41,7 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
         }
         
-        first.date = expense.date
+        first.observableDate = expense.date
         first.value = expense.value
         first.desc = expense.entryDescription
         
@@ -62,7 +65,7 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
     func add(expense: Expense) -> Result<Bool, Error> {
         let managedObject = Entry.init(entity: Entry.entity(), insertInto: context)
         managedObject.value = expense.value
-        managedObject.date = expense.date
+        managedObject.observableDate = expense.date
         if let y = expense.dateComponents.year {
             managedObject.year = NSNumber(integerLiteral: y)
         }
@@ -83,7 +86,7 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
         }
         managedObject.desc = expense.entryDescription
         
-        let fetchRequest = Tag.fetchRequest()
+        let fetchRequest = Tag.tagFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", expense.category!.name)
         let tag = try! self.context.fetch(fetchRequest).last as! Tag
 
@@ -110,7 +113,7 @@ private extension IndividualExpensesDataSource {
                 return nil
         }
         
-        let request = Entry.fetchRequest()
+        let request = Entry.entryFetchRequest()
         request.predicate = NSPredicate(format: "(%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@)",
                                         "year", NSNumber(value: y),
                                         "month", NSNumber(value: mo),

@@ -48,7 +48,7 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
     }
     
     func tag(forName name: String) -> Tag {
-        let fetchRequest = Tag.fetchRequest()
+        let fetchRequest = Tag.tagFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
         return try! self.context.fetch(fetchRequest).last as! Tag
     }
@@ -143,7 +143,7 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
 
     
     private func allTags() -> [Tag] {
-        let request = Tag.fetchRequest()
+        let request = Tag.tagFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
             return try context.fetch(request) as! [Tag]

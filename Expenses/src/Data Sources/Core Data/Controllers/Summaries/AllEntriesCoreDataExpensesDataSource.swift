@@ -59,11 +59,20 @@ class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, 
                     if let tag = coreDataEntry.tag {
                         tagName = tag.name
                         iconImageName = tag.iconImageName
-                        tagColor = coreDataEntry.tag.color
+                        tagColor = tag.color
                     }
                     let category = ExpenseCategory(name: tagName, iconName: iconImageName, color: tagColor)
+                    var dateComponents = DateComponents()
+                    if let d = coreDataEntry.date {
+                        dateComponents = DateComponents(year: d.component(.year),
+                                                        month: d.component(.month),
+                                                        day: d.component(.day),
+                                                        hour: d.component(.hour),
+                                                        minute: d.component(.minute),
+                                                        second: d.component(.second))
+                    }
                     
-                    let entry = Expense(dateComponents: DateComponents(year: coreDataEntry.date.component(.year), month: coreDataEntry.date.component(.month), day: coreDataEntry.date.component(.day), hour:coreDataEntry.date.component(.hour), minute: coreDataEntry.date.component(.minute), second:coreDataEntry.date.component(.second)), date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+                    let entry = Expense(dateComponents: dateComponents, date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
                     entriesForKey.append(entry)                    
                 }

@@ -11,19 +11,19 @@ import Combine
 import CoreExpenses
 import CoreData
 
-class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
+public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
         
-    @Published var selectedCategory: ExpenseCategory?
-    var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
-    var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
+    @Published public var selectedCategory: ExpenseCategory?
+    public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
+    public var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
     
     private var context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext) {
+    public init(context: NSManagedObjectContext) {
         self.context = context
     }
     
-    func allCategories() -> [ExpenseCategory] {
+    public func allCategories() -> [ExpenseCategory] {
         allTags().map { coreDataTag in
             ExpenseCategory(name: coreDataTag.name,
                             iconName: coreDataTag.iconImageName,
@@ -31,7 +31,7 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
         }
     }
     
-    func create(categories: [String]) -> Result<Bool, Error> {
+    public func create(categories: [String]) -> Result<Bool, Error> {
         for name in categories {            
             let tag = Tag.init(entity: Tag.entity(), insertInto: context)
             tag.name = name
@@ -54,11 +54,11 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
     }
 
     
-    func set(selectedCategory: ExpenseCategory?) {
+    public func set(selectedCategory: ExpenseCategory?) {
         self.selectedCategory = selectedCategory
     }
     
-    func sortedCategoriesByPercentage(fromCategories categories: [ExpenseCategory], sections: [PieChartSectionInfo]) -> [ExpenseCategory]
+    public func sortedCategoriesByPercentage(fromCategories categories: [ExpenseCategory], sections: [PieChartSectionInfo]) -> [ExpenseCategory]
     {
         var results = [ExpenseCategory]()
 
@@ -71,7 +71,7 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
         return results
     }
 
-    func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory] {
+    public func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory] {
         let baseRequest = self.baseRequest()
         var datePredicateString = "year = \(year)"
         if let m = month {
@@ -104,7 +104,7 @@ class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
         }
     }
         
-    func expensesByCategory(forMonth month: Int?, inYear year: Int) -> [PieChartSectionInfo] {
+    public func expensesByCategory(forMonth month: Int?, inYear year: Int) -> [PieChartSectionInfo] {
         let tags = self.allTags()
         var absoluteAmountPerTag = Array<Double>(repeating: 0, count: tags.count)
         

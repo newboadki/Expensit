@@ -9,6 +9,7 @@
 import SwiftUI
 import CoreExpenses
 import CoreData
+import CoreDataPersistence
 
 class CategoryFilterNavigationCoordinator {
     private var coreDataContext: NSManagedObjectContext

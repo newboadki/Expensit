@@ -11,11 +11,11 @@ import Combine
 import CoreExpenses
 import CoreData
 
-protocol CoreDataDataSource {
+public protocol CoreDataDataSource {
     func baseRequest() -> NSFetchRequest<NSFetchRequestResult>
 }
 
-extension CoreDataDataSource {
+public extension CoreDataDataSource {
     
     func baseRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = Entry.fetchRequest()
@@ -25,12 +25,12 @@ extension CoreDataDataSource {
     }
 }
 
-protocol PerformsCoreDataRequests {
+public protocol PerformsCoreDataRequests {
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {get}
     var coreDataContext: NSManagedObjectContext {get}
 }
 
-extension PerformsCoreDataRequests {
+public extension PerformsCoreDataRequests {
     func performRequest() -> [NSFetchedResultsSectionInfo]? {        
         if let controller = self.fetchedResultsController {
             do

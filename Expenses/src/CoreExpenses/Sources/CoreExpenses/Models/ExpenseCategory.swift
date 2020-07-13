@@ -9,18 +9,15 @@
 import Foundation
 import UIKit
 
-@objc
-public class ExpenseCategory : NSObject {
+public class ExpenseCategory {
 
-    @objc public var name: String
-    @objc public var iconName: String
-    @objc public var color: UIColor
-    
-    @objc(initWithName:iconName:color:)
+    public var name: String
+    public var iconName: String
+    public var color: UIColor
+        
     public init(name: String, iconName: String, color: UIColor) {
         self.name = name
         self.iconName = iconName
-        self.color = color
-        super.init()
+        self.color = color        
     }
 }

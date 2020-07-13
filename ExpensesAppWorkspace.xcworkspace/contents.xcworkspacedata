@@ -2,18 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Expenses/src/Entry+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Expenses/src/Entry+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Expenses/src/Tag+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Expenses/src/Tag+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:Expenses.xcodeproj">
    </FileRef>
 </Workspace>

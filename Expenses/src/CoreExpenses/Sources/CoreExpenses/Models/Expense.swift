@@ -10,7 +10,7 @@ import Foundation
 
 
 /// An expense represents the cost incurred in or required for something.
-public class Expense : NSObject {
+public class Expense {
 
     public var identifier: NSCopying? // Related to the underlying storage system
     public let dateComponents: DateComponents
@@ -60,7 +60,5 @@ public class Expense : NSObject {
         self.value = value
         self.entryDescription = description
         self.category = category
-        
-        super.init()
     }
 }

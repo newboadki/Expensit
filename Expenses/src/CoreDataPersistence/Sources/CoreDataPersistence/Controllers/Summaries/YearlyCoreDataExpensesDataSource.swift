@@ -11,21 +11,21 @@ import Combine
 import CoreExpenses
 import CoreData
 
-class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, PerformsCoreDataRequests, CoreDataDataSource, NSFetchedResultsControllerDelegate {
+public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, PerformsCoreDataRequests, CoreDataDataSource, NSFetchedResultsControllerDelegate {
 
-    @Published var groupedExpenses = [ExpensesGroup]()
-    var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
-    var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
+    @Published public var groupedExpenses = [ExpensesGroup]()
+    public var groupedExpensesPublished : Published<[ExpensesGroup]> {_groupedExpenses}
+    public var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {$groupedExpenses}
     
-    private(set) var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
-    private(set) var coreDataContext: NSManagedObjectContext
+    private(set) public var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    private(set) public var coreDataContext: NSManagedObjectContext
     
     private var selectedCategoryDataSource: CategoryDataSource
     
     private var cancellableSelectedCategoryUpdates: AnyCancellable?
     
-    init(coreDataContext: NSManagedObjectContext,
-         selectedCategoryDataSource: CategoryDataSource) {
+    public init(coreDataContext: NSManagedObjectContext,
+                selectedCategoryDataSource: CategoryDataSource) {
         self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
@@ -82,7 +82,7 @@ class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource, Perf
     
     
     // MARK: - NSFetchedResultsControllerDelegate
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.groupedExpenses = entriesGroupedByYear()
     }
     

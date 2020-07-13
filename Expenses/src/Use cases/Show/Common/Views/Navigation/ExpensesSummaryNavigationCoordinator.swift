@@ -9,6 +9,7 @@
 import SwiftUI
 import CoreExpenses
 import CoreData
+import CoreDataPersistence
 
 protocol NavigationCoordinator {
     associatedtype T: View

@@ -11,7 +11,7 @@ import UIKit
 
 /// This class is simply a container of Expense entry entities groupped by a key.
 /// They usually represent sections of related entry entities.
-public class ExpensesGroup: NSObject, ObservableObject
+public class ExpensesGroup: ObservableObject
 {
     public let groupKey: DateComponents
     public let entries: [Expense]
@@ -19,7 +19,6 @@ public class ExpensesGroup: NSObject, ObservableObject
     public init(groupKey key: DateComponents, entries: [Expense])
     {
         self.groupKey = key
-        self.entries = entries
-        super.init()
+        self.entries = entries        
     }
 }

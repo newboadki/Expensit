@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
-struct CoreDataStack {
+public struct CoreDataStack {
     
-    static func context(_ completion: @escaping (Result<NSManagedObjectContext, Error>) -> ()) {
+    public static func context(_ completion: @escaping (Result<NSManagedObjectContext, Error>) -> ()) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let docsURL = documentsDirectory.appendingPathComponent("expensesDataBase.sqlite")
         let persistentContainer = NSPersistentContainer(name: "Expenses")

@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		00010596233F5AD70073BFAF /* TestDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010595233F5AD70073BFAF /* TestDataGenerator.swift */; };
 		0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001059923409DDF0073BFAF /* TestCoreDataStackHelper.swift */; };
-		00084E4824BB69200009EC98 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00084E4424BB691F0009EC98 /* Tag+CoreDataClass.swift */; };
-		00084E4924BB69200009EC98 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00084E4524BB69200009EC98 /* Tag+CoreDataProperties.swift */; };
-		00084E4A24BB69200009EC98 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00084E4624BB69200009EC98 /* Entry+CoreDataClass.swift */; };
-		00084E4B24BB69200009EC98 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00084E4724BB69200009EC98 /* Entry+CoreDataProperties.swift */; };
 		000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
 		000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
 		000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */; };
@@ -26,9 +22,7 @@
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */; };
-		00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
-		00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */; };
-		0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
+		0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 0047E7D824BC751300FEE7B4 /* CoreDataPersistence */; };
 		0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
 		0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
 		0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
@@ -59,13 +53,10 @@
 		00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00A6DA0624BA08A500562426 /* CoreExpenses */; };
 		00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
 		00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83111775A3660052FE84 /* libCoreDataStackHelper.a */; };
-		00A6DA2D24BB500800562426 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6DA2C24BB500800562426 /* CoreDataStack.swift */; };
-		00A6DA2F24BB562900562426 /* CoreDataModelMigrationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */; };
 		00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* EntryFormView.swift */; };
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
 		00AA901B2487D5770099AAC1 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901A2487D5770099AAC1 /* DatePickerView.swift */; };
-		00AA9020248923F70099AAC1 /* CoreDataCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */; };
 		00AA9022248930250099AAC1 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AA9021248930250099AAC1 /* TODO.txt */; };
 		00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9023248A30550099AAC1 /* CategoryFilterView.swift */; };
 		00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */; };
@@ -76,14 +67,8 @@
 		00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
 		00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
 		00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
-		00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
-		00C273E3249F20DB00E1DF0F /* CoreDataCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */; };
 		00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001059723409B440073BFAF /* YearlySummaryTests.swift */; };
-		00C273E6249F25E500E1DF0F /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
 		00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273EB249F501C00E1DF0F /* TestHelpers.swift */; };
-		00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */; };
-		00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */; };
-		00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */; };
 		00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 00D7165B24B5E4DB0057281C /* DateAndTime */; };
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
@@ -97,8 +82,6 @@
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
 		00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */; };
 		00E72B112472F72700C89235 /* GridViewSectionBodyRowNavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B102472F72700C89235 /* GridViewSectionBodyRowNavCell.swift */; };
-		00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */; };
-		00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,10 +112,7 @@
 		00010595233F5AD70073BFAF /* TestDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataGenerator.swift; sourceTree = "<group>"; };
 		0001059723409B440073BFAF /* YearlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlySummaryTests.swift; sourceTree = "<group>"; };
 		0001059923409DDF0073BFAF /* TestCoreDataStackHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStackHelper.swift; sourceTree = "<group>"; };
-		00084E4424BB691F0009EC98 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataClass.swift"; path = "Expenses/src/Tag+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		00084E4524BB69200009EC98 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "Expenses/src/Tag+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		00084E4624BB69200009EC98 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Entry+CoreDataClass.swift"; path = "Expenses/src/Entry+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		00084E4724BB69200009EC98 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Entry+CoreDataProperties.swift"; path = "Expenses/src/Entry+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		00084E4C24BC70520009EC98 /* CoreDataPersistence */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreDataPersistence; sourceTree = "<group>"; };
 		000A9A0C1D09E5590045523A /* BSYearlySummaryGraphLineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSYearlySummaryGraphLineController.swift; sourceTree = "<group>"; };
 		000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSYearlySummaryGraphLinePresenter.swift; sourceTree = "<group>"; };
 		000A9A0E1D09E5590045523A /* BSYearlySummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSYearlySummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
@@ -150,15 +130,9 @@
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		001359B024B5B7200071AEBD /* CoreExpenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreExpenses; sourceTree = "<group>"; };
-		00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataFixturesManager.h; sourceTree = "<group>"; };
-		00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseSummaryDataGatewayProtocol.h; sourceTree = "<group>"; };
-		00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataFixturesManager.m; sourceTree = "<group>"; };
-		00223BCC216A00A300E76784 /* BSCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCoreDataController.m; sourceTree = "<group>"; };
-		00223BCD216A00A300E76784 /* BSCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCoreDataController.h; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySummaryTests.swift; sourceTree = "<group>"; };
 		0039450E1A990C110081A5EE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
-		00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionHeader.swift; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
 		0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphPresenter.swift; sourceTree = "<group>"; };
@@ -194,16 +168,12 @@
 		009D011619430C6500B850D4 /* v1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.8.xcdatamodel; sourceTree = "<group>"; };
 		00A38C142454D02D00E05596 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Expenses/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		00A38C152454D02D00E05596 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Expenses/SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
-		00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00A38C1C245574D500E05596 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
-		00A6DA2C24BB500800562426 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelMigrationsInteractor.swift; sourceTree = "<group>"; };
 		00AA901124863CB70099AAC1 /* EntryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormView.swift; sourceTree = "<group>"; };
 		00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA90182487BE420099AAC1 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		00AA901A2487D5770099AAC1 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
-		00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoryDataSource.swift; sourceTree = "<group>"; };
 		00AA9021248930250099AAC1 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		00AA9023248A30550099AAC1 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
 		00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterNavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -214,10 +184,7 @@
 		00C213A6217BB2E800805207 /* BSCurrencyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCurrencyHelper.m; sourceTree = "<group>"; };
 		00C213A7217BB2E800805207 /* BSCurrencyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCurrencyHelper.h; sourceTree = "<group>"; };
 		00C273EB249F501C00E1DF0F /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
-		00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualExpensesDataSource.swift; sourceTree = "<group>"; };
 		00C370BD24AF8AFD00298CC0 /* v1.0.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.9.xcdatamodel; sourceTree = "<group>"; };
-		00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
-		00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSummaryDataSource.swift; sourceTree = "<group>"; };
 		00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTestHelper.h; sourceTree = "<group>"; };
 		00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTestHelper.m; sourceTree = "<group>"; };
 		00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsPresenter.swift; sourceTree = "<group>"; };
@@ -228,11 +195,9 @@
 		00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSectionInfoViewModel.swift; sourceTree = "<group>"; };
 		00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartPresenter.swift; sourceTree = "<group>"; };
 		00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPieChartNavigationCoordinator.swift; sourceTree = "<group>"; };
-		00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCoreDataFetchController.swift; sourceTree = "<group>"; };
 		00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBody.swift; sourceTree = "<group>"; };
 		00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRow.swift; sourceTree = "<group>"; };
 		00E72B102472F72700C89235 /* GridViewSectionBodyRowNavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionBodyRowNavCell.swift; sourceTree = "<group>"; };
-		00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEntriesCoreDataExpensesDataSource.swift; sourceTree = "<group>"; };
 		00F9213F1807456000CACB4D /* v1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.1.xcdatamodel; sourceTree = "<group>"; };
 		E437B0D21F3767D9B88D5238 /* libPods-ExpensesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpensesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -245,6 +210,7 @@
 				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
+				0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B824D177476780052FE84 /* Foundation.framework in Frameworks */,
@@ -387,17 +353,6 @@
 			path = "Yearly results";
 			sourceTree = "<group>";
 		};
-		000D04E11775BD56002D0AB8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				00084E4624BB69200009EC98 /* Entry+CoreDataClass.swift */,
-				00084E4724BB69200009EC98 /* Entry+CoreDataProperties.swift */,
-				00084E4424BB691F0009EC98 /* Tag+CoreDataClass.swift */,
-				00084E4524BB69200009EC98 /* Tag+CoreDataProperties.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0016A7392476F15900F47C99 /* Grid view */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,71 +370,8 @@
 		00223BC1216A007200E76784 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0039F7A024B1EE7300772996 /* Core Data */,
 			);
 			path = "Data Sources";
-			sourceTree = "<group>";
-		};
-		00223BC2216A007200E76784 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0039F7AD24B205ED00772996 /* Categories */,
-				0039F7AB24B205AF00772996 /* Summaries */,
-				0039F7AC24B205CC00772996 /* Fetching & Editing */,
-				00223BCD216A00A300E76784 /* BSCoreDataController.h */,
-				00223BCC216A00A300E76784 /* BSCoreDataController.m */,
-				00223BC4216A007200E76784 /* BSCoreDataFixturesManager.h */,
-				00D86C5D249E2104007B0A46 /* BSCoreDataFetchController.swift */,
-				00223BC6216A007200E76784 /* ExpenseSummaryDataGatewayProtocol.h */,
-				00223BC8216A007200E76784 /* BSCoreDataFixturesManager.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		00223BE7216A020E00E76784 /* CoreData Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "CoreData Models";
-			sourceTree = "<group>";
-		};
-		0039F7A024B1EE7300772996 /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				00A6DA2B24BB4FF300562426 /* Stack Helpers */,
-				00223BE7216A020E00E76784 /* CoreData Models */,
-				00223BC2216A007200E76784 /* Controllers */,
-				00A6DA2E24BB562900562426 /* CoreDataModelMigrationsInteractor.swift */,
-			);
-			path = "Core Data";
-			sourceTree = "<group>";
-		};
-		0039F7AB24B205AF00772996 /* Summaries */ = {
-			isa = PBXGroup;
-			children = (
-				00D17863244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift */,
-				00D17859244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift */,
-				00A38C1824555ABD00E05596 /* MonthlyCoreDataExpensesDataSource.swift */,
-				00398964245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift */,
-				00E72B122473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift */,
-			);
-			path = Summaries;
-			sourceTree = "<group>";
-		};
-		0039F7AC24B205CC00772996 /* Fetching & Editing */ = {
-			isa = PBXGroup;
-			children = (
-				00C370B924ADBB6A00298CC0 /* IndividualExpensesDataSource.swift */,
-			);
-			path = "Fetching & Editing";
-			sourceTree = "<group>";
-		};
-		0039F7AD24B205ED00772996 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				00AA901F248923F70099AAC1 /* CoreDataCategoryDataSource.swift */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 		0058AA4821765F45007AD175 /* Views */ = {
@@ -653,6 +545,7 @@
 		007B83151775A6330052FE84 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				00084E4C24BC70520009EC98 /* CoreDataPersistence */,
 				001359B024B5B7200071AEBD /* CoreExpenses */,
 				00A38C142454D02D00E05596 /* AppDelegate.swift */,
 				00A38C1C245574D500E05596 /* Environment.swift */,
@@ -660,19 +553,10 @@
 				00B683751D0D4FD200584F43 /* Common */,
 				0077D5671CED00D300003F71 /* Use cases */,
 				00223BC1216A007200E76784 /* Data Sources */,
-				000D04E11775BD56002D0AB8 /* Models */,
 				00A5D45117B7D398003F81B5 /* BSConstants.h */,
 			);
 			name = source;
 			path = src;
-			sourceTree = "<group>";
-		};
-		00A6DA2B24BB4FF300562426 /* Stack Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				00A6DA2C24BB500800562426 /* CoreDataStack.swift */,
-			);
-			path = "Stack Helpers";
 			sourceTree = "<group>";
 		};
 		00AA900724862B980099AAC1 /* Navigation */ = {
@@ -775,6 +659,7 @@
 			packageProductDependencies = (
 				00D7165B24B5E4DB0057281C /* DateAndTime */,
 				00A6DA0624BA08A500562426 /* CoreExpenses */,
+				0047E7D824BC751300FEE7B4 /* CoreDataPersistence */,
 			);
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expensit.app */;
@@ -897,22 +782,15 @@
 				00E72B112472F72700C89235 /* GridViewSectionBodyRowNavCell.swift in Sources */,
 				00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */,
 				00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */,
-				00AA9020248923F70099AAC1 /* CoreDataCategoryDataSource.swift in Sources */,
 				000A9A2C1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */,
-				00084E4824BB69200009EC98 /* Tag+CoreDataClass.swift in Sources */,
-				00084E4A24BB69200009EC98 /* Entry+CoreDataClass.swift in Sources */,
-				00D17864244B4A7B00E9F6E4 /* EntriesSummaryDataSource.swift in Sources */,
 				00A38C162454D02D00E05596 /* AppDelegate.swift in Sources */,
 				00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */,
 				00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */,
 				00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */,
 				00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */,
-				00398965245D7600000F80A0 /* DailyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */,
-				00084E4924BB69200009EC98 /* Tag+CoreDataProperties.swift in Sources */,
-				00084E4B24BB69200009EC98 /* Entry+CoreDataProperties.swift in Sources */,
 				00A38C132454ABBD00E05596 /* ListView.swift in Sources */,
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
 				00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */,
@@ -922,26 +800,20 @@
 				000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
 				00A38C1D245574D500E05596 /* Environment.swift in Sources */,
 				007B8262177476780052FE84 /* Expenses.xcdatamodeld in Sources */,
-				00A6DA2F24BB562900562426 /* CoreDataModelMigrationsInteractor.swift in Sources */,
 				000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
-				00D1785A244B44C400E9F6E4 /* YearlyCoreDataExpensesDataSource.swift in Sources */,
 				00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */,
 				00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */,
 				00C273DA249F205300E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */,
-				00C370BA24ADBB6A00298CC0 /* IndividualExpensesDataSource.swift in Sources */,
 				00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
 				008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
-				00398957245C7A2D000F80A0 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,
 				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
-				00E72B132473003200C89235 /* AllEntriesCoreDataExpensesDataSource.swift in Sources */,
-				00A6DA2D24BB500800562426 /* CoreDataStack.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
 				0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */,
@@ -959,19 +831,14 @@
 				00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */,
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
-				00C273DE249F20A200E1DF0F /* EntriesSummaryDataSource.swift in Sources */,
 				00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
 				00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
-				00C273E3249F20DB00E1DF0F /* CoreDataCategoryDataSource.swift in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
-				0039F79F24B1A54800772996 /* IndividualExpensesDataSource.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
-				00F3FD3F24587F9000008FC3 /* MonthlyCoreDataExpensesDataSource.swift in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
-				00C273E6249F25E500E1DF0F /* YearlyCoreDataExpensesDataSource.swift in Sources */,
 				000A9A201D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
 				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 			);
@@ -1323,6 +1190,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0047E7D824BC751300FEE7B4 /* CoreDataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreDataPersistence;
+		};
 		00A6DA0624BA08A500562426 /* CoreExpenses */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreExpenses;

@@ -8,7 +8,7 @@
 
 import SwiftUI
 import CoreData
-
+import CoreDataPersistence
 
 protocol GridViewSectionHeaderNavigationCoordinator {
     associatedtype T: View

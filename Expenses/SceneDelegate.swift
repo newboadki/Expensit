@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import CoreExpenses
 import CoreData
+import CoreDataPersistence
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

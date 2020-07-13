@@ -9,6 +9,7 @@
 import SwiftUI
 import CoreExpenses
 import CoreData
+import CoreDataPersistence
 
 protocol EntryFormNavigationCoordinator {
     func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView

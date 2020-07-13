@@ -9,15 +9,15 @@
 import CoreData
 import CoreExpenses
 
-class IndividualExpensesDataSource: IndividualEntryDataSoure {
+public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     
     private var context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext) {
+    public init(context: NSManagedObjectContext) {
         self.context = context
     }
     
-    func expense(for identifier: DateComponents) -> Expense? {
+    public func expense(for identifier: DateComponents) -> Expense? {
         guard let first = self.entry(for: identifier) else {
             return nil
         }
@@ -36,7 +36,7 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
                        category: category)
     }
     
-    func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
+    public func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
         guard let first = self.entry(for: identifier) else {
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
         }
@@ -62,7 +62,7 @@ class IndividualExpensesDataSource: IndividualEntryDataSoure {
         return .success(true)
     }
     
-    func add(expense: Expense) -> Result<Bool, Error> {
+    public func add(expense: Expense) -> Result<Bool, Error> {
         let managedObject = Entry.init(entity: Entry.entity(), insertInto: context)
         managedObject.value = expense.value
         managedObject.observableDate = expense.date

@@ -12,16 +12,18 @@ import CoreExpenses
 import CoreData
 
 public protocol CoreDataDataSource {
-    func baseRequest() -> NSFetchRequest<NSFetchRequestResult>
+    func baseRequest(context: NSManagedObjectContext) -> NSFetchRequest<NSFetchRequestResult>
 }
 
 public extension CoreDataDataSource {
     
-    func baseRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = Entry.fetchRequest()
+    func baseRequest(context: NSManagedObjectContext) -> NSFetchRequest<NSFetchRequestResult> {
+        let description = NSEntityDescription.entity(forEntityName: "Entry", in: context)
+        let request = Entry.entryFetchRequest()
+        request.entity = description
         request.fetchBatchSize = 50
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        return request
+        return request as! NSFetchRequest<NSFetchRequestResult>
     }
 }
 

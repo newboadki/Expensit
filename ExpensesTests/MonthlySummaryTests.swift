@@ -7,28 +7,28 @@
 //
 
 import XCTest
-@testable import CoreExpenses
+import CoreExpenses
+import CoreDataPersistence
 
 class MonthlySummaryTests: XCTestCase {
     
-    private var presenter: ShowMonthlyEntriesPresenter!
-    private var selectedCategoryDataSource: CoreDataCategoryDataSource!
-    private var setCategoryInteractor: SetCategoryFilterInteractor!
+    private static var presenter: ShowMonthlyEntriesPresenter!
+    private static var selectedCategoryDataSource: CoreDataCategoryDataSource!
+    private static var setCategoryInteractor: SetCategoryFilterInteractor!
     
-    override func setUp() {
-        var tg = TestDataGenerator()
-        tg.generate()
+    override static func setUp() {
+        let tg = TestDataGenerator()
+        let context = tg.generate_sync()
+
         
-        selectedCategoryDataSource = CoreDataCategoryDataSource(context: tg.coreDataContext)
+        selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
-        let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:tg.coreDataContext,
+        let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:context,
                                                                        selectedCategoryDataSource: selectedCategoryDataSource)
         presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource))
     }
 
-    override func tearDown() {
-        
-    }
+    
 }
 
 // MARK: - Category Filter tests
@@ -36,7 +36,7 @@ extension MonthlySummaryTests {
     
     func test_monthly_breakdown_all_categories() {
         
-        XCTAssert(presenter.sections.count == 3)
+        XCTAssert(MonthlySummaryTests.presenter.sections.count == 3)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "$4,684.10"),
                                  Test.Expense(title: "FEB", value: "-$150.00"),
@@ -52,7 +52,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 0,
                                 named: "2013",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -68,7 +68,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "-$90.00")],
                                 inSection: 1,
                                 named: "2014",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -84,13 +84,13 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 2,
                                 named: "2015",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
     }
     
     func test_monthly_breakdown_food() {
-        setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
+        MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
         
-        XCTAssert(presenter.sections.count == 2)
+        XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "-$45.00"),
                                  Test.Expense(title: "FEB", value: "-$15.00"),
@@ -106,7 +106,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 0,
                                 named: "2013",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -122,14 +122,14 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 1,
                                 named: "2014",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
                 
     }
 
     func test_monthly_breakdown_bills() {
-        setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
+        MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
         
-        XCTAssert(presenter.sections.count == 2)
+        XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: "-$45.00"),
@@ -145,7 +145,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 0,
                                 named: "2013",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -161,13 +161,13 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "-$90.00")],
                                 inSection: 1,
                                 named: "2014",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
     }
 
     func test_monthly_breakdown_travel() {
-        setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
+        MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
         
-        XCTAssert(presenter.sections.count == 3)
+        XCTAssert(MonthlySummaryTests.presenter.sections.count == 3)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "-$320.90"),
                                  Test.Expense(title: "FEB", value: ""),
@@ -183,7 +183,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 0,
                                 named: "2013",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -199,7 +199,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 1,
                                 named: "2014",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -215,13 +215,13 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 2,
                                 named: "2015",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
     }
 
     func test_monthly_breakdown_incoming() {
-        setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
+        MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
         
-        XCTAssert(presenter.sections.count == 2)
+        XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "$5,050.00"),
                                  Test.Expense(title: "FEB", value: ""),
@@ -237,7 +237,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 0,
                                 named: "2013",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: ""),
                                  Test.Expense(title: "FEB", value: ""),
@@ -253,6 +253,6 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "DEC", value: "")],
                                 inSection: 1,
                                 named: "2014",
-                                presenter: presenter)
+                                presenter: MonthlySummaryTests.presenter)
     }
 }

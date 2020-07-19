@@ -115,7 +115,7 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
     }
 
     private func fetchRequestForIndividualEntriesSummary() -> NSFetchRequest<NSFetchRequestResult> {
-        let baseRequest = self.baseRequest()
+        let baseRequest = self.baseRequest(context: coreDataContext)
             
         let sorDescriptor = NSSortDescriptor(key: "yearMonthDay", ascending: true)
         baseRequest.sortDescriptors = [sorDescriptor]

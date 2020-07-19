@@ -59,15 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
-
-//        // TESTING
-//        // Use a UIHostingController as window root view controller.
-//        if let windowScene = scene as? UIWindowScene {
-//            let window = UIWindow(windowScene: windowScene)
-//            window.rootViewController = UIHostingController(rootView: Text("Hey"))
-//            self.window = window
-//            window.makeKeyAndVisible()
-//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

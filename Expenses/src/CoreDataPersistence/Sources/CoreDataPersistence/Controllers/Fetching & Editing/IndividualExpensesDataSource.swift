@@ -45,7 +45,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         first.value = expense.value
         first.desc = expense.entryDescription
         
-        let request = Tag.fetchRequest()
+        let request = Tag.tagFetchRequest()
         request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
         if let tags = try? context.fetch(request) as? [Tag] {
             if let firstTag = tags.first {
@@ -63,7 +63,9 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     }
     
     public func add(expense: Expense) -> Result<Bool, Error> {
-        let managedObject = Entry.init(entity: Entry.entity(), insertInto: context)
+        
+        let description = NSEntityDescription.entity(forEntityName: "Entry", in: context)
+        let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Entry
         managedObject.value = expense.value
         managedObject.observableDate = expense.date
         if let y = expense.dateComponents.year {
@@ -87,10 +89,12 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         managedObject.desc = expense.entryDescription
         
         let fetchRequest = Tag.tagFetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", expense.category!.name)
-        let tag = try! self.context.fetch(fetchRequest).last as! Tag
-
-        managedObject.tag = tag
+        if let theCategory = expense.category {
+            fetchRequest.predicate = NSPredicate(format: "name LIKE %@", theCategory.name)
+            let tag = try! self.context.fetch(fetchRequest).last!
+            managedObject.tag = tag
+        }
+        
 
         do {
             try context.save()

@@ -21,7 +21,6 @@
 		000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
-		00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */; };
 		0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 0047E7D824BC751300FEE7B4 /* CoreDataPersistence */; };
 		0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
 		0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
@@ -52,7 +51,6 @@
 		00A38C1D245574D500E05596 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1C245574D500E05596 /* Environment.swift */; };
 		00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00A6DA0624BA08A500562426 /* CoreExpenses */; };
 		00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
-		00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83111775A3660052FE84 /* libCoreDataStackHelper.a */; };
 		00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* EntryFormView.swift */; };
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
@@ -78,6 +76,7 @@
 		00D869CF249B805A007B0A46 /* PieChartSectionInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869CE249B805A007B0A46 /* PieChartSectionInfoViewModel.swift */; };
 		00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86AE4249BD286007B0A46 /* PieChartPresenter.swift */; };
 		00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86C4E249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift */; };
+		00E10E0F24C15F4C000F3309 /* MonthlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */; };
 		00E72AFD246FD10C00C89235 /* GridViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */; };
 		00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0C2472EFD600C89235 /* GridViewSectionBody.swift */; };
 		00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E72B0E2472F29A00C89235 /* GridViewSectionBodyRow.swift */; };
@@ -85,7 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0045D61A1DBABFEF006AA5AE /* PBXContainerItemProxy */ = {
+		002F631424BD90FD00439468 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 007B8241177476780052FE84 /* Project object */;
 			proxyType = 1;
@@ -222,7 +221,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00A6DA1024BB03B200562426 /* libCoreDataStackHelper.a in Frameworks */,
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
@@ -676,7 +674,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0045D61B1DBABFEF006AA5AE /* PBXTargetDependency */,
+				002F631524BD90FD00439468 /* PBXTargetDependency */,
 			);
 			name = ExpensesTests;
 			packageProductDependencies = (
@@ -831,11 +829,11 @@
 				00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */,
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
-				00374F4724A264CF00D69BFB /* MonthlySummaryTests.swift in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
 				00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */,
+				00E10E0F24C15F4C000F3309 /* MonthlySummaryTests.swift in Sources */,
 				000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
@@ -847,10 +845,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0045D61B1DBABFEF006AA5AE /* PBXTargetDependency */ = {
+		002F631524BD90FD00439468 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 007B8248177476780052FE84 /* Expensit */;
-			targetProxy = 0045D61A1DBABFEF006AA5AE /* PBXContainerItemProxy */;
+			targetProxy = 002F631424BD90FD00439468 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

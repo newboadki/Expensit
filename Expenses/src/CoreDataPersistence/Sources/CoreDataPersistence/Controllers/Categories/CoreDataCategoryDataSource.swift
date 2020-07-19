@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import CoreExpenses
 import CoreData
+import UIKit
 
 public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
         
@@ -32,25 +33,25 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     }
     
     public func create(categories: [String]) -> Result<Bool, Error> {
-        for name in categories {            
-            let tag = Tag.init(entity: Tag.entity(), insertInto: context)
-            tag.name = name
-            tag.iconImageName = "filter_food.png"
-            tag.color = .black
-            try? context.save()
+        for name in categories {
+            let description = NSEntityDescription.entity(forEntityName: "Tag", in: context)
+            let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Tag
+            managedObject.name = name
+            managedObject.iconImageName = "filter_food.png"
+            managedObject.color = .black
         }
         return .success(true)
     }
     
-    func category(for name: String) -> ExpenseCategory {
+    public func category(for name: String) -> ExpenseCategory {
         let tag = self.tag(forName: name)
         return ExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
     }
     
-    func tag(forName name: String) -> Tag {
-        let fetchRequest = Tag.tagFetchRequest()
+    public func tag(forName name: String) -> Tag {
+        let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
-        return try! self.context.fetch(fetchRequest).last as! Tag
+        return try! self.context.fetch(fetchRequest).last!
     }
 
     
@@ -72,7 +73,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     }
 
     public func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory] {
-        let baseRequest = self.baseRequest()
+        let baseRequest = self.baseRequest(context: context)
         var datePredicateString = "year = \(year)"
         if let m = month {
             datePredicateString.append(" AND month = \(m)")
@@ -143,7 +144,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
 
     
     private func allTags() -> [Tag] {
-        let request = Tag.tagFetchRequest()
+        let request = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
             return try context.fetch(request) as! [Tag]
@@ -153,7 +154,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     }
 
     private func absoluteSumOfEntries(forCategoryName categoryName: String, fromMonth month: Int?, inYear year:Int) -> Double {
-        let baseRequest = self.baseRequest()
+        let baseRequest = self.baseRequest(context: context)
         var datePredicateString = "year = \(year)"
         if let m = month {
             datePredicateString.append(" AND month = \(m)")

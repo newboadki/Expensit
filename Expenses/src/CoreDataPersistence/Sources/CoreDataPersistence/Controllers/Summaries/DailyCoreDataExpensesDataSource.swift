@@ -96,7 +96,7 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
     }
     
     private func expensesByCategoryMonthlyFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let baseRequest = self.baseRequest()
+        let baseRequest = self.baseRequest(context: coreDataContext)
         
         let propertiesByName = baseRequest.entity!.propertiesByName
         let dayMonthYearDescription = propertiesByName["dayMonthYear"]

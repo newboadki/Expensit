@@ -87,7 +87,7 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
     }
     
     private func fetchRequestForYearlySummary() -> NSFetchRequest<NSFetchRequestResult> {
-        let baseRequest = self.baseRequest()
+        let baseRequest = self.baseRequest(context: coreDataContext)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         baseRequest.sortDescriptors = [sortDescriptor]
 

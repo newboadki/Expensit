@@ -12,6 +12,7 @@ import CoreExpenses
 import CoreData
 
 public protocol CoreDataDataSource {
+    var coreDataContext: NSManagedObjectContext {get}
     func baseRequest(context: NSManagedObjectContext) -> NSFetchRequest<NSFetchRequestResult>
 }
 
@@ -24,6 +25,13 @@ public extension CoreDataDataSource {
         request.fetchBatchSize = 50
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         return request as! NSFetchRequest<NSFetchRequestResult>
+    }
+    
+    func save() -> Bool {
+        guard let _ = try? self.coreDataContext.save() else {
+            return false
+        }
+        return true
     }
 }
 

@@ -13,15 +13,15 @@ import CoreData
 import UIKit
 
 public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
-        
+            
     @Published public var selectedCategory: ExpenseCategory?
     public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
     public var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
     
-    private var context: NSManagedObjectContext
+    private(set) public var coreDataContext: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
-        self.context = context
+        self.coreDataContext = context
     }
     
     public func allCategories() -> [ExpenseCategory] {
@@ -34,13 +34,37 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     
     public func create(categories: [String]) -> Result<Bool, Error> {
         for name in categories {
-            let description = NSEntityDescription.entity(forEntityName: "Tag", in: context)
-            let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Tag
+            let description = NSEntityDescription.entity(forEntityName: "Tag", in: coreDataContext)
+            let managedObject = NSManagedObject(entity: description!, insertInto: coreDataContext) as! Tag
             managedObject.name = name
             managedObject.iconImageName = "filter_food.png"
             managedObject.color = .black
         }
         return .success(true)
+    }
+    
+    public func create_bool(categories: [String]) -> Bool {
+        switch self.create(categories: categories) {
+            case .success(let result):
+                return result
+            case .failure(_):
+                return false
+        }
+    }
+    
+    public func setIsAmountNegative() -> Bool {
+        let entries = try! self.coreDataContext.fetch(allEntriesRequest())
+        for entry in entries {
+            switch entry.value.compare(0) {
+            case .orderedAscending:
+                entry.isAmountNegative = true
+            case .orderedDescending:
+                entry.isAmountNegative = false
+            case .orderedSame:
+                entry.isAmountNegative = true // Shouldn't happen because validation should prevent negative values from being saved
+            }
+        }
+        return true
     }
     
     public func category(for name: String) -> ExpenseCategory {
@@ -51,7 +75,32 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     public func tag(forName name: String) -> Tag {
         let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
-        return try! self.context.fetch(fetchRequest).last!
+        return try! self.coreDataContext.fetch(fetchRequest).last!
+    }
+    
+    public func setToAllEnties(_ tagName: String) -> Bool {
+        let tagToBeSet = tag(forName: tagName)
+        let entries = try! self.coreDataContext.fetch(allEntriesRequest())
+        for entry in entries {
+            entry.tag = tagToBeSet
+        }
+
+        do {
+            try self.coreDataContext.save()
+        } catch {
+            return false
+        }
+        
+        return true
+    }
+    
+    private func allEntriesRequest() -> NSFetchRequest<Entry> {
+        let description = NSEntityDescription.entity(forEntityName: "Entry", in: self.coreDataContext)
+        let request = Entry.entryFetchRequest()
+        request.entity = description
+        request.fetchBatchSize = 50
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        return request
     }
 
     
@@ -73,7 +122,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     }
 
     public func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory] {
-        let baseRequest = self.baseRequest(context: context)
+        let baseRequest = self.baseRequest(context: coreDataContext)
         var datePredicateString = "year = \(year)"
         if let m = month {
             datePredicateString.append(" AND month = \(m)")
@@ -90,10 +139,10 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         
         do {
             var tags = [Tag]()
-            let results = try context.fetch(baseRequest)
+            let results = try coreDataContext.fetch(baseRequest)
             for result in results {
                 if let tagDict = result as? [String: Any] {
-                    let tag = try! context.existingObject(with: tagDict["tag"] as! NSManagedObjectID)
+                    let tag = try! coreDataContext.existingObject(with: tagDict["tag"] as! NSManagedObjectID)
                     tags.append(tag as! Tag)
                 }
             }
@@ -147,14 +196,14 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         let request = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            return try context.fetch(request) as! [Tag]
+            return try coreDataContext.fetch(request) as! [Tag]
         } catch {
             return [Tag]()
         }        
     }
 
     private func absoluteSumOfEntries(forCategoryName categoryName: String, fromMonth month: Int?, inYear year:Int) -> Double {
-        let baseRequest = self.baseRequest(context: context)
+        let baseRequest = self.baseRequest(context: coreDataContext)
         var datePredicateString = "year = \(year)"
         if let m = month {
             datePredicateString.append(" AND month = \(m)")
@@ -176,14 +225,14 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         baseRequest.resultType = .dictionaryResultType
         
         var income: Double? = nil
-        let results = try! context.fetch(baseRequest)
+        let results = try! coreDataContext.fetch(baseRequest)
         if let dict = results.first as? [String: Any] {
             income = (dict["monthlyCategoryAbsoluteSum"] as! Double)
         }
         
         baseRequest.predicate = expensesPredicate
         var expenses: Double? = nil
-        let expensesResults = try! context.fetch(baseRequest)
+        let expensesResults = try! coreDataContext.fetch(baseRequest)
         if let dict = expensesResults.first as? [String: Any] {
             expenses = (dict["monthlyCategoryAbsoluteSum"] as! Double)
         }

@@ -11,7 +11,7 @@ import Foundation
 
 public extension Date {
     
-    public func component(_ component: Calendar.Component) -> Int {
+    func component(_ component: Calendar.Component) -> Int {
         return Calendar(identifier: .gregorian).component(component, from: self)
     }
 }

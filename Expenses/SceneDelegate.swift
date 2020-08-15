@@ -32,6 +32,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Dependency injection
         let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
+        
+        let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource)
+        //migrationManager.applyPendingMigrations(to: <#T##NSManagedObjectModel#>)
+        
+        
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:self.context,
@@ -88,7 +93,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

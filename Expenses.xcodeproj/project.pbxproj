@@ -598,7 +598,6 @@
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				00D869D8249B8147007B0A46 /* Models */,
 				00C213A7217BB2E800805207 /* BSCurrencyHelper.h */,
 				00C213A6217BB2E800805207 /* BSCurrencyHelper.m */,
 			);
@@ -629,13 +628,6 @@
 			children = (
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		00D869D8249B8147007B0A46 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

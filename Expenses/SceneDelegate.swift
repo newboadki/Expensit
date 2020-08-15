@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
         
         let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource)
-        //migrationManager.applyPendingMigrations(to: <#T##NSManagedObjectModel#>)
+        migrationManager.applyPendingMigrations(to: CoreDataStack.model())
         
         
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,

@@ -27,7 +27,7 @@ public class CoreDataModelMigrationsInteractor {
         let v = NSDecimalNumber(string: currentVersion)
         for i in 0...v.intValue {
             let shouldApplyMigration = addVersionNumberToAppliedFixturesInUserDefaults(i)
-            if shouldApplyMigration {
+            if shouldApplyMigration {                
                 _ = applyMigration(forVersion: i)
             }
         }
@@ -37,7 +37,10 @@ public class CoreDataModelMigrationsInteractor {
 private extension CoreDataModelMigrationsInteractor {
     
     func appliedFixturesVersionNumbersFromUserDefaults() -> [Int] {
-        return UserDefaults.standard.array(forKey: kAppliedFixturesVersionNumbersKey) as! [Int]
+        guard let appliedVersions = UserDefaults.standard.array(forKey: kAppliedFixturesVersionNumbersKey) as? [Int] else {
+            return [Int]()
+        }
+        return appliedVersions
     }
     
     func addVersionNumberToAppliedFixturesInUserDefaults(_ version: Int) -> Bool {
@@ -166,10 +169,12 @@ private extension CoreDataModelMigrationsInteractor {
         books.color = UIColor(red:166.0/255.0, green:120.0/255.0, blue:105.0/255.0, alpha:1.0)
         
         // Set categories without tag to Other Tag
-        success = success && categoryDataSource.setToAllEnties("Other")
+        let allCategoriesSetToOther = categoryDataSource.setToAllEnties("Other")
+        success = success && allCategoriesSetToOther
         
         // Create two new categories and set images for them
-        success = success && categoryDataSource.create_bool(categories: ["Income"])
+        let incomeCategoryCreated = categoryDataSource.create_bool(categories: ["Income"])
+        success = success && incomeCategoryCreated
         let income = categoryDataSource.tag(forName: "Income")
         income.color = UIColor(red:75.0/255.0, green:99.0/255.0, blue:51.0/255.0, alpha:1.0)
         income.iconImageName = "filter_bills.png"

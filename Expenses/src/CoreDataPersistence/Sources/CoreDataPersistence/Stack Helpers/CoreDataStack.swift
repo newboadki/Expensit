@@ -23,6 +23,10 @@ public struct CoreDataStack {
             }            
             completion(.success(persistentContainer.newBackgroundContext()))
         }
-
+    }
+    
+    public static func model() -> NSManagedObjectModel {
+        let url = Bundle.main.url(forResource: "Expenses", withExtension: "momd")
+        return NSManagedObjectModel(contentsOf: url!)!
     }
 }

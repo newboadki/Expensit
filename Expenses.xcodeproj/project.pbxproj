@@ -59,6 +59,18 @@
 		00AA9024248A30550099AAC1 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9023248A30550099AAC1 /* CategoryFilterView.swift */; };
 		00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */; };
 		00AA9030248CDBA10099AAC1 /* NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */; };
+		00AB779424E802E9005174AB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AB779224E802E9005174AB /* Interface.storyboard */; };
+		00AB779624E802EB005174AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AB779524E802EB005174AB /* Assets.xcassets */; };
+		00AB779D24E802EB005174AB /* ExpensitWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 00AB779C24E802EB005174AB /* ExpensitWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		00AB77A224E802EB005174AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB77A124E802EB005174AB /* ContentView.swift */; };
+		00AB77A424E802EB005174AB /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB77A324E802EB005174AB /* HostingController.swift */; };
+		00AB77A624E802EB005174AB /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB77A524E802EB005174AB /* ExtensionDelegate.swift */; };
+		00AB77A824E802EC005174AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AB77A724E802EC005174AB /* Assets.xcassets */; };
+		00AB77AB24E802EC005174AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AB77AA24E802EC005174AB /* Preview Assets.xcassets */; };
+		00AB77AF24E802EC005174AB /* ExpensitWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 00AB779024E802E9005174AB /* ExpensitWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		00AB77B924E8034E005174AB /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 00AB77B824E8034E005174AB /* CoreDataPersistence */; };
+		00AB77BB24E8034E005174AB /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00AB77BA24E8034E005174AB /* CoreExpenses */; };
+		00AB77BD24E8034E005174AB /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 00AB77BC24E8034E005174AB /* DateAndTime */; };
 		00BDC3AA24571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */; };
 		00BDC3B4245752940066662A /* ExpensesSummaryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */; };
 		00C21385217BB03000805207 /* PieChartPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C21384217BB03000805207 /* PieChartPresentationController.swift */; };
@@ -105,7 +117,46 @@
 			remoteGlobalIDString = 007B829A17747A020052FE84;
 			remoteInfo = CoreDataStackHelperTests;
 		};
+		00AB779E24E802EB005174AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 007B8241177476780052FE84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00AB779B24E802EB005174AB;
+			remoteInfo = "ExpensitWatch Extension";
+		};
+		00AB77AD24E802EC005174AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 007B8241177476780052FE84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00AB778F24E802E9005174AB;
+			remoteInfo = ExpensitWatch;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00AB77B324E802EC005174AB /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				00AB779D24E802EB005174AB /* ExpensitWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00AB77B724E802EC005174AB /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				00AB77AF24E802EC005174AB /* ExpensitWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00010595233F5AD70073BFAF /* TestDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataGenerator.swift; sourceTree = "<group>"; };
@@ -177,6 +228,17 @@
 		00AA9023248A30550099AAC1 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
 		00AA902B248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA902F248CDBA10099AAC1 /* NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtons.swift; sourceTree = "<group>"; };
+		00AB779024E802E9005174AB /* ExpensitWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensitWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00AB779324E802E9005174AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		00AB779524E802EB005174AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00AB779724E802EB005174AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00AB779C24E802EB005174AB /* ExpensitWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ExpensitWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00AB77A124E802EB005174AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00AB77A324E802EB005174AB /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		00AB77A524E802EB005174AB /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		00AB77A724E802EC005174AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00AB77AA24E802EC005174AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00AB77AC24E802EC005174AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00BDC3A924571A1A0066662A /* ExpensesSummaryNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00BDC3B3245752940066662A /* ExpensesSummaryNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesSummaryNavigationView.swift; sourceTree = "<group>"; };
 		00C21384217BB03000805207 /* PieChartPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartPresentationController.swift; sourceTree = "<group>"; };
@@ -224,6 +286,16 @@
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00AB779924E802EB005174AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AB77BB24E8034E005174AB /* CoreExpenses in Frameworks */,
+				00AB77B924E8034E005174AB /* CoreDataPersistence in Frameworks */,
+				00AB77BD24E8034E005174AB /* DateAndTime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +511,8 @@
 				007B83141775A3C40052FE84 /* Dependencies */,
 				007B8254177476780052FE84 /* Expenses */,
 				007B8271177476780052FE84 /* ExpensesTests */,
+				00AB779124E802E9005174AB /* ExpensitWatch */,
+				00AB77A024E802EB005174AB /* ExpensitWatch Extension */,
 				007B824B177476780052FE84 /* Frameworks */,
 				007B824A177476780052FE84 /* Products */,
 				00C273BA249F1FBD00E1DF0F /* Recovered References */,
@@ -450,6 +524,8 @@
 			children = (
 				007B8249177476780052FE84 /* Expensit.app */,
 				007B8269177476780052FE84 /* ExpensesTests.xctest */,
+				00AB779024E802E9005174AB /* ExpensitWatch.app */,
+				00AB779C24E802EB005174AB /* ExpensitWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -595,6 +671,37 @@
 			path = "Navigation Buttons";
 			sourceTree = "<group>";
 		};
+		00AB779124E802E9005174AB /* ExpensitWatch */ = {
+			isa = PBXGroup;
+			children = (
+				00AB779224E802E9005174AB /* Interface.storyboard */,
+				00AB779524E802EB005174AB /* Assets.xcassets */,
+				00AB779724E802EB005174AB /* Info.plist */,
+			);
+			path = ExpensitWatch;
+			sourceTree = "<group>";
+		};
+		00AB77A024E802EB005174AB /* ExpensitWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				00AB77A124E802EB005174AB /* ContentView.swift */,
+				00AB77A324E802EB005174AB /* HostingController.swift */,
+				00AB77A524E802EB005174AB /* ExtensionDelegate.swift */,
+				00AB77A724E802EC005174AB /* Assets.xcassets */,
+				00AB77AC24E802EC005174AB /* Info.plist */,
+				00AB77A924E802EC005174AB /* Preview Content */,
+			);
+			path = "ExpensitWatch Extension";
+			sourceTree = "<group>";
+		};
+		00AB77A924E802EC005174AB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				00AB77AA24E802EC005174AB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		00B683751D0D4FD200584F43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,10 +747,12 @@
 				007B8245177476780052FE84 /* Sources */,
 				007B8246177476780052FE84 /* Frameworks */,
 				007B8247177476780052FE84 /* Resources */,
+				00AB77B724E802EC005174AB /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				00AB77AE24E802EC005174AB /* PBXTargetDependency */,
 			);
 			name = Expensit;
 			packageProductDependencies = (
@@ -675,6 +784,45 @@
 			productReference = 007B8269177476780052FE84 /* ExpensesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		00AB778F24E802E9005174AB /* ExpensitWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00AB77B424E802EC005174AB /* Build configuration list for PBXNativeTarget "ExpensitWatch" */;
+			buildPhases = (
+				00AB778E24E802E9005174AB /* Resources */,
+				00AB77B324E802EC005174AB /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00AB779F24E802EB005174AB /* PBXTargetDependency */,
+			);
+			name = ExpensitWatch;
+			productName = ExpensitWatch;
+			productReference = 00AB779024E802E9005174AB /* ExpensitWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		00AB779B24E802EB005174AB /* ExpensitWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00AB77B024E802EC005174AB /* Build configuration list for PBXNativeTarget "ExpensitWatch Extension" */;
+			buildPhases = (
+				00AB779824E802EB005174AB /* Sources */,
+				00AB779924E802EB005174AB /* Frameworks */,
+				00AB779A24E802EB005174AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExpensitWatch Extension";
+			packageProductDependencies = (
+				00AB77B824E8034E005174AB /* CoreDataPersistence */,
+				00AB77BA24E8034E005174AB /* CoreExpenses */,
+				00AB77BC24E8034E005174AB /* DateAndTime */,
+			);
+			productName = "ExpensitWatch Extension";
+			productReference = 00AB779C24E802EB005174AB /* ExpensitWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -682,7 +830,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BS;
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Borja Arias Drake";
 				TargetAttributes = {
@@ -695,6 +843,12 @@
 						LastSwiftMigration = 0800;
 						TestTargetID = 007B8248177476780052FE84;
 					};
+					00AB778F24E802E9005174AB = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					00AB779B24E802EB005174AB = {
+						CreatedOnToolsVersion = 11.6;
+					};
 				};
 			};
 			buildConfigurationList = 007B8244177476780052FE84 /* Build configuration list for PBXProject "Expenses" */;
@@ -704,6 +858,7 @@
 			knownRegions = (
 				English,
 				en,
+				Base,
 			);
 			mainGroup = 007B8240177476780052FE84;
 			productRefGroup = 007B824A177476780052FE84 /* Products */;
@@ -718,6 +873,8 @@
 			targets = (
 				007B8248177476780052FE84 /* Expensit */,
 				007B8268177476780052FE84 /* ExpensesTests */,
+				00AB778F24E802E9005174AB /* ExpensitWatch */,
+				00AB779B24E802EB005174AB /* ExpensitWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -759,6 +916,24 @@
 				000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */,
 				007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */,
 				007B8276177476780052FE84 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00AB778E24E802E9005174AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AB779624E802EB005174AB /* Assets.xcassets in Resources */,
+				00AB779424E802E9005174AB /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00AB779A24E802EB005174AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AB77AB24E802EC005174AB /* Preview Assets.xcassets in Resources */,
+				00AB77A824E802EC005174AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +1009,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		00AB779824E802EB005174AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AB77A424E802EB005174AB /* HostingController.swift in Sources */,
+				00AB77A224E802EB005174AB /* ContentView.swift in Sources */,
+				00AB77A624E802EB005174AB /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -841,6 +1026,16 @@
 			isa = PBXTargetDependency;
 			target = 007B8248177476780052FE84 /* Expensit */;
 			targetProxy = 002F631424BD90FD00439468 /* PBXContainerItemProxy */;
+		};
+		00AB779F24E802EB005174AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00AB779B24E802EB005174AB /* ExpensitWatch Extension */;
+			targetProxy = 00AB779E24E802EB005174AB /* PBXContainerItemProxy */;
+		};
+		00AB77AE24E802EC005174AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00AB778F24E802E9005174AB /* ExpensitWatch */;
+			targetProxy = 00AB77AD24E802EC005174AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -859,6 +1054,14 @@
 				007B8275177476780052FE84 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00AB779224E802E9005174AB /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00AB779324E802E9005174AB /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1147,6 +1350,148 @@
 			};
 			name = Release;
 		};
+		00AB77B124E802EC005174AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"ExpensitWatch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 29ND5D76MZ;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "ExpensitWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boasoftware.expensit.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		00AB77B224E802EC005174AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"ExpensitWatch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 29ND5D76MZ;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "ExpensitWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boasoftware.expensit.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		00AB77B524E802EC005174AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = HDWMV7DY5P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = ExpensitWatch_Extension;
+				INFOPLIST_FILE = ExpensitWatch/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boasoftware.expensit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		00AB77B624E802EC005174AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HDWMV7DY5P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = ExpensitWatch_Extension;
+				INFOPLIST_FILE = ExpensitWatch/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boasoftware.expensit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1177,6 +1522,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		00AB77B024E802EC005174AB /* Build configuration list for PBXNativeTarget "ExpensitWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00AB77B124E802EC005174AB /* Debug */,
+				00AB77B224E802EC005174AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00AB77B424E802EC005174AB /* Build configuration list for PBXNativeTarget "ExpensitWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00AB77B524E802EC005174AB /* Debug */,
+				00AB77B624E802EC005174AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1187,6 +1550,18 @@
 		00A6DA0624BA08A500562426 /* CoreExpenses */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreExpenses;
+		};
+		00AB77B824E8034E005174AB /* CoreDataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreDataPersistence;
+		};
+		00AB77BA24E8034E005174AB /* CoreExpenses */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreExpenses;
+		};
+		00AB77BC24E8034E005174AB /* DateAndTime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DateAndTime;
 		};
 		00D7165B24B5E4DB0057281C /* DateAndTime */ = {
 			isa = XCSwiftPackageProductDependency;

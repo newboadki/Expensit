@@ -27,7 +27,7 @@ public class CoreDataModelMigrationsInteractor {
         let v = NSDecimalNumber(string: currentVersion)
         for i in 0...v.intValue {
             let shouldApplyMigration = addVersionNumberToAppliedFixturesInUserDefaults(i)
-            if shouldApplyMigration {                
+            if shouldApplyMigration {
                 _ = applyMigration(forVersion: i)
             }
         }

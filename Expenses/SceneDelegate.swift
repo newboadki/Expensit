@@ -11,15 +11,57 @@ import SwiftUI
 import CoreExpenses
 import CoreData
 import CoreDataPersistence
+import WatchConnectivity
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        let individualEntryDataSource = IndividualExpensesDataSource(context: context)
+        let storageInteractor = AddExpenseInteractor(dataSource: individualEntryDataSource)
+
+        let d = Date()
+        let dateComponents = DateComponents(year: d.component(.year),
+                                        month: d.component(.month),
+                                        day: d.component(.day),
+                                        hour: d.component(.hour),
+                                        minute: d.component(.minute),
+                                        second: d.component(.second))
+        
+        DispatchQueue.main.async {
+            let r = storageInteractor.add(expense: Expense(dateComponents: dateComponents,
+                                                           date: Date(),
+                                                           value: 100,
+                                                           description: "A new one!",
+                                                           category: ExpenseCategory(name: "Bills",
+                                                                                     iconName: "",
+                                                                                     color: .black)))
+
+        }
+    }
+
 
     var window: UIWindow?
     var presenter: ShowYearlyEntriesPresenter!
     var context: NSManagedObjectContext!
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+        
         // Initialize CoreData's Stack
         CoreDataStack.context { result in
             switch result {

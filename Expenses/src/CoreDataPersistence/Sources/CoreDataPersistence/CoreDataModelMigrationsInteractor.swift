@@ -19,7 +19,7 @@ public class CoreDataModelMigrationsInteractor {
         self.categoryDataSource = categoryDataSource
     }
     
-    public func applyPendingMigrations(to model: NSManagedObjectModel) {
+    public func applyPendingMigrations(to model: NSManagedObjectModel) {        
         guard let version = model.versionIdentifiers.first,
             let currentVersion = version as? String else {
             return

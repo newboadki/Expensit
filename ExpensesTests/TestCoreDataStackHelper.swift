@@ -16,9 +16,6 @@ public struct TestCoreDataStack {
     private static let semaphore = DispatchSemaphore(value: 1)
     
     public static func context(_ completion: @escaping (Result<NSManagedObjectContext, Error>) -> ()) {
-        
-        let b = Bundle(for: TestDataGenerator.self)
-
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         // Delete
         let sqliteURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite")
@@ -46,11 +43,7 @@ public struct TestCoreDataStack {
         }        
     }
     
-    public static func context_sync() -> NSManagedObjectContext {
-        
-        let b = Bundle(for: TestDataGenerator.self)
-        let p = b.path(forResource: "Expenses", ofType: "momd")
-
+    public static func context_sync() -> NSManagedObjectContext {        
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         // Delete
         let sqliteURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite")

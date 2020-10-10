@@ -194,7 +194,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         let request = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            return try coreDataContext.fetch(request) as! [Tag]
+            return try coreDataContext.fetch(request)
         } catch {
             return [Tag]()
         }        

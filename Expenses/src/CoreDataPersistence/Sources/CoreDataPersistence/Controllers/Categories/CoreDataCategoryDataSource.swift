@@ -176,19 +176,17 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
                                            color:tag.color)
             percentageSum += Double(info.percentage)
             sections.append(info)
-                    
-            sections.sort { i1, i2 in
-                i1.percentage < i2.percentage
-            }
-            
-            let r = sections.filter { section in
-                section.percentage > 0
-            }
-            
-            return r
         }
         
-        return [PieChartSectionInfo]()
+        sections.sort { i1, i2 in
+            i1.percentage < i2.percentage
+        }
+        
+        let r = sections.filter { section in
+            section.percentage > 0
+        }
+        
+        return r                
     }
 
     
@@ -210,8 +208,8 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         }
         
         
-        let incomePredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE \(categoryName) AND value > 0"))
-        let expensesPredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE \(categoryName) AND value < 0"))
+        let incomePredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE '\(categoryName)' AND value > 0"))
+        let expensesPredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE '\(categoryName)' AND value < 0"))
         
         baseRequest.predicate = incomePredicate
         let keyPathExpression = NSExpression(forKeyPath: "value")

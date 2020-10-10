@@ -50,15 +50,17 @@ struct GridView<NC: NavigationCoordinator,
     
     var body: some View {
         ScrollView {
-            ForEach(self.presenter.sections) { section in
-                
-                GridViewSectionHeader(section: section, presenter: self.presenter,
-                                      navigationCoordinator: self.headerViewNavigationCoordinator)
-                
-                GridViewSectionBody(presenter: self.presenter,
-                                    section: section,
-                                    navigationCoordinator: self.navigationCoordinator)
+            LazyVStack {
+                ForEach(self.presenter.sections) { section in
+                    
+                    GridViewSectionHeader(section: section, presenter: self.presenter,
+                                          navigationCoordinator: self.headerViewNavigationCoordinator)
+                    
+                    GridViewSectionBody(presenter: self.presenter,
+                                        section: section,
+                                        navigationCoordinator: self.navigationCoordinator)
 
+                }
             }
         }.navigationBarTitle(self.title)
          .navigationBarItems(trailing:

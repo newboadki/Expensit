@@ -218,7 +218,7 @@ class TestDataGenerator {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]        
         let entries = try! coreDataContext.fetch(request)
         for entry in entries {
-            print("DATE: \(entry.date), VALUE: \(entry.value), DESC: \(entry.desc ?? "-"), TAG: \(entry.tag?.name ?? "-")")
+            print("DATE: \(entry.date ?? Date()), VALUE: \(entry.value), DESC: \(entry.desc ?? "-"), TAG: \(entry.tag?.name ?? "-")")
         }
         print("--------")
     }

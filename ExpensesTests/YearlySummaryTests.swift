@@ -18,11 +18,8 @@ class YearlySummaryTests: XCTestCase {
     private static var setCategoryInteractor: SetCategoryFilterInteractor!
     private static var context: NSManagedObjectContext!
     
-    override static func setUp() {
-        
+    override static func setUp() {        
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        
         let tg = TestDataGenerator()
         context = tg.generate_sync()
         selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)

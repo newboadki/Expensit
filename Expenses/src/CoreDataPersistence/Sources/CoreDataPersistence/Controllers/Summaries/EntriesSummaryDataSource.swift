@@ -77,6 +77,6 @@ public extension PerformsCoreDataRequests {
     func tag(forName name: String) -> Tag {
         let fetchRequest = Tag.tagFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
-        return try! self.coreDataContext.fetch(fetchRequest).last as! Tag
+        return try! self.coreDataContext.fetch(fetchRequest).last!
     }
 }

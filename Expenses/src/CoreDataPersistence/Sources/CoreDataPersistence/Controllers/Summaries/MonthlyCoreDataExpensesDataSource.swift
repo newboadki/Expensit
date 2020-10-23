@@ -59,7 +59,8 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
                                         date: date,
                                         value: monthlySum,
                                         description: nil,
-                                        category: nil)
+                                        category: nil,
+                                        currencyCode: data["currencyCode"] as! String)
                     entriesForKey.append(entry)
                 }
             }
@@ -86,6 +87,7 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
         let propertiesByName = baseRequest.entity!.propertiesByName
         let monthDescription = propertiesByName["month"]
         let yearDescription = propertiesByName["year"]
+        let currencyCodeDescription = propertiesByName["currencyCode"]
         
         let keyPathExpression = NSExpression(forKeyPath: "value")
         let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
@@ -102,8 +104,8 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
         minDateExpressionDescription.expression = minDateExpression
         minDateExpressionDescription.expressionResultType = .dateAttributeType
         
-        baseRequest.propertiesToFetch = [monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription]
-        baseRequest.propertiesToGroupBy = [monthDescription, yearDescription]
+        baseRequest.propertiesToFetch = [monthDescription, yearDescription, sumExpressionDescription, minDateExpressionDescription, currencyCodeDescription]
+        baseRequest.propertiesToGroupBy = [monthDescription, yearDescription, currencyCodeDescription]
         baseRequest.resultType = .dictionaryResultType
         
         return baseRequest

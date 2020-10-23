@@ -30,6 +30,8 @@ extension Entry {
     @NSManaged public var year: NSNumber?
     @NSManaged public var yearMonthDay: String?
     @NSManaged public var tag: Tag?
+    @NSManaged public var currencyCode: String
+    @NSManaged public var exchangeRateToBaseCurrency: NSDecimalNumber
 
 }
 

@@ -73,7 +73,7 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
                                                         second: d.component(.second))
                     }
                     
-                    let entry = Expense(dateComponents: dateComponents, date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category)
+                    let entry = Expense(dateComponents: dateComponents, date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category, currencyCode: "")
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
                     entriesForKey.append(entry)                    
                 }

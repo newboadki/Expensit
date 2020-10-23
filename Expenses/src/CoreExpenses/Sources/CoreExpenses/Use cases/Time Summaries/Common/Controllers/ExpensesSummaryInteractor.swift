@@ -12,13 +12,13 @@ import Combine
 /* This use case consists of making a single query to the data source. */
 public class ExpensesSummaryInteractor: ExpensesSummaryInteractorProtocol {
     
-    private var dataSource: EntriesSummaryDataSource
+    private(set) var dataSource: EntriesSummaryDataSource
     
     public init(dataSource: EntriesSummaryDataSource) {
         self.dataSource = dataSource
     }
     
-    public func entriesForSummary() -> Published<[ExpensesGroup]>.Publisher {
-        self.dataSource.groupedExpensesPublisher                
+    public func entriesForSummary() -> AnyPublisher<[ExpensesGroup], Never> {
+        self.dataSource.groupedExpensesPublisher.eraseToAnyPublisher()
     }    
 }

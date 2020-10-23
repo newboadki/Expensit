@@ -9,17 +9,22 @@
 import Foundation
 import CoreData
 import UIKit
+import Currencies
 
 public class CoreDataModelMigrationsInteractor {
     
     private let kAppliedFixturesVersionNumbersKey = "appliedFixturesVersionNumbersKey";
     private var categoryDataSource: CoreDataCategoryDataSource
+    private var individualEntriesDataSource: IndividualExpensesDataSource
     
-    public init(categoryDataSource: CoreDataCategoryDataSource) {
+    public init(categoryDataSource: CoreDataCategoryDataSource,
+                individualEntriesDataSource: IndividualExpensesDataSource) {
         self.categoryDataSource = categoryDataSource
+        self.individualEntriesDataSource = individualEntriesDataSource
     }
     
-    public func applyPendingMigrations(to model: NSManagedObjectModel) {        
+    public func applyPendingMigrations(to model: NSManagedObjectModel) {
+        //applyFixtureForModelObjectVersion_4()
         guard let version = model.versionIdentifiers.first,
             let currentVersion = version as? String else {
             return
@@ -62,6 +67,8 @@ private extension CoreDataModelMigrationsInteractor {
                 _ = applyFixtureForModelObjectVersion_2()
             case 3:
                 _ = applyFixtureForModelObjectVersion_3()
+            case 4:
+                _ = applyFixtureForModelObjectVersion_4()
 
             default:
                 break
@@ -183,6 +190,16 @@ private extension CoreDataModelMigrationsInteractor {
         success = success && categoryDataSource.save()
         
         return success;
+    }
+    
+    func applyFixtureForModelObjectVersion_4() -> Bool {
+        switch individualEntriesDataSource.setAllEntriesCurrenyCode(to: NSLocale.current.currencyCode)
+        {
+            case .failure(_):
+                return false
+            case .success(let r):
+                return r
+        }
     }
 
 }

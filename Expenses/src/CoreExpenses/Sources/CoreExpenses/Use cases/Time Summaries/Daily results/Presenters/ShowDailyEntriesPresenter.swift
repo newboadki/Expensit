@@ -12,7 +12,7 @@ import DateAndTime
 
 public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
-    public override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
+    public override func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
             let sortedGRoups = groups.sorted { (lg, rg) in
@@ -27,12 +27,14 @@ public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 let monthNumber = section.groupKey.month
                 let numberOfDayInMonths = DateConversion.numberOfDays(inMonthNamed: "\(monthNumber!)")
                 for i in 0 ..< numberOfDayInMonths {                    
-                    let dayData = ExpensesSummaryEntryViewModel(id:DateComponents(year: section.groupKey.year, month: section.groupKey.month, day: i),
-                                                                title: "\(i+1)",
-                            value: "",
-                        signOfAmount: .zero,
-                        date: nil,
-                        tag: nil)
+                    let dayData = ExpensesSummaryEntryViewModel(id:DateComponents(year: section.groupKey.year,
+                                                                                  month: section.groupKey.month, day: i),
+                                                                    title: "\(i+1)",
+                                                                    value: "",
+                                                                    signOfAmount: .zero,
+                                                                    date: nil,
+                                                                    tag: nil,
+                                                                    currencyCode: "")
                     entries.append(dayData)
                 }
                 
@@ -60,7 +62,8 @@ public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                   value: dailySumString as String,
                                                                   signOfAmount: sign,
                                                                   date: dateString,
-                                                                  tag: nil)
+                                                                  tag: nil,
+                                                                  currencyCode: "")
                     entries[day.intValue - 1] = entryData
                 }
                 
@@ -76,7 +79,7 @@ public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
             }
             
             return displaySections
-        }
+        }.eraseToAnyPublisher()
         
     }
     

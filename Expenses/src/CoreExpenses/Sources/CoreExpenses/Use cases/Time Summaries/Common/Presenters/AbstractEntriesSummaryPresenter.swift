@@ -36,7 +36,7 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
 
     // MARK: - API
     
-    public func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
+    public func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
         fatalError("Not implemented.")
     }
     

@@ -13,7 +13,7 @@ struct Test {
     
     struct Expense {
         let title: String
-        let value: String
+        let value: String        
     }
     
     static func assertEqual(_ entry: Test.Expense, title: String, value: String) {

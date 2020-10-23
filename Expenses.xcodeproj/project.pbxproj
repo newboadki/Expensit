@@ -39,7 +39,6 @@
 		007B826C177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B826D177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
 		007B8276177476780052FE84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 007B8274177476780052FE84 /* InfoPlist.strings */; };
-		007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E740F236C292B00762E08 /* EntryBoxView.swift */; };
 		008E7412236CC54C00762E08 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7411236CC54C00762E08 /* GridView.swift */; };
 		008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7423236D840300762E08 /* HorizontalEntryView.swift */; };
@@ -65,6 +64,7 @@
 		00C273DB249F205600E1DF0F /* BSExpensesSummaryPieGraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */; };
 		00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001059723409B440073BFAF /* YearlySummaryTests.swift */; };
 		00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C273EB249F501C00E1DF0F /* TestHelpers.swift */; };
+		00C64320253EA5DB000FC683 /* Currencies in Frameworks */ = {isa = PBXBuildFile; productRef = 00C6431F253EA5DB000FC683 /* Currencies */; };
 		00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 00D7165B24B5E4DB0057281C /* DateAndTime */; };
 		00D869B52494DD3A007B0A46 /* NavigationButtonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B42494DD3A007B0A46 /* NavigationButtonsPresenter.swift */; };
 		00D869B72494F61D007B0A46 /* CategoryFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D869B62494F61D007B0A46 /* CategoryFilterButtonView.swift */; };
@@ -112,11 +112,13 @@
 		000A9A991D09F90E0045523A /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
 		000D047E1775A92F002D0AB8 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Debug-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		000F8CBE2531F5120006C1E2 /* v1.0.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.10.xcdatamodel; sourceTree = "<group>"; };
 		001359B024B5B7200071AEBD /* CoreExpenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreExpenses; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySummaryTests.swift; sourceTree = "<group>"; };
 		0039450E1A990C110081A5EE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ExpensesTests/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionHeader.swift; sourceTree = "<group>"; };
+		00478FB2253EA1E800D518C7 /* Currencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Currencies; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
 		0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphPresenter.swift; sourceTree = "<group>"; };
 		0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -189,12 +191,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */,
 				00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */,
 				007B824F177476780052FE84 /* CoreGraphics.framework in Frameworks */,
 				0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */,
 				007B8253177476780052FE84 /* CoreData.framework in Frameworks */,
 				007B8251177476780052FE84 /* UIKit.framework in Frameworks */,
+				00C64320253EA5DB000FC683 /* Currencies in Frameworks */,
 				007B824D177476780052FE84 /* Foundation.framework in Frameworks */,
 				00D7165C24B5E4DB0057281C /* DateAndTime in Frameworks */,
 			);
@@ -516,6 +518,7 @@
 		007B83151775A6330052FE84 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				00478FB2253EA1E800D518C7 /* Currencies */,
 				00084E4C24BC70520009EC98 /* CoreDataPersistence */,
 				001359B024B5B7200071AEBD /* CoreExpenses */,
 				00A38C142454D02D00E05596 /* AppDelegate.swift */,
@@ -623,6 +626,7 @@
 				00D7165B24B5E4DB0057281C /* DateAndTime */,
 				00A6DA0624BA08A500562426 /* CoreExpenses */,
 				0047E7D824BC751300FEE7B4 /* CoreDataPersistence */,
+				00C6431F253EA5DB000FC683 /* Currencies */,
 			);
 			productName = Expenses;
 			productReference = 007B8249177476780052FE84 /* Expensit.app */;
@@ -1140,6 +1144,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreExpenses;
 		};
+		00C6431F253EA5DB000FC683 /* Currencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Currencies;
+		};
 		00D7165B24B5E4DB0057281C /* DateAndTime */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DateAndTime;
@@ -1150,13 +1158,14 @@
 		007B8260177476780052FE84 /* Expenses.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				000F8CBE2531F5120006C1E2 /* v1.0.10.xcdatamodel */,
 				00C370BD24AF8AFD00298CC0 /* v1.0.9.xcdatamodel */,
 				002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */,
 				009D011619430C6500B850D4 /* v1.0.8.xcdatamodel */,
 				00F9213F1807456000CACB4D /* v1.0.1.xcdatamodel */,
 				007B8261177476780052FE84 /* Expenses.xcdatamodel */,
 			);
-			currentVersion = 00C370BD24AF8AFD00298CC0 /* v1.0.9.xcdatamodel */;
+			currentVersion = 000F8CBE2531F5120006C1E2 /* v1.0.10.xcdatamodel */;
 			path = Expenses.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

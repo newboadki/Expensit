@@ -55,7 +55,8 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
                                         date: date,
                                         value: dailySum,
                                         description: nil,
-                                        category: nil)
+                                        category: nil,
+                                        currencyCode: "")
                     entriesForKey.append(entry)
                 }
             }
@@ -102,6 +103,7 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         let dayMonthYearDescription = propertiesByName["dayMonthYear"]
         let dayDescription = propertiesByName["day"]
         let monthYearDescription = propertiesByName["monthYear"]
+        let currencyCodeDescription = propertiesByName["currencyCode"]
         
         let keyPathExpression = NSExpression(forKeyPath: "value")
         let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
@@ -118,8 +120,8 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         minDateExpressionDescription.expression = minDateExpression
         minDateExpressionDescription.expressionResultType = .dateAttributeType
     
-        baseRequest.propertiesToFetch = [monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription, minDateExpressionDescription]
-        baseRequest.propertiesToGroupBy = [dayMonthYearDescription, monthYearDescription, dayDescription]
+        baseRequest.propertiesToFetch = [monthYearDescription, dayMonthYearDescription,dayDescription, sumExpressionDescription, minDateExpressionDescription, currencyCodeDescription]
+        baseRequest.propertiesToGroupBy = [dayMonthYearDescription, monthYearDescription, dayDescription, currencyCodeDescription]
         baseRequest.resultType = .dictionaryResultType
         
         return baseRequest

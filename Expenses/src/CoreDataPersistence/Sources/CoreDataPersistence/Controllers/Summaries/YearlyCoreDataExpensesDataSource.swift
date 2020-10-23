@@ -59,13 +59,13 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
             {
                 for case let data as NSDictionary in objects
                 {
-                    let yearlySum = data["yearlySum"] as! NSDecimalNumber
                     let date = data["date"] as! Date
                     let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: nil, day: nil),
                                         date: date,
-                                        value: yearlySum,
+                                        value: data["yearlySum"] as! NSDecimalNumber,
                                         description: nil,
-                                        category: nil)
+                                        category: nil,
+                                        currencyCode: data["currencyCode"] as! String)
                     entriesForKey.append(entry)
                 }
             }
@@ -93,8 +93,14 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
 
         let propertiesByName = baseRequest.entity!.propertiesByName
         let yearDescription = propertiesByName["year"]
-        let keyPathExpression = NSExpression(forKeyPath: "value")
-        let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
+        let currencyCodeDescription = propertiesByName["currencyCode"]
+        //
+        let valueInBaseExpression = NSExpression(forFunction: "multiply:by:",
+                                                 arguments: [NSExpression(forKeyPath:"value"),
+                                                             NSExpression(forKeyPath:"exchangeRateToBaseCurrency")])
+        
+        //
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueInBaseExpression])
 
         let sumExpressionDescription = NSExpressionDescription()
         sumExpressionDescription.name = "yearlySum"
@@ -108,8 +114,8 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         minDateExpressionDescription.expression = minDateExpression
         minDateExpressionDescription.expressionResultType = .dateAttributeType
 
-        baseRequest.propertiesToFetch = [yearDescription!, sumExpressionDescription, minDateExpressionDescription]
-        baseRequest.propertiesToGroupBy = [yearDescription!]
+        baseRequest.propertiesToFetch = [yearDescription!, sumExpressionDescription, minDateExpressionDescription, currencyCodeDescription]
+        baseRequest.propertiesToGroupBy = [yearDescription!, currencyCodeDescription]
         baseRequest.resultType = .dictionaryResultType
         
         return baseRequest

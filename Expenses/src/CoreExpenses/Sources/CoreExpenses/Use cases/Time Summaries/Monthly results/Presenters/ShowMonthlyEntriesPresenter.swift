@@ -12,7 +12,7 @@ import DateAndTime
 
 public class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
     
-    override public func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
+    override public func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
                 
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
@@ -30,7 +30,8 @@ public class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                   value: "",
                                                                   signOfAmount: .zero,
                                                                   date: nil,
-                                                                  tag: nil)
+                                                                  tag: nil,
+                                                                  currencyCode: "")
                     entries.append(monthData)
                 }
                 
@@ -58,7 +59,8 @@ public class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                   value: monthlySumString as String,
                                                                   signOfAmount: sign,
                                                                   date: nil,
-                                                                  tag: nil)
+                                                                  tag: nil,
+                                                                  currencyCode: "")
                     entries[month - 1] = entryData
                 }
 
@@ -67,7 +69,7 @@ public class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
             }
 
             return displaySections
-        }
+        }.eraseToAnyPublisher()
     }
     
     public override func preferredNumberOfColumns() -> Int {

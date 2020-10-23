@@ -33,7 +33,9 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                        date: first.date,
                        value: first.value,
                        description: first.desc,
-                       category: category)
+                       category: category,
+                       currencyCode: "",
+                       exchangeRateToBaseCurrency: first.exchangeRateToBaseCurrency)
     }
     
     public func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
@@ -47,7 +49,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         
         let request = Tag.tagFetchRequest()
         request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
-        if let tags = try? context.fetch(request) as? [Tag] {
+        if let tags = try? context.fetch(request) {
             if let firstTag = tags.first {
                 first.tag = firstTag
             }
@@ -63,11 +65,16 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     }
     
     public func add(expense: Expense) -> Result<Bool, Error> {
-        
         let description = NSEntityDescription.entity(forEntityName: "Entry", in: context)
         let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Entry
         managedObject.value = expense.value
         managedObject.observableDate = expense.date
+        managedObject.currencyCode = expense.currencyCode
+        
+        if let rate = expense.exchangeRateToBaseCurrency {
+            managedObject.exchangeRateToBaseCurrency = rate
+        }
+        
         if let y = expense.dateComponents.year {
             managedObject.year = NSNumber(integerLiteral: y)
         }
@@ -103,6 +110,26 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             return .failure(error)
         }
     }
+    
+    public func setAllEntriesCurrenyCode(to code: String?) -> Result<Bool, Error> {
+        let request = NSFetchRequest<Entry>(entityName: "Entry")
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        if let entries = try? context.fetch(request) {
+            for entry in entries {
+                entry.currencyCode = code ?? "GBP"
+                entry.exchangeRateToBaseCurrency = NSDecimalNumber(string: "1.0")
+            }
+        }
+
+        do {
+            try context.save()
+        } catch {
+            return .failure(error)
+        }
+        
+        return .success(true)
+
+    }
 }
 
 private extension IndividualExpensesDataSource {
@@ -126,7 +153,7 @@ private extension IndividualExpensesDataSource {
                                         "minute", NSNumber(value: mi),
                                         "second", NSNumber(value: s))
         
-        guard let results = try? context.fetch(request) as? [Entry] else {
+        guard let results = try? context.fetch(request) else {
             return nil
         }
         

@@ -46,7 +46,8 @@ public class EntryFormPresenter: ObservableObject {
                                                    signOfAmount: .negative,
                                                    date: now,
                                                    tag: nil,
-                                                   tagId: 0)
+                                                   tagId: 0,
+                                                   currencyCode: "")
     }
     
     public func onViewAppear() {
@@ -63,7 +64,8 @@ public class EntryFormPresenter: ObservableObject {
                                                        date: DateConversion.string(from: expense.date!),
                                                        tag: expense.category?.name,
                                                        tagId: index,
-                                                       dateTime: expense.date!)
+                                                       dateTime: expense.date!,
+                                                       currencyCode: "")
             
             print(self.entry)
         }
@@ -96,7 +98,7 @@ public class EntryFormPresenter: ObservableObject {
             value = NSDecimalNumber(string: "0")
         }
         let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
-        let entity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category)
+        let entity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category, currencyCode: entry.currencyCode, exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"))
         entity.identifier = nil
         if entry.isAmountNegative {
             if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {

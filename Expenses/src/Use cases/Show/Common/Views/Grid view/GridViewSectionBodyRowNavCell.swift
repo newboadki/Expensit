@@ -41,7 +41,7 @@ struct GridViewSectionBodyRowNavCell<NC:NavigationCoordinator>: View {
     private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
         guard (position >= 0) && (position < section.entries.count) else {
-            return ExpensesSummaryEntryViewModel(id: DateComponents(), title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil)
+            return ExpensesSummaryEntryViewModel(id: DateComponents(), title: nil, value: nil, signOfAmount: .zero, date: nil, tag: nil, currencyCode: "")
         }
         return section.entries[position]
     }

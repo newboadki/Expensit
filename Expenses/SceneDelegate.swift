@@ -11,15 +11,18 @@ import SwiftUI
 import CoreExpenses
 import CoreData
 import CoreDataPersistence
+import DateAndTime
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var presenter: ShowYearlyEntriesPresenter!
     var context: NSManagedObjectContext!
+    private static let semaphore = DispatchSemaphore(value: 1)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
+        
         // Initialize CoreData's Stack
         CoreDataStack.context { result in
             switch result {
@@ -28,15 +31,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 case .success(let context):
                     self.context = context
             }
+            SceneDelegate.semaphore.signal()
         }
+        SceneDelegate.semaphore.wait()
 
         // Dependency injection
         let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
-        
-        let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource)
+        let individualEntriesDataSource = IndividualExpensesDataSource(context: self.context)
+                
+        let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource,
+                                                                 individualEntriesDataSource: IndividualExpensesDataSource(context: self.context))
         migrationManager.applyPendingMigrations(to: CoreDataStack.model())
-        
-        
+
+        populate(expensesDS: individualEntriesDataSource, categoriesDS: selectedCategoryDataSource)
+
         let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource),
                                                                "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:self.context,
@@ -46,9 +54,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                                "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                             selectedCategoryDataSource: selectedCategoryDataSource)]
 
-        let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
-                                                               "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
-                                                               "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
+        let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: YearlyExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
+                                                               "monthly" : ShowMonthlyEntriesPresenter(interactor: MonthlyExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
+                                                               "daily" : ShowDailyEntriesPresenter(interactor: DailyExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
                                                                "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
 
         let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
@@ -95,3 +103,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+private extension SceneDelegate {
+    
+    func populate(expensesDS: IndividualExpensesDataSource, categoriesDS: CoreDataCategoryDataSource) {
+        let dc1 = DateComponents(year: 2020, month: 07, day: 07, hour: 14, minute: 33, second: 25)
+        _ = expensesDS.add(expense: Expense(dateComponents: dc1,
+                                            date: DateConversion.date(withFormat: DateFormats.defaultFormat, from: "07/07/2020"),
+                                            value: 500,
+                                            description: "Gift",
+                                            category: categoriesDS.category(for: "Income"),
+                                            currencyCode: "GBP",
+                                            exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.5")))
+
+        let dc2 = DateComponents(year: 2020, month: 01, day: 01, hour: 14, minute: 33, second: 25)
+        _ = expensesDS.add(expense: Expense(dateComponents: dc2,
+                                            date: DateConversion.date(withFormat: DateFormats.defaultFormat, from: "01/01/2020"),
+                                            value: 15000,
+                                            description: "Gift",
+                                            category: categoriesDS.category(for: "Income"),
+                                            currencyCode: "USD",
+                                            exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0")))
+
+    }
+}

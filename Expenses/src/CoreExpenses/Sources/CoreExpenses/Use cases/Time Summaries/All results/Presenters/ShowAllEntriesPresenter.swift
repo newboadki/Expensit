@@ -12,7 +12,7 @@ import DateAndTime
 
 public class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
     
-    public override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
+    public override func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
         print("All Entries Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             var displaySections = [ExpensesSummarySectionViewModel]()
@@ -40,7 +40,8 @@ public class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                      signOfAmount: sign,
                                                                      date: DateConversion.string(from: date),
                                                                      tag: entryEntity.category?.name,
-                                                                     dateTime: entryEntity.date!)                    
+                                                                     dateTime: entryEntity.date ?? Date(),
+                                                                     currencyCode: "")                    
                     displayEntries.append(displayEntry)
                 }
                 
@@ -56,7 +57,7 @@ public class ShowAllEntriesPresenter: AbstractEntriesSummaryPresenter {
             }
 
             return displaySections
-        }
+        }.eraseToAnyPublisher()
     }
     
     public override func preferredNumberOfColumns() -> Int {

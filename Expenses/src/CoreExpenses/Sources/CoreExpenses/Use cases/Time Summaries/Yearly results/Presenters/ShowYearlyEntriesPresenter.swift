@@ -18,7 +18,7 @@ public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
         
     }
 
-    public override func displayDataFromEntriesForSummary() -> Publishers.Map<Published<[ExpensesGroup]>.Publisher, [ExpensesSummarySectionViewModel]> {
+    public override func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
                         
         print("Yearly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
@@ -52,7 +52,8 @@ public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                                                                      value: yearlySumString as String,
                                                                      signOfAmount: sign,
                                                                      date:nil,
-                                                                     tag: nil)
+                                                                     tag: nil,
+                                                                     currencyCode: "")
                     displayEntries.append(displayEntry)
                 }
                 
@@ -60,7 +61,7 @@ public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 displaySections.append(sectionData)
             }
             return displaySections
-        }
+        }.eraseToAnyPublisher()
     }
     
     public override func preferredNumberOfColumns() -> Int {

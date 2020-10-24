@@ -42,6 +42,7 @@
 		007B83061775A0370052FE84 /* libCoreDataStackHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B83051775A0370052FE84 /* libCoreDataStackHelper.a */; };
 		007B83091775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
 		007B830A1775A0A00052FE84 /* CoreDataStackHelper.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */; };
+		008D238E2543FD9D00C91F5F /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D238D2543FD9D00C91F5F /* LazyView.swift */; };
 		008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E740F236C292B00762E08 /* EntryBoxView.swift */; };
 		008E7412236CC54C00762E08 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7411236CC54C00762E08 /* GridView.swift */; };
 		008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7423236D840300762E08 /* HorizontalEntryView.swift */; };
@@ -160,6 +161,7 @@
 		007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83081775A0A00052FE84 /* CoreDataStackHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataStackHelper.xcodeproj; path = ../CoreDataStackHelper/CoreDataStackHelper.xcodeproj; sourceTree = "<group>"; };
+		008D238D2543FD9D00C91F5F /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		008E740F236C292B00762E08 /* EntryBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryBoxView.swift; sourceTree = "<group>"; };
 		008E7411236CC54C00762E08 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		008E7421236D814000762E08 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				0016A7392476F15900F47C99 /* Grid view */,
 				00AA901024862BA90099AAC1 /* ListView */,
 				00AA900724862B980099AAC1 /* Navigation */,
+				008D238D2543FD9D00C91F5F /* LazyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,9 +690,7 @@
 				ORGANIZATIONNAME = "Borja Arias Drake";
 				TargetAttributes = {
 					007B8248177476780052FE84 = {
-						DevelopmentTeam = HDWMV7DY5P;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
 					};
 					007B8268177476780052FE84 = {
 						LastSwiftMigration = 0800;
@@ -797,6 +798,7 @@
 				00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */,
 				000A9A301D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */,
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
+				008D238E2543FD9D00C91F5F /* LazyView.swift in Sources */,
 				008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
@@ -1032,7 +1034,7 @@
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HDWMV7DY5P;
@@ -1056,7 +1058,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boasoftware.expensit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "68c3505e-88ed-4e8c-9bcd-0511026c00f5";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/Expenses-Bridging-Header.h";

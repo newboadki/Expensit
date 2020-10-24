@@ -50,35 +50,43 @@ public class EntryFormPresenter: ObservableObject {
     }
     
     public func onViewAppear() {
-        if let id = entryIdentifier,
-           let expense = self.getExpenseInteractor.entry(for: id) {
-            var index = 0
-            if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
-                index = i
+        DispatchQueue.global().async {
+            if let id = self.entryIdentifier,
+               let expense = self.getExpenseInteractor.entry(for: id) {
+                var index = 0
+                if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                    index = i
+                }
+                DispatchQueue.main.async {
+                    self.entry = ExpensesSummaryEntryViewModel(id: id,
+                                                               title: expense.entryDescription,
+                                                               value: "\(expense.value)",
+                                                               signOfAmount: expense.isAmountNegative,
+                                                               date: DateConversion.string(from: expense.date!),
+                                                               tag: expense.category?.name,
+                                                               tagId: index,
+                                                               dateTime: expense.date!)
+
+                }
             }
-            self.entry = ExpensesSummaryEntryViewModel(id: id,
-                                                       title: expense.entryDescription,
-                                                       value: "\(expense.value)",
-                                                       signOfAmount: expense.isAmountNegative,
-                                                       date: DateConversion.string(from: expense.date!),
-                                                       tag: expense.category?.name,
-                                                       tagId: index,
-                                                       dateTime: expense.date!)
-            
-            print(self.entry)
         }
     }
     
     public func handleSaveButtonPressed() {
-        self.entry.tag = categories[self.entry.tagId]
-        let entity = entryEntity(fromViewModel: self.entry)
+        
+        self.entry.tag = self.categories[self.entry.tagId]
+        
+        DispatchQueue.global().async {
+            
+            let entity = self.entryEntity(fromViewModel: self.entry)
 
-        if let id = self.entryIdentifier {
-            // Editing existing entry
-            _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
-        } else {
-            // New Entry
-            _ = self.storageInteractor.add(expense: entity)
+            if let id = self.entryIdentifier {
+                // Editing existing entry
+                _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
+            } else {
+                // New Entry
+                _ = self.storageInteractor.add(expense: entity)
+            }
         }
     }
     

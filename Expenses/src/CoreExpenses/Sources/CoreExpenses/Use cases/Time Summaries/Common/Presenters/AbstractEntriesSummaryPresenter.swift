@@ -19,6 +19,7 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
     
     private(set) public var interactor: ExpensesSummaryInteractorProtocol
     private var subscription: AnyCancellable!
+    
         
     // MARK: - Initializers
     
@@ -26,7 +27,6 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
         self.sections = [ExpensesSummarySectionViewModel]()
         self.title = ""
         self.interactor = interactor
-        self.bind()
     }
     
     deinit {
@@ -62,10 +62,16 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
     
     // MARK: - Private methods
     
-    private func bind() {
-        self.subscription = displayDataFromEntriesForSummary().sink(receiveValue: { viewSections in
-            self.sections = viewSections
-        })
+    public func bind() {
+        self.subscription = self.displayDataFromEntriesForSummary()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: RunLoop.main).sink(receiveValue: { viewSections in
+                self.sections = viewSections
+            })
     }
-    
+
+    public func unbind() {
+        self.subscription.cancel()
+    }
+
 }

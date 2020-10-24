@@ -29,12 +29,15 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+
+        
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForYearlySummary(),
                                                                    managedObjectContext: coreDataContext,
                                                                    sectionNameKeyPath: nil,
                                                                    cacheName: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
 
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in

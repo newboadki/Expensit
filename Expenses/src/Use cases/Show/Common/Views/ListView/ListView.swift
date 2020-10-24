@@ -38,7 +38,7 @@ struct ListView<NC: NavigationCoordinator> : View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack {
                 ForEach(self.presenter.sections) { section in
                     VStack {
                         HStack {
@@ -48,7 +48,7 @@ struct ListView<NC: NavigationCoordinator> : View {
                         
                         ForEach(section.entries) { entry in
                             
-                            NavigationLink(destination: self.navigationCoordinator.nextView(forIdentifier: entry.id)) {
+                            NavigationLink(destination: LazyView(self.navigationCoordinator.nextView(forIdentifier: entry.id))) {
                                HorizontalEntryView(title: entry.title ?? "-", amount: entry.value ?? "-", desc: "", sign: entry.signOfAmount).padding(10)
                             }.buttonStyle(PlainButtonStyle())
                         }
@@ -61,5 +61,13 @@ struct ListView<NC: NavigationCoordinator> : View {
                                       presenter: navigationButtonsPresenter)
             )
         }
+        .onAppear(perform: {
+            self.presenter.bind()
+        })
+        .onDisappear(perform: {
+            self.presenter.unbind()
+        })
+
+
     }
 }

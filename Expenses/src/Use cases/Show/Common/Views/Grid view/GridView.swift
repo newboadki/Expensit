@@ -62,12 +62,19 @@ struct GridView<NC: NavigationCoordinator,
 
                 }
             }
+            .onAppear(perform: {
+                self.presenter.bind()
+            })
+            .onDisappear(perform: {
+                self.presenter.unbind()
+            })
         }.navigationBarTitle(self.title)
          .navigationBarItems(trailing:
              NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
                                    categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator,
                                    presenter: navigationButtonsPresenter)
          )
+        
     }
     
     private func rows(sectionCount: Int, colCount: Int) -> Int {

@@ -15,6 +15,7 @@ struct EntryFormView: View {
     @State var isCategoryPickerExpanded: Bool = false
     @State var isDatePickerExpanded: Bool = false
     @Binding var isPresented: Bool
+    @State var digitCount: Int = 0
     
     init(presenter: EntryFormPresenter, beingPresented: Binding<Bool>) {
         self.presenter = presenter
@@ -28,7 +29,10 @@ struct EntryFormView: View {
             List {
                 Section {
                     TextField("Amount", text: amountBinding()).foregroundColor(presenter.entry.isAmountNegative ? .red : .green)
+                    
+                    
                     TextField("Description", text: descBinding())
+                    
                     HStack {
                         Text("Type")
                         
@@ -73,7 +77,14 @@ private extension EntryFormView {
                 self.presenter.entry.value ?? ""
             },
             set: {
-                self.presenter.entry.value = $0
+                
+                let stringWithoutCurrencySymbol = $0.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().currencySymbol, with: "")
+                let stringWithoutGroupingSeparator = stringWithoutCurrencySymbol.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().groupingSeparator, with: "")
+                let stringWithoutDecimalSeparator = stringWithoutGroupingSeparator.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().decimalSeparator, with: "")
+                let stringWithoutDecimalSign = stringWithoutDecimalSeparator.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().minusSign, with: "")
+
+                let rawNumber = NSDecimalNumber(string:stringWithoutDecimalSign).dividing(by: NSDecimalNumber(string: "100"))
+                self.presenter.entry.value = DefaultExpenseCurrencyFormatter.amountFormatter().string(from: rawNumber)
             }
         )
     }

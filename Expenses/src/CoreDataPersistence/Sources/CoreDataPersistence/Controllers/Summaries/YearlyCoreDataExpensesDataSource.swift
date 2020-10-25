@@ -29,12 +29,15 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+
+        
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForYearlySummary(),
                                                                    managedObjectContext: coreDataContext,
                                                                    sectionNameKeyPath: nil,
                                                                    cacheName: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
 
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
@@ -94,13 +97,8 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         let propertiesByName = baseRequest.entity!.propertiesByName
         let yearDescription = propertiesByName["year"]
         let currencyCodeDescription = propertiesByName["currencyCode"]
-        //
-        let valueInBaseExpression = NSExpression(forFunction: "multiply:by:",
-                                                 arguments: [NSExpression(forKeyPath:"value"),
-                                                             NSExpression(forKeyPath:"exchangeRateToBaseCurrency")])
-        
-        //
-        let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueInBaseExpression])
+        let valueDescription = NSExpression(forKeyPath:"value")
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueDescription])
 
         let sumExpressionDescription = NSExpressionDescription()
         sumExpressionDescription.name = "yearlySum"

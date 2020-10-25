@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var presenter: ShowYearlyEntriesPresenter!
     var context: NSManagedObjectContext!
     private static let semaphore = DispatchSemaphore(value: 1)
+    private var workerQueue = DispatchQueue(label: "ExpensesSummaryInteractor")
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -35,43 +37,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         SceneDelegate.semaphore.wait()
 
-        // Dependency injection
-        let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
-        let individualEntriesDataSource = IndividualExpensesDataSource(context: self.context)
-                
-        let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource,
-                                                                 individualEntriesDataSource: IndividualExpensesDataSource(context: self.context))
-        migrationManager.applyPendingMigrations(to: CoreDataStack.model())
-
-        populate(expensesDS: individualEntriesDataSource, categoriesDS: selectedCategoryDataSource)
-
-        let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,
-                                                                                                           selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:self.context,
+        DispatchQueue.global().async {
+            // Dependency injection
+            let selectedCategoryDataSource = CoreDataCategoryDataSource(context: self.context)
+            let individualEntriesDataSource = IndividualExpensesDataSource(context:self.context)
+            
+            let migrationManager = CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource,
+                                                                     individualEntriesDataSource: individualEntriesDataSource)
+            migrationManager.applyPendingMigrations(to: CoreDataStack.model())
+            
+            
+            let dataSources: [String: EntriesSummaryDataSource] = ["yearly" : YearlyCoreDataExpensesDataSource(coreDataContext:self.context,
+                                                                                                               selectedCategoryDataSource: selectedCategoryDataSource),
+                                                                   "monthly" : MonthlyCoreDataExpensesDataSource(coreDataContext:self.context,
+                                                                                                                 selectedCategoryDataSource: selectedCategoryDataSource),
+                                                                   "daily" : DailyCoreDataExpensesDataSource(coreDataContext:self.context,
                                                                                                              selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "daily" : DailyCoreDataExpensesDataSource(coreDataContext:self.context,
-                                                                                                         selectedCategoryDataSource: selectedCategoryDataSource),
-                                                               "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:self.context,
-                                                                                                            selectedCategoryDataSource: selectedCategoryDataSource)]
+                                                                   "all" : AllEntriesCoreDataExpensesDataSource(coreDataContext:self.context,
+                                                                                                                selectedCategoryDataSource: selectedCategoryDataSource)]
 
-        let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: YearlyExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
-                                                               "monthly" : ShowMonthlyEntriesPresenter(interactor: MonthlyExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
-                                                               "daily" : ShowDailyEntriesPresenter(interactor: DailyExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
-                                                               "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
+            let presenters: [String: AbstractEntriesSummaryPresenter] = ["yearly" : ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
+                                                                   "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
+                                                                   "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
+                                                                   "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
 
-        let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
-        let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
-                                                                                                         presenters: presenters,
-                                                                                                         navigationButtonsPresenter: navigationButtonsPresenter,
-                                                                                                         coreDataContext: self.context,
-            selectedCategoryDataSource: selectedCategoryDataSource))
-        // Use a UIHostingController as window root view controller.
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
-            self.window = window
-            window.makeKeyAndVisible()
+            let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
+            let contentView = ExpensesSummaryNavigationView(navigationCoordinator: MainNavigationCoordinator(dataSources:dataSources,
+                                                                                                             presenters: presenters,
+                                                                                                             navigationButtonsPresenter: navigationButtonsPresenter,
+                                                                                                             coreDataContext: self.context,
+                                                                                                             selectedCategoryDataSource: selectedCategoryDataSource))
+            
+            DispatchQueue.main.async {
+                // Use a UIHostingController as window root view controller.
+                if let windowScene = scene as? UIWindowScene {
+                    let window = UIWindow(windowScene: windowScene)
+                    window.rootViewController = UIHostingController(rootView: contentView)
+                    self.window = window
+                    window.makeKeyAndVisible()
+                }
+            }        
         }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

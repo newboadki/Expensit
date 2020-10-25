@@ -42,45 +42,54 @@ public class EntryFormPresenter: ObservableObject {
         let now = DateConversion.string(from: Date())
         self.entry = ExpensesSummaryEntryViewModel(id: DateComponents(),
                                                    title: "",
-                                                   value: "",
+                                                   value: DefaultExpenseCurrencyFormatter.amountFormatter().string(from: NSDecimalNumber(string: "0.00")),
                                                    signOfAmount: .negative,
                                                    date: now,
                                                    tag: nil,
                                                    tagId: 0,
-                                                   currencyCode: "")
-    }
-    
-    public func onViewAppear() {
-        if let id = entryIdentifier,
-           let expense = self.getExpenseInteractor.entry(for: id) {
-            var index = 0
-            if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
-                index = i
+                                                   currencyCode: NSLocale.current.currencySymbol ?? "$")
+        
+        // This should be in onViewAppear, but the presenter is currently getting initiallized twice from the entry form.
+        DispatchQueue.global().async {
+            if let id = self.entryIdentifier,
+               let expense = self.getExpenseInteractor.entry(for: id) {
+                var index = 0
+                if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                    index = i
+                }
+                DispatchQueue.main.async {
+                    self.entry = ExpensesSummaryEntryViewModel(id: id,
+                                                               title: expense.entryDescription,
+                                                               value: DefaultExpenseCurrencyFormatter.amountFormatter().string(from: expense.value),
+                                                               signOfAmount: expense.isAmountNegative,
+                                                               date: DateConversion.string(from: expense.date!),
+                                                               tag: expense.category?.name,
+                                                               tagId: index,
+                                                               dateTime: expense.date!,
+                                                               currencyCode: NSLocale.current.currencySymbol ?? "$")
+                }
             }
-            self.entry = ExpensesSummaryEntryViewModel(id: id,
-                                                       title: expense.entryDescription,
-                                                       value: "\(expense.value)",
-                                                       signOfAmount: expense.isAmountNegative,
-                                                       date: DateConversion.string(from: expense.date!),
-                                                       tag: expense.category?.name,
-                                                       tagId: index,
-                                                       dateTime: expense.date!,
-                                                       currencyCode: "")
-            
-            print(self.entry)
         }
     }
     
+    public func onViewAppear() {
+    }
+    
     public func handleSaveButtonPressed() {
-        self.entry.tag = categories[self.entry.tagId]
-        let entity = entryEntity(fromViewModel: self.entry)
+        
+        self.entry.tag = self.categories[self.entry.tagId]
+        
+        DispatchQueue.global().async {
+            
+            let entity = self.entryEntity(fromViewModel: self.entry)
 
-        if let id = self.entryIdentifier {
-            // Editing existing entry
-            _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
-        } else {
-            // New Entry
-            _ = self.storageInteractor.add(expense: entity)
+            if let id = self.entryIdentifier {
+                // Editing existing entry
+                _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
+            } else {
+                // New Entry
+                _ = self.storageInteractor.add(expense: entity)
+            }
         }
     }
     

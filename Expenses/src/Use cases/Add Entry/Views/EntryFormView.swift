@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreExpenses
+import Currencies
 
 struct EntryFormView: View {
     
@@ -16,6 +17,7 @@ struct EntryFormView: View {
     @State var isDatePickerExpanded: Bool = false
     @Binding var isPresented: Bool
     @State var digitCount: Int = 0
+
     
     init(presenter: EntryFormPresenter, beingPresented: Binding<Bool>) {
         self.presenter = presenter
@@ -26,110 +28,162 @@ struct EntryFormView: View {
     var body: some View {
                 
         return NavigationView {
-            List {
-                Section {
-                    TextField("Amount", text: amountBinding()).foregroundColor(presenter.entry.isAmountNegative ? .red : .green)
-                    
-                    
-                    TextField("Description", text: descBinding())
-                    
-                    HStack {
-                        Text("Type")
-                        
-                        Picker(selection: entryTypeBinding(), label: Text("")) {
-                            Text("Expense").tag(true)
-                            Text("Income").tag(false)
-                        }.pickerStyle(SegmentedPickerStyle())
-                    }
-                }
-
-                Section {
-                    CategoryPickerView(isExpanded: isCategoryPickerExpanded,
-                                       categories: presenter.categories,
-                                       selectedIndex: categoryBinding())
-                        .onTapGesture { self.isCategoryPickerExpanded = !self.isCategoryPickerExpanded }
-                        .animation(.linear(duration: 0.3))                    
-                }
-
-                Section {
-                    DatePickerView(isExpanded: isDatePickerExpanded, date: dateBinding())
-                        .onTapGesture { self.isDatePickerExpanded = !self.isDatePickerExpanded }
-                        .animation(.linear(duration: 0.3))
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("Add Entry")
+                        .font(.system(.title, design: .rounded))
+                        .bold()
+                    Spacer()
                 }
                 
-            }.navigationBarItems(trailing:
-                Button("Save") {
-                    self.presenter.handleSaveButtonPressed()
-                    self.$isPresented.wrappedValue = false
-                }
-            ).onAppear {
+                List {
+                    
+                    Group {
+                        CurrencyTextfieldUIKitWrapper(keyboardType: .numberPad, text: presenter.amountBinding(), color:presenter.textColorBinding(), currencyFormatter: presenter.currencyFormatter)
+                        
+                        TextField("Description (Optional)", text: presenter.descBinding())
+                        
+                        HStack {
+                            Text("Type")
+                            
+                            Picker(selection: presenter.entryTypeBinding(), label: Text("")) {
+                                Text("Expense").tag(true)
+                                Text("Income").tag(false)
+                            }.pickerStyle(SegmentedPickerStyle())
+                        }
+                        
+                        DisclosureGroup("Category: \(presenter.selectedCategoryName())") {
+                            Picker(selection: presenter.categoryBinding(), label: Text("")) {
+                                ForEach(0..<presenter.categories.count) {
+                                    Text(presenter.categories[$0])
+                                }
+                            }
+                        }
+                        
+                        DisclosureGroup("Currency: \(presenter.currencyCodeBinding().wrappedValue)") {
+                            Picker(selection: presenter.currencyCodeIdBinding(), label: Text("")) {
+                                ForEach(0..<presenter.currencyCodes.count) {
+                                    Text(presenter.currencyCodes[$0])
+                                }
+                            }
+                        }
+                        
+                        DatePicker("Date", selection: presenter.dateBinding())
+                    }
+            }
+                
+            Spacer()
+                
+
+            Button("Save") {
+                self.presenter.handleSaveButtonPressed()
+                self.$isPresented.wrappedValue = false
+
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
+            .foregroundColor(Color(.white))
+            .background(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
+            .cornerRadius(10)
+            .padding(16)
+
+
+
+                
+            }.onAppear {
                 self.presenter.onViewAppear()
             }
         }
     }
 }
 
-// MARKS: - Bindings
-private extension EntryFormView {
-    func amountBinding() -> Binding<String> {
-        return Binding<String>(
-            get: {
-                self.presenter.entry.value ?? ""
-            },
-            set: {
-                
-                let stringWithoutCurrencySymbol = $0.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().currencySymbol, with: "")
-                let stringWithoutGroupingSeparator = stringWithoutCurrencySymbol.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().groupingSeparator, with: "")
-                let stringWithoutDecimalSeparator = stringWithoutGroupingSeparator.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().decimalSeparator, with: "")
-                let stringWithoutDecimalSign = stringWithoutDecimalSeparator.replacingOccurrences(of: DefaultExpenseCurrencyFormatter.amountFormatter().minusSign, with: "")
 
-                let rawNumber = NSDecimalNumber(string:stringWithoutDecimalSign).dividing(by: NSDecimalNumber(string: "100"))
-                self.presenter.entry.value = DefaultExpenseCurrencyFormatter.amountFormatter().string(from: rawNumber)
-            }
-        )
-    }
+struct EditEntryFormView: View {
     
-    func descBinding() -> Binding<String> {
-        return Binding<String>(
-            get: {
-                self.presenter.entry.desc ?? ""
-            },
-            set: {
-                self.presenter.entry.desc = $0
-            }
-        )
+    @ObservedObject private var presenter: EditEntryFormPresenter
+    @State var isCategoryPickerExpanded: Bool = false
+    @State var isDatePickerExpanded: Bool = false
+    @Binding var isPresented: Bool
+    @State var digitCount: Int = 0
+
+    
+    init(presenter: EditEntryFormPresenter, beingPresented: Binding<Bool>) {
+        self.presenter = presenter
+        self._isPresented = beingPresented
+        UITableView.appearance().separatorStyle = .none
     }
         
-    func categoryBinding() -> Binding<Int> {
-        return Binding<Int>(
-            get: {
-                self.presenter.entry.tagId
-            },
-            set: {
-                self.presenter.entry.tagId = $0
+    var body: some View {
+                
+        return NavigationView {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("Add Entry")
+                        .font(.system(.title, design: .rounded))
+                        .bold()
+                    Spacer()
+                }
+                
+                List {
+                    
+                    Group {
+                        CurrencyTextfieldUIKitWrapper(keyboardType: .numberPad, text: presenter.amountBinding(), color:presenter.textColorBinding(), currencyFormatter: presenter.currencyFormatter)
+                        
+                        TextField("Description (Optional)", text: presenter.descBinding())
+                        
+                        HStack {
+                            Text("Type")
+                            
+                            Picker(selection: presenter.entryTypeBinding(), label: Text("")) {
+                                Text("Expense").tag(true)
+                                Text("Income").tag(false)
+                            }.pickerStyle(SegmentedPickerStyle())
+                        }
+                        
+                        DisclosureGroup("Category: \(presenter.selectedCategoryName())") {
+                            Picker(selection: presenter.categoryBinding(), label: Text("")) {
+                                ForEach(0..<presenter.categories.count) {
+                                    Text(presenter.categories[$0])
+                                }
+                            }
+                        }
+                        
+                        DisclosureGroup("Currency: \(presenter.currencyCodeBinding().wrappedValue)") {
+                            Picker(selection: presenter.currencyCodeIdBinding(), label: Text("")) {
+                                ForEach(0..<presenter.currencyCodes.count) {
+                                    Text(presenter.currencyCodes[$0])
+                                }
+                            }
+                        }
+                        
+                        DatePicker("Date", selection: presenter.dateBinding())
+                    }
             }
-        )
-    }
-        
-    func dateBinding() -> Binding<Date> {
-        return Binding<Date>(
-            get: {
-                self.presenter.entry.dateTime
-            },
-            set: {
-                self.presenter.entry.dateTime = $0
+                
+            Spacer()
+                
+
+            Button("Save") {
+                self.presenter.handleSaveButtonPressed()
+                self.$isPresented.wrappedValue = false
+
             }
-        )
-    }
-    
-    func entryTypeBinding() -> Binding<Bool> {
-        return Binding<Bool>(
-            get: {
-                self.presenter.entry.isAmountNegative
-            },
-            set: {
-                self.presenter.entry.isAmountNegative = $0
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
+            .foregroundColor(Color(.white))
+            .background(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
+            .cornerRadius(10)
+            .padding(16)
+
+
+
+                
+            }.onAppear {
+                self.presenter.onViewAppear()
             }
-        )
+        }
     }
 }
+

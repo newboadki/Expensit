@@ -24,7 +24,6 @@ public class CoreDataModelMigrationsInteractor {
     }
     
     public func applyPendingMigrations(to model: NSManagedObjectModel) {
-        //applyFixtureForModelObjectVersion_4()
         guard let version = model.versionIdentifiers.first,
             let currentVersion = version as? String else {
             return
@@ -69,6 +68,8 @@ private extension CoreDataModelMigrationsInteractor {
                 _ = applyFixtureForModelObjectVersion_3()
             case 4:
                 _ = applyFixtureForModelObjectVersion_4()
+            case 5:
+                _ = applyFixtureForModelObjectVersion_5()
 
             default:
                 break
@@ -193,7 +194,17 @@ private extension CoreDataModelMigrationsInteractor {
     }
     
     func applyFixtureForModelObjectVersion_4() -> Bool {
-        switch individualEntriesDataSource.setAllEntriesCurrenyCode(to: NSLocale.current.currencyCode)
+        switch individualEntriesDataSource.setDateComponentsInAllEntries()
+        {
+            case .failure(_):
+                return false
+            case .success(let r):
+                return r
+        }
+    }
+
+    func applyFixtureForModelObjectVersion_5() -> Bool {
+        switch individualEntriesDataSource.setAllEntriesCurrenyCode(to: Locale.current.currencyCode)
         {
             case .failure(_):
                 return false

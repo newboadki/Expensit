@@ -10,6 +10,7 @@ import SwiftUI
 import CoreExpenses
 import CoreData
 import CoreDataPersistence
+import Currencies
 
 protocol EntryFormNavigationCoordinator {
     func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView
@@ -31,7 +32,9 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
                                            categoriesInteractor: categoriesInteractor,
                                            getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource),
-                                           editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource))
+                                           editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
+                                           currencyCodesInteractor: SupportedCurrenciesInteractor(),
+                                           exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
         return EntryFormView(presenter: presenter,
                              beingPresented: isPresented)
     }

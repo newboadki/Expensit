@@ -10,6 +10,7 @@ import SwiftUI
 import CoreExpenses
 import CoreData
 import CoreDataPersistence
+import Currencies
 
 protocol NavigationCoordinator {
     associatedtype T: View
@@ -193,10 +194,12 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         let individualEntryDataSource = IndividualExpensesDataSource(context: coreDataContext)
         let storageInteractor = AddExpenseInteractor(dataSource: individualEntryDataSource)
         let presenter = EntryFormPresenter(storageInteractor: storageInteractor,
-                                           categoriesInteractor: categoriesInteractor,
-                                           getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
-                                           entryIdentifier: currentViewIdentifier)
+                                               categoriesInteractor: categoriesInteractor,
+                                               getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource), editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
+                                               entryIdentifier: currentViewIdentifier,
+                                               currencyCodesInteractor: SupportedCurrenciesInteractor(),
+                                               exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
         return EntryFormView(presenter: presenter,
-                             beingPresented: self.isAddEntryFormPresented)
+                                 beingPresented: self.isAddEntryFormPresented)
     }
 }

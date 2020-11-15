@@ -40,6 +40,11 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
         }
     }
     
+    public func expensesGroups() -> [ExpensesGroup] {
+        return self.entriesGroupedByMonth()
+    }
+
+    
     private func entriesGroupedByMonth() -> [ExpensesGroup] {
         let sections = self.performRequest()
         var results = [ExpensesGroup]()
@@ -58,9 +63,12 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
                     let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: nil),
                                         date: date,
                                         value: monthlySum,
+                                        valueInBaseCurrency: monthlySum,
                                         description: nil,
                                         category: nil,
-                                        currencyCode: data["currencyCode"] as! String)
+                                        currencyCode: data["currencyCode"] as! String,
+                                        exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                        isExchangeRateUpToDate: true)
                     entriesForKey.append(entry)
                 }
             }
@@ -87,10 +95,9 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
         let propertiesByName = baseRequest.entity!.propertiesByName
         let monthDescription = propertiesByName["month"]
         let yearDescription = propertiesByName["year"]
-        let currencyCodeDescription = propertiesByName["currencyCode"]
-        
-        let keyPathExpression = NSExpression(forKeyPath: "value")
-        let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
+        let currencyCodeDescription = propertiesByName["currencyCode"]        
+        let valueDescription = NSExpression(forKeyPath:"valueInBaseCurrency")
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueDescription])
         
         let sumExpressionDescription = NSExpressionDescription()
         sumExpressionDescription.name = "monthlySum"

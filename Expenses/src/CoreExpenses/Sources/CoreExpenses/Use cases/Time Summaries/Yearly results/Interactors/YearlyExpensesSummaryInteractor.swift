@@ -17,24 +17,7 @@ public class YearlyExpensesSummaryInteractor: ExpensesSummaryInteractor {
      * - https://api.exchangeratesapi.io/history?start_at=2014-12-01&end_at=2014-12-01&base=EUR&symbols=HRK,GBP
      */
     public override func entriesForSummary() -> AnyPublisher<[ExpensesGroup], Never> {
-        return super.entriesForSummary().map { groups in
-            /*let baseCurrencyCode = Locale.current.currencyCode
-            if let group = groups.first {
-                var amountsGrouppedByYear = [DateComponents : Expense]()
-                for entry in group.entries {
-                    if entry.isInBaseCurrency() {
-                        self.add(expense: entry, to: entry.dateComponents, sumByYear: &amountsGrouppedByYear)
-                    } else {
-                        entry.value = self.convert(entry.value, from: entry.currencyCode, to: baseCurrencyCode)
-                        self.add(expense: entry, to: entry.dateComponents, sumByYear: &amountsGrouppedByYear)
-                    }
-                }
-                
-                return [ExpensesGroup(groupKey: group.groupKey,
-                                      entries: Array(amountsGrouppedByYear.values))]
-            } else {
-                return groups
-            }*/
+        return super.entriesForSummary().map { groups in            
             return groups
         }.eraseToAnyPublisher()
     }
@@ -48,10 +31,10 @@ public class YearlyExpensesSummaryInteractor: ExpensesSummaryInteractor {
         }
     }
     
-    private func convert(_ value: NSDecimalNumber, from currency: String, to baseCurrency: String?) -> NSDecimalNumber {
+    private func convert(_ value: NSDecimalNumber, from currency: String, to baseCurrency: String?, using rate:NSDecimalNumber) -> NSDecimalNumber {
         guard (baseCurrency != nil) else {
             return value
         }
-        return value
+        return value.multiplying(by: rate)
     }
 }

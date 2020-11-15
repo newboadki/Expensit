@@ -29,14 +29,22 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
         self.selectedCategoryDataSource = selectedCategoryDataSource
         super.init()
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.fetchRequestForIndividualEntriesSummary(),
-                                                                   managedObjectContext: coreDataContext, sectionNameKeyPath: "yearMonthDay", cacheName: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)        
+                                                                   managedObjectContext: coreDataContext,
+                                                                   sectionNameKeyPath: "yearMonthDay",
+                                                                   cacheName: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(contextObjectsDidChange(_:)),
+                                               name: Notification.Name.NSManagedObjectContextDidSave,
+                                               object: nil)
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
             self.groupedExpenses = self.allEntries()
         }
+    }
+    
+    public func expensesGroups() -> [ExpensesGroup] {
+        return self.allEntries()
     }
     
     private func allEntries() -> [ExpensesGroup] {
@@ -71,15 +79,27 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
                                                         hour: d.component(.hour),
                                                         minute: d.component(.minute),
                                                         second: d.component(.second))
-                    }
-                    
-                    let entry = Expense(dateComponents: dateComponents, date: coreDataEntry.date, value: coreDataEntry.value, description: coreDataEntry.desc, category: category, currencyCode: "")
+                    }                    
+                    let entry = Expense(dateComponents: dateComponents,
+                                        date: coreDataEntry.date,
+                                        value: coreDataEntry.value,
+                                        valueInBaseCurrency: coreDataEntry.valueInBaseCurrency,
+                                        description: coreDataEntry.desc,
+                                        category: category,
+                                        currencyCode: "",
+                                        exchangeRateToBaseCurrency: coreDataEntry.exchangeRateToBaseCurrency,
+                                        isExchangeRateUpToDate: coreDataEntry.isExchangeRateUpToDate)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
                     entriesForKey.append(entry)                    
                 }
             }
+            
             let section = ExpensesGroup(groupKey: dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
             results.append(section)
+        }
+        
+        results.sort { g1, g2 in
+            return g1.groupKey < g2.groupKey
         }
         
         return results
@@ -102,6 +122,13 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
         }
         
         return DateComponents(year: year, month: month, day: day)
+    }
+    
+    public func isExchangeRateToBaseApproximated() -> Bool {
+        let baseRequest = self.baseRequest(context: coreDataContext)
+        baseRequest.predicate = NSPredicate(format: "isExchangeRateUpToDate = false")
+        let results = try! coreDataContext.fetch(baseRequest)
+        return (results.count > 0)
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {

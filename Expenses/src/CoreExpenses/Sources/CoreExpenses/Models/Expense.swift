@@ -17,14 +17,11 @@ public class Expense {
     public let dateComponents: DateComponents
     public var date: Date?
     public var value: NSDecimalNumber
+    public var valueInBaseCurrency: NSDecimalNumber
     public var entryDescription: String?
-    public var currencyCode: String
-        
-    /// This is optional because when we group by any time amount this field does not make sense.
-    /// It is only populated when the expense represents a single entry. In this case, the amount of the entry
-    /// Is in a given currency, that might or might not be the base currency. Therefore, 'exchangeRateToBaseCurrency'
-    /// Contains a value.
-    public var exchangeRateToBaseCurrency: NSDecimalNumber?
+    public var currencyCode: String        
+    public var exchangeRateToBaseCurrency: NSDecimalNumber
+    public var isExchangeRateUpToDate: Bool
     
     /// Categories are optional, because aggregated values are also represented as an expenses entry.
     /// For example the aggregation of all yearly entries is an value with an associated date, from which only the year is representative.
@@ -62,14 +59,16 @@ public class Expense {
         }
     }
 
-    public init(dateComponents: DateComponents, date: Date?, value: NSDecimalNumber, description: String?, category: ExpenseCategory?, currencyCode: String, exchangeRateToBaseCurrency: NSDecimalNumber? = nil) {
+    public init(dateComponents: DateComponents, date: Date?, value: NSDecimalNumber, valueInBaseCurrency: NSDecimalNumber, description: String?, category: ExpenseCategory?, currencyCode: String, exchangeRateToBaseCurrency: NSDecimalNumber, isExchangeRateUpToDate: Bool) {
         self.dateComponents = dateComponents
         self.date = date
         self.value = value
+        self.valueInBaseCurrency = valueInBaseCurrency
         self.entryDescription = description
         self.category = category
         self.currencyCode = currencyCode
         self.exchangeRateToBaseCurrency = exchangeRateToBaseCurrency
+        self.isExchangeRateUpToDate = isExchangeRateUpToDate
     }
     
     public func isInBaseCurrency() -> Bool {

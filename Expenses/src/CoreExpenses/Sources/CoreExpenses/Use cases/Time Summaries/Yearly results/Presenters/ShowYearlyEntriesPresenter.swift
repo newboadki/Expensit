@@ -31,7 +31,7 @@ public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 var displayEntries = [ExpensesSummaryEntryViewModel]()
                 for entryEntity in entryEntities
                 {
-                    let value = entryEntity.value
+                    let value = entryEntity.valueInBaseCurrency
                     let r : ComparisonResult = value.compare(0)
                     var sign : BSNumberSignType
 

@@ -16,7 +16,7 @@ public struct DefaultExpenseCurrencyFormatter {
             _amountFormatter = NumberFormatter()
             _amountFormatter!.generatesDecimalNumbers = true
             _amountFormatter!.numberStyle = .currency
-            _amountFormatter!.locale = NSLocale.current
+            _amountFormatter!.locale = Locale.current
         }
         
         return _amountFormatter!

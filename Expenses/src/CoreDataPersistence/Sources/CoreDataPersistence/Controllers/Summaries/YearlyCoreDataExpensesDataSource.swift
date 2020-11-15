@@ -46,6 +46,11 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         }                
     }
     
+    public func expensesGroups() -> [ExpensesGroup] {
+        return self.entriesGroupedByYear()
+    }
+
+    
     private func entriesGroupedByYear() -> [ExpensesGroup]
     {
         let sections = self.performRequest()
@@ -63,12 +68,16 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
                 for case let data as NSDictionary in objects
                 {
                     let date = data["date"] as! Date
+                    let value = data["yearlySum"] as! NSDecimalNumber // This is an aggregation of different entries, they are already in the same currency
                     let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: nil, day: nil),
                                         date: date,
-                                        value: data["yearlySum"] as! NSDecimalNumber,
+                                        value: value,
+                                        valueInBaseCurrency: value,
                                         description: nil,
                                         category: nil,
-                                        currencyCode: data["currencyCode"] as! String)
+                                        currencyCode: Locale.current.currencyCode!,
+                                        exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                        isExchangeRateUpToDate: true)
                     entriesForKey.append(entry)
                 }
             }
@@ -96,8 +105,7 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
 
         let propertiesByName = baseRequest.entity!.propertiesByName
         let yearDescription = propertiesByName["year"]
-        let currencyCodeDescription = propertiesByName["currencyCode"]
-        let valueDescription = NSExpression(forKeyPath:"value")
+        let valueDescription = NSExpression(forKeyPath:"valueInBaseCurrency")
         let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueDescription])
 
         let sumExpressionDescription = NSExpressionDescription()
@@ -112,8 +120,8 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
         minDateExpressionDescription.expression = minDateExpression
         minDateExpressionDescription.expressionResultType = .dateAttributeType
 
-        baseRequest.propertiesToFetch = [yearDescription!, sumExpressionDescription, minDateExpressionDescription, currencyCodeDescription]
-        baseRequest.propertiesToGroupBy = [yearDescription!, currencyCodeDescription]
+        baseRequest.propertiesToFetch = [yearDescription!, sumExpressionDescription, minDateExpressionDescription]
+        baseRequest.propertiesToGroupBy = [yearDescription!]
         baseRequest.resultType = .dictionaryResultType
         
         return baseRequest

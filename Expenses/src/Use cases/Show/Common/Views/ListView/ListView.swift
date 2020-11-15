@@ -47,7 +47,6 @@ struct ListView<NC: NavigationCoordinator> : View {
                         }
                         
                         ForEach(section.entries) { entry in
-                            
                             NavigationLink(destination: LazyView(self.navigationCoordinator.nextView(forIdentifier: entry.id))) {
                                HorizontalEntryView(title: entry.title ?? "-", amount: entry.value ?? "-", desc: "", sign: entry.signOfAmount).padding(10)
                             }.buttonStyle(PlainButtonStyle())

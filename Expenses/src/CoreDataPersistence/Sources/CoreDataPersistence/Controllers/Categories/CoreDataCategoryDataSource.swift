@@ -207,7 +207,6 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
             datePredicateString.append(" AND month = \(m)")
         }
         
-        
         let incomePredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE '\(categoryName)' AND value > 0"))
         let expensesPredicate = NSPredicate(format: datePredicateString.appending(" AND tag.name LIKE '\(categoryName)' AND value < 0"))
         

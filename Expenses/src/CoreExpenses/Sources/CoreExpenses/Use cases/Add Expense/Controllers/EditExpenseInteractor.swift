@@ -18,4 +18,8 @@ public class EditExpenseInteractor {
     public func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
         return self.dataSource.saveChanges(in: expense, with: identifier)
     }
+    
+    public func saveChanges(in expenses: [Expense]) -> Result<Bool, Error> {
+        return self.dataSource.saveChanges(in: expenses)
+    }
 }

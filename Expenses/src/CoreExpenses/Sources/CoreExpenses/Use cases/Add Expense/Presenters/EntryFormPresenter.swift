@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Combine
 import DateAndTime
+import Currencies
+import SwiftUI
 
 public class EntryFormPresenter: ObservableObject {
         
@@ -18,8 +20,12 @@ public class EntryFormPresenter: ObservableObject {
     private var categoriesInteractor: GetCategoriesInteractor
     private var getExpenseInteractor:  EntryForDateComponentsInteractor
     private var editExpenseInteractor:  EditExpenseInteractor
+    private var currencyCodesInteractor: SupportedCurrenciesInteractor
+    private var exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor
+    private var updateExpenseCancellable: AnyCancellable?
     
-    // MARK: - Internal
+    // MARK: - Public
+    public var currencyFormatter: NumberFormatter
     @Published public var entry: ExpensesSummaryEntryViewModel
     public var entryIdentifier: DateComponents?
     public lazy var categories: [String] = {
@@ -28,26 +34,46 @@ public class EntryFormPresenter: ObservableObject {
         }
     }()
     
+    public lazy var currencyCodes: [String] = {
+        self.currencyCodesInteractor.getAll()
+    }()
+    
     // MARK: - Initializers
     public init(storageInteractor: AddExpenseInteractor,
                 categoriesInteractor: GetCategoriesInteractor,
                 getExpenseInteractor:  EntryForDateComponentsInteractor,
                 editExpenseInteractor:  EditExpenseInteractor,
-                entryIdentifier: DateComponents? = nil) {
+                entryIdentifier: DateComponents? = nil,
+                currencyCodesInteractor: SupportedCurrenciesInteractor,
+                exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor) {
         self.entryIdentifier = entryIdentifier
         self.storageInteractor = storageInteractor
         self.getExpenseInteractor = getExpenseInteractor
         self.editExpenseInteractor = editExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
+        self.currencyCodesInteractor = currencyCodesInteractor
+        self.exchangeRateInteractor = exchangeRateInteractor
+        
         let now = DateConversion.string(from: Date())
+        
+        currencyFormatter = NumberFormatter()
+        currencyFormatter.generatesDecimalNumbers = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
+        
+        let selectedCurrencyCode = self.currencyCodesInteractor.currentLocaleCurrencyCode
+        
         self.entry = ExpensesSummaryEntryViewModel(id: DateComponents(),
                                                    title: "",
-                                                   value: DefaultExpenseCurrencyFormatter.amountFormatter().string(from: NSDecimalNumber(string: "0.00")),
+                                                   value: self.currencyFormatter.string(from: NSDecimalNumber(string: "0.00")),
                                                    signOfAmount: .negative,
                                                    date: now,
                                                    tag: nil,
                                                    tagId: 0,
-                                                   currencyCode: NSLocale.current.currencySymbol ?? "$")
+                                                   currencyCode: selectedCurrencyCode,
+                                                   currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
+        
+        
         
         // This should be in onViewAppear, but the presenter is currently getting initiallized twice from the entry form.
         DispatchQueue.global().async {
@@ -60,45 +86,86 @@ public class EntryFormPresenter: ObservableObject {
                 DispatchQueue.main.async {
                     self.entry = ExpensesSummaryEntryViewModel(id: id,
                                                                title: expense.entryDescription,
-                                                               value: DefaultExpenseCurrencyFormatter.amountFormatter().string(from: expense.value),
+                                                               value: self.currencyFormatter.string(from: expense.value),
                                                                signOfAmount: expense.isAmountNegative,
                                                                date: DateConversion.string(from: expense.date!),
                                                                tag: expense.category?.name,
                                                                tagId: index,
                                                                dateTime: expense.date!,
-                                                               currencyCode: NSLocale.current.currencySymbol ?? "$")
+                                                               currencyCode: selectedCurrencyCode)
                 }
             }
         }
     }
+   
+    public func currencyCodeIdBinding() -> Binding<Int> {
+        return Binding<Int>(
+            get: {
+                self.entry.currencyCodeId
+            },
+            set: {                
+                self.entry.currencyCodeId = $0
+                if let value = self.entry.value {
+                    if let numberFromCurrentLocale = self.currencyFormatter.number(from: value) {
+                        let newCurrencyCode = self.currencyCodes[$0]
+                        self.currencyFormatter.currencyCode = newCurrencyCode
+                        let stringUsingNewCode = self.currencyFormatter.string(from: numberFromCurrentLocale)
+                        self.entry.value = stringUsingNewCode
+                        self.entry.currencyCode = newCurrencyCode
+
+                        /*let newLocale = self.currencyCodesInteractor.locale(fromIndex: $0)
+                        self.currencyFormatter.locale = newLocale
+                        let stringInNewLocale = self.currencyFormatter.string(from: numberFromCurrentLocale)
+                        self.entry.value = stringInNewLocale
+                        self.entry.currencyCode = newLocale.currencyCode!*/
+                    }
+                }
+            }
+        )
+    }
+    
+    public func currencyCodeBinding() -> Binding<String> {
+        return Binding<String>(
+            get: {
+                self.currencyFormatter.currencyCode!
+            },
+            set: {
+                $0
+            }
+        )
+    }
+    
+    public func selectedCategoryName() -> String {
+        self.categories[self.entry.tagId]
+    }
+    
     
     public func onViewAppear() {
     }
     
     public func handleSaveButtonPressed() {
-        
         self.entry.tag = self.categories[self.entry.tagId]
+        self.entry.currencyCode = self.currencyCodes[self.entry.currencyCodeId]
         
         DispatchQueue.global().async {
-            
-            let entity = self.entryEntity(fromViewModel: self.entry)
-
-            if let id = self.entryIdentifier {
-                // Editing existing entry
-                _ = self.editExpenseInteractor.saveChanges(in: entity, with: id)
-            } else {
-                // New Entry
-                _ = self.storageInteractor.add(expense: entity)
+            self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
+                if let id = self.entryIdentifier {
+                    // Editing existing entry
+                    _ = self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+                } else {
+                    // New Entry
+                    _ = self.storageInteractor.add(expense: expenseEntity)
+                }
             }
         }
     }
     
-    private func entryEntity(fromViewModel entry: ExpensesSummaryEntryViewModel) -> Expense {
+    private func entryEntity(fromViewModel entry: ExpensesSummaryEntryViewModel) -> AnyPublisher<Expense, Never> {
         let date = entry.dateTime
         let value: NSDecimalNumber
             
         if let enteredValue = entry.value, enteredValue.count > 0 {
-            if let decimalValue = DefaultExpenseCurrencyFormatter.amountFormatter().number(from: enteredValue)?.decimalValue {
+            if let decimalValue = self.currencyFormatter.number(from: enteredValue)?.decimalValue {
                 value = NSDecimalNumber(decimal: decimalValue)
             } else {
                 value = NSDecimalNumber(string: "0")
@@ -106,21 +173,107 @@ public class EntryFormPresenter: ObservableObject {
         } else {
             value = NSDecimalNumber(string: "0")
         }
+        
         let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
-        let entity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)), date: date, value:value, description: entry.desc, category: category, currencyCode: entry.currencyCode, exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"))
-        entity.identifier = nil
+        
+        let expenseEntity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
+                                    date: date,
+                                    value: value,
+                                    valueInBaseCurrency: value,
+                                    description: entry.desc,
+                                    category: category,
+                                    currencyCode: entry.currencyCode,
+                                    exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                    isExchangeRateUpToDate: false)
+        
+        expenseEntity.identifier = nil
+        
         if entry.isAmountNegative {
-            if NSDecimalNumber(string: "0").compare(entity.value) == .orderedAscending {
+            if NSDecimalNumber(string: "0").compare(expenseEntity.value) == .orderedAscending {
                 // Has to be negative but it's positive, then change it
-                entity.value = entity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+                expenseEntity.value = expenseEntity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+                expenseEntity.valueInBaseCurrency = expenseEntity.valueInBaseCurrency.multiplying(by: NSDecimalNumber(string: "-1"))
             }
             
         } else {
-            if NSDecimalNumber(string: "0").compare(entity.value) == .orderedDescending {
+            if NSDecimalNumber(string: "0").compare(expenseEntity.value) == .orderedDescending {
                 // Has to be positive but it's negative, then change it
-                entity.value = entity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+                expenseEntity.value = expenseEntity.value.multiplying(by: NSDecimalNumber(string: "-1"))
+                expenseEntity.valueInBaseCurrency = expenseEntity.valueInBaseCurrency.multiplying(by: NSDecimalNumber(string: "-1"))
             }
         }
-        return entity
+        
+        return self.exchangeRateInteractor.update(expenseEntity)
+    }
+}
+
+
+// MARKS: - Bindings
+public extension EntryFormPresenter {
+    
+    func amountBinding() -> Binding<String> {
+        return Binding<String>(
+            get: {
+                self.entry.value ?? ""
+            },
+            set: {
+                self.entry.value = $0
+            }
+        )
+    }
+    
+    func descBinding() -> Binding<String> {
+        return Binding<String>(
+            get: {
+                self.entry.desc ?? ""
+            },
+            set: {
+                self.entry.desc = $0
+            }
+        )
+    }
+        
+    func categoryBinding() -> Binding<Int> {
+        return Binding<Int>(
+            get: {
+                self.entry.tagId
+            },
+            set: {
+                self.entry.tagId = $0
+            }
+        )
+    }
+        
+    func dateBinding() -> Binding<Date> {
+        return Binding<Date>(
+            get: {
+                self.entry.dateTime
+            },
+            set: {
+                self.entry.dateTime = $0
+            }
+        )
+    }
+    
+    func entryTypeBinding() -> Binding<Bool> {
+        return Binding<Bool>(
+            get: {
+                self.entry.isAmountNegative
+            },
+            set: {
+                self.entry.isAmountNegative = $0
+            }
+        )
+    }
+    
+    func textColorBinding() -> Binding<UIColor> {
+        return Binding<UIColor>(
+            get: {
+                (self.entry.isAmountNegative ? #colorLiteral(red: 0.8630144, green: 0.1706678271, blue: 0.09446267039, alpha: 1) : #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) )
+            },
+            set: {
+                $0
+            }
+        )
     }
 }

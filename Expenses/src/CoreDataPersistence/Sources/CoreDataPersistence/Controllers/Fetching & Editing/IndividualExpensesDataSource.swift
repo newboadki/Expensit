@@ -10,7 +10,7 @@ import CoreData
 import CoreExpenses
 
 public class IndividualExpensesDataSource: IndividualEntryDataSoure {
-    
+
     private var context: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
@@ -32,20 +32,34 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         return Expense(dateComponents: identifier,
                        date: first.date,
                        value: first.value,
+                       valueInBaseCurrency: first.valueInBaseCurrency,
                        description: first.desc,
                        category: category,
                        currencyCode: "",
-                       exchangeRateToBaseCurrency: first.exchangeRateToBaseCurrency)
+                       exchangeRateToBaseCurrency: first.exchangeRateToBaseCurrency,
+                       isExchangeRateUpToDate: first.isExchangeRateUpToDate)
     }
     
     public func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
+        return saveChanges(in: expense, with: identifier, saveToContext: true)
+    }
+    
+    public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) -> Result<Bool, Error> {
+        
+        print("LOOKING FOR. Y: \(expense.dateComponents.year), M: \(expense.dateComponents.month), D: \(expense.dateComponents.day), Hour: \(expense.dateComponents.hour), min: \(expense.dateComponents.minute), sec: \(expense.dateComponents.second)")
+
+        
         guard let first = self.entry(for: identifier) else {
+            print("CAN'T SAVE: Y: \(expense.dateComponents.year), M: \(expense.dateComponents.month), D: \(expense.dateComponents.day), Hour: \(expense.dateComponents.hour), min: \(expense.dateComponents.minute), sec: \(expense.dateComponents.second)")
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
         }
         
         first.observableDate = expense.date
         first.value = expense.value
-        first.desc = expense.entryDescription
+        first.valueInBaseCurrency = expense.valueInBaseCurrency
+        first.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
+        first.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
+        first.desc = expense.entryDescription        
         
         let request = Tag.tagFetchRequest()
         request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
@@ -55,26 +69,43 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             }
         }
 
-        do {
-            try context.save()
-        } catch {
-            return .failure(error)
+        if saveToContext {
+            do {
+                try context.save()
+            } catch {
+                return .failure(error)
+            }
         }
         
         return .success(true)
+    }
+    
+    public func saveChanges(in expenses: [Expense]) -> Result<Bool, Error> {
+        for expense in expenses {
+            _ = self.saveChanges(in: expense, with: expense.dateComponents, saveToContext: false)
+        }
+        
+        do
+        {
+            try context.save()
+            return .success(true)
+        }
+        catch
+        {
+            return .failure(error)
+        }
     }
     
     public func add(expense: Expense) -> Result<Bool, Error> {
         let description = NSEntityDescription.entity(forEntityName: "Entry", in: context)
         let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Entry
         managedObject.value = expense.value
+        managedObject.valueInBaseCurrency = expense.valueInBaseCurrency
         managedObject.observableDate = expense.date
         managedObject.currencyCode = expense.currencyCode
-        
-        if let rate = expense.exchangeRateToBaseCurrency {
-            managedObject.exchangeRateToBaseCurrency = rate
-        }
-        
+        managedObject.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
+        managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
+                
         if let y = expense.dateComponents.year {
             managedObject.year = NSNumber(integerLiteral: y)
         }
@@ -116,8 +147,9 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         if let entries = try? context.fetch(request) {
             for entry in entries {
-                entry.currencyCode = code ?? "GBP"
+                entry.currencyCode = code ?? "USD"
                 entry.exchangeRateToBaseCurrency = NSDecimalNumber(string: "1.0")
+                entry.isExchangeRateUpToDate = true
             }
         }
 
@@ -128,8 +160,34 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         }
         
         return .success(true)
-
     }
+    
+    public func setDateComponentsInAllEntries() -> Result<Bool, Error> {
+        let request = NSFetchRequest<Entry>(entityName: "Entry")
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        if let entries = try? context.fetch(request) {
+            for entry in entries {
+                if let d = entry.date {
+                    entry.year = NSNumber(integerLiteral:d.component(.year))
+                    entry.month = NSNumber(integerLiteral:d.component(.month))
+                    entry.day = NSNumber(integerLiteral:d.component(.day))
+                    entry.hour = NSNumber(integerLiteral:d.component(.hour))
+                    entry.minute = NSNumber(integerLiteral:d.component(.minute))
+                    entry.second = NSNumber(integerLiteral:d.component(.second))
+                }
+                
+            }
+        }
+
+        do {
+            try context.save()
+        } catch {
+            return .failure(error)
+        }
+        
+        return .success(true)
+    }
+    
 }
 
 private extension IndividualExpensesDataSource {
@@ -154,10 +212,12 @@ private extension IndividualExpensesDataSource {
                                         "second", NSNumber(value: s))
         
         guard let results = try? context.fetch(request) else {
+            print("Leaving because fetch blew up!")
             return nil
         }
         
         guard let first = results.first else {
+            print("Leaving because fetch returned nothing")
             return nil
         }
         

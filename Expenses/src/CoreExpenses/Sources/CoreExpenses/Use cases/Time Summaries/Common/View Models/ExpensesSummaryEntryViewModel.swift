@@ -27,8 +27,9 @@ public struct ExpensesSummaryEntryViewModel : Identifiable
     public var tagId : Int
     public var dateTime: Date
     public var currencyCode: String
+    public var currencyCodeId: Int
 
-    public init(id: DateComponents, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?, tagId: Int = 2, dateTime: Date = Date(), currencyCode: String)
+    public init(id: DateComponents, title : String?, value : String?, signOfAmount : BSNumberSignType, date: String?, tag: String?, tagId: Int = 2, dateTime: Date = Date(), currencyCode: String, currencyCodeId: Int = 0)
     {
         self.id = id
         self.title = title
@@ -41,5 +42,6 @@ public struct ExpensesSummaryEntryViewModel : Identifiable
         self.tagId = tagId
         self.dateTime = dateTime
         self.currencyCode = currencyCode
+        self.currencyCodeId = currencyCodeId
     }
 }

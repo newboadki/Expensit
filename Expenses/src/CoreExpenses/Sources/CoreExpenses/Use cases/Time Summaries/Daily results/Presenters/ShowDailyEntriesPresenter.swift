@@ -40,7 +40,7 @@ public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
                 
                 for entryEntity in section.entries
                 {
-                    let value = entryEntity.value
+                    let value = entryEntity.valueInBaseCurrency
                     let r : ComparisonResult = value.compare(0)
                     var sign : BSNumberSignType
                     

@@ -37,6 +37,11 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         }
     }
     
+    public func expensesGroups() -> [ExpensesGroup] {
+        return self.entriesGroupedByDay()
+    }
+
+    
     private func entriesGroupedByDay() -> [ExpensesGroup] {                
         let sections = self.performRequest()
         var results = [ExpensesGroup]()
@@ -54,9 +59,12 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
                     let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
                                         date: date,
                                         value: dailySum,
+                                        valueInBaseCurrency: dailySum,
                                         description: nil,
                                         category: nil,
-                                        currencyCode: "")
+                                        currencyCode: "",
+                                        exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                        isExchangeRateUpToDate: true)
                     entriesForKey.append(entry)
                 }
             }
@@ -105,8 +113,8 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         let monthYearDescription = propertiesByName["monthYear"]
         let currencyCodeDescription = propertiesByName["currencyCode"]
         
-        let keyPathExpression = NSExpression(forKeyPath: "value")
-        let sumExpression = NSExpression(forFunction: "sum:", arguments: [keyPathExpression])
+        let valueDescription = NSExpression(forKeyPath:"valueInBaseCurrency")
+        let sumExpression = NSExpression(forFunction: "sum:", arguments: [valueDescription])
         
         let sumExpressionDescription = NSExpressionDescription()
         sumExpressionDescription.name = "dailySum"

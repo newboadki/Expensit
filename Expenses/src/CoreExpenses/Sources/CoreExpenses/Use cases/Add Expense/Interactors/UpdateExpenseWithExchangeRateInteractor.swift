@@ -33,6 +33,7 @@ public class UpdateExpenseWithExchangeRateInteractor {
         // If already in the base currency then return the expense
         guard from != to else {
             expense.valueInBaseCurrency = expense.value
+            expense.exchangeRateToBaseCurrency = 1
             expense.isExchangeRateUpToDate = true
             return Just(expense).eraseToAnyPublisher()
         }

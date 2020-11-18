@@ -72,30 +72,6 @@ public class EntryFormPresenter: ObservableObject {
                                                    tagId: 0,
                                                    currencyCode: selectedCurrencyCode,
                                                    currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
-        
-        
-        
-        // This should be in onViewAppear, but the presenter is currently getting initiallized twice from the entry form.
-        DispatchQueue.global().async {
-            if let id = self.entryIdentifier,
-               let expense = self.getExpenseInteractor.entry(for: id) {
-                var index = 0
-                if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
-                    index = i
-                }
-                DispatchQueue.main.async {
-                    self.entry = ExpensesSummaryEntryViewModel(id: id,
-                                                               title: expense.entryDescription,
-                                                               value: self.currencyFormatter.string(from: expense.value),
-                                                               signOfAmount: expense.isAmountNegative,
-                                                               date: DateConversion.string(from: expense.date!),
-                                                               tag: expense.category?.name,
-                                                               tagId: index,
-                                                               dateTime: expense.date!,
-                                                               currencyCode: selectedCurrencyCode)
-                }
-            }
-        }
     }
    
     public func currencyCodeIdBinding() -> Binding<Int> {
@@ -112,12 +88,6 @@ public class EntryFormPresenter: ObservableObject {
                         let stringUsingNewCode = self.currencyFormatter.string(from: numberFromCurrentLocale)
                         self.entry.value = stringUsingNewCode
                         self.entry.currencyCode = newCurrencyCode
-
-                        /*let newLocale = self.currencyCodesInteractor.locale(fromIndex: $0)
-                        self.currencyFormatter.locale = newLocale
-                        let stringInNewLocale = self.currencyFormatter.string(from: numberFromCurrentLocale)
-                        self.entry.value = stringInNewLocale
-                        self.entry.currencyCode = newLocale.currencyCode!*/
                     }
                 }
             }
@@ -141,6 +111,25 @@ public class EntryFormPresenter: ObservableObject {
     
     
     public func onViewAppear() {
+        let selectedCurrencyCode = self.currencyCodesInteractor.currentLocaleCurrencyCode
+        
+        if let id = self.entryIdentifier,
+           let expense = self.getExpenseInteractor.entry(for: id) {
+            var index = 0
+            if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                index = i
+            }
+            
+            self.entry = ExpensesSummaryEntryViewModel(id: id,
+                                                       title: expense.entryDescription,
+                                                       value: self.currencyFormatter.string(from: expense.value),
+                                                       signOfAmount: expense.isAmountNegative,
+                                                       date: DateConversion.string(from: expense.date!),
+                                                       tag: expense.category?.name,
+                                                       tagId: index,
+                                                       dateTime: expense.date!,
+                                                       currencyCode: selectedCurrencyCode)
+        }
     }
     
     public func handleSaveButtonPressed() {
@@ -176,7 +165,7 @@ public class EntryFormPresenter: ObservableObject {
         
         let category = ExpenseCategory(name: entry.tag!, iconName: "", color: UIColor.white) // we only need the name to find the coredata entity later
         
-        let expenseEntity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
+        let expenseEntity = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day), hour: date.component(.hour), minute: date.component(.minute), second: date.component(.second)),
                                     date: date,
                                     value: value,
                                     valueInBaseCurrency: value,

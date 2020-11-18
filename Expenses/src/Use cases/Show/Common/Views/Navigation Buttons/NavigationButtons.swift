@@ -15,8 +15,6 @@ struct NavigationButtonsView: View {
     private var entryFormCoordinator: EntryFormNavigationCoordinator
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     @ObservedObject private var presenter: NavigationButtonsPresenter
-    @State private var showEntryForm = false
-    @State private var showCategoryFilter = false
 
     init(entryFormCoordinator: EntryFormNavigationCoordinator,
          categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,

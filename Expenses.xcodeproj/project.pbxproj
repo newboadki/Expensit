@@ -51,7 +51,7 @@
 		00A38C1D245574D500E05596 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A38C1C245574D500E05596 /* Environment.swift */; };
 		00A6DA0724BA08A500562426 /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 00A6DA0624BA08A500562426 /* CoreExpenses */; };
 		00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 007B8260177476780052FE84 /* Expenses.xcdatamodeld */; };
-		00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* EntryFormView.swift */; };
+		00AA901224863CB70099AAC1 /* AddEntryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA901124863CB70099AAC1 /* AddEntryFormView.swift */; };
 		00AA9017248683A20099AAC1 /* EntryFormNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */; };
 		00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA90182487BE420099AAC1 /* CategoryPickerView.swift */; };
 		00AA9022248930250099AAC1 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AA9021248930250099AAC1 /* TODO.txt */; };
@@ -161,7 +161,7 @@
 		00A38C152454D02D00E05596 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Expenses/SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		00A38C1C245574D500E05596 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		00A5D45117B7D398003F81B5 /* BSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSConstants.h; sourceTree = "<group>"; };
-		00AA901124863CB70099AAC1 /* EntryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormView.swift; sourceTree = "<group>"; };
+		00AA901124863CB70099AAC1 /* AddEntryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryFormView.swift; sourceTree = "<group>"; };
 		00AA9016248683A20099AAC1 /* EntryFormNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFormNavigationCoordinator.swift; sourceTree = "<group>"; };
 		00AA90182487BE420099AAC1 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		00AA9021248930250099AAC1 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
@@ -620,7 +620,7 @@
 		00C213B9217BB3C800805207 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				00AA901124863CB70099AAC1 /* EntryFormView.swift */,
+				00AA901124863CB70099AAC1 /* AddEntryFormView.swift */,
 				00AA90182487BE420099AAC1 /* CategoryPickerView.swift */,
 			);
 			name = Views;
@@ -777,7 +777,7 @@
 				008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */,
 				00A38C132454ABBD00E05596 /* ListView.swift in Sources */,
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
-				00AA901224863CB70099AAC1 /* EntryFormView.swift in Sources */,
+				00AA901224863CB70099AAC1 /* AddEntryFormView.swift in Sources */,
 				00E86294255C50D5006CBCED /* CurrencyExchangeRatesDataSourceMapper.swift in Sources */,
 				00D869BD24954DBE007B0A46 /* PieChartView.swift in Sources */,
 				00D86AE5249BD286007B0A46 /* PieChartPresenter.swift in Sources */,

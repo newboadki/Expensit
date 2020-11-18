@@ -149,6 +149,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             for entry in entries {
                 entry.currencyCode = code ?? "USD"
                 entry.exchangeRateToBaseCurrency = NSDecimalNumber(string: "1.0")
+                entry.valueInBaseCurrency = entry.value
                 entry.isExchangeRateUpToDate = true
             }
         }

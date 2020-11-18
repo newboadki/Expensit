@@ -168,8 +168,6 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
-    private var _isAddEntryFormPresented: Bool = true
-    private var isAddEntryFormPresented: Binding<Bool>!
     
     init(dataSources: [String: EntriesSummaryDataSource],
          presenters: [String: AbstractEntriesSummaryPresenter],
@@ -181,11 +179,6 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.coreDataContext = coreDataContext
         self.selectedCategoryDataSource = selectedCategoryDataSource
         self.navigationButtonsPresenter = navigationButtonsPresenter
-        isAddEntryFormPresented = Binding<Bool>(get: { () -> Bool in
-            self._isAddEntryFormPresented
-        }, set: { value in
-            self._isAddEntryFormPresented = value
-        })
     }
     
     func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> EntryFormView {
@@ -199,7 +192,6 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                                                entryIdentifier: currentViewIdentifier,
                                                currencyCodesInteractor: SupportedCurrenciesInteractor(),
                                                exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
-        return EntryFormView(presenter: presenter,
-                                 beingPresented: self.isAddEntryFormPresented)
+        return EntryFormView(presenter: presenter)
     }
 }

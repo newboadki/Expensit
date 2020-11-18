@@ -34,6 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Convert exchange rates
             self.converExchangeRatesIfCalculationsAreApproximated()
 
+            //self.di.individualEntriesDataSource.setAllEntriesCurrenyCode(to: "GBP")
+            
             // Setup the view
             let contentView = ExpensesSummaryNavigationView(navigationCoordinator: self.di.mainNavigationCoordinator())
             

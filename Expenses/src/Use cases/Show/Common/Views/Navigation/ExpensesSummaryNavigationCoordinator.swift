@@ -181,7 +181,7 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         self.navigationButtonsPresenter = navigationButtonsPresenter
     }
     
-    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> EntryFormView {
+    func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> AddEntryFormView {
         let categoriesDataSource = CoreDataCategoryDataSource(context: coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: coreDataContext)
@@ -192,6 +192,6 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                                                entryIdentifier: currentViewIdentifier,
                                                currencyCodesInteractor: SupportedCurrenciesInteractor(),
                                                exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
-        return EntryFormView(presenter: presenter)
+        return AddEntryFormView(presenter: presenter)
     }
 }

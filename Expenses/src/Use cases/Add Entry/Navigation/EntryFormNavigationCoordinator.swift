@@ -13,7 +13,7 @@ import CoreDataPersistence
 import Currencies
 
 protocol EntryFormNavigationCoordinator {
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EditEntryFormView
 }
 
 
@@ -24,7 +24,7 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
         self.coreDataContext = coreDataContext
     }
     
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EntryFormView {
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EditEntryFormView {
         let categoriesDataSource = CoreDataCategoryDataSource(context: self.coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataContext)
@@ -35,6 +35,6 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
                                            editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
                                            currencyCodesInteractor: SupportedCurrenciesInteractor(),
                                            exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
-        return EntryFormView(presenter: presenter)
+        return EditEntryFormView(presenter: presenter)
     }
 }

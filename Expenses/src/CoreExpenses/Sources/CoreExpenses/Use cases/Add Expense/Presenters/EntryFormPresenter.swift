@@ -128,7 +128,8 @@ public class EntryFormPresenter: ObservableObject {
                                                            tag: expense.category?.name,
                                                            tagId: index,
                                                            dateTime: expense.date!,
-                                                           currencyCode: selectedCurrencyCode)
+                                                           currencyCode: selectedCurrencyCode,
+                                                           currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
         }
     }
     

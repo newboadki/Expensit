@@ -101,7 +101,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         managedObject.observableDate = expense.date
         managedObject.currencyCode = expense.currencyCode
         managedObject.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
-        managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
+        managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate        
                 
         if let y = expense.dateComponents.year {
             managedObject.year = NSNumber(integerLiteral: y)
@@ -208,12 +208,10 @@ private extension IndividualExpensesDataSource {
                                         "second", NSNumber(value: s))
         
         guard let results = try? context.fetch(request) else {
-            print("Leaving because fetch blew up!")
             return nil
         }
         
         guard let first = results.first else {
-            print("Leaving because fetch returned nothing")
             return nil
         }
         

@@ -115,20 +115,20 @@ public class EntryFormPresenter: ObservableObject {
         
         if let id = self.entryIdentifier,
            let expense = self.getExpenseInteractor.entry(for: id) {
-            var index = 0
-            if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
-                index = i
-            }
-            
-            self.entry = ExpensesSummaryEntryViewModel(id: id,
-                                                       title: expense.entryDescription,
-                                                       value: self.currencyFormatter.string(from: expense.value),
-                                                       signOfAmount: expense.isAmountNegative,
-                                                       date: DateConversion.string(from: expense.date!),
-                                                       tag: expense.category?.name,
-                                                       tagId: index,
-                                                       dateTime: expense.date!,
-                                                       currencyCode: selectedCurrencyCode)
+                var index = 0
+                if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                    index = i
+                }
+                
+                self.entry = ExpensesSummaryEntryViewModel(id: id,
+                                                           title: expense.entryDescription,
+                                                           value: self.currencyFormatter.string(from: expense.valueInBaseCurrency),
+                                                           signOfAmount: expense.isAmountNegative,
+                                                           date: DateConversion.string(from: expense.date!),
+                                                           tag: expense.category?.name,
+                                                           tagId: index,
+                                                           dateTime: expense.date!,
+                                                           currencyCode: selectedCurrencyCode)
         }
     }
     

@@ -46,9 +46,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     
     public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) -> Result<Bool, Error> {
         
-        print("LOOKING FOR. Y: \(expense.dateComponents.year), M: \(expense.dateComponents.month), D: \(expense.dateComponents.day), Hour: \(expense.dateComponents.hour), min: \(expense.dateComponents.minute), sec: \(expense.dateComponents.second)")
-
-        
         guard let first = self.entry(for: identifier) else {
             print("CAN'T SAVE: Y: \(expense.dateComponents.year), M: \(expense.dateComponents.month), D: \(expense.dateComponents.day), Hour: \(expense.dateComponents.hour), min: \(expense.dateComponents.minute), sec: \(expense.dateComponents.second)")
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
@@ -132,7 +129,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             let tag = try! self.context.fetch(fetchRequest).last!
             managedObject.tag = tag
         }
-        
 
         do {
             try context.save()
@@ -176,7 +172,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                     entry.minute = NSNumber(integerLiteral:d.component(.minute))
                     entry.second = NSNumber(integerLiteral:d.component(.second))
                 }
-                
             }
         }
 

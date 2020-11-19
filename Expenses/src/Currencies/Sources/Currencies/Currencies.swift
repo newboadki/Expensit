@@ -7,3 +7,4 @@ public enum CurrencyCode: String, Hashable, CaseIterable {
 
 
 
+public let kPreviousLocaleCurrencyCode = "previous-currrent-locale"

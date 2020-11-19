@@ -68,13 +68,20 @@ class DependencyInjection {
     
     func coreDataModelMigrationInteractor() -> CoreDataModelMigrationsInteractor {
         return CoreDataModelMigrationsInteractor(categoryDataSource: selectedCategoryDataSource,
-                                                 individualEntriesDataSource: individualEntriesDataSource)
+                                                 individualEntriesDataSource: individualEntriesDataSource,
+                                                 currencySettingsInteractor: CurrencySettingsDefaultInteractor(dataSoure: CurrencySettingsDefaultDataSource()))
     }
     
     func exchangeRatesConversionInteractor() -> ConvertToBaseCurrencyInteractor {
         return ConvertToBaseCurrencyInteractor(dataSource: dataSources["all"]!,
                                               ratesDataSource: CurrencyExchangeRatesDataSourceMapper(dataSource: CurrencyExchangeRatesNetworkDataSource()),
                                               saveExpense: EditExpenseInteractor(dataSource: individualEntriesDataSource))
+    }
+    
+    func currencyCodeChangeManager() -> CurrencyCodeChangeManager {
+        return CurrencyCodeChangeManager(exchangeRatesConversionInteractor: exchangeRatesConversionInteractor(),
+                                         allEntriesDataSource: dataSources["all"]! as! AllEntriesCoreDataExpensesDataSource,
+                                         currencySettingsInteractor: CurrencySettingsDefaultInteractor(dataSoure: CurrencySettingsDefaultDataSource()))
     }
     
     private func populate() {

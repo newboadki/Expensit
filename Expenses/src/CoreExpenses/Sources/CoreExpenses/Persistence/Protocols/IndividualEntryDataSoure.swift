@@ -13,4 +13,5 @@ public protocol IndividualEntryDataSoure {
     func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error>
     func saveChanges(in expenses: [Expense]) -> Result<Bool, Error>
     func add(expense: Expense) -> Result<Bool, Error>
+    func delete(_ expense: Expense) -> Result<Bool, Error>
 }

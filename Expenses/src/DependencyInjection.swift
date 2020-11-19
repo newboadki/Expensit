@@ -78,8 +78,8 @@ class DependencyInjection {
                                               saveExpense: EditExpenseInteractor(dataSource: individualEntriesDataSource))
     }
     
-    func currencyCodeChangeManager() -> CurrencyCodeChangeManager {
-        return CurrencyCodeChangeManager(exchangeRatesConversionInteractor: exchangeRatesConversionInteractor(),
+    func currencyCodeChangeManager() -> CurrencyCodeChangeInteractor {
+        return CurrencyCodeChangeInteractor(exchangeRatesConversionInteractor: exchangeRatesConversionInteractor(),
                                          allEntriesDataSource: dataSources["all"]! as! AllEntriesCoreDataExpensesDataSource,
                                          currencySettingsInteractor: CurrencySettingsDefaultInteractor(dataSoure: CurrencySettingsDefaultDataSource()))
     }

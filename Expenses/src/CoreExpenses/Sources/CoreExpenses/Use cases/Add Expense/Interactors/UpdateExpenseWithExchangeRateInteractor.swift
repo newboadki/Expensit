@@ -31,8 +31,7 @@ public class UpdateExpenseWithExchangeRateInteractor {
             expense.isExchangeRateUpToDate = true
             return Just(expense).eraseToAnyPublisher()
         }
-        
-        // Convert from expense.currencyCode to Locale.current.currencyCode
+                
         return dataSource.getLatest(from: from, to: [to]).flatMap { rate -> AnyPublisher<Expense, Never> in
             let conversionRate = rate.rates[to] ?? 1 // If the currency is unknown (not in the defaults) assume 1.0.
             expense.valueInBaseCurrency = expense.value.multiplying(by: conversionRate)

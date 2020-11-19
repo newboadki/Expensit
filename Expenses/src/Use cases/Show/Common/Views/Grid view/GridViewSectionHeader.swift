@@ -9,7 +9,13 @@
 import SwiftUI
 import CoreExpenses
 
-struct GridViewSectionHeader<NC: GridViewSectionHeaderNavigationCoordinator>: View {
+struct GridViewSectionHeader<NC: GridViewSectionHeaderNavigationCoordinator>: View, Identifiable {
+    
+    var id: DateComponents {
+        get {
+            section.id
+        }
+    }
     
     var section: ExpensesSummarySectionViewModel
     var presenter: AbstractEntriesSummaryPresenter

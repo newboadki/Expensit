@@ -91,7 +91,6 @@ public class MonthlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSour
 
     private func fetchRequestForMonthlySummary() -> NSFetchRequest<NSFetchRequestResult> {
         let baseRequest = self.baseRequest(context: coreDataContext)
-        
         let propertiesByName = baseRequest.entity!.propertiesByName
         let monthDescription = propertiesByName["month"]
         let yearDescription = propertiesByName["year"]

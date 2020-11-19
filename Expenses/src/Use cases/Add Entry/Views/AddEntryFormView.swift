@@ -13,26 +13,51 @@ import Currencies
 struct AddEntryFormView: View {
     
     @ObservedObject private var presenter: EntryFormPresenter
+    @Environment(\.presentationMode) private var presentationMode
     
     init(presenter: EntryFormPresenter) {
         self.presenter = presenter
     }
         
     var body: some View {
-        EntryFormView().environmentObject(presenter)
+        NavigationView {
+            EntryFormView().environmentObject(presenter)
+                .navigationBarTitle("New Entry", displayMode: .inline)
+                .navigationBarItems(leading:
+                                        Button("Cancel") {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                        .foregroundColor(Color(#colorLiteral(red: 0.7202403275, green: 0.06977037806, blue: 0.09890884181, alpha: 1))),
+                                    trailing:
+                                        Button("Save") {
+                                            self.presenter.handleSaveButtonPressed()
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
+                                        
+                )
+        }
+        
     }
 }
 
 struct EditEntryFormView: View {
     
     @ObservedObject private var presenter: EntryFormPresenter
+    @Environment(\.presentationMode) private var presentationMode
     
     init(presenter: EntryFormPresenter) {
         self.presenter = presenter
     }
         
     var body: some View {
-        EntryFormView().environmentObject(presenter)
+        EntryFormView(showDelete: true).environmentObject(presenter)
+            .navigationBarItems(trailing:Button("Save") {
+                self.presenter.handleSaveButtonPressed()
+                presentationMode.wrappedValue.dismiss()
+            }
+            .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1))))
+            .navigationBarTitle("Edit Entry", displayMode: .inline)
     }
 }
 
@@ -43,10 +68,12 @@ struct EntryFormView: View {
     @State private var isCategoryPickerExpanded: Bool = false
     @State private var isDatePickerExpanded: Bool = false
     @State private var digitCount: Int = 0
+    @State private var showingAlert = false
     @Environment(\.presentationMode) private var presentationMode
+    private var showDelete: Bool
     
-    
-    init() {
+    init(showDelete: Bool = false) {
+        self.showDelete = showDelete
         UITableView.appearance().separatorStyle = .none
     }
         
@@ -85,17 +112,33 @@ struct EntryFormView: View {
             
             DatePicker("Date", selection: presenter.dateBinding())
             
-            Button("Save") {
-                self.presenter.handleSaveButtonPressed()
-                presentationMode.wrappedValue.dismiss()
-
+            if self.showDelete {
+                
+                Button(action: {
+                    self.showingAlert = true
+                }) {
+                    HStack {
+                        Image(systemName: "trash")
+                            .font(.title)
+                        Text("Delete")
+                            .fontWeight(.semibold)
+                            
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                    .foregroundColor(Color(#colorLiteral(red: 0.7202403275, green: 0.06977037806, blue: 0.09890884181, alpha: 1)))
+                }
+                .alert(isPresented:$showingAlert) {
+                    Alert(title: Text("About to Delete"), message: Text("Are you sure you want to delete this expense?"), primaryButton: .destructive(Text("Yes, Delete")) {
+                        self.presenter.handleDeleteButtonPressed()
+                        presentationMode.wrappedValue.dismiss()
+                    }, secondaryButton: .cancel())
+                }
+                
+                
+                
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 44)
-            .foregroundColor(Color(.white))
-            .background(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
-            .cornerRadius(10)
-            .padding(16)
+
         }
         .onAppear {
             self.presenter.onViewAppear()

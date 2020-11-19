@@ -20,6 +20,7 @@ public class EntryFormPresenter: ObservableObject {
     private var categoriesInteractor: GetCategoriesInteractor
     private var getExpenseInteractor:  EntryForDateComponentsInteractor
     private var editExpenseInteractor:  EditExpenseInteractor
+    private var deleteExpenseInteractor:  DeleteExpenseInteractor
     private var currencyCodesInteractor: SupportedCurrenciesInteractor
     private var exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor
     private var updateExpenseCancellable: AnyCancellable?
@@ -43,6 +44,7 @@ public class EntryFormPresenter: ObservableObject {
                 categoriesInteractor: GetCategoriesInteractor,
                 getExpenseInteractor:  EntryForDateComponentsInteractor,
                 editExpenseInteractor:  EditExpenseInteractor,
+                deleteExpenseInteractor:  DeleteExpenseInteractor,
                 entryIdentifier: DateComponents? = nil,
                 currencyCodesInteractor: SupportedCurrenciesInteractor,
                 exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor) {
@@ -50,6 +52,7 @@ public class EntryFormPresenter: ObservableObject {
         self.storageInteractor = storageInteractor
         self.getExpenseInteractor = getExpenseInteractor
         self.editExpenseInteractor = editExpenseInteractor
+        self.deleteExpenseInteractor = deleteExpenseInteractor
         self.categoriesInteractor = categoriesInteractor
         self.currencyCodesInteractor = currencyCodesInteractor
         self.exchangeRateInteractor = exchangeRateInteractor
@@ -146,6 +149,14 @@ public class EntryFormPresenter: ObservableObject {
                     // New Entry
                     _ = self.storageInteractor.add(expense: expenseEntity)
                 }
+            }
+        }
+    }
+    
+    public func handleDeleteButtonPressed() {
+        DispatchQueue.global().async {
+            self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
+                _ = self.deleteExpenseInteractor.delete(expenseEntity)            
             }
         }
     }

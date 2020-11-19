@@ -13,7 +13,7 @@ import CoreDataPersistence
 import Currencies
 
 protocol EntryFormNavigationCoordinator {
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EditEntryFormView
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> AddEntryFormView
 }
 
 
@@ -24,7 +24,7 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
         self.coreDataContext = coreDataContext
     }
     
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> EditEntryFormView {
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> AddEntryFormView {
         let categoriesDataSource = CoreDataCategoryDataSource(context: self.coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataContext)
@@ -33,8 +33,9 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
                                            categoriesInteractor: categoriesInteractor,
                                            getExpenseInteractor: EntryForDateComponentsInteractor(dataSource: individualEntryDataSource),
                                            editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
+                                           deleteExpenseInteractor: DeleteExpenseInteractor(dataSource: individualEntryDataSource),
                                            currencyCodesInteractor: SupportedCurrenciesInteractor(),
                                            exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
-        return EditEntryFormView(presenter: presenter)
+        return AddEntryFormView(presenter: presenter)
     }
 }

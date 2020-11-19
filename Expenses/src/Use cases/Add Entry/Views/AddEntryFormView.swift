@@ -30,11 +30,9 @@ struct AddEntryFormView: View {
                                         .foregroundColor(Color(#colorLiteral(red: 0.7202403275, green: 0.06977037806, blue: 0.09890884181, alpha: 1))),
                                     trailing:
                                         Button("Save") {
-                                            self.presenter.handleSaveButtonPressed()
-                                            presentationMode.wrappedValue.dismiss()
+                                            self.presenter.handleSaveButtonPressed(self.presentationMode)
                                         }
                                         .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1)))
-                                        
                 )
         }
         
@@ -53,8 +51,7 @@ struct EditEntryFormView: View {
     var body: some View {
         EntryFormView(showDelete: true).environmentObject(presenter)
             .navigationBarItems(trailing:Button("Save") {
-                self.presenter.handleSaveButtonPressed()
-                presentationMode.wrappedValue.dismiss()
+                self.presenter.handleSaveButtonPressed(self.presentationMode)
             }
             .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7931181788, blue: 0.6052855253, alpha: 1))))
             .navigationBarTitle("Edit Entry", displayMode: .inline)
@@ -130,15 +127,10 @@ struct EntryFormView: View {
                 }
                 .alert(isPresented:$showingAlert) {
                     Alert(title: Text("About to Delete"), message: Text("Are you sure you want to delete this expense?"), primaryButton: .destructive(Text("Yes, Delete")) {
-                        self.presenter.handleDeleteButtonPressed()
-                        presentationMode.wrappedValue.dismiss()
+                        self.presenter.handleDeleteButtonPressed(self.presentationMode)                        
                     }, secondaryButton: .cancel())
                 }
-                
-                
-                
             }
-
         }
         .onAppear {
             self.presenter.onViewAppear()

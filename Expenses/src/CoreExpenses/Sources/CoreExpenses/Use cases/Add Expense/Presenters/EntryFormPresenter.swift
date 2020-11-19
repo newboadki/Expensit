@@ -136,7 +136,7 @@ public class EntryFormPresenter: ObservableObject {
         }
     }
     
-    public func handleSaveButtonPressed() {
+    public func handleSaveButtonPressed(_ presentationMode: Binding<PresentationMode>) {
         self.entry.tag = self.categories[self.entry.tagId]
         self.entry.currencyCode = self.currencyCodes[self.entry.currencyCodeId]
         
@@ -149,14 +149,22 @@ public class EntryFormPresenter: ObservableObject {
                     // New Entry
                     _ = self.storageInteractor.add(expense: expenseEntity)
                 }
+                
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                
             }
         }
     }
     
-    public func handleDeleteButtonPressed() {
+    public func handleDeleteButtonPressed(_ presentationMode: Binding<PresentationMode>) {
         DispatchQueue.global().async {
             self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
-                _ = self.deleteExpenseInteractor.delete(expenseEntity)            
+                _ = self.deleteExpenseInteractor.delete(expenseEntity)
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         }
     }

@@ -14,28 +14,27 @@ import CoreDataPersistence
 import DateAndTime
 import Currencies
 
-let kPreviousLocaleCurrencyCode = "previous-currrent-locale"
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var workerQueue = DispatchQueue(label: "ExpensesSummaryInteractor")
     private var di = DependencyInjection()
-
-    var cds = CurrencyExchangeRatesNetworkDataSource()
-    var migrateRates: ConvertToBaseCurrencyInteractor?
+    private var currencyCodeChangeManager: CurrencyCodeChangeManager!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        currencyCodeChangeManager = self.di.currencyCodeChangeManager()
+        
         DispatchQueue.global().async {
             
             // Database Migrations
             self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
             
             // Convert exchange rates
-            self.converExchangeRatesIfCalculationsAreApproximated()
+            self.currencyCodeChangeManager.converExchangeRatesIfCalculationsAreApproximated()
 
-            //self.di.individualEntriesDataSource.setAllEntriesCurrenyCode(to: "GBP")
-            
             // Setup the view
             let contentView = ExpensesSummaryNavigationView(navigationCoordinator: self.di.mainNavigationCoordinator())
             
@@ -61,13 +60,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        converExchangeRatesIfCurrencyChanged()
+        self.currencyCodeChangeManager.converExchangeRatesIfCurrencyChanged()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-        UserDefaults.standard.setValue(Locale.current.currencyCode, forKey: kPreviousLocaleCurrencyCode)
+        // This may occur due to temporary interruptions (ex. an incoming phone call).        
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -79,35 +77,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-    
-    private func converExchangeRatesIfCurrencyChanged() {
-        let previousCode = UserDefaults.standard.value(forKey: kPreviousLocaleCurrencyCode)
-        let currentCode = Locale.current.currencyCode
-
-        if let p = previousCode as? String,
-           let c = currentCode,
-           (p != c) {
-            self.di.exchangeRatesConversionInteractor().convertAllEntries(from: p, to: c)
-            let all = self.di.dataSources["all"] as! AllEntriesCoreDataExpensesDataSource
-            let ratesAreApproximated = all.isExchangeRateToBaseApproximated()
-            if !ratesAreApproximated {
-                UserDefaults.standard.setValue(currentCode, forKey: kPreviousLocaleCurrencyCode)
-            }
-        }
-    }
-    
-    private func converExchangeRatesIfCalculationsAreApproximated() {
-        let all = self.di.dataSources["all"] as! AllEntriesCoreDataExpensesDataSource
-        let ratesAreApproximated = all.isExchangeRateToBaseApproximated()
-        if ratesAreApproximated {
-            let previousCode = UserDefaults.standard.value(forKey: kPreviousLocaleCurrencyCode) as! String
-            let currentCode = Locale.current.currencyCode!
-            self.di.exchangeRatesConversionInteractor().convertAllEntries(from: previousCode, to: currentCode)
-            let approximated = all.isExchangeRateToBaseApproximated()
-            if !approximated {
-                UserDefaults.standard.setValue(currentCode, forKey: kPreviousLocaleCurrencyCode)
-            }
-        }
-    }
+    }    
 }

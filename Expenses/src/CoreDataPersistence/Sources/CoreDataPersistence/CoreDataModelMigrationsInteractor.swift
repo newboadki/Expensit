@@ -9,18 +9,21 @@
 import Foundation
 import CoreData
 import UIKit
-import Currencies
+import CoreExpenses
 
 public class CoreDataModelMigrationsInteractor {
     
     private let kAppliedFixturesVersionNumbersKey = "appliedFixturesVersionNumbersKey";
     private var categoryDataSource: CoreDataCategoryDataSource
     private var individualEntriesDataSource: IndividualExpensesDataSource
+    private var currencySettingsInteractor: CurrencySettingsInteractor
     
     public init(categoryDataSource: CoreDataCategoryDataSource,
-                individualEntriesDataSource: IndividualExpensesDataSource) {
+                individualEntriesDataSource: IndividualExpensesDataSource,
+                currencySettingsInteractor: CurrencySettingsInteractor) {
         self.categoryDataSource = categoryDataSource
         self.individualEntriesDataSource = individualEntriesDataSource
+        self.currencySettingsInteractor = currencySettingsInteractor
     }
     
     public func applyPendingMigrations(to model: NSManagedObjectModel) {
@@ -204,7 +207,9 @@ private extension CoreDataModelMigrationsInteractor {
     }
 
     func applyFixtureForModelObjectVersion_5() -> Bool {
-        switch individualEntriesDataSource.setAllEntriesCurrenyCode(to: Locale.current.currencyCode)
+        let currentCurrencyCode = currencySettingsInteractor.currentCurrencyCode()
+        currencySettingsInteractor.setPreviousCurrencyCode(currentCurrencyCode)        
+        switch individualEntriesDataSource.setAllEntriesCurrenyCode(to: currentCurrencyCode)
         {
             case .failure(_):
                 return false

@@ -25,7 +25,6 @@
 		000A9A311D09EA980045523A /* BSGraphLinePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A2B1D09EA980045523A /* BSGraphLinePresenterProtocol.swift */; };
 		000D04F31775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
-		001F3B1C2557B850008F1265 /* LocaleChangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F3B1B2557B850008F1265 /* LocaleChangeManager.swift */; };
 		001F3B642557DD3F008F1265 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F3B632557DD3F008F1265 /* DependencyInjection.swift */; };
 		0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 0047E7D824BC751300FEE7B4 /* CoreDataPersistence */; };
 		0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
@@ -126,7 +125,6 @@
 		000D04F21775C96C002D0AB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		000F8CBE2531F5120006C1E2 /* v1.0.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.10.xcdatamodel; sourceTree = "<group>"; };
 		001359B024B5B7200071AEBD /* CoreExpenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreExpenses; sourceTree = "<group>"; };
-		001F3B1B2557B850008F1265 /* LocaleChangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleChangeManager.swift; sourceTree = "<group>"; };
 		001F3B632557DD3F008F1265 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		002E2EBD191EB93E003630B2 /* v1.0.7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.0.7.xcdatamodel; sourceTree = "<group>"; };
 		00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySummaryTests.swift; sourceTree = "<group>"; };
@@ -401,14 +399,6 @@
 			path = "Grid view";
 			sourceTree = "<group>";
 		};
-		001F3B162557B80C008F1265 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				001F3B1B2557B850008F1265 /* LocaleChangeManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		00223BC1216A007200E76784 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,7 +637,6 @@
 			isa = PBXGroup;
 			children = (
 				00E86297255C5166006CBCED /* Data Sources */,
-				001F3B162557B80C008F1265 /* Managers */,
 				00BF04FB25551BA5000FB3AE /* Interactors */,
 			);
 			path = "Changing Base Currency";
@@ -842,7 +831,6 @@
 				008E7412236CC54C00762E08 /* GridView.swift in Sources */,
 				008D238E2543FD9D00C91F5F /* LazyView.swift in Sources */,
 				008E7424236D840300762E08 /* HorizontalEntryView.swift in Sources */,
-				001F3B1C2557B850008F1265 /* LocaleChangeManager.swift in Sources */,
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,

@@ -21,6 +21,7 @@ struct GridView<NC: NavigationCoordinator,
     private var entryFormCoordinator: EntryFormNavigationCoordinator
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     private var headerViewNavigationCoordinator: HeaderNavCoordinator
+    private var targetDestination: DateComponents?
     
     private var entry: (_ : ExpensesSummarySectionViewModel, _ : Int, _ : Int, _: Int) -> ExpensesSummaryEntryViewModel = { (section, ri, ci, cc) in
         let position = (ri*cc + ci)
@@ -37,7 +38,8 @@ struct GridView<NC: NavigationCoordinator,
          navigationCoordinator: NC,
          entryFormCoordinator: EntryFormNavigationCoordinator,
          categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,
-         headerViewNavigationCoordinator: HeaderNavCoordinator) {
+         headerViewNavigationCoordinator: HeaderNavCoordinator,
+         targetDestination: DateComponents? = nil) {
         self.presenter = presenter
         self.navigationButtonsPresenter = navigationButtonsPresenter
         self.columnCount = columnCount
@@ -46,35 +48,44 @@ struct GridView<NC: NavigationCoordinator,
         self.entryFormCoordinator = entryFormCoordinator
         self.categoryFilterNavgationCoordinator = categoryFilterNavgationCoordinator
         self.headerViewNavigationCoordinator = headerViewNavigationCoordinator
+        self.targetDestination = targetDestination
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(self.presenter.sections) { section in
-                    
-                    GridViewSectionHeader(section: section, presenter: self.presenter,
-                                          navigationCoordinator: self.headerViewNavigationCoordinator)
-                    
-                    GridViewSectionBody(presenter: self.presenter,
-                                        section: section,
-                                        navigationCoordinator: self.navigationCoordinator)
-
+        ScrollViewReader { scrollView in
+            ScrollView {
+                LazyVStack {
+                    ForEach(self.presenter.sections) { section in
+                        
+                        GridViewSectionHeader(section: section, presenter: self.presenter,
+                                              navigationCoordinator: self.headerViewNavigationCoordinator)
+                        
+                        GridViewSectionBody(presenter: self.presenter,
+                                            section: section,
+                                            navigationCoordinator: self.navigationCoordinator)
+                    }
                 }
-            }
-            .onAppear(perform: {
-                self.presenter.bind()
-            })
-            .onDisappear(perform: {
-                self.presenter.unbind()
-            })
-        }.navigationBarTitle(self.title)
-         .navigationBarItems(trailing:
-             NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
-                                   categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator,
-                                   presenter: navigationButtonsPresenter)
-         )
-        
+                .onAppear(perform: {
+                    self.presenter.bind()
+                    if let destination = targetDestination {
+                        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                            withAnimation() {
+                                scrollView.scrollTo(destination)
+                            }
+                        }
+
+                    }
+                })
+                .onDisappear(perform: {
+                    self.presenter.unbind()
+                })
+            }.navigationBarTitle(self.title)
+             .navigationBarItems(trailing:
+                 NavigationButtonsView(entryFormCoordinator: self.entryFormCoordinator,
+                                       categoryFilterNavgationCoordinator: self.categoryFilterNavgationCoordinator,
+                                       presenter: navigationButtonsPresenter)
+             )
+        }
     }
     
     private func rows(sectionCount: Int, colCount: Int) -> Int {

@@ -70,11 +70,4 @@ public class Expense {
         self.exchangeRateToBaseCurrency = exchangeRateToBaseCurrency
         self.isExchangeRateUpToDate = isExchangeRateUpToDate
     }
-    
-    public func isInBaseCurrency() -> Bool {
-        guard let baseCurrencyCode = Locale.current.currencyCode else {
-            return false
-        }
-        return (currencyCode == baseCurrencyCode)
-    }
 }

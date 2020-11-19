@@ -86,7 +86,8 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
                         categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataContext:self.coreDataContext,
                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext))
+                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        targetDestination: currentViewIdentifier)
     }
 }
 
@@ -123,7 +124,8 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
                         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
                         categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator(coreDataContext: self.coreDataContext,
                                                                                                 selectedCategoryDataSource: self.selectedCategoryDataSource),
-                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext))
+                        headerViewNavigationCoordinator: CategoryPieChartNavigationCoordinator(coreDataContext: self.coreDataContext),
+                        targetDestination: currentViewIdentifier)
     }
 }
 
@@ -157,7 +159,8 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
                                                                                                  selectedCategoryDataSource: self.selectedCategoryDataSource),
                                   entryFormCoordinator: ExpensesEntryFormNavigationCoordinator(coreDataContext: self.coreDataContext),
                         categoryFilterNavgationCoordinator:CategoryFilterNavigationCoordinator(coreDataContext: self.coreDataContext,
-                                                                                               selectedCategoryDataSource: self.selectedCategoryDataSource))
+                                                                                               selectedCategoryDataSource: self.selectedCategoryDataSource),
+                        targetDestination: currentViewIdentifier)
     }
 }
 

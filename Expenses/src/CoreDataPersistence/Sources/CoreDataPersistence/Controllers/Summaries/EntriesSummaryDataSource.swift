@@ -23,7 +23,7 @@ public extension CoreDataDataSource {
         let request = Entry.entryFetchRequest()
         request.entity = description
         request.fetchBatchSize = 50
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         return request as! NSFetchRequest<NSFetchRequestResult>
     }
     

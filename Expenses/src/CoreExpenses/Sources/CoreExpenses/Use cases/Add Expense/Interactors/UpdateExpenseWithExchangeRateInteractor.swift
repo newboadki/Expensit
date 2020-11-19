@@ -9,12 +9,6 @@ import Foundation
 import Currencies
 import Combine
 
-// If currencyCode != base currency code
-// - Download exchange rate
-// - Set it in the entry
-// - Update isExchangeRateUpToDate
-// -
-
 public class UpdateExpenseWithExchangeRateInteractor {
     
     private var dataSource: CurrencyExchangeRatesDataSource

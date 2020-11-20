@@ -51,10 +51,10 @@ class DependencyInjection {
     }()
     
     lazy var presenters: [String: AbstractEntriesSummaryPresenter] = {
-        return ["yearly" : ShowYearlyEntriesPresenter(interactor: YearlyExpensesSummaryInteractor(dataSource: dataSources["yearly"]!)),
-                "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!)),
-                "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!)),
-                "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!))]
+        return ["yearly" : ShowYearlyEntriesPresenter(interactor: YearlyExpensesSummaryInteractor(dataSource: dataSources["yearly"]!), subscriptionScheduler: DispatchQueue.global(), receiveOnScheduler: RunLoop.main),
+                "monthly" : ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["monthly"]!), subscriptionScheduler: DispatchQueue.global(), receiveOnScheduler: RunLoop.main),
+                "daily" : ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["daily"]!), subscriptionScheduler: DispatchQueue.global(), receiveOnScheduler: RunLoop.main),
+                "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!), subscriptionScheduler: DispatchQueue.global(), receiveOnScheduler: RunLoop.main)]
     }()
     
     func mainNavigationCoordinator() -> MainNavigationCoordinator {

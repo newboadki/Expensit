@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import DateAndTime
 
-public class ShowDailyEntriesPresenter: AbstractEntriesSummaryPresenter {
+public class ShowDailyEntriesPresenter<SubscribeOn: Scheduler, ReceiveOn: Scheduler>: AbstractEntriesSummaryPresenter<SubscribeOn, ReceiveOn> {
     
     public override func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
         return self.interactor.entriesForSummary().map { expensesGroups in

@@ -18,7 +18,7 @@ struct GridViewSectionHeader<NC: GridViewSectionHeaderNavigationCoordinator>: Vi
     }
     
     var section: ExpensesSummarySectionViewModel
-    var presenter: AbstractEntriesSummaryPresenter
+    var presenter: AbstractAppPresenter
     var navigationCoordinator: NC
     @State private var isNextViewPresented = false
             

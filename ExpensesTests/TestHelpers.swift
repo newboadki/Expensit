@@ -7,7 +7,10 @@
 //
 
 import XCTest
+import Combine
 @testable import CoreExpenses
+
+typealias AbstractTestPresenter = AbstractEntriesSummaryPresenter<ImmediateScheduler, ImmediateScheduler>
 
 struct Test {
     
@@ -16,12 +19,15 @@ struct Test {
         let value: String        
     }
     
+    struct BaseError: Error {
+    }
+    
     static func assertEqual(_ entry: Test.Expense, title: String, value: String) {
         XCTAssert(entry.title == title, "Yearly summary's title should be \(title).")
         XCTAssert(entry.value == value, "Yearly summary's value should be \(value).")
     }
     
-    static func assertEqualEntries(_ expectedEntries: [Test.Expense], inSection sectionIndex: Int, named sectionName: String = "", presenter: AbstractEntriesSummaryPresenter) {
+    static func assertEqualEntries(_ expectedEntries: [Test.Expense], inSection sectionIndex: Int, named sectionName: String = "", presenter: AbstractTestPresenter) {
         let section = presenter.sections[sectionIndex]
         let expectedEntriesCount = expectedEntries.count
         XCTAssert(section.title == sectionName)
@@ -34,11 +40,11 @@ struct Test {
     }
     
     @discardableResult
-    static func assertTheresOnlyOneSection(presenter: AbstractEntriesSummaryPresenter) -> ExpensesSummarySectionViewModel {
+    static func assertTheresOnlyOneSection(presenter: AbstractTestPresenter) throws -> ExpensesSummarySectionViewModel {
+        
         XCTAssert(presenter.sections.count == 1, "There should be one section.")
         guard let onlySection = presenter.sections.first else {
-            XCTFail("There should be one section.")
-            fatalError()
+            throw BaseError()
         }
         return onlySection
     }

@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import DateAndTime
 
-public class ShowMonthlyEntriesPresenter: AbstractEntriesSummaryPresenter {
+public class ShowMonthlyEntriesPresenter<SubscribeOn: Scheduler, ReceiveOn: Scheduler>: AbstractEntriesSummaryPresenter<SubscribeOn, ReceiveOn> {
     
     override public func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
                 

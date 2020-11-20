@@ -252,6 +252,7 @@
 			children = (
 				00015700256683FF0016A4CE /* CurrencySettingsDefaultDataSource.swift */,
 				000157092566855D0016A4CE /* CurrencySettingsDataSource.swift */,
+				00E86293255C50D5006CBCED /* CurrencyExchangeRatesDataSourceMapper.swift */,
 			);
 			path = "Data Sources";
 			sourceTree = "<group>";
@@ -267,6 +268,7 @@
 		000156EF25667CF00016A4CE /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				00BF04FC25551C35000FB3AE /* ConvertToBaseCurrencyInteractor.swift */,
 				000156F025667CF00016A4CE /* CurrenySettingsInteractor.swift */,
 			);
 			path = Interactors;
@@ -459,7 +461,6 @@
 		0077D5671CED00D300003F71 /* Use cases */ = {
 			isa = PBXGroup;
 			children = (
-				00BF04FA25551B98000FB3AE /* Changing Base Currency */,
 				000A9AB61D0C14000045523A /* Pie graph */,
 				000A9A9C1D09FAB00045523A /* Category filter */,
 				000A9A321D09EB710045523A /* Add entry */,
@@ -641,23 +642,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		00BF04FA25551B98000FB3AE /* Changing Base Currency */ = {
-			isa = PBXGroup;
-			children = (
-				00E86297255C5166006CBCED /* Data Sources */,
-				00BF04FB25551BA5000FB3AE /* Interactors */,
-			);
-			path = "Changing Base Currency";
-			sourceTree = "<group>";
-		};
-		00BF04FB25551BA5000FB3AE /* Interactors */ = {
-			isa = PBXGroup;
-			children = (
-				00BF04FC25551C35000FB3AE /* ConvertToBaseCurrencyInteractor.swift */,
-			);
-			path = Interactors;
-			sourceTree = "<group>";
-		};
 		00C213B9217BB3C800805207 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,14 +665,6 @@
 			children = (
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		00E86297255C5166006CBCED /* Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				00E86293255C50D5006CBCED /* CurrencyExchangeRatesDataSourceMapper.swift */,
-			);
-			path = "Data Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

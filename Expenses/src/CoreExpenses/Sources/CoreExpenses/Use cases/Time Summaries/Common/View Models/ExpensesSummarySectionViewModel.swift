@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ExpensesSummarySectionViewModel: Identifiable
+public struct ExpensesSummarySectionViewModel: Identifiable
 {
     public let id: DateComponents
     public let title : String?

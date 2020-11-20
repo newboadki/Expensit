@@ -47,7 +47,7 @@ extension YearlySummaryTests {
     
     func test_yearly_breakdown_all_categories() throws {
         
-        //TestDataGenerator.printAll(YearlySummaryTests.context)
+        
         try Test.assertTheresOnlyOneSection(presenter: YearlySummaryTests.presenter)
         Test.assertEqualEntries([Test.Expense(title: "2015", value: "-$163.20"),
                                  Test.Expense(title: "2014", value: "$8,437.70"),

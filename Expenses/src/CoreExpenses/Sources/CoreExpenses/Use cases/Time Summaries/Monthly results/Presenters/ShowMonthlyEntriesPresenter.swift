@@ -55,8 +55,8 @@ public class ShowMonthlyEntriesPresenter<SubscribeOn: Scheduler, ReceiveOn: Sche
                     let monthString = DateConversion.monthName(for: month).uppercased()
                     let monthlySumString = DefaultExpenseCurrencyFormatter.amountFormatter().string(from: value)!
                     let entryData = ExpensesSummaryEntryViewModel(id: entryEntity.dateComponents,
-                                                                  title: monthString as String,
-                                                                  value: monthlySumString as String,
+                                                                  title: monthString,
+                                                                  value: monthlySumString,
                                                                   signOfAmount: sign,
                                                                   date: nil,
                                                                   tag: nil,

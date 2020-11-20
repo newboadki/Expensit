@@ -21,7 +21,7 @@ class MonthlySummaryTests: XCTestCase {
         let tg = TestDataGenerator()
         let context = tg.generate_sync()
 
-        
+        TestDataGenerator.printAll(context)
         selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:context,
@@ -29,15 +29,24 @@ class MonthlySummaryTests: XCTestCase {
         presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource),
                                                 subscriptionScheduler: ImmediateScheduler.shared,
                                                 receiveOnScheduler: ImmediateScheduler.shared)
+        
     }
 
+    override func setUp() {
+        MonthlySummaryTests.presenter.bind()
+    }
+
+    override func tearDown() {
+        MonthlySummaryTests.presenter.unbind()
+    }
     
 }
 
 // MARK: - Category Filter tests
 extension MonthlySummaryTests {
     
-    func test_monthly_breakdown_all_categories() {
+    func test_monthly_breakdown_all_categories() throws {
+        
         
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 3)
         
@@ -53,7 +62,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: "$500.00"),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 0,
+                                inSection: 2,
                                 named: "2013",
                                 presenter: MonthlySummaryTests.presenter)
         
@@ -85,12 +94,12 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 2,
+                                inSection: 0,
                                 named: "2015",
                                 presenter: MonthlySummaryTests.presenter)
     }
     
-    func test_monthly_breakdown_food() {
+    func test_monthly_breakdown_food() throws {
         MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
         
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
@@ -107,7 +116,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 0,
+                                inSection: 1,
                                 named: "2013",
                                 presenter: MonthlySummaryTests.presenter)
         
@@ -123,13 +132,13 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 1,
+                                inSection: 0,
                                 named: "2014",
                                 presenter: MonthlySummaryTests.presenter)
                 
     }
 
-    func test_monthly_breakdown_bills() {
+    func test_monthly_breakdown_bills() throws {
         MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
         
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
@@ -146,7 +155,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 0,
+                                inSection: 1,
                                 named: "2013",
                                 presenter: MonthlySummaryTests.presenter)
         
@@ -162,12 +171,12 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: "-$45.00"),
                                  Test.Expense(title: "NOV", value: "-$45.00"),
                                  Test.Expense(title: "DEC", value: "-$90.00")],
-                                inSection: 1,
+                                inSection: 0,
                                 named: "2014",
                                 presenter: MonthlySummaryTests.presenter)
     }
 
-    func test_monthly_breakdown_travel() {
+    func test_monthly_breakdown_travel() throws {
         MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
         
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 3)
@@ -184,7 +193,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 0,
+                                inSection: 2,
                                 named: "2013",
                                 presenter: MonthlySummaryTests.presenter)
         
@@ -216,12 +225,12 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 2,
+                                inSection: 0,
                                 named: "2015",
                                 presenter: MonthlySummaryTests.presenter)
     }
 
-    func test_monthly_breakdown_incoming() {
+    func test_monthly_breakdown_incoming() throws {
         MonthlySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
         
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
@@ -238,7 +247,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: "$500.00"),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 0,
+                                inSection: 1,
                                 named: "2013",
                                 presenter: MonthlySummaryTests.presenter)
         
@@ -254,7 +263,7 @@ extension MonthlySummaryTests {
                                  Test.Expense(title: "OCT", value: ""),
                                  Test.Expense(title: "NOV", value: ""),
                                  Test.Expense(title: "DEC", value: "")],
-                                inSection: 1,
+                                inSection: 0,
                                 named: "2014",
                                 presenter: MonthlySummaryTests.presenter)
     }

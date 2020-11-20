@@ -63,15 +63,17 @@ class TestDataGenerator {
         
         // 2013
         
-        
-        _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 1, day: 2, hour: 0, minute: 0, second: 0),
-                                    date: d("02/01/2013"),
+        let data1 = dateData("02/01/2013")
+        let d1 = data1.0
+        let c1 = data1.1
+        _ = ds.add(expense: Expense(dateComponents: c1,
+                                    date: d1,
                                     value: -15,
                                     valueInBaseCurrency: -15,
                                     description: "Breakfast",
                                     category: food,
-                                    currencyCode: "USD",
-                                    exchangeRateToBaseCurrency: 1,
+                                    currencyCode: "GBP",
+                                    exchangeRateToBaseCurrency: 1.16,
                                     isExchangeRateUpToDate: true))
 
                    
@@ -303,6 +305,13 @@ class TestDataGenerator {
 
 private func d(_ text: String) -> Date {
     return DateConversion.date(text)
+}
+
+private func dateData(_ string: String) -> (Date, DateComponents) {
+    let date = DateConversion.date(withFormat: DateFormats.defaultFormat, from: string)
+    let components = DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day), hour: date.component(.hour), minute: date.component(.minute), second: date.component(.second))
+    
+    return (date, components)
 }
 
 fileprivate extension DateConversion {

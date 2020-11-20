@@ -9,11 +9,15 @@
 import SwiftUI
 import CoreExpenses
 
+
+
+
+
 struct ListView<NC: NavigationCoordinator> : View {
     
     // MARK: Private Properties
     
-    @ObservedObject private var presenter: AbstractEntriesSummaryPresenter
+    @ObservedObject private var presenter: AbstractAppPresenter
     private var navigationButtonsPresenter: NavigationButtonsPresenter
     private var title: String
     private var navigationCoordinator: NC
@@ -23,7 +27,7 @@ struct ListView<NC: NavigationCoordinator> : View {
     
     // MARK: Initializers
     
-    init(presenter:AbstractEntriesSummaryPresenter,
+    init(presenter:AbstractAppPresenter,
          navigationButtonsPresenter: NavigationButtonsPresenter,
          title: String,
          navigationCoordinator: NC,

@@ -12,7 +12,7 @@ import CoreExpenses
 struct GridView<NC: NavigationCoordinator,
                 HeaderNavCoordinator: GridViewSectionHeaderNavigationCoordinator>: View {
     
-    @ObservedObject private var presenter: AbstractEntriesSummaryPresenter
+    @ObservedObject private var presenter: AbstractAppPresenter
     private var navigationButtonsPresenter: NavigationButtonsPresenter
     @State private var showEntryForm = false
     private var columnCount: Int
@@ -31,7 +31,7 @@ struct GridView<NC: NavigationCoordinator,
         return section.entries[position]
     }
     
-    init(presenter: AbstractEntriesSummaryPresenter,
+    init(presenter: AbstractAppPresenter,
          columnCount: Int,
          title: String,
          navigationButtonsPresenter: NavigationButtonsPresenter,

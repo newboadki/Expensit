@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
+public class ShowYearlyEntriesPresenter<SubscribeOn: Scheduler, ReceiveOn: Scheduler>: AbstractEntriesSummaryPresenter<SubscribeOn, ReceiveOn> {
                 
     public override var title: String {
         get {"Yearly Breakdown" }
@@ -20,7 +20,6 @@ public class ShowYearlyEntriesPresenter: AbstractEntriesSummaryPresenter {
 
     public override func displayDataFromEntriesForSummary() -> AnyPublisher<[ExpensesSummarySectionViewModel], Never> {
                         
-        print("Yearly Presenter called.")
         return self.interactor.entriesForSummary().map { expensesGroups in
             let groups = expensesGroups as [ExpensesGroup]
             var displaySections = [ExpensesSummarySectionViewModel]()

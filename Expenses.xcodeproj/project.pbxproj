@@ -13,6 +13,10 @@
 		000156F425667CF00016A4CE /* CurrenySettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000156F025667CF00016A4CE /* CurrenySettingsInteractor.swift */; };
 		00015702256683FF0016A4CE /* CurrencySettingsDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00015700256683FF0016A4CE /* CurrencySettingsDefaultDataSource.swift */; };
 		0001570A2566855D0016A4CE /* CurrencySettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000157092566855D0016A4CE /* CurrencySettingsDataSource.swift */; };
+		0001571C25678F7D0016A4CE /* DateAndTime in Frameworks */ = {isa = PBXBuildFile; productRef = 0001571B25678F7D0016A4CE /* DateAndTime */; };
+		0001571E25678F820016A4CE /* CoreExpenses in Frameworks */ = {isa = PBXBuildFile; productRef = 0001571D25678F820016A4CE /* CoreExpenses */; };
+		0001572025678F880016A4CE /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 0001571F25678F880016A4CE /* CoreDataPersistence */; };
+		0001572225678F8D0016A4CE /* Currencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0001572125678F8D0016A4CE /* Currencies */; };
 		000A9A111D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
 		000A9A121D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A0D1D09E5590045523A /* BSYearlySummaryGraphLinePresenter.swift */; };
 		000A9A1F1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */; };
@@ -222,7 +226,11 @@
 			files = (
 				007B826B177476780052FE84 /* XCTest.framework in Frameworks */,
 				007B826D177476780052FE84 /* UIKit.framework in Frameworks */,
+				0001571E25678F820016A4CE /* CoreExpenses in Frameworks */,
 				007B826C177476780052FE84 /* Foundation.framework in Frameworks */,
+				0001571C25678F7D0016A4CE /* DateAndTime in Frameworks */,
+				0001572225678F8D0016A4CE /* Currencies in Frameworks */,
+				0001572025678F880016A4CE /* CoreDataPersistence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +732,10 @@
 			);
 			name = ExpensesTests;
 			packageProductDependencies = (
+				0001571B25678F7D0016A4CE /* DateAndTime */,
+				0001571D25678F820016A4CE /* CoreExpenses */,
+				0001571F25678F880016A4CE /* CoreDataPersistence */,
+				0001572125678F8D0016A4CE /* Currencies */,
 			);
 			productName = ExpensesTests;
 			productReference = 007B8269177476780052FE84 /* ExpensesTests.xctest */;
@@ -745,7 +757,6 @@
 					};
 					007B8268177476780052FE84 = {
 						LastSwiftMigration = 0800;
-						TestTargetID = 007B8248177476780052FE84;
 					};
 				};
 			};
@@ -1107,7 +1118,6 @@
 		007B827F177476780052FE84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1142,7 +1152,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Expensit-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1150,7 +1159,6 @@
 		007B8280177476780052FE84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1180,7 +1188,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Expenses/ExpensesTests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Expensit-Swift.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expensit.app/Expensit";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -1218,6 +1225,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0001571B25678F7D0016A4CE /* DateAndTime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DateAndTime;
+		};
+		0001571D25678F820016A4CE /* CoreExpenses */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreExpenses;
+		};
+		0001571F25678F880016A4CE /* CoreDataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreDataPersistence;
+		};
+		0001572125678F8D0016A4CE /* Currencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Currencies;
+		};
 		0047E7D824BC751300FEE7B4 /* CoreDataPersistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreDataPersistence;

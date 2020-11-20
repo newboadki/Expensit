@@ -21,13 +21,13 @@ protocol NavigationCoordinator {
 class MainNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
-    var presenters: [String: AbstractEntriesSummaryPresenter]
+    var presenters: [String: AbstractAppPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter],
+         presenters: [String: AbstractAppPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
@@ -57,13 +57,13 @@ class MainNavigationCoordinator: NavigationCoordinator {
 class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
         
     var dataSources: [String: EntriesSummaryDataSource]
-    var presenters: [String: AbstractEntriesSummaryPresenter]
+    var presenters: [String: AbstractAppPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter],
+         presenters: [String: AbstractAppPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
@@ -94,13 +94,13 @@ class YearlyExpensesSummaryNavigationCoordinator: NavigationCoordinator {
 class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
-    var presenters: [String: AbstractEntriesSummaryPresenter]
+    var presenters: [String: AbstractAppPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter],
+         presenters: [String: AbstractAppPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
@@ -132,13 +132,13 @@ class MonthlyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
 class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
-    var presenters: [String: AbstractEntriesSummaryPresenter]
+    var presenters: [String: AbstractAppPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter],
+         presenters: [String: AbstractAppPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {
@@ -167,13 +167,13 @@ class  DailyExpensesSummaryNavigationCoordinator:NavigationCoordinator {
 class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]
-    var presenters: [String: AbstractEntriesSummaryPresenter]
+    var presenters: [String: AbstractAppPresenter]
     var navigationButtonsPresenter: NavigationButtonsPresenter
     var coreDataContext: NSManagedObjectContext
     var selectedCategoryDataSource: CategoryDataSource
     
     init(dataSources: [String: EntriesSummaryDataSource],
-         presenters: [String: AbstractEntriesSummaryPresenter],
+         presenters: [String: AbstractAppPresenter],
          navigationButtonsPresenter: NavigationButtonsPresenter,
          coreDataContext: NSManagedObjectContext,
          selectedCategoryDataSource: CategoryDataSource) {

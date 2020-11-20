@@ -11,7 +11,7 @@ import Combine
 
 
 /// The presenter classes for the expense summaries return the view-models that is the purely-visual data that certain view needs. 
-public class AbstractEntriesSummaryPresenter: ObservableObject {
+public class AbstractEntriesSummaryPresenter<SubscribeOn: Scheduler, ReceiveOn: Scheduler>: ObservableObject {
     
     // MARK: - Properties
     @Published public var sections: [ExpensesSummarySectionViewModel]
@@ -20,13 +20,19 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
     private(set) public var interactor: ExpensesSummaryInteractorProtocol
     private var subscription: AnyCancellable!
     
+    private var subscriptionScheduler: SubscribeOn
+    private var receiveOnScheduler: ReceiveOn
         
     // MARK: - Initializers
     
-    public init(interactor: ExpensesSummaryInteractorProtocol) {
+    public init(interactor: ExpensesSummaryInteractorProtocol,
+                subscriptionScheduler: SubscribeOn,
+                receiveOnScheduler: ReceiveOn) {
         self.sections = [ExpensesSummarySectionViewModel]()
         self.title = ""
         self.interactor = interactor
+        self.subscriptionScheduler = subscriptionScheduler
+        self.receiveOnScheduler = receiveOnScheduler
     }
     
     deinit {
@@ -64,8 +70,9 @@ public class AbstractEntriesSummaryPresenter: ObservableObject {
     
     public func bind() {
         self.subscription = self.displayDataFromEntriesForSummary()
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: RunLoop.main).sink(receiveValue: { viewSections in
+            .subscribe(on: subscriptionScheduler)
+            .receive(on: receiveOnScheduler)
+            .sink(receiveValue: { viewSections in
                 self.sections = viewSections
             })
     }

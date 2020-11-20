@@ -11,9 +11,14 @@ import CoreData
 import CoreExpenses
 import CoreDataPersistence
 
-public struct TestCoreDataStack {
+public class TestCoreDataStack {
     
-    private static let semaphore = DispatchSemaphore(value: 1)
+    private let semaphore = DispatchSemaphore(value: 1)
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
+            return managedObjectModel
+        }()
     
     public static func context(_ completion: @escaping (Result<NSManagedObjectContext, Error>) -> ()) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -22,9 +27,9 @@ public struct TestCoreDataStack {
         let shmURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite-shm")
         let walURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.wal")
         
-        let deletedSql = try? FileManager.default.removeItem(at: sqliteURL)
-        let deletedShm = try? FileManager.default.removeItem(at: shmURL)
-        let deletedWal = try? FileManager.default.removeItem(at: walURL)
+        _ = try? FileManager.default.removeItem(at: sqliteURL)
+        _ = try? FileManager.default.removeItem(at: shmURL)
+        _ = try? FileManager.default.removeItem(at: walURL)
         
         // Create
         let docsURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite")
@@ -43,7 +48,7 @@ public struct TestCoreDataStack {
         }        
     }
     
-    public static func context_sync() -> NSManagedObjectContext {        
+    public func context_sync() -> NSManagedObjectContext {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         // Delete
         let sqliteURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite")
@@ -60,22 +65,23 @@ public struct TestCoreDataStack {
 
         // Create
         let docsURL = documentsDirectory.appendingPathComponent("test-expensesDataBase.sqlite")
-        let persistentContainer = NSPersistentContainer(name: "Expenses")
+        let persistentContainer = NSPersistentContainer(name: "Expenses", managedObjectModel: self.managedObjectModel)
         
         let desc = NSPersistentStoreDescription(url: docsURL)
         desc.shouldAddStoreAsynchronously = false
         persistentContainer.persistentStoreDescriptions = [desc]
         
         var result: NSManagedObjectContext? = nil
-        
+                
         persistentContainer.loadPersistentStores() { (description, error) in
             if let _ = error {
                 result = nil
             } else {
                 result = persistentContainer.viewContext
             }
-            semaphore.signal()
+            self.semaphore.signal()
         }
+
         semaphore.wait()
         return result!
     }

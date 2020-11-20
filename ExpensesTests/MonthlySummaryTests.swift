@@ -9,10 +9,11 @@
 import XCTest
 import CoreExpenses
 import CoreDataPersistence
+import Combine
 
 class MonthlySummaryTests: XCTestCase {
     
-    private static var presenter: ShowMonthlyEntriesPresenter!
+    private static var presenter: ShowMonthlyEntriesPresenter<ImmediateScheduler, ImmediateScheduler>!
     private static var selectedCategoryDataSource: CoreDataCategoryDataSource!
     private static var setCategoryInteractor: SetCategoryFilterInteractor!
     
@@ -25,7 +26,9 @@ class MonthlySummaryTests: XCTestCase {
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:context,
                                                                        selectedCategoryDataSource: selectedCategoryDataSource)
-        presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource))
+        presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource),
+                                                subscriptionScheduler: ImmediateScheduler.shared,
+                                                receiveOnScheduler: ImmediateScheduler.shared)
     }
 
     

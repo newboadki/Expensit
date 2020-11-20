@@ -11,7 +11,7 @@ import CoreExpenses
 
 struct GridViewSectionBody<NC: NavigationCoordinator>: View {
 
-    @ObservedObject var presenter: AbstractEntriesSummaryPresenter
+    @ObservedObject var presenter: AbstractAppPresenter
     var section: ExpensesSummarySectionViewModel
     var navigationCoordinator: NC
  

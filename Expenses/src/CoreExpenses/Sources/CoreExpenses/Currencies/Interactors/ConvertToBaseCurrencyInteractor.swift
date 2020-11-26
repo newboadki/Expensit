@@ -7,28 +7,25 @@
 //
 
 import Foundation
-import CoreExpenses
-import CoreDataPersistence
-import Currencies
 import Combine
 import DateAndTime
 
-class ConvertToBaseCurrencyInteractor {
+public class ConvertToBaseCurrencyInteractor {
     
     private var entriesDataSource: EntriesSummaryDataSource
-    private var ratesDataSource: CurrencyExchangeRatesDataSourceMapper
+    private var ratesDataSource: CurrencyExchangeRatesDataSource
     private var saveExpense: EditExpenseInteractor
     private var rateInfoSubscription: AnyCancellable!
     
-    init(dataSource: EntriesSummaryDataSource,
-         ratesDataSource: CurrencyExchangeRatesDataSourceMapper,
+    public init(dataSource: EntriesSummaryDataSource,
+         ratesDataSource: CurrencyExchangeRatesDataSource,
          saveExpense: EditExpenseInteractor) {
         self.entriesDataSource = dataSource
         self.ratesDataSource = ratesDataSource
         self.saveExpense = saveExpense
     }
     
-    func convertAllEntries(from: String, to baseCurrencyCode: String) {
+    public func convertAllEntries(from: String, to baseCurrencyCode: String) {
         // Get all entries from the DB
         // &
         // Get rates from the network
@@ -73,8 +70,6 @@ class ConvertToBaseCurrencyInteractor {
                 expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(rateForBase)")
                 expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
                 expense.isExchangeRateUpToDate = true
-            } else {
-                print(">>>!")
             }
         }
         

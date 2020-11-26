@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Currencies
 import Combine
 
 public class UpdateExpenseWithExchangeRateInteractor {
@@ -32,7 +31,7 @@ public class UpdateExpenseWithExchangeRateInteractor {
             return Just(expense).eraseToAnyPublisher()
         }
                 
-        return dataSource.getLatest(from: from, to: [to]).flatMap { rate -> AnyPublisher<Expense, Never> in
+        return dataSource.getLatest(from: from, to: [to]).flatMap { rate -> AnyPublisher<Expense, Never> in            
             let conversionRate = rate.rates[to] ?? 1 // If the currency is unknown (not in the defaults) assume 1.0.
             expense.valueInBaseCurrency = expense.value.multiplying(by: conversionRate)
             expense.exchangeRateToBaseCurrency = conversionRate

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Combine
 import DateAndTime
-import Currencies
 import SwiftUI
 
 public class EntryFormPresenter: ObservableObject {

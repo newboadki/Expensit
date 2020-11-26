@@ -195,7 +195,7 @@ class AllExpensesSummaryNavigationCoordinator: NavigationCoordinator {
                                                deleteExpenseInteractor: DeleteExpenseInteractor(dataSource: individualEntryDataSource),
                                                entryIdentifier: currentViewIdentifier,
                                                currencyCodesInteractor: SupportedCurrenciesInteractor(),
-                                               exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
+                                               exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesDataSourceMapper(dataSource: CurrencyExchangeRatesNetworkDataSource()), currenciesInteractor: SupportedCurrenciesInteractor()))
         return EditEntryFormView(presenter: presenter)
     }
 }

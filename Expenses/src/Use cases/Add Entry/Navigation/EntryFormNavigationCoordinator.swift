@@ -35,7 +35,7 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
                                            editExpenseInteractor: EditExpenseInteractor(dataSource: individualEntryDataSource),
                                            deleteExpenseInteractor: DeleteExpenseInteractor(dataSource: individualEntryDataSource),
                                            currencyCodesInteractor: SupportedCurrenciesInteractor(),
-                                           exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesNetworkDataSource(), currenciesInteractor: SupportedCurrenciesInteractor()))
+                                           exchangeRateInteractor: UpdateExpenseWithExchangeRateInteractor(dataSource: CurrencyExchangeRatesDataSourceMapper(dataSource: CurrencyExchangeRatesNetworkDataSource()), currenciesInteractor: SupportedCurrenciesInteractor()))
         return AddEntryFormView(presenter: presenter)
     }
 }

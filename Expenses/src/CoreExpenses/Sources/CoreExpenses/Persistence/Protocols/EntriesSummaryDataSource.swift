@@ -12,6 +12,7 @@ import Combine
 public protocol EntriesSummaryDataSource {
     var groupedExpensesPublisher : Published<[ExpensesGroup]>.Publisher {get}
     func expensesGroups() -> [ExpensesGroup]
+    func isExchangeRateToBaseApproximated() -> Bool
 }
 
 

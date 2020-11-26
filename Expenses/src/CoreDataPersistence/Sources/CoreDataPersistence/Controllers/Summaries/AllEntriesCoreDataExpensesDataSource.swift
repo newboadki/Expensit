@@ -124,13 +124,6 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
         return DateComponents(year: year, month: month, day: day)
     }
     
-    public func isExchangeRateToBaseApproximated() -> Bool {
-        let baseRequest = self.baseRequest(context: coreDataContext)
-        baseRequest.predicate = NSPredicate(format: "isExchangeRateUpToDate = false")
-        let results = try! coreDataContext.fetch(baseRequest)
-        return (results.count > 0)
-    }
-    
     @objc func contextObjectsDidChange(_ notification: Notification) {
         self.groupedExpenses = allEntries()
     }

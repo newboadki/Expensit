@@ -6,24 +6,23 @@
 //
 
 import Foundation
-import CoreExpenses
 
-class CurrencySettingsDefaultInteractor: CurrencySettingsInteractor {
+public class CurrencySettingsDefaultInteractor: CurrencySettingsInteractor {
     private var dataSoure: CurrencySettingsDataSource
     
-    init(dataSoure: CurrencySettingsDataSource) {
+    public init(dataSoure: CurrencySettingsDataSource) {
         self.dataSoure = dataSoure
     }
     
-    func currentCurrencyCode() -> String {
+    public func currentCurrencyCode() -> String {
         dataSoure.currentCurrencyCode
     }
     
-    func previousCurrencyCode() -> String {
+    public func previousCurrencyCode() -> String {
         dataSoure.previousCurrencyCode
     }
 
-    func setPreviousCurrencyCode(_ code: String) {
+    public func setPreviousCurrencyCode(_ code: String) {
         dataSoure.previousCurrencyCode = code
     }
 

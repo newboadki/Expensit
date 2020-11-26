@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Currencies
+import CoreExpenses
 
 class CurrencySettingsDefaultDataSource: CurrencySettingsDataSource {
     

@@ -19,10 +19,3 @@ public struct LatestCurrencyExchangeInfoNetworkModel: Codable {
     let date: String
     let base: String
 }
-
-public struct CurrencyConversionRates {
-    public let rates: [String : NSDecimalNumber]
-    public let date: Date
-    public let base: String
-    public let isApproximation: Bool        
-}

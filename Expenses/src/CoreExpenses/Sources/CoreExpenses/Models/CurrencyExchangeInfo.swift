@@ -24,3 +24,20 @@ public struct CurrencyExchangeInfo {
         self.base = base
     }
 }
+
+public struct CurrencyConversionRates {
+    public let rates: [String : NSDecimalNumber]
+    public let date: Date
+    public let base: String
+    public let isApproximation: Bool
+    
+    public init(rates: [String : NSDecimalNumber],
+    date: Date,
+    base: String,
+    isApproximation: Bool) {
+        self.rates = rates
+        self.date = date
+        self.base = base
+        self.isApproximation = isApproximation
+    }
+}

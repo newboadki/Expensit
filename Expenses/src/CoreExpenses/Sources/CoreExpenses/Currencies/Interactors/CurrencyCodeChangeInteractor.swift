@@ -6,25 +6,22 @@
 //
 
 import Foundation
-import Currencies
-import CoreExpenses
-import CoreDataPersistence
 
-class CurrencyCodeChangeInteractor {
+public class CurrencyCodeChangeInteractor {
     
     private var exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor
-    private var allEntriesDataSource: AllEntriesCoreDataExpensesDataSource
+    private var allEntriesDataSource: EntriesSummaryDataSource
     private var currencySettingsInteractor: CurrencySettingsInteractor
     
-    init(exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor,
-         allEntriesDataSource: AllEntriesCoreDataExpensesDataSource,
-         currencySettingsInteractor: CurrencySettingsInteractor) {
+    public init(exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor,
+                allEntriesDataSource: EntriesSummaryDataSource,
+                currencySettingsInteractor: CurrencySettingsInteractor) {
         self.exchangeRatesConversionInteractor = exchangeRatesConversionInteractor
         self.allEntriesDataSource = allEntriesDataSource
         self.currencySettingsInteractor = currencySettingsInteractor
     }
             
-    func updateCurrencyExchangeRatesIfNeeded() {
+    public func updateCurrencyExchangeRatesIfNeeded() {
         let previousCode = currencySettingsInteractor.previousCurrencyCode()
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
         let currencyCodeChanged = (previousCode != currentCode)

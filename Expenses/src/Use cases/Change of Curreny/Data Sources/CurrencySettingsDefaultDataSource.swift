@@ -18,7 +18,12 @@ class CurrencySettingsDefaultDataSource: CurrencySettingsDataSource {
     
     var previousCurrencyCode: String {
         get {
-            UserDefaults.standard.value(forKey: kPreviousLocaleCurrencyCode) as! String
+            guard let storedValue = UserDefaults.standard.value(forKey: kPreviousLocaleCurrencyCode) as? String else {
+                return Locale.current.currencyCode!
+            }
+            
+            return storedValue
+            
         }
         
         set {

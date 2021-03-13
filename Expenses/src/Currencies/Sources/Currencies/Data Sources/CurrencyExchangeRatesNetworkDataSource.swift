@@ -34,6 +34,8 @@ public class CurrencyExchangeRatesNetworkDataSource {
         
     }
 
+    // From needs to be an array
+    // The return type has to be [CurrencyExchangeInfoNetworkModel]
     public func rates(from: String, to: [String], start: String = "2013-01-01", end: String = "2020-10-17") -> AnyPublisher<CurrencyExchangeInfoNetworkModel, Never> {
         let url = URL(string: "https://api.exchangeratesapi.io/history?start_at=\(start)&end_at=\(end)&base=\(from)&symbols=\(to.joined(separator: ","))")!
         return urlSession.dataTaskPublisher(for: url)

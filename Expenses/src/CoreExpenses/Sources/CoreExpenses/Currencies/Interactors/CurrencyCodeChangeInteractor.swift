@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Use case to detect changes in the locale and update the exchange rates if needed.
 public class CurrencyCodeChangeInteractor {
     
     private var exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor

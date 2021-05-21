@@ -10,5 +10,5 @@ import Foundation
 public protocol CurrencySettingsInteractor  {
     func currentCurrencyCode() -> String
     func previousCurrencyCode() -> String
-    func setPreviousCurrencyCode(_ code: String)
+    mutating func setPreviousCurrencyCode(_ code: String)
 }

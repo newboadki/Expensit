@@ -8,6 +8,11 @@
 import Foundation
 
 public struct CurrencyExchangeInfoNetworkModel: Codable {
+    
+    /*
+     * - Structure: ["2018-01-08"  : [CODE : VALUE]]
+     * - VALUE = BASE IN CODE
+     */
     public let rates: [String : [String : Double]]
     public let start_at: String
     public let end_at: String

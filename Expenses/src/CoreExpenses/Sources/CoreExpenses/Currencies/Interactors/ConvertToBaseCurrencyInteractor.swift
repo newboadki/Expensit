@@ -10,13 +10,25 @@ import Foundation
 import Combine
 import DateAndTime
 
-public class ConvertToBaseCurrencyInteractor {
+
+public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
     
     private var entriesDataSource: EntriesSummaryDataSource
     private var ratesDataSource: CurrencyExchangeRatesDataSource
     private var saveExpense: EditExpenseInteractor
     private var rateInfoSubscription: AnyCancellable!
-    
+    private static var defaultRates: [String : [String : Double]] = ["HRK" : ["EUR" : 0.13,
+                                                                               "GBP" : 0.12,
+                                                                               "USD" : 0.15],
+                                                                      "EUR" : ["HRK" : 7.59,
+                                                                               "GBP" : 0.90,
+                                                                               "USD" : 1.01],
+                                                                      "GBP" : ["EUR" : 1.11,
+                                                                               "HRK" : 8.42,
+                                                                               "USD" : 1.29],
+                                                                      "USD" : ["EUR" : 0.86,
+                                                                               "GBP" : 0.77,
+                                                                               "HRK" : 6.50]]    
     public init(dataSource: EntriesSummaryDataSource,
          ratesDataSource: CurrencyExchangeRatesDataSource,
          saveExpense: EditExpenseInteractor) {
@@ -25,26 +37,33 @@ public class ConvertToBaseCurrencyInteractor {
         self.saveExpense = saveExpense
     }
     
-    public func convertAllEntries(from: String, to baseCurrencyCode: String) {
+    public func convertAllEntries(to newBaseCurrency: String) {
         // Get all entries from the DB
         // &
         // Get rates from the network
+        let destinationCurrencies = ["AUSD", "GBP", "HRK"] // TODO: currenciesDataSource.allExistingCodes()
         let expenseGroups = entriesDataSource.expensesGroups()
         let firstDate = expenseGroups.first?.entries.first?.date
         let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
         let lastDate = expenseGroups.last?.entries.last?.date
         let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
-        let ratesPublisher = self.ratesDataSource.rates(from: from, to: [baseCurrencyCode], start: first, end: last).eraseToAnyPublisher()
-        self.rateInfoSubscription = ratesPublisher.sink(receiveValue: { rateInfo in
-            let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups,
-                                                                             rateInfo: rateInfo,
-                                                                             from: from,
-                                                                             to: baseCurrencyCode)
+        let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
+        self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
+            if case .failure(_) = result {
+                let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
+                self.save(expenses: updatedExpenses)
+            }
+        },
+        receiveValue: { rateInfo in
+            let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
             self.save(expenses: updatedExpenses)
         })
     }
+}
+
+private extension ConvertToBaseCurrencyInteractor {
     
-    private func expensesWithUpdatedExchangeRateToBase(expenseGroups: [ExpensesGroup], rateInfo: CurrencyExchangeInfo, from: String, to baseCurrencyCode: String) -> [Expense] {
+    func expensesWithUpdatedExchangeRateToBase(expenseGroups: [ExpensesGroup], rateInfo: CurrencyExchangeInfo, to baseCurrencyCode: String) -> [Expense] {
         let expenses = expenseGroups.flatMap { group in
             return group.entries
         }
@@ -55,18 +74,19 @@ public class ConvertToBaseCurrencyInteractor {
             let dateDayAfterString = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: date.dayAfter)
             let dateDayBeforeString = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: date.dayBefore)
             
+            // We assume here that if for the date of interest we don't have a conversion rate, then looking for in the day before or after we'll always find one. This assumes that the only days without exchange rates are Saturdays and Sundays, which might not be true for all cases. We should implement a keep going in one direction until you find one.
             if let ratesForFrom = rateInfo.rates[dateString],
-               let rateForBase = ratesForFrom[baseCurrencyCode] {
+               let rateForBase = ratesForFrom[expense.currencyCode] {
                 expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(rateForBase)")
                 expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
                 expense.isExchangeRateUpToDate = true
             } else if let ratesForFrom = rateInfo.rates[dateDayBeforeString],
-                      let rateForBase = ratesForFrom[baseCurrencyCode] {
+                      let rateForBase = ratesForFrom[expense.currencyCode] {
                 expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(rateForBase)")
                 expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
                 expense.isExchangeRateUpToDate = true
             } else if let ratesForFrom = rateInfo.rates[dateDayAfterString],
-                      let rateForBase = ratesForFrom[baseCurrencyCode] {
+                      let rateForBase = ratesForFrom[expense.currencyCode] {
                 expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(rateForBase)")
                 expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
                 expense.isExchangeRateUpToDate = true
@@ -76,9 +96,27 @@ public class ConvertToBaseCurrencyInteractor {
         return expenses
     }
     
-    private func save(expenses: [Expense]) {
+    func expensesAfterUpdatingWithDefaultRates(expenseGroups: [ExpensesGroup], to baseCurrencyCode: String) -> [Expense] {
+        let expenses = expenseGroups.flatMap { group in
+            return group.entries
+        }
+        
+        expenses.forEach { expense in
+            let exchangeRate = ConvertToBaseCurrencyInteractor.defaultRates[expense.currencyCode]?[baseCurrencyCode] ?? 1
+            expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(exchangeRate)")
+            expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
+            
+            if expense.currencyCode == baseCurrencyCode {
+                expense.isExchangeRateUpToDate = true
+            } else {
+                expense.isExchangeRateUpToDate = false
+            }
+        }
+        
+        return expenses
+    }
+    
+    func save(expenses: [Expense]) {
         _ = saveExpense.saveChanges(in: expenses)
     }
-
 }
-

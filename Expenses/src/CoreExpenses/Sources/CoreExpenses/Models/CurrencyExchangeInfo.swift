@@ -9,6 +9,10 @@ import Foundation
 
 
 public struct CurrencyExchangeInfo {
+    /*
+     * - Structure: ["2018-01-08"  : [CODE : VALUE]]
+     * - VALUE = BASE IN CODE
+     */
     public let rates: [String : [String : NSDecimalNumber]]
     public let start_at: Date
     public let end_at: Date

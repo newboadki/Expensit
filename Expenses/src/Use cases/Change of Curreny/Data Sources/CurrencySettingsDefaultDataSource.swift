@@ -22,8 +22,7 @@ class CurrencySettingsDefaultDataSource: CurrencySettingsDataSource {
                 return Locale.current.currencyCode!
             }
             
-            return storedValue
-            
+            return storedValue            
         }
         
         set {

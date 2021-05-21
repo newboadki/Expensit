@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
             
             // Convert exchange rates
-            self.currencyCodeChangeManager.updateCurrencyExchangeRatesIfNeeded()
+            self.currencyCodeChangeManager.updateCurrencyExchangeRates()
 
             // Setup the view
             let contentView = ExpensesSummaryNavigationView(navigationCoordinator: self.di.mainNavigationCoordinator())
@@ -60,7 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        self.currencyCodeChangeManager.updateCurrencyExchangeRatesIfNeeded()
+        self.currencyCodeChangeManager.updateCurrencyExchangeRates()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

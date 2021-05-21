@@ -17,7 +17,6 @@ struct PieChartView: View {
     @Binding var isPresented: Bool    
     var presenter: PieChartPresenter    
     
-
     var body: some View {
         
         return VStack {
@@ -28,9 +27,15 @@ struct PieChartView: View {
             Spacer()
             ZStack {
                 ForEach(presenter.sections) { section in
-                    Arc(start: section.start, end: section.end).stroke(Color(section.color), lineWidth: 30).frame(width: 200, height: 200, alignment: .center).rotationEffect(.degrees(-90))
+                    Arc(start: section.start, end: section.end)
+                        .stroke(Color(section.color), lineWidth: 30)
+                        .frame(width: 200, height: 200, alignment: .center)
+                        .rotationEffect(.degrees(-90))
                 }
-                Arc(start: maskStartAngle, end: maskEndAngle, animatesEndAngle: false).stroke(Color.white, lineWidth: 40).frame(width: 200, height: 200, alignment: .center).rotationEffect(.degrees(-90)).animation(Animation.easeOut(duration: 1.3))
+                Arc(start: maskStartAngle, end: maskEndAngle, animatesEndAngle: false)
+                    .stroke(Color.white, lineWidth: 40)
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .rotationEffect(.degrees(-90)).animation(Animation.easeOut(duration: 1.3))
             }
             Spacer()
         }.onAppear {

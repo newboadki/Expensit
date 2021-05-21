@@ -16,12 +16,20 @@ public class Expense {
     public var identifier: NSCopying? // Related to the underlying storage system
     public let dateComponents: DateComponents
     public var date: Date?
+    
+    // An expense has a value in the currency code it was created with
     public var value: NSDecimalNumber
-    public var valueInBaseCurrency: NSDecimalNumber
-    public var entryDescription: String?
-    public var currencyCode: String        
+    public var currencyCode: String
+    
+    // An expense can be displayed in a base currency, which can change since it's a display option
     public var exchangeRateToBaseCurrency: NSDecimalNumber
     public var isExchangeRateUpToDate: Bool
+    public var valueInBaseCurrency: NSDecimalNumber // value * exchangeRateToBaseCurrency
+        
+    public var entryDescription: String?
+            
+    
+    
     
     /// Categories are optional, because aggregated values are also represented as an expenses entry.
     /// For example the aggregation of all yearly entries is an value with an associated date, from which only the year is representative.

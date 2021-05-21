@@ -12,14 +12,14 @@ import CoreExpenses
 import DateAndTime
 
 public class CurrencyExchangeRatesDataSourceMapper: CurrencyExchangeRatesDataSource {
+    
     private var dataSource: CurrencyExchangeRatesNetworkDataSource
     
     public init(dataSource: CurrencyExchangeRatesNetworkDataSource) {
         self.dataSource = dataSource
     }
     
-    
-    public func rates(from: String, to: [String], start: String, end: String) -> AnyPublisher<CurrencyExchangeInfo, Never> {
+    public func rates(from: String, to: [String], start: String, end: String) -> AnyPublisher<CurrencyExchangeInfo, Error> {
         return self.dataSource.rates(from: from, to: to, start: start, end: end).map { networkModel in
             var mappedRates = [String : [String : NSDecimalNumber]]()
             for (key, value) in networkModel.rates {

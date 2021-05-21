@@ -7,14 +7,17 @@
 
 import Foundation
 
+/// What to test
+/// - When we should do convertions
+/// - When we should't do convertions
 /// Use case to detect changes in the locale and update the exchange rates if needed.
 public class CurrencyCodeChangeInteractor {
     
-    private var exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor
+    private var exchangeRatesConversionInteractor: CurrencyConvertorInteractor
     private var allEntriesDataSource: EntriesSummaryDataSource
     private var currencySettingsInteractor: CurrencySettingsInteractor
     
-    public init(exchangeRatesConversionInteractor: ConvertToBaseCurrencyInteractor,
+    public init(exchangeRatesConversionInteractor: CurrencyConvertorInteractor,
                 allEntriesDataSource: EntriesSummaryDataSource,
                 currencySettingsInteractor: CurrencySettingsInteractor) {
         self.exchangeRatesConversionInteractor = exchangeRatesConversionInteractor
@@ -22,47 +25,43 @@ public class CurrencyCodeChangeInteractor {
         self.currencySettingsInteractor = currencySettingsInteractor
     }
             
-    public func updateCurrencyExchangeRatesIfNeeded() {
+    public func updateCurrencyExchangeRates() {
         let previousCode = currencySettingsInteractor.previousCurrencyCode()
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
         let currencyCodeChanged = (previousCode != currentCode)
         if currencyCodeChanged {
             // Convert
-            let approximated = convertExchangeRates(from: previousCode, to: currentCode)
+            convertExchangeRates(to: currentCode)
             
-            // Update state if needed
-            if !approximated {
-                currencySettingsInteractor.setPreviousCurrencyCode(currentCode)
-            }
+            // Update state
+            // Regardless of whether the conversion succeeded or we are using harcoded default values.
+            // We are setting the current currency code as the previous one, because we have indeed converted.
+            currencySettingsInteractor.setPreviousCurrencyCode(currentCode)
         } else {
+            // Even if there's no change, there could be some approximations.
+            // Try to resolve them.
             converExchangeRatesIfCalculationsAreApproximated()
-        }
+        }                
     }
+}
+
+// MARK: - Helpers
+private extension CurrencyCodeChangeInteractor {
     
-    private func convertExchangeRates(from: String, to: String) -> Bool {
-        exchangeRatesConversionInteractor.convertAllEntries(from: from, to: to)
+    @discardableResult
+    func convertExchangeRates(to newBase: String) -> Bool {
+        exchangeRatesConversionInteractor.convertAllEntries(to: newBase)
         return allEntriesDataSource.isExchangeRateToBaseApproximated()
     }
     
-    private func converExchangeRatesIfCalculationsAreApproximated() {
+    func converExchangeRatesIfCalculationsAreApproximated() {
         // Check that we need to recalculate
         guard allEntriesDataSource.isExchangeRateToBaseApproximated() else {
             return
         }
         
-        // Check the state is not corrupt
-        let previousCode = currencySettingsInteractor.previousCurrencyCode()
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
-        guard (previousCode != currentCode) else {
-            fatalError("Currency rates can't be approximate if current and previous codes are the same.")
-        }
-        
-        // Convert
-        let approximated = convertExchangeRates(from: previousCode, to: currentCode)
-        
-        // Update state if needed
-        if !approximated {
-            currencySettingsInteractor.setPreviousCurrencyCode(currentCode)
-        }
+        convertExchangeRates(to: currentCode)
     }
+
 }

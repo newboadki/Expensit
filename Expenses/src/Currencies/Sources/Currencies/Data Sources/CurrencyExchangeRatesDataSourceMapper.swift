@@ -39,7 +39,9 @@ public class CurrencyExchangeRatesDataSourceMapper: CurrencyExchangeRatesDataSou
     }
     
     public func getLatest(from: String, to: [String]) -> AnyPublisher<CurrencyConversionRates, Never> {
-        // TODO: Use default currencies initeractors, or move this code out.
+        // TODO:
+        // - Propagate error from network data source. Use interactor to use defaults in case of error, so that this
+        //   code gets moved out.
         let rates: [CurrencyCode : [String : NSDecimalNumber]] = [.HRK : ["EUR" : 0.13,
                                                                           "GBP" : 0.12,
                                                                           "USD" : 0.15],

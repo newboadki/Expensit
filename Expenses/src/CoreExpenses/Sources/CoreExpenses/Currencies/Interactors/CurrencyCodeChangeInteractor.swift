@@ -30,12 +30,11 @@ public class CurrencyCodeChangeInteractor {
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
         let currencyCodeChanged = (previousCode != currentCode)
         if currencyCodeChanged {
-            // Convert
+            // Attempt conversion
             convertExchangeRates(to: currentCode)
             
-            // Update state
-            // Regardless of whether the conversion succeeded or we are using harcoded default values.
-            // We are setting the current currency code as the previous one, because we have indeed converted.
+            // Regardless of whether the conversion succeeded or not (we are using harcoded default values),
+            // we are setting the current currency code as the previous one, because we have indeed converted.
             currencySettingsInteractor.setPreviousCurrencyCode(currentCode)
         } else {
             // Even if there's no change, there could be some approximations.
@@ -63,5 +62,4 @@ private extension CurrencyCodeChangeInteractor {
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
         convertExchangeRates(to: currentCode)
     }
-
 }

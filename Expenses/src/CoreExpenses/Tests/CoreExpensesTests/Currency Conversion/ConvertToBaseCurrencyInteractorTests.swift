@@ -13,9 +13,6 @@ import DateAndTime
 class ConvertToBaseCurrencyInteractorTests: XCTestCase {
     
     private typealias Provider = ConvertToBaseCurrencyInteractorProvider
-    private let startDate = "2021-01-01"
-    private let endDate = "2021-01-07"
-    private let base = "EUR"
     private let mockNetworkRates: [String : [String : NSDecimalNumber]] = ["2021-01-01" : ["GBP" : 1.160,
                                                                                            "USD" : 0.89],
                                                                            "2021-01-02" : ["GBP" : 1.161,
@@ -26,7 +23,7 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
     
     func testNothingGetsUpdatedIfTheresNoRateInfo() throws {
         
-        let testInfo = Provider.testInfoWithEmptyExchangeInfo(startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithEmptyExchangeInfo("2021-01-01", "2021-01-07", baseCurrency: "EUR", existingCurrencyCodes: ["USD"],
                                                               entriesInDb: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 15_000, "USD"),
                                                                             Provider.entryInBaseCurrency("e2", DateComponents(year: 2021, month: 1, day: 2), 1_000, "USD")])
         
@@ -39,7 +36,7 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
     }
     
     func testEntriesAreUpdatedWhenDataContainsRatesForTheEntriesDates() {
-        let testInfo = Provider.testInfoWithExchangeInfo(mockNetworkRates, startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithExchangeInfo(mockNetworkRates, "2021-01-01", "2021-01-07", baseCurrency: "EUR", existingCurrencyCodes: ["USD"],
                                                          entriesInDb: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 15000, "USD"),
                                                                        Provider.entryInBaseCurrency("e2", DateComponents(year: 2021, month: 1, day: 2), 1000, "USD")])
         
@@ -52,7 +49,7 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
     }
     
     func testEntriesAreUpdatedWhenDataContainsRatesForTheDayBeforeOfTheRequestedDate() {
-        let testInfo = Provider.testInfoWithExchangeInfo(mockNetworkRates_20210101, startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithExchangeInfo(mockNetworkRates_20210101, "2021-01-01", "2021-01-07", baseCurrency: "EUR", existingCurrencyCodes: ["EUR", "USD"],
                                                          entriesInDb: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 2), 1000, "USD")])
 
         let testComponents = ConvertToBaseCurrencyInteractorProvider.testComponents(from: testInfo, approximated: false)
@@ -66,7 +63,8 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
         let mockRates: [String : [String : NSDecimalNumber]] = ["2021-01-02" : ["GBP" : 1.161,
                                                                                 "USD" : 0.90]]
 
-        let testInfo = Provider.testInfoWithExchangeInfo(mockRates, startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithExchangeInfo(mockRates, "2021-01-01", "2021-01-07", baseCurrency: "EUR",
+                                                         existingCurrencyCodes: ["USD"],
                                                          entriesInDb: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 1000, "USD")])
 
         let testComponents = ConvertToBaseCurrencyInteractorProvider.testComponents(from: testInfo, approximated: false)
@@ -80,7 +78,8 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
         let mockRates: [String : [String : NSDecimalNumber]] = ["2021-01-02" : ["GBP" : 1.161,
                                                                                 "USD" : 0.90]]
 
-        let testInfo = Provider.testInfoWithExchangeInfo(mockRates, startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithExchangeInfo(mockRates, "2021-01-01", "2021-01-07", baseCurrency: "EUR",
+                                                         existingCurrencyCodes: ["GBP", "USD"],
                                                          entriesInDb: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 5, day: 25), 1000, "USD"),
                                                                        Provider.entryInOtherCurrency("e2", DateComponents(year: 2021, month: 5, day: 25), 480, "GBP")])
 
@@ -93,7 +92,8 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
     }
     
     func testEntriesUpdatedWithDefaultRatesIfDataSourceFailsToRetrieveRates() {
-        let testInfo = Provider.testInfoWithExchangeInfoError(startDate, endDate, baseCurrency: base,
+        let testInfo = Provider.testInfoWithExchangeInfoError("2021-01-01", "2021-01-07", baseCurrency: "EUR",
+                                                              existingCurrencyCodes: ["EUR", "GBP", "USD"],
                                                 entriesInDb: [Provider.entryInOtherCurrency("e1", DateComponents(year: 2021, month: 5, day: 25), 1000, "USD"),
                                                              Provider.entryInOtherCurrency("e2", DateComponents(year: 2021, month: 5, day: 25), 480, "GBP"),
                                                              Provider.entryInBaseCurrency("e3", DateComponents(year: 2021, month: 5, day: 25), 5_000, "EUR")])
@@ -103,7 +103,7 @@ class ConvertToBaseCurrencyInteractorTests: XCTestCase {
         
         // Expectations
         Provider.assertEntryInDB("e1", "USD", 0.86, false, valueInBaseCurrency: 860, testComponents)
-        Provider.assertEntryInDB("e2", "GBP", NSDecimalNumber(string: "1.11"), false, valueInBaseCurrency: 532.8, testComponents)
+        Provider.assertEntryInDB("e2", "GBP", 1.10, false, valueInBaseCurrency: 528, testComponents)
         Provider.assertEntryInDB("e3", "EUR", 1, true, valueInBaseCurrency: 5_000, testComponents)
     }
 }
@@ -116,4 +116,5 @@ struct ConvertToBaseInteractorTestInfo {
     let rates: CurrencyConversionRates
     let base: String
     let expensesInDataBase: [Expense]
+    let existingCurrencyCodes: [String]
 }

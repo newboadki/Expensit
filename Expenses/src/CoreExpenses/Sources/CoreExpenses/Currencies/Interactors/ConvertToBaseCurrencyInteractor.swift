@@ -13,41 +13,38 @@ import DateAndTime
 
 public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
     
-    private var entriesDataSource: EntriesSummaryDataSource
-    private var ratesDataSource: CurrencyExchangeRatesDataSource
-    private var saveExpense: EditExpenseInteractor
+    private let entriesDataSource: EntriesSummaryDataSource
+    private let ratesDataSource: CurrencyExchangeRatesDataSource
+    private let saveExpense: EditExpenseInteractor
+    private let defaultRates: DefaultRatesInteractor
+    private let currenciesDataSource: CurrenciesDataSource
     private var rateInfoSubscription: AnyCancellable!
-    private static var defaultRates: [String : [String : Double]] = ["HRK" : ["EUR" : 0.13,
-                                                                               "GBP" : 0.12,
-                                                                               "USD" : 0.15],
-                                                                      "EUR" : ["HRK" : 7.59,
-                                                                               "GBP" : 0.90,
-                                                                               "USD" : 1.01],
-                                                                      "GBP" : ["EUR" : 1.11,
-                                                                               "HRK" : 8.42,
-                                                                               "USD" : 1.29],
-                                                                      "USD" : ["EUR" : 0.86,
-                                                                               "GBP" : 0.77,
-                                                                               "HRK" : 6.50]]    
+    
+
     public init(dataSource: EntriesSummaryDataSource,
-         ratesDataSource: CurrencyExchangeRatesDataSource,
-         saveExpense: EditExpenseInteractor) {
+                ratesDataSource: CurrencyExchangeRatesDataSource,
+                saveExpense: EditExpenseInteractor,
+                defaultRates: DefaultRatesInteractor,
+                currenciesDataSource: CurrenciesDataSource) {
         self.entriesDataSource = dataSource
         self.ratesDataSource = ratesDataSource
         self.saveExpense = saveExpense
+        self.defaultRates = defaultRates
+        self.currenciesDataSource = currenciesDataSource
     }
     
     public func convertAllEntries(to newBaseCurrency: String) {
         // Get all entries from the DB
         // &
         // Get rates from the network
-        let destinationCurrencies = ["AUSD", "GBP", "HRK"] // TODO: currenciesDataSource.allExistingCodes()
+        let destinationCurrencies = currenciesDataSource.allUsedCurrencies()
         let expenseGroups = entriesDataSource.expensesGroups()
         let firstDate = expenseGroups.first?.entries.first?.date
         let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
         let lastDate = expenseGroups.last?.entries.last?.date
         let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
         let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
+        
         self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
             if case .failure(_) = result {
                 let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
@@ -102,15 +99,9 @@ private extension ConvertToBaseCurrencyInteractor {
         }
         
         expenses.forEach { expense in
-            let exchangeRate = ConvertToBaseCurrencyInteractor.defaultRates[expense.currencyCode]?[baseCurrencyCode] ?? 1
-            expense.exchangeRateToBaseCurrency = NSDecimalNumber(string: "\(exchangeRate)")
+            expense.exchangeRateToBaseCurrency = defaultRate(from: expense, base: baseCurrencyCode)
             expense.valueInBaseCurrency = expense.value.multiplying(by: expense.exchangeRateToBaseCurrency)
-            
-            if expense.currencyCode == baseCurrencyCode {
-                expense.isExchangeRateUpToDate = true
-            } else {
-                expense.isExchangeRateUpToDate = false
-            }
+            expense.isExchangeRateUpToDate = (expense.currencyCode == baseCurrencyCode)
         }
         
         return expenses
@@ -118,5 +109,18 @@ private extension ConvertToBaseCurrencyInteractor {
     
     func save(expenses: [Expense]) {
         _ = saveExpense.saveChanges(in: expenses)
+    }
+    
+    /// Default conversion rate of expense.currencyCode
+    /// - Returns: The default conversion rate from the defaults dictionary, or 1 if we couldn't find it.
+    func defaultRate(from expense: Expense, base baseCurrencyCode: String) -> NSDecimalNumber {
+        guard let expenseCurrency = CurrencyCode(rawValue: expense.currencyCode),
+              let baseCurrency = CurrencyCode(rawValue: baseCurrencyCode),
+              let rate = defaultRates.rates()[expenseCurrency]?[baseCurrency]
+        else {
+            return 1
+        }
+        
+        return rate
     }
 }

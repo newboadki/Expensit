@@ -7,20 +7,20 @@
 
 import Foundation
 
-class DefaultRatesInteractor {
+public class DefaultRatesInteractor {
     
-    func rates() -> [String : [String : NSDecimalNumber]] {
-        return [CurrencyCode.HRK.rawValue : [CurrencyCode.EUR.rawValue : 0.13,
-                                             CurrencyCode.GBP.rawValue : 0.12,
-                                             CurrencyCode.USD.rawValue : 0.15],
-                CurrencyCode.EUR.rawValue : [CurrencyCode.HRK.rawValue : 7.59,
-                                             CurrencyCode.GBP.rawValue : 0.90,
-                                             CurrencyCode.USD.rawValue : 1.01],
-                CurrencyCode.GBP.rawValue : [CurrencyCode.EUR.rawValue : 1.11,
-                                             CurrencyCode.HRK.rawValue : 8.42,
-                                             CurrencyCode.USD.rawValue : 1.29],
-                CurrencyCode.USD.rawValue : [CurrencyCode.EUR.rawValue : 0.86,
-                                             CurrencyCode.GBP.rawValue : 0.77,
-                                             CurrencyCode.HRK.rawValue : 6.50]]
+    public func rates() -> [CurrencyCode : [CurrencyCode : NSDecimalNumber]] {
+        return [.HRK : [.EUR : 0.13,
+                        .GBP : 0.12,
+                        .USD : 0.15],
+                .EUR : [.HRK : 7.59,
+                        .GBP : 0.90,
+                        .USD : 1.01],
+                .GBP : [.EUR : 1.10,
+                        .HRK : 8.42,
+                        .USD : 1.29],
+                .USD : [.EUR : 0.86,
+                        .GBP : 0.77,
+                        .HRK : 6.50]]
     }
 }

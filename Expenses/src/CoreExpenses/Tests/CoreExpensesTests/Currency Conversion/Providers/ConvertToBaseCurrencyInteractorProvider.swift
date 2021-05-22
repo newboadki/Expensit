@@ -24,7 +24,7 @@ struct ConvertToBaseCurrencyInteractorProvider {
         let rateDataSourceMock = CurrencyExchangeRatesDataSourceMock(exchangeInfo: testInfo.exchangeInfo, rates: testInfo.rates, error: testInfo.exchangeInfoError)
         let saveDataSourceMock = IndividualEntryDataSourceMock()
         let saveDataInteractorMock = EditExpenseInteractor(dataSource: saveDataSourceMock)
-        let interactor = ConvertToBaseCurrencyInteractor(dataSource: entriesDataSource, ratesDataSource: rateDataSourceMock, saveExpense: saveDataInteractorMock)
+        let interactor = ConvertToBaseCurrencyInteractor(dataSource: entriesDataSource, ratesDataSource: rateDataSourceMock, saveExpense: saveDataInteractorMock, defaultRates: DefaultRatesInteractor(), currenciesDataSource: CurrenciesDataSourceMock(existingCurrencyCodes: testInfo.existingCurrencyCodes))
         return (convertInteractor: interactor, invididualEntries: saveDataSourceMock, entriesInDb:entriesDataSource)
     }
     
@@ -89,17 +89,18 @@ struct ConvertToBaseCurrencyInteractorProvider {
         XCTAssert(e.currencyCode == currencyCode)
     }
     
-    static func testInfoWithEmptyExchangeInfo(_ startDate: String, _ endDate: String, baseCurrency: String, entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
+    static func testInfoWithEmptyExchangeInfo(_ startDate: String, _ endDate: String, baseCurrency: String, existingCurrencyCodes:[String], entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
         ConvertToBaseInteractorTestInfo(startDate: startDate,
                                         endDate: endDate,
                                         exchangeInfoError: nil,
                                         exchangeInfo: Self.emptyExchangeInfo(from: startDate, to: endDate, baseCurrency: baseCurrency),
                                         rates: emptyRates(),
                                         base: baseCurrency,
-                                        expensesInDataBase: entriesInDb)
+                                        expensesInDataBase: entriesInDb,
+                                        existingCurrencyCodes: existingCurrencyCodes)
     }
 
-    static func testInfoWithExchangeInfo(_ mockNetworkRates: [String : [String : NSDecimalNumber]], _ startDate: String, _ endDate: String, baseCurrency: String, entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
+    static func testInfoWithExchangeInfo(_ mockNetworkRates: [String : [String : NSDecimalNumber]], _ startDate: String, _ endDate: String, baseCurrency: String, existingCurrencyCodes:[String], entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
         ConvertToBaseInteractorTestInfo(startDate: startDate,
                                         endDate: endDate,
                                         exchangeInfoError: nil,
@@ -109,17 +110,19 @@ struct ConvertToBaseCurrencyInteractorProvider {
                                                                         baseCurrency: baseCurrency),
                                         rates: emptyRates(),
                                         base: baseCurrency,
-                                        expensesInDataBase: entriesInDb)
+                                        expensesInDataBase: entriesInDb,
+                                        existingCurrencyCodes: existingCurrencyCodes)
     }
 
-    static func testInfoWithExchangeInfoError(_ startDate: String, _ endDate: String, baseCurrency: String, entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
+    static func testInfoWithExchangeInfoError(_ startDate: String, _ endDate: String, baseCurrency: String, existingCurrencyCodes:[String], entriesInDb: [Expense]) -> ConvertToBaseInteractorTestInfo{
         ConvertToBaseInteractorTestInfo(startDate: startDate,
                                         endDate: endDate,
                                         exchangeInfoError: CurrencyExchangeRatesDataSourceMock.GenericError(),
                                         exchangeInfo: Self.emptyExchangeInfo(from: startDate, to: endDate, baseCurrency: baseCurrency),
                                         rates: emptyRates(),
                                         base: baseCurrency,
-                                        expensesInDataBase: entriesInDb)
+                                        expensesInDataBase: entriesInDb,
+                                        existingCurrencyCodes: existingCurrencyCodes)
     }
     
     

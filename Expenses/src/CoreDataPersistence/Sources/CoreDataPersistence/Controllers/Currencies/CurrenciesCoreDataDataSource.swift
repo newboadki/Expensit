@@ -11,7 +11,7 @@ import CoreExpenses
 import CoreData
 import UIKit
 
-public class CurrenciesCoreDataDataSource: CoreDataDataSource, CurreciesDataSource {
+public class CurrenciesCoreDataDataSource: CoreDataDataSource, CurrenciesDataSource {
             
     @Published public var selectedCategory: ExpenseCategory?
     public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
@@ -26,8 +26,17 @@ public class CurrenciesCoreDataDataSource: CoreDataDataSource, CurreciesDataSour
     public func allUsedCurrencies() -> [String] {
         let baseRequest = self.baseRequest(context: coreDataContext)
         baseRequest.propertiesToFetch = ["currencyCode"]
-        baseRequest.returnsDistinctResults = true                
-        return (try? coreDataContext.fetch(baseRequest)) ?? []
+        baseRequest.returnsDistinctResults = true
+        do {
+            if let expenses = try coreDataContext.fetch(baseRequest) as? [Entry] {
+                let currencyCodes = expenses.map { $0.currencyCode }
+                return Array(Set(currencyCodes))
+            } else {
+                return []
+            }
+        } catch {
+            return []
+        }
     }
 }
 

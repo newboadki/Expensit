@@ -9,6 +9,10 @@ import Foundation
 
 public class DefaultRatesInteractor {
     
+    public init() {
+        
+    }
+    
     public func rates() -> [CurrencyCode : [CurrencyCode : NSDecimalNumber]] {
         return [.HRK : [.EUR : 0.13,
                         .GBP : 0.12,

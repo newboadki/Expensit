@@ -39,7 +39,24 @@ public class CurrencyExchangeRatesDataSourceMapper: CurrencyExchangeRatesDataSou
     }
     
     public func getLatest(from: String, to: [String]) -> AnyPublisher<CurrencyConversionRates, Never> {
-        fatalError()
+        // TODO: Use default currencies initeractors, or move this code out.
+        let rates: [CurrencyCode : [String : NSDecimalNumber]] = [.HRK : ["EUR" : 0.13,
+                                                                          "GBP" : 0.12,
+                                                                          "USD" : 0.15],
+                                                                  .EUR : ["HRK" : 7.59,
+                                                                          "GBP" : 0.90,
+                                                                          "USD" : 1.01],
+                                                                  .GBP : ["EUR" : 1.10,
+                                                                          "HRK" : 8.42,
+                                                                          "USD" : 1.29],
+                                                                  .USD : ["EUR" : 0.86,
+                                                                          "GBP" : 0.77,
+                                                                          "HRK" : 6.50]]
+                
+        return Just(CurrencyConversionRates(rates: rates[CurrencyCode(rawValue: from)!]!,
+                                            date: Date(),
+                                            base: to.first!,
+                                            isApproximation: true)).eraseToAnyPublisher()
     }
 
 }

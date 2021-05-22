@@ -86,7 +86,7 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
                                         valueInBaseCurrency: coreDataEntry.valueInBaseCurrency,
                                         description: coreDataEntry.desc,
                                         category: category,
-                                        currencyCode: "",
+                                        currencyCode: coreDataEntry.currencyCode,
                                         exchangeRateToBaseCurrency: coreDataEntry.exchangeRateToBaseCurrency,
                                         isExchangeRateUpToDate: coreDataEntry.isExchangeRateUpToDate)
                     entry.identifier = coreDataEntry.objectID.copy() as! NSCopying

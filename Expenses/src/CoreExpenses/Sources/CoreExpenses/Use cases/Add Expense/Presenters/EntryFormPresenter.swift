@@ -192,7 +192,7 @@ public class EntryFormPresenter: ObservableObject {
                                     category: category,
                                     currencyCode: entry.currencyCode,
                                     exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
-                                    isExchangeRateUpToDate: false)
+                                    isExchangeRateUpToDate: true)
         
         expenseEntity.identifier = nil
         

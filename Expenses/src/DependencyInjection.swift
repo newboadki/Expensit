@@ -75,7 +75,9 @@ class DependencyInjection {
     func exchangeRatesConversionInteractor() -> ConvertToBaseCurrencyInteractor {
         return ConvertToBaseCurrencyInteractor(dataSource: dataSources["all"]!,
                                               ratesDataSource: CurrencyExchangeRatesDataSourceMapper(dataSource: CurrencyExchangeRatesNetworkDataSource()),
-                                              saveExpense: EditExpenseInteractor(dataSource: individualEntriesDataSource))
+                                              saveExpense: EditExpenseInteractor(dataSource: individualEntriesDataSource),
+                                              defaultRates: DefaultRatesInteractor(),
+                                              currenciesDataSource: CurrenciesCoreDataDataSource(context: context))
     }
     
     func currencyCodeChangeManager() -> CurrencyCodeChangeInteractor {

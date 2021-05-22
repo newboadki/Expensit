@@ -71,7 +71,8 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         first.valueInBaseCurrency = expense.valueInBaseCurrency
         first.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
         first.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
-        first.desc = expense.entryDescription        
+        first.currencyCode = expense.currencyCode
+        first.desc = expense.entryDescription
         
         let request = Tag.tagFetchRequest()
         request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)

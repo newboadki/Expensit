@@ -121,7 +121,7 @@ class TestDataGenerator {
                                     isExchangeRateUpToDate: true))
         
         
-        _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 2, day: 15, hour: 0, minute: 0, second: 0),
+        _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 1, day: 15, hour: 0, minute: 0, second: 0),
                                     date: d("15/02/2013"),
                                     value: -15,
                                     valueInBaseCurrency: -15,

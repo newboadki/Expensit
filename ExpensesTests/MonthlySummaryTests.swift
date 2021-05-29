@@ -45,13 +45,11 @@ class MonthlySummaryTests: XCTestCase {
 // MARK: - Category Filter tests
 extension MonthlySummaryTests {
     
-    func test_monthly_breakdown_all_categories() throws {
-        
-        
+    func test_monthly_breakdown_all_categories() throws {                
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 3)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "$4,684.10"),
-                                 Test.Expense(title: "FEB", value: "-$150.00"),
+                                 Test.Expense(title: "FEB", value: "-$135.00"),
                                  Test.Expense(title: "MAR", value: ""),
                                  Test.Expense(title: "APR", value: ""),
                                  Test.Expense(title: "MAY", value: ""),
@@ -105,7 +103,7 @@ extension MonthlySummaryTests {
         XCTAssert(MonthlySummaryTests.presenter.sections.count == 2)
         
         Test.assertEqualEntries([Test.Expense(title: "JAN", value: "-$45.00"),
-                                 Test.Expense(title: "FEB", value: "-$15.00"),
+                                 Test.Expense(title: "FEB", value: ""),
                                  Test.Expense(title: "MAR", value: ""),
                                  Test.Expense(title: "APR", value: ""),
                                  Test.Expense(title: "MAY", value: ""),

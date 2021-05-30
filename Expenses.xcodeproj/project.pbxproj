@@ -45,6 +45,7 @@
 		007B826C177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
 		007B826D177476780052FE84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B8250177476780052FE84 /* UIKit.framework */; };
 		007B8276177476780052FE84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 007B8274177476780052FE84 /* InfoPlist.strings */; };
+		00815E152662AC0300A7385F /* DailySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00815E142662AC0300A7385F /* DailySummaryTests.swift */; };
 		008D238E2543FD9D00C91F5F /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D238D2543FD9D00C91F5F /* LazyView.swift */; };
 		008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E740F236C292B00762E08 /* EntryBoxView.swift */; };
 		008E7412236CC54C00762E08 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008E7411236CC54C00762E08 /* GridView.swift */; };
@@ -153,6 +154,7 @@
 		007B82C0177591860052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B82C2177591A20052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../CoreDataStackHelper/build/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
 		007B83051775A0370052FE84 /* libCoreDataStackHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCoreDataStackHelper.a; path = "../../../Library/Developer/Xcode/DerivedData/ExpensesAppWorkspace-cpawapuscsryhtapnkcwxzdyiduh/Build/Products/Debug-iphoneos/libCoreDataStackHelper.a"; sourceTree = "<group>"; };
+		00815E142662AC0300A7385F /* DailySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryTests.swift; sourceTree = "<group>"; };
 		008D238D2543FD9D00C91F5F /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		008E740F236C292B00762E08 /* EntryBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryBoxView.swift; sourceTree = "<group>"; };
 		008E7411236CC54C00762E08 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				007B8272177476780052FE84 /* Supporting Files */,
 				0001059723409B440073BFAF /* YearlySummaryTests.swift */,
 				00374F4624A264CF00D69BFB /* MonthlySummaryTests.swift */,
+				00815E142662AC0300A7385F /* DailySummaryTests.swift */,
 				00D57E1A1F744BDE00EC9127 /* DailyTestHelper.h */,
 				00D57E1B1F744BDE00EC9127 /* DailyTestHelper.m */,
 				00010595233F5AD70073BFAF /* TestDataGenerator.swift */,
@@ -804,6 +807,7 @@
 				00C21386217BB03000805207 /* PieChartPresentationController.swift in Sources */,
 				00010596233F5AD70073BFAF /* TestDataGenerator.swift in Sources */,
 				00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */,
+				00815E152662AC0300A7385F /* DailySummaryTests.swift in Sources */,
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
 				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,

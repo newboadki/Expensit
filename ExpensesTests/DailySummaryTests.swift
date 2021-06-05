@@ -78,8 +78,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: "-$320.90"),
-                                 Test.Expense(title: "31", value: "$5,000.00"),
-                                 Test.Expense(title: "32", value: "")], // <------- FIX-ME
+                                 Test.Expense(title: "31", value: "$5,000.00")],
                                 inSection: 8,
                                 named: "Jan 2013",
                                 presenter: DailySummaryTests.presenter)
@@ -112,8 +111,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "26", value: ""),
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
-                                 Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: "")],
+                                 Test.Expense(title: "29", value: "")],
                                 inSection: 7,
                                 named: "Feb 2013",
                                 presenter: DailySummaryTests.presenter)
@@ -147,8 +145,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: "")],
+                                 Test.Expense(title: "30", value: "")],
                                 inSection: 6,
                                 named: "Nov 2013",
                                 presenter: DailySummaryTests.presenter)
@@ -183,8 +180,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: "$3,779.10"),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 5,
                                 named: "Mar 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -218,8 +214,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: "$5,000.00"),
-                                 Test.Expense(title: "31", value: "")],
+                                 Test.Expense(title: "30", value: "$5,000.00")],
                                 inSection: 4,
                                 named: "Sep 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -254,8 +249,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 3,
                                 named: "Oct 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -289,8 +283,7 @@ extension DailySummaryTests {
                                 Test.Expense(title: "27", value: ""),
                                 Test.Expense(title: "28", value: ""),
                                 Test.Expense(title: "29", value: ""),
-                                Test.Expense(title: "30", value: ""),
-                                Test.Expense(title: "31", value: "")],
+                                Test.Expense(title: "30", value: "")],
                                inSection: 2,
                                named: "Nov 2014",
                                presenter: DailySummaryTests.presenter)
@@ -325,8 +318,7 @@ extension DailySummaryTests {
                                 Test.Expense(title: "28", value: ""),
                                 Test.Expense(title: "29", value: ""),
                                 Test.Expense(title: "30", value: ""),
-                                Test.Expense(title: "31", value: ""),
-                                Test.Expense(title: "32", value: "")],
+                                Test.Expense(title: "31", value: "")],
                                inSection: 1,
                                named: "Dec 2014",
                                presenter: DailySummaryTests.presenter)
@@ -361,8 +353,7 @@ extension DailySummaryTests {
                                 Test.Expense(title: "28", value: ""),
                                 Test.Expense(title: "29", value: ""),
                                 Test.Expense(title: "30", value: ""),
-                                Test.Expense(title: "31", value: ""),
-                                Test.Expense(title: "32", value: "")],
+                                Test.Expense(title: "31", value: "")],
                                inSection: 0,
                                named: "Aug 2015",
                                presenter: DailySummaryTests.presenter)
@@ -403,8 +394,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")], // <------- FIX-ME
+                                 Test.Expense(title: "31", value: ""),],
                                 inSection: 1,
                                 named: "Jan 2013",
                                 presenter: DailySummaryTests.presenter)
@@ -439,8 +429,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")], // <------- FIX-ME
+                                 Test.Expense(title: "31", value: ""),],
                                 inSection: 0,
                                 named: "Mar 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -479,8 +468,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "26", value: ""),
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
-                                 Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: "")]
+                                 Test.Expense(title: "29", value: "")]
                                 ,
                                 inSection: 3,
                                 named: "Feb 2013",
@@ -516,8 +504,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 2,
                                 named: "Oct 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -551,8 +538,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: "")],
+                                 Test.Expense(title: "30", value: "")],
                                 inSection: 1,
                                 named: "Nov 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -587,8 +573,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 0,
                                 named: "Dec 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -628,8 +613,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: "-$320.90"),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")]
+                                 Test.Expense(title: "31", value: "")]
                                 ,
                                 inSection: 2,
                                 named: "Jan 2013",
@@ -665,8 +649,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: "$3,779.10"),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 1,
                                 named: "Mar 2014",
                                 presenter: DailySummaryTests.presenter)
@@ -701,8 +684,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: ""),
-                                 Test.Expense(title: "32", value: "")],
+                                 Test.Expense(title: "31", value: "")],
                                 inSection: 0,
                                 named: "Aug 2015",
                                 presenter: DailySummaryTests.presenter)
@@ -744,8 +726,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
                                  Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: "$5,000.00"),
-                                 Test.Expense(title: "32", value: "")]
+                                 Test.Expense(title: "31", value: "$5,000.00")]
                                 ,
                                 inSection: 2,
                                 named: "Jan 2013",
@@ -780,8 +761,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: ""),
-                                 Test.Expense(title: "31", value: "")],
+                                 Test.Expense(title: "30", value: "")],
                                 inSection: 1,
                                 named: "Nov 2013",
                                 presenter: DailySummaryTests.presenter)
@@ -815,8 +795,7 @@ extension DailySummaryTests {
                                  Test.Expense(title: "27", value: ""),
                                  Test.Expense(title: "28", value: ""),
                                  Test.Expense(title: "29", value: ""),
-                                 Test.Expense(title: "30", value: "$5,000.00"),
-                                 Test.Expense(title: "31", value: "")],
+                                 Test.Expense(title: "30", value: "$5,000.00")],
                                 inSection: 0,
                                 named: "Sep 2014",
                                 presenter: DailySummaryTests.presenter)

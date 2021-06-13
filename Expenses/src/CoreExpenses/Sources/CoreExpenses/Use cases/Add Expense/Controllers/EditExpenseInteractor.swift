@@ -9,7 +9,7 @@
 import Foundation
 
 public class EditExpenseInteractor {
-    private var dataSource: IndividualEntryDataSoure
+    private let dataSource: IndividualEntryDataSoure
     
     public init(dataSource: IndividualEntryDataSoure) {
         self.dataSource = dataSource

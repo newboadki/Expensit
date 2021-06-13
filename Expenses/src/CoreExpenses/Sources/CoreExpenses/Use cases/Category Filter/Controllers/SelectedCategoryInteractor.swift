@@ -10,7 +10,7 @@ import Combine
 
 public class SelectedCategoryInteractor {
     
-    private var dataSource: CategoryDataSource
+    private let dataSource: CategoryDataSource
     
     public init(dataSource: CategoryDataSource) {
         self.dataSource = dataSource

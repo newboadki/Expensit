@@ -11,7 +11,7 @@ import CoreExpenses
 
 public class IndividualExpensesDataSource: IndividualEntryDataSoure {
 
-    private var context: NSManagedObjectContext
+    private let context: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
         self.context = context

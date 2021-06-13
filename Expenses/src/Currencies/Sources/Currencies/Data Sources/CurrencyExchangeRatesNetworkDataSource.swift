@@ -17,12 +17,10 @@ import CoreExpenses
 // http://api.exchangeratesapi.io/v1/2021-01-24?&base=EUR&symbols=GBP,%20USD&access_key=81b7f4c36a84a9ef1c9f2dbc870dfc0b
 public class CurrencyExchangeRatesNetworkDataSource {
 
-    private var cancellable: AnyCancellable?
-    private var urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default)
+    private let cancellable: AnyCancellable? = nil
+    private let urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default)
     
-    public init() {
-        
-    }
+    public init() {}
 
     // From needs to be an array
     // The return type has to be [CurrencyExchangeInfoNetworkModel]

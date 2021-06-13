@@ -13,7 +13,7 @@ import DateAndTime
 
 public class CurrencyExchangeRatesDataSourceMapper: CurrencyExchangeRatesDataSource {
     
-    private var dataSource: CurrencyExchangeRatesNetworkDataSource
+    private let dataSource: CurrencyExchangeRatesNetworkDataSource
     
     public init(dataSource: CurrencyExchangeRatesNetworkDataSource) {
         self.dataSource = dataSource

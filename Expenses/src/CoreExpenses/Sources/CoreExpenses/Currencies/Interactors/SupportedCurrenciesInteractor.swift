@@ -14,7 +14,7 @@ public class SupportedCurrenciesInteractor {
                                            CurrencyCode.HRK.rawValue,
                                            CurrencyCode.USD.rawValue]
     
-    private var defaultCurrencyCode: String = CurrencyCode.USD.rawValue
+    private let defaultCurrencyCode: String = CurrencyCode.USD.rawValue
 
     
     /// If the current locale has a currency code we use it. Otherwise we default to a predefined value from this class: 'defaultCurrencyCode'.

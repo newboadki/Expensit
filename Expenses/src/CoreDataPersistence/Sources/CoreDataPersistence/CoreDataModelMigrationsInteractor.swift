@@ -14,8 +14,8 @@ import CoreExpenses
 public class CoreDataModelMigrationsInteractor {
     
     private let kAppliedFixturesVersionNumbersKey = "appliedFixturesVersionNumbersKey";
-    private var categoryDataSource: CoreDataCategoryDataSource
-    private var individualEntriesDataSource: IndividualExpensesDataSource
+    private let categoryDataSource: CoreDataCategoryDataSource
+    private let individualEntriesDataSource: IndividualExpensesDataSource
     private var currencySettingsInteractor: CurrencySettingsInteractor
     
     public init(categoryDataSource: CoreDataCategoryDataSource,

@@ -10,7 +10,7 @@ import Foundation
 
 public class SetCategoryFilterInteractor {
     
-    private var dataSource: CategoryDataSource
+    private let dataSource: CategoryDataSource
     
     public init(dataSource: CategoryDataSource) {
         self.dataSource = dataSource

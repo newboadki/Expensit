@@ -44,4 +44,21 @@ public struct CurrencyConversionRates {
         self.base = base
         self.isApproximation = isApproximation
     }
+    
+    public init(ratesEnum: [CurrencyCode : NSDecimalNumber],
+    date: Date,
+    base: String,
+    isApproximation: Bool) {
+        
+        var stringDictionary = [String : NSDecimalNumber]()
+        for (key, value) in ratesEnum {
+            stringDictionary[key.rawValue] = value
+        }
+        
+        self.rates = stringDictionary
+        self.date = date
+        self.base = base
+        self.isApproximation = isApproximation
+    }
+
 }

@@ -32,7 +32,9 @@ class CurrencyExchangeRatesDataSourceMock: CurrencyExchangeRatesDataSource {
             .eraseToAnyPublisher()
     }
     
-    func getLatest(from: String, to: [String]) -> AnyPublisher<CurrencyConversionRates, Never> {
-        Just(rates).eraseToAnyPublisher()
+    func getLatest(from: String, to: [String]) -> AnyPublisher<CurrencyConversionRates, Error> {
+        Just(rates)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }

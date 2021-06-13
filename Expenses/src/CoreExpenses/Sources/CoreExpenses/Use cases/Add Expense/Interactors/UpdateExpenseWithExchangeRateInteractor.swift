@@ -10,8 +10,9 @@ import Combine
 
 public class UpdateExpenseWithExchangeRateInteractor {
     
-    private var dataSource: CurrencyExchangeRatesDataSource
-    private var currenciesInteractor: SupportedCurrenciesInteractor
+    private let dataSource: CurrencyExchangeRatesDataSource
+    private let currenciesInteractor: SupportedCurrenciesInteractor
+    private let defaultRatesInteractor = DefaultRatesInteractor()
     
     public init(dataSource: CurrencyExchangeRatesDataSource,
                 currenciesInteractor: SupportedCurrenciesInteractor) {
@@ -19,7 +20,7 @@ public class UpdateExpenseWithExchangeRateInteractor {
         self.currenciesInteractor = currenciesInteractor
     }
     
-    public func update(_ expense: Expense) -> AnyPublisher<Expense, Never> {        
+    public func update(_ expense: Expense) -> AnyPublisher<Expense, Never> {
         let from = expense.currencyCode
         let to = currenciesInteractor.currentLocaleCurrencyCode
         
@@ -31,12 +32,18 @@ public class UpdateExpenseWithExchangeRateInteractor {
             return Just(expense).eraseToAnyPublisher()
         }
                 
-        return dataSource.getLatest(from: from, to: [to]).flatMap { rate -> AnyPublisher<Expense, Never> in            
+        return dataSource.getLatest(from: from, to: [to])
+            .replaceError(with: CurrencyConversionRates(ratesEnum: defaultRatesInteractor.rates()[CurrencyCode(rawValue: to)!]!,
+                                                        date: Date(),
+                                                        base: to,
+                                                        isApproximation: true))
+            .flatMap { rate -> AnyPublisher<Expense, Never> in
             let conversionRate = rate.rates[to] ?? 1 // If the currency is unknown (not in the defaults) assume 1.0.
             expense.valueInBaseCurrency = expense.value.multiplying(by: conversionRate)
             expense.exchangeRateToBaseCurrency = conversionRate
             expense.isExchangeRateUpToDate = !rate.isApproximation
-            return Just(expense).eraseToAnyPublisher()
-        }.eraseToAnyPublisher()
+                return Just(expense).eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 }

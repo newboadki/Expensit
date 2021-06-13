@@ -62,7 +62,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) -> Result<Bool, Error> {
         
         guard let first = self.entry(for: identifier) else {
-            print("CAN'T SAVE: Y: \(expense.dateComponents.year), M: \(expense.dateComponents.month), D: \(expense.dateComponents.day), Hour: \(expense.dateComponents.hour), min: \(expense.dateComponents.minute), sec: \(expense.dateComponents.second)")
             return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
         }
         

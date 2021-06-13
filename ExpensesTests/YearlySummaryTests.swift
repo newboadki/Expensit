@@ -25,7 +25,7 @@ class YearlySummaryTests: XCTestCase {
         let tg = TestDataGenerator()
         context = tg.generate_sync()
         selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)
-        setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
+        setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource as! CategoryDataSource)
         let yearlySummaryDataSource = YearlyCoreDataExpensesDataSource(coreDataContext:tg.coreDataContext,
                                                                        selectedCategoryDataSource: selectedCategoryDataSource)
         self.presenter = ShowYearlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource:yearlySummaryDataSource),

@@ -35,7 +35,8 @@ struct PieChartView: View {
                 Arc(start: maskStartAngle, end: maskEndAngle, animatesEndAngle: false)
                     .stroke(Color.white, lineWidth: 40)
                     .frame(width: 200, height: 200, alignment: .center)
-                    .rotationEffect(.degrees(-90)).animation(Animation.easeOut(duration: 1.3))
+                    .rotationEffect(.degrees(-90))
+                    .animation(Animation.easeOut(duration: 1.3))
             }
             Spacer()
         }.onAppear {

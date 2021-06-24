@@ -20,7 +20,6 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
     private let currenciesDataSource: CurrenciesDataSource
     private var rateInfoSubscription: AnyCancellable!
     
-
     public init(dataSource: EntriesSummaryDataSource,
                 ratesDataSource: CurrencyExchangeRatesDataSource,
                 saveExpense: EditExpenseInteractor,

@@ -26,10 +26,11 @@ struct Arc: Shape {
 }
 
 extension Arc {
+    
     var animatableData: Double {
+        
         get {
             animatesEndAngle ? end : start
-            
         }
 
         set {

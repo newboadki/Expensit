@@ -39,70 +39,75 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
-            self.groupedExpenses = self.allEntries()
-        }
-    }
-    
-    public func expensesGroups() -> [ExpensesGroup] {
-        return self.allEntries()
-    }
-    
-    private func allEntries() -> [ExpensesGroup] {
-        let sections = self.performRequest()
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections!
-        {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects
-            {
-                for case let coreDataEntry as Entry in objects
-                {
-                    var tagName: String = ""
-                    var iconImageName: String = ""
-                    var tagColor: UIColor = .black
-                    if let tag = coreDataEntry.tag {
-                        tagName = tag.name
-                        iconImageName = tag.iconImageName
-                        tagColor = tag.color
-                    }
-                    let category = ExpenseCategory(name: tagName, iconName: iconImageName, color: tagColor)
-                    var dateComponents = DateComponents()
-                    if let d = coreDataEntry.date {
-                        dateComponents = DateComponents(year: d.component(.year),
-                                                        month: d.component(.month),
-                                                        day: d.component(.day),
-                                                        hour: d.component(.hour),
-                                                        minute: d.component(.minute),
-                                                        second: d.component(.second))
-                    }                    
-                    let entry = Expense(dateComponents: dateComponents,
-                                        date: coreDataEntry.date,
-                                        value: coreDataEntry.value,
-                                        valueInBaseCurrency: coreDataEntry.valueInBaseCurrency,
-                                        description: coreDataEntry.desc,
-                                        category: category,
-                                        currencyCode: coreDataEntry.currencyCode,
-                                        exchangeRateToBaseCurrency: coreDataEntry.exchangeRateToBaseCurrency,
-                                        isExchangeRateUpToDate: coreDataEntry.isExchangeRateUpToDate)
-                    entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
-                    entriesForKey.append(entry)                    
-                }
+            self.allEntries { expensesGroups in
+                self.groupedExpenses = expensesGroups
             }
-            
-            let section = ExpensesGroup(groupKey: dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
-            results.append(section)
         }
-        
-        results.sort { g1, g2 in
-            return g1.groupKey < g2.groupKey
+    }
+    
+    public func expensesGroups(completion: @escaping ([ExpensesGroup]) -> Void) {
+        allEntries { expensesGroups in
+            completion(expensesGroups)
         }
+    }
+    
+    private func allEntries(completion: @escaping ([ExpensesGroup]) -> Void) {
+        self.performRequest { result in
+            switch result {
+                case .failure:
+                    completion([ExpensesGroup]())
+                
+                case.success(let sections):
+                    var results = [ExpensesGroup]()
+                    for sectionInfo in sections!
+                    {
+                        var entriesForKey = [Expense]()
+                        if let objects = sectionInfo.objects
+                        {
+                            for case let coreDataEntry as Entry in objects
+                            {
+                                var tagName: String = ""
+                                var iconImageName: String = ""
+                                var tagColor: UIColor = .black
+                                if let tag = coreDataEntry.tag {
+                                    tagName = tag.name
+                                    iconImageName = tag.iconImageName
+                                    tagColor = tag.color
+                                }
+                                let category = ExpenseCategory(name: tagName, iconName: iconImageName, color: tagColor)
+                                var dateComponents = DateComponents()
+                                if let d = coreDataEntry.date {
+                                    dateComponents = DateComponents(year: d.component(.year),
+                                                                    month: d.component(.month),
+                                                                    day: d.component(.day),
+                                                                    hour: d.component(.hour),
+                                                                    minute: d.component(.minute),
+                                                                    second: d.component(.second))
+                                }
+                                let entry = Expense(dateComponents: dateComponents,
+                                                    date: coreDataEntry.date,
+                                                    value: coreDataEntry.value,
+                                                    valueInBaseCurrency: coreDataEntry.valueInBaseCurrency,
+                                                    description: coreDataEntry.desc,
+                                                    category: category,
+                                                    currencyCode: coreDataEntry.currencyCode,
+                                                    exchangeRateToBaseCurrency: coreDataEntry.exchangeRateToBaseCurrency,
+                                                    isExchangeRateUpToDate: coreDataEntry.isExchangeRateUpToDate)
+                                entry.identifier = coreDataEntry.objectID.copy() as! NSCopying
+                                entriesForKey.append(entry)
+                            }
+                        }
+                        
+                        let section = ExpensesGroup(groupKey: self.dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
+                        results.append(section)
+                    }
         
-        return results
+                    results.sort { g1, g2 in
+                        return g1.groupKey < g2.groupKey
+                    }
+                    completion(results)
+            }
+        }
     }
     
     private func dateComponents(fromSectionKey key: String) -> DateComponents {
@@ -125,13 +130,17 @@ public class AllEntriesCoreDataExpensesDataSource: NSObject, EntriesSummaryDataS
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {
-        self.groupedExpenses = allEntries()
+        allEntries { expensesGroups in
+            self.groupedExpenses = expensesGroups
+        }
     }
     
     
     // MARK: - NSFetchedResultsControllerDelegate
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.groupedExpenses = allEntries()
+        allEntries { expensesGroups in
+            self.groupedExpenses = expensesGroups
+        }
     }
 
     private func fetchRequestForIndividualEntriesSummary() -> NSFetchRequest<NSFetchRequestResult> {

@@ -11,6 +11,11 @@ import Combine
 import CoreExpenses
 import CoreData
 
+public enum CoreDataSourceError: Error {
+    case controllerNotInitialized
+    case fetchFailed(_ fetchError: Error)
+}
+
 public protocol CoreDataDataSource {
     var coreDataContext: NSManagedObjectContext {get}
     func baseRequest(context: NSManagedObjectContext) -> NSFetchRequest<NSFetchRequestResult>
@@ -49,19 +54,23 @@ public protocol PerformsCoreDataRequests {
 }
 
 public extension PerformsCoreDataRequests {
-    func performRequest() -> [NSFetchedResultsSectionInfo]? {        
-        if let controller = self.fetchedResultsController {
+    
+    func performRequest(completion: @escaping (_ result: Result<[NSFetchedResultsSectionInfo]?, CoreDataSourceError>) -> Void) {
+        coreDataContext.perform {
+            guard let controller = self.fetchedResultsController else {
+                completion(.failure(.controllerNotInitialized))
+                return
+            }
+
             do
             {
                 try controller.performFetch()
-                return controller.sections
+                completion(.success(controller.sections))
             }
             catch
             {
-                return nil
+                completion(.failure(.fetchFailed(error)))
             }
-        } else {
-            return nil
         }
     }
     

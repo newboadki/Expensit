@@ -27,6 +27,18 @@ struct Test {
         XCTAssert(entry.value == value, "Yearly summary's value should be \(value).")
     }
     
+    static func assertEqualEntries(_ expectedEntries: [Test.Expense], inSection sectionIndex: Int, named sectionName: String = "", sections: [ExpensesSummarySectionViewModel]) {
+        let section = sections[sectionIndex]
+        let expectedEntriesCount = expectedEntries.count
+        XCTAssert(section.title == sectionName)
+        XCTAssert(section.entries.count == expectedEntriesCount, "There should be \(expectedEntriesCount) years in the summary.")
+        
+        for (index, expectedEntry) in expectedEntries.enumerated() {
+            let entry = section.entries[index]
+            Test.assertEqual(expectedEntry, title: entry.title!, value: entry.value!)
+        }
+    }
+    
     static func assertEqualEntries(_ expectedEntries: [Test.Expense], inSection sectionIndex: Int, named sectionName: String = "", presenter: AbstractTestPresenter) {
         let section = presenter.sections[sectionIndex]
         let expectedEntriesCount = expectedEntries.count
@@ -41,7 +53,6 @@ struct Test {
     
     @discardableResult
     static func assertTheresOnlyOneSection(presenter: AbstractTestPresenter) throws -> ExpensesSummarySectionViewModel {
-        
         XCTAssert(presenter.sections.count == 1, "There should be one section.")
         guard let onlySection = presenter.sections.first else {
             throw BaseError()
@@ -49,4 +60,40 @@ struct Test {
         return onlySection
     }
 
+    static func assertTheresOnlyOneSection(sections: [ExpensesSummarySectionViewModel]) throws -> ExpensesSummarySectionViewModel {
+        XCTAssert(sections.count == 1, "There should be one section.")
+        guard let onlySection = sections.first else {
+            throw BaseError()
+        }
+        return onlySection
+    }
+
+    static func assertSectionsEventually(_ expectedEntries: [Test.Expense], inSection section: Int, sectionName: String = "", sectionCount: Int,  cancellable: inout AnyCancellable?, presenter: AbstractTestPresenter, testCase: XCTestCase, checkAfter: Int = 2) {
+        let expectation = XCTestExpectation(description: "Sections should have been updated")
+        var updateCount = 0
+        cancellable = presenter.$sections.sink(receiveValue: { sections in
+            updateCount += 1
+            
+            /*
+             * We need this because we are using filters, and that means that before the filter is set, we receive an update and
+             * after the filter is set we receive the new set of filtered sections.
+             */
+            if updateCount == checkAfter {
+                do {
+                    XCTAssert(sections.count == sectionCount)
+                    
+                    Test.assertEqualEntries(expectedEntries,
+                                            inSection: section,
+                                            named: sectionName,
+                                            sections: sections)
+                    expectation.fulfill()
+
+                } catch {
+                    expectation.fulfill()
+                    XCTFail()
+                }
+            }
+        })
+        testCase.wait(for: [expectation], timeout: 1)
+    }
 }

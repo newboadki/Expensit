@@ -38,64 +38,69 @@ public class YearlyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSourc
                                                                    sectionNameKeyPath: nil,
                                                                    cacheName: nil)
 
-
-        
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
-            self.groupedExpenses = self.entriesGroupedByYear()
+            self.entriesGroupedByYear { expensesGroup in
+                self.groupedExpenses = expensesGroup
+            }
         }                
     }
     
-    public func expensesGroups() -> [ExpensesGroup] {
-        return self.entriesGroupedByYear()
+    public func expensesGroups(completion: @escaping ([ExpensesGroup]) -> Void) {
+        self.entriesGroupedByYear { expensesGroup in
+            completion(expensesGroup)
+        }
     }
 
-    
-    private func entriesGroupedByYear() -> [ExpensesGroup]
-    {
-        let sections = self.performRequest()
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections!
-        {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects
-            {
-                for case let data as NSDictionary in objects
-                {
-                    let date = data["date"] as! Date
-                    let value = data["yearlySum"] as! NSDecimalNumber // This is an aggregation of different entries, they are already in the same currency
-                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: nil, day: nil),
-                                        date: date,
-                                        value: value,
-                                        valueInBaseCurrency: value,
-                                        description: nil,
-                                        category: nil,
-                                        currencyCode: Locale.current.currencyCode!,
-                                        exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
-                                        isExchangeRateUpToDate: true)
-                    entriesForKey.append(entry)
-                }
+    private func entriesGroupedByYear(completion: @escaping ([ExpensesGroup]) -> Void) {
+        self.performRequest { result in
+            switch result {
+                case .failure:
+                    completion([ExpensesGroup]())
+                
+                case.success(let sections):
+                    var results = [ExpensesGroup]()
+                    for sectionInfo in sections!
+                    {
+                        var entriesForKey = [Expense]()
+                        if let objects = sectionInfo.objects
+                        {
+                            for case let data as NSDictionary in objects
+                            {
+                                let date = data["date"] as! Date
+                                let value = data["yearlySum"] as! NSDecimalNumber // This is an aggregation of different entries, they are already in the same currency
+                                let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: nil, day: nil),
+                                                    date: date,
+                                                    value: value,
+                                                    valueInBaseCurrency: value,
+                                                    description: nil,
+                                                    category: nil,
+                                                    currencyCode: Locale.current.currencyCode!,
+                                                    exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                                    isExchangeRateUpToDate: true)
+                                entriesForKey.append(entry)
+                            }
+                        }
+                        let section = ExpensesGroup(groupKey: DateComponents(), entries: entriesForKey)
+                        results.append(section)
+                    }
+                    completion(results)
             }
-            let section = ExpensesGroup(groupKey: DateComponents(), entries: entriesForKey)
-            results.append(section)
         }
-        
-        return results
     }
     
     @objc func contextObjectsDidSave(_ notification: Notification) {
-        self.groupedExpenses = self.entriesGroupedByYear()
+        self.entriesGroupedByYear { expensesGroup in
+            self.groupedExpenses = expensesGroup
+        }
     }
     
     
     // MARK: - NSFetchedResultsControllerDelegate
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.groupedExpenses = entriesGroupedByYear()
+        self.entriesGroupedByYear { expensesGroup in
+            self.groupedExpenses = expensesGroup
+        }
     }
     
     private func fetchRequestForYearlySummary() -> NSFetchRequest<NSFetchRequestResult> {

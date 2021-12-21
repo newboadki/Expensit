@@ -29,52 +29,60 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: self.expensesByCategoryMonthlyFetchRequest(), managedObjectContext: coreDataContext,
                                                                    sectionNameKeyPath: "monthYear", cacheName: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
-        self.groupedExpenses = entriesGroupedByDay()
+        self.groupedExpenses = [ExpensesGroup]()
+        entriesGroupedByDay {expensesGroups in
+            self.groupedExpenses = expensesGroups
+        }
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
             self.filter(by: selectedCategory)
-            self.groupedExpenses = self.entriesGroupedByDay()
-        }
-    }
-    
-    public func expensesGroups() -> [ExpensesGroup] {
-        return self.entriesGroupedByDay()
-    }
-
-    
-    private func entriesGroupedByDay() -> [ExpensesGroup] {                
-        let sections = self.performRequest()
-        var results = [ExpensesGroup]()
-        
-        guard sections != nil else {
-            return results
-        }
-        
-        for sectionInfo in sections! {
-            var entriesForKey = [Expense]()
-            if let objects = sectionInfo.objects {
-                for case let data as NSDictionary in objects {
-                    let dailySum = data["dailySum"] as! NSDecimalNumber
-                    let date = data["date"] as! Date
-                    let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
-                                        date: date,
-                                        value: dailySum,
-                                        valueInBaseCurrency: dailySum,
-                                        description: nil,
-                                        category: nil,
-                                        currencyCode: "",
-                                        exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
-                                        isExchangeRateUpToDate: true)
-                    entriesForKey.append(entry)
-                }
+            self.entriesGroupedByDay { expensesGroups in
+                self.groupedExpenses = expensesGroups
             }
-            
-            let section = ExpensesGroup(groupKey: dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
-            results.append(section)
         }
-        
-        return results
+    }
+    
+    public func expensesGroups(completion: @escaping ([ExpensesGroup]) -> Void) {
+        entriesGroupedByDay {expensesGroups in
+            completion(expensesGroups)
+        }
+    }
 
+    
+    private func entriesGroupedByDay(completion: @escaping ([ExpensesGroup]) -> Void) {
+        
+        self.performRequest { result in
+            switch result {
+                case .failure:
+                    completion([ExpensesGroup]())
+                
+                case.success(let sections):
+                    var results = [ExpensesGroup]()
+                    for sectionInfo in sections! {
+                        var entriesForKey = [Expense]()
+                        if let objects = sectionInfo.objects {
+                            for case let data as NSDictionary in objects {
+                                let dailySum = data["dailySum"] as! NSDecimalNumber
+                                let date = data["date"] as! Date
+                                let entry = Expense(dateComponents: DateComponents(year: date.component(.year), month: date.component(.month), day: date.component(.day)),
+                                                    date: date,
+                                                    value: dailySum,
+                                                    valueInBaseCurrency: dailySum,
+                                                    description: nil,
+                                                    category: nil,
+                                                    currencyCode: "",
+                                                    exchangeRateToBaseCurrency: NSDecimalNumber(string: "1.0"),
+                                                    isExchangeRateUpToDate: true)
+                                entriesForKey.append(entry)
+                            }
+                        }
+                        
+                        let section = ExpensesGroup(groupKey: self.dateComponents(fromSectionKey: sectionInfo.name), entries: entriesForKey)
+                        results.append(section)
+                    }
+                completion(results)
+            }
+        }
     }
     
     private func dateComponents(fromSectionKey key: String) -> DateComponents {
@@ -95,13 +103,17 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
     }
     
     @objc func contextObjectsDidChange(_ notification: Notification) {
-        self.groupedExpenses = entriesGroupedByDay()
+        entriesGroupedByDay { expensesGroups in
+            self.groupedExpenses = expensesGroups
+        }
     }
     
     
     // MARK: - NSFetchedResultsControllerDelegate
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.groupedExpenses = entriesGroupedByDay()
+        entriesGroupedByDay { expensesGroups in
+            self.groupedExpenses = expensesGroups
+        }
     }
     
     private func expensesByCategoryMonthlyFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {

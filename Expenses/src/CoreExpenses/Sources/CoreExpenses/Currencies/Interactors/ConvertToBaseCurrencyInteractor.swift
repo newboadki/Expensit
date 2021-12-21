@@ -37,23 +37,24 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
         // &
         // Get rates from the network
         let destinationCurrencies = currenciesDataSource.allUsedCurrencies()
-        let expenseGroups = entriesDataSource.expensesGroups()
-        let firstDate = expenseGroups.first?.entries.first?.date
-        let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
-        let lastDate = expenseGroups.last?.entries.last?.date
-        let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
-        let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
-        
-        self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
-            if case .failure(_) = result {
-                let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
+        entriesDataSource.expensesGroups { expenseGroups in
+            let firstDate = expenseGroups.first?.entries.first?.date
+            let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
+            let lastDate = expenseGroups.last?.entries.last?.date
+            let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
+            let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
+            
+            self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
+                if case .failure(_) = result {
+                    let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
+                    self.save(expenses: updatedExpenses)
+                }
+            },
+            receiveValue: { rateInfo in
+                let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
                 self.save(expenses: updatedExpenses)
-            }
-        },
-        receiveValue: { rateInfo in
-            let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
-            self.save(expenses: updatedExpenses)
-        })
+            })
+        }
     }
 }
 

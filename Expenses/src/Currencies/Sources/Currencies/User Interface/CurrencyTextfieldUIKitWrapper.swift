@@ -42,7 +42,6 @@ public struct CurrencyTextfieldUIKitWrapper: UIViewRepresentable {
         if let ctf = uiView as? CurrencyTextField {
             ctf.currencyFormatter = self.currencyFormatter
         }
-        
     }
     
     public func makeCoordinator() -> Coordinator {

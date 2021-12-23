@@ -14,6 +14,7 @@ import CoreData
 public enum CoreDataSourceError: Error {
     case controllerNotInitialized
     case fetchFailed(_ fetchError: Error)
+    case generic
 }
 
 public protocol CoreDataDataSource {
@@ -33,11 +34,10 @@ public extension CoreDataDataSource {
         return request as! NSFetchRequest<NSFetchRequestResult>
     }
     
-    func save() -> Bool {
-        guard let _ = try? self.coreDataContext.save() else {
-            return false
+    func save() async throws {
+        try await coreDataContext.perform {
+            try self.coreDataContext.save()
         }
-        return true
     }
     
     func isExchangeRateToBaseApproximated() -> Bool {

@@ -987,7 +987,7 @@
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1034,7 +1034,7 @@
 					"$(SRCROOT)/../BSPieChartView/BSPieChartView/Source/Headers/**",
 				);
 				INFOPLIST_FILE = "Expenses/Expenses-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1078,7 +1078,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1115,7 +1115,7 @@
 				GCC_PREFIX_HEADER = "Expenses/Expenses-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../CoreDataStackHelper/CoreDataStackHelper";
 				INFOPLIST_FILE = "ExpensesTests/ExpensesTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

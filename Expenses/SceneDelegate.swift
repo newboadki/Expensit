@@ -29,8 +29,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         DispatchQueue.global().async {
             
-            // Database Migrations
-            self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
+            Task.detached {
+                // Database Migrations
+                do {
+                    try await self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
+                } catch {
+                    print(error)
+                }
+            }
             
             // Convert exchange rates
             self.currencyCodeChangeManager.updateCurrencyExchangeRates()

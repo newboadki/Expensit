@@ -54,7 +54,7 @@ class TestDataGenerator {
         _ = categoriesDataSource.create(categories:[TestDataGenerator.Tags.food,
                                                     TestDataGenerator.Tags.bills,
                                                     TestDataGenerator.Tags.travel,
-                                                    TestDataGenerator.Tags.income])
+                                                    TestDataGenerator.Tags.income], save: false)
         
         let food = categoriesDataSource.category(for: TestDataGenerator.Tags.food);
         let bills = categoriesDataSource.category(for: TestDataGenerator.Tags.bills);

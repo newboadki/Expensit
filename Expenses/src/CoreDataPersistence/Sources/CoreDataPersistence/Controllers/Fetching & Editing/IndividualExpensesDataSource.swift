@@ -153,25 +153,38 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         }
     }
     
-    public func setAllEntriesCurrenyCode(to code: String?) -> Result<Bool, Error> {
-        let request = NSFetchRequest<Entry>(entityName: "Entry")
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        if let entries = try? context.fetch(request) {
+    public func setAllEntriesCurrenyCode(to code: String?) async throws {
+        try await self.context.perform {
+            let request = NSFetchRequest<Entry>(entityName: "Entry")
+            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+            let entries = try self.context.fetch(request)
             for entry in entries {
                 entry.currencyCode = code ?? "USD"
                 entry.exchangeRateToBaseCurrency = NSDecimalNumber(string: "1.0")
                 entry.valueInBaseCurrency = entry.value
                 entry.isExchangeRateUpToDate = true
             }
+            try self.context.save()
         }
-
-        do {
-            try context.save()
-        } catch {
-            return .failure(error)
+    }
+    
+    public func setDateComponentsInAllEntries() async throws {
+        try await self.context.perform {
+            let request = NSFetchRequest<Entry>(entityName: "Entry")
+            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+            let entries = try self.context.fetch(request)
+            for entry in entries {
+                if let d = entry.date {
+                    entry.year = NSNumber(integerLiteral:d.component(.year))
+                    entry.month = NSNumber(integerLiteral:d.component(.month))
+                    entry.day = NSNumber(integerLiteral:d.component(.day))
+                    entry.hour = NSNumber(integerLiteral:d.component(.hour))
+                    entry.minute = NSNumber(integerLiteral:d.component(.minute))
+                    entry.second = NSNumber(integerLiteral:d.component(.second))
+                }
+            }
+            try self.context.save()
         }
-        
-        return .success(true)
     }
     
     public func setDateComponentsInAllEntries() -> Result<Bool, Error> {

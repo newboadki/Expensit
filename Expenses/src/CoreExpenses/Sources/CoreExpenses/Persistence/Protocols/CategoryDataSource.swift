@@ -16,5 +16,7 @@ public protocol CategoryDataSource {
                                       sections: [PieChartSectionInfo]) -> [ExpenseCategory]
     func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory]
     func expensesByCategory(forMonth month: Int?, inYear year: Int) -> [PieChartSectionInfo]
-    func create(categories: [String]) -> Result<Bool, Error>
+    
+    /// Creates the categories in the context and saves them according to the parameter
+    func create(categories: [String], save: Bool) async throws
 }

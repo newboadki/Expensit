@@ -32,39 +32,58 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         }
     }
     
-    public func create(categories: [String]) -> Result<Bool, Error> {
-        for name in categories {
-            let description = NSEntityDescription.entity(forEntityName: "Tag", in: coreDataContext)
-            let managedObject = NSManagedObject(entity: description!, insertInto: coreDataContext) as! Tag
-            managedObject.name = name
-            managedObject.iconImageName = "filter_food.png"
-            managedObject.color = .black
-        }
-        return .success(true)
-    }
-    
-    public func create_bool(categories: [String]) -> Bool {
-        switch self.create(categories: categories) {
-            case .success(let result):
-                return result
-            case .failure(_):
-                return false
-        }
-    }
-    
-    public func setIsAmountNegative() -> Bool {
-        let entries = try! self.coreDataContext.fetch(allEntriesRequest())
-        for entry in entries {
-            switch entry.value.compare(0) {
-            case .orderedAscending:
-                entry.isAmountNegative = true
-            case .orderedDescending:
-                entry.isAmountNegative = false
-            case .orderedSame:
-                entry.isAmountNegative = true // Shouldn't happen because validation should prevent negative values from being saved
+    public func create(categories: [String], save: Bool) async throws {
+        try await coreDataContext.perform {
+            for name in categories {
+                let description = NSEntityDescription.entity(forEntityName: "Tag", in: self.coreDataContext)
+                let managedObject = NSManagedObject(entity: description!, insertInto: self.coreDataContext) as! Tag
+                managedObject.name = name
+                managedObject.iconImageName = "filter_food.png"
+                managedObject.color = .black
+            }
+
+            if save {
+                try self.coreDataContext.save()
             }
         }
-        return true
+    }
+    
+//    public func create(categories: [String]) -> Result<Bool, Error> {
+//        for name in categories {
+//            let description = NSEntityDescription.entity(forEntityName: "Tag", in: coreDataContext)
+//            let managedObject = NSManagedObject(entity: description!, insertInto: coreDataContext) as! Tag
+//            managedObject.name = name
+//            managedObject.iconImageName = "filter_food.png"
+//            managedObject.color = .black
+//        }
+//        return .success(true)
+//    }
+    
+//    public func create(categories: [String], save: Bool) async throws -> Bool {
+//        try await self.create(categories: categories, save: save)
+//        return true
+//            case .success(let result):
+//                return result
+//            case .failure(_):
+//                return false
+//        }
+//    }
+    
+    public func setIsAmountNegative(save: Bool) async throws {
+        try await coreDataContext.perform {
+            let entries = try self.coreDataContext.fetch(self.allEntriesRequest())
+            for entry in entries {
+                switch entry.value.compare(0) {
+                    case .orderedAscending:
+                        entry.isAmountNegative = true
+                    case .orderedDescending:
+                        entry.isAmountNegative = false
+                    case .orderedSame:
+                        // Shouldn't happen because validation should prevent negative values from being saved
+                        throw CoreDataSourceError.generic
+                }
+            }
+        }
     }
     
     public func category(for name: String) -> ExpenseCategory {
@@ -78,20 +97,18 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         return try! self.coreDataContext.fetch(fetchRequest).last!
     }
     
-    public func setToAllEnties(_ tagName: String) -> Bool {
-        let tagToBeSet = tag(forName: tagName)
-        let entries = try! self.coreDataContext.fetch(allEntriesRequest())
-        for entry in entries {
-            entry.tag = tagToBeSet
-        }
+    public func setToAllEnties(_ tagName: String, save: Bool) async throws {
+        try await coreDataContext.perform {
+            let tagToBeSet = self.tag(forName: tagName)
+            let entries = try self.coreDataContext.fetch(self.allEntriesRequest())
+            for entry in entries {
+                entry.tag = tagToBeSet
+            }
 
-        do {
-            try self.coreDataContext.save()
-        } catch {
-            return false
+            if save {
+                try self.coreDataContext.save()
+            }
         }
-        
-        return true
     }
     
     private func allEntriesRequest() -> NSFetchRequest<Entry> {

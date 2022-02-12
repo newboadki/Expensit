@@ -9,7 +9,7 @@
 import Combine
 
 class EntriesSummaryDataSourceMock: EntriesSummaryDataSource {
-        
+            
     var groups: [ExpensesGroup]
     private var isAproximated: Bool
     
@@ -22,9 +22,10 @@ class EntriesSummaryDataSourceMock: EntriesSummaryDataSource {
         self.isAproximated = isExchangeRateToBaseApproximated        
     }
 
-    func expensesGroups() -> [ExpensesGroup] {
-        groups
+    func expensesGroups(completion: @escaping ([ExpensesGroup]) -> Void) {
+        completion(groups)
     }
+
     
     func isExchangeRateToBaseApproximated() -> Bool {
         isAproximated

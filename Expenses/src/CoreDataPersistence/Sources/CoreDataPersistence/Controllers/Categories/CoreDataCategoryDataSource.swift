@@ -48,27 +48,6 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         }
     }
     
-//    public func create(categories: [String]) -> Result<Bool, Error> {
-//        for name in categories {
-//            let description = NSEntityDescription.entity(forEntityName: "Tag", in: coreDataContext)
-//            let managedObject = NSManagedObject(entity: description!, insertInto: coreDataContext) as! Tag
-//            managedObject.name = name
-//            managedObject.iconImageName = "filter_food.png"
-//            managedObject.color = .black
-//        }
-//        return .success(true)
-//    }
-    
-//    public func create(categories: [String], save: Bool) async throws -> Bool {
-//        try await self.create(categories: categories, save: save)
-//        return true
-//            case .success(let result):
-//                return result
-//            case .failure(_):
-//                return false
-//        }
-//    }
-    
     public func setIsAmountNegative(save: Bool) async throws {
         try await coreDataContext.perform {
             let entries = try self.coreDataContext.fetch(self.allEntriesRequest())
@@ -92,7 +71,7 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
     }
     
     public func tag(forName name: String) -> Tag {
-        let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
+        let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")
         fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
         return try! self.coreDataContext.fetch(fetchRequest).last!
     }

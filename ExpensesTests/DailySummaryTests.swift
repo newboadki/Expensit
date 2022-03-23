@@ -13,44 +13,39 @@ import Combine
 
 class DailySummaryTests: XCTestCase {
     
-    private static var presenter: ShowDailyEntriesPresenter<ImmediateScheduler, ImmediateScheduler>!
-    private static var selectedCategoryDataSource: CoreDataCategoryDataSource!
-    private static var setCategoryInteractor: SetCategoryFilterInteractor!
+    private var presenter: ShowDailyEntriesPresenter<ImmediateScheduler, ImmediateScheduler>!
+    private var selectedCategoryDataSource: CategoryDataSource!
+    private var setCategoryInteractor: SetCategoryFilterInteractor!
     private var cancellable: AnyCancellable?
-    
-    override static func setUp() {
+        
+    func setupDependencies() async throws {
         let tg = TestDataGenerator()
-        let context = tg.generate_sync()
-
+        let context = try await tg.generate()
         TestDataGenerator.printAll(context)
         selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)
-        setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource as! CategoryDataSource)
-        let monthlySummaryDataSource = DailyCoreDataExpensesDataSource(coreDataContext:context,
-                                                                       selectedCategoryDataSource: selectedCategoryDataSource)
-        presenter = ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource),
+        setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
+        let dailySummaryDataSource = DailyCoreDataExpensesDataSource(coreDataContext:context,
+                                                                     selectedCategoryDataSource: selectedCategoryDataSource)
+        presenter = ShowDailyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dailySummaryDataSource),
                                               subscriptionScheduler: ImmediateScheduler.shared,
                                               receiveOnScheduler: ImmediateScheduler.shared)
-        
-    }
-
-    override func setUp() {
         cancellable?.cancel()
         cancellable = nil
-        DailySummaryTests.presenter.bind()
+        presenter.bind()
     }
-
+    
     override func tearDown() {
         cancellable?.cancel()
         cancellable = nil
-        DailySummaryTests.presenter.unbind()
+        presenter.unbind()
     }
-    
 }
 
 // MARK: - Category Filter tests
 extension DailySummaryTests {
     
-    func test_daily_breakdown_all_categories() throws {
+    func test_daily_breakdown_all_categories() async throws {
+        try await setupDependencies()
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: "$20.00"),
                                        Test.Expense(title: "3", value: ""),
@@ -86,7 +81,7 @@ extension DailySummaryTests {
                                       sectionName: "Jan 2013",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 2)
 
@@ -123,7 +118,7 @@ extension DailySummaryTests {
                                       sectionName: "Feb 2013",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -161,7 +156,7 @@ extension DailySummaryTests {
                                       sectionName: "Nov 2013",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
         
@@ -200,7 +195,7 @@ extension DailySummaryTests {
                                       sectionName: "Mar 2014",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
         
@@ -238,7 +233,7 @@ extension DailySummaryTests {
                                       sectionName: "Sep 2014",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -277,7 +272,7 @@ extension DailySummaryTests {
                                       sectionName: "Oct 2014",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
         
@@ -315,7 +310,7 @@ extension DailySummaryTests {
                                       sectionName: "Nov 2014",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
         
@@ -354,7 +349,7 @@ extension DailySummaryTests {
                                       sectionName: "Dec 2014",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -393,13 +388,14 @@ extension DailySummaryTests {
                                       sectionName: "Aug 2015",
                                       sectionCount: 9,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
     }
     
-    func test_daily_breakdown_food() throws {
-        DailySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
+    func test_daily_breakdown_food() async throws {
+        try await setupDependencies()
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Food", iconName: "", color: .red))
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: "-$30.00"),
@@ -436,7 +432,7 @@ extension DailySummaryTests {
                                       sectionName: "Jan 2013",
                                       sectionCount: 2,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 2)
 
@@ -475,14 +471,14 @@ extension DailySummaryTests {
                                       sectionName: "Mar 2014",
                                       sectionCount: 2,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
     }
     
-    func test_daily_breakdown_bills() throws {
-        
-        DailySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
+    func test_daily_breakdown_bills() async throws {
+        try await setupDependencies()
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
                                        Test.Expense(title: "3", value: ""),
@@ -516,7 +512,7 @@ extension DailySummaryTests {
                                       sectionName: "Feb 2013",
                                       sectionCount: 4,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 2)
 
@@ -555,7 +551,7 @@ extension DailySummaryTests {
                                       sectionName: "Oct 2014",
                                       sectionCount: 4,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -593,7 +589,7 @@ extension DailySummaryTests {
                                       sectionName: "Nov 2014",
                                       sectionCount: 4,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -632,13 +628,14 @@ extension DailySummaryTests {
                                       sectionName: "Dec 2014",
                                       sectionCount: 4,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
     }
 
-    func test_daily_breakdown_travel() throws {
-        DailySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
+    func test_daily_breakdown_travel() async throws {
+        try await setupDependencies()
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
                                        Test.Expense(title: "3", value: ""),
@@ -674,7 +671,7 @@ extension DailySummaryTests {
                                       sectionName: "Jan 2013",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 2)
 
@@ -713,7 +710,7 @@ extension DailySummaryTests {
                                       sectionName: "Mar 2014",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -752,13 +749,14 @@ extension DailySummaryTests {
                                       sectionName: "Aug 2015",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
     }
 
-    func test_daily_breakdown_income() throws {
-        DailySummaryTests.setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
+    func test_daily_breakdown_income() async throws {
+        try await setupDependencies()
+        setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: "$50.00"),
                                        Test.Expense(title: "3", value: ""),
@@ -794,7 +792,7 @@ extension DailySummaryTests {
                                       sectionName: "Jan 2013",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 2)
 
@@ -832,7 +830,7 @@ extension DailySummaryTests {
                                       sectionName: "Nov 2013",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
 
@@ -870,7 +868,7 @@ extension DailySummaryTests {
                                       sectionName: "Sep 2014",
                                       sectionCount: 3,
                                       cancellable: &cancellable,
-                                      presenter: DailySummaryTests.presenter,
+                                      presenter: presenter,
                                       testCase: self,
                                       checkAfter: 1)
     }

@@ -21,40 +21,28 @@ class TestDataGenerator {
         static let income = "Income"
     }
     
-    var coreDataContext: NSManagedObjectContext!
+    private(set) var coreDataContext: NSManagedObjectContext!
     
-
-    
-    init() {        
-    }
-    
-    func generate(_  completion: @escaping(Result<NSManagedObjectContext, Error>)->() ) {
-        TestCoreDataStack.context { [weak self] result in
-            switch result {
-                case .failure(let coreDataError):
-                    print(coreDataError)
-                case .success(let context):
-                    self?.coreDataContext = context
-                    self?._generate()
-                    completion(.success(context))
-            }
+    func generate() async throws -> NSManagedObjectContext {
+        let result = await TestCoreDataStack.shared.context()
+        switch result {
+        case .success(let context):
+            coreDataContext = context
+            try await _generate()
+            return context
+        case .failure(let error):
+            throw error
         }
     }
     
-    func generate_sync() -> NSManagedObjectContext {
-        coreDataContext = TestCoreDataStack().context_sync()
-        _generate()
-        return coreDataContext
-    }
-    
-    private func _generate() {
+    private func _generate() async throws {
         let categoriesDataSource = CoreDataCategoryDataSource(context: coreDataContext)
         let ds = IndividualExpensesDataSource(context: coreDataContext)
-                        
-        _ = categoriesDataSource.create(categories:[TestDataGenerator.Tags.food,
-                                                    TestDataGenerator.Tags.bills,
-                                                    TestDataGenerator.Tags.travel,
-                                                    TestDataGenerator.Tags.income], save: false)
+        
+        _ = try await categoriesDataSource.create(categories:[TestDataGenerator.Tags.food,
+                                                              TestDataGenerator.Tags.bills,
+                                                              TestDataGenerator.Tags.travel,
+                                                              TestDataGenerator.Tags.income], save: false)
         
         let food = categoriesDataSource.category(for: TestDataGenerator.Tags.food);
         let bills = categoriesDataSource.category(for: TestDataGenerator.Tags.bills);
@@ -75,7 +63,7 @@ class TestDataGenerator {
                                     currencyCode: "GBP",
                                     exchangeRateToBaseCurrency: 1.16,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 1, day: 2, hour: 0, minute: 0, second: 0),
                                     date: d("02/01/2013"),
                                     value: -30,
@@ -106,7 +94,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 1, day: 31, hour: 0, minute: 0, second: 0),
                                     date: d("31/01/2013"),
@@ -128,7 +116,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 2, day: 17, hour: 0, minute: 0, second: 0),
                                     date: d("17/02/2013"),
@@ -139,7 +127,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2013, month: 2, day: 20, hour: 0, minute: 0, second: 0),
                                     date: d("20/02/2013"),
@@ -161,7 +149,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         // 2014
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 3, day: 3, hour: 0, minute: 0, second: 0),
                                     date: d("03/03/2014"),
@@ -182,7 +170,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 3, day: 29, hour: 0, minute: 0, second: 0),
                                     date: d("29/03/2014"),
                                     value: 3900,
@@ -192,7 +180,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 3, day: 29, hour: 0, minute: 0, second: 0),
                                     date: d("29/03/2014"),
                                     value: -120.9,
@@ -202,7 +190,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 30, day: 09, hour: 0, minute: 0, second: 0),
                                     date: d("30/09/2014"),
                                     value: 5000,
@@ -212,7 +200,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 10, day: 15, hour: 0, minute: 0, second: 0),
                                     date: d("15/10/2014"),
                                     value: -45,
@@ -222,7 +210,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2014, month: 11, day: 17, hour: 0, minute: 0, second: 0),
                                     date: d("17/11/2014"),
                                     value: -45,
@@ -242,7 +230,7 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         // 2015
         _ = ds.add(expense: Expense(dateComponents: DateComponents(year: 2015, month: 8, day: 11, hour: 0, minute: 0, second: 0),
                                     date: d("11/08/2015"),
@@ -253,15 +241,15 @@ class TestDataGenerator {
                                     currencyCode: "USD",
                                     exchangeRateToBaseCurrency: 1,
                                     isExchangeRateUpToDate: true))
-
+        
         /*
-        Yearly summary:
-        - No filter
-        - Food Filter
-        - Bills
-        - Travel
-        - Income
-     
+         Yearly summary:
+         - No filter
+         - Food Filter
+         - Bills
+         - Travel
+         - Income
+         
          Monthly summary:
          - No filter
          - Food Filter
@@ -275,14 +263,14 @@ class TestDataGenerator {
          - Bills
          - Travel
          - Income
-
+         
          All entries summary:
          - No filter
          - Food Filter
          - Bills
          - Travel
          - Income
-
+         
          */
     }
     
@@ -291,7 +279,7 @@ class TestDataGenerator {
         let request = Entry.entryFetchRequest()
         request.entity = description
         request.fetchBatchSize = 50
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]        
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         let entries = try! coreDataContext.fetch(request)
         for entry in entries {
             print("DATE: \(entry.date ?? Date()), VALUE: \(entry.value), DESC: \(entry.desc ?? "-"), TAG: \(entry.tag?.name ?? "-")")
@@ -299,7 +287,7 @@ class TestDataGenerator {
         print("--------")
     }
 }
- 
+
 
 private func d(_ text: String) -> Date {
     return DateConversion.date(text)

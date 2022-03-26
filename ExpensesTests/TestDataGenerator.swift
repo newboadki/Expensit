@@ -44,10 +44,10 @@ class TestDataGenerator {
                                                               TestDataGenerator.Tags.travel,
                                                               TestDataGenerator.Tags.income], save: false)
         
-        let food = categoriesDataSource.category(for: TestDataGenerator.Tags.food);
-        let bills = categoriesDataSource.category(for: TestDataGenerator.Tags.bills);
-        let travel = categoriesDataSource.category(for: TestDataGenerator.Tags.travel);
-        let income = categoriesDataSource.category(for: TestDataGenerator.Tags.income);
+        let food = try await categoriesDataSource.category(for: TestDataGenerator.Tags.food);
+        let bills = try await categoriesDataSource.category(for: TestDataGenerator.Tags.bills);
+        let travel = try await categoriesDataSource.category(for: TestDataGenerator.Tags.travel);
+        let income = try await categoriesDataSource.category(for: TestDataGenerator.Tags.income);
         
         // 2013
         

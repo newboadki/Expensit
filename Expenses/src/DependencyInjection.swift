@@ -84,45 +84,5 @@ class DependencyInjection {
         return CurrencyCodeChangeInteractor(exchangeRatesConversionInteractor: exchangeRatesConversionInteractor(),
                                          allEntriesDataSource: dataSources["all"]! as! AllEntriesCoreDataExpensesDataSource,
                                          currencySettingsInteractor: CurrencySettingsDefaultInteractor(dataSoure: CurrencySettingsDefaultDataSource()))
-    }
-    
-    private func populate() {
-        let expensesDS = individualEntriesDataSource
-        let categoriesDS = selectedCategoryDataSource
-        let d1 = DateConversion.date(withFormat: DateFormats.defaultFormat, from: "07/07/2020")
-        let dc1 = DateComponents(year: d1.component(.year), month: d1.component(.month), day: d1.component(.day), hour: d1.component(.hour), minute: d1.component(.minute), second: d1.component(.second))
-        _ = expensesDS.add(expense: Expense(dateComponents: dc1,
-                                            date: d1,
-                                            value: 500,
-                                            valueInBaseCurrency: 500,
-                                            description: "Gift",
-                                            category: categoriesDS.category(for: "Income"),
-                                            currencyCode: "GBP",
-                                            exchangeRateToBaseCurrency: 1,
-                                            isExchangeRateUpToDate: false))
-
-        let d2 = DateConversion.date(withFormat: DateFormats.defaultFormat, from: "01/01/2019")
-        let dc2 = DateComponents(year: d2.component(.year), month: d2.component(.month), day: d2.component(.day), hour: d2.component(.hour), minute: d2.component(.minute), second: d2.component(.second))
-        _ = expensesDS.add(expense: Expense(dateComponents: dc2,
-                                            date: d2,
-                                            value: 15000,
-                                            valueInBaseCurrency: 15000,
-                                            description: "Gift",
-                                            category: categoriesDS.category(for: "Income"),
-                                            currencyCode: "GBP",
-                                            exchangeRateToBaseCurrency: 1,
-                                            isExchangeRateUpToDate: true))
-
-        let d3 = DateConversion.date(withFormat: DateFormats.defaultFormat, from: "01/01/2016")
-        let dc3 = DateComponents(year: d3.component(.year), month: d3.component(.month), day: d3.component(.day), hour: d3.component(.hour), minute: d3.component(.minute), second: d3.component(.second))
-        _ = expensesDS.add(expense: Expense(dateComponents: dc3,
-                                            date: d3,
-                                            value: 3000,
-                                            valueInBaseCurrency: 3000,
-                                            description: "Gift",
-                                            category: categoriesDS.category(for: "Income"),
-                                            currencyCode: "GBP",
-                                            exchangeRateToBaseCurrency: 1,
-                                            isExchangeRateUpToDate: true))
-    }
+    }    
 }

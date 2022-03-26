@@ -65,20 +65,25 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         }
     }
     
-    public func category(for name: String) -> ExpenseCategory {
-        let tag = self.tag(forName: name)
+    public func category(for name: String) async throws -> ExpenseCategory {
+        let tag = try await self.tag(forName: name)
         return ExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
     }
     
-    public func tag(forName name: String) -> Tag {
-        let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")
-        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
-        return try! self.coreDataContext.fetch(fetchRequest).last!
+    public func tag(forName name: String) async throws -> Tag {
+        try await coreDataContext.perform {
+            let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")
+            fetchRequest.predicate = NSPredicate(format: "name LIKE %@", name)
+            guard let last = try self.coreDataContext.fetch(fetchRequest).last else {
+                throw CoreDataSourceError.generic
+            }
+            return last
+        }
     }
     
     public func setToAllEnties(_ tagName: String, save: Bool) async throws {
+        let tagToBeSet = try await self.tag(forName: tagName)
         try await coreDataContext.perform {
-            let tagToBeSet = self.tag(forName: tagName)
             let entries = try self.coreDataContext.fetch(self.allEntriesRequest())
             for entry in entries {
                 entry.tag = tagToBeSet

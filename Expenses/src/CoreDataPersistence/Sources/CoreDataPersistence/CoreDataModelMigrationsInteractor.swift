@@ -102,17 +102,17 @@ private extension CoreDataModelMigrationsInteractor {
         // On the version 2 of the model, the tag's imageName was added. Here we populate it
         
         // Add the images for the existing categories
-        let other = categoryDataSource.tag(forName: "Other")
-        let food = categoryDataSource.tag(forName: "Food")
-        let bills = categoryDataSource.tag(forName: "Bills")
-        let travel = categoryDataSource.tag(forName: "Travel")
-        let clothing = categoryDataSource.tag(forName: "Clothing")
-        let car = categoryDataSource.tag(forName: "Car")
-        let drinks = categoryDataSource.tag(forName: "Drinks")
-        let work = categoryDataSource.tag(forName: "Work")
-        let house = categoryDataSource.tag(forName: "House")
-        let gadgets = categoryDataSource.tag(forName: "Gadgets")
-        let gifts = categoryDataSource.tag(forName: "Gifts")
+        let other = try await categoryDataSource.tag(forName: "Other")
+        let food = try await categoryDataSource.tag(forName: "Food")
+        let bills = try await categoryDataSource.tag(forName: "Bills")
+        let travel = try await categoryDataSource.tag(forName: "Travel")
+        let clothing = try await categoryDataSource.tag(forName: "Clothing")
+        let car = try await categoryDataSource.tag(forName: "Car")
+        let drinks = try await categoryDataSource.tag(forName: "Drinks")
+        let work = try await categoryDataSource.tag(forName: "Work")
+        let house = try await categoryDataSource.tag(forName: "House")
+        let gadgets = try await categoryDataSource.tag(forName: "Gadgets")
+        let gifts = try await categoryDataSource.tag(forName: "Gifts")
         
         other.iconImageName = "filter_gifts.png"
         food.iconImageName = "filter_food.png"
@@ -128,8 +128,8 @@ private extension CoreDataModelMigrationsInteractor {
         
         // Create two new categories and set images for them
         try await categoryDataSource.create(categories: ["Music", "Books"], save: false)
-        let music = categoryDataSource.tag(forName: "Music")
-        let books = categoryDataSource.tag(forName: "Books")
+        let music = try await categoryDataSource.tag(forName: "Music")
+        let books = try await categoryDataSource.tag(forName: "Books")
         music.iconImageName = "filter_music.png";
         books.iconImageName = "filter_books.png";
         
@@ -142,19 +142,19 @@ private extension CoreDataModelMigrationsInteractor {
         //   - We added a color property to the entity model
         //   - Also there was a bug that was making tag default to nil if the picker wasn't selected
         
-        let other = categoryDataSource.tag(forName: "Other")
-        let food = categoryDataSource.tag(forName: "Food")
-        let bills = categoryDataSource.tag(forName: "Bills")
-        let travel = categoryDataSource.tag(forName: "Travel")
-        let clothing = categoryDataSource.tag(forName: "Clothing")
-        let car = categoryDataSource.tag(forName: "Car")
-        let drinks = categoryDataSource.tag(forName: "Drinks")
-        let work = categoryDataSource.tag(forName: "Work")
-        let house = categoryDataSource.tag(forName: "House")
-        let gadgets = categoryDataSource.tag(forName: "Gadgets")
-        let gifts = categoryDataSource.tag(forName: "Gifts")
-        let music = categoryDataSource.tag(forName: "Music")
-        let books = categoryDataSource.tag(forName: "Books")
+        let other = try await categoryDataSource.tag(forName: "Other")
+        let food = try await categoryDataSource.tag(forName: "Food")
+        let bills = try await categoryDataSource.tag(forName: "Bills")
+        let travel = try await categoryDataSource.tag(forName: "Travel")
+        let clothing = try await categoryDataSource.tag(forName: "Clothing")
+        let car = try await categoryDataSource.tag(forName: "Car")
+        let drinks = try await categoryDataSource.tag(forName: "Drinks")
+        let work = try await categoryDataSource.tag(forName: "Work")
+        let house = try await categoryDataSource.tag(forName: "House")
+        let gadgets = try await categoryDataSource.tag(forName: "Gadgets")
+        let gifts = try await categoryDataSource.tag(forName: "Gifts")
+        let music = try await categoryDataSource.tag(forName: "Music")
+        let books = try await categoryDataSource.tag(forName: "Books")
                 
         other.color = UIColor(red: 87.0/255.0, green: 83.0/255.0, blue: 93.0/255.0, alpha:1)
         food.color = UIColor(red:250.0/255.0, green:178.0/255.0, blue:122.0/255.0, alpha:1.0)
@@ -175,7 +175,7 @@ private extension CoreDataModelMigrationsInteractor {
         
         // Create two new categories and set images for them
         try await categoryDataSource.create(categories: ["Income"], save: false)
-        let income = categoryDataSource.tag(forName: "Income")
+        let income = try await categoryDataSource.tag(forName: "Income")
         income.color = UIColor(red:75.0/255.0, green:99.0/255.0, blue:51.0/255.0, alpha:1.0)
         income.iconImageName = "filter_bills.png"
 

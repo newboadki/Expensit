@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 public class GetCategoriesInteractor {
     
@@ -16,7 +17,7 @@ public class GetCategoriesInteractor {
         self.dataSource = dataSource
     }
     
-    public func allCategories() -> [ExpenseCategory] {
+    public func allCategories() -> AnyPublisher<[ExpenseCategory], Never> {
         return dataSource.allCategories()
     }
 }

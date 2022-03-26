@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 public class CategoryFilterPresenter {
     
@@ -20,19 +21,13 @@ public class CategoryFilterPresenter {
         }
     }
     
-    public lazy var categoryNames: [String] = {
-        var r = self.categoriesInteractor.allCategories().map { expenseCategory in
-            return expenseCategory.name
-        }
-        r.append("All")
-        return r
-    }()
+    @Published
+    public var categoryNames: [String] = []
+    private var categoryNamesCancellable = Set<AnyCancellable>()
 
-    public lazy var categories: [ExpenseCategory] = {
-        var r = self.categoriesInteractor.allCategories()
-        r.append(ExpenseCategory(name: "All", iconName: "filter_all", color: .black))
-        return r
-    }()
+    @Published
+    public var categories: [ExpenseCategory] = []
+    private var categoriesCancellable = Set<AnyCancellable>()
 
     // Private
     private var categoriesInteractor: GetCategoriesInteractor
@@ -48,5 +43,22 @@ public class CategoryFilterPresenter {
         } else {
             self.selectedIndex = 0
         }
+        
+        self.categoriesInteractor.allCategories()
+            .map({ listOfCategories in
+                listOfCategories.map { $0.name }
+            })
+            .map({ listOfCategoryNames in
+                listOfCategoryNames + ["All"]
+            })
+            .assign(to: \.categoryNames, on: self)
+            .store(in: &categoryNamesCancellable)
+        
+        self.categoriesInteractor.allCategories()
+            .map({ listOfCategories in
+                listOfCategories + [ExpenseCategory(name: "All", iconName: "filter_all", color: .black)]
+            })
+            .assign(to: \.categories, on: self)
+            .store(in: &categoriesCancellable)
     }
 }

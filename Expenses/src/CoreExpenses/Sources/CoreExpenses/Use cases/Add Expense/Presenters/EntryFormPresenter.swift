@@ -28,11 +28,10 @@ public class EntryFormPresenter: ObservableObject {
     public var currencyFormatter: NumberFormatter
     @Published public var entry: ExpensesSummaryEntryViewModel
     public var entryIdentifier: DateComponents?
-    public lazy var categories: [String] = {
-        self.categoriesInteractor.allCategories().map { expenseCategory in
-            return expenseCategory.name
-        }
-    }()
+    
+    @Published
+    public var categories: [String] = []
+    private var categoriesCancellable = Set<AnyCancellable>()
     
     public lazy var currencyCodes: [String] = {
         self.currencyCodesInteractor.getAll()
@@ -73,7 +72,13 @@ public class EntryFormPresenter: ObservableObject {
                                                    tag: nil,
                                                    tagId: 0,
                                                    currencyCode: selectedCurrencyCode,
-                                                   currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
+                                                   currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)        
+        self.categoriesInteractor.allCategories()
+            .map({ listOfCategories in
+                listOfCategories.map { $0.name }
+            })
+            .assign(to: \.categories, on: self)
+            .store(in: &categoriesCancellable)
     }
    
     public func currencyCodeIdBinding() -> Binding<Int> {

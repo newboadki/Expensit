@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Combine
 
 public protocol CategoryDataSource {
     var selectedCategoryPublisher: Published<ExpenseCategory?>.Publisher {get}
     func set(selectedCategory: ExpenseCategory?)
-    func allCategories() -> [ExpenseCategory]
+    func allCategories() -> AnyPublisher<[ExpenseCategory], Never>
     func sortedCategoriesByPercentage(fromCategories categories: [ExpenseCategory],
                                       sections: [PieChartSectionInfo]) -> [ExpenseCategory]
     func categories(forMonth month: Int?, inYear year: Int) async -> [ExpenseCategory]

@@ -24,12 +24,13 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
         self.coreDataContext = context
     }
     
-    public func allCategories() -> [ExpenseCategory] {
-        allTags().map { coreDataTag in
+    public func allCategories() -> AnyPublisher<[ExpenseCategory], Never> {        
+        let allTags = allTags().map { coreDataTag in
             ExpenseCategory(name: coreDataTag.name,
                             iconName: coreDataTag.iconImageName,
                             color: coreDataTag.color)
         }
+        return AnyPublisher(CurrentValueSubject(allTags))
     }
     
     public func create(categories: [String], save: Bool) async throws {

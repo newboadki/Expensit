@@ -37,22 +37,27 @@ class PieChartPresenter: ObservableObject {
         self.month = month
         self.year = year
         self.chartDataInteractor = chartDataInteractor
-        
-        if let infoSections = self.chartDataInteractor.expensesByCategory(forMonth: month, year: year) {
-            var sum: Double = 0
-            self.sections = [PieChartSectionInfoViewModel]()
-            self.sections = infoSections.enumerated().map { [weak self] (index, info) in
-                let endAngle = self!.toDegrees(ratio: DoubleBetweenZeroAndOne(value: Double(info.percentage)) ?? DoubleBetweenZeroAndOne.Zero())
-                let model = PieChartSectionInfoViewModel(id: index,
-                                                         name: info.name,
-                                                         start: sum,
-                                                         end: sum + endAngle,
-                                                        color: info.color)
-                sum += endAngle
-                return model
+        self.sections = []
+    }
+    
+    func onViewDidAppear() {
+        Task {
+            if let infoSections = await self.chartDataInteractor.expensesByCategory(forMonth: month, year: year) {
+                var sum: Double = 0
+                self.sections = [PieChartSectionInfoViewModel]()
+                self.sections = infoSections.enumerated().map { [weak self] (index, info) in
+                    let endAngle = self!.toDegrees(ratio: DoubleBetweenZeroAndOne(value: Double(info.percentage)) ?? DoubleBetweenZeroAndOne.Zero())
+                    let model = PieChartSectionInfoViewModel(id: index,
+                                                             name: info.name,
+                                                             start: sum,
+                                                             end: sum + endAngle,
+                                                            color: info.color)
+                    sum += endAngle
+                    return model
+                }
+            } else {
+                self.sections = [PieChartSectionInfoViewModel]()
             }
-        } else {
-            self.sections = [PieChartSectionInfoViewModel]()
         }
     }
         

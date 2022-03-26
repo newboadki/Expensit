@@ -11,12 +11,12 @@ import CoreExpenses
 
 struct CategoryFilterView: View {
     
-    var presenter: CategoryFilterPresenter
+    @ObservedObject var presenter: CategoryFilterPresenter
     @State var isCategoryPickerExpanded: Bool = true
     @Binding var isPresented: Bool
     
     var body: some View {
-        CategoryPickerView(isExpanded: isCategoryPickerExpanded,
+        CategoryPickerView(isExpanded: true,
                            categories: presenter.categoryNames,
                            selectedIndex: categoryBinding())
 

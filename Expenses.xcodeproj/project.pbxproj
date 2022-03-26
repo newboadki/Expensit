@@ -28,10 +28,6 @@
 		000D04F41775C96C002D0AB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000D04F21775C96C002D0AB8 /* Storyboard.storyboard */; };
 		001F3B642557DD3F008F1265 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F3B632557DD3F008F1265 /* DependencyInjection.swift */; };
 		0047E7D924BC751300FEE7B4 /* CoreDataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 0047E7D824BC751300FEE7B4 /* CoreDataPersistence */; };
-		0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
-		0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */; };
-		0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
-		0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */; };
 		0058AAED21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
 		0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */; };
 		007B824D177476780052FE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B824C177476780052FE84 /* Foundation.framework */; };
@@ -111,7 +107,6 @@
 		000A9A171D09E76D0045523A /* BSGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGraphViewController.m; sourceTree = "<group>"; };
 		000A9A1A1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSMonthlySummaryGraphLineController.swift; sourceTree = "<group>"; };
 		000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSMonthlySummaryGraphLinePresenter.swift; sourceTree = "<group>"; };
-		000A9A1C1D09E99F0045523A /* BSMonthlySummaryNavigationTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSMonthlySummaryNavigationTransitionManager.swift; sourceTree = "<group>"; };
 		000A9A231D09EA110045523A /* BSDailySummaryGraphLineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDailySummaryGraphLineController.swift; sourceTree = "<group>"; };
 		000A9A241D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSDailySummaryGraphLinePresenter.swift; sourceTree = "<group>"; };
 		000A9A291D09EA980045523A /* BSGraphLineControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSGraphLineControllerProtocol.swift; sourceTree = "<group>"; };
@@ -129,8 +124,6 @@
 		0044F823245E98EE009EEB1B /* GridViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionHeader.swift; sourceTree = "<group>"; };
 		00478FB2253EA1E800D518C7 /* Currencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Currencies; sourceTree = "<group>"; };
 		00535F121E3FC76C00AD7A7C /* ExpensesSummaryType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExpensesSummaryType.h; path = "Expenses/src/Use cases/show/ExpensesSummaryType.h"; sourceTree = SOURCE_ROOT; };
-		0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphPresenter.swift; sourceTree = "<group>"; };
-		0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphPresenterProtocol.swift; sourceTree = "<group>"; };
 		0058AAE421766851007AD175 /* BSExpensesSummaryPieGraphController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSExpensesSummaryPieGraphController.swift; sourceTree = "<group>"; };
 		0058AAE521766851007AD175 /* BSPieGraphControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSPieGraphControllerProtocol.swift; sourceTree = "<group>"; };
 		0073704124B58DDB00E10142 /* DateAndTime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DateAndTime; path = ../DateTimeHelper/DateAndTime; sourceTree = "<group>"; };
@@ -270,7 +263,6 @@
 			children = (
 				000A9A1A1D09E99F0045523A /* BSMonthlySummaryGraphLineController.swift */,
 				000A9A1B1D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift */,
-				000A9A1C1D09E99F0045523A /* BSMonthlySummaryNavigationTransitionManager.swift */,
 			);
 			path = "Monthly results";
 			sourceTree = "<group>";
@@ -402,8 +394,6 @@
 		0058AAE021766851007AD175 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				0058AAE121766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift */,
-				0058AAE221766851007AD175 /* BSPieGraphPresenterProtocol.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -766,7 +756,6 @@
 				00D86C4F249D4E4E007B0A46 /* CategoryPieChartNavigationCoordinator.swift in Sources */,
 				00E72B0D2472EFD600C89235 /* GridViewSectionBody.swift in Sources */,
 				00015702256683FF0016A4CE /* CurrencySettingsDefaultDataSource.swift in Sources */,
-				0058AAE921766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				008E7410236C292B00762E08 /* EntryBoxView.swift in Sources */,
 				00A38C132454ABBD00E05596 /* ListView.swift in Sources */,
 				00E72B0F2472F29A00C89235 /* GridViewSectionBodyRow.swift in Sources */,
@@ -789,7 +778,6 @@
 				000A9A271D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
 				00AA902C248A5BB90099AAC1 /* CategoryFilterNavigationCoordinator.swift in Sources */,
 				00A38C172454D02D00E05596 /* SceneDelegate.swift in Sources */,
-				0058AAE721766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 				00D869B92494F751007B0A46 /* AddEntryButton.swift in Sources */,
 				00D869BB24954D21007B0A46 /* Arc.swift in Sources */,
 				00AA90192487BE420099AAC1 /* CategoryPickerView.swift in Sources */,
@@ -809,7 +797,6 @@
 				00C273E5249F241F00E1DF0F /* YearlySummaryTests.swift in Sources */,
 				00815E152662AC0300A7385F /* DailySummaryTests.swift in Sources */,
 				0001059A23409DDF0073BFAF /* TestCoreDataStackHelper.swift in Sources */,
-				0058AAEA21766851007AD175 /* BSPieGraphPresenterProtocol.swift in Sources */,
 				00C273EC249F501C00E1DF0F /* TestHelpers.swift in Sources */,
 				00A6DA0F24BAEFD000562426 /* Expenses.xcdatamodeld in Sources */,
 				000A9A281D09EA110045523A /* BSDailySummaryGraphLinePresenter.swift in Sources */,
@@ -819,7 +806,6 @@
 				0058AAEE21766851007AD175 /* BSPieGraphControllerProtocol.swift in Sources */,
 				000A9A2D1D09EA980045523A /* BSGraphLineControllerProtocol.swift in Sources */,
 				000A9A201D09E99F0045523A /* BSMonthlySummaryGraphLinePresenter.swift in Sources */,
-				0058AAE821766851007AD175 /* BSExpensesSummaryPieGraphPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

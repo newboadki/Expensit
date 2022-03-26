@@ -16,7 +16,7 @@ struct CategoryPickerView: View {
     
     var body: some View {
         
-        let categoryName = categories[selectedIndex]
+        let categoryName = (selectedIndex < categories.count) ? categories[selectedIndex] : ""
         
         return VStack(alignment: .leading) {
             Text(categoryName).font(.headline)
@@ -24,7 +24,7 @@ struct CategoryPickerView: View {
             if isExpanded {
                 Picker(selection: $selectedIndex, label: Text("")) {
                     ForEach(0..<categories.count) {
-                        Text(self.categories[$0])
+                        Text($0 < categories.count ? self.categories[$0] : "")
                     }
                 }
             }

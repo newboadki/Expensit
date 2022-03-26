@@ -17,22 +17,25 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
     @Published public var selectedCategory: ExpenseCategory?
     public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
     public var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
+
+    @Published public var allCategories: [ExpenseCategory]
+    public var allCategoriesPublished : Published<[ExpenseCategory]> {_allCategories}
+    public var allCategoriesPublisher : Published<[ExpenseCategory]>.Publisher {$allCategories}
     
     private(set) public var coreDataContext: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
         self.coreDataContext = context
-    }
-    
-    public func allCategories() -> AnyPublisher<[ExpenseCategory], Never> {        
-        let allTags = allTags().map { coreDataTag in
-            ExpenseCategory(name: coreDataTag.name,
-                            iconName: coreDataTag.iconImageName,
-                            color: coreDataTag.color)
+        self.allCategories = []
+        self.allTags { tags in
+            self.allCategories = tags.map { coreDataTag in
+                ExpenseCategory(name: coreDataTag.name,
+                                iconName: coreDataTag.iconImageName,
+                                color: coreDataTag.color)
+            }
         }
-        return AnyPublisher(CurrentValueSubject(allTags))
     }
-    
+        
     public func create(categories: [String], save: Bool) async throws {
         try await coreDataContext.perform {
             for name in categories {
@@ -45,6 +48,13 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
 
             if save {
                 try self.coreDataContext.save()
+                self.allTags { tags in
+                    self.allCategories = tags.map { coreDataTag in
+                        ExpenseCategory(name: coreDataTag.name,
+                                        iconName: coreDataTag.iconImageName,
+                                        color: coreDataTag.color)
+                    }
+                }
             }
         }
     }
@@ -157,50 +167,52 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
         }
     }
         
-    public func expensesByCategory(forMonth month: Int?, inYear year: Int) -> [PieChartSectionInfo] {
-        let tags = self.allTags()
-        var absoluteAmountPerTag = Array<Double>(repeating: 0, count: tags.count)
-        
-        for (index, tag) in tags.enumerated() {
-            let absoluteAmount = self.absoluteSumOfEntries(forCategoryName: tag.name, fromMonth: month, inYear: year)
-            absoluteAmountPerTag[index] = absoluteAmount
+    public func expensesByCategory(forMonth month: Int?, inYear year: Int) async -> [PieChartSectionInfo] {
+        await withCheckedContinuation { continuation in
+            allTags { tags in
+                var absoluteAmountPerTag = Array<Double>(repeating: 0, count: tags.count)
+                
+                for (index, tag) in tags.enumerated() {
+                    let absoluteAmount = self.absoluteSumOfEntries(forCategoryName: tag.name, fromMonth: month, inYear: year)
+                    absoluteAmountPerTag[index] = absoluteAmount
+                }
+                
+                let total = absoluteAmountPerTag.reduce(0) { result, next in
+                    result + next
+                }
+                
+                var percentageSum = 0.0
+                var sections = [PieChartSectionInfo]()
+                for (index, amount) in absoluteAmountPerTag.enumerated() {
+                    let tag = tags[index]
+                    let info = PieChartSectionInfo(name:tag.name,
+                                                   percentage:(amount / total),
+                                                   color:tag.color)
+                    percentageSum += Double(info.percentage)
+                    sections.append(info)
+                }
+                
+                sections.sort { i1, i2 in
+                    i1.percentage < i2.percentage
+                }
+                
+                let r = sections.filter { section in
+                    section.percentage > 0
+                }
+                
+                continuation.resume(returning: r)
+            }
         }
-        
-        let total = absoluteAmountPerTag.reduce(0) { result, next in
-            result + next
-        }
-        
-        var percentageSum = 0.0
-        var sections = [PieChartSectionInfo]()
-        for (index, amount) in absoluteAmountPerTag.enumerated() {
-            let tag = tags[index]
-            let info = PieChartSectionInfo(name:tag.name,
-                                           percentage:(amount / total),
-                                           color:tag.color)
-            percentageSum += Double(info.percentage)
-            sections.append(info)
-        }
-        
-        sections.sort { i1, i2 in
-            i1.percentage < i2.percentage
-        }
-        
-        let r = sections.filter { section in
-            section.percentage > 0
-        }
-        
-        return r                
     }
 
     
-    private func allTags() -> [Tag] {
-        let request = NSFetchRequest<Tag>(entityName: "Tag")//Tag.tagFetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        do {
-            return try coreDataContext.fetch(request)
-        } catch {
-            return [Tag]()
-        }        
+    private func allTags(completion: @escaping ([Tag])->(Void)) {
+        coreDataContext.perform() {
+            let request = NSFetchRequest<Tag>(entityName: "Tag")
+            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            let result = (try? self.coreDataContext.fetch(request)) ?? [Tag]()
+            completion(result)
+        }
     }
 
     private func absoluteSumOfEntries(forCategoryName categoryName: String, fromMonth month: Int?, inYear year:Int) -> Double {

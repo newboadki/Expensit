@@ -40,6 +40,7 @@ struct PieChartView: View {
             }
             Spacer()
         }.onAppear {
+            presenter.onViewDidAppear()
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.maskStartAngle = 360
             }

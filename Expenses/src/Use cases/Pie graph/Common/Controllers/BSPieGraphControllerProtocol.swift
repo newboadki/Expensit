@@ -13,5 +13,5 @@ protocol BSPieGraphControllerProtocol
 {
     func sortedTagsByPercentage(fromSections tags: [ExpenseCategory], sections : [PieChartSectionInfo]) -> [ExpenseCategory]?
     func categories(forMonth month: NSNumber?, year : NSNumber) async -> [ExpenseCategory]?
-    func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) -> [PieChartSectionInfo]?
+    func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) async -> [PieChartSectionInfo]?
 }

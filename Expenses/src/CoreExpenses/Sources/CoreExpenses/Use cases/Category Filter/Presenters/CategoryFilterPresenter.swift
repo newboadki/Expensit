@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public class CategoryFilterPresenter {
+public class CategoryFilterPresenter: ObservableObject {
     
     // Internal
     public var selectedIndex: Int {

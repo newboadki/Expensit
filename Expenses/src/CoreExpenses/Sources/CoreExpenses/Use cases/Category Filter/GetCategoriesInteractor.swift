@@ -18,6 +18,6 @@ public class GetCategoriesInteractor {
     }
     
     public func allCategories() -> AnyPublisher<[ExpenseCategory], Never> {
-        return dataSource.allCategories()
+        return dataSource.allCategoriesPublisher.eraseToAnyPublisher()
     }
 }

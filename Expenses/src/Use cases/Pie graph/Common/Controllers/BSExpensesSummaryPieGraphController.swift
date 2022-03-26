@@ -21,9 +21,8 @@ class BSExpensesSummaryPieGraphController : BSPieGraphControllerProtocol {
         return self.dataProvider.sortedCategoriesByPercentage(fromCategories: tags, sections: sections)
     }
     
-    // make month nil
-    func categories(forMonth month: NSNumber?, year : NSNumber) -> [ExpenseCategory]? {
-        return self.dataProvider.categories(forMonth: month?.intValue, inYear: year.intValue)
+    func categories(forMonth month: NSNumber?, year : NSNumber) async -> [ExpenseCategory]? {
+        return await self.dataProvider.categories(forMonth: month?.intValue, inYear: year.intValue)
     }
     
     func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) -> [PieChartSectionInfo]? {

@@ -14,7 +14,7 @@ public protocol CategoryDataSource {
     func allCategories() -> [ExpenseCategory]
     func sortedCategoriesByPercentage(fromCategories categories: [ExpenseCategory],
                                       sections: [PieChartSectionInfo]) -> [ExpenseCategory]
-    func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory]
+    func categories(forMonth month: Int?, inYear year: Int) async -> [ExpenseCategory]
     func expensesByCategory(forMonth month: Int?, inYear year: Int) -> [PieChartSectionInfo]
     
     /// Creates the categories in the context and saves them according to the parameter

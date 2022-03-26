@@ -11,6 +11,6 @@ import CoreExpenses
 
 protocol BSPieGraphPresenterProtocol
 {    
-    func categories() -> [ExpenseCategory]?
+    func categories() async -> [ExpenseCategory]?
     func sections() -> [PieChartSectionInfo]?
 }

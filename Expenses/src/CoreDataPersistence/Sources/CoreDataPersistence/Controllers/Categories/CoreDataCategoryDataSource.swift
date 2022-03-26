@@ -12,7 +12,7 @@ import CoreExpenses
 import CoreData
 import UIKit
 
-public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
+public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
             
     @Published public var selectedCategory: ExpenseCategory?
     public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
@@ -103,7 +103,6 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         return request
     }
-
     
     public func set(selectedCategory: ExpenseCategory?) {
         self.selectedCategory = selectedCategory
@@ -122,36 +121,38 @@ public class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource 
         return results
     }
 
-    public func categories(forMonth month: Int?, inYear year: Int) -> [ExpenseCategory] {
-        let baseRequest = self.baseRequest(context: coreDataContext)
-        var datePredicateString = "year = \(year)"
-        if let m = month {
-            datePredicateString.append(" AND month = \(m)")
-        }
-        baseRequest.predicate = NSPredicate(format: datePredicateString)
-        
-        if let propertiesByName = baseRequest.entity?.propertiesByName {
-            if let tagDescription = propertiesByName["tag"] {
-                baseRequest.propertiesToFetch = [tagDescription]
-                baseRequest.returnsDistinctResults = true
-                baseRequest.resultType = .dictionaryResultType
+    public func categories(forMonth month: Int?, inYear year: Int) async -> [ExpenseCategory] {
+        await coreDataContext.perform {
+            let baseRequest = self.baseRequest(context: self.coreDataContext)
+            var datePredicateString = "year = \(year)"
+            if let m = month {
+                datePredicateString.append(" AND month = \(m)")
             }
-        }
-        
-        do {
-            var tags = [Tag]()
-            let results = try coreDataContext.fetch(baseRequest)
-            for result in results {
-                if let tagDict = result as? [String: Any] {
-                    let tag = try! coreDataContext.existingObject(with: tagDict["tag"] as! NSManagedObjectID)
-                    tags.append(tag as! Tag)
+            baseRequest.predicate = NSPredicate(format: datePredicateString)
+            
+            if let propertiesByName = baseRequest.entity?.propertiesByName {
+                if let tagDescription = propertiesByName["tag"] {
+                    baseRequest.propertiesToFetch = [tagDescription]
+                    baseRequest.returnsDistinctResults = true
+                    baseRequest.resultType = .dictionaryResultType
                 }
             }
-            return tags.map({ tag in
-                return ExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
-            })
-        } catch {
-            return [ExpenseCategory]()
+            
+            do {
+                var tags = [Tag]()
+                let results = try self.coreDataContext.fetch(baseRequest)
+                for result in results {
+                    if let tagDict = result as? [String: Any] {
+                        let tag = try! self.coreDataContext.existingObject(with: tagDict["tag"] as! NSManagedObjectID)
+                        tags.append(tag as! Tag)
+                    }
+                }
+                return tags.map({ tag in
+                    return ExpenseCategory(name: tag.name, iconName: tag.iconImageName, color: tag.color)
+                })
+            } catch {
+                return [ExpenseCategory]()
+            }
         }
     }
         

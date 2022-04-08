@@ -13,16 +13,22 @@ import CoreData
 import UIKit
 
 public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataSource {
-            
-    @Published public var selectedCategory: ExpenseCategory?
+    
+    // MARK: - Observable properties
+    @Published
+    public var selectedCategory: ExpenseCategory?
     public var selectedCategoryPublished : Published<ExpenseCategory?> {_selectedCategory}
     public var selectedCategoryPublisher : Published<ExpenseCategory?>.Publisher {$selectedCategory}
 
-    @Published public var allCategories: [ExpenseCategory]
+    @Published
+    public var allCategories: [ExpenseCategory]
     public var allCategoriesPublished : Published<[ExpenseCategory]> {_allCategories}
     public var allCategoriesPublisher : Published<[ExpenseCategory]>.Publisher {$allCategories}
     
+    // MARK: - Private properties
     private(set) public var coreDataContext: NSManagedObjectContext
+    
+    // MARK: - Initializers
     
     public init(context: NSManagedObjectContext) {
         self.coreDataContext = context
@@ -35,7 +41,9 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
             }
         }
     }
-        
+    
+    // MARK: - Public API
+    
     public func create(categories: [String], save: Bool) async throws {
         try await coreDataContext.perform {
             for name in categories {
@@ -105,16 +113,7 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
             }
         }
     }
-    
-    private func allEntriesRequest() -> NSFetchRequest<Entry> {
-        let description = NSEntityDescription.entity(forEntityName: "Entry", in: self.coreDataContext)
-        let request = Entry.entryFetchRequest()
-        request.entity = description
-        request.fetchBatchSize = 50
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        return request
-    }
-    
+        
     public func set(selectedCategory: ExpenseCategory?) {
         self.selectedCategory = selectedCategory
     }
@@ -204,9 +203,21 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
             }
         }
     }
+}
 
+// MARK: - Private
+private extension CoreDataCategoryDataSource {
     
-    private func allTags(completion: @escaping ([Tag])->(Void)) {
+    func allEntriesRequest() -> NSFetchRequest<Entry> {
+        let description = NSEntityDescription.entity(forEntityName: "Entry", in: self.coreDataContext)
+        let request = Entry.entryFetchRequest()
+        request.entity = description
+        request.fetchBatchSize = 50
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        return request
+    }
+    
+    func allTags(completion: @escaping ([Tag])->(Void)) {
         coreDataContext.perform() {
             let request = NSFetchRequest<Tag>(entityName: "Tag")
             request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -215,7 +226,7 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
         }
     }
 
-    private func absoluteSumOfEntries(forCategoryName categoryName: String, fromMonth month: Int?, inYear year:Int) -> Double {
+    func absoluteSumOfEntries(forCategoryName categoryName: String, fromMonth month: Int?, inYear year:Int) -> Double {
         let baseRequest = self.baseRequest(context: coreDataContext)
         var datePredicateString = "year = \(year)"
         if let m = month {
@@ -255,4 +266,5 @@ public final class CoreDataCategoryDataSource: CategoryDataSource, CoreDataDataS
             return 0
         }
     }
+
 }

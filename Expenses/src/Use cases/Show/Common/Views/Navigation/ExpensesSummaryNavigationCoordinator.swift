@@ -12,12 +12,13 @@ import CoreData
 import CoreDataPersistence
 import Currencies
 
+@MainActor
 protocol NavigationCoordinator {
     associatedtype T: View
     
     func nextView(forIdentifier currentViewIdentifier: DateComponents?) -> T
 }
-
+@MainActor
 class MainNavigationCoordinator: NavigationCoordinator {
     
     var dataSources: [String: EntriesSummaryDataSource]

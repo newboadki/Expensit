@@ -11,6 +11,7 @@ import CoreExpenses
 import CoreData
 import CoreDataPersistence
 
+@MainActor
 class CategoryFilterNavigationCoordinator {
     private var coreDataContext: NSManagedObjectContext
     private var selectedCategoryDataSource: CategoryDataSource
@@ -26,7 +27,8 @@ class CategoryFilterNavigationCoordinator {
         let categoriesInteractor = GetCategoriesInteractor(dataSource: categoriesDataSource)
         let filterByCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let presenter = CategoryFilterPresenter(categoriesInteractor: categoriesInteractor,
-                                                filterByCategoryInteractor: filterByCategoryInteractor)
+                                                filterByCategoryInteractor: filterByCategoryInteractor,
+                                                isPresented: isPresented)
         return CategoryFilterView(presenter: presenter,
                                   isPresented: isPresented)
     }

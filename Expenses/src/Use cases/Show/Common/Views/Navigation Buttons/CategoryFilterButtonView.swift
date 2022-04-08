@@ -11,8 +11,12 @@ import SwiftUI
 struct CategoryFilterButtonView: View {
     // MARK: Private
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
-    @ObservedObject private var presenter: NavigationButtonsPresenter
-    @State private var showCategoryFilter = false
+    
+    @ObservedObject
+    private var presenter: NavigationButtonsPresenter
+    
+    @State
+    private var showCategoryFilter = false
 
     init(categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,
          presenter: NavigationButtonsPresenter) {
@@ -26,7 +30,8 @@ struct CategoryFilterButtonView: View {
         }) {
             Image(self.presenter.selectedCategoryImageName)
         }.sheet(isPresented: $showCategoryFilter) {
-            self.categoryFilterNavgationCoordinator.categoryFilterView(forIdentifier:"", isPresented: self.$showCategoryFilter)
+            self.categoryFilterNavgationCoordinator.categoryFilterView(forIdentifier:"",
+                                                                       isPresented: self.$showCategoryFilter)
         }
     }
 }

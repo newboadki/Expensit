@@ -7,27 +7,27 @@
 //
 
 import SwiftUI
+import CoreExpenses
 
 struct CategoryPickerView: View {
     
     var isExpanded: Bool = false
-    var categories: [String]
+    @EnvironmentObject var presenter: CategoryFilterPresenter
     @Binding var selectedIndex: Int
     
     var body: some View {
-        
-        let categoryName = (selectedIndex < categories.count) ? categories[selectedIndex] : ""
-        
-        return VStack(alignment: .leading) {
-            Text(categoryName).font(.headline)
+        VStack(alignment: .center) {
+            Text("Select a category to filter by").font(.headline)
+                .padding(.top, 50)
             
-            if isExpanded {
-                Picker(selection: $selectedIndex, label: Text("")) {
-                    ForEach(0..<categories.count) {
-                        Text($0 < categories.count ? self.categories[$0] : "")
-                    }
+            Spacer()
+            
+            Picker(selection: $selectedIndex, label: Text("")) {
+                ForEach(presenter.enumeratedCategories) { category in
+                    Text(category.name).tag(category.id)
                 }
             }
+            .pickerStyle(.wheel)
         }
     }
 }

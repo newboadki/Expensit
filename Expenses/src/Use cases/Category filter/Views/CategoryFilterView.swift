@@ -16,21 +16,7 @@ struct CategoryFilterView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        CategoryPickerView(isExpanded: true,
-                           categories: presenter.categoryNames,
-                           selectedIndex: categoryBinding())
-
+        CategoryPickerView(isExpanded: true, selectedIndex: $presenter.selectedIndex)
+            .environmentObject(presenter)
     }
-    
-    private func categoryBinding() -> Binding<Int> {
-        return Binding<Int>(
-            get: {
-                self.presenter.selectedIndex
-            },
-            set: {
-                self.presenter.selectedIndex = $0
-            }
-        )
-    }
-
 }

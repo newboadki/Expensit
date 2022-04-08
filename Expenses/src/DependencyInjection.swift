@@ -57,6 +57,7 @@ class DependencyInjection {
                 "all" : ShowAllEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: dataSources["all"]!), subscriptionScheduler: DispatchQueue.global(), receiveOnScheduler: RunLoop.main)]
     }()
     
+    @MainActor
     func mainNavigationCoordinator() -> MainNavigationCoordinator {
         let navigationButtonsPresenter = NavigationButtonsPresenter(selectedCategoryInteractor: SelectedCategoryInteractor(dataSource: selectedCategoryDataSource))
         return MainNavigationCoordinator(dataSources:dataSources,

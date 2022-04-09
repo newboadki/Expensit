@@ -12,6 +12,7 @@ import Combine
 import DateAndTime
 import SwiftUI
 
+@MainActor
 public class EntryFormPresenter: ObservableObject {
         
     // MARK: - Private
@@ -115,61 +116,54 @@ public class EntryFormPresenter: ObservableObject {
     public func selectedCategoryName() -> String {
         self.categories[self.entry.tagId]
     }
-    
-    
-    public func onViewAppear() {
-        let selectedCurrencyCode = self.currencyCodesInteractor.currentLocaleCurrencyCode
         
-        if let id = self.entryIdentifier,
-           let expense = self.getExpenseInteractor.entry(for: id) {
+    public func onViewAppear() {
+        let selectedCurrencyCode = currencyCodesInteractor.currentLocaleCurrencyCode
+        
+        if let id = entryIdentifier,
+           let expense = getExpenseInteractor.entry(for: id) {
                 var index = 0
-                if let name = expense.category?.name, let i = self.categories.firstIndex(of: name) {
+                if let name = expense.category?.name, let i = categories.firstIndex(of: name) {
                     index = i
                 }
                 
-                self.entry = ExpensesSummaryEntryViewModel(id: id,
-                                                           title: expense.entryDescription,
-                                                           value: self.currencyFormatter.string(from: expense.valueInBaseCurrency),
-                                                           signOfAmount: expense.isAmountNegative,
-                                                           date: DateConversion.string(from: expense.date!),
-                                                           tag: expense.category?.name,
-                                                           tagId: index,
-                                                           dateTime: expense.date!,
-                                                           currencyCode: selectedCurrencyCode,
-                                                           currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
+            entry = ExpensesSummaryEntryViewModel(
+                id: id,
+                title: expense.entryDescription,
+                value: self.currencyFormatter.string(from: expense.valueInBaseCurrency),
+                signOfAmount: expense.isAmountNegative,
+                date: DateConversion.string(from: expense.date!),
+                tag: expense.category?.name,
+                tagId: index,
+                dateTime: expense.date!,
+                currencyCode: selectedCurrencyCode,
+                currencyCodeId: self.currencyCodesInteractor.indexOfCurrentLocaleCurrencyCode)
         }
     }
     
     public func handleSaveButtonPressed(_ presentationMode: Binding<PresentationMode>) {
-        self.entry.tag = self.categories[self.entry.tagId]
-        self.entry.currencyCode = self.currencyCodes[self.entry.currencyCodeId]
-        
-        DispatchQueue.global().async {
-            self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
-                if let id = self.entryIdentifier {
-                    // Editing existing entry
-                    _ = self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
-                } else {
-                    // New Entry
-                    _ = self.storageInteractor.add(expense: expenseEntity)
-                }
+        entry.tag = categories[entry.tagId]
+        entry.currencyCode = currencyCodes[entry.currencyCodeId]
                 
-                DispatchQueue.main.async {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                
+        self.updateExpenseCancellable = entryEntity(fromViewModel: entry).sink { expenseEntity in
+            if let id = self.entryIdentifier {
+                // Editing existing entry
+                _ = self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+            } else {
+                // New Entry
+                _ = self.storageInteractor.add(expense: expenseEntity)
             }
+            
+            presentationMode.wrappedValue.dismiss()
         }
     }
     
     public func handleDeleteButtonPressed(_ presentationMode: Binding<PresentationMode>) {
-        DispatchQueue.global().async {
-            self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
-                _ = self.deleteExpenseInteractor.delete(expenseEntity)
-                DispatchQueue.main.async {
-                    presentationMode.wrappedValue.dismiss()
-                }
+        self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
+            Task {
+                try? await self.deleteExpenseInteractor.delete(expenseEntity)
             }
+            presentationMode.wrappedValue.dismiss()
         }
     }
     

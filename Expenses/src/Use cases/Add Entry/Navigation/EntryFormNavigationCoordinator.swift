@@ -13,10 +13,10 @@ import CoreDataPersistence
 import Currencies
 
 protocol EntryFormNavigationCoordinator {
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> AddEntryFormView
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) async -> AddEntryFormView
 }
 
-
+@MainActor
 class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
     private var coreDataContext: NSManagedObjectContext
     
@@ -24,7 +24,7 @@ class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
         self.coreDataContext = coreDataContext
     }
     
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> AddEntryFormView {
+    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) async -> AddEntryFormView {
         let categoriesDataSource = CoreDataCategoryDataSource(context: self.coreDataContext)
         let categoriesInteractor = GetCategoriesInteractor(dataSource:categoriesDataSource)
         let individualEntryDataSource = IndividualExpensesDataSource(context: self.coreDataContext)

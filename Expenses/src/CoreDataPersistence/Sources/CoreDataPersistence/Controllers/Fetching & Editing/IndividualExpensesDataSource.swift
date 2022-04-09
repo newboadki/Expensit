@@ -40,18 +40,15 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                        isExchangeRateUpToDate: first.isExchangeRateUpToDate)
     }
     
-    public func delete(_ expense: Expense) -> Result<Bool, Error> {
-        guard let entry = self.entry(for: expense.dateComponents) else {
-            return .failure(NSError(domain: "Could not delete entry.", code: -1, userInfo: nil))
-        }
-        
-        self.context.delete(entry)
-        
-        do {
-            try context.save()
-            return .success(true)
-        } catch {
-            return .failure(error)
+    public func delete(_ expense: Expense) async throws -> Bool {
+        try await context.perform {
+            guard let entry = self.entry(for: expense.dateComponents) else {
+                throw NSError(domain: "Could not delete entry.", code: -1, userInfo: nil)
+            }
+            
+            self.context.delete(entry)
+            try self.context.save()
+            return true
         }
     }
     

@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol CurrencyConvertorInteractor {
-    func convertAllEntries(to newBaseCurrency: String)
+    func convertAllEntries(to newBaseCurrency: String) async
 }

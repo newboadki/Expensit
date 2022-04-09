@@ -25,13 +25,13 @@ public class CurrencyCodeChangeInteractor {
         self.currencySettingsInteractor = currencySettingsInteractor
     }
             
-    public func updateCurrencyExchangeRates() {
+    public func updateCurrencyExchangeRates() async {
         let previousCode = currencySettingsInteractor.previousCurrencyCode()
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
         let currencyCodeChanged = (previousCode != currentCode)
         if currencyCodeChanged {
             // Attempt conversion
-            convertExchangeRates(to: currentCode)
+            await convertExchangeRates(to: currentCode)
             
             // Regardless of whether the conversion succeeded or not (we are using harcoded default values),
             // we are setting the current currency code as the previous one, because we have indeed converted.
@@ -39,7 +39,7 @@ public class CurrencyCodeChangeInteractor {
         } else {
             // Even if there's no change, there could be some approximations.
             // Try to resolve them.
-            converExchangeRatesIfCalculationsAreApproximated()
+            await converExchangeRatesIfCalculationsAreApproximated()
         }                
     }
 }
@@ -48,18 +48,18 @@ public class CurrencyCodeChangeInteractor {
 private extension CurrencyCodeChangeInteractor {
     
     @discardableResult
-    func convertExchangeRates(to newBase: String) -> Bool {
-        exchangeRatesConversionInteractor.convertAllEntries(to: newBase)
+    func convertExchangeRates(to newBase: String) async -> Bool {
+        await exchangeRatesConversionInteractor.convertAllEntries(to: newBase)
         return allEntriesDataSource.isExchangeRateToBaseApproximated()
     }
     
-    func converExchangeRatesIfCalculationsAreApproximated() {
+    func converExchangeRatesIfCalculationsAreApproximated() async {
         // Check that we need to recalculate
         guard allEntriesDataSource.isExchangeRateToBaseApproximated() else {
             return
         }
         
         let currentCode = currencySettingsInteractor.currentCurrencyCode()
-        convertExchangeRates(to: currentCode)
+        await convertExchangeRates(to: currentCode)
     }
 }

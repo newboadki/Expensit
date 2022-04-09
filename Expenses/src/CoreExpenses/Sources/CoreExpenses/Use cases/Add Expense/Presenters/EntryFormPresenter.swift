@@ -12,7 +12,6 @@ import Combine
 import DateAndTime
 import SwiftUI
 
-@MainActor
 public class EntryFormPresenter: ObservableObject {
         
     // MARK: - Private
@@ -152,7 +151,9 @@ public class EntryFormPresenter: ObservableObject {
         self.updateExpenseCancellable = entryEntity(fromViewModel: entry).sink { expenseEntity in
             if let id = self.entryIdentifier {
                 // Editing existing entry
-                _ = self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+                Task {
+                    try? await self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+                }
             } else {
                 // New Entry
                 _ = self.storageInteractor.add(expense: expenseEntity)

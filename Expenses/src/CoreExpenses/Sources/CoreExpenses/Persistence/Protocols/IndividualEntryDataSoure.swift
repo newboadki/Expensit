@@ -10,8 +10,8 @@ import Foundation
 
 public protocol IndividualEntryDataSoure {
     func expense(for identifier: DateComponents) -> Expense?
-    func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error>
-    func saveChanges(in expenses: [Expense]) -> Result<Bool, Error>
+    func saveChanges(in expense: Expense, with identifier: DateComponents) async throws -> Bool
+    func saveChanges(in expenses: [Expense]) async throws -> Bool
     func add(expense: Expense) -> Result<Bool, Error>
     func delete(_ expense: Expense) async throws -> Bool
 }

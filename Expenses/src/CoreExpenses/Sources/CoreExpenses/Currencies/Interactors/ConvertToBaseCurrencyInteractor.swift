@@ -32,7 +32,7 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
         self.currenciesDataSource = currenciesDataSource
     }
     
-    public func convertAllEntries(to newBaseCurrency: String) {
+    public func convertAllEntries(to newBaseCurrency: String) async {
         // Get all entries from the DB
         // &
         // Get rates from the network
@@ -47,12 +47,16 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
             self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
                 if case .failure(_) = result {
                     let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
-                    self.save(expenses: updatedExpenses)
+                    Task {
+                        try? await self.save(expenses: updatedExpenses)
+                    }
                 }
             },
             receiveValue: { rateInfo in
                 let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
-                self.save(expenses: updatedExpenses)
+                Task {
+                    try? await self.save(expenses: updatedExpenses)
+                }
             })
         }
     }
@@ -107,8 +111,8 @@ private extension ConvertToBaseCurrencyInteractor {
         return expenses
     }
     
-    func save(expenses: [Expense]) {
-        _ = saveExpense.saveChanges(in: expenses)
+    func save(expenses: [Expense]) async throws {
+        try await saveExpense.saveChanges(in: expenses)
     }
     
     /// Default conversion rate of expense.currencyCode

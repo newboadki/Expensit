@@ -24,7 +24,7 @@ struct AddEntryButton: View {
         }) {
             Image(systemName: "plus")
         }.sheet(isPresented: $showEntryForm) {
-            self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)
+            self.entryFormCoordinator.entryFormView(forIdentifier:"", isPresented: self.$showEntryForm)            
         }
     }
 }

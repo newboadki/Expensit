@@ -52,57 +52,53 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         }
     }
     
-    public func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
-        return saveChanges(in: expense, with: identifier, saveToContext: true)
+    public func saveChanges(in expense: Expense, with identifier: DateComponents) async throws -> Bool {
+        try await saveChanges(in: expense, with: identifier, saveToContext: true)
     }
     
-    public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) -> Result<Bool, Error> {
-        
-        guard let first = self.entry(for: identifier) else {
-            return .failure(NSError(domain: "Could not save", code: -1, userInfo: nil))
-        }
-        
-        first.observableDate = expense.date
-        first.value = expense.value
-        first.valueInBaseCurrency = expense.valueInBaseCurrency
-        first.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
-        first.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
-        first.currencyCode = expense.currencyCode
-        first.desc = expense.entryDescription
-        
-        let request = Tag.tagFetchRequest()
-        request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
-        if let tags = try? context.fetch(request) {
-            if let firstTag = tags.first {
-                first.tag = firstTag
+    @discardableResult
+    public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) async throws -> Bool {
+        try await context.perform {
+            guard let first = self.entry(for: identifier) else {
+                throw NSError(domain: "Could not save", code: -1, userInfo: nil)
             }
-        }
+            
+            first.observableDate = expense.date
+            first.value = expense.value
+            first.valueInBaseCurrency = expense.valueInBaseCurrency
+            first.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
+            first.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
+            first.currencyCode = expense.currencyCode
+            first.desc = expense.entryDescription
+            
+            let request = Tag.tagFetchRequest()
+            request.predicate = NSPredicate(format:"name LIKE %@", expense.category!.name)
+            if let tags = try? self.context.fetch(request) {
+                if let firstTag = tags.first {
+                    first.tag = firstTag
+                }
+            }
 
-        if saveToContext {
-            do {
-                try context.save()
-            } catch {
-                return .failure(error)
+            if saveToContext {
+                try self.context.save()
             }
+            
+            return true
         }
-        
-        return .success(true)
     }
     
-    public func saveChanges(in expenses: [Expense]) -> Result<Bool, Error> {
+    public func saveChanges(in expenses: [Expense]) async throws -> Bool {
         for expense in expenses {
-            _ = self.saveChanges(in: expense, with: expense.dateComponents, saveToContext: false)
+            try await self.saveChanges(in: expense,
+                                       with: expense.dateComponents,
+                                       saveToContext: false)
         }
         
-        do
-        {
-            try context.save()
-            return .success(true)
+        try await context.perform {
+            try self.context.save()
         }
-        catch
-        {
-            return .failure(error)
-        }
+        
+        return true
     }
     
     public func add(expense: Expense) -> Result<Bool, Error> {

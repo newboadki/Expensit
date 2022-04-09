@@ -78,6 +78,7 @@ public class EntryFormPresenter: ObservableObject {
             .map({ listOfCategories in
                 listOfCategories.map { $0.name }
             })
+            .receive(on: RunLoop.main)
             .assign(to: \.categories, on: self)
             .store(in: &categoriesCancellable)
     }
@@ -114,7 +115,10 @@ public class EntryFormPresenter: ObservableObject {
     }
     
     public func selectedCategoryName() -> String {
-        self.categories[self.entry.tagId]
+        guard entry.tagId < categories.count else {
+            return ""
+        }
+        return categories[entry.tagId]
     }
         
     public func onViewAppear() {

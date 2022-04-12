@@ -14,7 +14,7 @@ public class AddExpenseInteractor {
         self.dataSource = dataSource
     }
     
-    public func add(expense: Expense) -> Result<Bool, Error> {
-        return self.dataSource.add(expense: expense)
+    public func add(expense: Expense) async throws {
+        try await self.dataSource.add(expense: expense)
     }
 }

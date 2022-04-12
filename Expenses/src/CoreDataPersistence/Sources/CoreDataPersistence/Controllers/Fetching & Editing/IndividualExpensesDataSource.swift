@@ -101,48 +101,45 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         return true
     }
     
-    public func add(expense: Expense) -> Result<Bool, Error> {
-        let description = NSEntityDescription.entity(forEntityName: "Entry", in: context)
-        let managedObject = NSManagedObject(entity: description!, insertInto: context) as! Entry
-        managedObject.value = expense.value
-        managedObject.valueInBaseCurrency = expense.valueInBaseCurrency
-        managedObject.observableDate = expense.date
-        managedObject.currencyCode = expense.currencyCode
-        managedObject.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
-        managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate        
-                
-        if let y = expense.dateComponents.year {
-            managedObject.year = NSNumber(integerLiteral: y)
-        }
-        if let m = expense.dateComponents.month {
-            managedObject.month = NSNumber(integerLiteral: m)
-        }
-        if let m = expense.dateComponents.day {
-            managedObject.day = NSNumber(integerLiteral: m)
-        }
-        if let m = expense.dateComponents.hour {
-            managedObject.hour = NSNumber(integerLiteral: m)
-        }
-        if let m = expense.dateComponents.minute {
-            managedObject.minute = NSNumber(integerLiteral: m)
-        }
-        if let m = expense.dateComponents.second {
-            managedObject.second = NSNumber(integerLiteral: m)
-        }
-        managedObject.desc = expense.entryDescription
-        
-        let fetchRequest = Tag.tagFetchRequest()
-        if let theCategory = expense.category {
-            fetchRequest.predicate = NSPredicate(format: "name LIKE %@", theCategory.name)
-            let tag = try! self.context.fetch(fetchRequest).last!
-            managedObject.tag = tag
-        }
+    public func add(expense: Expense) async throws {
+        try await context.perform {
+            let description = NSEntityDescription.entity(forEntityName: "Entry", in: self.context)
+            let managedObject = NSManagedObject(entity: description!, insertInto: self.context) as! Entry
+            managedObject.value = expense.value
+            managedObject.valueInBaseCurrency = expense.valueInBaseCurrency
+            managedObject.observableDate = expense.date
+            managedObject.currencyCode = expense.currencyCode
+            managedObject.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
+            managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
+                    
+            if let y = expense.dateComponents.year {
+                managedObject.year = NSNumber(integerLiteral: y)
+            }
+            if let m = expense.dateComponents.month {
+                managedObject.month = NSNumber(integerLiteral: m)
+            }
+            if let m = expense.dateComponents.day {
+                managedObject.day = NSNumber(integerLiteral: m)
+            }
+            if let m = expense.dateComponents.hour {
+                managedObject.hour = NSNumber(integerLiteral: m)
+            }
+            if let m = expense.dateComponents.minute {
+                managedObject.minute = NSNumber(integerLiteral: m)
+            }
+            if let m = expense.dateComponents.second {
+                managedObject.second = NSNumber(integerLiteral: m)
+            }
+            managedObject.desc = expense.entryDescription
+            
+            let fetchRequest = Tag.tagFetchRequest()
+            if let theCategory = expense.category {
+                fetchRequest.predicate = NSPredicate(format: "name LIKE %@", theCategory.name)
+                let tag = try! self.context.fetch(fetchRequest).last!
+                managedObject.tag = tag
+            }
 
-        do {
-            try context.save()
-            return .success(true)
-        } catch {
-            return .failure(error)
+            try self.context.save()
         }
     }
     

@@ -149,16 +149,15 @@ public class EntryFormPresenter: ObservableObject {
         entry.currencyCode = currencyCodes[entry.currencyCodeId]
                 
         self.updateExpenseCancellable = entryEntity(fromViewModel: entry).sink { expenseEntity in
-            if let id = self.entryIdentifier {
-                // Editing existing entry
-                Task {
-                    try? await self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+            Task {
+                if let id = self.entryIdentifier {
+                    // Editing existing entry
+                    _ = try? await self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+                } else {
+                    // New Entry
+                    try? await self.storageInteractor.add(expense: expenseEntity)
                 }
-            } else {
-                // New Entry
-                _ = self.storageInteractor.add(expense: expenseEntity)
             }
-            
             presentationMode.wrappedValue.dismiss()
         }
     }

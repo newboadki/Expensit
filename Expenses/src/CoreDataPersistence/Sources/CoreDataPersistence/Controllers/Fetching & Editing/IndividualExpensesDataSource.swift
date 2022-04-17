@@ -176,32 +176,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             try self.context.save()
         }
     }
-    
-    public func setDateComponentsInAllEntries() -> Result<Bool, Error> {
-        let request = NSFetchRequest<Entry>(entityName: "Entry")
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        if let entries = try? context.fetch(request) {
-            for entry in entries {
-                if let d = entry.date {
-                    entry.year = NSNumber(integerLiteral:d.component(.year))
-                    entry.month = NSNumber(integerLiteral:d.component(.month))
-                    entry.day = NSNumber(integerLiteral:d.component(.day))
-                    entry.hour = NSNumber(integerLiteral:d.component(.hour))
-                    entry.minute = NSNumber(integerLiteral:d.component(.minute))
-                    entry.second = NSNumber(integerLiteral:d.component(.second))
-                }
-            }
-        }
-
-        do {
-            try context.save()
-        } catch {
-            return .failure(error)
-        }
-        
-        return .success(true)
-    }
-    
 }
 
 private extension IndividualExpensesDataSource {

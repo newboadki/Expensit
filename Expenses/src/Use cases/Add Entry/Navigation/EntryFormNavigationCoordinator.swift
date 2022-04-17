@@ -12,11 +12,8 @@ import CoreData
 import CoreDataPersistence
 import Currencies
 
-protocol EntryFormNavigationCoordinator {
-    func entryFormView(forIdentifier currentViewIdentifier: String, isPresented: Binding<Bool>) -> AddEntryFormView
-}
-
-class ExpensesEntryFormNavigationCoordinator: EntryFormNavigationCoordinator {
+@MainActor
+class ExpensesEntryFormNavigationCoordinator {
     private var coreDataContext: NSManagedObjectContext
     
     init(coreDataContext: NSManagedObjectContext) {

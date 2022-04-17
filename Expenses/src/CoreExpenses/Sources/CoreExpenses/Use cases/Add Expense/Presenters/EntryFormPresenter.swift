@@ -12,6 +12,7 @@ import Combine
 import DateAndTime
 import SwiftUI
 
+@MainActor
 public class EntryFormPresenter: ObservableObject {
         
     // MARK: - Private
@@ -120,11 +121,11 @@ public class EntryFormPresenter: ObservableObject {
         return categories[entry.tagId]
     }
         
-    public func onViewAppear() {
+    public func onViewAppear() async {
         let selectedCurrencyCode = currencyCodesInteractor.currentLocaleCurrencyCode
         
         if let id = entryIdentifier,
-           let expense = getExpenseInteractor.entry(for: id) {
+           let expense = await getExpenseInteractor.entry(for: id) {
                 var index = 0
                 if let name = expense.category?.name, let i = categories.firstIndex(of: name) {
                     index = i

@@ -12,11 +12,11 @@ import Combine
 struct NavigationButtonsView: View {
 
     // MARK: Private
-    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var entryFormCoordinator: ExpensesEntryFormNavigationCoordinator
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     @ObservedObject private var presenter: NavigationButtonsPresenter
 
-    init(entryFormCoordinator: EntryFormNavigationCoordinator,
+    init(entryFormCoordinator: ExpensesEntryFormNavigationCoordinator,
          categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,
          presenter: NavigationButtonsPresenter) {
         self.entryFormCoordinator = entryFormCoordinator

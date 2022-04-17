@@ -10,18 +10,18 @@ import CoreData
 import CoreExpenses
 
 public class IndividualExpensesDataSource: IndividualEntryDataSoure {
-
+    
     private let context: NSManagedObjectContext
     
     public init(context: NSManagedObjectContext) {
         self.context = context
     }
     
-    public func expense(for identifier: DateComponents) -> Expense? {
-        guard let first = self.entry(for: identifier) else {
+    public func expense(for identifier: DateComponents) async -> Expense? {
+        guard let first = await self.entry(for: identifier) else {
             return nil
         }
-
+        
         var category: ExpenseCategory? = nil
         if let tag = first.tag {
             category = ExpenseCategory(name: tag.name,
@@ -42,7 +42,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     
     public func delete(_ expense: Expense) async throws -> Bool {
         try await context.perform {
-            guard let entry = self.entry(for: expense.dateComponents) else {
+            guard let entry = self.entry_sync(for: expense.dateComponents) else {
                 throw NSError(domain: "Could not delete entry.", code: -1, userInfo: nil)
             }
             
@@ -59,7 +59,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
     @discardableResult
     public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) async throws -> Bool {
         try await context.perform {
-            guard let first = self.entry(for: identifier) else {
+            guard let first = self.entry_sync(for: identifier) else {
                 throw NSError(domain: "Could not save", code: -1, userInfo: nil)
             }
             
@@ -78,7 +78,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                     first.tag = firstTag
                 }
             }
-
+            
             if saveToContext {
                 try self.context.save()
             }
@@ -111,7 +111,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             managedObject.currencyCode = expense.currencyCode
             managedObject.exchangeRateToBaseCurrency = expense.exchangeRateToBaseCurrency
             managedObject.isExchangeRateUpToDate = expense.isExchangeRateUpToDate
-                    
+            
             if let y = expense.dateComponents.year {
                 managedObject.year = NSNumber(integerLiteral: y)
             }
@@ -138,7 +138,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                 let tag = try! self.context.fetch(fetchRequest).last!
                 managedObject.tag = tag
             }
-
+            
             try self.context.save()
         }
     }
@@ -180,15 +180,21 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
 
 private extension IndividualExpensesDataSource {
     
-    func entry(for identifier: DateComponents) -> Entry? {
-        guard let y = identifier.year,
-            let mo = identifier.month,
-            let d = identifier.day,
-            let h = identifier.hour,
-            let mi = identifier.minute,
-            let s = identifier.second else {
-                return nil
+    func entry(for identifier: DateComponents) async -> Entry? {
+        await context.perform {
+            return self.entry_sync(for: identifier)
         }
+    }
+    
+    func entry_sync(for identifier: DateComponents) -> Entry? {
+        guard let y = identifier.year,
+              let mo = identifier.month,
+              let d = identifier.day,
+              let h = identifier.hour,
+              let mi = identifier.minute,
+              let s = identifier.second else {
+                  return nil
+              }
         
         let request = Entry.entryFetchRequest()
         request.predicate = NSPredicate(format: "(%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@) AND (%K = %@)",
@@ -199,7 +205,7 @@ private extension IndividualExpensesDataSource {
                                         "minute", NSNumber(value: mi),
                                         "second", NSNumber(value: s))
         
-        guard let results = try? context.fetch(request) else {
+        guard let results = try? self.context.fetch(request) else {
             return nil
         }
         

@@ -15,7 +15,7 @@ public class EntryForDateComponentsInteractor {
         self.dataSource = dataSource
     }
     
-    public func entry(for identifier: DateComponents) -> Expense? {
-        return self.dataSource.expense(for: identifier)
+    public func entry(for identifier: DateComponents) async -> Expense? {
+        await self.dataSource.expense(for: identifier)
     }
 }

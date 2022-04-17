@@ -10,11 +10,11 @@ import SwiftUI
 
 struct AddEntryButton: View {
     // MARK: Private
-    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var entryFormCoordinator: ExpensesEntryFormNavigationCoordinator
     @State private var showEntryForm = false
 
     // MARK: Initializers
-    init(entryFormCoordinator: EntryFormNavigationCoordinator) {
+    init(entryFormCoordinator: ExpensesEntryFormNavigationCoordinator) {
         self.entryFormCoordinator = entryFormCoordinator
     }
     

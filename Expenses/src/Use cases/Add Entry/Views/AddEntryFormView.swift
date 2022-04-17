@@ -133,7 +133,9 @@ struct EntryFormView: View {
             }
         }
         .onAppear {
-            self.presenter.onViewAppear()
+            Task {
+                await self.presenter.onViewAppear()
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ struct GridView<NC: NavigationCoordinator,
     private var columnCount: Int
     private var title: String
     private var navigationCoordinator: NC
-    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var entryFormCoordinator: ExpensesEntryFormNavigationCoordinator
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     private var headerViewNavigationCoordinator: HeaderNavCoordinator
     private var targetDestination: DateComponents?
@@ -36,7 +36,7 @@ struct GridView<NC: NavigationCoordinator,
          title: String,
          navigationButtonsPresenter: NavigationButtonsPresenter,
          navigationCoordinator: NC,
-         entryFormCoordinator: EntryFormNavigationCoordinator,
+         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator,
          categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,
          headerViewNavigationCoordinator: HeaderNavCoordinator,
          targetDestination: DateComponents? = nil) {

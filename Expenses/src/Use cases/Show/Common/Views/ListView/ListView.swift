@@ -21,7 +21,7 @@ struct ListView<NC: NavigationCoordinator> : View {
     private var navigationButtonsPresenter: NavigationButtonsPresenter
     private var title: String
     private var navigationCoordinator: NC
-    private var entryFormCoordinator: EntryFormNavigationCoordinator
+    private var entryFormCoordinator: ExpensesEntryFormNavigationCoordinator
     private var categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator
     private var targetDestination: DateComponents?
     
@@ -31,7 +31,7 @@ struct ListView<NC: NavigationCoordinator> : View {
          navigationButtonsPresenter: NavigationButtonsPresenter,
          title: String,
          navigationCoordinator: NC,
-         entryFormCoordinator: EntryFormNavigationCoordinator,
+         entryFormCoordinator: ExpensesEntryFormNavigationCoordinator,
          categoryFilterNavgationCoordinator: CategoryFilterNavigationCoordinator,
          targetDestination: DateComponents? = nil) {
         self.presenter = presenter

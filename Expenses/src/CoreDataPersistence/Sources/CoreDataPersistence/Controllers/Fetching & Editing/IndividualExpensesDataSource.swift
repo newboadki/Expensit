@@ -40,7 +40,7 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
                        isExchangeRateUpToDate: first.isExchangeRateUpToDate)
     }
     
-    public func delete(_ expense: Expense) async throws -> Bool {
+    public func delete(_ expense: Expense) async throws {
         try await context.perform {
             guard let entry = self.entry_sync(for: expense.dateComponents) else {
                 throw NSError(domain: "Could not delete entry.", code: -1, userInfo: nil)
@@ -48,16 +48,14 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             
             self.context.delete(entry)
             try self.context.save()
-            return true
         }
     }
     
-    public func saveChanges(in expense: Expense, with identifier: DateComponents) async throws -> Bool {
+    public func saveChanges(in expense: Expense, with identifier: DateComponents) async throws {
         try await saveChanges(in: expense, with: identifier, saveToContext: true)
     }
-    
-    @discardableResult
-    public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) async throws -> Bool {
+        
+    public func saveChanges(in expense: Expense, with identifier: DateComponents, saveToContext: Bool = true) async throws {
         try await context.perform {
             guard let first = self.entry_sync(for: identifier) else {
                 throw NSError(domain: "Could not save", code: -1, userInfo: nil)
@@ -82,12 +80,10 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
             if saveToContext {
                 try self.context.save()
             }
-            
-            return true
         }
     }
     
-    public func saveChanges(in expenses: [Expense]) async throws -> Bool {
+    public func saveChanges(in expenses: [Expense]) async throws {
         for expense in expenses {
             try await self.saveChanges(in: expense,
                                        with: expense.dateComponents,
@@ -97,8 +93,6 @@ public class IndividualExpensesDataSource: IndividualEntryDataSoure {
         try await context.perform {
             try self.context.save()
         }
-        
-        return true
     }
     
     public func add(expense: Expense) async throws {

@@ -15,7 +15,7 @@ public class DeleteExpenseInteractor {
     }
     
     @discardableResult
-    public func delete(_ expense: Expense) async throws -> Bool {
-        return try await self.dataSource.delete(expense)
+    public func delete(_ expense: Expense) async throws {
+        try await self.dataSource.delete(expense)
     }
 }

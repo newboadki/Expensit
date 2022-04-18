@@ -35,10 +35,11 @@ public class DailyCoreDataExpensesDataSource: NSObject, EntriesSummaryDataSource
         }
         
         self.cancellableSelectedCategoryUpdates = self.selectedCategoryDataSource.selectedCategoryPublisher.sink { selectedCategory in
-            self.filter(by: selectedCategory)
-            self.entriesGroupedByDay { expensesGroups in
-                self.groupedExpenses = expensesGroups
-            }
+                self.filter(by: selectedCategory)
+            
+                self.entriesGroupedByDay { expensesGroups in
+                    self.groupedExpenses = expensesGroups
+                }
         }
     }
     

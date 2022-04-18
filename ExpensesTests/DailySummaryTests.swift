@@ -83,7 +83,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -120,7 +120,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -158,7 +158,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
         
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -197,7 +197,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
         
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -235,7 +235,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -274,7 +274,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
         
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -312,7 +312,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
         
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -351,7 +351,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -390,7 +390,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
     
     func test_daily_breakdown_food() async throws {
@@ -434,7 +434,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -473,7 +473,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
     }
     
     func test_daily_breakdown_bills() async throws {
@@ -514,7 +514,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -553,7 +553,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -591,8 +591,8 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
-
+                                      checkAfterUpdateCount: 2)
+//
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
                                        Test.Expense(title: "3", value: ""),
@@ -630,7 +630,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
     }
 
     func test_daily_breakdown_travel() async throws {
@@ -673,7 +673,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -712,7 +712,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -751,7 +751,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
     }
 
     func test_daily_breakdown_income() async throws {
@@ -794,7 +794,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -832,7 +832,7 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
 
         Test.assertSectionsEventually([Test.Expense(title: "1", value: ""),
                                        Test.Expense(title: "2", value: ""),
@@ -870,6 +870,6 @@ extension DailySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 2)
     }
 }

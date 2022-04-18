@@ -24,7 +24,7 @@ class MonthlySummaryTests: XCTestCase {
         selectedCategoryDataSource = CoreDataCategoryDataSource(context: context)
         setCategoryInteractor = SetCategoryFilterInteractor(dataSource: selectedCategoryDataSource)
         let monthlySummaryDataSource = MonthlyCoreDataExpensesDataSource(coreDataContext:context,
-                                                                       selectedCategoryDataSource: selectedCategoryDataSource)
+                                                                         selectedCategoryDataSource: selectedCategoryDataSource)
         presenter = ShowMonthlyEntriesPresenter(interactor: ExpensesSummaryInteractor(dataSource: monthlySummaryDataSource),
                                                 subscriptionScheduler: ImmediateScheduler.shared,
                                                 receiveOnScheduler: ImmediateScheduler.shared)
@@ -64,11 +64,11 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
+                                      checkAfterUpdateCount: 2)
         
         cancellable?.cancel()
         cancellable = nil
-
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: "$3,617.70"),
@@ -87,10 +87,10 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
         cancellable?.cancel()
         cancellable = nil
-
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: ""),
@@ -109,7 +109,7 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
     
     func test_monthly_breakdown_food() async throws {
@@ -134,8 +134,8 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
-
+                                      checkAfterUpdateCount: 2)
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: "-$161.40"),
@@ -154,9 +154,9 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
-
+    
     func test_monthly_breakdown_bills() async throws {
         try await setupDependencies()
         setCategoryInteractor.filter(by: ExpenseCategory(name: "Bills", iconName: "", color: .red))
@@ -179,8 +179,8 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
-
+                                      checkAfterUpdateCount: 2)
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: ""),
@@ -199,9 +199,9 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
-
+    
     func test_monthly_breakdown_travel() async throws {
         try await setupDependencies()
         setCategoryInteractor.filter(by: ExpenseCategory(name: "Travel", iconName: "", color: .red))
@@ -224,8 +224,8 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
-
+                                      checkAfterUpdateCount: 2)
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: "$3,779.10"),
@@ -244,8 +244,8 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
-
+                                      checkAfterUpdateCount: 1)
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: ""),
@@ -264,9 +264,9 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
-
+    
     func test_monthly_breakdown_incoming() async throws {
         try await setupDependencies()
         setCategoryInteractor.filter(by: ExpenseCategory(name: "Income", iconName: "", color: .red))
@@ -289,8 +289,8 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 2)
-
+                                      checkAfterUpdateCount: 2)
+        
         Test.assertSectionsEventually([Test.Expense(title: "JAN", value: ""),
                                        Test.Expense(title: "FEB", value: ""),
                                        Test.Expense(title: "MAR", value: ""),
@@ -309,6 +309,6 @@ extension MonthlySummaryTests {
                                       cancellable: &cancellable,
                                       presenter: presenter,
                                       testCase: self,
-                                      checkAfter: 1)
+                                      checkAfterUpdateCount: 1)
     }
 }

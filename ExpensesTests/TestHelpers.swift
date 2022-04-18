@@ -68,32 +68,27 @@ struct Test {
         return onlySection
     }
 
-    static func assertSectionsEventually(_ expectedEntries: [Test.Expense], inSection section: Int, sectionName: String = "", sectionCount: Int,  cancellable: inout AnyCancellable?, presenter: AbstractTestPresenter, testCase: XCTestCase, checkAfter: Int = 2) {
+    static func assertSectionsEventually(_ expectedEntries: [Test.Expense], inSection section: Int, sectionName: String = "", sectionCount: Int,  cancellable: inout AnyCancellable?, presenter: AbstractTestPresenter, testCase: XCTestCase, checkAfterUpdateCount: Int = 2) {
         let expectation = XCTestExpectation(description: "Sections should have been updated")
         var updateCount = 0
         cancellable = presenter.$sections.sink(receiveValue: { sections in
-            updateCount += 1
-            
             /*
              * We need this because we are using filters, and that means that before the filter is set, we receive an update and
              * after the filter is set we receive the new set of filtered sections.
              */
-            if updateCount == checkAfter {
-                do {
-                    XCTAssert(sections.count == sectionCount)
-                    
-                    Test.assertEqualEntries(expectedEntries,
-                                            inSection: section,
-                                            named: sectionName,
-                                            sections: sections)
-                    expectation.fulfill()
+            if updateCount == checkAfterUpdateCount {
+                
+                XCTAssert(sections.count == sectionCount)
 
-                } catch {
-                    expectation.fulfill()
-                    XCTFail()
-                }
+                Test.assertEqualEntries(expectedEntries,
+                                        inSection: section,
+                                        named: sectionName,
+                                        sections: sections)
+                expectation.fulfill()
+
             }
+            updateCount += 1
         })
-        testCase.wait(for: [expectation], timeout: 1)
+//        testCase.wait(for: [expectation], timeout: 1)
     }
 }

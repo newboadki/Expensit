@@ -56,7 +56,8 @@ extension YearlySummaryTests {
                                       sectionCount: 1,
                                       cancellable: &cancellable,
                                       presenter: presenter,
-                                      testCase: self)
+                                      testCase: self,
+                                      checkAfterUpdateCount: 1)
     }
     
     func test_yearly_breakdown_food() async throws {

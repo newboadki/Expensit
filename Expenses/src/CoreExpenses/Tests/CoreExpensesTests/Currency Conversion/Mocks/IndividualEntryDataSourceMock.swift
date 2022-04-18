@@ -16,24 +16,20 @@ class IndividualEntryDataSourceMock: IndividualEntryDataSoure {
         
     }
     
-    func expense(for identifier: DateComponents) -> Expense? {
+    func expense(for identifier: DateComponents) async -> Expense? {
         return nil
     }
     
-    func saveChanges(in expense: Expense, with identifier: DateComponents) -> Result<Bool, Error> {
-        return .success(true)
+    func saveChanges(in expense: Expense, with identifier: DateComponents) async throws {
     }
     
-    func saveChanges(in expenses: [Expense]) -> Result<Bool, Error> {
+    func saveChanges(in expenses: [Expense]) async throws {
         self.expensesRequestedToSave = expenses
-        return .success(true)
     }
     
-    func add(expense: Expense) -> Result<Bool, Error> {
-        return .success(true)
+    func add(expense: Expense) async throws {
     }
     
-    func delete(_ expense: Expense) -> Result<Bool, Error> {
-        return .success(true)
+    func delete(_ expense: Expense) async throws {
     }
 }

@@ -35,24 +35,28 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
         // Get all entries from the DB
         // &
         // Get rates from the network
-        let destinationCurrencies = currenciesDataSource.allUsedCurrencies()
-        entriesDataSource.expensesGroups { expenseGroups in
-            let firstDate = expenseGroups.first?.entries.first?.date
-            let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
-            let lastDate = expenseGroups.last?.entries.last?.date
-            let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
-            let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
-            
-            self.rateInfoSubscription = ratesPublisher.asyncSink(receiveCompletion: { result in
-                if case .failure(_) = result {
-                    let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
+        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+            let destinationCurrencies = currenciesDataSource.allUsedCurrencies()
+            entriesDataSource.expensesGroups { expenseGroups in
+                let firstDate = expenseGroups.first?.entries.first?.date
+                let first = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: firstDate!.dayBefore)
+                let lastDate = expenseGroups.last?.entries.last?.date
+                let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
+                self.rateInfoSubscription = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last)
+                    .eraseToAnyPublisher()
+                    .asyncSink(receiveCompletion: { result in
+                        if case .failure(_) = result {
+                            let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
+                            try? await self.save(expenses: updatedExpenses)
+                            continuation.resume(returning: ())
+                        }
+                },
+                receiveValue: { rateInfo in
+                    let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
                     try? await self.save(expenses: updatedExpenses)
-                }
-            },
-            receiveValue: { rateInfo in
-                let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
-                try? await self.save(expenses: updatedExpenses)
-            })
+                        continuation.resume(returning: ())
+                })
+            }
         }
     }
 }

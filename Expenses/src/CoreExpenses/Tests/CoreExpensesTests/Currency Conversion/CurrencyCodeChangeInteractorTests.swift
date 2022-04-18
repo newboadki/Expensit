@@ -13,7 +13,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
     
     private typealias Provider = ConvertToBaseCurrencyInteractorProvider
         
-    func test_when_theres_no_currency_change_no_approximations() {
+    func test_when_theres_no_currency_change_no_approximations() async {
         let settingsMock = CurrencySettingsInteractorMock(currentCurrencyCode: "USD", previousCurrencyCode: "USD")
         let convertorMock = ConvertToBaseCurrencyInteractorMock()
         let entriesInDbMock = Provider.entriesDataSourceMock(withEntries: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 15_000, "USD"),
@@ -24,7 +24,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
                                                        currencySettingsInteractor: settingsMock)
         
         // Test
-        testSubject.updateCurrencyExchangeRates()
+        await testSubject.updateCurrencyExchangeRates()
         
         // Conversion attempted
         XCTAssert(convertorMock.convertAllEntriesCalled == false)
@@ -33,7 +33,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
         XCTAssert(settingsMock.setPreviousCurrencyCodeCalled == false)
     }
 
-    func test_when_theres_no_currency_change_with_approximations() {
+    func test_when_theres_no_currency_change_with_approximations() async {
         let settingsMock = CurrencySettingsInteractorMock(currentCurrencyCode: "USD", previousCurrencyCode: "USD")
         let convertorMock = ConvertToBaseCurrencyInteractorMock()
         let entriesInDbMock = Provider.entriesDataSourceMock(withEntries: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 15_000, "USD"),
@@ -43,7 +43,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
         let testSubject = CurrencyCodeChangeInteractor(exchangeRatesConversionInteractor: convertorMock,
                                                        allEntriesDataSource: entriesInDbMock,
                                                        currencySettingsInteractor: settingsMock)
-        testSubject.updateCurrencyExchangeRates()
+        await testSubject.updateCurrencyExchangeRates()
         
         // Conversion attempted
         XCTAssert(convertorMock.convertAllEntriesCalled == true)
@@ -52,7 +52,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
         XCTAssert(settingsMock.setPreviousCurrencyCodeCalled == false)
     }
     
-    func test_currency_changed_network_rates_succeeded() {
+    func test_currency_changed_network_rates_succeeded() async {
         let settingsMock = CurrencySettingsInteractorMock(currentCurrencyCode: "USD", previousCurrencyCode: "EUR")
         let convertorMock = ConvertToBaseCurrencyInteractorMock()
         let entriesInDbMock = Provider.entriesDataSourceMock(withEntries: [Provider.entryInBaseCurrency("e1", DateComponents(year: 2021, month: 1, day: 1), 15_000, "EUR"),
@@ -61,7 +61,7 @@ class CurrencyCodeChangeInteractorTests: XCTestCase {
         let testSubject = CurrencyCodeChangeInteractor(exchangeRatesConversionInteractor: convertorMock,
                                                        allEntriesDataSource: entriesInDbMock,
                                                        currencySettingsInteractor: settingsMock)
-        testSubject.updateCurrencyExchangeRates()
+        await testSubject.updateCurrencyExchangeRates()
         
         // Conversion attempted
         XCTAssert(convertorMock.convertAllEntriesCalled == true)

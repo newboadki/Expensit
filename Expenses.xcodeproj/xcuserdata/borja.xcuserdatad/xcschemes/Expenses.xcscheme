@@ -48,6 +48,46 @@
                ReferencedContainer = "container:Expenses.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CoreDataPersistenceTests"
+               BuildableName = "CoreDataPersistenceTests"
+               BlueprintName = "CoreDataPersistenceTests"
+               ReferencedContainer = "container:Expenses/src/CoreDataPersistence">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CoreExpensesTests"
+               BuildableName = "CoreExpensesTests"
+               BlueprintName = "CoreExpensesTests"
+               ReferencedContainer = "container:Expenses/src/CoreExpenses">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CurrenciesTests"
+               BuildableName = "CurrenciesTests"
+               BlueprintName = "CurrenciesTests"
+               ReferencedContainer = "container:Expenses/src/Currencies">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DateAndTimeTests"
+               BuildableName = "DateAndTimeTests"
+               BlueprintName = "DateAndTimeTests"
+               ReferencedContainer = "container:../DateTimeHelper/DateAndTime">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

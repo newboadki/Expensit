@@ -10,7 +10,6 @@ import Foundation
 import Combine
 import DateAndTime
 
-
 public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
     
     private let entriesDataSource: EntriesSummaryDataSource
@@ -44,19 +43,15 @@ public class ConvertToBaseCurrencyInteractor: CurrencyConvertorInteractor {
             let last = DateConversion.string(withFormat: DateFormats.reversedHyphenSeparated, from: lastDate!.dayAfter)
             let ratesPublisher = self.ratesDataSource.rates(from: newBaseCurrency, to: destinationCurrencies, start: first, end: last).eraseToAnyPublisher()
             
-            self.rateInfoSubscription = ratesPublisher.sink(receiveCompletion: { result in
+            self.rateInfoSubscription = ratesPublisher.asyncSink(receiveCompletion: { result in
                 if case .failure(_) = result {
                     let updatedExpenses = self.expensesAfterUpdatingWithDefaultRates(expenseGroups: expenseGroups, to: newBaseCurrency)
-                    Task {
-                        try? await self.save(expenses: updatedExpenses)
-                    }
+                    try? await self.save(expenses: updatedExpenses)
                 }
             },
             receiveValue: { rateInfo in
                 let updatedExpenses = self.expensesWithUpdatedExchangeRateToBase(expenseGroups: expenseGroups, rateInfo: rateInfo, to: newBaseCurrency)
-                Task {
-                    try? await self.save(expenses: updatedExpenses)
-                }
+                try? await self.save(expenses: updatedExpenses)
             })
         }
     }

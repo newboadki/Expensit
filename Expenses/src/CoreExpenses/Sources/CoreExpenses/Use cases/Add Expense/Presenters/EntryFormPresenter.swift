@@ -149,26 +149,25 @@ public class EntryFormPresenter: ObservableObject {
         entry.tag = categories[entry.tagId]
         entry.currencyCode = currencyCodes[entry.currencyCodeId]
                 
-        self.updateExpenseCancellable = entryEntity(fromViewModel: entry).sink { expenseEntity in
-            Task {
-                if let id = self.entryIdentifier {
-                    // Editing existing entry
-                    _ = try? await self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
-                } else {
-                    // New Entry
-                    try? await self.storageInteractor.add(expense: expenseEntity)
-                }
+        self.updateExpenseCancellable = entryEntity(fromViewModel: entry).asyncSink { expenseEntity in
+            if let id = self.entryIdentifier {
+                // Editing existing entry
+                _ = try? await self.editExpenseInteractor.saveChanges(in: expenseEntity, with: id)
+            } else {
+                // New Entry
+                try? await self.storageInteractor.add(expense: expenseEntity)
             }
+
             presentationMode.wrappedValue.dismiss()
         }
     }
     
     public func handleDeleteButtonPressed(_ presentationMode: Binding<PresentationMode>) {
-        self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).sink { expenseEntity in
-            Task {
-                try? await self.deleteExpenseInteractor.delete(expenseEntity)
+        self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).asyncSink { expenseEntity in
+            try? await self.deleteExpenseInteractor.delete(expenseEntity)
+            await MainActor.run {
+                presentationMode.wrappedValue.dismiss()
             }
-            presentationMode.wrappedValue.dismiss()
         }
     }
     

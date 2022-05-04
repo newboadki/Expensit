@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Async+Publishers.swift
 //  
 //
 //  Created by Borja Arias Drake on 18.04.2022..
@@ -21,6 +21,12 @@ extension Publisher {
             }
         }
     }
+    
+    public func asyncSink(receiveValue: @escaping ((Self.Output) async -> Void)) -> AnyCancellable where Self.Failure == Never {
+        sink { output in
+            Task {
+                await receiveValue(output)
+            }
+        }
+    }
 }
-
-

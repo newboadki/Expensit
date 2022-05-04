@@ -26,7 +26,9 @@ class BSExpensesSummaryPieGraphController : BSPieGraphControllerProtocol {
     }
     
     func expensesByCategory(forMonth month: NSNumber?, year : NSNumber) async -> [PieChartSectionInfo]? {
-        await self.dataProvider.expensesByCategory(forMonth: month?.intValue, inYear:year.intValue)
+        let handle = Task {
+            await self.dataProvider.expensesByCategory(forMonth: month?.intValue, inYear:year.intValue)
+        }
+        return await handle.value
     }
-
 }

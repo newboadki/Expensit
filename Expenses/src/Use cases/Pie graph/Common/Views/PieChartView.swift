@@ -39,11 +39,18 @@ struct PieChartView: View {
                     .animation(Animation.easeOut(duration: 1.3))
             }
             Spacer()
-        }.onAppear {
-            presenter.onViewDidAppear()
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                self.maskStartAngle = 360
+        }
+        .onAppear {
+            Task {
+                await presenter.onViewDidAppear()
             }
+            
+            Task {
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                await MainActor.run {
+                    self.maskStartAngle = 360
+                }
+            }                       
         }
     }
 }

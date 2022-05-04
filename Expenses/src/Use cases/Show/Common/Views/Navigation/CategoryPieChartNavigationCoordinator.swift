@@ -15,6 +15,7 @@ protocol GridViewSectionHeaderNavigationCoordinator {
     func nextView(forIdentifier currentViewIdentifier: String, params: Any?, isPresented: Binding<Bool>) -> T
 }
 
+@MainActor
 class CategoryPieChartNavigationCoordinator: GridViewSectionHeaderNavigationCoordinator {
     private var coreDataContext: NSManagedObjectContext
     

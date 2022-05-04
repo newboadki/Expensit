@@ -27,35 +27,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         currencyCodeChangeManager = self.di.currencyCodeChangeManager()
         
-        DispatchQueue.global().async {
-            
-            Task.detached {
-                // Database Migrations
-                do {
-                    try await self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
-                } catch {
-                    print(error)
-                }
+        Task.detached {
+            // Database Migrations
+            do {
+                try await self.di.coreDataModelMigrationInteractor().applyPendingMigrations(to: self.di.coreDataModel)
+            } catch {
+                print(error)
             }
             
             // Convert exchange rates
-            Task {
-                await self.currencyCodeChangeManager.updateCurrencyExchangeRates()
-            }
-            
-            // Setup the view
-            let contentView = ExpensesSummaryNavigationView(navigationCoordinator: self.di.mainNavigationCoordinator())
-            
-            DispatchQueue.main.async {
-                // Use a UIHostingController as window root view controller.
-                if let windowScene = scene as? UIWindowScene {
-                    let window = UIWindow(windowScene: windowScene)
-                    window.rootViewController = UIHostingController(rootView: contentView)
-                    self.window = window
-                    window.makeKeyAndVisible()
-                }
-            }        
+            await self.currencyCodeChangeManager.updateCurrencyExchangeRates()
         }
+        
+        // Setup the view
+        let contentView = ExpensesSummaryNavigationView(navigationCoordinator: self.di.mainNavigationCoordinator())
+        
+        DispatchQueue.main.async {
+            // Use a UIHostingController as window root view controller.
+            if let windowScene = scene as? UIWindowScene {
+                let window = UIWindow(windowScene: windowScene)
+                window.rootViewController = UIHostingController(rootView: contentView)
+                self.window = window
+                window.makeKeyAndVisible()
+            }
+        }        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

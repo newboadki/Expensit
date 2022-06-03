@@ -165,9 +165,7 @@ public class EntryFormPresenter: ObservableObject {
     public func handleDeleteButtonPressed(_ presentationMode: Binding<PresentationMode>) {
         self.updateExpenseCancellable = self.entryEntity(fromViewModel: self.entry).asyncSink { expenseEntity in
             try? await self.deleteExpenseInteractor.delete(expenseEntity)
-            await MainActor.run {
-                presentationMode.wrappedValue.dismiss()
-            }
+            presentationMode.wrappedValue.dismiss()
         }
     }
     

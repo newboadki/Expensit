@@ -47,9 +47,7 @@ struct PieChartView: View {
             
             Task {
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
-                await MainActor.run {
-                    self.maskStartAngle = 360
-                }
+                self.maskStartAngle = 360
             }                       
         }
     }

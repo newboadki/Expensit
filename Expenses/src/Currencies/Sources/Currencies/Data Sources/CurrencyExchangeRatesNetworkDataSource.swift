@@ -24,10 +24,14 @@ public class CurrencyExchangeRatesNetworkDataSource {
 
     // From needs to be an array
     // The return type has to be [CurrencyExchangeInfoNetworkModel]
-    public func rates(from baseCurrencyCode: String, to destinationCurrencyCodes: [String], start: String = "2013-01-01", end: String = "2020-10-17") -> AnyPublisher<CurrencyExchangeInfoNetworkModel, Error> {
+    public func rates(from baseCurrencyCode: String,
+                      to destinationCurrencyCodes: [String],
+                      start: String = "2013-01-01",
+                      end: String = "2020-10-17") -> AnyPublisher<CurrencyExchangeInfoNetworkModel, Error> {
+        
         let url = URL(string: "https://api.exchangeratesapi.io/history?start_at=\(start)&end_at=\(end)&base=\(baseCurrencyCode)&symbols=\(destinationCurrencyCodes.joined(separator: ","))&access_token=81b7f4c36a84a9ef1c9f2dbc870dfc0b")!
         return urlSession.dataTaskPublisher(for: url)
-                                .tryMap() { element -> Data in
+            .tryMap() { element -> Data in
                 guard let httpResponse = element.response as? HTTPURLResponse,
                     httpResponse.statusCode == 200 else {
                         throw URLError(.badServerResponse)
